@@ -1,0 +1,11 @@
+Yii Documentation Project
+=========================
+
+This project aims to translate various Yii documentation into
+different languages.
+
+Each folder contains a specific type of Yii documentation (e.g. 'guide').
+Each translation of a documentation should be organized under
+a sub-folder of that folder and named using language code.
+For example, all Chinese translations for the Guide should be placed
+under 'guide/zh_cn'.
