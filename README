@@ -4,8 +4,18 @@ Yii Documentation Project
 This project aims to translate various Yii documentation into
 different languages.
 
-Each folder contains a specific type of Yii documentation (e.g. 'guide').
-Each translation of a documentation should be organized under
-a sub-folder of that folder and named using language code.
-For example, all Chinese translations for the Guide should be placed
-under 'guide/zh_cn'.
+Currently, we are working on translating the definitive guide to Yii.
+The original copy is located under the folder 'guide-source'.
+All translations should be put under the folder 'guide/<lang>',
+where <lang> stands for the language code (e.g. 'de' for German,
+'zh_cn' for simplified Chinese) of the translation.
+
+Make sure you use UTF-8 encoding to save your translations.
+
+We will include the latest translations into every release of Yii,
+and also display them online.
+
+Thank you for your support and contribution to Yii!
+
+
+Qiang
