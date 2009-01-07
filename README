@@ -1,16 +1,20 @@
 Yii Documentation Project
 =========================
 
-This project aims to translate various Yii documentation into
-different languages.
+This project aims to translate Yii core messages, system views
+and various documentation into different languages.
 
-Currently, we are working on translating the definitive guide to Yii.
-The original copy is located under the folder 'guide-source'.
-All translations should be put under the folder 'guide/<lang>',
-where <lang> stands for the language code (e.g. 'de' for German,
-'zh_cn' for simplified Chinese) of the translation.
+The directory structure is shown at the end of this file, where
+<lang> stands for the language code for a particular language
+(e.g. 'de' for German, 'zh_cn' for simplified Chinese).
 
-Make sure you use UTF-8 encoding to save your translations.
+File is the basic unit of translations. For each file to be
+translated, you should create a new file with the same name and
+save it under the appropriate directory. For example, in order to
+translate the "database.ar.txt" file of the definitive guide into
+German, you should save the translated file as "guide/de/database.ar.txt".
+
+MARE SURE YOU USE UTF-8 ENCODING WHEN SAVING YOUR TRANSLATION.
 
 We will include the latest translations into every release of Yii,
 and also display them online.
@@ -18,4 +22,24 @@ and also display them online.
 Thank you for your support and contribution to Yii!
 
 
-Qiang
+Directory Structure
+-------------------
+
+guide/           the definitive guide
+	source/      the original guide text (read-only)
+	<lang>/      translation of the guide in a language
+
+messages/        the Yii core messages
+	<lang>/      translation of the messages in a language
+
+views/
+	source/      the original system view files (read-only)
+	<lang>/      translation of the views in a language
+
+requirements/
+	messages/    the messages for requirement checker
+		<lang>/  translation of the messages in a language
+	views/       the view files for requirement checker
+		source/  the original view files (read-only)
+		<lang>/  translation of the views in a language
+
