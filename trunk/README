@@ -22,6 +22,27 @@ and also display them online.
 Thank you for your support and contribution to Yii!
 
 
+How to Synchronize Messages
+---------------------------
+
+We have a tool to help synchronize changes made to Yii core messages
+and requirement checker messages. Check out an SVN copy of Yii
+framework. On command line under the "build" directory, run
+the following command:
+
+build message ../framework/messages/config.php
+
+This will extract original messages from Yii framework and merge
+them with the translations under the "messages" directory. You can
+now check the merged file to see if there is any change since you
+translate the messages last time. Similar procedure applies to
+the requirement checker messages, which can be synchronized using
+the following command:
+
+build message ../requirements/messages/config.php
+
+
+
 Directory Structure
 -------------------
 
