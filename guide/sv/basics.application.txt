@@ -136,58 +136,39 @@ varje tänkbart sätt.
 
 Nedan listas kärnkomponenterna som fördeklareras av [CWebApplication].
 
-   - [assetManager|CWebApplication::assetManager]: [CAssetManager] - handhar 
-   publicering av privata resursfiler
+   - [assetManager|CWebApplication::assetManager]: [CAssetManager] - handhar publicering av privata resursfiler
 
-   - [authManager|CWebApplication::authManager]: [CAuthManager] - handhar 
-   rollbaserad tillträdeskontroll (RBAC).
+   - [authManager|CWebApplication::authManager]: [CAuthManager] - handhar rollbaserad tillträdeskontroll (RBAC).
 
-   - [cache|CApplication::cache]: [CCache] - tillhandahåller data cache-
-   funktionalitet. Observera att aktuell klass (e.g. [CMemCache],    [CDbCache]) 
-   måste specificeras. I annat fall returneras null när komponenten skall 
-   användas.
+   - [cache|CApplication::cache]: [CCache] - tillhandahåller data cache-funktionalitet. Observera att aktuell klass (e.g. [CMemCache], [CDbCache]) måste specificeras. I annat fall returneras null när komponenten skall användas.
 
-   - [clientScript|CWebApplication::clientScript]: [CClientScript] - handhar 
-   klientskript (javascripts and CSS).
+   - [clientScript|CWebApplication::clientScript]: [CClientScript] - handhar klientskript (javascripts and CSS).
 
-   - [coreMessages|CApplication::coreMessages]: [CPhpMessageSource] -
-   tillhandahåller översatta systemmeddelanden som Yii framework använder.
+   - [coreMessages|CApplication::coreMessages]: [CPhpMessageSource] - tillhandahåller översatta systemmeddelanden som Yii framework använder.
 
-   - [db|CApplication::db]: [CDbConnection] - tillhandahåller 
-   databasanslutningen. Observera att propertyn 
-   [connectionString|CDbConnection::connectionString] måste konfigureras om 
-   denna komponent används.
+   - [db|CApplication::db]: [CDbConnection] - tillhandahåller databasanslutningen. Observera att propertyn [connectionString|CDbConnection::connectionString] måste konfigureras om denna komponent används.
 
-   - [errorHandler|CApplication::errorHandler]: [CErrorHandler] - hanterar ej 
-   uppfångade PHP-felmeddelanden och exception.
+   - [errorHandler|CApplication::errorHandler]: [CErrorHandler] - hanterar icke uppfångade PHP-felmeddelanden och exception.
 
-   - [messages|CApplication::messages]: [CPhpMessageSource] - tillhandahåller 
-   översatta texter ingående i Yii-applikationer.
+   - [messages|CApplication::messages]: [CPhpMessageSource] - tillhandahåller översatta texter ingående i Yii-applikationer.
 
-   - [request|CWebApplication::request]: [CHttpRequest] - tillhandahåller 
-   information relaterad till inkommen request från användare.
+   - [request|CWebApplication::request]: [CHttpRequest] - tillhandahåller information relaterad till inkommen request från användare.
 
-   - [securityManager|CApplication::securityManager]: [CSecurityManager] -
-   tillhandahåller säkerhetsrelaterade tjänster såsom hashning, kryptering.
+   - [securityManager|CApplication::securityManager]: [CSecurityManager] - tillhandahåller säkerhetsrelaterade tjänster såsom hashning, kryptering.
 
-   - [session|CWebApplication::session]: [CHttpSession] - tillhandahåller 
-   funktionalitet relaterad till session.
+   - [session|CWebApplication::session]: [CHttpSession] - tillhandahåller funktionalitet relaterad till session.
 
-   - [statePersister|CApplication::statePersister]: [CStatePersister] -
-tillhandahåller metod för lagring av globalt tillstånd.
+   - [statePersister|CApplication::statePersister]: [CStatePersister] - tillhandahåller metod för lagring av globalt tillstånd.
 
-   - [urlManager|CWebApplication::urlManager]: [CUrlManager] - tillhandahåller 
-   funktionalitet för att analysera eller skapa URL:er.
+   - [urlManager|CWebApplication::urlManager]: [CUrlManager] - tillhandahåller funktionalitet för att analysera eller skapa URL:er.
 
-   - [user|CWebApplication::user]: [CWebUser] - representerar 
-   identitetsinformation för aktuell användare.
+   - [user|CWebApplication::user]: [CWebUser] - representerar identitetsinformation för aktuell användare.
 
-   - [themeManager|CWebApplication::themeManager]: [CThemeManager] - handhar 
-   teman.
+   - [themeManager|CWebApplication::themeManager]: [CThemeManager] - handhar teman.
 
 
-Application Lifecycles
-----------------------
+Livscykel för applikationsobjekt 
+--------------------------------
 
 Vid behandling av en inkommen request från användare genomgår en applikation följande livscykel:
 
