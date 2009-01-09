@@ -29,7 +29,7 @@ geladen wurden und ob die Einstellungen in der php.ini korrekt sind
 <?php if($result>0): ?>
 Gratulation! Ihr Sevrer erfüllt alle Anforderungen von Yii.
 <?php elseif($result<0): ?>
-Ihr Server erfüllt die minimalen Anforderungen von Yii. Bitte beachten Sie die untenstehenden Warnungen, wenn Ihre Anwendungen einige dieser Features verwenden soll.
+Ihr Server erfüllt die minimalen Anforderungen von Yii. Bitte beachten Sie die untenstehenden Warnungen, wenn Ihre Anwendungen einige dieser Features verwenden sollen.
  <?php else: ?>
 Unglücklicherweise erfüllt Ihr Server die Anforderungen von Yii nicht.
 <?php endif; ?>
