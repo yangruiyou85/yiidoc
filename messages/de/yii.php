@@ -16,11 +16,11 @@
  * @version $Id: yii.php 466 2009-01-04 20:32:45Z qiang.xue $
  */
 return array (
-  'CHttpRequest is unable to determine the path info of the request.' => '',
-  'CHttpRequest is unable to determine the request URI.' => '',
-  'CXCache requires PHP XCache extension to be loaded.' => '',
+  'CHttpRequest is unable to determine the path info of the request.' => 'CHttpRequest kann die Pfadinformation für diese Anfrage nicht ermitteln.',
+  'CHttpRequest is unable to determine the request URI.' => 'CHttpRequest kann die angeforderte URI nicht ermitteln.',
+  'CXCache requires PHP XCache extension to be loaded.' => 'CXCache benötigt, dass die PHP XCache Erweiterung geladen ist.',
   'Cannot add "{name}" as a child of itself.' => '',
-  'The column "{column}" is not a foreign key in table "{table}".' => '',
+  'The column "{column}" is not a foreign key in table "{table}".' => 'Die Spalte "{column}" ist kein Fremdschlüssel in der Tabelle "{table}".',
   '"{path}" is not a valid directory.' => '"{path}" ist kein gültiges Verzeichnis.',
   'Active Record requires a "db" CDbConnection application component.' => 'ActiveRecord erfordert eine "db" CDbConnection Applikations-Komponente.',
   'Active record "{class}" has an invalid configuration for relation "{relation}". It must specify the relation type, the related active record class and the foreign key.' => 'ActiveRecord-Klasse "{class}" hat eine ungültige Konfiguration für die Relation "{relation}". Relations-Typ, verknüpftes ActiveRecord und Fremdschlüssel müssen angegeben werden.',
