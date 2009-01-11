@@ -184,4 +184,5 @@ Vid behandling av en inkommen request från användare genomgår en applikation 
 	   - Exekvera controller;
    7.Signalera händelsen [onEndRequest|CApplication::onEndRequest];
 
+
 <div class="revision">$Id: basics.application.txt 416 2008-12-28 05:28:11Z qiang.xue $</div>
