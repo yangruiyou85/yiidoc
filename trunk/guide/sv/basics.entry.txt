@@ -1,11 +1,11 @@
 Startskript
 ============
 
-Startskript är boot-skriptet som initialt tar hand om en inkommen 
-request från användare. Det är det enda skript som slutanvändare har direkt 
-åtkomst till för exekvering.
+Startskript Ã¤r boot-skriptet som initialt tar hand om en inkommen 
+request frÃ¥n anvÃ¤ndare. Det Ã¤r det enda skript som slutanvÃ¤ndare har direkt 
+Ã¥tkomst till fÃ¶r exekvering.
 
-I de flesta fall innehåller en Yii-applikations startskript kod som är enkel enligt nedan
+I de flesta fall innehÃ¥ller en Yii-applikations startskript kod som Ã¤r enkel enligt nedan
 
 ~~~
 [php]
@@ -18,18 +18,18 @@ $configFile='path/to/config/file.php';
 Yii::createWebApplication($configFile)->run();
 ~~~
 
-Skriptet inkluderar först Yii-ramverkets boot-fil `yii.php`. Sedan skapar det en 
-webbapplikationsinstans enligt specificerad konfiguration och kör denna.
+Skriptet inkluderar fÃ¶rst Yii-ramverkets boot-fil `yii.php`. Sedan skapar det en 
+webbapplikationsinstans enligt specificerad konfiguration och kÃ¶r denna.
 
-Debugläge
+DebuglÃ¤ge
 ---------
 
-En Yii-applikation kan köras i antingen debug- eller produktionsläge givet av 
-värdet hos konstanten `YII_DEBUG`. Som standard är denna konstant definierad 
-till `false`, vilket innebär produktionsläge. För att köra i debugläge, 
-definiera konstanten till `true` före inkludering av filen `yii.php`. Körning av 
-applikationen i debugläge är mindre effektivt eftersom många interna 
-loggar administraras. Å andra sidan är debugläge också till stor hjälp i utvecklingsfasen 
-eftersom utförligare information tillhandahålls när fel uppträder.
+En Yii-applikation kan kÃ¶ras i antingen debug- eller produktionslÃ¤ge givet av 
+vÃ¤rdet hos konstanten `YII_DEBUG`. Som standard Ã¤r denna konstant definierad 
+till `false`, vilket innebÃ¤r produktionslÃ¤ge. FÃ¶r att kÃ¶ra i debuglÃ¤ge, 
+definiera konstanten till `true` fÃ¶re inkludering av filen `yii.php`. KÃ¶rning av 
+applikationen i debuglÃ¤ge Ã¤r mindre effektivt eftersom mÃ¥nga interna 
+loggar administraras. Ã… andra sidan Ã¤r debuglÃ¤ge ocksÃ¥ till stor hjÃ¤lp i utvecklingsfasen 
+eftersom utfÃ¶rligare information tillhandahÃ¥lls nÃ¤r fel upptrÃ¤der.
 
 <div class="revision">$Id: basics.entry.txt 162 2008-11-05 12:44:08Z weizhuo $</div>
