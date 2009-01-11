@@ -1,7 +1,7 @@
-* Komma igång
-    - [Vad är Yii](quickstart.what-is-yii)
+* Komma igÃ¥ng
+    - [Vad Ã¤r Yii](quickstart.what-is-yii)
     - [Installation](quickstart.installation)
-    - [Skapa en första Yii-application](quickstart.first-app)
+    - [Skapa en fÃ¶rsta Yii-applikation](quickstart.first-app)
 
 * Grunder
     - [Model-View-Controller (MVC)](basics.mvc)
@@ -11,37 +11,37 @@
     - [Model](basics.model)
     - [View](basics.view)
     - [Komponent](basics.component)
-    - [Sökvägsalias och namnområde](basics.namespace)
+    - [SÃ¶kvÃ¤gsalias och namnomrÃ¥de](basics.namespace)
     - [Konventioner](basics.convention)
-    - [Arbetsgång vid utveckling](basics.workflow)
+    - [ArbetsgÃ¥ng vid utveckling](basics.workflow)
 
 * Arbeta med Forms
-    - [Översikt](form.overview)
+    - [Ã–versikt](form.overview)
     - [Skapa Model](form.model)
     - [Skapa Action](form.action)
     - [Skapa Form](form.view)
-    - [Tabulär datainmatning](form.table)
+    - [TabulÃ¤r datainmatning](form.table)
 
 * Arbeta med databaser
-    - [Översikt](database.overview)
+    - [Ã–versikt](database.overview)
     - [Database Access Objects](database.dao)
     - [Active Record](database.ar)
     - [Relational Active Record](database.arr)
 
 * Cachning
-    - [Översikt](caching.overview)
+    - [Ã–versikt](caching.overview)
     - [Datacachning](caching.data)
     - [Fragmentcachning](caching.fragment)
     - [Sidcachning](caching.page)
-    - [Dynamiskt innehåll](caching.dynamic)
+    - [Dynamiskt innehÃ¥ll](caching.dynamic)
 
-* Utökning av Yii
-    - [Översikt](extension.overview)
-    - [Använda utökning](extension.use)
-    - [Skapa utökning](extension.create)
-    - [Använda tredjepartsbibliotek](extension.integration)
+* UtÃ¶kning av Yii
+    - [Ã–versikt](extension.overview)
+    - [AnvÃ¤nda utÃ¶kning](extension.use)
+    - [Skapa utÃ¶kning](extension.create)
+    - [AnvÃ¤nda tredjepartsbibliotek](extension.integration)
 
-* Speciella ämnen
+* Speciella Ã¤mnen
     - [URL-hantering](topics.url)
     - [Autentisering och auktorisering](topics.auth)
     - [Teman](topics.theming)
@@ -51,5 +51,5 @@
     - [Internationalisering (I18N)](topics.i18n)
     - [Alternativ mallsyntax](topics.prado)
     - [Konsolapplikationer](topics.console)
-    - [Säkerhet](topics.security)
+    - [SÃ¤kerhet](topics.security)
     - [Prestandaoptimering](topics.performance)

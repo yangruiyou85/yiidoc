@@ -1,70 +1,70 @@
 Model-View-Controller (MVC)
 ===========================
 
-Yii implementerar designmönstret model-view-controller (MVC), vilket är brett 
-antaget inom webbprogrammering. MVC syftar till att separera överväganden om 
-affärsregler (business logic) från sådana som avser användargränssnitt (user 
-interface), så att utvecklare lättare kan ändra det ena utan att påverka det 
-andra. Inom MVC, representera modellen information (data) samt affärsregler; Vyn 
-(view) innehåller element ur användargränssnittet såsom text och inmatningsfält; 
-kontrollern ombesörjer kommunikation mellan modell och vy.
+Yii implementerar designmÃ¶nstret model-view-controller (MVC), vilket Ã¤r brett 
+antaget inom webbprogrammering. MVC syftar till att separera Ã¶vervÃ¤ganden om 
+affÃ¤rsregler (business logic) frÃ¥n sÃ¥dana som avser anvÃ¤ndargrÃ¤nssnitt (user 
+interface), sÃ¥ att utvecklare lÃ¤ttare kan Ã¤ndra det ena utan att pÃ¥verka det 
+andra. Inom MVC, representera modellen information (data) samt affÃ¤rsregler; Vyn 
+(view) innehÃ¥ller element ur anvÃ¤ndargrÃ¤nssnittet sÃ¥som text och inmatningsfÃ¤lt; 
+kontrollern ombesÃ¶rjer kommunikation mellan modell och vy.
 
-Utöver MVC, introducerar Yii även en förgrundskontroller (front-controller), 
+UtÃ¶ver MVC, introducerar Yii Ã¤ven en fÃ¶rgrundskontroller (front-controller), 
 application, som representerar exekveringsomgivning vid bearbetning av inkomna 
-request. Application delar upp en request från användare och skickar denna 
-vidare till relevant kontroller för fortsatt behandling.
+request. Application delar upp en request frÃ¥n anvÃ¤ndare och skickar denna 
+vidare till relevant kontroller fÃ¶r fortsatt behandling.
 
-Följande diagram visar den statiska strukturen hos en Yii-applikation application:
+FÃ¶ljande diagram visar den statiska strukturen hos en Yii-applikation application:
 
 ![Statisk struktur hos Yii-applikation](structure.png)
 
 
-Typiskt bearbetningsflöde
+Typiskt bearbetningsflÃ¶de
 -------------------------
 
-Följande diagram visar det typiska bearbetningsflödet för en Yii-applikation när 
-den hanterar en request från användare:
+FÃ¶ljande diagram visar det typiska bearbetningsflÃ¶det fÃ¶r en Yii-applikation nÃ¤r 
+den hanterar en request frÃ¥n anvÃ¤ndare:
 
-![Ett typiskt bearbetningsflöde för Yii-applikation](flow.png)
+![Ett typiskt bearbetningsflÃ¶de fÃ¶r Yii-applikation](flow.png)
 
-   1. En användare skickar en request med URL:en 
+   1. En anvÃ¤ndare skickar en request med URL:en 
    `http://www.example.com/index.php?r=post/show&id=1` och webbservern hanterar 
-   denna request genom att köra startskriptet `index.php`.
+   denna request genom att kÃ¶ra startskriptet `index.php`.
    
    2. Startskriptet skapar ett applikationsobjekt, en instans av 
-   [application](/doc/guide/basics.application) och kör den.
+   [application](/doc/guide/basics.application) och kÃ¶r den.
    
-   3. Applikationsobjektet skaffar sig detaljerad information om användarens 
-   request från 
+   3. Applikationsobjektet skaffar sig detaljerad information om anvÃ¤ndarens 
+   request frÃ¥n 
    [applikationskomponenten](/doc/guide/basics.application#application-
    component) `request`.
    
-   4. Applikationen avgör vilken [controller](/doc/guide/basics.controller) 
-   resp. [action](/doc/guide/basics.controller#action) som efterfrågas, med 
-   hjälp av applikationskomponenten `urlManager`. I detta exempel är kontrollern 
-   `post` vilket motsvarar klassen `PostController`; åtgärden (action) är 
-   `show`, vars faktiska innebörd bestäms av kontrollern.
+   4. Applikationen avgÃ¶r vilken [controller](/doc/guide/basics.controller) 
+   resp. [action](/doc/guide/basics.controller#action) som efterfrÃ¥gas, med 
+   hjÃ¤lp av applikationskomponenten `urlManager`. I detta exempel Ã¤r kontrollern 
+   `post` vilket motsvarar klassen `PostController`; Ã¥tgÃ¤rden (action) Ã¤r 
+   `show`, vars faktiska innebÃ¶rd bestÃ¤ms av kontrollern.
    
-   5. Applikationen skapar en instans av den begärda kontrollern för fortsatt 
-   hantering av användarens request. Kontrollern avgör att åtgärden `show` 
-   refererar till metoden `actionShow` i kontrollerklassen. Därefter skapar och 
-   exekverar den filter (t.ex. tillträdeskontroll, prestandamätning) som 
-   associerats till denna åtgärd. Åtgärden exekveras sedan om detta tillåts av 
+   5. Applikationen skapar en instans av den begÃ¤rda kontrollern fÃ¶r fortsatt 
+   hantering av anvÃ¤ndarens request. Kontrollern avgÃ¶r att Ã¥tgÃ¤rden `show` 
+   refererar till metoden `actionShow` i kontrollerklassen. DÃ¤refter skapar och 
+   exekverar den filter (t.ex. tilltrÃ¤deskontroll, prestandamÃ¤tning) som 
+   associerats till denna Ã¥tgÃ¤rd. Ã…tgÃ¤rden exekveras sedan om detta tillÃ¥ts av 
    filtren.
    
-   6. Åtgärden läser en `Post`-[modell](/doc/guide/basics.model) vars ID är `1` 
-   från databasen.
+   6. Ã…tgÃ¤rden lÃ¤ser en `Post`-[modell](/doc/guide/basics.model) vars ID Ã¤r `1` 
+   frÃ¥n databasen.
    
-   7. Åtgärden renderar [vyn](/doc/guide/basics.view) `show` med innehåll från 
+   7. Ã…tgÃ¤rden renderar [vyn](/doc/guide/basics.view) `show` med innehÃ¥ll frÃ¥n 
    modellen `Post`.
    
-   8. Vyn läser och presenterar attributen från modellen `Post`.
+   8. Vyn lÃ¤ser och presenterar attributen frÃ¥n modellen `Post`.
    
-   9. Vyn exekverar några [widgets](/doc/guide/basics.view#widget).
+   9. Vyn exekverar nÃ¥gra [widgets](/doc/guide/basics.view#widget).
    
-   10. Resultatet från vyrenderingen bäddas in i en [layout](/doc/guide/basics.view#layout). 
+   10. Resultatet frÃ¥n vyrenderingen bÃ¤ddas in i en [layout](/doc/guide/basics.view#layout). 
    
-   11. Åtgärden slutför renderingen och det färdiga resultatet presenteras för användaren.
+   11. Ã…tgÃ¤rden slutfÃ¶r renderingen och det fÃ¤rdiga resultatet presenteras fÃ¶r anvÃ¤ndaren.
 
 
 <div class="revision">$Id: basics.mvc.txt 419 2008-12-28 05:35:39Z qiang.xue $</div>

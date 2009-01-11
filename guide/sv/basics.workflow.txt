@@ -1,46 +1,46 @@
-Arbetsgång vid utveckling
+ArbetsgÃ¥ng vid utveckling
 =========================
 
-Nu när vi beskrivit de grundläggande koncepten i Yii, visar vi den normala 
-arbetsgången vid utveckling av en webbapplikation med hjälp av Yii. Det 
-förutsätts att kravanalys såväl som erforderlig designanalys gjorts för 
+Nu nÃ¤r vi beskrivit de grundlÃ¤ggande koncepten i Yii, visar vi den normala 
+arbetsgÃ¥ngen vid utveckling av en webbapplikation med hjÃ¤lp av Yii. Det 
+fÃ¶rutsÃ¤tts att kravanalys sÃ¥vÃ¤l som erforderlig designanalys gjorts fÃ¶r 
 applikationen.
 
-   1. Skapa den övergripande katalogstrukturen. Verktyget `yiic`, beskrivet i [Creating 
-   First Yii Application](/doc/guide/quickstart.first-app), kan användas för att 
+   1. Skapa den Ã¶vergripande katalogstrukturen. Verktyget `yiic`, beskrivet i [Creating 
+   First Yii Application](/doc/guide/quickstart.first-app), kan anvÃ¤ndas fÃ¶r att 
    snabba upp detta steg.
 
-   2. Konfigurera [application](/doc/guide/basics.application). Detta görs genom 
-   modifiering av applikationens konfigurationsfil. I detta steg kan också några 
-   applikationskomponenter behöva skrivas (t.ex. komponenten user).
+   2. Konfigurera [application](/doc/guide/basics.application). Detta gÃ¶rs genom 
+   modifiering av applikationens konfigurationsfil. I detta steg kan ocksÃ¥ nÃ¥gra 
+   applikationskomponenter behÃ¶va skrivas (t.ex. komponenten user).
 
-   3. Skapa en [modell](/doc/guide/basics.model)-klass för varje typ av data som 
-   skall hanteras. Även här kan verktyget `yiic` användas för att automatiskt 
-   generera [active record](/doc/guide/database.ar)-klassen för varje 
+   3. Skapa en [modell](/doc/guide/basics.model)-klass fÃ¶r varje typ av data som 
+   skall hanteras. Ã„ven hÃ¤r kan verktyget `yiic` anvÃ¤ndas fÃ¶r att automatiskt 
+   generera [active record](/doc/guide/database.ar)-klassen fÃ¶r varje 
    databastabell av intresse.
 
-   4. Skapa en [kontroller](/doc/guide/basics.controller)-klass för varje typ av 
-   request från användare. Hur request skall klassificeras beror på det aktuella 
-   kravet. Generellt, om en modellklass behöver tillgås av användare bör den ha 
-   en motsvarande kontrollerklass. Verktyget `yiic` kan automatisera även detta 
+   4. Skapa en [kontroller](/doc/guide/basics.controller)-klass fÃ¶r varje typ av 
+   request frÃ¥n anvÃ¤ndare. Hur request skall klassificeras beror pÃ¥ det aktuella 
+   kravet. Generellt, om en modellklass behÃ¶ver tillgÃ¥s av anvÃ¤ndare bÃ¶r den ha 
+   en motsvarande kontrollerklass. Verktyget `yiic` kan automatisera Ã¤ven detta 
    steg.
 
-   5. Implementera åtgärder, [actions](/doc/guide/basics.controller#action), och 
-   deras tillhörande vyer, [views](/doc/guide/basics.view). Det är här det 
-   egentliga arbetet nehöver göras.
+   5. Implementera Ã¥tgÃ¤rder, [actions](/doc/guide/basics.controller#action), och 
+   deras tillhÃ¶rande vyer, [views](/doc/guide/basics.view). Det Ã¤r hÃ¤r det 
+   egentliga arbetet nehÃ¶ver gÃ¶ras.
 
-   6. Konfigurera nödvändiga åtgärdsfilter, 
+   6. Konfigurera nÃ¶dvÃ¤ndiga Ã¥tgÃ¤rdsfilter, 
    [filters](/doc/guide/basics.controller#filter), i kontrollerklasserna.
 
    7. Skapa teman, [themes](/doc/guide/topics.theming), om denna finess erfordras.
 
-   8. Skapa översatta meddelanden om i18n, [internationalization](/doc/guide/topics.i18n), erfordras.
+   8. Skapa Ã¶versatta meddelanden om i18n, [internationalization](/doc/guide/topics.i18n), erfordras.
 
    9. Identifiera data och vyer som kan cachelagras och anslut relevanta 
    [caching](/doc/guide/caching.overview)-tekniker.
 
-   10. Slutlig fintrimning, [tune up](/doc/guide/topics.performance), samt utsättning.
+   10. Slutlig fintrimning, [tune up](/doc/guide/topics.performance), samt utsÃ¤ttning.
 
-För vart och ett av ovanstående steg kan testfall behöva skapas och utföras.
+FÃ¶r vart och ett av ovanstÃ¥ende steg kan testfall behÃ¶va skapas och utfÃ¶ras.
 
 <div class="revision">$Id: basics.workflow.txt 323 2008-12-04 01:40:16Z qiang.xue $</div>

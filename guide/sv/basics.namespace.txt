@@ -1,63 +1,63 @@
-Sˆkv‰gsalias och namnomrÂde
+S√∂kv√§gsalias och namnomr√•de
 ===========================
 
-Yii anv‰nder sˆkv‰gsalias extensivt. Ett sˆkv‰gsalias ‰r associerat till en 
-katalog eller filsˆkv‰g. Det specificeras med punktnotation, snarlikt det vitt 
-fˆrekommande namnomrÂdesformatet (namespace format):
+Yii anv√§nder s√∂kv√§gsalias extensivt. Ett s√∂kv√§gsalias √§r associerat till en 
+katalog eller fils√∂kv√§g. Det specificeras med punktnotation, snarlikt det vitt 
+f√∂rekommande namnomr√•desformatet (namespace format):
 
 ~~~
 RootAlias.path.to.target
 ~~~
 
-d‰r `RootAlias` ‰r alias fˆr nÂgon befintlig katalog. Yii fˆrdefinierar tvÂ 
-alias: `system` och `application`. Det fˆrra ‰r alias fˆr Yii:s framework-
-katalog, medan det senare ‰r alias fˆr applikationens `protected`-katalog. Genom 
-anrop till [YiiBase::setPathOfAlias()] kan nya sˆkv‰gsalias definieras (inklusive rot-alias).
+d√§r `RootAlias` √§r alias f√∂r n√•gon befintlig katalog. Yii f√∂rdefinierar tv√• 
+alias: `system` och `application`. Det f√∂rra √§r alias f√∂r Yii:s framework-
+katalog, medan det senare √§r alias f√∂r applikationens `protected`-katalog. Genom 
+anrop till [YiiBase::setPathOfAlias()] kan nya s√∂kv√§gsalias definieras (inklusive rot-alias).
 
-Genom anrop till [YiiBase::getPathOfAlias()] kan ett alias ˆvers‰ttas till dess 
-motsvarande sˆkv‰g. Till exempel, `system.web.CController` skulle ˆvers‰ttas 
+Genom anrop till [YiiBase::getPathOfAlias()] kan ett alias √∂vers√§ttas till dess 
+motsvarande s√∂kv√§g. Till exempel, `system.web.CController` skulle √∂vers√§ttas 
 till `yii/framework/web/CController`.
 
-Med hj‰lp av alias ‰r det mycket bekv‰mt att importera definitionen fˆr en 
-klass. Till exempel, fˆr att inkludera definitionen fˆr klassen [CController], 
-kan vi skriva fˆljande:
+Med hj√§lp av alias √§r det mycket bekv√§mt att importera definitionen f√∂r en 
+klass. Till exempel, f√∂r att inkludera definitionen f√∂r klassen [CController], 
+kan vi skriva f√∂ljande:
 
 ~~~
 [php]
 Yii::import('system.web.CController');
 ~~~
 
-Metoden [import|YiiBase::import] skiljer sig frÂn `include` och `require` genom 
-att den ‰r effektivare. Klassdefinitionen som skall importeras inkluderas inte 
-fˆrr‰n den refereras till fˆrsta gÂngen. Att importera samma namnomrÂde flera 
-gÂnger ‰r ocksÂ det mycket snabbare ‰n `include_once` och `require_once`.
+Metoden [import|YiiBase::import] skiljer sig fr√•n `include` och `require` genom 
+att den √§r effektivare. Klassdefinitionen som skall importeras inkluderas inte 
+f√∂rr√§n den refereras till f√∂rsta g√•ngen. Att importera samma namnomr√•de flera 
+g√•nger √§r ocks√• det mycket snabbare √§n `include_once` och `require_once`.
 
-> Tips: N‰r en klass som definieras av Yii-ramverket refereras, behˆver denna 
-inte importeras eller inkluderas. Alla k‰rnklasser i Yii importeras i fˆrv‰g.
+> Tips: N√§r en klass som definieras av Yii-ramverket refereras, beh√∂ver denna 
+inte importeras eller inkluderas. Alla k√§rnklasser i Yii importeras i f√∂rv√§g.
 
-Fˆljande syntax kan anv‰ndas fˆr att importera en hel katalog, sÂ att 
-klassfilerna i katalogen automatiskt inkluderas n‰r sÂ erfordras.
+F√∂ljande syntax kan anv√§ndas f√∂r att importera en hel katalog, s√• att 
+klassfilerna i katalogen automatiskt inkluderas n√§r s√• erfordras.
 
 ~~~
 [php]
 Yii::import('system.web.*');
 ~~~
 
-Fˆrutom [import|YiiBase::import], anv‰nds alias ‰ven pÂ mÂnga andra st‰llen fˆr 
-att referera till klasser. Till exempel kan ett alias l‰mnas med till 
-[Yii::createComponent()] fˆr att skapa en instans av motsvarande klass, ‰ven om 
+F√∂rutom [import|YiiBase::import], anv√§nds alias √§ven p√• m√•nga andra st√§llen f√∂r 
+att referera till klasser. Till exempel kan ett alias l√§mnas med till 
+[Yii::createComponent()] f√∂r att skapa en instans av motsvarande klass, √§ven om 
 klassfilen inte tidigare inkluderats.
 
-Fˆrv‰xla inte sˆkv‰gsalias med namnomrÂde. Ett namnomrÂde refererar till logisk 
-gruppering av ett antal klassnamn sÂ att de kan s‰rskiljas frÂn andra klasser 
-med samma namn, medan sˆkv‰gsalias anv‰nds fˆr att referera till en klassfil 
-eller sˆkv‰g. Det uppstÂr ingen konflikt mellan sˆkv‰gsalias och namnomrÂden.
+F√∂rv√§xla inte s√∂kv√§gsalias med namnomr√•de. Ett namnomr√•de refererar till logisk 
+gruppering av ett antal klassnamn s√• att de kan s√§rskiljas fr√•n andra klasser 
+med samma namn, medan s√∂kv√§gsalias anv√§nds f√∂r att referera till en klassfil 
+eller s√∂kv√§g. Det uppst√•r ingen konflikt mellan s√∂kv√§gsalias och namnomr√•den.
 
-> Tips: DÂ PHP fˆre version 5.3.0 inte har inbyggt stˆd fˆr namnomrÂden, gÂr det 
-inte att ha instanser av tvÂ klasser med samma namn, men olika definitioner. Av 
-denna anledning har alla Yii-klasser namn med prefixet 'C' (som i 'class'), sÂ 
-att de kan skiljas frÂn anv‰ndardefinierade klaser. Det rekommenderas att C-
-prefixet reserveras fˆr anv‰ndning endast av Yii-ramverket, och att 
-anv‰ndardefinierade klasser fˆrses med nÂgon annan prefixbokstav.
+> Tips: D√• PHP f√∂re version 5.3.0 inte har inbyggt st√∂d f√∂r namnomr√•den, g√•r det 
+inte att ha instanser av tv√• klasser med samma namn, men olika definitioner. Av 
+denna anledning har alla Yii-klasser namn med prefixet 'C' (som i 'class'), s√• 
+att de kan skiljas fr√•n anv√§ndardefinierade klaser. Det rekommenderas att C-
+prefixet reserveras f√∂r anv√§ndning endast av Yii-ramverket, och att 
+anv√§ndardefinierade klasser f√∂rses med n√•gon annan prefixbokstav.
 
 <div class="revision">$Id: basics.namespace.txt 169 2008-11-06 19:43:44Z qiang.xue $</div>
