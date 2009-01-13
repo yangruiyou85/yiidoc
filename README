@@ -10,11 +10,19 @@ The directory structure is shown at the end of this file, where
 
 File is the basic unit of translations. For each file to be
 translated, you should create a new file with the same name and
-save it under the appropriate directory. For example, in order to
+save it under an appropriate directory. For example, in order to
 translate the "database.ar.txt" file of the definitive guide into
 German, you should save the translated file as "guide/de/database.ar.txt".
 
+**************************************************************
 MARE SURE YOU USE UTF-8 ENCODING WHEN SAVING YOUR TRANSLATION.
+**************************************************************
+
+Check in frequently instead of waiting till you finish all
+translations. As there may be several people translating in
+the same language, checking in frequently may help reduce
+duplicated work. It also gives other people chance to review
+your translation ealier.
 
 We will include the latest translations into every release of Yii,
 and also display them online.
