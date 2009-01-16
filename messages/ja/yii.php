@@ -11,9 +11,9 @@
  * Messages that no longer need translation will have their translations
  * enclosed between a pair of '@@' marks.
  *
-G * NOTE, this file must be saved in UTF-8 encoding.
+ * NOTE, this file must be saved in UTF-8 encoding.
  *
- * @version $Id: yii.php,v 1.1 2009-01-16 18:29:02+09 mocapapa Exp mocapapa $
+ * @version $Id: yii.php,v 1.2 2009-01-16 18:33:59+09 mocapapa Exp mocapapa $
  */
 return array (
   '"{path}" is not a valid directory.' => '{path} は正しいディレクトリではありません。',
