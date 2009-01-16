@@ -24,6 +24,9 @@ the same language, checking in frequently may help reduce
 duplicated work. It also gives other people chance to review
 your translation ealier.
 
+If you participated in translating the Guide, you may leave your
+name in the "index.txt" page, saying "translated by Your Name".
+
 We will include the latest translations into every release of Yii,
 and also display them online.
 
