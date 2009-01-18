@@ -19,14 +19,14 @@ p {font-family:"Verdana";font-weight:normal;color:black;font-size:9pt;margin-top
 </head>
 
 <body>
-<h1>Internal Server Error</h1>
+<h1>サーバ内部エラー</h1>
 <h2><?php echo nl2br(CHtml::encode($data['message'])); ?></h2>
 <p>
-An internal error occurred while the Web server was processing your request.
-Please contact <?php echo $data['admin']; ?> to report this problem.
+ウエブサーバがリクエストを処理している途中にサーバの内部エラーが起きました。
+担当(<?php echo $data['admin']; ?>)にこの問題を連絡してください。
 </p>
 <p>
-Thank you.
+ありがとうございます。
 </p>
 <div class="version">
 <?php echo date('Y-m-d H:i:s',$data['time']) .' '. $data['version']; ?>
