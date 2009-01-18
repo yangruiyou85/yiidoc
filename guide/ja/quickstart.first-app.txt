@@ -161,13 +161,11 @@ Crud 'user' has been successfully created. You may access it via:
 http://hostname/path/to/index.php?r=user
 ~~~
 
-In the above, we use the `shell` command of `yiic` to interact with our
-newly created application. At the prompt, we can enter a valid PHP
-statement or expression to evaluate and print it. We can also perform tasks
-such as `model` and `crud` as shown above. The `model` command automatically
-generates a `User` model class based on the schema of the `User` table. And
-the `crud` command generates the controller class and views that implement
-the CRUD operations for the `User` model.
+上において、新しく作成したアプリケーションに対応するため`yiic`の`shell`コマンドを使用しました。
+プロンプトレベルにおいて、評価し表示するためにPHP文や式の値を入れることが可能です。
+さらに上に示すように`model`や`crud`タスクを実行することができます。
+`model`コマンドは自動的に、`User`テーブルのスキーマに基いて`User`モデルクラスを生成します。
+そして`crud`コマンドは`User`モデルのCRUD操作を実装したコントローラクラスとビューを生成します。
 
 > Note: If you make any change to your code or configuration, please
 re-enter `yiic shell` so that the new code or configuration can take
