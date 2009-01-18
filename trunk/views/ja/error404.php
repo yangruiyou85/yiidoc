@@ -17,14 +17,14 @@ p {font-family:"Verdana";font-weight:normal;color:black;font-size:9pt;margin-top
 </style>
 </head>
 <body>
-<h1>Page Not Found</h1>
+<h1>ページが見つからない</h1>
 <h2><?php echo nl2br(CHtml::encode($data['message'])); ?></h2>
 <p>
-The requested URL was not found on this server.
-If you entered the URL manually please check your spelling and try again.
+サーバにはリクエストされたURLは存在しません。もしURLを手で入力した場合には、
+スペルをチェックしてから再度トライしてください。
 </p>
 <p>
-If you think this is a server error, please contact <?php echo $data['admin']; ?>.
+もしこれがサーバのエラーとお考えの場合は担当(<?php echo $data['admin']; ?>)に連絡してください。
 </p>
 <div class="version">
 <?php echo date('Y-m-d H:i:s',$data['time']) .' '. $data['version']; ?>
