@@ -17,12 +17,12 @@ p {font-family:"Verdana";font-weight:normal;color:black;font-size:9pt;margin-top
 </style>
 </head>
 <body>
-<h1>Service Unavailable</h1>
+<h1>サービスが提供されません</h1>
 <p>
-Our system is currently under maintenance. Please come back later.
+システムは現在メンテナンス中です。また後で来てくださるようお願いします。
 </p>
 <p>
-Thank you.
+ありがとうございます。
 </p>
 <div class="version">
 <?php echo date('Y-m-d H:i:s',$data['time']) .' '. $data['version']; ?>
