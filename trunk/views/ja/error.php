@@ -19,16 +19,16 @@ p {font-family:"Verdana";font-weight:normal;color:black;font-size:9pt;margin-top
 </head>
 
 <body>
-<h1>Error <?php echo $data['code']; ?></h1>
+<h1>エラー <?php echo $data['code']; ?></h1>
 <h2><?php echo nl2br(CHtml::encode($data['message'])); ?></h2>
 <p>
-The above error occurred when the Web server was processing your request.
+リクエストを処理中にウエブサーバが上記エラーを検出しました。
 </p>
 <p>
-If you think this is a server error, please contact <?php echo $data['admin']; ?>.
+もしこれがサーバのエラーとお考えの場合は担当(<?php echo $data['admin']; ?>)に連絡してください。
 </p>
 <p>
-Thank you.
+ありがとうございます。
 </p>
 <div class="version">
 <?php echo date('Y-m-d H:i:s',$data['time']) .' '. $data['version']; ?>
