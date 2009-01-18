@@ -17,13 +17,13 @@ p {font-family:"Verdana";font-weight:normal;color:black;font-size:9pt;margin-top
 </style>
 </head>
 <body>
-<h1>Unauthorized</h1>
+<h1>未認証</h1>
 <h2><?php echo nl2br(CHtml::encode($data['message'])); ?></h2>
 <p>
-You do not have the proper credential to access this page.
+あなたはこのページをアクセスする許可を受けていません。
 </p>
 <p>
-If you think this is a server error, please contact <?php echo $data['admin']; ?>.
+もしこれがサーバのエラーとお考えの場合は担当(<?php echo $data['admin']; ?>)に連絡してください。
 </p>
 <div class="version">
 <?php echo date('Y-m-d H:i:s',$data['time']) .' '. $data['version']; ?>
