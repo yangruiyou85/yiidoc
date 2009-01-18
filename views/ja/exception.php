@@ -27,12 +27,12 @@ pre {font-family:"Lucida Console";font-size:10pt;}
 <body>
 <h1><?php echo $data['type']; ?></h1>
 
-<h3>Description</h3>
+<h3>説明</h3>
 <p class="message">
 <?php echo nl2br(CHtml::encode($data['message'])); ?>
 </p>
 
-<h3>Source File</h3>
+<h3>ソースファイル</h3>
 <p>
 <?php echo CHtml::encode($data['file'])."({$data['line']})"; ?>
 </p>
@@ -60,7 +60,7 @@ else
 </pre>
 </div><!-- end of source -->
 
-<h3>Stack Trace</h3>
+<h3>スタックトレース</h3>
 <div class="callstack">
 <pre>
 <?php echo CHtml::encode($data['trace']); ?>
