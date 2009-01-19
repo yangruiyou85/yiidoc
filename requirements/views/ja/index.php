@@ -15,7 +15,7 @@
 </div><!-- header-->
 
 <div id="content">
-<h2>記述</h2>
+<h2>説明</h2>
 <p>
 このスクリプトはあなたのサーバコンフィギュレーションが、<a href="http://www.yiiframework.com/">Yii</a>アプリケーション
 を実行するための要求に合っているかどうかを確認します。
