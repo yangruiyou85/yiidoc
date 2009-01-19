@@ -167,48 +167,40 @@ http://hostname/path/to/index.php?r=user
 `model`コマンドは自動的に、`User`テーブルのスキーマに基いて`User`モデルクラスを生成します。
 そして`crud`コマンドは`User`モデルのCRUD操作を実装したコントローラクラスとビューを生成します。
 
-> Note: If you make any change to your code or configuration, please
-re-enter `yiic shell` so that the new code or configuration can take
-effect. Also make sure you are using the right PHP CLI to execute `yiic`.
-Otherwise you may encounter errors like "...could not find driver", even
-though you are sure you have already enabled PDO and the corresponding
-database driver. The reason for such kind of errors is often because the
-wrong PHP CLI is using an unexpected `php.ini`.
+> 注意: もしコードやコンフィギュレーションを変更したら、それが実際に反映されるように`yiic shell`
+コマンドを再度発行してください。また、`yiic`を実行するのに正しいPHP CLIを使用しているかも確かめてください。
+さもなければ、たとえPDO拡張や対応するデータベースドライバをイネーブルにしていても、"...could not find driver"
+のようなエラーに遭遇します。このようなエラーは、しばしば誤ったPHP CLIが予期しない`php.ini`を使用すること
+から起きます。
 
-Let's enjoy our work by browsing the following URL:
+さて、作業の結果を以下のURLから見て楽みましょう。
 
 ~~~
 http://hostname/testdrive/index.php?r=user
 ~~~
 
-This will display a list of user entries in the `User` table. Since our
-table is empty, nothing will appear at the moment.
+これは`User`テーブルのユーザエントリのリストを表示するはずです。ただテーブルは空なので、今は何も
+表示されません。
 
-Click the `New User` link on the page. We will be brought to the login
-page if we have not logged in before. After logged in, we are shown with
-an input form that allows us to add a new user entry. Complete the form and
-click on the `Create` button. If there is any input error, a nice error
-prompt will be shown which prevents us from saving the input. Back to the
-user list, we should see the newly added user appearing in the list.
+`New User`リンクをクリックしてみてください。もし既にログインしていなければログインページが現れます。
+ログイン後は新規ユーザを追加するための入力フォームが現れます。入力を完了し、`Create`ボタンをクリック
+してください。入力にエラーがあれば素敵なエラーページが表示され、入力はセーブされません。ユーザリストに
+戻り、新しく追加されたユーザをリスト上で見ることができます。
 
-Repeat the above steps to add more users. Notice that user list page
-will automatically paginate the user entries if there are too many to be
-displayed in one page.
+ユーザをもっと追加するには上記のステップを繰り返してください。もし一ページに表示するには多過ぎる場合には、
+ユーザリストページは自動的にページ分割されます。
 
-If we login as an administrator using `admin/admin`, we can view the user
-admin page with the following URL:
+もし管理者として`admin/admin`を入力してログインする場合は、以下のURLにより、管理者ページを見ることができます。
 
 ~~~
 http://hostname/testdrive/index.php?r=user/admin
 ~~~
 
-This will show us a nice table of user entries. We can click on the table
-header cells to sort the corresponding columns. And like the user list page,
-the admin page also performs pagination when there are too many user entries
-to be displayed in one page.
+これにより、素敵なユーザエントリ表が表示されます。テーブルの先頭をクリックすることで対応するカラムをソートする
+ことができます。そしてユーザリストページと同様に、管理者ページも、表示すべきユーザエントリが一ページには多過ぎる
+場合には、ページ分割が行われます。
 
-All these nice features come without requiring us to write a single line
-of code!
+これら全てのすてきな機能はコードを一行も書かなくても達成することができます！
 
 ![User admin page](first-app6.png)
 
