@@ -1,27 +1,27 @@
-���󥹥ȡ���
+インストール
 ============
 
-Yii�Υ��󥹥ȡ���ϼ�˰ʲ���2�ĤΥ��ƥåפ���ʤ�ޤ���
+Yiiのインストールは主に以下の2つのステップからなります。
 
-   1. [yiiframework.com](http://www.yiiframework.com/)����Yii�ե졼����������������
-   2. Yii��꡼���ե������web�ǥ���������ǽ�ʥǥ��쥯�ȥ��Ÿ��
+   1. [yiiframework.com](http://www.yiiframework.com/)からYiiフレームワークをダウンロード
+   2. Yiiリリースファイルをwebでアクセス可能なディレクトリへ展開
 
-> �ҥ��: Yii���Τ�web����������ǽ�ʥǥ��쥯�ȥ�إ��󥹥ȡ��뤹��ɬ�פϤ���ޤ���
-Yii���ץꥱ�������ϤҤȤĤΥ���ȥꥹ����ץȤ�����ޤ������̾綠�Υե�����Τߤ�web
-�˸�����Ф��ߤޤ����ϥå��󥰤��Ȥ�뤿��ˡ�Yii�Τ�ޤ��¾��PHP������ץȤ�web�������������ݸ���٤��Ǥ���
+> ヒント: Yii自体はwebアクセス可能なディレクトリへインストールする必要はありません。
+Yiiアプリケーションはひとつのエントリスクリプトを持ちますが、通常そのファイルのみをweb
+に見せればすみます。ハッキングを免れるために、Yiiのも含めて他のPHPスクリプトはwebアクセスから保護されるべきです。
 
-ɬ�׾��
+必要条件
 ------------
 
-Yii�Υ��󥹥ȡ��뤬���ä��顢�����Ф�Yii���׵����­���뤫�ɤ�����ǧ����٤��Ǥ���
-�ʲ���URL�ˤ����׵�����å��˥����������뤳�Ȥǡ����줬��ǧ�Ǥ��ޤ���
+Yiiのインストールが終ったら、サーバがYiiの要求を満足するかどうか確認するべきです。
+以下のURLにある要求チェッカにアクセスすることで、それが確認できます。
 
 ~~~
 http://hostname/path/to/yii/requirements/index.php
 ~~~
 
-Yii�κ���¤��׵��web�����Ф�PHP5.1.0�ʾ�򥵥ݡ��Ȥ��뤳�ȤǤ���Yii��Windows���Linux���[Apache HTTP
-server](http://httpd.apache.org/)�ˤ�긡�ڤ���Ƥ��ޤ�������¾��PHP5�򥵥ݡ��Ȥ���web�����Ф�ץ�åȥե������ư��ޤ���
+Yiiの最低限の要求はwebサーバはPHP5.1.0以上をサポートすることです。YiiはWindows上とLinux上の[Apache HTTP
+server](http://httpd.apache.org/)により検証されています。その他のPHP5をサポートするwebサーバやプラットフォームで動作します。
 
 Translated by mocapapa <mocapapa@pugpug.org>
 <div class="revision">$Id: quickstart.installation.txt 359 2008-12-14 19:50:41Z qiang.xue $</div>
