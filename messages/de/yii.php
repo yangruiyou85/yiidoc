@@ -19,7 +19,7 @@ return array (
   'CHttpRequest is unable to determine the path info of the request.' => 'CHttpRequest kann die Pfadinformation für diese Anfrage nicht ermitteln.',
   'CHttpRequest is unable to determine the request URI.' => 'CHttpRequest kann die angeforderte URI nicht ermitteln.',
   'CXCache requires PHP XCache extension to be loaded.' => 'CXCache benötigt, dass die PHP XCache Erweiterung geladen ist.',
-  'Cannot add "{name}" as a child of itself.' => '',
+  'Cannot add "{name}" as a child of itself.' => 'Kann "{name}" nicht als Kind zu sich selbst hinzugefügt werden.',
   'The column "{column}" is not a foreign key in table "{table}".' => 'Die Spalte "{column}" ist kein Fremdschlüssel in der Tabelle "{table}".',
   '"{path}" is not a valid directory.' => '"{path}" ist kein gültiges Verzeichnis.',
   'Active Record requires a "db" CDbConnection application component.' => 'ActiveRecord erfordert eine "db" CDbConnection Applikations-Komponente.',
