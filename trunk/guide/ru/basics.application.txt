@@ -74,17 +74,16 @@ deny from all
 Компонент приложения
 ---------------------
 
-Functionalities of application can be easily customized and enriched with
-its flexible component architecture. Application manages a set of
-application components, each implementing specific features.
-For example, application resolves a user request with the help of [CUrlManager]
-and [CHttpRequest] components.
+Функционал приложения легко настраивается и расширяется за счет его гибкой 
+компонентной архитектуры. Приложение управляет набором компонентов приложения,
+каждый из которых реализует специфические возможности.
+Например, приложение работает с пользовательским запросом с помощью компонентов
+[CUrlManager] и [CHttpRequest].
 
-By configuring the [components|CApplication::components] property of
-application, we can customize the class and property values of any
-application component used in an application. For example, we can
-configure [CMemCache] component so that it can use multiple memcache
-servers for caching,
+Изменяя свойство приложения [components|CApplication::components], мы можем 
+настраивать класс и занчения свойств любого компонента приложения, который 
+используется. Например, мы можем настроить компонент [CMemCache] так, чтобы он
+использовал несколько MemCache серверов для кеширования:
 
 ~~~
 [php]
@@ -103,7 +102,7 @@ array(
 )
 ~~~
 
-In the above, we add the `cache` element to the `components` array. The
+В приведенном фрагменте мы добавили элемент `cache` в массив `components`. The
 `cache` element states that the class of the component is
 `CMemCache` and its `servers` property should be initialized as such.
 
