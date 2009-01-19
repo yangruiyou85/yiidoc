@@ -59,25 +59,25 @@ testdrive/
          Identity.php        認証のための'Identity'クラス
          views/              ウイジェットのためのビュー
             mainMenu.php     'MainMenu'ウイジェットのビュー
-      config/                コンフィギュレーションファイル
+      config/                コンフィギュレーションファイルを含む
          console.php         コンソールアプリケーションコンフィギュレーションファイル
          main.php            ウエブアプリケーションコンフィギュレーションファイル
-      controllers/           コントローラクラスファイル
+      controllers/           コントローラクラスファイルを含む
          SiteController.php  デフォルトコントローラクラスファイル
-      extensions/            サードパーティ拡張
-      messages/              翻訳されたメッセージ
-      models/                モデルクラスファイル
+      extensions/            サードパーティ拡張を含む
+      messages/              翻訳されたメッセージを含む
+      models/                モデルクラスファイルを含む
          LoginForm.php       'login'アクションのためのフォームモデル
          ContactForm.php     'contact'アクションのためのフォームモデル
-      runtime/               暫定的に生成されたファイル
-      views/                 コントローラビューとレイアウト
-         layouts/            レイアウトビューファイル
+      runtime/               暫定的に生成されたファイルを含む
+      views/                 コントローラビューとレイアウトを含む
+         layouts/            レイアウトビューファイルを含む
             main.php         全てのビューファイルのデフォルトレイアウト
-         site/               'site'コントローラのためのビュー
+         site/               'site'コントローラのためのビューを含む
             contact.php      'contact'アクションのためのビュー
             index.php        'index'アクションのためのビュー
             login.php        'login'アクションのためのビュー
-         system/             システムビューファイル
+         system/             システムビューファイルを含む
 ~~~
 
 データベースへの接続
