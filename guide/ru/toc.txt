@@ -1,11 +1,11 @@
 * Начало
     - [Что такое Yii](quickstart.what-is-yii)
-    - [Устаовка](quickstart.installation)
+    - [Установка](quickstart.installation)
     - [Создание первого Yii-приложения](quickstart.first-app)
 
 * Основыы
     - [Модель-Вид-Контроллер (MVC)](basics.mvc)
-    - [Точка входа](basics.entry)
+    - [Входной скрипт](basics.entry)
     - [Приложение](basics.application)
     - [Контроллер](basics.controller)
     - [Модель](basics.model)
