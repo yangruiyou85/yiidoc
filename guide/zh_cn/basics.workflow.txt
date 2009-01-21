@@ -1,33 +1,33 @@
-¿ª·¢Á÷³Ì
+å¼€å‘æµç¨‹
 ====================
 
-ÒÑ¾­ÃèÊöÁËyiiµÄ»ù±¾¸ÅÄî£¬ÏÖÔÚÎÒÃÇ¿´¿´ÓÃyii¿ª·¢Ò»¸öweb³ÌĞòµÄ»ù±¾Á÷³Ì¡£Ç°ÌáÊÇÎÒÕâ¸ö³ÌĞòÎÒÃÇÒÑ¾­×öÁËĞèÇó·ÖÎöºÍ±ØÒªµÄÉè¼Æ·ÖÎö¡£
+å·²ç»æè¿°äº†yiiçš„åŸºæœ¬æ¦‚å¿µï¼Œç°åœ¨æˆ‘ä»¬çœ‹çœ‹ç”¨yiiå¼€å‘ä¸€ä¸ªwebç¨‹åºçš„åŸºæœ¬æµç¨‹ã€‚å‰ææ˜¯æˆ‘è¿™ä¸ªç¨‹åºæˆ‘ä»¬å·²ç»åšäº†éœ€æ±‚åˆ†æå’Œå¿…è¦çš„è®¾è®¡åˆ†æã€‚
 
-   1. ´´½¨Ä¿Â¼½á¹¹¡£ÔÚÇ°ÃæµÄÕÂ½Ú[Creating First Yii Application](/doc/guide/quickstart.first-app)Ğ´µÄyiic¹¤¾ß¿ÉÒÔ°ïÖúÎÒÃÇ¿ìËÙÍê³ÉÕâ²½¡£
-ÅäÖÃapplication¡£¾ÍÊÇĞŞ¸ÄapplicationÅäÖÃÎÄ¼ş¡£Õâ²½ÓĞ¿ÉÄÜ»áĞ´Ò»Ğ©application×é¼ş(ÀıÈç£ºÓÃ»§×é¼ş)¡£
+   1. åˆ›å»ºç›®å½•ç»“æ„ã€‚åœ¨å‰é¢çš„ç« èŠ‚[Creating First Yii Application](/doc/guide/quickstart.first-app)å†™çš„yiicå·¥å…·å¯ä»¥å¸®åŠ©æˆ‘ä»¬å¿«é€Ÿå®Œæˆè¿™æ­¥ã€‚
+é…ç½®applicationã€‚å°±æ˜¯ä¿®æ”¹applicationé…ç½®æ–‡ä»¶ã€‚è¿™æ­¥æœ‰å¯èƒ½ä¼šå†™ä¸€äº›applicationç»„ä»¶(ä¾‹å¦‚ï¼šç”¨æˆ·ç»„ä»¶)ã€‚
 
-   2. ÅäÖÃ [application](/doc/guide/basics.application).¾ÍÊÇĞŞ¸ÄapplicationÅäÖÃÎÄ¼ş¡£Õâ²½ÓĞ¿ÉÄÜ»áĞ´Ò»Ğ©application×é¼ş(ÀıÈç£ºÓÃ»§×é¼ş)
+   2. é…ç½® [application](/doc/guide/basics.application).å°±æ˜¯ä¿®æ”¹applicationé…ç½®æ–‡ä»¶ã€‚è¿™æ­¥æœ‰å¯èƒ½ä¼šå†™ä¸€äº›applicationç»„ä»¶(ä¾‹å¦‚ï¼šç”¨æˆ·ç»„ä»¶)
 
-   3. Ã¿ÖÖÀàĞÍµÄÊı¾İ¶¼´´½¨Ò»¸ö [model](/doc/guide/basics.model) ÀàÀ´¹ÜÀí¡£ Í¬Ñù£¬yiic¿ÉÒÔÎªÎÒÃÇĞèÒªµÄÊı¾İ¿â±í×Ô¶¯Éú³Éactive record
-[active record](/doc/guide/database.ar) Àà¡£
+   3. æ¯ç§ç±»å‹çš„æ•°æ®éƒ½åˆ›å»ºä¸€ä¸ª [model](/doc/guide/basics.model) ç±»æ¥ç®¡ç†ã€‚ åŒæ ·ï¼Œyiicå¯ä»¥ä¸ºæˆ‘ä»¬éœ€è¦çš„æ•°æ®åº“è¡¨è‡ªåŠ¨ç”Ÿæˆactive record
+[active record](/doc/guide/database.ar) ç±»ã€‚
 
-   4. Ã¿ÖÖÀàĞÍµÄÓÃ»§ÇëÇó¶¼´´½¨Ò»¸ö [controller](/doc/guide/basics.controller) Àà¡£ ÒÀ¾İÊµ¼ÊµÄĞèÇó¶ÔÓÃ»§ÇëÇó½øĞĞ·ÖÀà¡£Ò»°ãÀ´Ëµ£¬Èç¹ûÒ»¸ömodelÀàĞèÒªÓÃ»§·ÃÎÊ£¬¾ÍÓ¦¸Ã¶ÔÓ¦Ò»¸öcontrollerÀà¡£yiic¹¤¾ßÒ²ÄÜ×Ô¶¯Íê³ÉÕâ²½¡£
+   4. æ¯ç§ç±»å‹çš„ç”¨æˆ·è¯·æ±‚éƒ½åˆ›å»ºä¸€ä¸ª [controller](/doc/guide/basics.controller) ç±»ã€‚ ä¾æ®å®é™…çš„éœ€æ±‚å¯¹ç”¨æˆ·è¯·æ±‚è¿›è¡Œåˆ†ç±»ã€‚ä¸€èˆ¬æ¥è¯´ï¼Œå¦‚æœä¸€ä¸ªmodelç±»éœ€è¦ç”¨æˆ·è®¿é—®ï¼Œå°±åº”è¯¥å¯¹åº”ä¸€ä¸ªcontrollerç±»ã€‚yiicå·¥å…·ä¹Ÿèƒ½è‡ªåŠ¨å®Œæˆè¿™æ­¥ã€‚
 
-   5. ÊµÏÖ [actions](/doc/guide/basics.controller#action) ºÍÏàÓ¦µÄ [views](/doc/guide/basics.view)¡£ÕâÊÇÕæÕıĞèÒªÎÒÃÇ±àĞ´µÄ¹¤×÷¡£
+   5. å®ç° [actions](/doc/guide/basics.controller#action) å’Œç›¸åº”çš„ [views](/doc/guide/basics.view)ã€‚è¿™æ˜¯çœŸæ­£éœ€è¦æˆ‘ä»¬ç¼–å†™çš„å·¥ä½œã€‚
 
-   6. ÔÚcontrollerÀàÀïÅäÖÃĞèÒªµÄaction 
-[filters](/doc/guide/basics.controller#filter) ¡£
+   6. åœ¨controllerç±»é‡Œé…ç½®éœ€è¦çš„action 
+[filters](/doc/guide/basics.controller#filter) ã€‚
 
-   7. Èç¹ûĞèÒªÖ÷Ìâ¹¦ÄÜ£¬±àĞ´ [themes](/doc/guide/topics.theming)¡£ 
+   7. å¦‚æœéœ€è¦ä¸»é¢˜åŠŸèƒ½ï¼Œç¼–å†™ [themes](/doc/guide/topics.theming)ã€‚ 
 
-   8. Èç¹ûĞèÒª
-[internationalization](/doc/guide/topics.i18n)¹ú¼Ê»¯¹¦ÄÜ£¬±àĞ´·­ÒëÓï¾ä¡£
+   8. å¦‚æœéœ€è¦
+[internationalization](/doc/guide/topics.i18n)å›½é™…åŒ–åŠŸèƒ½ï¼Œç¼–å†™ç¿»è¯‘è¯­å¥ã€‚
 
-   9. Ê¹ÓÃ
-[caching](/doc/guide/caching.overview) ¼¼Êõ»º´æÊı¾İºÍÒ³Ãæ¡£
+   9. ä½¿ç”¨
+[caching](/doc/guide/caching.overview) æŠ€æœ¯ç¼“å­˜æ•°æ®å’Œé¡µé¢ã€‚
 
-   10. ×îºó [tune up](/doc/guide/topics.performance)µ÷Õû³ÌĞòºÍ·¢²¼¡£
+   10. æœ€å [tune up](/doc/guide/topics.performance)è°ƒæ•´ç¨‹åºå’Œå‘å¸ƒã€‚
 
-ÒÔÉÏÃ¿¸ö²½Öè£¬ÓĞ¿ÉÄÜĞèÒª±àĞ´²âÊÔ°¸ÀıÀ´²âÊÔ¡£
+ä»¥ä¸Šæ¯ä¸ªæ­¥éª¤ï¼Œæœ‰å¯èƒ½éœ€è¦ç¼–å†™æµ‹è¯•æ¡ˆä¾‹æ¥æµ‹è¯•ã€‚
 
 <div class="revision">$Id: basics.workflow.txt 323 2009-1-19 01:40:16Z shuarehua $</div>
