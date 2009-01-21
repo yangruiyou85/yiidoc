@@ -1,13 +1,13 @@
-¿ª·¢Á÷³Ì
-ÒÑ¾­ÃèÊöÁËyiiµÄ»ù±¾¸ÅÄî£¬ÏÖÔÚÎÒÃÇ¿´¿´ÓÃyii¿ª·¢Ò»¸öweb³ÌÐòµÄ»ù±¾Á÷³Ì¡£Ç°ÌáÊÇÎÒÕâ¸ö³ÌÐòÎÒÃÇÒÑ¾­×öÁËÐèÇó·ÖÎöºÍ±ØÒªµÄÉè¼Æ·ÖÎö¡£
-1 ´´½¨Ä¿Â¼½á¹¹¡£ÔÚÇ°ÃæµÄÕÂ½Ú¡¶Creating First Yii Application¡·Ð´µÄyiic¹¤¾ß¿ÉÒÔ°ïÖúÎÒÃÇ¿ìËÙÍê³ÉÕâ²½¡£
-2 ÅäÖÃapplication¡£¾ÍÊÇÐÞ¸ÄapplicationÅäÖÃÎÄ¼þ¡£Õâ²½ÓÐ¿ÉÄÜ»áÐ´Ò»Ð©application×é¼þ(ÀýÈç£ºÓÃ»§×é¼þ)¡£
-3 Ã¿ÖÖÀàÐÍµÄÊý¾Ý¶¼´´½¨Ò»¸ömodelÀàÀ´¹ÜÀí¡£Í¬Ñù£¬yiic¿ÉÒÔÎªÎÒÃÇÐèÒªµÄÊý¾Ý¿â±í×Ô¶¯Éú³Éactive recordÀà¡£
-4Ã¿ÖÖÀàÐÍµÄÓÃ»§ÇëÇó¶¼´´½¨Ò»¸öcontrollerÀà¡£ÒÀ¾ÝÊµ¼ÊµÄÐèÇó¶ÔÓÃ»§ÇëÇó½øÐÐ·ÖÀà¡£Ò»°ãÀ´Ëµ£¬Èç¹ûÒ»¸ömodelÀàÐèÒªÓÃ»§·ÃÎÊ£¬¾ÍÓ¦¸Ã¶ÔÓ¦Ò»¸öcontrollerÀà¡£yiic¹¤¾ßÒ²ÄÜ×Ô¶¯Íê³ÉÕâ²½¡£
-5ÊµÏÖacitonsºÍÏàÓ¦µÄviews¡£ÕâÊÇÕæÕýÐèÒªÎÒÃÇ±àÐ´µÄ¹¤×÷¡£
-6ÔÚcontrollerÀàÀïÅäÖÃÐèÒªµÄaction filters¡£
-7Èç¹ûÐèÒªÖ÷Ìâ¹¦ÄÜ£¬±àÐ´themes¡£
-8Èç¹ûÐèÒª¹ú¼Ê»¯¹¦ÄÜ£¬±àÐ´·­ÒëÓï¾ä¡£
-9Ê¹ÓÃcaching¼¼Êõ»º´æÊý¾ÝºÍÒ³Ãæ¡£
-10×îºÃµ÷Õû³ÌÐòºÍ·¢²¼¡£
-ÒÔÉÏÃ¿¸ö²½Öè£¬ÓÐ¿ÉÄÜÐèÒª±àÐ´²âÊÔ°¸ÀýÀ´²âÊÔ¡£
+å¼€å‘æµç¨‹
+å·²ç»æè¿°äº†yiiçš„åŸºæœ¬æ¦‚å¿µï¼ŒçŽ°åœ¨æˆ‘ä»¬çœ‹çœ‹ç”¨yiiå¼€å‘ä¸€ä¸ªwebç¨‹åºçš„åŸºæœ¬æµç¨‹ã€‚å‰ææ˜¯æˆ‘è¿™ä¸ªç¨‹åºæˆ‘ä»¬å·²ç»åšäº†éœ€æ±‚åˆ†æžå’Œå¿…è¦çš„è®¾è®¡åˆ†æžã€‚
+1 åˆ›å»ºç›®å½•ç»“æž„ã€‚åœ¨å‰é¢çš„ç« èŠ‚ã€ŠCreating First Yii Applicationã€‹å†™çš„yiicå·¥å…·å¯ä»¥å¸®åŠ©æˆ‘ä»¬å¿«é€Ÿå®Œæˆè¿™æ­¥ã€‚
+2 é…ç½®applicationã€‚å°±æ˜¯ä¿®æ”¹applicationé…ç½®æ–‡ä»¶ã€‚è¿™æ­¥æœ‰å¯èƒ½ä¼šå†™ä¸€äº›applicationç»„ä»¶(ä¾‹å¦‚ï¼šç”¨æˆ·ç»„ä»¶)ã€‚
+3 æ¯ç§ç±»åž‹çš„æ•°æ®éƒ½åˆ›å»ºä¸€ä¸ªmodelç±»æ¥ç®¡ç†ã€‚åŒæ ·ï¼Œyiicå¯ä»¥ä¸ºæˆ‘ä»¬éœ€è¦çš„æ•°æ®åº“è¡¨è‡ªåŠ¨ç”Ÿæˆactive recordç±»ã€‚
+4æ¯ç§ç±»åž‹çš„ç”¨æˆ·è¯·æ±‚éƒ½åˆ›å»ºä¸€ä¸ªcontrollerç±»ã€‚ä¾æ®å®žé™…çš„éœ€æ±‚å¯¹ç”¨æˆ·è¯·æ±‚è¿›è¡Œåˆ†ç±»ã€‚ä¸€èˆ¬æ¥è¯´ï¼Œå¦‚æžœä¸€ä¸ªmodelç±»éœ€è¦ç”¨æˆ·è®¿é—®ï¼Œå°±åº”è¯¥å¯¹åº”ä¸€ä¸ªcontrollerç±»ã€‚yiicå·¥å…·ä¹Ÿèƒ½è‡ªåŠ¨å®Œæˆè¿™æ­¥ã€‚
+5å®žçŽ°acitonså’Œç›¸åº”çš„viewsã€‚è¿™æ˜¯çœŸæ­£éœ€è¦æˆ‘ä»¬ç¼–å†™çš„å·¥ä½œã€‚
+6åœ¨controllerç±»é‡Œé…ç½®éœ€è¦çš„action filtersã€‚
+7å¦‚æžœéœ€è¦ä¸»é¢˜åŠŸèƒ½ï¼Œç¼–å†™themesã€‚
+8å¦‚æžœéœ€è¦å›½é™…åŒ–åŠŸèƒ½ï¼Œç¼–å†™ç¿»è¯‘è¯­å¥ã€‚
+9ä½¿ç”¨cachingæŠ€æœ¯ç¼“å­˜æ•°æ®å’Œé¡µé¢ã€‚
+10æœ€å¥½è°ƒæ•´ç¨‹åºå’Œå‘å¸ƒã€‚
+ä»¥ä¸Šæ¯ä¸ªæ­¥éª¤ï¼Œæœ‰å¯èƒ½éœ€è¦ç¼–å†™æµ‹è¯•æ¡ˆä¾‹æ¥æµ‹è¯•ã€‚
