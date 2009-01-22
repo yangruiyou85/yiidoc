@@ -4,12 +4,12 @@
     - [Создание первого Yii-приложения](quickstart.first-app)
 
 * Основыы
-    - [Модель-Вид-Контроллер (MVC)](basics.mvc)
+    - [Модель - Представление - Контроллер (MVC)](basics.mvc)
     - [Входной скрипт](basics.entry)
     - [Приложение](basics.application)
     - [Контроллер](basics.controller)
     - [Модель](basics.model)
-    - [Вид](basics.view)
+    - [Представление](basics.view)
     - [Компонент](basics.component)
     - [Синонимы (alias) путей и пространства имен (namespace)](basics.namespace)
     - [Соглашения](basics.convention)
