@@ -16,6 +16,6 @@ delete).
 Även om Yii DAO och AR kan hantera nästan alla databasrelaterade uppgifter, är 
 det fortfarande möjligt att använda egna databasbibliotek i en Yii-applikation. 
 Faktum är att Yii-ramverket omsorgsfullt konstruerats med tanke på att kunna 
-användas tillsammans med andra tredjeepartsbibliotek.
+användas tillsammans med andra tredjepartsbibliotek.
 
 <div class="revision">$Id: database.overview.txt 163 2008-11-05 12:51:48Z weizhuo $</div>
