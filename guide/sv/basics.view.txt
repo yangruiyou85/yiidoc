@@ -15,7 +15,7 @@ motsvarande vyfil i katalogen `protected/views/ControllerID`.
 
 I vyns skriptfil kan kontrollerinstansen adresseras med hjälp av `$this`. Vi kan 
 därför hämta in (`pull`) varje egenskap (property) från kontrollern genom att utvärdera 
-`$this- >propertyName` i vyn.
+`$this->propertyName` i vyn.
 
 Vi kan också trycka ut (`push`) data till vyn:
 

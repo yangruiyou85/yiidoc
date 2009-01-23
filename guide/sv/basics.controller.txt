@@ -2,13 +2,13 @@ Controller
 ==========
 
 En `controller` är en instans av [CController] eller en nedärvd klass. Den 
-skapas av application till följd av en request från användare. När en controller 
+skapas av Application till följd av en request från användare. När en kontroller 
 körs utför den den begärda åtgärden (action), vilket vanligen laddar in 
-erforderliga modeller (model) samt renderar en relevant vy (view). En action är, 
-i sin enklaste form, en vanlig metod i controllerklassen vars namn börjar med 
+erforderliga modeller (model) samt renderar en relevant vy (view). En åtgärd är, 
+i sin enklaste form, en vanlig metod i kontrollerklassen vars namn börjar med 
 `action`
 
-En controller har en standardåtgärd. Denna körs om en request från användare 
+En kontroller har en standardåtgärd. Denna körs om en request från användare 
 inte specificerar vilken åtgärd som skall köras. Som standard har 
 standardåtgärden namnet `index`. Detta kan ändras genom inställningen 
 [CController::defaultAction].
@@ -27,7 +27,7 @@ class SiteController extends CController
 Route
 -----
 
-Controller och action identifieras genom ID:n. Controller ID har formatet 
+Kontroller och åtgärd identifieras genom ID:n. Controller ID har formatet 
 `path.to.xyz` motsvarande kontrollerklassfilen 
 `protected/controllers/path/to/XyzController.php`, där ledet `xyz` skall 
 ersättas med aktuella namn (t.ex. `post` motsvarar 
@@ -41,7 +41,7 @@ snedstreck. Till exempel rutten `post/edit` refererar till `PostController` och
 dess `edit`-åtgärd. Som standard refererar URL:en 
 `http://hostname/index.php?r=post/edit` till denna kontroller resp. åtgärd.
 
->Märk: Som standard är route skiftlägesberoende. Fr o m version 1.0.1, kan route 
+> Märk: Som standard är route skiftlägesberoende. Fr o m version 1.0.1, kan route 
 göras okänslig för skiftläge genom att inställningen 
 [CUrlManager::caseSensitive] sätts till true i applikationens konfiguration. I 
 detta läge, se till att följa konventionen att kataloger som innehåller 

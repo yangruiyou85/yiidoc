@@ -10,11 +10,11 @@ andra. Inom MVC, representera modellen information (data) samt affärsregler; Vy
 kontrollern ombesörjer kommunikation mellan modell och vy.
 
 Utöver MVC, introducerar Yii även en förgrundskontroller (front-controller), 
-application, som representerar exekveringsomgivning vid bearbetning av inkomna 
+Application, som representerar exekveringsomgivning vid bearbetning av inkomna 
 request. Application delar upp en request från användare och skickar denna 
 vidare till relevant kontroller för fortsatt behandling.
 
-Följande diagram visar den statiska strukturen hos en Yii-applikation application:
+Följande diagram visar den statiska strukturen hos en Yii-applikation:
 
 ![Statisk struktur hos Yii-applikation](structure.png)
 
@@ -36,8 +36,8 @@ den hanterar en request från användare:
    
    3. Applikationsobjektet skaffar sig detaljerad information om användarens 
    request från 
-   [applikationskomponenten](/doc/guide/basics.application#application-
-   component) `request`.
+   [applikationskomponenten](/doc/guide/basics.application#application-component) 
+   `request`.
    
    4. Applikationen avgör vilken [controller](/doc/guide/basics.controller) 
    resp. [action](/doc/guide/basics.controller#action) som efterfrågas, med 

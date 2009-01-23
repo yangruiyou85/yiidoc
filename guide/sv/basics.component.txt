@@ -46,7 +46,7 @@ Användande av getter- och settermetoder för att definiera en property ger den
 extra fördelen att ytterligare logik  (t.ex. genomföra validering, signalera 
 event) kan exekveras i samband med läsning/skrivning av propertyn.
 
->Märk: Det finns en liten skillnad mellan en property definierad genom getter-
+> Märk: Det finns en liten skillnad mellan en property definierad genom getter-
 /settermetoder resp. som en medlemsvariabel i klassen. I det förra fallet är namnet 
 skiftlägesokänsligt (case-insensitive), i det senare skiftlägeskänsligt.
 
