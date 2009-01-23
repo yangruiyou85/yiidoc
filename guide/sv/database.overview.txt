@@ -10,7 +10,7 @@ Yii Active Record (AR), implementerat i egenskap av att vara ett brett antaget
 synsätt på objekt-relationsmappning (ORM), förenklar ytterligare 
 databasprogrammering. Genom att representera en tabell i form av en klass och en 
 rad som en instans, eliminerar Yii AR den återkommande uppgiften att skriva de 
-SQL-satser som huvudsakligen hanterar CRUD-operationer (create, read, update and 
+SQL-satser som huvudsakligen hanterar CRUD-operationer (create, read, update och 
 delete).
 
 Även om Yii DAO och AR kan hantera nästan alla databasrelaterade uppgifter, är 

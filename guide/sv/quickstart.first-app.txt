@@ -140,7 +140,7 @@ Implementering av CRUD-operationer
 ----------------------------------
 
 Nu till den roliga biten. Vi vill implementera CRUD-operationerna (create, read, 
-update and delete) för tabellen `User` vi just skapat. Detta är även ett vanligt 
+update och delete) för tabellen `User` vi just skapat. Detta är även ett vanligt 
 förekommande krav i skarpa webbapplikationer.
 
 Vi använder återigen verktyget `yiic` som hjälp för att generera den 
