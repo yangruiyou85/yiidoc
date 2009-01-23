@@ -1,21 +1,21 @@
 Arbeta med databaser
 ====================
 
-Yii tillhandahåller kraftfullt stöd för databasprogrammering. Baserat på PHP-
-tillägget Data Objects (PDO) möjliggör Yii Data Access Objects (DAO) åtkomst 
-till olika databashanterare (DBMS) via ett enda enhetligt gränssnitt. 
-Applikationer utvecklade för att använda Yii DAO kan enkelt ställas om för 
-användning med en annan DBMS utan att koden för databasåtkomst behöver ändras. 
+Yii tillhandahÃ¥ller kraftfullt stÃ¶d fÃ¶r databasprogrammering. Baserat pÃ¥ PHP-
+tillÃ¤gget Data Objects (PDO) mÃ¶jliggÃ¶r Yii Data Access Objects (DAO) Ã¥tkomst 
+till olika databashanterare (DBMS) via ett enda enhetligt grÃ¤nssnitt. 
+Applikationer utvecklade fÃ¶r att anvÃ¤nda Yii DAO kan enkelt stÃ¤llas om fÃ¶r 
+anvÃ¤ndning med en annan DBMS utan att koden fÃ¶r databasÃ¥tkomst behÃ¶ver Ã¤ndras. 
 Yii Active Record (AR), implementerat i egenskap av att vara ett brett antaget 
-synsätt på objekt-relationsmappning (ORM), förenklar ytterligare 
+synsÃ¤tt pÃ¥ objekt-relationsmappning (ORM), fÃ¶renklar ytterligare 
 databasprogrammering. Genom att representera en tabell i form av en klass och en 
-rad som en instans, eliminerar Yii AR den återkommande uppgiften att skriva de 
+rad som en instans, eliminerar Yii AR den Ã¥terkommande uppgiften att skriva de 
 SQL-satser som huvudsakligen hanterar CRUD-operationer (create, read, update and 
 delete).
 
-Även om Yii DAO och AR kan hantera nästan alla databasrelaterade uppgifter, är 
-det fortfarande möjligt att använda egna databasbibliotek i en Yii-applikation. 
-Faktum är att Yii-ramverket omsorgsfullt konstruerats med tanke på att kunna 
-användas tillsammans med andra tredjeepartsbibliotek.
+Ã„ven om Yii DAO och AR kan hantera nÃ¤stan alla databasrelaterade uppgifter, Ã¤r 
+det fortfarande mÃ¶jligt att anvÃ¤nda egna databasbibliotek i en Yii-applikation. 
+Faktum Ã¤r att Yii-ramverket omsorgsfullt konstruerats med tanke pÃ¥ att kunna 
+anvÃ¤ndas tillsammans med andra tredjeepartsbibliotek.
 
 <div class="revision">$Id: database.overview.txt 163 2008-11-05 12:51:48Z weizhuo $</div>
