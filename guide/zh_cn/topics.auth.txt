@@ -1,0 +1,9 @@
+身份验证和授权
+如果web页面的访问是受限于某些用户的，则需要Authentication（身份验证）和Authorization（授权）技术。Authentication 是验证某人表明的身份信息是否与系统相合。一般来说包括用户名和密码，当然也可能包括别的表明身份方式，录入智能卡，指纹等等。Authorization是找出被Authentication通过的用户是否允许访问特定的资源。一般的做法是找出此用户是否属于某个允许访问此资源的角色。
+yii有一个正在制作的authentication/authorization (auth)框架，用来轻松实现这些功能。
+Yii auth framework 的核心一块是一个实现IWebUser接口的对象，叫做pre-declared user application component （预先声明用户程序组件）。这个用户组件有此用户的身份信息。我们能够通过Yii::app()->user来获取它。
+使用这用户组件，可以通过 CWebUser::isGuest检查一个用户是否登陆。可以登陆一个用户或者注销一个用户；可以通过CWebUser::checkAccess检查此用户是否能够执行某些特殊的操作;还可以获得此用户的unique identifier（唯一标识）和别的授权标识。
+
+定义Identity （身份）类
+为了验证一个用户，我们定义一个有验证逻辑的Identity类。这个Identity类实现IUserIdentity接口。不同的类可能实现不同的验证方式（例如：OpenID，LDAP）。最好是继承 CUserIdentity，此类是居于用户名和密码的验证方式。
+下面的例子，我们使用Active Record来验证提供的用户名、密码和数据库的用户表是否吻合。用CBaseUserIdentity::getState 和 CBaseUserIdentity::setState 来存放定义的title属性。因此在整个用户回话，我们通过Yii::app()->user->getState('title')来获取用户的title信息。
