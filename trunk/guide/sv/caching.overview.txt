@@ -52,7 +52,7 @@ av cache.
 
 Cachning kan användas på varierande nivåer. På den lägsta nivån kan vi använda 
 cache för att lagra ett enstaka stycke data, som en variabel. Detta benämns 
-*data-cachning*. På nästa nivå, kan ett sidfragment cachelagras, presentation 
+*data-cachning*. På nästa nivå, kan ett sidfragment cachelagras, dvs innehåll 
 som delar av ett vyskript genererat. På den högsta nivån kan vi cachelagra en 
 hel sida och leverera den från cache efter behov.
 
@@ -60,8 +60,7 @@ I några av de följande delavsnitten kommer utförligt att behandlas hur cachni
 används på respektive nivåer.
 
 > Märk: Cache är per definition ett flyktigt lagringsmedium. Det garanterar inte 
-existensen av cachelagrat data även om dess giltighetstid inte löpt ut. Av denna 
+existensen av cachelagrat data även sådant vars giltighetstid inte löpt ut. Av denna 
 anledning, använd inte cache för icke-flyktig lagring (t.ex. använd inte cache 
 till att lagra sessionsdata).
-
 <div class="revision">$Id: caching.overview.txt 468 2009-01-04 20:57:35Z qiang.xue $</div>
