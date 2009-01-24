@@ -2,7 +2,7 @@ Arbeta med Forms
 ================
 
 Insamling av användardata via HTML-formulär är en av huvuduppgifterna vid 
-utveckling av webbapplikationer. Utöver design av formulär behöver utvecklare se 
+utveckling av webbapplikationer. Förutom utformning av formulär behöver utvecklare se 
 till att formulären fylls med existerande data eller standardvärden, validera 
 användarinmatning, presentera relevanta felmeddelanden i händelse av ogiltig 
 indata samt spara inmatning till icke-flyktigt (persistent) minne. Yii förenklar väsentligt 
