@@ -1,24 +1,23 @@
-Data Caching
+Datacachning
 ============
 
-Data caching is about storing some PHP variable in cache and retrieving it
-later from cache. For this purpose, the cache component base class [CCache]
-provides two methods that are used in most of the time: [set()|CCache::set]
-and [get()|CCache::get].
+Datacachning handlar om att lagra någon PHP-variabel i cacheminne och hämta 
+tillbaka den senare från cache. För detta ändamål tillhandahåller 
+cachekomponentens basklass [CCache] två metoder som används för det mesta: 
+[set()|CCache::set] och [get()|CCache::get].
 
-To store a variable `$value` in cache, we choose a unique ID and call
-[set()|CCache::set] to store it:
+För att lagra en variabel `$value` i cacheminnet väljer vi ett unikt ID och anropar [set()|CCache::set]:
 
 ~~~
 [php]
 Yii::app()->cache->set($id, $value);
 ~~~
 
-The cached data will remain in the cache forever unless it is removed
-because of some caching policy (e.g. caching space is full and the oldest
-data are removed). To change this behavior, we can also supply an
-expiration parameter when calling [set()|CCache::set] so that the data will
-be removed from the cache after a certain period of time:
+Cachelagrade data förblir i cachen obegränsat länge om de inte tas bort på grund 
+av någon cachningspolicy (t.ex. slut på cacheutrymme medförande att det äldsta 
+datat tas bort). För ändring av detta beteende, kan en förfallotidsparameter 
+lämnas med i anropet till [set()|CCache::set] så att data städas bort från 
+cachen efter en viss tid:
 
 ~~~
 [php]
@@ -26,10 +25,10 @@ be removed from the cache after a certain period of time:
 Yii::app()->cache->set($id, $value, 30);
 ~~~
 
-Later when we need to access this variable (in either the same or a
-different Web request), we call [get()|CCache::get] with the ID to retrieve
-it from cache. If the value returned is false, it means the value is not
-available in cache and we should regenerate it.
+Senare, när variabeln behöver kommas åt (antingen i samma eller någon annan 
+webbrequest), återhämtas den från cache genom anrop till [get()|CCache::get] med 
+ID bifogat. Om värdet som returneras är false, innebär detta att sökt värde inte 
+är tillgängligt i cachen utan måste genereras på nytt.
 
 ~~~
 [php]
@@ -42,37 +41,32 @@ if($value===false)
 }
 ~~~
 
-When choosing the ID for a variable to be cached, make sure the ID is
-unique among all other variables that may be cached in the application. It
-is NOT required that the ID is unique across applications because the cache
-component is intelligent enough to differentiate IDs for different
-applications.
+Vid val av ID för en variabel som skall cachas, tillse att ID:t är unikt bland 
+alla andra variabler som kan komma att cachas i applikationen. Det är INTE ett 
+krav att ID:t är unikt över fler applikationer då cachekomponenten är 
+intelligent nog att åtskilja ID:n tillhörande skilda applikationer.
 
-To remove a cached value from cache, call [delete()|CCache::delete]; and
-to remove everything from cache, call [flush()|CCache::flush]. Be very
-careful when calling [flush()|CCache::flush] because it also removes cached
-data that are from other applications.
+För att ta bort ett cachat värde, anropa [delete()|CCache::delete]; för att ta 
+bort allting från cache, anropa [flush()|CCache::flush]. Var mycket försiktig 
+med att anropa [flush()|CCache::flush] eftersom även cachelagrat data från andra 
+applikationer tas bort.
 
-> Tip: Because [CCache] implements `ArrayAccess`, a cache component can be
-> used liked an array. The followings are some examples:
-> ~~~
-> [php]
-> $cache=Yii::app()->cache;
-> $cache['var1']=$value1;  // equivalent to: $cache->set('var1',$value1);
-> $value2=$cache['var2'];  // equivalent to: $value2=$cache->get('var2');
-> ~~~
+> Tips: Eftersom [CCache] implementerar `ArrayAccess`, kan en cachekomponent 
+användas som en array. Här följer några exempel: > ~~~ > [php] > 
+$cache=Yii::app()->cache; > $cache['var1']=$value1;  // equivalent to: $cache-
+>set('var1',$value1); > $value2=$cache['var2'];  // equivalent to: 
+$value2=$cache->get('var2'); > ~~~
 
-Cache Dependency
-----------------
+Cacheberoende
+-------------
 
-Besides expiration setting, cached data may also be invalidated according
-to some dependency changes. For example, if we are caching the content of
-some file and the file is changed, we should invalidate the cached copy and
-read the latest content from the file instead of the cache.
+Förutom utgången förfallotid, kan cachelagrat data också ogiltiggöras som följd 
+av någon förändring i beroenden. Till exempel, om innehållet i någon fil 
+cachelagras och filen ändras, så skall kopian i cachen markeras som ogiltig och 
+det senaste innehållet från filen läsas i stället.
 
-We represent a dependency as an instance of [CCacheDependency] or its
-child class. We pass the dependency instance along with the data to be
-cached when calling [set()|CCache::set].
+Ett beroende representeras som en instans av [CCacheDependency] eller nedärvd 
+klass. Dependency-instansen bifogas data som skall cachas i anropet till [set()|CCache::set].
 
 ~~~
 [php]
@@ -81,27 +75,20 @@ cached when calling [set()|CCache::set].
 Yii::app()->cache->set($id, $value, 30, new CFileCacheDependency('FileName'));
 ~~~
 
-Now if we retrieve `$value` from cache by calling [get()|CCache::get], the
-dependency will be evaluated and if it is changed, we will get a false
-value, indicating the data needs to be regenerated.
+Om vi nu återhämtar `$value` från cachen medelst anrop till [get()|CCache::get], 
+kommer beroendet att utvärderas. Om en förändring skett erhålls returvärdet 
+false, vilket indikerar att data behöver genereras på nytt.
 
-Below is a summary of the available cache dependencies:
+Nedan följer en sammanställning av tillgängliga cacheberoenden:
 
-   - [CFileCacheDependency]: the dependency is changed if the file's last
-modification time is changed.
+   - [CFileCacheDependency]: beroendet ändras vid förändring av filens tidangivelse avseende ssenaste ändring.
 
-   - [CDirectoryCacheDependency]: the dependency is changed if any of the
-files under the directory and its subdirectories is changed.
+   - [CDirectoryCacheDependency]: beroendet ändras vid förändring av någon fil i katalogen eller dess underkataloger.
 
-   - [CDbCacheDependency]: the dependency is changed if the query result
-of the specified SQL statement is changed.
+   - [CDbCacheDependency]: beroendet ändras vid förändring i resultatet av databasfrågan given av specificerad SQL-sats.
 
-   - [CGlobalStateCacheDependency]: the dependency is changed if the value
-of the specified global state is changed. A global state is a variable that
-is persistent across multiple requests and multiple sessions in an
-application. It is defined via [CApplication::setGlobalState()].
+   - [CGlobalStateCacheDependency]: beroendet ändras vid förändring av värdet för det specificerade globala tillståndet. Ett globalt tillstånd är en variabel som behåller sitt värde över multipla request och multipla sessioner i en applikation. Det definieras via [CApplication::setGlobalState()].
 
-   - [CChainedCacheDependency]: the dependency is changed if any of the
-dependencies on the chain is changed.
+   - [CChainedCacheDependency]: beroendet ändras om något av beroendena i kedjan förändras.
 
 <div class="revision">$Id: caching.data.txt 169 2008-11-06 19:43:44Z qiang.xue $</div>
