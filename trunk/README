@@ -75,3 +75,4 @@ requirements/
 		source/  the original view files (read-only)
 		<lang>/  translation of the views in a language
 
+framework/       the Yii framework directory (read-only)
