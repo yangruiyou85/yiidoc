@@ -3,7 +3,7 @@
     - [Установка](quickstart.installation)
     - [Создание первого Yii-приложения](quickstart.first-app)
 
-* Основыы
+* Основы
     - [Модель - Представление - Контроллер (MVC)](basics.mvc)
     - [Входной скрипт](basics.entry)
     - [Приложение](basics.application)
@@ -41,7 +41,7 @@
     - [Создание дополнений](extension.create)
     - [Использование сторонних библиотек](extension.integration)
 
-* Специальніе темі
+* Специальные темы
     - [Красивые адреса (URL)](topics.url)
     - [Аутентификация и авторизация](topics.auth)
     - [Темы оформления](topics.theming)
