@@ -43,7 +43,7 @@ dess `edit`-åtgärd. Som standard refererar URL:en
 
 > Märk: Som standard är route skiftlägesberoende. Fr o m version 1.0.1, kan route 
 göras okänslig för skiftläge genom att inställningen 
-[CUrlManager::caseSensitive] sätts till true i applikationens konfiguration. I 
+[CUrlManager::caseSensitive] sätts till false i applikationens konfiguration. I 
 detta läge, se till att följa konventionen att kataloger som innehåller 
 kontrollerklassfiler anges med gemener samt att både [controller 
 map|CWebApplication::controllerMap] och [action map|CController::actions] 
@@ -208,4 +208,4 @@ filtret `postOnly` på åtgärder `edit` och `create`, medan `PerformanceFilter`
 tillämpas på alla åtgärder UTOM `edit` och `create`. Om varken plus eller minus 
 förekommer i filterkonfigurationen tillämpas filtret på alla åtgärder.
 
-<div class="revision">$Id: basics.controller.txt 416 2008-12-28 05:28:11Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 598 2009-01-29 20:19:28Z qiang.xue $</div>
