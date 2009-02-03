@@ -13,7 +13,7 @@
     - [コンポーネント](basics.component)
     - [パス別名と名前空間](basics.namespace)
     - [従うべきこと](basics.convention)
-    - [開発フロー](basics.workflow)
+    - [開発ワークフロー](basics.workflow)
 
 * フォームを使う
     - [概要](form.overview)
