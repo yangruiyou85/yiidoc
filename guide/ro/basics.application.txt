@@ -2,7 +2,7 @@ Application
 ===========
 
 Application este locul unde se executa procesarea cererilor client. Rolul
-principal este sa analizeze cererea client si sa o trimita la controller-ul 
+principal este analizarea cererii client si transmiterea ei la controller-ul 
 corespunzator pentru a fi procesata in continuare. De asemenea, Application joaca 
 un rol central pentru pastrarea configuratiilor la nivel de aplicatie. De aceea, 
 application mai este numita `front-controller`.
@@ -144,7 +144,7 @@ se ocupa cu mesajele nucleu traduse folosite de platforma Yii.
 ca trebuie sa configuram proprietatea [connectionString|CDbConnection::connectionString]
 pentru a putea folosi aceasta componenta.
 
-   - [errorHandler|CApplication::errorHandler]: [CErrorHandler] - trateaza exceptiile si erorile PHP care nu sunt tratate implicit. 
+   - [errorHandler|CApplication::errorHandler]: [CErrorHandler] - trateaza exceptiile si erorile PHP. 
 
    - [messages|CApplication::messages]: [CPhpMessageSource] - asigura mesaje traduse folosite de Yii.
 
