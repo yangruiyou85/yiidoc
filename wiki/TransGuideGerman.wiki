@@ -28,6 +28,7 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
 ==== Übersetzbare Fachbegriffe ====
 
  * attribute - Attribut
+ * command - Befehl
  * component - Komponente
  * contact - Kontakt (Kontaktseite, ...)
  * home - Start (Startseite, ...)
@@ -46,3 +47,8 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
  * Script
  * Traffic
  * View
+ * Widget
+
+==== Grenzfälle ====
+
+ * Theme - Bleibt Theme, evtl. in Klammern "Motiv"
