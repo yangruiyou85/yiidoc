@@ -50,6 +50,7 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
  * Controller, _der_
  * Framework, _das_
  * Model, _das_
+ * Request, _der_
  * Screenshot, _der_
  * Script, _das_
  * Traffic, _der_
