@@ -29,6 +29,9 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
 
  * attribute - Attribut
  * component - Komponente
+ * contact - Kontakt (Kontaktseite, ...)
+ * home - Start (Startseite, ...)
+ * login - anmelden, Anmeldung (Anmeldeseite, ...)
  * method - Methode
  * property - Eigenschaft
  * web application - Webanwendung
