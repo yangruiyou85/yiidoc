@@ -42,12 +42,13 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
  * property - Eigenschaft
  * web application - Webanwendung
 
-==== Nicht zu übersetztende Begriffe ====
+==== Nicht zu übersetzende Begriffe ====
 
  * Action, _die_
  * Button, _der_
  * Cache (bzw. Caching), _der_
  * Controller, _der_
+ * Debug, _das_ debuggen, _der_ Debug-Modus
  * Framework, _das_
  * Model, _das_
  * Request, _der_
