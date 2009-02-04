@@ -23,5 +23,17 @@ Fachbegriffe werden nur übersetzt, wenn die Übersetzung im deutschen Sprachrau
 
 Klassennamen in Yii werden prinzipiell *nicht* übersetzt. Bei schwer verständlichen Klassennamen kann bei der ersten Verwendung eine deutsche Erklärung in Klammern folgen.
 
+==== Übersetzbare Fachbegriffe ====
 
-TODO: Liste von Begriffen die übersetzt bzw. nicht übersetzt werden.
+ * attribute - Attribut
+ * component - Komponente
+ * web application - Webanwendung
+
+==== Nicht zu übersetztende Begriffe ====
+
+ * Cache (bzw. Caching)
+ * Controller
+ * Framework
+ * Model
+ * Traffic
+ * View
