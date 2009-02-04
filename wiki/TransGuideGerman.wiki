@@ -30,7 +30,8 @@ Auch sämtliche Dateinamen für Controller, Views, etc. werden nicht übersetzt.
 Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wird im Zweifelsfall die deutsche Dokumentation der entsprechenden Software-Projekte herangezogen.
 
 ==== Übersetzbare Fachbegriffe ====
-
+ 
+ * application base directory - Anwendungsstammverzeichnis
  * attribute - Attribut
  * command - Befehl, Kommando
  * component - Komponente
