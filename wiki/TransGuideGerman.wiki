@@ -1,0 +1,28 @@
+#labels Phase-QA
+#Richtlinien für die Übersetzung ins Deutsche
+
+= Einleitung =
+
+Yii ist ein herausragendes Framework mit praktisch mustergültigem Quellcode. Genauso sollte auch die Dokumentation durch gute Lesbarkeit überzeugen. Daher sollen hier einige Richtlinien für die Übersetzung an die Hand gegeben werden.
+
+
+= Richtlinien für die Übersetzung =
+
+== Sprachstil ==
+
+Die Übersetzung sollte nicht Wort für Wort erfolgen, sondern vielmehr den Sinn des Textes in gutem Deutsch wiedergeben. Allzulange Sätze sind zu vermeiden.
+
+== Anrede ==
+
+Bei persönlicher Anrede des Lesers wird immer die "Sie"-Form verwendet.
+
+
+== Fachbegriffe ==
+
+=== Klassen-/Variablennamen ===
+
+Klassennamen in Yii werden prinzipiell *nicht* übersetzt. Bei schwer verständlichen Klassennamen kann bei der ersten Verwendung eine deutsche Erklärung in Klammern folgen.
+
+Andere Fachbegriffe werden nur übersetzt, wenn die Übersetzung im deutschen Sprachraum gebräuchlich ist. Andernfalls wird das englische Original verwendet (z.B. "Framework").
+
+TODO: Liste von Begriffen die übersetzt bzw. nicht übersetzt werden.
