@@ -110,66 +110,54 @@ Yiiは、ウェブアプリケーションに共通な機能を提供するた�
 以下は[CWebApplication]によってあらかじめ宣言されたコアコンポーネントのリストです。
 
    - [assetManager|CWebApplication::assetManager]: [CAssetManager] -
-プライベートアセットファイルの発行管理
+プライベートアセットファイルの発行を管理します。
 
-   - [authManager|CWebApplication::authManager]: [CAuthManager] - 役割ベースアクセス制御(RBAC)の管理
+   - [authManager|CWebApplication::authManager]: [CAuthManager] - 役割ベースアクセス制御(RBAC)を管理します。
 
-   - [cache|CApplication::cache]: [CCache] - データキャッシュ機能の提供。注意:実際のクラス(例:[CMemCache], [CDbCache])
+   - [cache|CApplication::cache]: [CCache] - データキャッシュ機能を提供します。注意:実際のクラス(例:[CMemCache], [CDbCache])
 を指定してください。さもないとこのコンポーネントをアクセスした場合にnullがリターンされます。
 
-   - [clientScript|CWebApplication::clientScript]: [CClientScript] - クライアントスクリプト(javascriptsやCSS)管理
+   - [clientScript|CWebApplication::clientScript]: [CClientScript] - クライアントスクリプト(javascriptsやCSS)を管理します。
 
    - [coreMessages|CApplication::coreMessages]: [CPhpMessageSource] -
-Yiiフレームワークのコアメッセージの翻訳を提供
+Yiiフレームワークのコアメッセージの翻訳を提供します。
 
-   - [db|CApplication::db]: [CDbConnection] - provides the database
-connection. Note, you must configure its
-[connectionString|CDbConnection::connectionString] property in order
-to use this コンポーネント.
+   - [db|CApplication::db]: [CDbConnection] - データベース接続を提供します。注意: このコンポーネントを使うためには[connectionString|CDbConnection::connectionString]プロパティを構成しなければなりません。
 
-   - [errorHandler|CApplication::errorHandler]: [CErrorHandler] - handles
-uncaught PHP errors and exceptions.
+   - [errorHandler|CApplication::errorHandler]: [CErrorHandler] - キャッチされていないPHPエラーや例外を扱います。
 
-   - [messages|CApplication::messages]: [CPhpMessageSource] - provides
-translated messaged used by Yii アプリケーション.
+   - [messages|CApplication::messages]: [CPhpMessageSource] - Yiiアプリケーションによって使用される翻訳されたメッセージを提供します。
 
-   - [request|CWebApplication::request]: [CHttpRequest] - provides
-information related with user requests.
+   - [request|CWebApplication::request]: [CHttpRequest] - ユーザリクエストに関連した情報を提供します。
 
-   - [securityManager|CApplication::securityManager]: [CSecurityManager] -
-provides security-related services, such as hashing, encryption.
+   - [securityManager|CApplication::securityManager]: [CSecurityManager] - セキュリティ関連のサービス（例えばハッシュ化、暗号化）を提供します。
 
-   - [session|CWebApplication::session]: [CHttpSession] - provides
-session-related functionalities.
+   - [session|CWebApplication::session]: [CHttpSession] - セッションに関連した機能を提供します。
 
-   - [statePersister|CApplication::statePersister]: [CStatePersister] -
-provides global state persistence method.
+   - [statePersister|CApplication::statePersister]: [CStatePersister] - グローバルな状態の持続手段を提供します。
 
-   - [urlManager|CWebApplication::urlManager]: [CUrlManager] - provides
-URL parsing and creation functionality.
+   - [urlManager|CWebApplication::urlManager]: [CUrlManager] - URL分析と生成機能を提供します。
 
-   - [user|CWebApplication::user]: [CWebUser] - represents the identity
-information of the current user.
+   - [user|CWebApplication::user]: [CWebUser] - 現在のユーザーのアイデンティティ情報を表します。
 
-   - [themeManager|CWebApplication::themeManager]: [CThemeManager] - manages themes.
+   - [themeManager|CWebApplication::themeManager]: [CThemeManager] - テーマを管理します。
 
 
-アプリケーション Lifecycles
+アプリケーションライフサイクル
 ----------------------
 
-When handling a user request, an アプリケーション will undergo the following
-lifecycles:
+ユーザーリクエストを取り扱うとき、アプリケーションは次のライフサイクルを経ます:
 
-   1. Set up class autoloader and error handling;
-   2. Register core アプリケーション コンポーネントs;
-   3. Load アプリケーション configuration;
-   4. Initialize アプリケーション with [CApplication::init()]
-	   - Load static アプリケーション コンポーネントs;
-   5. Raise [onBeginRequest|CApplication::onBeginRequest] event;
-   6. Process the user request:
-	   - Resolve the user request;
-	   - Create controller;
-	   - Run controller;
-   7.Raise [onEndRequest|CApplication::onEndRequest] event;
+   1. クラス自動ローダとエラー処理を準備します;
+   2. コアアプリケーションコンポーネントを登録します;
+   3. アプリケーション構成をロードします;
+   4. [CApplication::init()]によりアプリケーションを初期化します;
+	   - 静的なアプリケーションコンポーネントをロードします;
+   5. イベント[onBeginRequest|CApplication::onBeginRequest]を発行します;
+   6. ユーザー要請を処理します:
+	   - ユーザーリクエストを分解します;
+	   - コントローラを生成します；
+	   - コントローラを実行します;
+   7. イベント[onEndRequest|CApplication::onEndRequest]を発行します;
 
 <div class="revision">$Id: basics.application.txt 416 2008-12-28 05:28:11Z qiang.xue $</div>
