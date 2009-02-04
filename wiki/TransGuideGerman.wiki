@@ -21,7 +21,7 @@ Bei persönlicher Anrede des Lesers wird immer die "Sie"-Form verwendet.
 
 Fachbegriffe werden nur übersetzt, wenn die Übersetzung im deutschen Sprachraum gebräuchlich ist. Andernfalls wird das englische Original verwendet (z.B. "Framework").
 
-Klassennamen in Yii werden prinzipiell *nicht* übersetzt. Bei schwer verständlichen Klassennamen kann bei der ersten Verwendung eine deutsche Erklärung in Klammern folgen.
+Klassennamen in Yii werden prinzipiell *nicht* übersetzt. Bei schwer verständlichen Klassennamen kann bei der ersten Verwendung eine deutsche Erklärung bzw. der englische Originalbegriff in Klammern folgen. Ebenso in Situtationen wo der übersetzte Begriff nicht mehr eindeutig ist, wie etwa bei "Eigenschaft" ("property").
 
 Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wird im Zweifelsfall die deutsche Dokumentation der entsprechenden Software-Projekte herangezogen.
 
@@ -29,6 +29,8 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
 
  * attribute - Attribut
  * component - Komponente
+ * method - Methode
+ * property - Eigenschaft
  * web application - Webanwendung
 
 ==== Nicht zu übersetztende Begriffe ====
