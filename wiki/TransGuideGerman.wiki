@@ -42,6 +42,7 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
  * Controller
  * Framework
  * Model
+ * Screenshot
  * Script
  * Traffic
  * View
