@@ -35,5 +35,6 @@ Klassennamen in Yii werden prinzipiell *nicht* übersetzt. Bei schwer verständl
  * Controller
  * Framework
  * Model
+ * Script
  * Traffic
  * View
