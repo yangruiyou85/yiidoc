@@ -45,6 +45,7 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
 ==== Nicht zu übersetztende Begriffe ====
 
  * Action, _die_
+ * Button, _der_
  * Cache (bzw. Caching), _der_
  * Controller, _der_
  * Framework, _das_
