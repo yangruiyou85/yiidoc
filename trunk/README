@@ -33,6 +33,19 @@ and also display them online.
 Thank you for your support and contribution to Yii!
 
 
+Translate Blockquote in the Guide
+---------------------------------
+
+The Guide contains blockquotes that start with tokens like "> Note:",
+"> Tip: ", and so on. Do not translate these tokens. Instead, append
+the translation of the token word and use "|" as the separator. For example,
+
+> Note|translation for 'note': ....
+
+> Tip|translation for 'tip': ......
+
+
+
 How to Synchronize Messages
 ---------------------------
 
