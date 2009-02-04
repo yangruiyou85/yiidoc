@@ -35,6 +35,7 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
  * command - Befehl, Kommando
  * component - Komponente
  * contact - Kontakt (Kontaktseite, ...)
+ * extension (PHP) - Erweiterung
  * home - Start (Startseite, ...)
  * login - anmelden, Anmeldung (Anmeldeseite, ...)
  * method - Methode
