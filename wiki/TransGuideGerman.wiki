@@ -32,7 +32,7 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
 ==== Übersetzbare Fachbegriffe ====
 
  * attribute - Attribut
- * command - Befehl
+ * command - Befehl, Kommando
  * component - Komponente
  * contact - Kontakt (Kontaktseite, ...)
  * home - Start (Startseite, ...)
