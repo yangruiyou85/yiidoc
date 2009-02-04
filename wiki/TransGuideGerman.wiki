@@ -12,6 +12,8 @@ Yii ist ein herausragendes Framework mit praktisch mustergültigem Quellcode. Ge
 
 Die Übersetzung sollte nicht Wort für Wort erfolgen, sondern vielmehr den Sinn des Textes in gutem Deutsch wiedergeben. Allzulange Sätze sind zu vermeiden. Im englischen getrennt geschriebene Worte werden i.d.R. im Deutschen zusammengeschrieben. So wird aus "web application" die "Webanwendung". Lediglich bei sperrigen langen Worten kann ein Bindestrich verwendet werden, wie z.B. bei Web-Programmierung.
 
+Zusammengesetzte Wörter, die im Deutschen weniger übliche Begriffe enthalten, werden mit Bindestrich getrennt: "View-Ordner", "Controller-Klasse", "Widget-Datei".
+
 === Anrede ===
 
 Bei persönlicher Anrede des Lesers wird immer die "Sie"-Form verwendet.
