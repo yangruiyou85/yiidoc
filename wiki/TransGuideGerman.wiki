@@ -41,15 +41,15 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
 
 ==== Nicht zu übersetztende Begriffe ====
 
- * Cache (bzw. Caching)
- * Controller
- * Framework
- * Model
- * Screenshot
- * Script
- * Traffic
- * View
- * Widget
+ * Cache (bzw. Caching), _der_
+ * Controller, _der_
+ * Framework, _das_
+ * Model, _das_
+ * Screenshot, _der_
+ * Script, _das_
+ * Traffic, _der_
+ * View, _der_
+ * Widget, _das_
 
 ==== Grenzfälle ====
 
