@@ -1,0 +1,45 @@
+Was ist Yii
+===========
+
+Yii ist ein auf Komponenten basierendes Hochleistungs-Framework für die 
+Entwicklung umfangreicher Webanwendungen. Es bietet maximale
+Wiederverwendbarkeit im Bereich Web-Programmierung und kann den 
+Entwicklunsprozess beträchtlich beschleunigen. Der Name Yii 
+(gesprochen als `/i:/`) steht für die englischen Begriffe *easy* 
+(einfach), *efficient* (effizient) und *extensible* (erweiterbar).
+
+Anforderungen
+-------------
+
+Um eine Yii-basierte Webanwendung zu betreiben, benötigen Sie einen 
+Webserver der PHP 5.1.0 oder höher unterstützt.
+
+Für Entwickler, die Yii einsetzen möchten, ist das Verständnis
+Objektorientierter Programmierung (OOP) von Vorteil, denn bei 
+Yii handelt es sich um ein reines OOP-Framework.
+
+Wofür eignet sich Yii am besten?
+--------------------------------
+
+Yii ist ein Universal-Framework zur Web-Programmierung, das für
+praktisch alle Arten von Webanwendungen eingesetzt werden kann.
+Da es sehr schlank gehalten und mit ausgeklügelten Caching-Lösungen versehen
+ist, eignet es sich insbesondere zur Entwicklung von Anwendungen mit hohem
+Traffic-Aufkommen, wie z.B. Portalen, Foren, Redaktionssystemen (CMS),
+E-Commerce-Systemen, usw.
+
+Wo steht Yii im Vergleich zu anderen Frameworks?
+------------------------------------------------
+
+Wie die meisten PHP-Frameworks ist auch Yii ein MVC-Framework.
+
+Yii besticht gegenüber anderen Frameworks durch seine Effizienz, seine
+reichhaltigen Features und seine klare Dokumentation. Yii wurde von
+Anfang an sorgfältig auf die Bedürfnisse professioneller
+Web-Entwicklung abgestimmt. Es ist weder ein Nebenprodukt anderer
+Projekte noch eine Ansammlung sonstiger Dritt-Produkte. Es ist vielmehr das
+Ergebnis der umfangreichen Erfahrung des Autors im Bereich Web-Entwicklung,
+sowie der Untersuchung der meisten populären Web-Frameworks und
+-anwendungen.
+
+<div class="revision">$Id: quickstart.what-is-yii.txt 257 2008-11-21 13:35:04Z qiang.xue $</div>
