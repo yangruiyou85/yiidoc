@@ -1,19 +1,19 @@
 Controller
 ==========
 
-A `controller` is an instance of [CController] or its child class. It is
-created by application when the user requests for it. When a controller
-runs, it performs the requested action which usually brings in the needed
-models and renders an appropriate view. An `action`, at its simplest form, is
-just a controller class method whose name starts with `action`.
+Un `controller` este o instanta a clasei [CController] sau a unei clase derivate. Este
+creat de application atunci cand o cerere client are nevoie. Atunci cand ruleaza,
+un controller executa un action cerut de client. De obicei, action apeleaza
+modelele necesare si va genera un view corespunzator (rezultatul vazut de client). 
+Un `action`, in cea mai simpla forma, este doar o metoda a clasei controllerului
+al carei nume incepe cu `action`.
 
-A controller has a default action. When the user request does not specify
-which action to execute, the default action will be executed. By default,
-the default action is named as `index`. It can be changed by setting
-[CController::defaultAction].
+Orice controller are un default action (actiune implicita). Atunci cand cererea client
+nu specifica ce action va fi apelat, default action va fi apelat. Implicit,
+default action are numele `index`. Dar poate fi schimbat prin setarea [CController::defaultAction].
 
-Below is the minimal code needed by a controller class. Since this controller
-does not define any action, requesting for it would throw an exception.
+Mai jos este codul minim necesar pentru un controller. Din moment ce acest controller
+nu defineste nici un action, orice cerere pentru acest controller va genera o exceptie.
 
 ~~~
 [php]
@@ -26,63 +26,54 @@ class SiteController extends CController
 Route
 -----
 
-Controllers and actions are identified by IDs. Controller ID is in the
-format of `path.to.xyz` which corresponds to the controller class file
-`protected/controllers/path/to/XyzController.php`, where the token `xyz`
-should be replaced by actual names (e.g. `post` corresponds to
-`protected/controllers/PostController.php`). Action ID is the action method
-name without the `action` prefix. For example, if a controller class
-contains a method named `actionEdit`, the ID of the corresponding action
-would be `edit`.
+Controller-ele si action-urile sunt identificate prin ID-uri. ID-ul controller are formatul
+`cale.catre.xyz` care corespunde fisierului fizic al controller-ului
+`protected/controllers/cale/catre/XyzController.php`, where the token `xyz`
+should be replaced by actual names (ex. `post` corespunde cu
+`protected/controllers/PostController.php`). ID-ul action este numele metodei action
+fara prefixul `action`. De exemplu, daca o clasa controller contine o metoda cu numele
+`actionEdit`, atunci ID-ul este `edit`.
 
-Users request for a particular controller and action in terms of route. A
-route is formed by concatenating a controller ID and an action ID separated
-by a slash. For example, the route `post/edit` refers to `PostController`
-and its `edit` action. And by default, the URL
-`http://hostname/index.php?r=post/edit` would request for this controller
-and action.
+Utilizatorii cer un anumit controller si un anumit action prin intermediul unui route (ruta).
+Route este format prin concatenarea unui ID controller si al unui ID action separate prin slash (/).
+De exemplu, ruta `post/edit` se refera la controllerul `PostController` si la action-ul `edit`.
+Si implicit, URL-ul `http://hostname/index.php?r=post/edit` va cere acest controller si acest action.
 
->Note: By default, routes are case-sensitive. Since version 1.0.1, it is
->possible to make routes case-insensitive by setting [CUrlManager::caseSensitive]
->to be false in the application configuration. When in case-insensitive mode,
->make sure you follow the convention that directories containing controller
->class files are in lower case, and both [controller map|CWebApplication::controllerMap]
->and [action map|CController::actions] are using keys in lower case.
+>Nota: Implicit, rutele sunt case-sensitive. De la versiunea 1.0.1, este posibila crearea de rute
+>case-insensitive prin setarea [CUrlManager::caseSensitive] cu valoarea false in configuratia aplicatiei.
+>In modul case-insensitive, trebuie sa ne asiguram ca urmam conventia ca directoarele care contin
+>fisierele cu clasele controller-ului sunt in lower case, si ca atat [controller map|CWebApplication::controllerMap]
+>cat si [action map|CController::actions] folosesc key-uri in lower case.
 
-Controller Instantiation
-------------------------
+Instantierea Controller-ului
+----------------------------
 
-A controller instance is created when [CWebApplication] handles an
-incoming request. Given the ID of the controller, the application will use
-the following rules to determine what the controller class is and where the
-class file is located.
+Cand [CWebApplication] analizeaza o cerere de la client, atunci este creata o instanta a unui controller.
+Se primeste, prin ruta, ID-ul controller-ului, iar aplicatia va folosi urmatoarele reguli pentru a
+determina ce clasa controller este si unde este localizat fisierul fizic al clasei.
 
-   - If [CWebApplication::catchAllRequest] is specified, a controller
-will be created based on this property, and the user-specified controller ID
-will be ignored. This is mainly used to put the application under
-maintenance mode and display a static notice page.
+   - Daca este specificat [CWebApplication::catchAllRequest], va fi creat un controller pe baza acestei
+proprietati, iar ID-ul de controller primit de la client va fi ignorat. Aceasta este situatia cand dorim sa
+aducem aplicatia in modul de mentenanta, offline sau invizibila in Web in spatele unei pagini statice. 
 
-   - If the ID is found in [CWebApplication::controllerMap], the
-corresponding controller configuration will be used to create the
-controller instance.
+   - Daca ID-ul este gasit in [CWebApplication::controllerMap], configuratia controller-ului care este precizata
+acolo va fi folosita pentru a crea instanta controller-ului. 
 
-   - If the ID is in the format of `'path.to.xyz'`, the controller class
-name is assumed to be `Xyz` and the corresponding class file is
-`protected/controllers/path/to/XyzController.php`. For example, a controller
-ID `admin.user` would be resolved as the controller class `UserController`
-and the class file `protected/controllers/admin/UserController.php`.
-If the class file does not exist, a 404 [CHttpException] will be raised.
+   - Daca ID-ul este in formatul 'cale.catre.xyz'`, numele clasei controller-ului se presupune ca este
+`Xyz` si fisierul fizic al clasei este `protected/controllers/cale/catre/XyzController.php`. De exemplu,
+un ID de controller `admin.user` ar conduce la clasa `UserController` si la fisierul fizic
+`protected/controllers/admin/UserController.php`. Daca fisierul fizic al clasei nu exista, atunci se genereaza [CHttpException] 404.
 
 
 Action
 ------
 
-As aforementioned, an action can be defined as a method whose name starts
-with the word `action`. A more advanced way is to define an action class
-and ask the controller to instantiate it when requested. This allows
-actions to be reused and thus introduces more reusability.
+Dupa cum am mentionat anterior, un action poate fi definit ca metoda al carei nume incepe cu cuvantul `action`. O modalitate mai
+avansata de a defini o clasa action este prin a cere controller-ului sa instantieze clasa action atunci cand este ceruta.
+Aceasta permite reutilizarea usoara in alte proiecte a clasei action, clasa action fiind independenta in felul acesta
+de aplicatia curenta.
 
-To define a new action class, do the following:
+Pentru a defini o noua clasa action, facem urmatoarele:
 
 ~~~
 [php]
@@ -90,13 +81,13 @@ class UpdateAction extends CAction
 {
 	public function run()
 	{
-		// place the action logic here
+		// aici intra logica action
 	}
 }
 ~~~
 
-In order for the controller to be aware of this action, we override the
-[actions()|CController::actions] method of our controller class:
+Pentru ca acest action sa fie vizibil de catre controller, suprascriem
+metoda [actions()|CController::actions] din clasa controller-ului:
 
 ~~~
 [php]
@@ -111,13 +102,11 @@ class PostController extends CController
 }
 ~~~
 
-In the above, we use the path alias
-`application.controllers.post.UpdateAction` to specify that the action
-class file is `protected/controllers/post/UpdateAction.php`.
+Mai sus, am folosit alias-ul `application.controllers.post.UpdateAction` pentru a specifica
+faptul ca fisierul fizic al clasei action este `protected/controllers/post/UpdateAction.php`.
 
-Writing class-based actions, we can organize an application in a modular
-fashion. For example, the following directory structure may be used to
-organize the code for controllers:
+Daca concepem action-urile fiind clase, putem sa organizam aplicatia modular.
+De exemplu, urmatoarea structura de directoare poate fi folosita pentru a organiza codul pentru controllere:
 
 ~~~
 protected/
@@ -138,36 +127,34 @@ protected/
 Filter
 ------
 
-Filter is a piece of code that is configured to be executed before and/or
-after a controller action executes. For example, an access control filter
-may be executed to ensure that the user is authenticated before executing
-the requested action; a performance filter may be used to measure the time
-spent in the action execution.
+Filter (filtru) este o bucata de cod care poate fi executata inainte si/sau
+dupa ce un action al unui controller a fost executat. De exemplu, un filtru de control de acces
+poate fi executat, pentru a se asigura ca utilizatorul este autentificat inainte de a executa
+action-ul cerut; sau un filtru de performanta poate fi folosit inainte si dupa executia unui action, pentru
+a masura timpul de executie al action-ului.
 
-An action can have multiple filters. The filters are executed in the order
-that they appear in the filter list. A filter can prevent the execution of
-the action and the rest unexecuted filters.
+Un action poate avea mai multe filtre. Filtrele sunt executate in ordinea in care apar in lista de filtre.
+Un filtru poate sa interzica executia celorlalte filtre ramase si a action-ului. 
 
-A filter can be defined as a controller class method. The method name must
-begin with `filter`. For example, the existence of the
-`filterAccessControl` method defines a filter named `accessControl`. The
-filter method must be of the signature:
+Un filtru poate fi definit ca metoda in clasa controller-ului. Numele metodei trebuie sa
+inceapa cu `filter`. De exemplu, daca exista metoda `filterAccessControl` atunci se defineste un filtru
+cu numele `accessControl`. Metoda filtru trebuie sa fie in forma urmatoare: 
 
 ~~~
 [php]
 public function filterAccessControl($filterChain)
 {
-	// call $filterChain->run() to continue filtering and action execution
+	...
+	// se apeleaza $filterChain->run() pentru a continua filtrarea si executia action-ului
 }
 ~~~
 
-where `$filterChain` is an instance of [CFilterChain] which represents the
-filter list associated with the requested action. Inside the filter method,
-we can call `$filterChain->run()` to continue filtering and action
-execution.
+`$filterChain` este o instanta a clasei [CFilterChain] si reprezinta o lista de filtre asociate
+cu action-ul cerut. In interiorul filtrului, putem apela `$filterChain->run()` pentru a continua
+filtrarea si executia action-ului.
 
-A filter can also be an instance of [CFilter] or its child class. The
-following code defines a new filter class:
+Dar un filtru poate sa fie si o instanta a clasei [CFilter] sau a unei clase derivate.
+Urmatorul cod defineste o clasa noua de filtru:
 
 ~~~
 [php]
@@ -175,20 +162,19 @@ class PerformanceFilter extends CFilter
 {
 	protected function preFilter($filterChain)
 	{
-		// logic being applied before the action is executed
-		return true; // false if the action should not be executed
+		// cod executat inainte de executia action-ului
+		return true; // daca action-ul nu trebuie executat trebuie returnat false
 	}
 
 	protected function postFilter($filterChain)
 	{
-		// logic being applied after the action is executed
+		// cod de executat dupa ce action-ul este executat
 	}
 }
 ~~~
 
-To apply filters to actions, we need to override the
-`CController::filters()` method. The method should return an array of
-filter configurations. For example,
+Pentru a aplica filtre action-urilor, trebuie sa suprascriem metoda `CController::filters()`.
+Metoda ar trebui sa returneze un array cu configuratia filtrului. De exemplu:
 
 ~~~
 [php]
@@ -201,28 +187,25 @@ class PostController extends CController
 			'postOnly + edit, create',
 			array(
 				'application.filters.PerformanceFilter - edit, create',
-				'unit'=>'second',
+				'unit'=>'microsecunde',
 			),
 		);
 	}
 }
 ~~~
 
-The above code specifies two filters: `postOnly` and `PerformanceFilter`.
-The `postOnly` filter is method-based (the corresponding filter method is
-defined in [CController] already); while the `PerformanceFilter` filter is
-object-based. The path alias `application.filters.PerformanceFilter`
-specifies that the filter class file is
-`protected/filters/PerformanceFilter`. We use an array to configure
-`PerformanceFilter` so that it may be used to initialize the property
-values of the filter object. Here the `unit` property of
-`PerformanceFilter` will be initialized as `'second'`.
+Codul de mai sus specifica doua filtre: `postOnly` si `PerformanceFilter`.
+Filtrul `postOnly` este definit ca metoda (metoda filtru corspunzatoare este
+definita deja in [CController]); filtrul `PerformanceFilter` este definit printr-o clasa.
+Aliasul `application.filters.PerformanceFilter` ne spune calea unde gasim fisierul fizic al clasei:
+`protected/filters/PerformanceFilter`. Filtrul `PerformanceFilter` are nevoie de un array pentru a isi
+initializa valorile proprietatilor. Aici, proprietatea `unit` din filtrul `PerformanceFilter`
+va fi initializata cu `'microsecunde'`.
 
-Using the plus and the minus operators, we can specify which actions the
-filter should and should not be applied to. In the above, the `postOnly`
-should be applied to the `edit` and `create` actions, while
-`PerformanceFilter` should be applied to all actions EXCEPT `edit` and
-`create`. If neither plus nor minus appears in the filter configuration,
-the filter will be applied to all actions.
+Folosind operatorii plus si minus, putem specifica la ce action-uri ar trebui aplicat (sau nu) un filtru.
+In codul de mai sus, filtrul `postOnly` va fi aplicat action-urilor 
+`edit` si `create`, in timp ce filtrul `PerformanceFilter` ar trebui aplicat la toate action-urile
+CU EXCEPTIA action-urilor `edit` si `create`. Daca nu apare nici plus nici minus in configuratia filtrului,
+atunci filtrul va fi aplicat tuturor action-urilor.
 
 <div class="revision">$Id: basics.controller.txt 626 2009-02-04 20:51:13Z qiang.xue $</div>
