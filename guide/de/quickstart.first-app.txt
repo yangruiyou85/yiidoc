@@ -13,7 +13,7 @@ Starten Sie `yiic` von der Kommandozeile wie folgt:
 % YiiRoot/framework/yiic webapp WebRoot/testdrive
 ~~~
 
-> Note: Wenn Sie `yiic` unter Mac OS, Linux or Unix starten, müssen Sie evtl.
+> Note|Hinweis: Wenn Sie `yiic` unter Mac OS, Linux or Unix starten, müssen Sie evtl.
 die Zugriffsrechte der `yiic`-Datei auf *ausführbar* setzen. Statt `yiic`
 können Sie auch `php YiiRoot/framework/yiic.php` verwenden.
 
@@ -120,7 +120,7 @@ Hier fügen wir einen `db`-Eintrag zu `components` (Komponenten) hinzu, wodurch
 die Applikation angewiesen wird, sich bei Bedarf mit der SQLite-Datenbank 
 `WebRoot/testdrive/protected/data/source.db` zu verbinden.
 
-> Note: Um Yiis Datenbankfunktionen zu nutzen, müssen wir in PHP die 
+> Note|Hinweis: Um Yiis Datenbankfunktionen zu nutzen, müssen wir in PHP die 
 PDO-Erweiterung inkl. der treiberspezifischen PDO-Erweiterung einschalten.
 Für die Testanwendung müssen also `php_pdo` und `php_pdo_sqlite` aktiviert
 sein.
@@ -193,7 +193,7 @@ basierend auf dem Schema unserer Tabelle `User`. Und das Kommando `crud`
 generiert die Controller-Klassen und Views die zusammen die CRUD-Operationen
 für unser `User`-Model bilden.
 
-> Note: Wenn Sie irgendwelche Änderungen an Ihrem Code oder Ihrer
+> Note|Hinweis: Wenn Sie irgendwelche Änderungen an Ihrem Code oder Ihrer
 Konfiguration vornehmen, rufen Sie bitte `yiic shell` erneut auf, damit 
 die Änderungen wirksam werden. Stellen Sie ausserdem sicher, dass Sie die 
 richtige Kommandozeilen-Version (CLI) von PHP verwenden. Andernfalls begegnen 
