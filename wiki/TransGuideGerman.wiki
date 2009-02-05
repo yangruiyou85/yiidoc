@@ -62,3 +62,4 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
 ==== Grenzfälle ====
 
  * Theme - Bleibt Theme, evtl. in Klammern "Motiv"
+ * Asset - Bleibt Asset, aus Mangel einer vernünftigen Übersetzung
