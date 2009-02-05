@@ -45,6 +45,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * home - Start (Startseite, ...)
  * login - anmelden, Anmeldung (Anmeldeseite, ...)
  * method - Methode
+ * path alias - Pfad-Alias
  * property - Eigenschaft
  * role - Rolle
  * user - Benutzer
@@ -63,6 +64,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * Exception, _die_
  * Framework, _das_
  * Model, _das_
+ * Namespace, _der_
  * Request, _der_
  * Route, _die_
  * Screenshot, _der_
