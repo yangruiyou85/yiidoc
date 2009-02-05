@@ -35,6 +35,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  
  * application base directory - Anwendungsstammverzeichnis
  * attribute - Attribut
+ * base class - Basisklasse (OOP)
  * command - Befehl, Kommando
  * component - Komponente
  * contact - Kontakt (Kontaktseite, ...)
