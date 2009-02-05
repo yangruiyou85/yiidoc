@@ -52,6 +52,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
 ==== Nicht zu übersetzende Begriffe ====
 
  * Action, _die_
+ * ActiveRecord, _der_
  * Button, _der_
  * Cache (bzw. Caching), _der_
  * Client, _der_
