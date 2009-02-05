@@ -3,7 +3,7 @@ Controller
 
 En `controller` är en instans av [CController] eller en nedärvd klass. Den 
 skapas av Application till följd av en request från användare. När en kontroller 
-körs utför den den begärda åtgärden (action), vilket vanligen laddar in 
+körs utför den den begärda åtgärden (action), vilken vanligen laddar in 
 erforderliga modeller (model) samt renderar en relevant vy (view). En åtgärd är, 
 i sin enklaste form, en vanlig metod i kontrollerklassen vars namn börjar med 
 `action`
@@ -41,7 +41,7 @@ snedstreck. Till exempel rutten `post/edit` refererar till `PostController` och
 dess `edit`-åtgärd. Som standard refererar URL:en 
 `http://hostname/index.php?r=post/edit` till denna kontroller resp. åtgärd.
 
-> Märk: Som standard är route skiftlägesberoende. Fr o m version 1.0.1, kan route 
+> Note|Märk: Som standard är route skiftlägesberoende. Fr o m version 1.0.1, kan route 
 göras okänslig för skiftläge genom att inställningen 
 [CUrlManager::caseSensitive] sätts till false i applikationens konfiguration. I 
 detta läge, se till att följa konventionen att kataloger som innehåller 
@@ -199,12 +199,12 @@ definierad i [CController]); medan däremot `PerformanceFilter`-filtret är
 objektbaserat. Sökvägsalias `application.filters.PerformanceFilter` specificerar 
 att filtrets klassfil är `protected/filters/PerformanceFilter`. En array används 
 för att konfigurera `PerformanceFilter` så att propertyvärdena för 
-filterobjektet kan initialisera. I exemplet initialiseras propertyn `unit` i 
+filterobjektet kan initialiseras. I exemplet initialiseras propertyn `unit` i 
 `PerformanceFilter` till `'second'`.
 
 Genom användning av plus- och minusoperatorerna kan vi specificera vilka 
 åtgärder filtret skall eller inte skall tillämpas på. I exemplet ovan tillämpas 
-filtret `postOnly` på åtgärder `edit` och `create`, medan `PerformanceFilter` 
+filtret `postOnly` på åtgärderna `edit` och `create`, medan `PerformanceFilter` 
 tillämpas på alla åtgärder UTOM `edit` och `create`. Om varken plus eller minus 
 förekommer i filterkonfigurationen tillämpas filtret på alla åtgärder.
 

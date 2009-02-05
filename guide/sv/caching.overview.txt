@@ -46,7 +46,7 @@ Här följer en sammanfattning av de tillgängliga cachekomponenterna:
    ange en databas CDbCache skall använda genom att sätta dess 
    [connectionID|CDbCache::connectionID]-egenskap.
 
-> Tips: Eftersom alla dessa cachekomponenter utvidgar samma basklass [CCache], 
+> Tip|Tips: Eftersom alla dessa cachekomponenter utvidgar samma basklass [CCache], 
 kan man byta till en annan typ av cache utan att modifiera kod som använder sig 
 av cache.
 
@@ -59,7 +59,7 @@ hel sida och leverera den från cache efter behov.
 I några av de följande delavsnitten kommer utförligt att behandlas hur cachning 
 används på respektive nivåer.
 
-> Märk: Cache är per definition ett flyktigt lagringsmedium. Det garanterar inte 
+> Note|Märk: Cache är per definition ett flyktigt lagringsmedium. Det garanterar inte 
 existensen av cachelagrat data även sådant vars giltighetstid inte löpt ut. Av denna 
 anledning, använd inte cache för icke-flyktig lagring (t.ex. använd inte cache 
 till att lagra sessionsdata).

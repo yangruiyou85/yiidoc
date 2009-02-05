@@ -11,7 +11,7 @@ följande:
 % YiiRoot/framework/yiic webapp WebRoot/testdrive
 ~~~
 
-> Märk: Om `yiic` körs under Mac OS, Linux eller Unix, kan rättigheterna för 
+> Note|Märk: Om `yiic` körs under Mac OS, Linux eller Unix, kan rättigheterna för 
 filen `yiic` behöva kompletteras så att den blir körbar (executable). Det går 
 även att skriva `php YiiRoot/framework/yiic.php` som alternativ till `yiic`. 
 
@@ -113,7 +113,7 @@ Ovan, läggs ett `db`-element till i `components`, vilket instruerar
 applikationen att ansluta till SQLite-databasen 
 `WebRoot/testdrive/protected/data/source.db` när så erfordras.
 
-> Märk: För att använda Yii:s databasfiness, måste vi aktivera PHP PDO-tillägget 
+> Note|Märk: För att använda Yii:s databasfiness, måste vi aktivera PHP PDO-tillägget 
 samt det drivrutinsspecifika PDO-tillägget. Testkörningsapplikationen behöver ha 
 `php_pdo` och `php_pdo_sqlite`-tilläggen igång.
 
@@ -181,7 +181,7 @@ automatiskt en modellklass `User`,  baserat på schemat för tabellen `User`.
 `crud`-kommandot genererar kontrollerklassen och vyer som implementerar CRUD-
 operationerna för modellen `User`.
 
-> Märk: Om förändringar görs i koden eller konfigurationen, starta om `yiic 
+> Note|Märk: Om förändringar görs i koden eller konfigurationen, starta om `yiic 
 shell` så att den nya koden eller konfigurationen kan få effekt. Kontrollera 
 också att rätt PHP CLI används för att exekvera `yiic`. I annat fall kan fel i 
 stil med "...could not find driver" uppstå, trots att PDO och motsvarande 
