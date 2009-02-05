@@ -60,6 +60,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * Framework, _das_
  * Model, _das_
  * Request, _der_
+ * Route, _die_
  * Screenshot, _der_
  * Script, _das_
  * Traffic, _der_
