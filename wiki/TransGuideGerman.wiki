@@ -63,6 +63,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * Event, _das_
  * Exception, _die_
  * Framework, _das_
+ * Label, _das_
  * Model, _das_
  * Namespace, _der_
  * Request, _der_
