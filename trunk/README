@@ -33,6 +33,16 @@ and also display them online.
 Thank you for your support and contribution to Yii!
 
 
+Testing Translations
+--------------------
+
+You can use the included application to test your translations online.
+To access the application, the whole yiidoc folder should be placed
+under a Web-accessible folder. And you can then access the Guide via:
+
+http://hostname/path/to/yiidoc/index.php?r=guide
+
+
 Translate Blockquote in the Guide
 ---------------------------------
 
@@ -89,3 +99,10 @@ requirements/
 		<lang>/  translation of the views in a language
 
 framework/       the Yii framework directory (read-only)
+
+
+The following directories and folders are for the included
+Web application. Do not translate them.
+css/
+protected/
+index.php
