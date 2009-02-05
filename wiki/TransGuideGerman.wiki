@@ -38,6 +38,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * command - Befehl, Kommando
  * component - Komponente
  * contact - Kontakt (Kontaktseite, ...)
+ * class - Klasse (OOP)
  * extension (PHP) - Erweiterung
  * form - Formular
  * home - Start (Startseite, ...)
