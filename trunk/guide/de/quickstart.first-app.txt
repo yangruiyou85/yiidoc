@@ -1,5 +1,5 @@
-Erstellen einer ersten Yii-Anwendung
-====================================
+Erstellen der ersten Yii-Anwendung
+==================================
 
 Um einen ersten Eindruck von Yii zu bekommen, beschreiben wir in diesem
 Abschnitt, wie wir unsere erste Yii-Anwendung erstellen. Wir werden dazu den
