@@ -1,4 +1,4 @@
-* 始めましょう
+* 初めに
     - [Yiiとは何でしょうか](quickstart.what-is-yii)
     - [インストール法](quickstart.installation)
     - [初めてのYiiアプリを作成](quickstart.first-app)
