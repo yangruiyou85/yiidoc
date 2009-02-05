@@ -42,4 +42,4 @@ Ergebnis der umfangreichen Erfahrung des Autors im Bereich Web-Entwicklung,
 sowie der Untersuchung der meisten populären Web-Frameworks und
 -anwendungen.
 
-<div class="revision">$Id: quickstart.what-is-yii.txt 257 2008-11-21 13:35:04Z qiang.xue $</div>
+<div class="revision">$Id$</div>
