@@ -12,7 +12,7 @@ In acest fel, accesul este posibil de oriunde via [Yii::app()|YiiBase::app].
 
 
 Configurare
--------------------------
+-----------
 
 La baza, application este o instanta a [CWebApplication]. Pentru customizare,
 in mod normal trebuie sa furnizam un fisier de configurare (care este de fapt un array)
@@ -70,8 +70,8 @@ Cu [Apache HTTP server](http://httpd.apache.org/) protectia se face foarte simpl
 deny from all
 ~~~
 
-Application Component
----------------------
+Componente
+----------
 
 Functionalitatea aplicatiei poate fi usor customizata si imbogatita datorita arhitecturii foarte
 flexibile de componente. Application gestioneaza un set de componente, fiecare implementand diverse
@@ -116,7 +116,7 @@ totusi sa fie create indiferent daca sunt accesate sau nu. Daca se doreste aces 
 ID-urile lor trebuie mentionate in lista memorata in proprietatea [preload|CApplication::preload].
 
 Componente nucleu
----------------------------
+-----------------
 
 Yii predefineste un set de componente nucleu pentru a asigura anumite features intalnite in majoritatea
 aplicatiilor Web. De exemplu, componenta [request|CWebApplication::request] este folosita pentru a analiza
@@ -165,8 +165,8 @@ ofera o metoda de a mentine stadiul global al aplicatiei intre cererile client.
    - [themeManager|CWebApplication::themeManager]: [CThemeManager] - gestiune teme.
 
 
-Ciclul de viata al Application
-----------------------
+Ciclul de viata al aplicatiei
+-----------------------------
 
 Atunci cand se trateaza o cerere client, aplicatia va trece prin urmatoarele stadii: 
 

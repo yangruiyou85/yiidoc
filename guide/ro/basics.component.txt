@@ -1,17 +1,18 @@
-Component
-=========
+Componente
+==========
 
-Yii applications are built upon components which are objects
-written to a specification. A component is an instance of
-[CComponent] or its derived class. Using a component mainly involves
-accessing its properties and raising/handling its events. The base class
-[CComponent] specifies how to define properties and events.
+Aplicatiile Yii sunt construite pe baza componentelor, acestea fiind
+obiecte scrise pentru a indeplini un anumit rol. O componenta este o
+instanta a clasei [CComponent] - sau a unei clase derivate din ea. 
+Folosirea unei componente implica in general accesarea proprietatilor sale
+si activarea/tratarea (raise/handle) evenimentelor sale. Clasa de baza
+[CComponent] contine cum se definesc proprietatile si evenimentele.
 
-Component Property
-------------------
+Proprietatile unei componente
+-----------------------------
 
-A component property is like an object's public member variable. We can
-read its value or assign a value to it. For example,
+O proprietate este asemanatoare cu o variabila publica a unui obiect.
+Putem citi valoarea ei sau putem sa ii atribuim o valoare. De exemplu:
 
 ~~~
 [php]
@@ -19,9 +20,9 @@ $width=$component->textWidth;     // get the textWidth property
 $component->enableCaching=true;   // set the enableCaching property
 ~~~
 
-To define a component property, we can simply declare a public member
-variable in the component class. A more flexible way, however, is by
-defining getter and setter methods like the following:
+Pentru a defini o proprietate intr-o componenta, putem sa declaram simplu
+o variabila publica in clasa componentei. Totusi, o modalitate mai flexibila ar fi
+definirea de metode getter si setter in felul urmator:
 
 ~~~
 [php]
@@ -36,31 +37,30 @@ public function setTextWidth($value)
 }
 ~~~
 
-The above code defines a writable property named `textWidth` (the name is
-case-insensitive). When reading the property, `getTextWidth()` is  invoked
-and its returned value becomes the property value; Similarly, when writing
-the property, `setTextWidth()` is invoked. If the setter method is not
-defined, the property would be read-only and writing it would throw an
-exception. Using getter and setter methods to define a property has the
-benefit that additional logic (e.g. performing validation, raising events)
-can be executed when reading and writing the property.
+Codul de mai sus defineste o proprietate `textWidth` (numele este
+case-insensitive). Cand se citeste proprietatea, `getTextWidth()` este invocata
+si valoarea returnata devine valoarea proprietatii. In mod similar, cand se atribuie
+o valoare proprietatii, `setTextWidth()` este invocata. Daca metoda setter nu este
+definita, atunci proprietatea va fi read-only, iar incercarea de a o scrie va avea ca efect
+activarea unei exceptii. Folosind metodele getter si setter pentru a defini o proprietate
+avem avantajul ca putem executa logica aditionala atunci cand se citeste sau se scrie o
+proprietate (ex. cand se face validare de date, cand se activeaza evenimente).
 
->Note: There is a slight difference between a property defined via getter/setter
-methods and a class member variable. The name of the former
-is case-insensitive while the latter is case-sensitive.
+>Nota: Este o mica diferenta intre o proprietate definita prin metodele getter si setter
+si o variabila a unei clase. Numele proprietatii este case-insensitive, in timp ce
+numele variabilei este case-sensitive.
 
-Component Event
----------------
+Evenimentele unei componente
+----------------------------
 
-Component events are special properties that take methods (called `event
-handlers`) as their values. Attaching (assigning) a method to an event will
-cause the method to be invoked automatically at the places where the event
-is raised. Therefore, the behavior of a component can be modified in a way
-that may not be foreseen during the development of the component.
+Evenimentele sunt proprietati speciale ale caror valori pot fi nume de metode (denumite `event
+handlers`). Atasand/Atribuind o metoda la un eveniment va avea ca efect apelarea metodei ori de
+cate ori si oriunde evenimentul este activat. De aceea, comportamentul unei componente
+poate fi modificat intr-un fel neanticipat in perioada de dezvoltare a componentei.
 
-A component event is defined by defining a method whose name starts with
-`on`. Like property names defined via getter/setter methods, event names are
-case-insensitive. The following code defines an `onClicked` event:
+Un eveniment al unei componente este definit printr-o metoda al carei nume incepe cu `on`.
+Ca si proprietatile definite cu metode getter/setter, numele evenimentelor sunt case-insensitive.
+Codul urmator defineste un eveniment `onClicked`:
 
 ~~~
 [php]
@@ -70,47 +70,43 @@ public function onClicked($event)
 }
 ~~~
 
-where `$event` is an instance of [CEvent] or its child class representing
-the event parameter.
+`$event` este o instanta a [CEvent] sa a unei clase copil care reprezinta parametrul evenimentului. 
 
-We can attach a method to this event as follows:
+Putem sa atasam o metoda acestui eveniment in felul urmator:
 
 ~~~
 [php]
 $component->onClicked=$callback;
 ~~~
 
-where `$callback` refers to a valid PHP callback. It can be a global
-function or a class method. If the latter, the callback must be given as an
-array: `array($object,'methodName')`.
+`$callback` se refera la un callback valid PHP. Poate fi o functie globala sau o metoda a unei clase.
+In cazul unei metode, callback-ul trebuie dat ca un array: `array($object,'numeMetoda')`.
 
-The signature of an event handler must be as follows:
+Un event handler va fi in felul urmator:
 
 ~~~
 [php]
-function methodName($event)
+function numeMetoda($event)
 {
     ......
 }
 ~~~
 
-where `$event` is the parameter describing the event (it originates from
-the `raiseEvent()` call). The `$event` parameter is an instance of [CEvent] or
-its derived class. At the minimum, it contains the information about who
-raises the event.
+`$event` este parametrul care descrie evenimentul (provine din apelul `raiseEvent()`).
+Parametrul `$event` este o instanta a clasei [CEvent] sau a unei clase derivate.
+Trebuie sa contina cel putin informatiile despre cine a activat evenimentul. 
 
-If we call `onClicked()` now, the `onClicked` event will be raised (inside
-`onClicked()`), and the attached event handler will be invoked
-automatically.
+Daca apelam `onClicked()` in acest moment, evenimentul `onClicked` va fi activat (in interiorul lui
+`onClicked()`), iar event handler-ul atasat va fi invocat automat. 
 
-An event can be attached with multiple handlers. When the event is raised,
-the handlers will be invoked in the order that they are attached to the event.
-If a handler decides to prevent the rest handlers from being invoked, it can set
-[$event->handled|CEvent::handled] to be true.
+Un eveniment poate fi atasat mai multor handler-e.  Cand un eveniment este activat,
+handler-ele vor fi invocate in ordinea in care au fost atasate evenimentului.
+Daca un handler decide sa intrerupa invocarea hadler-elor urmatoare, poate sa seteze
+[$event->handled|CEvent::handled] cu valoarea true.
 
 
-Component Behavior
-------------------
+Comportamentul unei componente
+------------------------------
 
 Starting from version 1.0.2, a component has added support for [mixin](http://en.wikipedia.org/wiki/Mixin)
 and can be attached with one or several behaviors. A *behavior* is an object
