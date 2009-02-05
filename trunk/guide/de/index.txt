@@ -7,4 +7,4 @@ All Rights Reserved.
 
 Übersetzt von/Translated by Michael Härtl, ... 
 
-<div class="revision">$Id: index.txt 440 2009-01-01 04:14:09Z qiang.xue $</div>
+<div class="revision">$Id$</div>

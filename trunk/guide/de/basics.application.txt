@@ -215,4 +215,4 @@ Lebenszyklen durchlaufen:
        - Ausführen des Controllers;
    7. Auslösen des [onEndRequest|CApplication::onEndRequest]-Events
 
-<div class="revision">$Id: basics.application.txt 416 2008-12-28 05:28:11Z qiang.xue $</div>
+<div class="revision">$Id$</div>

@@ -34,4 +34,4 @@ effizient, da hier viele interne Log-Einträge gehalten werden. Auf der anderen
 Seite ist der Debug-Modus in der Entwicklungsphase hilfreicher, da er
 im Fehlerfall umfangreiche Debug-Informationen liefert.
 
-<div class="revision">$Id: basics.entry.txt 162 2008-11-05 12:44:08Z weizhuo $</div>
+<div class="revision">$Id$</div>
