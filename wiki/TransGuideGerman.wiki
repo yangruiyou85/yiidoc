@@ -29,6 +29,9 @@ Auch sämtliche Dateinamen für Controller, Views, etc. werden nicht übersetzt.
 
 Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wird im Zweifelsfall die deutsche Dokumentation der entsprechenden Software-Projekte herangezogen.
 
+
+Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änderungen sollten dann aber konsistent in der gesamten Dokumentation angepasst werden.
+
 ==== Übersetzbare Fachbegriffe ====
  
  * application base directory - Anwendungsstammverzeichnis
@@ -52,6 +55,8 @@ Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wir
  * Client, _der_
  * Controller, _der_
  * Debug, _das_ debuggen, _der_ Debug-Modus
+ * Event, _das_
+ * Exception, _die_
  * Framework, _das_
  * Model, _das_
  * Request, _der_
