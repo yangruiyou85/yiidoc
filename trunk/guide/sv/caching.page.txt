@@ -39,7 +39,7 @@ kontrollern. Detta kan begränsas till en eller ett fåtal åtgärder genom
 användning av plus-operatorn. Fler detaljer finns i 
 [filter](/doc/guide/basics.controller#filter).
 
-> Tips: Klassen [COutputCache] kan användas som ett filter eftersom den är en 
+> Tip|Tips: Klassen [COutputCache] kan användas som ett filter eftersom den är en 
 utvidgning av [CFilterWidget], vilket innebär att den är både en widget och ett 
 filter. Faktum är att sättet en widget arbetar på är mycket likt ett filter: en 
 widget (filter) börjar innan något omslutet innehåll (åtgärd) utvärderas, och 

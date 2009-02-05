@@ -37,7 +37,7 @@ CREATE TABLE Post (
 );
 ~~~
 
-> Märk: AR är inte tänkt att lösa alla databasrelaterade uppgifter. Den kommer 
+> Note|Märk: AR är inte tänkt att lösa alla databasrelaterade uppgifter. Den kommer 
 bäst till användning för att modellera databastabeller som PHP-konstruktioner 
 och genomföra sådana frågor som inte omfattar komplexa SQL-satser. Yii:s DAO 
 bör användas för dessa komplexa scenarier.
@@ -64,7 +64,7 @@ return array(
 );
 ~~~
 
-> Tips: Eftersom Active Record förlitar sig på metadata om tabeller för att 
+> Tip|Tips: Eftersom Active Record förlitar sig på metadata om tabeller för att 
 avgöra information om kolumner, åtgår tid till att läsa metadata och til att 
 analysera det. Om det är mindre troligt att databasschemat kommer att ändras, 
 bör schemacachning slås på genom att konfigurera 
@@ -82,7 +82,7 @@ använda AR till att arbeta mot flera databaser, åsidosätt
 [CActiveRecord::getDbConnection()]. Klassen [CActiveRecord] utgör basklass för alla 
 AR-klasser.
 
-> Tips: Det finns två sätt att arbeta mot multipla databaser i AR. Om 
+> Tip|Tips: Det finns två sätt att arbeta mot multipla databaser i AR. Om 
 databasernas scheman är olika, kan man skapa olika AR-basklasser med skild 
 implementering av [getDbConnection()|CActiveRecord::getDbConnection]. I annat 
 fall är det en bättre idé att dynamiskt ändra den statiska variabeln 
@@ -108,7 +108,7 @@ class Post extends CActiveRecord
 }
 ~~~
 
-> Tips: Eftersom AR-klasser ofta refereras till på många ställen, är det möjligt att 
+> Tip|Tips: Eftersom AR-klasser ofta refereras till på många ställen, är det möjligt att 
 > importera hela katalogen som innehåller AR-klasserna, i stället för att inkludera 
 > dem en och en. Till exempel, om alla AR-klasser finns i katalogen
 > `protected/models`, kan applikationen konfigureras som följer:
@@ -210,7 +210,7 @@ För att läsa data i en databastabell, anropa någon av följande `find`-metode
 
 ~~~
 [php]
-// leta upp den första raden som som satisfierar angivet villkor
+// leta upp den första raden som satisfierar angivet villkor
 $post=Post::model()->find($condition,$params);
 // leta upp raden med angiven primärnyckel
 $post=Post::model()->findByPk($postID,$condition,$params);
@@ -225,18 +225,18 @@ nämnts är den statiska metoden `model()` obligatorisk i varje AR-klass. Metode
 returnerar en AR-instans som används för att få tillgång till metoder på 
 klassnivå (något liknande statiska klassmetoder) i en objektkontext.
 
-If the `find` method finds a row satisfying the query conditions, it will
-return a `Post` instance whose properties contain the corresponding column
-values of the table row. We can then read the loaded values like we do with
-normal object properties, for example, `echo $post->title;`.
+Om `find`-metoden hittar en rad som satisfierar frågevillkoren, kommer den att 
+returnera en instans av `Post` vars propertyn innehåller korresponderande 
+kolumnvärde från tabellraden. De laddade värdena kan sedan läsas på samma sätt 
+som vanliga objektpropertyn, till exempel, `echo $post->title;`.
 
-The `find` method will return null if nothing can be found in the database
-with the given query condition.
+Metoden `find` returnerar null om inget kan hittas i databasen med det givna 
+frågevillkoret.
 
-When calling `find`, we use `$condition` and `$params` to specify query
-conditions. Here `$condition` can be string representing the `WHERE` clause
-in a SQL statement, and `$params` is an array of parameters whose values
-should be bound to the placeholders in `$condition`. For example,
+I anropet till `find` används `$condition` och `$params` för att specificera 
+frågevillkor. Här kan `$condition` vara en sträng som representerar `WHERE`-
+ledet i en SQL-sats, och `$params` en array av parametrar vars värden kommer att 
+kopplas till platshållarn i `$condition`. Till exempel,
 
 ~~~
 [php]
@@ -244,9 +244,9 @@ should be bound to the placeholders in `$condition`. For example,
 $post=Post::model()->find('postID=:postID', array(':postID'=>10));
 ~~~
 
-We can also use `$condition` to specify more complex query conditions.
-Instead of a string, we let `$condition` be a [CDbCriteria] instance, which
-allows us to specify conditions other than the `WHERE` clause. For example,
+`$condition` kan också användas för att specificera mer komplexa frågevillkor. I 
+stället för en sträng kan $condition` vara en instans av [CDbCriteria], vilken 
+tillåter oss att specificera andra vilkor än `enbart WHERE`-ledet. Till exempel,
 
 ~~~
 [php]
@@ -257,13 +257,14 @@ $criteria->params=array(':postID'=>10);
 $post=Post::model()->find($criteria); // $params is not needed
 ~~~
 
-Note, when using [CDbCriteria] as query condition, the `$params` parameter
-is no longer needed since it can be specified in [CDbCriteria], as shown
-above.
+Märk väl att när [CDbCriteria] används som frågevillkor, behövs inte `$params`-
+parametern eftersom den kan specificeras i [CDbCriteria], vilket exemplifieras 
+ovan.
 
-An alternative way to [CDbCriteria] is passing an array to the `find` method.
-The array keys and values correspond to the criteria's property name and value,
-respectively. The above example can be rewritten as follows,
+Ett alternativt sätt att använda [CDbCriteria] är genom att lämna med en array 
+till `find`-metoden. Arrayens nycklar och värden motsvarar kriterieobjektets 
+respektive propertynamn och -värden. Ovanstående exempel kan skrivas om som 
+följer,
 
 ~~~
 [php]
@@ -274,53 +275,51 @@ $post=Post::model()->find(array(
 ));
 ~~~
 
-> Info: When a query condition is about matching some columns with the
-specified values, we can use
-[findByAttributes()|CActiveRecord::findByAttributes]. We let the
-`$attributes` parameters be an array of the values indexed by the column
-names. In some frameworks, this task can be achieved by calling methods
-like `findByNameAndTitle`. Although this approach looks attractive, it
-often causes confusion, conflict and issues like case-sensitivity of column
-names.
+> Info: När ett frågevillkor handlar om att matcha några kolumner mot 
+specificerade värden, kan [findByAttributes()|CActiveRecord::findByAttributes] 
+användas. Vi låter då `$attributes`-parametern vara en array med värden 
+indexerade av kolumnnamnen. I vissa ramverk kan denna uppgift fullgöras genom 
+anrop till metoder i stil med `findByNameAndTitle`. Även om detta 
+tillvägagångssätt förefaller attraktivt, leder det ofta till förvirring, 
+konflikter samt problem som känslighet för kolumnnamns skiftläge (case).
 
-When multiple rows of data matching the specified query condition, we can
-bring them in all together using the following `findAll` methods, each of
-which has its counterpart `find` method, as we already described.
+Om mer än en rad med data matchar det specificerade frågevillkoret, kan samtliga 
+hämtas in tillsammans med hjälp av följande `findAll`-metoder, vilka var och en 
+har en motsvarande `find`-metod, så som beskrivits ovan.
 
 ~~~
 [php]
-// find all rows satisfying the specified condition
+// leta upp alla rader som satisfierar angivet villkor
 $posts=Post::model()->findAll($condition,$params);
-// find all rows with the specified primary keys
+// leta upp alla rader med den specificerade primärnyckeln
 $posts=Post::model()->findAllByPk($postIDs,$condition,$params);
-// find all rows with the specified attribute values
+// leta upp alla rader som har angivna atttributvärden
 $posts=Post::model()->findAllByAttributes($attributes,$condition,$params);
-// find all rows using the specified SQL statement
+// leta upp alla rader genom användning av specifierad SQL-sats
 $posts=Post::model()->findAllBySql($sql,$params);
 ~~~
 
-If nothing matches the query condition, `findAll` would return an empty
-array. This is different from `find` who would return null if nothing is
-found.
+Om inget matchar frågevillkoret, returnerar `findAll` en tom array. Detta 
+skiljer sig från `find` som skulle returnera null om inget hittades.
 
-Besides the `find` and `findAll` methods described above, the following
-methods are also provided for convenience:
+Förutom `find`- och `findAll`-metoderna som beskrivs ovan, finns även följande 
+metoder tillgängliga convenience:
 
 ~~~
 [php]
-// get the number of rows satisfying the specified condition
+// beräkna antalet rader som satisfierar angivet villkor
 $n=Post::model()->count($condition,$params);
-// get the number of rows using the specified SQL statement
+// beräkna antalet rader genom användning av specifierad SQL-sats
 $n=Post::model()->countBySql($sql,$params);
-// check if there is at least a row satisfying the specified condition
+// undersök om det finns åtminstone en rad som satisfierar angivet villkor
 $exists=Post::model()->exists($condition,$params);
 ~~~
 
-Updating Record
----------------
+Uppdatera DB-post
+-----------------
 
-After an AR instance is populated with column values, we can change them
-and save them back to the database table.
+Efter det att en AR-instans initierats med kolumnvärden, kan dessa ändras och 
+sparas tillbaka till databastabellen.
 
 ~~~
 [php]
@@ -329,38 +328,38 @@ $post->title='new post title';
 $post->save(); // save the change to database
 ~~~
 
-As we can see, we use the same [save()|CActiveRecord::save] method to
-perform insertion and updating operations. If an AR instance is created
-using the `new` operator, calling [save()|CActiveRecord::save] would insert
-a new row into the database table; if the AR instance is the result of some
-`find` or `findAll` method call, calling [save()|CActiveRecord::save] would
-update the existing row in the table. In fact, we can use
-[CActiveRecord::isNewRecord] to tell if an AR instance is new or not.
+Som synes, används samma [save()|CActiveRecord::save]-metod för både 
+insättnings- och uppdateringoperationer. Om en AR-instans skapas med hjälp av 
+`new`-operatorn, leder anrop av [save()|CActiveRecord::save] till insättning av 
+en ny post i databastabellen; om en AR-instans är resultatet från någon anrop av 
+metoderna `find` eller `findAll`, leder anrop av [save()|CActiveRecord::save] 
+till uppdatering av den existerande raden i tabellen. Faktum är att 
+[CActiveRecord::isNewRecord] kan användas för att upplysa om huruvida en AR-
+instans är ny eller inte.
 
-It is also possible to update one or several rows in a database table
-without loading them first. AR provides the following convenient
-class-level methods for this purpose:
+Det är också möjligt att uppdatera en eller flera rader i en databastabell utan 
+att först ladda dem. AR tillhandahåller följande ändamålsenliga metoder på 
+klassnivå för ändamålet:
 
 ~~~
 [php]
-// update the rows matching the specified condition
+// uppdatera raderna som matchar det specificerade villkoret
 Post::model()->updateAll($attributes,$condition,$params);
-// update the rows matching the specified condition and primary key(s)
+// uppdatera raderna som matchar det specificerade villkoret och primärnyckel/-nycklar
 Post::model()->updateByPk($pk,$attributes,$condition,$params);
-// update counter columns in the rows satisfying the specified conditions
+// uppdatera räknarkolumnerna i raderna som satisfierar det specificerade villkoret
 Post::model()->updateCounters($counters,$condition,$params);
 ~~~
 
-In the above, `$attributes` is an array of column values indexed by column
-names; `$counters` is an array of incremental values indexed by column
-names; and `$condition` and `$params` are as described in the previous
-subsection.
+I ovanstående, är `$attributes` en array med kolumnvärden indexerade av 
+kolumnnamn; `$counters` är en array med inkrementella värden indexerade av 
+kolumnnamn samt `$condition` och `$params` är som beskrivits i föregående 
+delavsnitt.
 
-Deleting Record
+Ta bort DB-post
 ---------------
 
-We can also delete a row of data if an AR instance has been populated with
-this row.
+Det går också att ta bort en rad med data om en AR-instans har initierats med denna rad.
 
 ~~~
 [php]
@@ -368,34 +367,34 @@ $post=Post::model()->findByPk(10); // assuming there is a post whose ID is 10
 $post->delete(); // delete the row from the database table
 ~~~
 
-Note, after deletion, the AR instance remains unchanged, but the
-corresponding row in the database table is already gone.
+Lägg märke till att efter borttagningen förblir AR-instansen oförändrad när 
+den motsvarande raden i databastabellen redan är borttagen.
 
-The following class-level methods are provided to delete rows without the
-need of loading them first:
+Följande metoder på klassnivå finns tillgängliga för att ta bort rader utan att 
+först behöva ladda dem:
 
 ~~~
 [php]
-// delete the rows matching the specified condition
+// tag bort raderna som matchar det angivna villkoret
 Post::model()->deleteAll($condition,$params);
-// delete the rows matching the specified condition and primary key(s)
+// tag bort raderna som matchar det angivna villkoret och primärnyckel/-nycklar
 Post::model()->deleteByPk($pk,$condition,$params);
 ~~~
 
-Data Validation
----------------
+Datavalidering
+--------------
 
-When inserting or updating a row, we often need to check if the column
-values comply to certain rules. This is especially important if the column
-values are provided by end users. In general, we should never trust
-anything coming from the client side.
+Vid insättning eller uppdatering av en rad behöver vi  ofta kontrollera ifall 
+kolumnvärden är i överensstämmelse med vissa regler. Detta är av speciell vikt 
+om kolumnvärdena tillhandahålls från slutanvändare. Generellt sett skall vi inte 
+lita blint på något som kommer från klientsidan.
 
-AR performs data validation automatically when
-[save()|CActiveRecord::save] is being invoked. The validation is based on
-the rules specified by in the [rules()|CModel::rules] method of the AR class.
-For more details about how to specify validation rules, refer to
-the [Declaring Validation Rules](/doc/guide/form.model#declaring-validation-rules)
-section. Below is the typical workflow needed by saving a record:
+AR utför datavalidering automatiskt när [save()|CActiveRecord::save] anropas. 
+Valideringen baseras på de regler som fins specificerade i metoden 
+[rules()|CModel::rules] i AR-klassen. Fler detaljer angående specificering av 
+valideringsregler återfinns i sektionen [Deklarera 
+Valideringsregler](/doc/guide/form.model#declaring- validation-rules). Nedan 
+ses det typiska arbetsflödet som behövs för att spara en databaspost:
 
 ~~~
 [php]
@@ -409,9 +408,9 @@ else
 }
 ~~~
 
-When the data for inserting or updating is submitted by end users in an
-HTML form, we need to assign them to the corresponding AR properties. We
-can do so like the following:
+När data för insättning eller uppdatering skickas av en slutanvändare i ett 
+html-formulär, behöver vi tilldela dem till motsvarande AR-propertyn. Detta kan 
+göras enligt följande :
 
 ~~~
 [php]
@@ -420,11 +419,11 @@ $post->content=$_POST['content'];
 $post->save();
 ~~~
 
-If there are many columns, we would see a long list of such assignments.
-This can be alleviated by making use of the
-[attributes|CActiveRecord::attributes] property as shown below. More
-details can be found in the [Securing Attribute Assignments](/doc/guide/form.model#securing-attribute-assignments)
-section and the [Creating Action](/doc/guide/form.action) section.
+Om det handlar om många kolumner, kommer listan med tilldelningar att bli lång. 
+Detta kan mildras genom användning av propertyn 
+[attributes|CActiveRecord::attributes] så som visas nedan. För fler detaljer se 
+avsnittet [Säkra Attributilldelningar](/doc/guide/form.model#securing-
+attribute-assignments) samt avsnittet [Skapa Åtgärd](/doc/guide/form.action).
 
 ~~~
 [php]
@@ -434,53 +433,52 @@ $post->save();
 ~~~
 
 
-Comparing Records
+Jämföra DB-poster
 -----------------
 
-Like table rows, AR instances are uniquely identified by their primary key
-values. Therefore, to compare two AR instances, we merely need to compare
-their primary key values, assuming they belong to the same AR class. A
-simpler way is to call [CActiveRecord::equals()], however.
+Liksom tabellrader identifieras AR-instanser unikt genom sina primärnycklars 
+värden. Att jämföra två AR-instanser handlar därför bara om att jämföra värdena 
+för deras primärnycklar, givet att de tillhör samma AR-klass. Ett enklare sätt 
+är dock att anropa [CActiveRecord::equals()].
 
-> Info: Unlike AR implementation in other frameworks, Yii supports
-composite primary keys in its AR. A composite primary key consists of two
-or more columns. Correspondingly, the primary key value is represented as
-an array in Yii. The [primaryKey|CActiveRecord::primaryKey] property gives
-the primary key value of an AR instance.
+> Info: Till skillnad mot AR-implementeringar i andra ramverk, stöder Yii 
+sammansatta primärnycklar i sitt AR. En sammansatt primärnyckel består av två 
+eller flera kolumner. Följaktligen är primärnyckelvärden i Yii representerade av 
+en array. Propertyn [primaryKey|CActiveRecord::primaryKey] ger 
+primärnyckelvärdet för en AR-instans.
 
-Customization
--------------
+Anpassning
+----------
 
-[CActiveRecord] provides a few placeholder methods that can be overridden
-in child classes to customize its workflow.
+[CActiveRecord] erbjuder några platshållarmetoder vilka kan åsidosättas i ärvda 
+klasser för att anpassa arbetsflödet i dessa.
 
-   - [beforeValidate|CModel::beforeValidate] and
-[afterValidate|CModel::afterValidate]: these are invoked before and
-after validation is performed.
+   - [beforeValidate|CModel::beforeValidate] och 
+   [afterValidate|CModel::afterValidate]: körs innan resp. efter att validering 
+   utförs.
 
-   - [beforeSave|CActiveRecord::beforeSave] and
-[afterSave|CActiveRecord::afterSave]: these are invoked before and after
-saving an AR instance.
+   - [beforeSave|CActiveRecord::beforeSave] och 
+   [afterSave|CActiveRecord::afterSave]: körs innan resp. efter en AR-instans 
+   sparas.
 
-   - [beforeDelete|CActiveRecord::beforeDelete] and
-[afterDelete|CActiveRecord::afterDelete]: these are invoked before and
-after an AR instance is deleted.
+   - [beforeDelete|CActiveRecord::beforeDelete] and 
+   [afterDelete|CActiveRecord::afterDelete]: körs innan resp. efter en AR-
+   instnas tas bort.
 
-   - [afterConstruct|CActiveRecord::afterConstruct]: this is invoked for
-every AR instance created using the `new` operator.
+   - [afterConstruct|CActiveRecord::afterConstruct]: körs varje gång en AR-
+   instans skapas med hjälp av operatorn `new`.
 
-   - [afterFind|CActiveRecord::afterFind]: this is invoked for every AR
-instance created as a result of query.
+   - [afterFind|CActiveRecord::afterFind]: körs varje gång en AR-instans 
+   skapas som resultat av en fråga.
 
 
-Using Transaction with AR
--------------------------
+Använda Transaction med AR
+--------------------------
 
-Every AR instance contains a property named
-[dbConnection|CActiveRecord::dbConnection] which is a [CDbConnection]
-instance. We thus can use the
-[transaction](/doc/guide/database.dao#using-transactions) feature provided by Yii
-DAO if it is desired when working with AR:
+Varje AR-instans innehåller en property benämnd 
+[dbConnection|CActiveRecord::dbConnection], vilken är en instans av 
+[CDbConnection]. Sålunda kan [transaction](/doc/guide/database.dao#using-
+transactions)-finessen som tillhandahålls av Yii DAO användas med AR om så önskas:
 
 ~~~
 [php]
