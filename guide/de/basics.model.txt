@@ -2,7 +2,7 @@ Model
 =====
 
 Ein Model ist eine Instanz vom Typ [CModel] oder dessen Kindklassen. Models
-werden verwendet, um Daten und für sie relevante Geschäftsregeln festzuhalten.
+werden verwendet, um Daten sowie die für sie relevanten Geschäftsregeln festzuhalten.
 
 Ein Model repräsentiert ein einzelnes Datenobjekt. Es kann sich um eine Zeile
 in einer Datenbanktabelle oder ein Formular mit Benutzereingaben handeln.
@@ -17,13 +17,13 @@ Ein FormModel ist eine Instanz vom Typ [CFormModel]. FormModel wird verwendet
 um Daten aus Benutzereingaben abzulegen. Solche Daten werden häufig gesammelt,
 benutzt und dann verworfen. Zum Beispiel können wir auf einer Anmeldeseite
 ein FormModel verwenden, um die vom Endbenutzer eingegebenen Benutzernamen- und 
-Passwortinformationen zu verkörpern. Weitere Details finden Sie unter
+Passwortinformationen abzubilden. Weitere Details finden Sie unter
 [Arbeiten mit Formularen](/doc/guide/form.model).
 
 ActiveRecord (AR) ist ein Designpattern (Entwurfsmuster), das verwendet wird,
 um Datenbankzugriffe auf objektorientierte Weise zu abstrahieren. Jedes
 AR-Objekt ist eine Instanz vom Typ [CActiveRecord] oder dessen Kindklassen,
-das eine einzelne Zeile in einer Datenbanktabelle darstellt. Die Felder der
+welche eine einzelne Zeile in einer Datenbanktabelle darstellt. Die Felder der
 Zeile werden auf die Eigenschaften des AR-Objekts abgebildet. Details zu AR
 finden Sie unter [ActiveRecord](/doc/guide/database.ar).
 
