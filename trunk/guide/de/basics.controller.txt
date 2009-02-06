@@ -2,11 +2,12 @@ Controller
 ==========
 
 Ein `Controller` ist eine Instanz vom Typ [CController] oder dessen
-Kindklassen. Er wird auf Anfrage des Benutzers von der Applikation erzeugt. 
-Wenn ein Controller gestartet wird, führt er die angeforderte Action aus,
-welche in der Regel die benötigten Models einbindet und einen passenden View
-rendert. Eine `Action` ist in ihrer einfachsten Form lediglich eine
-Klassenmethode des Controllers, deren Name mit `action` anfängt. 
+Kindklassen. Er wird von der Applikation erzeugt, wenn eine Benutzeranfrage
+dafür vorliegt. Wenn ein Controller gestartet wird, 
+führt er die angeforderte Action aus, welche in der Regel die benötigten Models 
+einbindet und einen passenden View rendert (engl., sinngemäß "machen, darstellen") . 
+Eine `Action` ist in ihrer einfachsten Form lediglich eine Klassenmethode des Controllers, 
+deren Name mit `action` anfängt. 
 
 Ein Controller hat eine Standard-Action. Wenn im Benutzer-Request nicht
 festgelegt wurde, welche Action ausgeführt werden soll, wird die
@@ -44,7 +45,7 @@ Action-ID mit einem Schrägstrich verbindet. Zum Beispiel bezieht sich die Route
 dieser Controller mit dieser Action über die URL
 `http://hostname/index.php?r=post/edit` angefordert.
 
->Note|Hinweis: Standardmäßig spielt die Groß-/Kleinschreibung bei Routen eine
+>Note|Hinweis: Normalerweise spielt die Groß-/Kleinschreibung bei Routen eine
 >Rolle. Seit Version 1.0.1 ist es möglich dies zu deaktivieren, indem man
 >[CUrlManager::caseSensitive] in der Anwendungskonfiguration auf false setzt.
 >Falls Groß-/Kleinschreibung aktiviert ist, stellen Sie bitte sicher, dass
@@ -63,7 +64,7 @@ Klassendatei zu bestimmen.
    - Wenn [CWebApplication::catchAllRequest] konfiguriert wurde, wird der
 entsprechende Controller gemäß dieses Wertes erstellt und die vom Benutzer
 angegebene Controller-ID ignoriert. Dies wird hauptsächlich verwendet, um die
-Anwendung in den Wartungsmodus zu schalten und einen statische Hinweisseite
+Anwendung in den Wartungsmodus zu schalten und eine statische Hinweisseite
 anzuzeigen.
 
    - Wenn die ID in [CWebApplication::controllerMap] enthalten ist, wird die
@@ -221,7 +222,7 @@ bereits in [CController] definiert), während der `PerformanceFilter`
 als Objekt vorliegt. Der Pfad-Alias `application.filters.PerformanceFilter` legt
 fest, dass sich die Datei der Filterklasse in `protected/filters/PerformanceFilter`
 befindet. Wir verwenden ein Array für die Konfiguration von `PerformanceFilter`,
-damit es zur Initalisierung der Eigenschaften des Filterobjekts verwendet
+das zur Initalisierung der Eigenschaften des Filterobjekts verwendet
 werden kann. Im Beispiel setzen wir die Eigenschaft `unit` auf `'second'`.
 
 Durch Plus- und Minusoperatoren können wir bestimmen, auf welche Actions der

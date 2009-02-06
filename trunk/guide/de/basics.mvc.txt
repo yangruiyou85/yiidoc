@@ -4,7 +4,7 @@ Model-View-Controller (MVC)
 Yii implementiert die Model-View-Controller-Architektur (MVC),
 die im Bereich der Web-Programmierung breite Anwendung findet. MVC zielt auf
 eine Trennung von Geschäftslogik und Benutzerschnittstelle ab, so dass
-der Entwickler jeden Bereich einfacher verändern kann, ohne damit den anderen
+der Entwickler jeden Bereich bequem verändern kann, ohne den anderen
 zu beeinflussen. In MVC werden die Information (die Daten) und die
 Geschäftsregeln durch das Model (Modell) repräsentiert. Der View
 (Präsentation) enthält Elemente der Benutzerschnittstelle, wie z.B. Text oder
@@ -44,12 +44,12 @@ Action ist `show`, dessen tatsächliche Bedeutung erst vom Controller ermittelt 
    5. Die Applikation erzeugt eine Instanz des angeforderten Controllers, damit
 dieser den Request weiter bearbeitet. Der Controller stellt fest, dass die
 Action `show` sich auf auf eine Methode namens `actionShow` in der
-Controller-Klasse bezieht. Er erstellt daraufhin mit dieser Action verbundene 
-Filter (z.B. Zugriffsschutz, Benchmark) und führt diese aus. Die Action wird
+Controller-Klasse bezieht. Er instanziiert daraufhin die mit dieser Action
+verbundenen Filter (z.B. Zugriffsschutz, Benchmark) und führt diese aus. Die Action wird
 ausgeführt wenn dies von den Filtern erlaubt wird.
    6. Die Action liest das [Model](/doc/guide/basics.model) `Post` mit der ID
 `1` aus der Datenbank
-   7. Die Action rendert (engl., sinngemäß "machen, darstellen") einen
+   7. Die Action rendert einen
 [View](/doc/guide/basics.view) namens `show` mit dem `Post`-Model.
    8. Der View liest die Attribute des `Post`-Models und zeigt diese an.
    9. Der View führt einige [Widgets](/doc/guide/basics.view#widget) aus.
