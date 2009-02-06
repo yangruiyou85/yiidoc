@@ -136,7 +136,8 @@ wenn `save()` aufgerufen wird, angewendet.
 
 Drittens kann `Validator` eine vordefinierte Verknüpfung zu einer Validierungsklasse
 sein. Im obigen Beispiel ist der Name `required` eine Verknüpfung zu [CRequiredValidator],
-damit ist sichergestellt, dass der Wert des zu validierenden Attributs nicht leer ist. Nachfolgend die komplette Liste der vordefinierten Validierungsverknüpfungen:
+damit ist sichergestellt, dass der Wert des zu validierenden Attributs nicht leer ist.
+Nachfolgend die komplette Liste der vordefinierten Validierungsverknüpfungen:
 
    - `captcha`: Alias für [CCaptchaValidator], garantiert die Übereinstimmung des Attributs
 mit dem angezeigten [CAPTCHA](http://de.wikipedia.org/wiki/Captcha) Verifikationscode.
