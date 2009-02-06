@@ -56,6 +56,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
 
  * Action, _die_
  * `ActiveRecord`, _der_
+ * Array, _das_
  * Button, _der_
  * Cache (bzw. Caching), _der_
  * Client, _der_
