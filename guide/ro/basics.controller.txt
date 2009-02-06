@@ -39,7 +39,7 @@ Route este format prin concatenarea unui ID controller si al unui ID action sepa
 De exemplu, ruta `post/edit` se refera la controllerul `PostController` si la action-ul `edit`.
 Si implicit, URL-ul `http://hostname/index.php?r=post/edit` va cere acest controller si acest action.
 
->Nota: Implicit, rutele sunt case-sensitive. De la versiunea 1.0.1, este posibila crearea de rute
+>Note|Nota: Implicit, rutele sunt case-sensitive. De la versiunea 1.0.1, este posibila crearea de rute
 >case-insensitive prin setarea [CUrlManager::caseSensitive] cu valoarea false in configuratia aplicatiei.
 >In modul case-insensitive, trebuie sa ne asiguram ca urmam conventia ca directoarele care contin
 >fisierele cu clasele controller-ului sunt in lower case, si ca atat [controller map|CWebApplication::controllerMap]
