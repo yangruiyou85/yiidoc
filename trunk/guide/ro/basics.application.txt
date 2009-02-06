@@ -49,7 +49,7 @@ application, sau ca parametru al [Yii::createWebApplication()] in felul urmator
 $app=Yii::createWebApplication($configFile);
 ~~~
 
-> Sfat: Daca aplicatia are nevoie de o configuratie complexa, putem sa o separam in mai multe
+> Tip|Sfat: Daca aplicatia are nevoie de o configuratie complexa, putem sa o separam in mai multe
 fisiere, fiecare intorcand un array de configurare. Dupa aceea, in fisierul de configurare principal,
 adaugam cu `include()` fiecare fisier creat.
 
@@ -109,7 +109,7 @@ ca sa accesam o componenta, folosim `Yii::app()->ComponentID`, unde
 O componenta poate fi dezactivata atribuind lui `enabled` valoarea false. Daca incercam sa accesam
 o componenta dezactivata, atunci primim null.
 
-> Sfat: Implicit, componentele sunt create la cerere. Ca rezultat, componenta nu va fi creata
+> Tip|Sfat: Implicit, componentele sunt create la cerere. Ca rezultat, componenta nu va fi creata
 daca nu este accesata in timpul unei cereri client. Ca rezultat, performanta per ansamblu nu va scadea,
 chiar daca aplicatia are o configuratie cu foarte multe componente. Unele componente (ex. [CLogRouter]) poate ar trebui
 totusi sa fie create indiferent daca sunt accesate sau nu. Daca se doreste aces lucru, atunci

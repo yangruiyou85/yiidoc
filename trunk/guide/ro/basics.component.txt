@@ -46,9 +46,9 @@ activarea unei exceptii. Folosind metodele getter si setter pentru a defini o pr
 avem avantajul ca putem executa logica aditionala atunci cand se citeste sau se scrie o
 proprietate (ex. cand se face validare de date, cand se activeaza evenimente).
 
->Nota: Este o mica diferenta intre o proprietate definita prin metodele getter si setter
-si o variabila a unei clase. Numele proprietatii este case-insensitive, in timp ce
-numele variabilei este case-sensitive.
+>Note|Nota: Este o mica diferenta intre o proprietate definita prin metodele getter si setter
+>si o variabila a unei clase. Numele proprietatii este case-insensitive, in timp ce
+>numele variabilei este case-sensitive.
 
 Evenimentele unei componente
 ----------------------------
