@@ -1,4 +1,4 @@
-﻿Anlegen eines Model
+﻿Das Model erstellen
 ===================
 
 Bevor wir den HTML-Code für ein Formular schreiben sollten wir entscheiden
@@ -16,8 +16,8 @@ werden wir stattdessen einen [ActiveRecord](/doc/guide/database.ar) erzeugen.
 Beide Model-Typen benutzen die gleiche Basisklasse [CModel], die die übliche
 Schnittstelle zum Formular definiert.
 
-> Hinweis: Wir benutzen hauptsächlich das Formular-Model in den Beispielen dieses
-Abschnitts. Ebenso könnte das[ActiveRecord](/doc/guide/database.ar)-Modell 
+> Note|Anm.: Wir benutzen hauptsächlich das Formular-Model in den Beispielen dieses
+Abschnitts. Ebenso könnte das [ActiveRecord](/doc/guide/database.ar)-Model 
 angewendet werden. 
 
 Definieren der Model-Klasse
@@ -45,7 +45,7 @@ sein Login aktiviert bleibt, festzuhalten. Da `$rememberMe` den Standardwert
 `false` hat, wird die entsprechende Option bei der Erstanzeige des Login-Formulars
 nicht markiert.
 
-> Hinweis: Anstatt "Eigenschaften" benutzen wir für Klassen-Eigenschaften 
+> Info|Info: Anstatt "Eigenschaften" benutzen wir für Klassen-Eigenschaften 
 den Begriff *Attribute* um sie von normalen Eigenschaften zu unterscheiden. Ein
 Attribut ist eine Eigenschaft, die hauptsächlich dazu benutzt wird, Daten aus
 Benutzereingaben oder aus der Datenbank zu speichern.
@@ -128,7 +128,7 @@ die jeweilige Validierung durchzuführen. Die zusätzlichen Optionen der Regel
 werden dazu benutzt, die Werte von Eigenschaften der Instanz zu initialisieren. 
 Eine Validierungsklasse muss von [CValidator] abgeleitet werden.
 
-> Hinweis: Bei der Festlegung von Regeln für ein ActiveRecord-Model können
+> Note|Anm.: Bei der Festlegung von Regeln für ein ActiveRecord-Model können
 wir eine spezielle Option `on` verwenden. Der Optionswert kann entweder `'insert'`
 oder `'update'` sein, die Regel wird dann beim Einfügen bzw. Aktualisieren
 des Datensatzes angewendet. Falls nicht gesetzt, wird die Regel in beiden Fällen,
@@ -196,7 +196,7 @@ array('password', 'authenticate', 'on'=>'login'),
 Gesicherte Attributzuweisung
 -------------------------------
 
-> Hinweis: die szenarienbasierte Attributzuweisung ist seit der Version 1.0.2 verfügbar
+> Note|Anm.: die szenarienbasierte Attributzuweisung ist seit der Version 1.0.2 verfügbar
 
 Nachdem ein Model instanziert wurde müssen wir oft seine Attributwerte mit Daten, die
 von Endbenutzern geliefert werden, befüllen. Das kann bequem über folgende Massenzuweisung geschehen:
@@ -320,7 +320,7 @@ public function rules()
 Demzufolge wird die erste Regel in allen Szenarios angewendet, während
 die beiden nächsten Regeln nur im `register` Szenario zum Einsatz kommen.
 
-> Hinweis: die szenarienbasierte Validierung ist seit der Version 1.0.1 verfügbar
+> Note|Anm.: die szenarienbasierte Validierung ist seit der Version 1.0.1 verfügbar
 
 Abfragen von Validierungsfehlern
 --------------------------------
@@ -345,4 +345,4 @@ Methode angepasst werden. Wie wir im folgenden Unterkapitel sehen werden, erlaub
 es uns die Angebe von Labels im Model ein Formular schneller und wirkungsvoller zu
 entwerfen.
 
-<div class="revision">$Id: form.model.txt 598 2009-01-29 20:19:28Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 258 2009-02-07 20:51:13Z peter.matulla $</div>

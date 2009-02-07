@@ -15,10 +15,10 @@
     - [Konventionen](basics.convention)
     - [Prozessablauf bei der Entwicklung](basics.workflow)
 
-* Arbeiten mit Formularen
+* Mit Formularen arbeiten
     - [Übersicht](form.overview)
     - [Model erstellen](form.model)
-    - [Action erstellen](form.action)
+    - [Action entwerfen](form.action)
     - [Formular erstellen](form.view)
     - [Tabellarische Eingaben](form.table)
 
