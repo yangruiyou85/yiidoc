@@ -75,6 +75,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * Screenshot, _der_
  * Script, _das_
  * Session, _die_
+ * String, _der_
  * Traffic, _der_
  * View, _der_
  * Widget, _das_
