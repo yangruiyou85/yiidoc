@@ -134,80 +134,51 @@ class PostController extends CController
 }
 ~~~
 
-The above code specifies three rules, each represented as an array. The
-first element of the array is either `'allow'` or `'deny'` and the rest
-name-value pairs specify the pattern parameters of the rule. These rules
-read: the `create` and `edit` actions cannot be executed by anonymous
-users; the `delete` action can be executed by users with `admin` role;
-and the `delete` action cannot be executed by anyone.
+上面设定了三个规则，每个用个数组表示。数组的第一个元素不是`'allow'`就是`'deny'`，其他的是名-值成对形式设置规则参数的。上面的规则这样理解：`create`和`edit`动作不能被匿名执行；`delete`动作可以被`admin`角色的用户执行；`delete`动作不能被任何人执行。
 
-The access rules are evaluated one by one in the order they are specified.
-The first rule that matches the current pattern (e.g. username, roles,
-client IP, address) determines the authorization result. If this rule is an `allow`
-rule, the action can be executed; if it is a `deny` rule, the action cannot
-be executed; if none of the rules matches the context, the action can still
-be executed.
+访问规则是一个一个按照设定的顺序一个一个来执行判断的。和当前判断模式（例如：用户名、角色、客户端IP、地址）相匹配的第一条规则决定授权的结果。如果这个规则是`allow`，则动作可执行；如果是`deny`，不能执行；如果没有规则匹配，动作可以执行。
 
-> Tip: To ensure an action does not get executed under certain contexts,
-> it is beneficial to always specify a matching-all `deny` rule at the end
-> of rule set, like the following:
+> 提示：为了确保某类动作在没允许情况下不被执行，设置一个匹配所有人的`deny`规则在最后，类似如下：
+
 > ~~~
 > [php]
 > return array(
->     // ... other rules...
->     // the following rule denies 'delete' action for all contexts
+>     // ... 别的规则...
+>     // 以下匹配所有人规则拒绝'delete'动作
 >     array('deny',
 >         'action'=>'delete',
 >     ),
 > );
 > ~~~
-> The reason for this rule is because if none of the rules matches a context,
-> an action will be executed.
+> 因为如果没有设置规则匹配动作，动作缺省会被执行。
 
-An access rule can match the following context parameters:
+访问规则通过如下的上下文参数设置：
 
-   - [actions|CAccessRule::actions]: specifies which actions this rule
-matches.
+   - [actions|CAccessRule::actions]: 设置哪个动作匹配此规则。
 
-   - [users|CAccessRule::users]: specifies which users this rule matches.
-The current user's [name|CWebUser::name] is used for matching. Three
-special characters can be used here:
+   - [users|CAccessRule::users]: 设置哪个用户匹配此规则。
+此当前用户的[name|CWebUser::name] 被用来匹配. 三种设定字符在这里可以用：
 
-	   - `*`: any user, including both anonymous and authenticated users.
-	   - `?`: anonymous users.
-	   - `@`: authenticated users.
+	   - `*`: 任何用户，包括匿名和验证通过的用户。
+	   - `?`: 匿名用户。
+	   - `@`: 验证通过的用户。
 
-   - [roles|CAccessRule::roles]: specifies which roles that this rule matches.
-This makes use of the [role-based access control](#role-based-access-control)
-feature to be described in the next subsection. In particular, the rule
-is applied if [CWebUser::checkAccess] returns true for one of the roles.
-Note, you should mainly use roles in an `allow` rule because by definition,
-a role represents a permission to do something.
+   - [roles|CAccessRule::roles]: 设定哪个角色匹配此规则。
+这里用到了将在后面描述的[role-based access control](#role-based-access-control)技术。In particular, the rule is applied if [CWebUser::checkAccess] returns true for one of the roles.提示，用户角色应该被设置成`allow`规则，因为角色代表能做某些事情。
 
-   - [ips|CAccessRule::ips]: specifies which client IP addresses this rule
-matches.
+   - [ips|CAccessRule::ips]: 设定哪个客户端IP匹配此规则。
 
-   - [verbs|CAccessRule::verbs]: specifies which request types (e.g.
-`GET`, `POST`) this rule matches.
+   - [verbs|CAccessRule::verbs]: 设定哪种请求类型(例如：`GET`, `POST`)匹配此规则。
 
+### 授权处理结果（Handling Authorization Result）
 
-### Handling Authorization Result
+当授权失败，即，用户不允许执行此动作，以下的两种可能将会产生：
 
-When authorization fails, i.e., the user is not allowed to perform the
-specified action, one of the following two scenarios may happen:
+   - 如果用户没有登录和在用户部件中配置了[loginUrl|CWebUser::loginUrl]，浏览器将重定位网页到此配置URL。	
 
-   - If the user is not logged in and if the [loginUrl|CWebUser::loginUrl]
-property of the user component is configured to be the URL of the login
-page, the browser will be redirected to that page.
+   - 否则一个错误代码401的HTTP例外将显示。
 
-   - Otherwise an HTTP exception will be displayed with error code 401.
-
-When configuring the [loginUrl|CWebUser::loginUrl] property, one can
-provide a relative or absolute URL. One can also provide an array which
-will be used to generate a URL by calling [CWebApplication::createUrl]. The
-first array element should specify the
-[route](/doc/guide/basics.controller#route) to the login controller
-action, and the rest name-value pairs are GET parameters. For example,
+当配置[loginUrl|CWebUser::loginUrl] 属性，可以用相对和绝对URL。还可以使用数组通过[CWebApplication::createUrl]来生成URL。第一个元素将设置[route](/doc/guide/basics.controller#route) 为登录控制器动作，其他为名-值成对形式的GET参数。如下，
 
 ~~~
 [php]
@@ -215,26 +186,21 @@ array(
 	......
 	'components'=>array(
 		'user'=>array(
-			// this is actually the default value
+			// 这实际上是默认值
 			'loginUrl'=>array('site/login'),
 		),
 	),
 )
 ~~~
 
-If the browser is redirected to the login page and the login is
-successful, we may want to redirect the browser back to the page that
-caused the authorization failure. How do we know the URL for that page? We
-can get this information from the [returnUrl|CWebUser::returnUrl] property
-of the user component. We can thus do the following to perform the
-redirection:
+如果浏览器重定位到登录页面，而且登录成功，我们将重定位浏览器到引起验证失败的页面。我们怎么知道这个值呢？我们可以通过用户部件的[returnUrl|CWebUser::returnUrl] 属性获得。我们因此可以用如下执行重定向：
 
 ~~~
 [php]
 Yii::app()->request->redirect(Yii::app()->user->returnUrl);
 ~~~
 
-Role-Based Access Control
+基于角色的访问控制（Role-Based Access Control）
 -------------------------
 
 Role-Based Access Control (RBAC) provides a simple yet powerful
