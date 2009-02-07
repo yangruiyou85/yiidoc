@@ -214,7 +214,7 @@ Yii实现通过其[authManager|CWebApplication::authManager] 应用程序组件�
 
 授权项目通过名称唯一确定。
 
-授权项目可能与*business rule*（业务规则）关联。业务规则是一块PHP代码，将在进入此项的相关检查时被执行。只有当执行返回true，用户将被视为有权限此项所代表的许可。举例来说，当定义一项行动`updatePost`，我们想添加业务规则来检查，用户ID是否和帖子作者ID一样，以便只有作者自己能够有权限更新发布。
+授权项目可能与*business rule*（业务规则）关联。业务规则是一块PHP代码，将在检查访问此项的相关时被执行。只有当执行返回true，用户将被视为有权限此项所代表的许可。举例来说，当定义一项行动`updatePost`，我们想添加业务规则来检查，用户ID是否和帖子作者ID一样，以便只有作者自己能够有权限更新发布。
 
 使用授权的项目，我们可以建立一个*authorization hierarchy*（授权等级）。在授权等级中如果项目`A`包括项目`B`，`A`是`B`的父亲（或说`A`继承`B`所代表的权限）。一个项目可以有多个子项目，也可以有多个父项目。因此，授权等级是一个partial-order图，而不是树型。在此等级中，角色项在最高，行动项在最底，任务项在中间。
 
@@ -235,17 +235,15 @@ if(Yii::app()->user->checkAccess('deletePost'))
 }
 ~~~
 
-### Configuring Authorization Manager
+### 配置授权管理器（Configuring Authorization Manager）
 
-Before we set off to define an authorization hierarchy and perform access
-checking, we need to configure the
-[authManager|CWebApplication::authManager] application component. Yii
-provides two types of authorization managers: [CPhpAuthManager] and
-[CDbAuthManager]. The former uses a PHP script file to store authorization
-data, while the latter stores authorization data in database. When we
-configure the [authManager|CWebApplication::authManager] application
-component, we need to specify which component class to use and what are the
-initial property values for the component. For example,
+在我们准备定义授权等级和执行访问检查前，我们需要配置
+[authManager|CWebApplication::authManager] 应用程序组件。Yii
+提供两种类型的授权管理器： [ CPhpAuthManager ]和
+[ CDbAuthManager ] 。前者使用的PHP脚本文件来存储授权
+数据，而后者的数据存储在数据库授权。当我们
+配置[authManager|CWebApplication::authManager]应用
+部件，我们需要指定哪些部件类和部件的初始值。例如，
 
 ~~~
 [php]
@@ -263,40 +261,31 @@ return array(
 );
 ~~~
 
-We can then access the [authManager|CWebApplication::authManager]
-application component using `Yii::app()->authManager`.
+然后，我们便可使用`Yii::app()->authManager`访问[authManager|CWebApplication::authManager]应用部件。
 
-### Defining Authorization Hierarchy
+### 定义授权等级（Defining Authorization Hierarchy）
 
-Defining authorization hierarchy involves three steps: defining
-authorization items, establishing relationships between authorization
-items, and assigning roles to application users. The
-[authManager|CWebApplication::authManager] application component provides a
-whole set of APIs to accomplish these tasks.
+定义授权等级涉及三个步骤：定义授权项目，建立授权项目关系项目，并分配角色给应用用户。[authManager|CWebApplication::authManager] 应用部件提供了一整套的API来完成这些任务。
 
-To define an authorization item, call one of the following methods,
-depending on the type of the item:
+根据不同种类的项目调用下列方法之一定义授权项目：
 
    - [CAuthManager::createRole]
    - [CAuthManager::createTask]
    - [CAuthManager::createOperation]
 
-Once we have a set of authorization items, we can call the following
-methods to establish relationships between authorization items:
+一旦我们拥有一套授权项目，我们可以调用以下方法建立授权项目关系：
 
    - [CAuthManager::addItemChild]
    - [CAuthManager::removeItemChild]
    - [CAuthItem::addChild]
    - [CAuthItem::removeChild]
 
-And finally, we call the following methods to assign role items to
-individual users:
+最后，我们调用下列方法来分配角色项目给各个用户：
 
    - [CAuthManager::assign]
    - [CAuthManager::revoke]
 
-Below we show an example about building an authorization hierarchy with
-the provided APIs:
+下面我们将展示一个例子是关于用所提供的API建立一个授权等级：
 
 ~~~
 [php]
@@ -334,42 +323,31 @@ $auth->assign('editor','editorC');
 $auth->assign('admin','adminD');
 ~~~
 
-Note that we associate a business rule with the `updateOwnPost` task. In
-the business rule we simply check if the current user ID is the same as the
-specified post's author ID. The post information in the `$params` array is
-supplied by developers when performing access checking.
+请注意，我们给` updateOwnPost `任务关联一个业务规则。在这个业务规则，我们只是检查目前的用户ID是否和指定的帖子的作者ID一样。当执行访问检查时，发布信息在开发者提供`$params`数组中。
 
-> Info: While the above example looks long and tedious, it is mainly for
-demonstrative purpose. Developers usually need to develop some user
-interfaces so that end users can use to establish an authorization
-hierarchy more intuitively.
+>信息：虽然上面的例子看起来冗长和枯燥，这主要是为示范的目的。开发者通常需要制定一些用户接口，以便最终用户可以更直观使用它来建立一个授权等级。
 
-### Access Checking
+### 访问检查（Access Checking）
 
-To perform access checking, we first need to know the name of the
-authorization item. For example, to check if the current user can create a
-post, we would check if he has the permission represented by the
-`createPost` operation. We then call [CWebUser::checkAccess] to perform the
-access checking:
+为了执行访问检查，我们得先知道
+授权项目的名字。例如，如果要检查当前用户是否可以创建一个发布，我们将检查是否有`createPost`行动的权限。然后，我们调用[ CWebUser ： ： checkAccess ]执行访问检查：
 
 ~~~
 [php]
 if(Yii::app()->user->checkAccess('createPost'))
 {
-	// create post
+	// 创建发布
 }
 ~~~
 
-If the authorization rule is associated with a business rule which
-requires additional parameters, we can pass them as well. For example, to
-check if a user can update a post, we would do
+如果授权规则关联了需要额外参数的商业规则，我们同样可以通过他们。例如，要检查如果用户是否可以更新发布，我们将编写
 
 ~~~
 [php]
 $params=array('post'=>$post);
 if(Yii::app()->user->checkAccess('updateOwnPost',$params))
 {
-	// update post
+	// 更新发布
 }
 ~~~
 
