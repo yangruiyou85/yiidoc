@@ -12,7 +12,7 @@ Anforderungen
 -------------
 
 Um eine Yii-basierte Webanwendung zu betreiben, benötigen Sie einen 
-Webserver der PHP 5.1.0 oder höher unterstützt.
+Webserver, der PHP 5.1.0 oder höher unterstützt.
 
 Da es sich bei Yii um ein rein objektorientiertes Framework handelt, 
 sind Kenntnisse in Objektorientierter Programmierung (OOP) für Programmierer,
@@ -23,7 +23,7 @@ Wofür eignet sich Yii am besten?
 
 Yii ist ein Universal-Framework für die Web-Programmierung, das für
 praktisch alle Arten von Webanwendungen eingesetzt werden kann.
-Aufgrund seiner schlanken Struktur und ausgeklügelten Cache-Lösungen,
+Aufgrund seiner schlanken Struktur und seinen ausgeklügelten Cache-Lösungen,
 eignet es sich insbesondere zur Entwicklung von Anwendungen mit hohem
 Traffic-Aufkommen, wie z.B. Portalen, Foren, Redaktionssystemen (CMS),
 E-Commerce-Systemen, usw.
