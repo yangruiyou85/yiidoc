@@ -166,7 +166,7 @@ return array (
   'Unable to change the item name. The name "{name}" is already used by another item.' => 'Unable to change the item name. The name "{name}" is already used by another item.',
   'Unable to create application state file "{file}". Make sure the directory containing the file exists and is writable by the Web server process.' => 'Nie mogę utworzyć pliku stanu aplikacji "{file}". Upewnij się, że katalog zawierający ten plik istnieje i jest dostępny do zapisu dla procesu Web serwera.',
   'Unable to find the decorator view "{view}".' => 'Nie mogę odnaleźć widoku dekoratora "{view}".',
-  'Unable to find the item.' => 'Nie mogę znaleźć elementu listy.',
+  'Unable to find the list item.' => 'Nie mogę znaleźć elementu listy.',
   'Unable to lock file "{file}" for reading.' => 'Nie mogę zablokować pliku "{file}" do odczytu.',
   'Unable to lock file "{file}" for writing.' => 'Nie mogę zablokować pliku "{file}" do zapisu.',
   'Unable to read file "{file}".' => 'Nie mogę czytać pliku "{file}".',
