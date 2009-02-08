@@ -24,8 +24,8 @@ $post->save();
 
 I det följande beskrivs hur man sätter upp AR och använder denna till att 
 genomföra CRUD-operationer. I nästa avsnitt visas hur man kan använda AR för att 
-hantera databasrelation. För enkelhets skull kommer nedanstående databastabell 
-att användas i exemplen i detta avsnitt.
+hantera databassamband (relationship). För enkelhets skull kommer nedanstående 
+databastabell att användas i exemplen i detta avsnitt.
 
 ~~~
 [sql]
