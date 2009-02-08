@@ -330,7 +330,7 @@ postning har också fått sina kategorier laddade.
 > Info: När ett kolumnnamn uppträder i två eller fler tabeller som slås samman 
 (join), behöver det göras otvetydigt. Detta åstadkoms genom att föregå 
 kolumnnamnet med dess tabellnamn. Till exempel, `id` blir `Team.id`. I AR:s 
-relationella frågor, däremot, saknas denna frihet eftersom SQL-satserna 
+relationella frågor däremot, saknas denna frihet eftersom SQL-satserna 
 genereras automatiskt av AR, vilket systematiskt ger varje tabell ett alias. Av 
 denna anledning används, för att undvika konflikter mellan kolumnnamn, en 
 platshållare för att indikera förekomsten av en kolumn som behöver göras 
