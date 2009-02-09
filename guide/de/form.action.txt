@@ -45,10 +45,12 @@ Zu beachten ist insbesondere die folgende PHP-Anweisung in der `login`-Action:
 $form->attributes=$_POST['LoginForm'];
 ~~~
 
-Wie wir in [Gesicherte Attributzuweisung](/doc/guide/form.model#securing-attribute-assignments) beschrieben haben, befüllt diese Codezeile das Model mit den vom Benutzer übermittelten Daten. Die `attributes`-Eigenschaft ist in [CModel] definiert, erwartet ein Array von Namen-Wert Paaren und weist jeden Wert dem entsprechen Model-Attribut zu. Wenn
-uns `$_POST['LoginForm']` solch ein Array übergibt wäre der obige Code äquivalent zu dem,
-etwas länglicheren, folgenden (unter der Annahme, dass jedes erforderliche Attribut im
-Array vorhanden ist)
+Wie wir in [Gesicherte Attributzuweisung](/doc/guide/form.model#securing-attribute-assignments)
+beschrieben haben, befüllt diese Codezeile das Model mit den vom Benutzer übermittelten Daten.
+Die `attributes`-Eigenschaft ist in [CModel] definiert, erwartet ein Array von Namen-Wert Paaren
+und weist jeden Wert dem entsprechen Model-Attribut zu. Wenn uns `$_POST['LoginForm']` solch ein
+Array übergibt wäre der obige Code äquivalent zu dem, etwas länglicheren, folgenden (unter der
+Annahme, dass jedes erforderliche Attribut im Array vorhanden ist)
 
 ~~~
 [php]
@@ -67,4 +69,4 @@ Attribut `username` entspricht, zu benennen.
 Die verbleibende Aufgabe ist nun eine `login`-View zu entwerfen, die ein HTM-Formular
 mit den notwendigen Eingabefeldern enthält.
 
-<div class="revision">$Id: form.action.txt 258 2009-02-07 20:51:13Z peter.matulla $</div>
+<div class="revision">$Id: form.action.txt 270 2009-02-09 20:51:13Z peter.matulla $</div>
