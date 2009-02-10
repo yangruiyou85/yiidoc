@@ -1,68 +1,61 @@
-Path Alias and Namespace
-========================
+Path Alias si Namespace
+==========================
 
-Yii uses path aliases extensively. A path alias is associated with a
-directory or file path. It is specified in dot syntax, similar to that of
-widely adopted namespace format:
+Yii foloseste foarte mult path alias-uri (scurtaturi de cale). Un path alias
+este asociat unui director sau unui fisier fizic. Alias-ul este specificat in
+sintaxa cu puncte, la fel cu formatul namespace adoptat in lume:
 
 ~~~
-RootAlias.path.to.target
+RootAlias.path.catre.destinatie
 ~~~
 
-where `RootAlias` is the alias of some existing directory. Yii predefines
-two aliases: `system` and `application`. The former is the alias of the Yii
-framework directory, while the latter is the alias of the application's
-`protected` directory. We can call [YiiBase::setPathOfAlias()] to define
-new path aliases (including root aliases).
+`RootAlias` este alias-ul unui director existent. Yii predefineste doua alias-uri:
+`system` si `application`. `system` este alias-ul directorului in care se afla platforma Yii.
+`application` este alias-ul directorului `protected` al aplicatiei. Putem apela [YiiBase::setPathOfAlias()] pentru
+a defini alias-uri noi, inclusiv alias-uri radacina).
 
-By using [YiiBase::getPathOfAlias()], an alias can be translated to its
-corresponding path. For example, `system.web.CController` would be
-translated as `yii/framework/web/CController`.
+Folosind [YiiBase::getPathOfAlias()], un alias poate fi tradus in path-ul corespunzator.
+De exemplu, `system.web.CController` ar fi tradus in `yii/framework/web/CController`.
 
-Using aliases, it is very convenient to import the definition of a class.
-For example, if we want to include the definition of the [CController]
-class, we can call the following:
+Folosind alias-uri, este foarte convenabil sa importam definitiile unei clase.
+De exemplu, daca vrem sa includem definitia clasei [CController], putem face in felul urmator:
 
 ~~~
 [php]
 Yii::import('system.web.CController');
 ~~~
 
-The [import|YiiBase::import] method differs from `include` and `require`
-in that it is more efficient. The class definition being imported is
-actually not included until it is referenced for the first time. Importing
-the same namespace multiple times is also much faster than `include_once`
-and `require_once`.
+Metoda [import|YiiBase::import] este diferita de functiile PHP `include` si `require`
+in sensul ca este mult mai eficienta. Definitia clasei nu este de fapt inclusa decat din
+momentul in care este folosita prima data. Importarea unor namespace-uri de mai multe ori
+este de asemenea mult mai rapida decat functiile PHP `include_once` si `require_once`.
 
-> Tip: When referring to a class defined by the Yii framework, we do not
-need to import or include it. All core Yii classes are pre-imported.
+> Tip|Sfat: Cand facem referirea la o clasa definita de platforma Yii, nu trebuie sa o
+importam sau sa o includem. Toate clasele nucleu ale Yii sunt importate deja.
 
-We can also use the following syntax to import a whole directory so that
-the class files under the directory can be automatically included when
-needed.
+Putem folosi de asemenea urmatoarea sintaxa pentru a importa un intreg director, astfel incat
+toate clasele publice din fisierele din acel director vor fi automat incluse atunci cand este necesar.
 
 ~~~
 [php]
 Yii::import('system.web.*');
 ~~~
 
-Besides [import|YiiBase::import], aliases are also used in many other
-places to refer to classes. For example, an alias can be passed to
-[Yii::createComponent()] to create an instance of the corresponding class,
-even if the class file was not included previously.
+Pe langa [import|YiiBase::import], alias-urile sunt de asemenea folosite in multe alte locuri
+pentru a se face referinta catre clase. De exemplu, un alis poate fi transmis catre
+[Yii::createComponent()] pentru a crea o instanta a clasei corespunzatoare, chiar daca fisierul clasei nu
+a fost inclus anterior.
 
-Do not confuse path alias with namespace. A namespace refers to a logical
-grouping of some class names so that they can be differentiated from other
-class names even if their names are the same, while path alias is used to
-refer to a class file or directory. Path alias does not conflict with
-namespace.
+Sa nu confuzam path alias-urile cu namespace-uri. Un namespace se refera la o grupare logica
+a unor nume de clase, astfel incat acestea sa fie diferite de alte clase care au acelasi nume.
+Path alias-urile sunt folosite pentru a se face referinta la o clasa dintr-un fisier fizic sau la
+un director. Path alias-ul nu intra in conflict cu 
 
-> Tip: Because PHP prior to 5.3.0 does not support namespace
-intrinsically, you cannot create instances of two classes who have the same
-name but with different definitions. For this reason, all Yii framework
-classes are prefixed with a letter 'C' (meaning 'class') so that they can
-be differentiated from user-defined classes. It is recommended that the
-prefix 'C' be reserved for Yii framework use only, and user-defined classes
-be prefixed with other letters.
+> Tip}Sfat: Pentru ca inainte de versiunea PHP 5.3.0 nu exista suport pentru namespace,
+nu putem crea instante a doua clase care au acelasi nume (dar definitii diferite). Din acest
+motiv, toate clasele platformei Yii sunt prefixate cu litera 'C' (de la 'clasa') astfel incat
+vor fi diferite fata de clasele definite ulterior de catre utilizatori. Este recomandat
+sa prefixam cu 'C' doar clasele din platforma Yii, iar clasele definite de utilizatori sa fie
+prefixate cu alte litere.
 
 <div class="revision">$Id: basics.namespace.txt 169 2008-11-06 19:43:44Z qiang.xue $</div>
