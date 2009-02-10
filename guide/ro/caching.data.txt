@@ -1,107 +1,103 @@
-Data Caching
-============
+Cache de date
+=============
 
-Data caching is about storing some PHP variable in cache and retrieving it
-later from cache. For this purpose, the cache component base class [CCache]
-provides two methods that are used in most of the time: [set()|CCache::set]
-and [get()|CCache::get].
+Data caching se refera la memorarea unor variabile PHP in cache si folosirea lor
+mai tarziu prin extragerea lor din cache. In acest scop, clasa componentei de baza cache
+[CCache] furnizeaza doua metode care sunt folosite de obicei: [set()|CCache::set]
+si [get()|CCache::get].
 
-To store a variable `$value` in cache, we choose a unique ID and call
-[set()|CCache::set] to store it:
+Pentru a memora o variabila `$value` in cache, alegem un ID unic
+si apelam [set()|CCache::set] pentru a o memora:
 
 ~~~
 [php]
 Yii::app()->cache->set($id, $value);
 ~~~
 
-The cached data will remain in the cache forever unless it is removed
-because of some caching policy (e.g. caching space is full and the oldest
-data are removed). To change this behavior, we can also supply an
-expiration parameter when calling [set()|CCache::set] so that the data will
-be removed from the cache after a certain period of time:
+Datele memorate in cache vor ramane in cache pe un termen nedefinit pana cand sunt sterse
+datorita unor politici de caching (ex. spatiul de memorie cache este plin si cele mai vechi
+date trebuie sterse). Pentru a modifica acest comportament, putem de asemenea sa furnizam o
+perioada de expirare atunci cand apelam [set()|CCache::set], si astfel datele vor fi sterse
+din cache dupa o perioada de timp specificata:
 
 ~~~
 [php]
-// keep the value in cache for at most 30 seconds
+// pastram valoarea in cache pentru cel mult 30 de secunde
 Yii::app()->cache->set($id, $value, 30);
 ~~~
 
-Later when we need to access this variable (in either the same or a
-different Web request), we call [get()|CCache::get] with the ID to retrieve
-it from cache. If the value returned is false, it means the value is not
-available in cache and we should regenerate it.
+Mai tarziu, cand trebuie sa accesam aceasta variabila (in aceeasi cerere web sau in alta cerere web),
+apelam [get()|CCache::get] cu ID-ul necesar pentru a extrage variabila din cache.
+Daca valoarea returnata este false, atunci inseamna ca valorea respectiva nu mai este
+valabila in cache si ca ar trebui sa o regeneram.
 
 ~~~
 [php]
 $value=Yii::app()->cache->get($id);
 if($value===false)
 {
-	// regenerate $value because it is not found in cache
-	// and save it in cache for later use:
-	// Yii::app()->cache->set($id,$value);
+	// regeneram $value pentru ca nu mia exista in cache
+	// si o salvam iar in cache pentru o utilizare ulterioara:
+	Yii::app()->cache->set($id,$value);
 }
 ~~~
 
-When choosing the ID for a variable to be cached, make sure the ID is
-unique among all other variables that may be cached in the application. It
-is NOT required that the ID is unique across applications because the cache
-component is intelligent enough to differentiate IDs for different
-applications.
+Atunci cand alegem ID-ul pentru o variabila de memorat in cache, trebuie sa ne asiguram
+ca ID-ul este unic printre variabilele aplicatiei noastre. Este SUFICIENT sa asiguram
+unicitatea variabilei in aplicatia noastra. Componenta cache este suficient de inteligenta
+pentru a face diferenta intre ID-urile a doua aplicatii diferite.
 
-To remove a cached value from cache, call [delete()|CCache::delete]; and
-to remove everything from cache, call [flush()|CCache::flush]. Be very
-careful when calling [flush()|CCache::flush] because it also removes cached
-data that are from other applications.
+Pentru a sterge o valoare din cache, apelam [delete()|CCache::delete]. Pentru
+a sterge tot ce exista in cache, apelam [flush()|CCache::flush]. Trebuie sa fim foarte
+atenti cand apelam [flush()|CCache::flush] pentru ca se sterg si datele din toate celelalte
+aplicatii.
 
-> Tip: Because [CCache] implements `ArrayAccess`, a cache component can be
-> used liked an array. The followings are some examples:
+> Tip|Sfat: Pentru ca [CCache] implementeaza `ArrayAccess`, o componenta cache poate fi
+> folosita ca un array, ca in urmatoarele exemple:
 > ~~~
 > [php]
 > $cache=Yii::app()->cache;
-> $cache['var1']=$value1;  // equivalent to: $cache->set('var1',$value1);
-> $value2=$cache['var2'];  // equivalent to: $value2=$cache->get('var2');
+> $cache['var1']=$value1;  // echivalent cu: $cache->set('var1',$value1);
+> $value2=$cache['var2'];  // echivalent cu: $value2=$cache->get('var2');
 > ~~~
 
-Cache Dependency
+Dependente Cache
 ----------------
 
-Besides expiration setting, cached data may also be invalidated according
-to some dependency changes. For example, if we are caching the content of
-some file and the file is changed, we should invalidate the cached copy and
-read the latest content from the file instead of the cache.
+In afara de expirare, datele din cache pot fi invalidate in functie de unele schimbari
+ale unor dependente. De exemplu, daca introducem in cache continutul unui fisier,
+iar fisierul se modifica in vreun fel, atunci ar trebui sa invalidam copia sa din cache si sa
+citim ultima versiune a fisierului pentru a o adauga in cache. 
 
-We represent a dependency as an instance of [CCacheDependency] or its
-child class. We pass the dependency instance along with the data to be
-cached when calling [set()|CCache::set].
+Reprezentam o dependenta ca instanta a clasei [CCacheDependency] sau a unei clase derivate.
+Transmitem instanta dependentei impreuna cu datele care trebuie memorate in cache atunci cand
+apelam [set()|CCache::set].
 
 ~~~
 [php]
-// the value will expire in 30 seconds
-// it may also be invalidated earlier if the dependent file is changed
-Yii::app()->cache->set($id, $value, 30, new CFileCacheDependency('FileName'));
+// valoarea va expira in 30 de secunde
+// poate fi invalidata mai devreme daca fisierul dependent este modificat
+Yii::app()->cache->set($id, $value, 30, new CFileCacheDependency('NumeFisier'));
 ~~~
 
-Now if we retrieve `$value` from cache by calling [get()|CCache::get], the
-dependency will be evaluated and if it is changed, we will get a false
-value, indicating the data needs to be regenerated.
+In acest moment, daca extragem `$value` din cache prin apelarea [get()|CCache::get],
+dependenta va fi evaluata si daca este modificata, atunci vom primi o valoare
+false, ceea ce indica faptul ca datele trebuie regenerate.
 
-Below is a summary of the available cache dependencies:
+Mai jos avem un sumar ale dependentelor cache posibile:
 
-   - [CFileCacheDependency]: the dependency is changed if the file's last
-modification time is changed.
+   - [CFileCacheDependency]: dependenta este modificata daca timpul ultimei modificari s-a schimbat.
 
-   - [CDirectoryCacheDependency]: the dependency is changed if any of the
-files under the directory and its subdirectories is changed.
+   - [CDirectoryCacheDependency]: dependenta este modificata daca s-a modificat cel putin un fisier din
+director sau din subdirectoarele acestuia.
 
-   - [CDbCacheDependency]: the dependency is changed if the query result
-of the specified SQL statement is changed.
+   - [CDbCacheDependency]: dependenta este modificata daca rezultatul cererii SQL este modificata.
 
-   - [CGlobalStateCacheDependency]: the dependency is changed if the value
-of the specified global state is changed. A global state is a variable that
-is persistent across multiple requests and multiple sessions in an
-application. It is defined via [CApplication::setGlobalState()].
+   - [CGlobalStateCacheDependency]: dependenta este modificata daca valoarea starii globale specificate
+este modificata. O stare globala este o variabila care este persistenta intre cererile
+si sesiunile unei aplicatii. Variabila este definita prin [CApplication::setGlobalState()].
 
-   - [CChainedCacheDependency]: the dependency is changed if any of the
-dependencies on the chain is changed.
+   - [CChainedCacheDependency]: dependenta este modificata daca este modificata oricare dintre dependentele
+dintr-un chain.
 
 <div class="revision">$Id: caching.data.txt 169 2008-11-06 19:43:44Z qiang.xue $</div>

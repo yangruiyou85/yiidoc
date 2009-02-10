@@ -1,49 +1,41 @@
-Development Workflow
+Fluxul de dezvoltare
 ====================
 
-Having described the fundamental concepts of Yii, we show the common
-workflow for developing a web application using Yii. The workflow assumes
-that we have done the requirement analysis as well as the necessary design
-analysis for the application.
+In acest moment avem definite conceptele fundamentale ale Yii. Acum putem arata
+fluxul obisnuit de dezvoltare atunci cand se creaza o aplicatie web cu ajutorul Yii.
+Fluxul presupune ca am facut analiza cerintelor aplicatiei si designul ei.
 
-   1. Create the skeleton directory structure. The `yiic` tool described in
-[Creating First Yii Application](/doc/guide/quickstart.first-app) can be
-used to speed up this step.
+   1. Cream scheletul structurii de directoare. Pentru a accelera acest pas,
+poate fi folosita unealta `yiic` descrisa in [Crearea primei aplicatii Yii](/doc/guide/quickstart.first-app).
 
-   2. Configure the [application](/doc/guide/basics.application). This is
-done by modifying the application configuration file. This step may also
-require writing some application components (e.g. the user component).
+   2. Configuram [application](/doc/guide/basics.application). Acest pas este facut
+prin modificarea fisierul de configurare al aplicatiei. Acest pas poate necesita
+scrierea unor componente (ex. componenta user).
 
-   3. Create a [model](/doc/guide/basics.model) class for each type of data
-to be managed. Again, `yiic` can be used to automatically generate the
-[active record](/doc/guide/database.ar) class for each interested database
-table.
+   3. Cream o clasa [model](/doc/guide/basics.model) pentru fiecare tip de date
+care trebuie administrate. Din nou, `yiic` poate fi folosit pentru a genera automat
+clasa [active record](/doc/guide/database.ar) pentru fiecare tabela de interes din baza de date.
 
-   4. Create a [controller](/doc/guide/basics.controller) class for each
-type of user requests. How to classify user requests depends on the actual
-requirement. In general, if a model class needs to be accessed by users, it
-should have a corresponding controller class. The `yiic` tool can automate
-this step, too.
+   4. Cream o clasa [controller](/doc/guide/basics.controller) pentru fiecare tip de cerere
+utilizator. In general, daca o clasa model trebui sa fie accesata de catre utilizatori,
+ar trebui sa aiba o clasa controller corespunzatoare. Unealta `yiic` poate de asemenea sa faca
+acest pas automat.
 
-   5. Implement [actions](/doc/guide/basics.controller#action) and their
-corresponding [views](/doc/guide/basics.view). This is where the real work
-needs to be done.
+   5. Implementam [action-uri](/doc/guide/basics.controller#action) si
+[view-urile](/doc/guide/basics.view) lor corespunzatoare. Acest pas implica
+din partea noastra programare cu adevarat.
 
-   6. Configure necessary action
-[filters](/doc/guide/basics.controller#filter) in controller classes.
+   6. Configuram [filtre](/doc/guide/basics.controller#filter) necesare de action-uri in clasele controller.
 
-   7. Create [themes](/doc/guide/topics.theming) if the theming feature is
-required.
+   7. Cream [teme](/doc/guide/topics.theming) daca este necesar.
 
-   8. Create translated messages if
-[internationalization](/doc/guide/topics.i18n) is required.
+   8. Cream mesaje traduse daca este necesara [internationalizarea](/doc/guide/topics.i18n).
 
-   9. Spot data and views that can be cached and apply appropriate
-[caching](/doc/guide/caching.overview) techniques.
+   9. Identificam date si view-uri care pot fi introduse in cache si aplicam tehnici de
+[caching](/doc/guide/caching.overview).
 
-   10. Final [tune up](/doc/guide/topics.performance) and deployment.
+   10. In final, facem [optimizari](/doc/guide/topics.performance) si apoi facem publica aplicatie.
 
-For each of the above steps, test cases may need to be created and
-performed.
+Pentru fiecare din pasii de mai sus, pot fi create si executate test cases (cazuri de test).
 
 <div class="revision">$Id: basics.workflow.txt 323 2008-12-04 01:40:16Z qiang.xue $</div>
