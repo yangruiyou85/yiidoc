@@ -7,7 +7,7 @@ corespunzator pentru a fi procesata in continuare. De asemenea, Application joac
 un rol central pentru pastrarea configuratiilor la nivel de aplicatie. De aceea, 
 application mai este numita `front-controller` (controller radacina, principal).
 
-Application este creata ca singleton de catre [entry script](/doc/guide/basics.entry).
+Application este creata ca singleton de catre [fisierul de intrare](/doc/guide/basics.entry).
 In acest fel, accesul este posibil de oriunde via [Yii::app()|YiiBase::app].
 
 
@@ -42,7 +42,7 @@ return array(...);
 
 Ca sa aplicam configuratia, transmitem numele fisierului PHP ca parametru al constructorului clasei
 application, sau ca parametru al [Yii::createWebApplication()] in felul urmator
-(asa se face de obicei in [entry script](/doc/guide/basics.entry) ):
+(asa se face de obicei in [fisierul de intrare](/doc/guide/basics.entry) ):
 
 ~~~
 [php]
@@ -60,7 +60,7 @@ Application Base Directory
 Application base directory se refera la directorul radacina care contine toate fisierele PHP
 care trebuie ascunse fata de clienti. Implicit, acest director este denumit `protected` si se afla
 in acelasi director cu fisierul php accesibil clientilor. Totusi, poate fi schimbat acest director
-prin proprietatea via [basePath|CWebApplication::basePath] din [application configuration](#application-configuration).
+prin proprietatea [basePath|CWebApplication::basePath] din [configuratia aplicatiei](#application-configuration).
 
 Tot ce este in acest director special ar trebui protejat fata de orice client WEB.
 Cu [Apache HTTP server](http://httpd.apache.org/) protectia se face foarte simplu printr-un fisier

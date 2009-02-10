@@ -1,37 +1,35 @@
-Entry Script
-============
+Fisierul de intrare
+===================
 
-Entry script is the bootstrap PHP script that handles user requests
-initially. It is the only PHP script that end users can directly request to
-execute.
+Fisierul de intrare este fisierul PHP care trateaza initial cererile utilizatorilor.
+Este singurul fisier PHP accesibil pe care utilizatorii il pot executa direct.
 
-In most cases, entry script of an Yii application contains the code that
-is as simple as follows,
+In cele mai multe cazuri, fisierul de intrare al unei aplicatii Yii
+contine codul urmator: 
 
 ~~~
 [php]
-// remove the following line when in production mode
+// comentam urmatoarea linie de cod atunci cand site-ul este facut public
 defined('YII_DEBUG') or define('YII_DEBUG',true);
-// include Yii bootstrap file
+// includem fisierul bootstrap Yii
 require_once('path/to/yii/framework/yii.php');
-// create application instance and run
+// cream instanta application si o rulam
 $configFile='path/to/config/file.php';
 Yii::createWebApplication($configFile)->run();
 ~~~
 
-The script first includes the Yii framework bootstrap file `yii.php`. It
-then creates a Web application instance with the specified configuration
-and runs it.
+Acest fisier include intai fisierul bootstrap al platformei Yii `yii.php`. Apoi
+creaza o instanta de aplicatie Web cu configuratia specificata, si apoi o ruleaza.
 
-Debug Mode
-----------
+Modul Debug
+-----------
 
-An Yii application can run in either debug or production mode according to
-the constant value `YII_DEBUG`. By default, this constant value is defined
-as `false`, meaning production mode. To run in debug mode, define this
-constant as `true` before including the `yii.php` file. Running application
-in debug mode is less efficient because it keeps many internal logs. On the
-other hand, debug mode is also more helpful during development stage
-because it provides richer debugging information when error occurs.
+O aplicatie Yii poate rula ori in modul debug, ori in modul production. Valoarea constantei
+`YII_DEBUG` determina acest mod. Implicit, valoarea constantei este`false`,
+aceasta insemnand ca modul implicit este production. Pentru a rula aplicatia in modul debug,
+definim constanta ca fiind `true` inainte de a include fisierul `yii.php`. Rularea
+aplicatiei in modul debug este mult mai putin eficienta din cauza log-urilor interne necesare
+in timpul stadiului de dezvoltare al aplicatiei cand avem nevoie de mai multe informatii
+atunci cand apar erori de programare. 
 
 <div class="revision">$Id: basics.entry.txt 162 2008-11-05 12:44:08Z weizhuo $</div>
