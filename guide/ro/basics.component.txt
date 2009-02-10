@@ -156,7 +156,7 @@ $component->test();
 Este posibil ca doua behaviours atasate la aceeasi componenta sa aiba metode cu acelasi nume.
 In acest caz, metoda primului behaviour atasat va avea prioritate. 
 
-Atunci cand clasele behaviour sunt folosite impreuna cu [events](#component-event), devin si mai puternice.
+Atunci cand clasele behaviour sunt folosite impreuna cu [evenimente](#component-event), devin si mai puternice.
 Un behaviour, atunci cand este atasat unei componente, poate atasa unele din metodele sale unor evenimente
 ale componentei. Astfel, behaviour are posibilitatea de a observa sau de a schimba fluxul de executie normal al componentei.
 

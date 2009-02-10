@@ -20,7 +20,7 @@ http://hostname/index.php?r=ControllerID/ActionID
 ~~~
 
 Variabila `r` (face parte din GET) se refera la
-[route](/doc/guide/basics.controller#route), care este folosit de Yii pentru a
+[ruta](/doc/guide/basics.controller#route), care este folosit de Yii pentru a
 extrage controller-ul si action-ul. Daca `ActionID` nu este precizat, controller-ul
 va lansa action-ul implicit (definit in [CController::defaultAction]); iar daca
 `ControllerID` lipseste si el (sau variabla `r` lipseste cu totul), atunci aplicatia
@@ -28,7 +28,7 @@ va folosi controller-ul implicit (definit prin [CWebApplication::defaultControll
 
 Cu ajutorul clasei [CUrlManager], este posibila crearea si recunoastea mai multor
 URL SEO-friendly, precum `http://hostname/ControllerID/ActionID.html`. Acest feature
-este prezentat in detaliu in [URL Management](/doc/guide/topics.url).
+este prezentat in detaliu in [Gestiunea URL](/doc/guide/topics.url).
 
 Cod
 ---
