@@ -59,7 +59,7 @@ Widget
 
 En widget är en instans av [CWidget] eller nedärvd klass. Den är en komponent 
 huvudsakligen avsedd för presentation. Widget bäddas vanligen in i vyskript för 
-att generera något komplext, men ändå i sin helhet ingående, användargränssnitt. 
+att generera något komplext, men ändå komplett och oberoende, användargränssnitt. 
 Till exempel kan en kalenderwidget användas till att rendera ett avancerat 
 kalendergränssnitt. Widget möjliggör bättre återanvändningsbarhet av 
 användargränssnittet.

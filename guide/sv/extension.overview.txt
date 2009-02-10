@@ -7,7 +7,7 @@ från dess [CController]-klass; när en ny widget skrivs, utvidgas [CWidget] ell
 en redan existerande widgetklass. Om den utvidgade koden är konstruerad med 
 avsikt att återanvändas av tredjepartsutvecklare, kallas den för en *extension*.
 
-En extension tjänar vanligtvis ett distinkt syfte. Med Yii's nomenklatur, kan den klassficeras enligt följande,
+En extension tjänar vanligtvis ett distinkt syfte. Med Yii's nomenklatur, kan den klassificeras enligt följande,
 
  * [applikationskomponent](/doc/guide/basics.application#application-component)
  * [widget](/doc/guide/basics.view#widget)

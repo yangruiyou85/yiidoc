@@ -37,8 +37,8 @@
 
 * Utökning av Yii
     - [Översikt](extension.overview)
-    - [Använda utökning](extension.use)
-    - [Skapa utökning](extension.create)
+    - [Använda utvidgning](extension.use)
+    - [Skapa utvidgning](extension.create)
     - [Använda tredjepartsbibliotek](extension.integration)
 
 * Speciella ämnen
