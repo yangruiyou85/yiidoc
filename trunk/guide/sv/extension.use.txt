@@ -214,7 +214,7 @@ Därefter är verktyget `yiic` försett med ytterligare ett kommando `xyz`.
 
 > Note|Märk: En konsolapplikation använder vanligen en konfigurationsfil som 
 skiljer sig från den som används för en webbapplikation. Om en applikation 
-skapas med hjälp av kommandot `yiic webapp`, Blir konfigurationsfilen för 
+skapas med hjälp av kommandot `yiic webapp`, blir konfigurationsfilen för 
 konsolapplikationen `protected/yiic` `protected/config/console.php`, medan 
 konfigurationsfilen för webbapplikationen blir `protected/config/main.php`.
 
