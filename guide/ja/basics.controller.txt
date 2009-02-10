@@ -47,8 +47,8 @@ class SiteController extends CController
 >version 1.0.1 以降では、[CUrlManager::caseSensitive] を false に設定するこ
 >とで、大文字と小文字を区別しないようすることも可能になりました。
 >大文字と小文字を区別しないモード（case-insensitive mode）の場合、
->コントローラクラスファイルを含んでいるディレクトリーが小文字かどうかを確か
->め、[controller map|CWebApplication::controllerMap] と
+>コントローラクラスファイルを含んでいるディレクトリが小文字かどうかを確かめ、
+>[controller map|CWebApplication::controllerMap] と
 >[action map|CController::actions] の両方では、キーは小文字に変換し使用され
 >ます。
 
@@ -96,7 +96,7 @@ class UpdateAction extends CAction
 }
 ~~~
 
-コントローラーがこのアクションを認識するように、このコントローラクラスの
+コントローラがこのアクションを認識するように、このコントローラクラスの
 [actions()|CController::actions] メソッドを上書き定義します。
 
 ~~~
@@ -116,9 +116,9 @@ class PostController extends CController
 スは、アクションクラスファイル `protected/controllers/post/UpdateAction.php`
 へのパスのエイリアスです。
 
-Writing class-based actions, we can organize an application in a modular
-fashion. For example, the following directory structure may be used to
-organize the code for controllers:
+クラスベースのアクションを書く事で、モジュール方式でアプリケーションを構成
+出来ます。たとえば、コントローラのためのコードを構成するために、次のような
+ディレクトリ構造を利用出来ます。:
 
 ~~~
 protected/
@@ -136,39 +136,39 @@ protected/
             UpdateAction.php
 ~~~
 
-Filter
+フィルタ
 ------
 
-Filter is a piece of code that is configured to be executed before and/or
-after a controller action executes. For example, an access control filter
-may be executed to ensure that the user is authenticated before executing
-the requested action; a performance filter may be used to measure the time
-spent in the action execution.
+フィルタは、コードのまとまりで、コントローラのアクション実行の前か後（もし
+くはその両方）に実行されるように構成されます。たとえば、アクセスコントロー
+ルフィルタは、ユーザーがリクエストしたアクションを実行する前に、認証済みで
+ある事を確実にするために使用されるかもしれません; パフォーマンスフィルタは、
+アクションの実行所要時間を計測するために使用されるかもしれません。
 
-An action can have multiple filters. The filters are executed in the order
-that they appear in the filter list. A filter can prevent the execution of
-the action and the rest unexecuted filters.
+一つのアクションは複数のフィルタを持つことが出来ます。フィルタはフィルタリ
+ストに登場する順で順次実行されます。フィルタは、アクションと残りの実行され
+ていないフィルタの実行を防ぐことが出来ます。
 
-A filter can be defined as a controller class method. The method name must
-begin with `filter`. For example, the existence of the
-`filterAccessControl` method defines a filter named `accessControl`. The
-filter method must be of the signature:
+フィルタはコントローラクラスメソッドで定義出来ます。メソッド名は必ず `filter`
+で始めます。たとえば、`filterAccessControl` メソッドは、`accessControl` と
+いう名前のフィルタを定義します。フィルタメソッドはそのシグネチャでなければ
+なりません:
 
 ~~~
 [php]
 public function filterAccessControl($filterChain)
 {
-	// call $filterChain->run() to continue filtering and action execution
+	// フィルタリングとアクションの実行を継続するために、$filterChain->run() をコール出来ます
 }
 ~~~
 
-where `$filterChain` is an instance of [CFilterChain] which represents the
-filter list associated with the requested action. Inside the filter method,
-we can call `$filterChain->run()` to continue filtering and action
-execution.
+`$filterChain` はリクエストされたアクションに結びついているフィルターリスト
+を表した、[CFilterChain] のインスタンスです。フィルタメソッド内で、フィルタ
+リングとアクションの実行を継続するために、$filterChain->run() をコール出来
+ます。
 
-A filter can also be an instance of [CFilter] or its child class. The
-following code defines a new filter class:
+フィルタもまた [CFilter] かその子クラスのインスタンスにする事が出来ます。
+次のコードように新しいフィルタクラスを定義します:
 
 ~~~
 [php]
@@ -176,20 +176,20 @@ class PerformanceFilter extends CFilter
 {
 	protected function preFilter($filterChain)
 	{
-		// logic being applied before the action is executed
-		return true; // false if the action should not be executed
+		// アクションが実行される前に実行されるコード
+		return true; // アクションが実行されるべきでない場合は false
 	}
 
 	protected function postFilter($filterChain)
 	{
-		// logic being applied after the action is executed
+		// アクションが実行された後に実行されるコード
 	}
 }
 ~~~
 
-To apply filters to actions, we need to override the
-`CController::filters()` method. The method should return an array of
-filter configurations. For example,
+アクションにフィルタを適用するために、`CController::filters()` メソッドを
+上書きする必要があります。このメソッドはフィルタ構成の配列を返さなくてはな
+りません。たとえば、
 
 ~~~
 [php]
@@ -209,21 +209,20 @@ class PostController extends CController
 }
 ~~~
 
-The above code specifies two filters: `postOnly` and `PerformanceFilter`.
-The `postOnly` filter is method-based (the corresponding filter method is
-defined in [CController] already); while the `PerformanceFilter` filter is
-object-based. The path alias `application.filters.PerformanceFilter`
-specifies that the filter class file is
-`protected/filters/PerformanceFilter`. We use an array to configure
-`PerformanceFilter` so that it may be used to initialize the property
-values of the filter object. Here the `unit` property of
-`PerformanceFilter` will be initialized as `'second'`.
+上記のコードは `postOnly` と `PerformanceFilter` という、2つのフィルタを指
+定しています。 `postOnly` フィルタは、メソッドベースのフィルタです（対応
+するフィルタメソッドは既に [CController] に定義されている）; また、
+`PerformanceFilter` フィルタはオブジェクトベースです。
+`application.filters.PerformanceFilter` というパスは、フィルタークラスファ
+イル `protected/filters/PerformanceFilter` へのパスのエイリアスです。
+ここでは、`PerformanceFilter` を配列を用いて指定しています。配列を用いるこ
+とで、フィルタオブジェクトのプロパティ値を初期化する事ができます。ここでは、
+`PerformanceFilter` の `unit` プロパティを `'second'` に初期化しています。
 
-Using the plus and the minus operators, we can specify which actions the
-filter should and should not be applied to. In the above, the `postOnly`
-should be applied to the `edit` and `create` actions, while
-`PerformanceFilter` should be applied to all actions EXCEPT `edit` and
-`create`. If neither plus nor minus appears in the filter configuration,
-the filter will be applied to all actions.
+プラスやマイナス演算子を使用すると、アクションに対してのフィルタ適用の有無
+を指定できます。上記の場合、`postOnly` は `edit` と `create` アクションに適
+用され、`PerformanceFilter` は `edit` と `create` アクション以外のすべての
+アクションに適用されます。もし、プラスとマイナスのどちらも使用されていない
+場合、フィルタはすべてのアクションに適用されます。
 
 <div class="revision">$Id: basics.controller.txt 626 2009-02-04 20:51:13Z qiang.xue $</div>
