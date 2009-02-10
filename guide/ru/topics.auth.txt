@@ -13,9 +13,9 @@
 В Yii встроена подсистема аутентификации/авторизации, которая является достаточно 
 простой и может быть легко адаптирована к соответствующим требованиям.
 
-The central piece in the Yii auth framework is a pre-declared *user
-application component* which is an object implementing the [IWebUser]
-interface. The user component represents the persistent identity
+Главная часть подсистемы аутентификации - это предопределенный *компонент приложения
+"пользователь"* (*user application component*). Фактически, это класс, реализующий 
+интерфейс [IWebUser]. The user component represents the persistent identity
 information for the current user. We can access it at any place using
 `Yii::app()->user`.
 
