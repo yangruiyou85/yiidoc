@@ -463,7 +463,7 @@ klasser för att anpassa arbetsflödet i dessa.
 
    - [beforeDelete|CActiveRecord::beforeDelete] and 
    [afterDelete|CActiveRecord::afterDelete]: körs innan resp. efter en AR-
-   instnas tas bort.
+   instans tas bort.
 
    - [afterConstruct|CActiveRecord::afterConstruct]: körs varje gång en AR-
    instans skapas med hjälp av operatorn `new`.
