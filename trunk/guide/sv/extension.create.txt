@@ -7,16 +7,23 @@ extra ansträngning när den skapas. Följande är några generella riktlinjer:
 * En utvidgning skall vara komplett och oberoende. Det innebär att dess externa 
 beroenden måste vara minimala. Det skulle vara en pina för dess användare om en 
 utvidgning skulle kräva installation av ytterligare programpaket, klasser eller 
-resursfiler. * Filer som tillhör en utvidgning bör organiseras under en katalog 
-med samma namn som utvidgningen * Klasser i en utvidgning bör ges ett 
-(alfabetiskt) namnprefix för undvikande av namnkonflikt med klasser i andra 
-utvidgningar. * En utvidgning bör åtföljas av detaljerad installations- och API-
-dokumentation. Detta håller nere den tid och möda som krävs av andra utvecklare 
-när de använder sig av utvidgningen. * En utvidgning bör använda sig av en 
-relevant licensmodell. Om utvidgningen är tänkt att kunna användas i projekt med 
-öppen källkod såväl som sådana med proprietär kod, bör licenser som BSD, MIT etc. 
-men inte GPL, övervägas, då den senare kräver att även resulterande arbeten där 
-den ingår måste göras tillgänglig som  öppen källkod.
+resursfiler. 
+
+* Filer som tillhör en utvidgning bör organiseras under en katalog med samma namn 
+som utvidgningen. 
+
+* Klasser i en utvidgning bör ges ett (alfabetiskt) namnprefix för undvikande av 
+namnkonflikt med klasser i andra utvidgningar. 
+
+* En utvidgning bör åtföljas av detaljerad installations- och API-dokumentation. 
+Detta håller nere den tid och möda som krävs av andra utvecklare när de använder 
+sig av utvidgningen. 
+
+* En utvidgning bör använda sig av en relevant licensmodell. Om utvidgningen är 
+tänkt att kunna användas i projekt med öppen källkod såväl som sådana med 
+proprietär kod, bör licenser som BSD, MIT etc. men inte GPL, övervägas, då den 
+senare kräver att även resulterande arbeten där den ingår måste göras tillgänglig 
+som  öppen källkod.
 
 I det följande beskrivs hur en ny utvidgning skapas, enligt respektive 
 kategorier, beskrivna i  [översikt](/doc/guide/extension.overview). Dessa 
