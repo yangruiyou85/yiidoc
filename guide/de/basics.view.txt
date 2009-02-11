@@ -2,10 +2,10 @@ View
 ====
 
 Ein View ist ein PHP-Script, das hauptsächlich aus Elementen der
-Benutzerschnittstelle besteht. Es kann auch PHP-Anweisungen enthalten, aber es
+Bedienoberfläche besteht. Es kann auch PHP-Anweisungen enthalten, aber es
 wird empfohlen, dass diese Anweisungen keine Daten-Models verändern und
 relativ einfach gehalten werden. Im Sinne einer Trennung von Logik und
-Präsentation sollten größere Logikblöcke statt im View besser im
+Präsentation, sollten größere Logikblöcke statt im View, besser im
 Controller oder im Model untergebracht werden.
 
 Ein View hat einen Namen, der beim Rendern zur Bestimmung der View-Datei
@@ -39,7 +39,7 @@ Layout
 ------
 
 Ein Layout ist ein spezieller View, der zum "dekorieren" von Views verwendet
-wird. In der Regel enthält es die Teile der Benutzerschnittstelle, die mehrere
+wird. In der Regel enthält es die Teile der Bedienoberfläche, die mehrere
 Views gemeinsam haben. Ein Layout kann zum Beispiel Header- und
 Footer-Bereiche enthalten, und den View-Inhalt zwischen den beiden einbinden,
 
@@ -64,11 +64,11 @@ Widget
 
 Ein Widget (engl., sinngem. "Dings") ist eine Instanz vom Typ [CWidget] oder
 dessen Kindklassen. Es handelt sich um eine Komponente, die im wesentlichen für
-Präsentationszwecke erfüllt. Widgets werden für gewöhnlich in ein View-Script
-eingebettet um einen komplexeren, jedoch in sich geschlossen Teil der
-Benutzerschnittstelle zu erzeugen. Zum Beispiel kann man ein Kalender-Widget 
-verwenden um eine komplexe Kalender-Benutzerschnittstelle zu rendern. Widgets
-erlauben eine bessere Wiederverwendbarkeit bei Benutzerschnittstellen.
+Präsentationszwecke verwendet wird. Widgets werden für gewöhnlich in ein View-Script
+eingebettet, um einen komplexeren, jedoch in sich geschlossen Teil der
+Anwenderoberfläche zu erzeugen. Zum Beispiel kann man ein Kalender-Widget 
+verwenden um ein komplexes Kalender-Bedienelement zu rendern. Widgets
+erlauben eine bessere Wiederverwendbarkeit von Anwenderschnittstellen.
 
 Um ein Widget zu verwenden, gehen Sie wie folgt im View-Script vor:
 
@@ -89,13 +89,13 @@ oder
 Letztere Form wird verwendet, wenn das Widget keinen eingebetteten Inhalt
 benötigt.
 
-Widgets können konfiguriert werden, um ihr Verhalten anzupassen. Dies
+Das Verhalten von Widgets kann per Konfiguration angepasst werden. Dies
 geschieht, indem man beim Aufruf von [CBaseController::beginWidget] oder
 [CBaseController::widget] die gewünschten Eigenschaftswerte übergibt. 
-Wenn wir zum Beispiel das Widget [CMaskedTextField] verwenden, möchten wir die
-zu verwendende Maske angeben. Dies können durch Übergabe eines Arrays, mit den
-Eigenschaftsnamen als Schlüssel und den gewünschten Startwerten als Wert,
-erreichen:
+Wenn wir zum Beispiel das Widget [CMaskedTextField] verwenden, können wir die
+zu verwendende Maske angeben. Dazu können wir ein Array mit den
+Eigenschaftsnamen als Schlüssel und den gewünschten Startwerten als Wert
+übergeben:
 
 ~~~
 [php]
@@ -106,7 +106,7 @@ $this->widget('CMaskedTextField',array(
 ?>
 ~~~
 
-Um ein neues Widget zu definieren erweitern Sie [CWidget] und überschreiben
+Um ein neues Widget zu definieren, erweitern Sie [CWidget] und überschreiben
 Sie dessen Methoden [init()|CWidget::init] und [run()|CWidget::run].
 
 ~~~
@@ -125,10 +125,10 @@ class MyWidget extends CWidget
 }
 ~~~
 
-Ein Widget kann, wie ein Controller, seinen eigenen View besitzen.
+Wie ein Controller, kann auch ein Widget seinen eigenen View besitzen.
 Standardmäßig sind die View-Dateien des Widgets im Unterverzeichnis `views`
-des Ordners abgelegt, der die Widget-Datei enthält. Diese Views können durch
-Aufruf von [CWidget::render()] gerendert werden, ähnlich wie im Controller.
+des Ordners abgelegt, der die Widget-Datei enthält. Ähnlich wie im Controller
+können diese Views durch Aufruf von [CWidget::render()] gerendert werden.
 Der einzige Unterschied besteht darin, dass kein Layout auf einen Widget-View
 angewendet wird.
 
@@ -138,7 +138,7 @@ System-View
 System-Views beziehen sich auf Views, die von Yii zur Anzeige von Fehler- und
 Log-Informationen verwendet werden. Fordert ein Benutzer zum Beispiel einen
 Controller oder eine Action an, die nicht existieren, löst Yii eine Exception
-aus, die den Fehler erklärt. Yii stellt diese Exception unter Zuhilfenahme
+aus, die den Fehler beschreibt. Yii stellt diese Exception unter Zuhilfenahme
 eines speziellen System-Views dar.
 
 Die Bezeichnung von System-Views folgt den selben Regeln. Namen wie

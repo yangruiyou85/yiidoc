@@ -2,7 +2,7 @@ Eingangsscript
 ==============
 
 Zu Beginn wird der Benutzer-Request vom Eingangs- oder Lade-Script bearbeitet.
-Dieses PHP-Script ist das einzige, dass der Endbenutzer per Request ausführen kann.
+Dieses PHP-Script ist das einzige, das der Endbenutzer per Request ausführen kann.
 
 In den meisten Fällen enthält das Eingangsscript einer Yii-Anwendung einfachen Code 
 wie diesen:
@@ -29,9 +29,9 @@ Eine Yii-Anwendung kann entweder im Debug- oder im Produktivmodus betrieben
 werden, je nach Wert der Konstante `YII_DEBUG`. Standardmäßig ist diese
 Konstante als `false` definiert, was Produktivmodus bedeutet. Um den
 Debug-Modus zu starten, definieren Sie diese Konstante als `true`, bevor 
-sie die Datei `yii.php` einbinden. Es ist weniger effizient, eine Anwendung 
-im Debug-Modus zu betreiben, da hier viele interne Log-Einträge gehalten werden. 
-In der Entwicklungsphase ist der Debug-Modus andererseits hilfreich, da er
+sie die Datei `yii.php` einbinden. Eine Anwendung im Debug-Modus zu betreiben
+ist weniger effizient, da hier viele interne Log-Einträge gehalten werden. 
+In der Entwicklungsphase ist der Debug-Modus allerdings hilfreich, da er
 im Fehlerfall umfangreiche Debug-Informationen liefert.
 
 <div class="revision">$Id$</div>
