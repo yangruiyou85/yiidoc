@@ -36,6 +36,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * application base directory - Stammverzeichnis der Anwendung
  * attribute - Attribut (OOP: Eigenschaften von Model-Klassen)
  * base class - Basisklasse (OOP)
+ * bootstrap file - Startdatei
  * command - Befehl, Kommando
  * component - Komponente
  * contact - Kontakt (Kontaktseite, ...)
