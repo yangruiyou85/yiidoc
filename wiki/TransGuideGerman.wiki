@@ -40,9 +40,11 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * component - Komponente
  * contact - Kontakt (Kontaktseite, ...)
  * class - Klasse (OOP)
+ * entry script - Eingangsscript
  * extension (PHP) - Erweiterung
  * form - Formular
  * home - Start (Startseite, ...)
+ * loader (yii loader, etc.) - Ladescript
  * login - anmelden, Anmeldung (Anmeldeseite, ...)
  * method - Methode
  * object - Objekt (OOP)
