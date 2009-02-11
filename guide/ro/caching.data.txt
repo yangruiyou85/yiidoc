@@ -1,7 +1,7 @@
-Cache de date
-=============
+Caching de date
+===============
 
-Data caching se refera la memorarea unor variabile PHP in cache si folosirea lor
+Cashing-ul de date se refera la memorarea unor variabile PHP in cache si folosirea lor
 mai tarziu prin extragerea lor din cache. In acest scop, clasa componentei de baza cache
 [CCache] furnizeaza doua metode care sunt folosite de obicei: [set()|CCache::set]
 si [get()|CCache::get].
