@@ -40,7 +40,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * component - Komponente
  * contact - Kontakt (Kontaktseite, ...)
  * class - Klasse (OOP)
- * entry script - Eingangsscript
+ * entry script - Eingangsscript, Ladescript
  * extension (PHP) - Erweiterung
  * form - Formular
  * home - Start (Startseite, ...)
