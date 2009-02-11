@@ -28,10 +28,10 @@ eignet es sich insbesondere zur Entwicklung von Anwendungen mit hohem
 Traffic-Aufkommen, wie z.B. Portalen, Foren, Redaktionssystemen (CMS),
 E-Commerce-Systemen, usw.
 
-Wie schläft sich Yii im Vergleich mit anderen Frameworks?
+Wie schlägt sich Yii im Vergleich mit anderen Frameworks?
 ---------------------------------------------------------
 
-Yii ist, wie die meisten PHP-Frameworks, ein MVC-Framework.
+Wie die meisten PHP-Frameworks ist auch Yii ein MVC-Framework.
 
 Gegenüber anderen Frameworks besticht Yii durch Effizienz, 
 reichhaltige Features und klare Dokumentation. Yii wurde von

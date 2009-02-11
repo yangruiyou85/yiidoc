@@ -18,7 +18,7 @@ Bearbeitung an einen passenden Controller weiter.
 
 Das folgende Diagramm zeigt die statische Struktur einer Yii-Applikation:
 
-![Static structure of Yii application](structure.png)
+![Statische Struktur einer Yii-Applikation](structure.png)
 
 
 Ein typischer Ablauf
@@ -27,7 +27,7 @@ Ein typischer Ablauf
 Das folgende Diagramm zeigt den typischen Ablauf einer Yii-Anwendung beim
 Bearbeiten eines Requests:
 
-![A typical workflow of Yii application](flow.png)
+![Ein typischer Ablauf einer Yii-Applikation](flow.png)
 
    1. Ein Benutzer schickt einen Request mit der URL
 `http://www.example.com/index.php?r=post/show&id=1`

@@ -43,9 +43,9 @@ Konfigurations-Array wie folgt zurück:
 return array(...);
 ~~~
 
-Wir übergeben den Dateinamen als Parameter an den Konstruktor der Applikation 
-oder wie im folgenden Beispiel an [Yii::createWebApplication()], um eine
-Konfiguration anzuwenden. Für gewöhnlich geschieht dies im 
+Um eine Konfiguration anzuwenden, übergeben wir deren Dateinamen als Parameter
+an den Konstruktor der Applikation oder wie im folgenden Beispiel an 
+[Yii::createWebApplication()]. Für gewöhnlich geschieht dies im 
 [Eingangsscript](/doc/guide/basics.entry):
 
 ~~~
@@ -55,7 +55,7 @@ $app=Yii::createWebApplication($configFile);
 
 > Tip|Tipp: Falls die Anwendungskonfiguration sehr komplex ist, können wir sie in
 mehrere Dateien aufteilen, von denen jede einen Abschnitt der Konfiguration
-als Array mit `return` zurückliefert. In der Haupt-Konfigurationsdatei rufen
+als Array zurückliefert. In der Haupt-Konfigurationsdatei rufen
 wir dann `include()` auf, um die restlichen Konfigurationsdateien einzubinden
 und zu einem vollständigen Konfigurations-Array zusammenzuführen.
 
@@ -85,7 +85,7 @@ Applikationskomponente
 Über die flexible Komponenten-Architektur kann der Funktionsumfang einer
 Applikation einfach angepasst und erweitert werden. Die Anwendung verwaltet
 eine Reihe von Applikationskomponenten, von denen jede ein spezielles Feature
-implementiert. So löst die Applikation Benutzer-Requests zum Beispiel mit
+implementiert. So löst die Applikation zum Beispiel Benutzer-Requests mit
 Hilfe der [CUrlManager]- und [CHttpRequest]-Komponenten auf.
 
 Indem wir die [components|CApplication::components]-Eigenschaft der
@@ -116,8 +116,8 @@ Hier fügen wird das `cache`-Element zum `components`-Array hinzu. Das
 initalisiert deren Eigenschaft `servers` mit den angegebenen Werten.
 
 Benutzen Sie `Yii::app()->KomponentenID`, um auf eine Applikationskomponente
-zuzugreifen, wobei `KomponentenID` sich auf die ID der Komponente (z.B.
-`Yii::app()->cache`) bezieht.
+zuzugreifen, wobei `KomponentenID` sich auf die ID der Komponente bezieht
+(z.B.  `Yii::app()->cache`).
 
 Eine Applikationskomponente kann deaktiviert werden, indem `enabled` in ihrer
 Konfiguration auf `false` gesetzt wird. Wenn wir auf eine deaktivierte
@@ -135,11 +135,11 @@ in der [preload|CApplication::preload]-Eigenschaft der Applikation auf.
 Kernkomponenten der Applikation
 --------------------------------
 
-Um in Webanwendungen allgemein gebräuchliche Funktionen bereitzustellen, 
+Um die in Webanwendungen gebräuchlichsten Funktionen bereitzustellen, 
 werden von Yii eine Reihe von Kernkomponenten  vordefiniert.
 Die [request|CWebApplication::request]-Komponente zum Beispiel, wird für die
-Auflösung eines Requests und die Bereitstellung von Informationen wie URL und
-Cookies verwendet. Indem wir die Eigenschaften dieser Kernkomponenten
+Auflösung eines Requests und die Bereitstellung bestimmter Informationen wie URL und
+Cookies verwendet. Indem wir die Eigenschaften von Kernkomponenten
 anpassen, können wir das Standardverhalten von Yii in praktisch jeder Hinsicht
 verändern.
 
@@ -154,7 +154,7 @@ Zusatzdateien).
 die rollenbasierte Zugriffskontrolle ("role-based access control", RBAC).
 
    - [cache|CApplication::cache]: [CCache] - stellt Funktionalität
-zum Caching von Daten bereit. Beachten Sie, dass Sie eine existierende Klasse (z.B.
+zum Cachen von Daten bereit. Beachten Sie, dass Sie eine existierende Klasse (z.B.
 [CMemCache], [CDbCache]) angeben müssen. Andernfalls wird null
 zurückgeliefert, wenn Sie auf diese Komponente zugreifen.
 

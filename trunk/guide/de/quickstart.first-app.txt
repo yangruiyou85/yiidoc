@@ -1,10 +1,10 @@
 Erstellen der ersten Yii-Anwendung
 ==================================
 
-In diesem Abschnitt beschreiben wir, wie wir eine einfache Yii-Anwendung
-anlegen, um einen ersten Eindruck von Yii zu bekommen. Dazu verwenden wir den 
-mächtigen `yiic`-Befehl, ein Hilfsprogramm für verschiedene Zwecke, das 
-Code automatisch generieren kann. Wir gehen davon aus, dass Yii im Verzeichnis
+Um einen ersten Eindruck von Yii zu bekommen, beschreiben wir in diesem Abschnitt,
+wie wir eine einfache Yii-Anwendung anlegen. Dazu verwenden wir den 
+mächtigen `yiic`-Befehl, ein Hilfsprogramm, das automatisch Code für verschiedene 
+Zwecke generieren kann. Wir gehen davon aus, dass Yii im Verzeichnis
 `YiiRoot` installiert wurde.
 
 Starten Sie `yiic` von der Kommandozeile wie folgt:
@@ -141,16 +141,16 @@ CREATE TABLE User (
 Der Einfachheit halber erzeugen wir in unserer Datenbank 
 nur eine einzelne Tabelle `User`. Die SQLite-Datenbankdatei wird als
 `WebRoot/testdrive/protected/data/source.db` gespeichert. Beachten Sie, dass
-der Webserver bei SQLite sowohl die Datenbankdatei als auch das übergeordnete 
-Verzeichnis beschreiben können muss.
+der Webserver bei SQLite sowohl auf die Datenbankdatei, als auch das übergeordnete 
+Verzeichnis schreiben können muss.
 
 Implementierung von CRUD-Operationen
 ------------------------------------
 
 Jetzt kommen wir zum vergnüglichen Teil. Wir möchten CRUD-Operationen (engl.:
 "*C*reate, *R*ead, *U*pdate, *D*elete", "Erstellen, Lesen, Aktualisieren,  Löschen")
-für die eben erstellte Tabelle `User` bereitstellen. Eine Anforderung, wie sie
-typischerweise auch in praktischen Anwendungen vorkommt.
+für die eben erstellte Tabelle `User` bereitstellen. Eine typische
+Aufgabenstellung praktischer Anwendungen.
 
 Wieder verwenden wir den `yiic`-Befehl, um uns beim Generieren des benötigten
 Codes behilflich zu sein. Dieser Prozess wird übrigens auch als *scaffolding*
@@ -186,7 +186,7 @@ http://hostname/path/to/index.php?r=user
 Hier verwenden wir das `shell`-Kommando von `yiic`, um mit unserer neu
 erstellten Anwendung zu kommunizieren. An der Eingabeaufforderung können wir
 einen gültigen PHP-Ausdruck bzw. eine PHP-Anweisung eingeben, die jeweils
-ausgeführt und deren Ausgabe angezeigt werden. Wir können auch bestimmte 
+ausgeführt und deren Ausgaben angezeigt werden. Wir können auch bestimmte 
 Aufgaben erledigen, wie `model` oder `crud` im
 Beispiel oben. Das Kommando `model` erzeugt automatisch die Model-Klasse `User`,
 basierend auf dem Schema unserer Tabelle `User`. Und das Kommando `crud`
@@ -203,7 +203,7 @@ bereits aktiviert haben. Die Ursache für diese Art von Fehler liegt häufig
 darin, dass der Kommandozeilen-Interpreter von PHP die falsche `php.ini`
 verwendet.
 
-Genießen wir unsere Arbeit indem wir die folgende URL aufrufen:
+Genießen wir unsere Arbeit, indem wir die folgende URL aufrufen:
 
 ~~~
 http://hostname/testdrive/index.php?r=user
@@ -212,16 +212,16 @@ http://hostname/testdrive/index.php?r=user
 Wir sehen eine Liste aller Einträge in der Tabelle `User`.
 Da unsere Tabelle leer ist, wird im Moment noch nichts angezeigt.
 
-Klicken Sie auf dieser Seite den Link `Neuer Benutzer` an. Falls wir uns noch
-nicht angemeldet haben, werden auf die Anmeldeseite geleitet. Nach der
+Klicken Sie auf den Link `Neuer Benutzer`. Falls wir uns noch
+nicht angemeldet haben, werden wir auf die Anmeldeseite geleitet. Nach der
 Anmeldung erscheint ein Eingabeformular, mit dem wir einen neuen
-Benutzereintrag hinzufügen können. Füllen Sie das Formular aus und klicken Sie
+Benutzereintrag hinzufügen können. Füllen Sie das Formular aus, und klicken Sie
 unten auf den Button `Erstellen`. Falls die Eingabe fehlerhaft war, erscheint
-ein netter Hinweis auf den Fehler. Dies verhindert, dass wir den Eintrag speichern
+ein freundlicher Hinweis auf den Fehler. Dies verhindert, dass wir den Eintrag speichern
 können. Nach dem Speichern sollte der neu angelegte Benutzer in der
 Benutzerliste erscheinen.
 
-Wiederholen Sie die obigen Schritte und fügen Sie weitere Benutzer hinzu.
+Wiederholen Sie die obigen Schritte, und fügen Sie weitere Benutzer hinzu.
 Beachten Sie, dass auf der Seite der Benutzerliste automatisch eine Seitenblätterung 
 (engl.: "pagination") erscheint, sobald zu viele Einträge für eine Seite vorhanden
 sind.
@@ -234,8 +234,8 @@ http://hostname/testdrive/index.php?r=user/admin
 ~~~
 
 Wir erhalten eine schöne Liste der eingetragenen Benutzer. Wir können auf die
-Spaltentitel klicken, um die entsprechenden Spalten zu sortieren. Und genauso
-wie auf der Seite mit der Benutzerliste wird auch hier eine Seitenblätterung
+Spaltentitel klicken, um die entsprechenden Spalten zu sortieren. Und wie auf 
+der Seite mit der Benutzerliste, wird auch hier eine Seitenblätterung
 angezeigt, sobald zu viele Benutzer für eine Seite vorhanden sind.
 
 All diese feinen Features erhalten wir, ohne dafür eine einzige Zeile Code
