@@ -138,7 +138,7 @@ Nedan listas kärnkomponenterna som fördeklareras av [CWebApplication].
 
    - [assetManager|CWebApplication::assetManager]: [CAssetManager] - handhar publicering av privata resursfiler
 
-   - [authManager|CWebApplication::authManager]: [CAuthManager] - handhar rollbaserad tillträdeskontroll (RBAC).
+   - [authManager|CWebApplication::authManager]: [CAuthManager] - hanterar rollbaserad åtkomst (RBAC).
 
    - [cache|CApplication::cache]: [CCache] - tillhandahåller data cache-funktionalitet. Observera att aktuell klass (e.g. [CMemCache], [CDbCache]) måste specificeras. I annat fall returneras null när komponenten skall användas.
 
