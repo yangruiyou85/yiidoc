@@ -15,7 +15,7 @@
     - [Konventioner](basics.convention)
     - [Arbetsgång vid utveckling](basics.workflow)
 
-* Arbeta med Forms
+* Arbeta med formulär
     - [Översikt](form.overview)
     - [Skapa Model](form.model)
     - [Skapa Action](form.action)
@@ -35,7 +35,7 @@
     - [Sidcachning](caching.page)
     - [Dynamiskt innehåll](caching.dynamic)
 
-* Utökning av Yii
+* Utvidgning av Yii
     - [Översikt](extension.overview)
     - [Använda utvidgning](extension.use)
     - [Skapa utvidgning](extension.create)
