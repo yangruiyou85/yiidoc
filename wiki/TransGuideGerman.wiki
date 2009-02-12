@@ -85,6 +85,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * Traffic, _der_
  * View, _der_
  * Widget, _das_
+ * Wrapper, _der_
 
 ==== Grenzfälle ====
 
