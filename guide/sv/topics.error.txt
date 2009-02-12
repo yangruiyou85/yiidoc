@@ -46,13 +46,15 @@ statuskod. En exceptions klass avgör hur den skall presenteras, som härnäst
 förklaras.
 
 > Tip|Tips: Att signalera en [CHttpException] är ett enkelt sätt att rapportera 
-handhavandefel av användare. Till exempel, om användaren levererar ett ogiltigt 
-post-ID i URL:en, kan vi helt enkelt göra följande för att presentera ett 404-
-felmedelande (sidan hittades inte):
+> handhavandefel av användare. Till exempel, om användaren levererar ett ogiltigt 
+> post-ID i URL:en, kan vi helt enkelt göra följande för att presentera ett 404-
+> felmedelande (sidan hittades inte):
+>
 > ~~~ [php] 
 > // if post ID is invalid
 > throw new CHttpException(404,'The specified post cannot be found.');
 > ~~~
+> 
 
 Presentera felmeddelanden
 -------------------------
