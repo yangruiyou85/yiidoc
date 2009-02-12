@@ -1,0 +1,41 @@
+Apa itu Yii
+===========
+
+Yii adalah kerangka kerja PHP berbasis-komponen dengan performansi-tinggi
+untuk mengembangkan aplikasi Web berskala-besar. Ia menghidupkan pemakaian ulang dalam
+pemrograman Web dan dapat mempercepat proses pengembangan secara signigikan. Nama
+Yii (dieja seperti `/i:/`) singkatan dari *mudah*,
+*efisien* dan *ekstensibel*.
+
+Persyaratan
+-----------
+
+Untuk menjalankan aplikasi Web bertenaga-Yii, Anda memerlukan server Web
+yang mendukung PHP 5.1.0 atau lebih tinggi.
+
+Bagi para pengembang yang ingin menggunakan Yii, mengerti akan pemrograman
+terorientasi obyek (OOP) sangat membantu, karena Yii adalah kerangka kerja murni OOP.
+
+Untuk apa Yii Sebaiknya?
+------------------------
+
+Yii adalah kerangka kerja pemrograman Web umum yang dapat dipakai untuk mengembangkan
+semua jenis aplikasi Web secara virtual. Karena sangat ringan dan dilengkapi
+dengan solusi cache yang memuaskan, ini sangat cocok khususnya untuk
+pengembangan aplikasi dengan lalu lintas-tinggi, seperti portal, forum, sistem
+manajemen konten (CMS), sistem e-commerce, dll.
+
+Bagaimana Yii Dibandingkan dengan Kerangka kerja Lain?
+------------------------------------------------------
+
+Seperti kebanyakan kerangka kerja PHP, Yii adalah kerangka kerja MVC.
+
+Yii melebihi kerangka kerja PHP lain yakni efisien, kaya-fitur dan dokumentasi
+yang jelas. Yii didesain secara hati-hati dari awal agar sesuai dengan 
+pengembangan serius aplikasi Web. Bukan hanya produk dari beberapa proyek
+maupun konglomerasi pekerjaan pihak ketiga. Akan tetapi merupakan hasil dari
+pengalaman luas para pembuat pengembangan aplikasi Web dan investigasi
+serta refleksi dari kerangka kerja pemrograman Web paling populer 
+dan aplikasi.
+
+<div class="revision">$Id: quickstart.what-is-yii.txt 257 2008-11-21 13:35:04Z qiang.xue $</div>
