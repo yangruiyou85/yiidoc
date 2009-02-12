@@ -24,7 +24,7 @@
 
 * Arbeiten mit Datenbanken
     - [Übersicht](database.overview)
-    - [Database Access Objects](database.dao)
+    - [Data Access Objects (DAO)](database.dao)
     - [ActiveRecord](database.ar)
     - [ActiveRecord-Beziehungen](database.arr)
 
