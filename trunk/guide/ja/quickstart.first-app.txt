@@ -10,7 +10,7 @@ Yiiで最初の経験を積むために、この章では最初のYiiアプリ�
 % YiiRoot/framework/yiic webapp WebRoot/testdrive
 ~~~
 
-> Note 注意: Mac OSやLinuxやUnixで`yiic`を実行する場合には、適切な実行可能なパーミッションを必要とします。
+> Note|注意: Mac OSやLinuxやUnixで`yiic`を実行する場合には、適切な実行可能なパーミッションを必要とします。
 `yiic`を実行する場合に、`php YiiRoot/framework/yiic.php`としても実行可能です。
 
 これを実行すると`WebRoot/testdrive`の下に骨格のYiiアプリケーションが作成されます。この場合、`WebRoot`はあなたのウェブサーバのドキュメントルートです。このアプリケーションは良いスタートポイントです。全ての必要なディレクトリとファイルを備えているため、これに機能を追加していけば良いのです。
@@ -101,7 +101,7 @@ return array(
 上の例においては、`components`に`db`エントリを追加しています。
 これにより、アプリケーションが必要に応じSQLiteデータベース`WebRoot/testdrive/protected/data/source.db`に接続することを指示します。
 
-> Note 注意: Yiiのデータベース機能を使うためにはPHP PDO拡張とドライバ固有のPDO拡張をイネーブルにする必要があります。
+> Note|注意: Yiiのデータベース機能を使うためにはPHP PDO拡張とドライバ固有のPDO拡張をイネーブルにする必要があります。
 このtest-driveアプリケーションでは`php_pdo`と`php_pdo_sqlite`拡張がオンになっている必要があります。
 
 最後に、上記コンフィギュレーションが有効となるように、SQLiteデータベースを準備する必要があります。
@@ -162,7 +162,7 @@ http://hostname/path/to/index.php?r=user
 `model`コマンドは自動的に、`User`テーブルのスキーマに基いて`User`モデルクラスを生成します。
 そして`crud`コマンドは`User`モデルのCRUD操作を実装したコントローラクラスとビューを生成します。
 
-> Note 注意: もしコードやコンフィギュレーションを変更したら、それが実際に反映されるように`yiic shell`
+> Note|注意: もしコードやコンフィギュレーションを変更したら、それが実際に反映されるように`yiic shell`
 コマンドを再度発行してください。また、`yiic`を実行するのに正しいPHP CLIを使用しているかも確かめてください。
 さもなければ、たとえPDO拡張や対応するデータベースドライバをイネーブルにしていても、"...could not find driver"
 のようなエラーに遭遇します。このようなエラーは、しばしば誤ったPHP CLIが予期しない`php.ini`を使用することから起きます。

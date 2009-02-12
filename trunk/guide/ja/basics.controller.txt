@@ -43,7 +43,7 @@ class SiteController extends CController
 `http://hostname/index.php?r=post/edit` という URL によりこのコントローラと
 アクションをリクエストできます。
 
->Note: デフォルトでは、ルートは大文字と小文字を区別します。
+>Note|注意: デフォルトでは、ルートは大文字と小文字を区別します。
 >version 1.0.1 以降では、[CUrlManager::caseSensitive] を false に設定するこ
 >とで、大文字と小文字を区別しないようすることも可能になりました。
 >大文字と小文字を区別しないモード（case-insensitive mode）の場合、
