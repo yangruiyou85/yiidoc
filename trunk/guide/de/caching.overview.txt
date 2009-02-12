@@ -36,7 +36,7 @@ Yii bietet verschiedene Cache-Komponenten, die Cache-Daten auf
 unterschiedlichen Medien speichern kann. Die [CMemCache]-Komponente zum
 Beispiel, kapselt die memcache-Erweiterung von PHP und verwendet RAM-Speicher
 als Medium für den Cache-Speicher. Und die [CDbCache]-Komponente speichert
-gecachede Daten in einer Datenbank. Hier eine Übersicht der verfügbaren 
+gecachete Daten in einer Datenbank. Hier eine Übersicht der verfügbaren 
 Cache-Komponenten:
 
    - [CMemCache]: Verwendet die
@@ -50,7 +50,7 @@ von PHP.
 [XCache-Erweiterung](http://xcache.lighttpd.net/) von PHP.
 Beachten Sie, dass diese Komponente seit Version 1.0.1 zur Verfügung steht.
 
-   - [CDbCache]: Verwendet eine Datenbanktabelle zum Speichern gecacheder
+   - [CDbCache]: Verwendet eine Datenbanktabelle zum Speichern gecacheter
 Daten. Standardmäßig wird eine SQLite3-Datenbank im runtime-Verzeichnisus
 angelegt und verwendet. Sie können auch explizit eine Datenbank angeben, indem
 Sie die [connectionID|CDbCache::connectionID]-Eigenschaft konfigurieren.
@@ -70,7 +70,7 @@ In den nächsten Teilabschnitten gehen wir auf den Einsatz eines Caches auf
 jeder dieser Ebenen ein.
 
 > Note|Hinweis: Per Definition ist ein Cache ein vergängliches Speichermedium.
-Die Existenz von gecacheden Daten wird nicht garantiert, selbst wenn diese
+Die Existenz von gecacheten Daten wird nicht garantiert, selbst wenn diese
 niemals verfallen. Benutzern Sie daher einen Cache niemals als beständigen
 Speicher (speichern Sie dort also z.B. keine Sessiondaten).
 
