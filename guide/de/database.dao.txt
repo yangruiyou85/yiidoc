@@ -1,0 +1,240 @@
+﻿Data Access Objects (DAO)
+=========================
+
+Data Access Objects (DAO, deutsch: Datenzugriffsobjekt) bietet ein allgemeines
+API (Application Programming Interface, deutsch: Programmierschnittstelle)
+für den Zugriff auf Daten, die in unterschiedlichen Datenbankmanagementsystemen
+(DBMS) gespeichert sind. Dadurch kann das zugrunde liegende DBMS ausgetauscht
+werden ohne dass der Code, der DAO für den Zugriff auf die Daten nutzt, geändert
+werden muss.
+
+Yii-DAO setzt auf [PHP Data Objects (PDO)](http://php.net/manual/en/book.pdo.php)
+auf. Das ist eine Erweiterung, die einen einheitlichen Datenzugriff auf viele, 
+weit verbreitete DBMS, wie MySQL und PostgreSQL, bereitstellt. Deshalb müssen,
+um Yii-DAO zu nutzen, die PDO Erweiterungen und spezifischen PDO Datenbanktreiber,
+(d.h. `PDO_MYSQL`) installiert werden.
+
+Yii-DAO besteht hauptsächlich aus den folgenden vier Klassen:
+
+   - [CDbConnection]: repräsentiert eine Verbindung zur Datenbank.
+   - [CDbCommand]: repräsentiert eine SQL-Anweisung, die gegenüber der Datenbank ausgeführt werden soll.
+   - [CDbDataReader]: repräsentiert einen forward-only Datenstrom von Zeilen aus der Ergebnismenge einer Suchanfrage.
+   - [CDbTransaction]: repräsentiert eine DB Transaktion.
+  
+Nachfolgend stellen wir den Gebrauch von Yii-DAO in unterschiedlichen Szenarien vor.
+
+Die Verbindung zur Datenbank aufbauen
+-------------------------------------
+
+Um eine Verbindung zur Datenbank aufzubauen müssen Sie eine [CDbConnection]-
+Instanz erzeugen und aktivieren. Ein Data Source Name (DSN) ist erforderlich
+um die Information, die für die Verbindung zur Datenbank erforderlich
+ist, vorzugeben. Benutzername und ein Passwort können ebenfalls
+notwendig sein. Eine Exception wird im Falle eines Fehlers während des Verbindungsaufbaus
+ausgelöst (d.h. ungültiger DSN oder falscher Benutzername bzw. Passwort).
+
+~~~
+[php]
+$connection=new CDbConnection($dsn,$username,$password);
+// baue die Verbindung auf. Sie können versuchen.....mögliche Exceptions abzufangen
+$connection->active=true;
+......
+$connection->active=false;  // schließe Verbindung
+~~~
+
+Das DSN-Format hängt vom benutzten PDO-Datenbanktreiber ab. Im Allgemeinen
+enthält ein DSN den PDO-Treibernamen, gefolgt von einem Doppelpunkt, gefolgt
+von der treiberspezifischen Verbindungssyntax. Siehe [PDO
+Dokumentation](http://www.php.net/manual/en/pdo.construct.php) für die vollständige
+Information. Nachfolgend eine Liste der gebräuchlichsten DSN-Formate: 
+
+   - SQLite: `sqlite:/path/to/dbfile`
+   - MySQL: `mysql:host=localhost;dbname=testdb`
+   - PostgreSQL: `pgsql:host=localhost;port=5432;dbname=testdb`
+
+Da [CDbConnection] von [CApplicationComponent] abgeleitet ist, können wir sie auch
+als [Applikationskomponente](/doc/guide/basics.application#application-component)
+einsetzen. Dazu muss eine `db` (oder anders benannte) Applikationskomponente
+in der [Applicationskonfiguration](/doc/guide/basics.application#application-configuration)
+wie folgt konfigurieren werden:
+
+~~~
+[php]
+array(
+	......
+	'components'=>array(
+		......
+		'db'=>array(
+			'class'=>'CDbConnection',
+			'connectionString'=>'mysql:host=localhost;dbname=testdb',
+			'username'=>'root',
+			'password'=>'password',
+		),
+	),
+)
+~~~
+
+Wir können dann auf die DB-Verbindung, die bereits automatisch aktiviert ist, mittels
+`Yii::app()->db` zugreifen, es sei denn, war haben [CDbConnection::autoConnect]
+mit false konfiguriert. Wenn wir diese Vorgehensweise nutzen kann die einzige
+DB-Verbindung an vielen Stellen in unserm Code gemeinsam benutzt werden.
+ 
+Ausführen von SQL Anweisungen
+----------------------------
+
+Nachdem eine Verbindung zur Datenbank aufgebaut ist, können mit [CDbCommand]
+SQL Anweisungen ausgeführt werden. Man erzeugt eine [CDbCommand] Instanz, indem
+man [CDbConnection::createCommand()] mit der entsprechenden SQL Anweisung
+aufruft:
+
+~~~
+[php]
+$command=$connection->createCommand($sql);
+// falls erforderlich, kann die SQL Anweisung folgendermaßen aktualisiert werden:
+// $command->text=$newSQL;
+~~~
+
+Eine SQL Anweisung wird über einen der folgenden beiden Wege ausgeführt:
+
+   - [execute()|CDbCommand::execute]: führt SQL Anweisung, die eine "Nicht-Suchanfrage"
+wie `INSERT`, `UPDATE` and `DELETE` ist,  aus. Wenn erfolgreich, liefert sie die Anzahl
+von Zeilen, die von der Ausführung betroffen waren.
+
+   - [query()|CDbCommand::query]: führt eine SQL Anweisung wie `SELECT` aus, die
+Datenzeilen zurückliefert. Falls erfolgreich, gibt sie eine [CDbDataReader]-Instanz
+zurück, über die man die sich ergebenden Datenzeilen durchlaufen kann. Der Einfachheit
+halber ist auch ein Set von `queryXXX()`-Methoden implementiert, die das Abfrageergebnis
+direkt zurückliefern.
+
+Eine Exception wird erzeugt, falls ein Fehler während der Ausführung der SQL Anweisung
+auftritt.
+
+~~~
+[php]
+$rowCount=$command->execute();   // führe die SQL "Nicht-Suchanfrage" aus
+$dataReader=$command->query();   // führe die SQL "Suchanfrage" aus
+$rows=$command->queryAll();      // abfragen und alle Zeilen des Ergebnisses zurückgeben
+$row=$command->queryRow();       // abfragen und die erste Zeile des Ergebnisses zurückgeben
+$column=$command->queryColumn(); // abfragen und die erste Spalte des Ergebnisses zurückgeben
+$value=$command->queryScalar();  // abfragen und das erste Feld in der ersten Zeile zurückgeben
+~~~
+
+Arbeiten mit Query-Ergebnissen
+------------------------------
+
+Nachdem [CDbCommand::query()] eine Instanz von [CDbDataReader] erzeugt hat, kann man
+Zeilen der resultierenden Daten durch wiederholten Aufruf von [CDbDataReader::read()]
+abfragen. Man kann [CDbDataReader] auch mit dem PHP `foreach`-Konstrukt zum
+zeilenweise Abfragen nutzen.
+
+~~~
+[php]
+$dataReader=$command->query();
+// wiederholter Aufruf von read() false zurückgegeben wird
+while(($row=$dataReader->read())!==false) { ... }
+// mit foreach wird jede Datenzeile durchlaufen
+foreach($dataReader as $row) { ... }
+// Abfragen aller Zeilen auf einmal in ein einzelnes Array
+$rows=$dataReader->readAll();
+~~~
+
+> Note|Anm.: Anders als [query()|CDbCommand::query] liefern alle
+`queryXXX()`-Methoden direkt die Daten. Zum Beispiel gibt
+[queryRow()|CDbCommand::queryRow] ein Array als Repräsentanten
+der ersten Zeile des Abfrageergebnisses zurück.
+
+Transaktionen verwenden
+-----------------------
+
+Wenn eine Anwendung ein einige Abfragen, von denen jede ein paar Informationen
+aus der Datenbank liest und/oder schreibt, ausführt, ist es wichtig sicher zu 
+gehen, dass in der Datenbank keine unausgeführten Anfragen zurückbleiben.
+Eine Transaktion, in Yii repräsentiert durch eine [CDbTransaction]-Instanz,
+kann in diesem Fall initialisiert werden:
+
+   - Beginne die Transaktion.
+   - Führe die Abfragen der Reihe nach aus. Alle Datenbankaktualisierungen sind für die
+Außenwelt unsichtbar.
+   - Abschließen der Transaktion mit Commit. Die Aktualisierungen werden sichtbar, falls
+die Transaktion erfolgreich war.
+   - Falls eine der Anfragen fehlschlägt, wird die ganze Transaktion zurückgerollt.
+
+Der obige Workflow kann mit dem folgenden Code implementiert werden:
+
+~~~
+[php]
+$transaction=$connection->beginTransaction();
+try
+{
+	$connection->createCommand($sql1)->execute();
+	$connection->createCommand($sql2)->execute();
+	//.... weitere SQL Abfragen
+	$transaction->commit();
+}
+catch(Exception $e) // Eine Exception wird ausgelöst, falls eine Abfrage fehlschlägt
+{
+	$transaction->rollBack();
+}
+~~~
+
+Parameter binden
+----------------
+
+Um [SQL-Injektionsangriffe](http://de.wikipedia.org/wiki/SQL-Injection) zu
+vermeiden und um die Ausführung wiederholt benutzter SQL Anweisungen zu verbessern,
+kann man eine SQL Anweisung mit optionalen Platzhaltern für Parameter "vorbereiten".
+Die Platzhalter werden während des Bindungsprozesses durch die eigentlichen Parameter
+ersetzt.
+
+Die Platzhalter für Parameter können entweder benannt (durch eine eindeutige
+Zeichenketten) oder unbenannt sein (dargestellt durch Fragezeichen). Rufen Sie
+[CDbCommand::bindParam()] oder [CDbCommand::bindValue()] auf, um diese Platzhalter
+durch aktuelle Parameter zu ersetzen. Die Parameter müssen nicht maskiert werden, der 
+zugrunde liegende Datenbanktreiber erledigt das für sie. Das Binden der Parameter muss
+vor der Ausführung der SQL Anweisung erfolgen.
+
+~~~
+[php]
+// SQL Anweisung mit zwei Platzhaltern ":username" und ":email"
+$sql="INSERT INTO users(username, email) VALUES(:username,:email)";
+$command=$connection->createCommand($sql);
+// ersetze den Platzhalter ":username" durch den tatsächlichen Benutzernamen
+$command->bindParam(":username",$username,PDO::PARAM_STR);
+// ersetze den Platzhalter ":email" durch die tatsächliche E-Mail Adresse
+$command->bindParam(":email",$email,PDO::PARAM_STR);
+$command->execute();
+// füge eine weitere Zeile mit einem neuen Parametersatz ein
+$command->bindParam(":username",$username2,PDO::PARAM_STR);
+$command->bindParam(":email",$email2,PDO::PARAM_STR);
+$command->execute();
+~~~
+
+Die Methoden [bindParam()|CDbCommand::bindParam] und [bindValue()|CDbCommand::bindValue] sind sehr ähnlich. Der einzige Unterschied ist,
+dass erstere einen Parameter mit einer PHP Variablenreferenz, letztere dagegen einem Wert bindet. Für Parameter, die einen großen Datenblock darstellen, ist Ersteres aus
+Performancegründen zu bevorzugen.
+
+Weitere Einzelheiten zum Binden von Parametern finden Sie in der [einschlägigen PHP
+Dokumentation](http://www.php.net/manual/en/pdostatement.bindparam.php).
+
+Binden von Spalten
+------------------
+
+Beim Auslesen von Abfrageergebnissen kann man auch Spalten an PHP Variablen
+binden, so dass sie jedes Mal beim Zugriff auf eine Zeile automatisch mit den
+aktuellen Daten befüllt werden.
+
+~~~
+[php]
+$sql="SELECT username, email FROM users";
+$dataReader=$connection->createCommand($sql)->query();
+// binde die 1. Spalte (username) an die Variable $username
+$dataReader->bindColumn(1,$username);
+// binde die 2. Spalte (email) an die Variable $email
+/$dataReader->bindColumn(2,$email);
+while($dataReader->read()!==false)
+{
+    // $username und $email enthalten den Benutzernamen und die and E-Mail Adresse der aktuellen Zeile
+}
+~~~
+
+<div class="revision">$Id: database.dao.txt 324 2009-02-12 20:18:30Z peter.matulla $</div>
