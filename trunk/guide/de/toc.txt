@@ -13,7 +13,7 @@
     - [Komponente](basics.component)
     - [Pfad-Aliase und Namespace](basics.namespace)
     - [Konventionen](basics.convention)
-    - [Prozessablauf bei der Entwicklung](basics.workflow)
+    - [Ablauf der Entwicklung](basics.workflow)
 
 * Mit Formularen arbeiten
     - [Übersicht](form.overview)
