@@ -88,3 +88,4 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
 
  * Theme - Bleibt Theme, evtl. in Klammern "Motiv"
  * Asset - Bleibt Asset, aus Mangel einer vernünftigen Übersetzung
+ * cache dependency - Cachen mit Abhängkeit. (Dependency bezieht sich im englischen auch auf das Objekt, von dem die Abhängikeit besteht. Im Deutschen kann "change of dependency" aber nicht mit "Änderung der Abhänigkeit" übersetzt werden, weil das vielmehr eine Änderung in der Abhängigkeitsbeziehung bedeuten würde)
