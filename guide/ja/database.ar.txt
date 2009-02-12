@@ -33,7 +33,7 @@ CREATE TABLE Post (
 );
 ~~~
 
-> Note 注意: ARはあらゆるデータベース関連のタスクを解くものではありません。
+> Note|注意: ARはあらゆるデータベース関連のタスクを解くものではありません。
 PHPの中でデータベーステーブルをモデル化し、複雑なSQLを含まないクエリを実行するために、最も使われます。
 複雑なシナリオのためにはYii DAOを使うべきです。
 
@@ -58,7 +58,7 @@ return array(
 );
 ~~~
 
-> Tip ヒント: アクティブレコードがコラム情報を決定するためにテーブルのメタデータに頼るので、メタデータを読んで分析する時間かかります。
+> Tip|ヒント: アクティブレコードがコラム情報を決定するためにテーブルのメタデータに頼るので、メタデータを読んで分析する時間かかります。
 データベースのスキーマが変わりそうにないならば、[CDbConnection：schemaCachingDuration]プロパティを0よりも大きな値に構成することによってスキーマキャッシングを行わなけなければなりません。
 
 ARに対するサポートは、DBMSによって制限されます。現在以下のDBMSがサポートされています:
@@ -70,7 +70,7 @@ ARに対するサポートは、DBMSによって制限されます。現在以�
 `db`以外のアプリケーションコンポーネントを使いたいか、あるいはARを使う複数のデータベースで作業することを望む場合は[CActiveRecord：getDbConnection()]をオーバライドしなければなりません。
 [CActiveRecord]クラスは、すべてのARクラスのためのベースクラスです。
 
-> Tip ヒント: ARで複数のデータベースで作業するには2つの方法があります。
+> Tip|ヒント: ARで複数のデータベースで作業するには2つの方法があります。
 データベースのスキーマが異なるならば、あなたは[getDbConnection()|CActiveRecord::getDbConnection]の異なる実装を行った異なるベースARクラスを作成しても良いでしょう。
 あるいは、ダイナミックに静的変数[CActiveRecord：dB]を変えることはより良い考えです。
 
@@ -93,7 +93,7 @@ class Post extends CActiveRecord
 }
 ~~~
 
-> Tip ヒント: ARクラスは多くの場所でしばしば参照されるため、一つずつインクルードするのではなく、ARクラスを含んでいるディレクトリごと組込むことができます。
+> Tip|ヒント: ARクラスは多くの場所でしばしば参照されるため、一つずつインクルードするのではなく、ARクラスを含んでいるディレクトリごと組込むことができます。
 例えば、全てのARクラスファイルが`protected/models`の下にあるなら、以下のようにアプリケーションを設定することができます:
 > ~~~
 > [php]
@@ -121,7 +121,7 @@ $post->title='a sample post';
 これは、`title`が`Post`テーブルのコラムであるからであり、CActiveRecordがそれをPHPの魔法の方法である`__get()`の助けを借りて、プロパティとしてアクセスできるようにします。
 同様な方法で存在しないコラムにアクセスしようとすると、例外が発生します。
 
-> Info 情報: 読みやすいように、ラクダのケースでデータベーステーブルとコラムに名をつけることを提案します。
+> Info|情報: 読みやすいように、ラクダのケースでデータベーステーブルとコラムに名をつけることを提案します。
 特にテーブル名は、各々の語の先頭を大文字にして、空白無しで繋げ合せることによって作られます;
 最初が小文字であること以外は、コラム名はテーブル名と類似しています。
 たとえば、記事を保存しているテーブルに名をつけるため`Post`という名前を使います;
@@ -175,69 +175,55 @@ $post->createTime=new CDbExpression('NOW()');
 $post->save();
 ~~~
 
-
-Reading Record
+レコードの読み出し
 --------------
 
-To read data in a database table, we call one of the `find` methods as
-follows.
+データをデータベーステーブルから読むためには、`find`メソッドのうちの1つを以下のように呼出します。
 
 ~~~
 [php]
-// find the first row satisfying the specified condition
+// 指定された条件を満足する最初の列を見つけます
 $post=Post::model()->find($condition,$params);
-// find the row with the specified primary key
+// 指定されたプライマリキーを持つ列を見つけます
 $post=Post::model()->findByPk($postID,$condition,$params);
-// find the row with the specified attribute values
+// 指定されたアトリビュート値を持つ列を見つけます
 $post=Post::model()->findByAttributes($attributes,$condition,$params);
-// find the first row using the specified SQL statement
+// 指定されたSQLにより列を見つけます
 $post=Post::model()->findBySql($sql,$params);
 ~~~
+上記において`Post::model()`を用いて`find`メソッドを呼出します。
+静的メソッド`model()`が全てのARクラスで必要なことを覚えてください。
+メソッドは、オブジェクトコンテキストにおけるクラスレベルメソッド(静的クラスメソッドに類似したもの)にアクセスするために用いられるARインスタンスを返します。
 
-In the above, we call the `find` method with `Post::model()`. Remember
-that the static method `model()` is required for every AR class. The method
-returns an AR instance that is used to access class-level methods
-(something similar to static class methods) in an object context.
 
-If the `find` method finds a row satisfying the query conditions, it will
-return a `Post` instance whose properties contain the corresponding column
-values of the table row. We can then read the loaded values like we do with
-normal object properties, for example, `echo $post->title;`.
+もし`find`メソッドがクエリ条件を満足する列を見つけた場合、`Post`インスタンスが返されます。そのプロパティはテーブル列の対応する項目値となります。そのため、普通のオブジェクトのプロパティを読むように、例えば、`echo $post->title;`のように値を読むことができます。
 
-The `find` method will return null if nothing can be found in the database
-with the given query condition.
+与えられたクエリ条件でデータベースからみつけることができない場合には、`find`メソッドはナルを返します。
 
-When calling `find`, we use `$condition` and `$params` to specify query
-conditions. Here `$condition` can be string representing the `WHERE` clause
-in a SQL statement, and `$params` is an array of parameters whose values
-should be bound to the placeholders in `$condition`. For example,
+`find`を呼出す際には、クエリ条件を指定するため`$condition`と`$params`を用います。
+ここで、`$condition`はSQL文の`WHERE`句を表す文字列であり、`$params`は配列パラメータであり、それらの値は`$condition`のプレースホルダに対応させる必要があります。例えば、
+
 
 ~~~
 [php]
-// find the row with postID=10
+// postIDが10である列を見つけます
 $post=Post::model()->find('postID=:postID', array(':postID'=>10));
 ~~~
 
-We can also use `$condition` to specify more complex query conditions.
-Instead of a string, we let `$condition` be a [CDbCriteria] instance, which
-allows us to specify conditions other than the `WHERE` clause. For example,
+`$condition`はもっと複雑なクエリ条件に使うことができます。`$condition`は文字列ではなく[CDbCriteria]インスタンスを使うことができ、それは`WHERE`句だけでない他の条件を使用することができます。例えば、
 
 ~~~
 [php]
 $criteria=new CDbCriteria;
-$criteria->select='title';  // only select the 'title' column
+$criteria->select='title';  // 'title'行のみを選択します
 $criteria->condition='postID=:postID';
 $criteria->params=array(':postID'=>10);
-$post=Post::model()->find($criteria); // $params is not needed
+$post=Post::model()->find($criteria); // $paramsは不要です
 ~~~
 
-Note, when using [CDbCriteria] as query condition, the `$params` parameter
-is no longer needed since it can be specified in [CDbCriteria], as shown
-above.
+上記に見られるように、[CDbCriteria]をクエリ条件として使用する場合には`$params`パラメータは不要です。というのはそれは[CDbCriteria]中で指定されるからです。
 
-An alternative way to [CDbCriteria] is passing an array to the `find` method.
-The array keys and values correspond to the criteria's property name and value,
-respectively. The above example can be rewritten as follows,
+別の方法として、[CDbCriteria]は`find`メソッドに配列を渡します。配列のキーと値はクライテリアの行の名前と値にそれぞれ対応します。上記の例は以下のように書き換えられます。
 
 ~~~
 [php]
@@ -248,7 +234,7 @@ $post=Post::model()->find(array(
 ));
 ~~~
 
-> Info: When a query condition is about matching some columns with the
+> Info|情報: When a query condition is about matching some columns with the
 specified values, we can use
 [findByAttributes()|CActiveRecord::findByAttributes]. We let the
 `$attributes` parameters be an array of the values indexed by the column
@@ -416,7 +402,7 @@ values. Therefore, to compare two AR instances, we merely need to compare
 their primary key values, assuming they belong to the same AR class. A
 simpler way is to call [CActiveRecord::equals()], however.
 
-> Info: Unlike AR implementation in other frameworks, Yii supports
+> Info|情報: Unlike AR implementation in other frameworks, Yii supports
 composite primary keys in its AR. A composite primary key consists of two
 or more columns. Correspondingly, the primary key value is represented as
 an array in Yii. The [primaryKey|CActiveRecord::primaryKey] property gives
