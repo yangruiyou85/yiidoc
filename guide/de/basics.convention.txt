@@ -30,14 +30,14 @@ fehlt), verwendet die Applikation den Standard-Controller (definiert über
 
 Mit Hilfe des [CUrlManager]s ist es möglich, suchmaschinenfreundliche URLs zu
 erzeugen bzw. zu erkennen, wie z.B.
-`http://hostname/ControllerID/ActionID.html`. Diese Feature wird detailliert
+`http://hostname/ControllerID/ActionID.html`. Dieses Feature wird detailliert
 in [URL Management](/doc/guide/topics.url) behandelt.
 
 Code
 ----
 
 Yii empfiehlt, Variablen, Funktionen und Klassen in sog.
-CamelCase-Schreibweise zu benennen, also jedes Wort im Namen mit einem
+CamelCase-Schreibweise zu benennen, also alle Worte im Namen mit einem
 Großbuchstaben zu beginnen und diese ohne Leerzeichen aneinanderzureihen.
 Bei Variablen- und Funktionsnamen sollte das erste Wort klein geschrieben
 werden, um sie von Klassennamen zu unterscheiden (z.B. `$basePath`,
