@@ -237,19 +237,19 @@ Liksom datum och tid formateras även tal olika i olika länder och regioner.
 Formatering av tal inkluderar decimalformatering, valutaformatering och 
 procentformatering. Yii tillhandahåller [CNumberFormatter] för dessa ändamål.
 
-Talformateraren för hela applikationens localekan nås via applikationens 
+Talformateraren för hela applikationens locale kan nås via applikationens 
 property [numberFormatter|CApplication::numberFormatter].
 
 Följande metoder tillhandahålls av [CNumberFormatter] för formatering av heltal 
 eller flyttal (double).
 
    - [format|CNumberFormatter::format]: denna metod formaterar det givna talet 
-   till en sträng enligt ett anpassat mönster (t.ex. `$numberFormatter-
-   >format('#,##0.00',$number)`).
+   till en sträng enligt ett anpassat mönster (t.ex. 
+   `$numberFormatter->format('#,##0.00',$number)`).
 
    - [formatDecimal|CNumberFormatter::formatDecimal]: denna metod formaterar det 
-   givna talet genom användning av det fördefinierade decimalmönstret i mål-
-   localens data.
+   givna talet genom användning av det fördefinierade decimalmönstret i 
+   mål-localens data.
 
    - [formatCurrency|CNumberFormatter::formatCurrency]: denna metod formaterar 
    det givna talet med valutakod genom användning av det fördefinierade 
