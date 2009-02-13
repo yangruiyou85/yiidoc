@@ -12,7 +12,7 @@
     - [ビュー](basics.view)
     - [コンポーネント](basics.component)
     - [パス別名と名前空間](basics.namespace)
-    - [従うべきこと](basics.convention)
+    - [取り決め](basics.convention)
     - [開発ワークフロー](basics.workflow)
 
 * フォームを使う

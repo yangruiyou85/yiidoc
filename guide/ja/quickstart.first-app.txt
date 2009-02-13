@@ -2,20 +2,26 @@
 ==============================
 
 Yiiで最初の経験を積むために、この章では最初のYiiアプリケーションの作成法を説明します。
-強力なツールである`yiic`を用いていろいろな用途のために自動コード生成を行います。
-`YiiRoot`はYiiをインストールしたディレクトリと仮定します。
+便宜上、`YiiRoot`はYiiをインストールしたディレクトリと仮定し、`WebRoot`はウェブサーバのドキュメントルートします。
 
-コマンドラインにおいて`yiic`を実行させると以下のような表示がされます。
-~~~
-% YiiRoot/framework/yiic webapp WebRoot/testdrive
-~~~
+1.0.3版からは、Yiiのリリースには`YiiRoot/testdrive`の下に骨格アプリケーションが含まれます。
 
-> Note|注意: Mac OSやLinuxやUnixで`yiic`を実行する場合には、適切な実行可能なパーミッションを必要とします。
-`yiic`を実行する場合に、`php YiiRoot/framework/yiic.php`としても実行可能です。
+ 1. ディレクトリ`YiiRoot/testdrive`を`WebRoot`にコピーします
+ 2. `WebRoot/testdrive/index.php`を編集し、Yiiブートファイル`yii.php`のパスを変更します
+ 3. `WebRoot/testdrive/protected/yiic.php`を編集し、`yiic.php`のパスを変更します
+ 4. `WebRoot/testdrive/assets`と`WebRoot/testdrive/protected/runtime`のパーミッションを変更し、ウェブサーバプロセスから書きこみ可能にします
 
-これを実行すると`WebRoot/testdrive`の下に骨格のYiiアプリケーションが作成されます。この場合、`WebRoot`はあなたのウェブサーバのドキュメントルートです。このアプリケーションは良いスタートポイントです。全ての必要なディレクトリとファイルを備えているため、これに機能を追加していけば良いのです。
+> Note|注意: 1.0.3版より前の版においては、骨格アプリケーションを生成するために`yiic`を使う必要がありました。
+コマンドライン窓において以下のようなコマンドを実行します。
+>
+>~~~
+>% YiiRoot/framework/yiic webapp WebRoot/testdrive
+>~~~
+>
+>これを実行すると`WebRoot/testdrive`の下に骨格のYiiアプリケーションが作成されます。
+>
 
-以下のURLをアクセスしてみてください。コードを一行も書かずに最初のYiiアプリケーションを実行することができます。
+ウェブブラウザにより以下のURLをアクセスすることで、最初のYiiアプリケーションをテストすることができます。
 ~~~
 http://hostname/testdrive/index.php
 ~~~
