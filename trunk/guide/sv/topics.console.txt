@@ -3,7 +3,7 @@ Konsolapplikationer
 
 Konsolapplikationer används huvudsakligen av webbapplikationer till att utföra 
 offline-arbete, så som kodgenerering, kompilering av sökindex, skick mail, etc. 
-Yii tillhandahåller ett ramverk för att skriva konsolapplikationer på ett 
+Yii erbjuder ett ramverk för att skriva konsolapplikationer på ett 
 objektorienterat och systematiskt sätt.
 
 Yii representerar varje konsoluppgift i termer av [kommando|CConsoleCommand], 

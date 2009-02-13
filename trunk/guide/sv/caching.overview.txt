@@ -29,7 +29,7 @@ array(
 
 När applikationen är igång kan cachekomponenten nås via `Yii::app()->cache`.
 
-Yii tillhandahåller olika cachekomponenter som kan lagra cachedata på olika 
+Yii erbjuder olika cachekomponenter som kan lagra cachedata på olika 
 media. Till exempel, [CMemCache]-komponenten kapslar in PHP:s memcache-tillägg 
 och använder minne som medium för cachelagring; [CApcCache]-komponenten kapslar 
 in PHP:s APC-tillägg; och [CDbCache]-komponenten cachelagrar data i en databas. 
