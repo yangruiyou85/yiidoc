@@ -12,10 +12,11 @@ PHPのwarningやnotice、キャッチされない例外が発生した場合は�
 開始します。
 
 > Tip|ヒント: エラーハンドラーは、アプリケーションのコンストラクタでPHP
-ファンクションである[set_exception_handler]
-(http://www.php.net/manual/en/function.set-exception-handler.php)と
-[set_error_handler]
-(http://www.php.net/manual/en/function.set-error-handler.php)によって
+ファンクションである
+[set_exception_handler](http://www.php.net/manual/en/function.set-exception-handler.php)
+と
+[set_error_handler](http://www.php.net/manual/en/function.set-error-handler.php)
+によって
 登録されます。もし不要な場合は、[entry script](/doc/guide/basics.entry)で
 `YII_ENABLE_ERROR_HANDLER`と`YII_ENABLE_EXCEPTION_HANDLER`の定数をfalse
 として定義する事で対応できます。
@@ -47,7 +48,7 @@ Yiiは二つの例外クラスを定義しています。[CException] と [CHttp
 [statusCode|CHttpException::statusCode] プロパティを持っています。
 例外クラスは次章で述べるように、例外を表示するかどうかを決定します。
 
-> Tip: [CHttpException]における例外の発生はユーザの入力ミスを報告するのに
+> Tip|ヒント: [CHttpException]における例外の発生はユーザの入力ミスを報告するのに
 シンプルな方法です。例えば、もしユーザが不正なpost IDのURLを要求した場合、
 以下のように404error (page not found) をシンプルに表示させることが出来ます:
 ~~~
