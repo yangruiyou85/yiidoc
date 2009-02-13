@@ -58,29 +58,28 @@ $this->render('edit', array(
 ------
 
 ウィジェットは、[CWidget] かその子クラスのインスタンスです。
-A widget is an instance of [CWidget] or its child class. It is a component
-mainly for presentational purpose. Widgets are usually embedded in a view
-script to generate some complex yet self-contained user interface. For
-example, a calendar widget can be used to render a complex calendar user
-interface. Widgets enable better reusability in user interface.
+これは、主に表象的な用途のためのコンポーネントです。
+ウィジェットは、通常、複雑だが自己完結したユーザインターフェースを生成するために
+ビュースクリプトに埋め込まれます。たとえば、カレンダーウィジェットは複雑なカレンダー
+ユーザインターフェースを表示させるために使用出来ます。
 
-To use a widget, do as follows in a view script:
+ウィジェットを使うには、ビュースクリプト内で以下のようにします:
 
 ~~~
 [php]
 <?php $this->beginWidget('path.to.WidgetClass'); ?>
-...body content that may be captured by the widget...
+...ウィジェットによりキャプチャされるかもしれない本文(body content)...
 <?php $this->endWidget(); ?>
 ~~~
 
-or
+または
 
 ~~~
 [php]
 <?php $this->widget('path.to.WidgetClass'); ?>
 ~~~
 
-The latter is used when the widget does not need any body content.
+後の方法は、ウィジェットが本文(body content)を必要としないときに用いられます。
 
 Widgets can be configured to customize its behaviors. This is done by
 settings their initial property values when calling
