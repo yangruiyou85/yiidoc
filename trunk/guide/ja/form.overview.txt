@@ -11,8 +11,8 @@ HTMLフォームによってユーザのデータを集めることはウェブ�
 以下はYiiでの典型的なフォームの取り扱いに必要な工程です:
 
    1. 収集するデータフィールドを表すモデルクラスを作成する。
-   1. Create a controller action with code that responds to form submission。
-   1. Create a form in the view script file associated with the controller action。
+   1. フォームの送信に応えるコントローラアクションのコードを作成する。
+   1. コントローラアクションに結びついたビュースクリプトファイルにフォームを作成する。
 
 次からのセクションの中で、これらの工程の詳細を述べます。
 
