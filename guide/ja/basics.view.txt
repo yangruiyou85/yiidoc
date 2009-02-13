@@ -1,22 +1,22 @@
-�r���[
+ビュー
 ====
 
-�r���[�͎�Ƀ��[�U�C���^�[�t�F�[�X�̗v�f�ɂ���Ē�`����� PHP �X�N���v�g�ł��B
-�r���[�ɂ́APHP �����܂߂鎖���ł��܂����A�f�[�^���f����ύX���ׂ��ł͂Ȃ��A
-��r�I�V���v���ɏ������Ƃ𐄏����܂��B
-���W�b�N���ƃv���[���e�[�V�������̕����̐��_�̂��߂ɁA�傫�ȃ��W�b�N��
-�r���[�ł͂Ȃ��A�R���g���[�������f���ɒu���ׂ��ł��B
+ビューは主にユーザインターフェースの要素によって定義される PHP スクリプトです。
+ビューには、PHP 文を含める事ができますが、データモデルを変更すべきではなく、
+比較的シンプルに書くことを推奨します。
+ロジック部とプレゼンテーション部の分離の精神のために、大きなロジックは
+ビューではなく、コントローラかモデルに置くべきです。
 
-�r���[�́A�`��̍ۂɃr���[�X�N���v�g�t�@�C�������ʂ��邽�߂Ɏg���閼�O�������܂��B
-�r���[�̖��O�̓r���[�X�N���v�g�t�@�C�����Ɠ����ł��B
-���Ƃ��΁A�r���[ `edit` �� `edit.php` �Ƃ������O�̃r���[�X�N���v�g�t�@�C�����Q�Ƃ��܂��B
-�r���[��`�悷�邽�߂ɂ́A�r���[���������ɂ��� [CController::render()] ���R�[�����܂��B
-���\�b�h�� `protected/views/ControllerID` �f�B���N�g�����ɂ���A�Ή�����r���[�t�@�C����T���܂��B
+ビューは、描画の際にビュースクリプトファイルを識別するために使われる名前を持ちます。
+ビューの名前はビュースクリプトファイル名と同じです。
+たとえば、ビュー `edit` は `edit.php` という名前のビュースクリプトファイルを参照します。
+ビューを描画するためには、ビュー名を引数にして [CController::render()] をコールします。
+メソッドは `protected/views/ControllerID` ディレクトリ下にある、対応するビューファイルを探します。
 
-�r���[�X�N���v�g���ł́A`$this` ���g�p���ăR���g���[���C���X�^���X�ւ̃A�N�Z�X���\�ł��B
-�̂ɁA�r���[�̒��ł� `$this->propertyName` �Ƃ����`�ŃR���g���[���̃v���p�e�B�̎Q�Ƃł��܂��B
+ビュースクリプト中では、`$this` を使用してコントローラインスタンスへのアクセスが可能です。
+故に、ビューの中では `$this->propertyName` という形でコントローラのプロパティの参照できます。
 
-����ɁA�f�[�^���r���[�ɓn�����߂ɁA���̕��@���g�p���邱�Ƃ��ł��܂�: 
+さらに、データをビューに渡すために、次の方法を使用することができます: 
 
 ~~~
 [php]
@@ -26,16 +26,16 @@ $this->render('edit', array(
 ));
 ~~~
 
-��L�ł́A[render()|CController::render] ���\�b�h�� 2 �Ԗڂ̃p�����[�^�z���ϐ��֓W�J���܂��B
-���̌��ʁA�r���[�X�N���v�g���ł́A���[�J���ϐ� `$var1` �� `$var2` �Ƃ��ăA�N�Z�X�ł��܂��B
+上記では、[render()|CController::render] メソッドは 2 番目のパラメータ配列を変数へ展開します。
+その結果、ビュースクリプト内では、ローカル変数 `$var1` と `$var2` としてアクセスできます。
 
-���C�A�E�g
+レイアウト
 ------
 
-���C�A�E�g�́A�r���[���f�R���[�V�������邽�߂Ɏg�p�������ʂȃr���[�ŁA
-�ʏ�A�������̃r���[�ɋ��ʂ��Ă��郆�[�U�C���^�[�t�F�[�X�̕������܂݂܂��B
-���Ƃ��΁A���C�A�E�g�̓w�b�_�[/�t�b�^�[�����܂݁A���̒��ɃR���e���g�r���[��
-���ߍ��܂�邩������܂���B
+レイアウトは、ビューをデコレーションするために使用される特別なビューで、
+通常、いくつかのビューに共通しているユーザインターフェースの部分を含みます。
+たとえば、レイアウトはヘッダー/フッター部を含み、その中にコンテントビューが
+埋め込まれるかもしれません。
 
 ~~~
 [php]
@@ -44,42 +44,42 @@ $this->render('edit', array(
 ......footer here......
 ~~~
 
-`$content` �ɂ̓R���e���g�r���[�̃����_�����O���ʂ��i�[���܂��B
+`$content` にはコンテントビューのレンダリング結果を格納します。
 
-���C�A�E�g�� [render()|CController::render] ���R�[������Ƃ��A
-�ÖقɓK�p����܂��B
-�f�t�H���g�ł́A�r���[�X�N���v�g `protected/views/layouts/main.php` ��
-���C�A�E�g�Ƃ��Ďg�p����܂��B����́A [CWebApplication::layout] ��
-[CController::layout] �̂����ꂩ��ύX���邱�ƂŁA�J�X�^�}�C�Y�\�ł��B
-���C�A�E�g��K�p�����Ƀr���[�̕`����s���ɂ́A
-����� [renderPartial()|CController::renderPartial] ���R�[�����܂��B
+レイアウトは [render()|CController::render] をコールするとき、
+暗黙に適用されます。
+デフォルトでは、ビュースクリプト `protected/views/layouts/main.php` が
+レイアウトとして使用されます。これは、 [CWebApplication::layout] か
+[CController::layout] のいずれかを変更することで、カスタマイズ可能です。
+レイアウトを適用せずにビューの描画を行うには、
+代わりに [renderPartial()|CController::renderPartial] をコールします。
 
-�E�B�W�F�b�g
+ウィジェット
 ------
 
-�E�B�W�F�b�g�́A[CWidget] �����̎q�N���X�̃C���X�^���X�ł��B
-����́A��ɕ\�ۓI�ȗp�r�̂��߂̃R���|�[�l���g�ł��B
-�E�B�W�F�b�g�́A�ʏ�A���G�������Ȋ����������[�U�C���^�[�t�F�[�X�𐶐����邽�߂�
-�r���[�X�N���v�g�ɖ��ߍ��܂�܂��B���Ƃ��΁A�J�����_�[�E�B�W�F�b�g�͕��G�ȃJ�����_�[
-���[�U�C���^�[�t�F�[�X��\�������邽�߂Ɏg�p�o���܂��B
+ウィジェットは、[CWidget] かその子クラスのインスタンスです。
+これは、主に表象的な用途のためのコンポーネントです。
+ウィジェットは、通常、複雑だが自己完結したユーザインターフェースを生成するために
+ビュースクリプトに埋め込まれます。たとえば、カレンダーウィジェットは複雑なカレンダー
+ユーザインターフェースを表示させるために使用出来ます。
 
-�E�B�W�F�b�g���g���ɂ́A�r���[�X�N���v�g���ňȉ��̂悤�ɂ��܂�:
+ウィジェットを使うには、ビュースクリプト内で以下のようにします:
 
 ~~~
 [php]
 <?php $this->beginWidget('path.to.WidgetClass'); ?>
-...�E�B�W�F�b�g�ɂ��L���v�`������邩������Ȃ��{��(body content)...
+...ウィジェットによりキャプチャされるかもしれない本文(body content)...
 <?php $this->endWidget(); ?>
 ~~~
 
-�܂���
+または
 
 ~~~
 [php]
 <?php $this->widget('path.to.WidgetClass'); ?>
 ~~~
 
-��̕��@�́A�E�B�W�F�b�g���{��(body content)��K�v�Ƃ��Ȃ��Ƃ��ɗp�����܂��B
+後の方法は、ウィジェットが本文(body content)を必要としないときに用いられます。
 
 Widgets can be configured to customize its behaviors. This is done by
 settings their initial property values when calling
