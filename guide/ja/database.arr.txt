@@ -1,34 +1,26 @@
-Relational Active Record
+リレーショナルアクティブレコード
 ========================
 
-We have already seen how to use Active Record (AR) to select data from a
-single database table. In this section, we describe how to use AR to join
-several related database tables and bring back the joint data set.
+単一のデータベーステーブルからデータを選択するためにARを使う方法を見てきました。
+この章では、いくつかの関係するデータベーステーブルをつなげ、結合されたデータセットに書き戻す方法を示します。
 
-In order to use relational AR, it is required that primary-foreign key
-relationships are well defined between tables that need to be joined. AR
-relies on the metadata about these relationships to determine how to join
-the tables.
+リレーショナルARを使うためには、主外部キー関係が結合すべきテーブル間で正しく定義されている必要があります。
+ARはこれらのリレーションに関してどのようにテーブルを結合するかを決定するために、メタデータに依ります。
 
-> Note: Starting from version 1.0.1, you can use relational AR even
-> if you do not define any foreign key constraints in your database.
+> Note|注意: 1.0.1版からはデータベースに外部キー制約が定義されていない場合でもリレーショナルARを使用することができます。
 
-For simplicity, we will use the database schema shown in the
-following entity-relationship (ER) diagram to illustrate examples in this
-section.
+簡単のため、この章では例題として、以下のエンティティ関係(ER)図に示されるデータベーススキーマを使用します。
 
-![ER Diagram](er.png)
+![ER Diagram ER図](er.png)
 
-> Info: Support for foreign key contraints varies in different DBMS.
+> Info|情報: 外部キーのサポートはDBMS毎に異ります。
 >
-> SQLite does not support foreign key constraints, but you can still
-> declare the constraints when creating tables. AR can exploit these
-> declarations to correctly support relational queries.
+> SQLiteは外部キーをサポートしませんが、テーブルを作成する際に制約を宣言します。
+> ARはリレーショナルなクエリを正しくサポートするためにこの制約宣言を利用します。
 >
-> MySQL supports foreign key constraints with InnoDB engine, but not with
-> MyISAM. It is thus recommended that you use InnoDB for your MySQL database.
-> When using MyISAM, you may exploit the following trick so that
-> you can perform relational queries using AR:
+> MySQLはInnoDBエンジンの場合には外部キーをサポートしますが、MyISAMの場合はしません。
+> 従って、MySQLデータベースの場合にはInnoDBの使用を推奨します。
+> MyISAMの場合には、以下のようなトリックを使用してリレーショナルなクエリを実行することができます。
 > ~~~
 > [sql]
 > CREATE TABLE Foo
@@ -42,61 +34,47 @@ section.
 >      COMMENT 'CONSTRAINT FOREIGN KEY (fooID) REFERENCES Foo(id)'
 > );
 > ~~~
-> In the above, we use `COMMENT` keyword to describe the foreign key constraint
-> which can be read by AR to recognize the described relationship.
+> 上記では説明したリレーションを認識させるため、ARから読めるように外部キー制約を記述する`COMMENT`キーワードを使用します。
 
 
-
-Declaring Relationship
+リレーションの宣言
 ----------------------
 
-Before we use AR to perform relational query, we need to let AR know how
-one AR class is related with another.
+ARのリレーショナルクエリを使用する前に、ARに対して他のARクラスとどのように関係しているかを知らせる必要があります。
 
-Relationship between two AR classes is directly associated with the
-relationship between the database tables represented by the AR classes.
-From database point of view, a relationship between two tables A and B has
-three types: one-to-many (e.g. `User` and `Post`), one-to-one (e.g.
-`User` and `Profile`) and many-to-many (e.g. `Category` and `Post`). In AR,
-there are four types of relationships:
+2つのARクラスのリレーションは、ARクラスによって表現されるデータベーステーブルのリレーションと直接関係しています。
+データベースの観点からは、2つのテーブルAとBの関係には、3つのタイプがあります。
+1対多(例えば`User`と`Post`)、1対1(例えば`User`と`Profile`)、多対多(例えば`Category`と`Post`)。
+ARでは、以下の4種類のリレーションがあります。
 
-   - `BELONGS_TO`: if the relationship between table A and B is
-one-to-many, then B belongs to A (e.g. `Post` belongs to `User`);
+   - `BELONGS_TO`: テーブルAとBの関係が1対多ならば、BはAに属しています(e.g. `Post`は`User`に属す)。
 
-   - `HAS_MANY`: if the relationship between table A and B is one-to-many,
-then A has many B (e.g. `User` has many `Post`);
+   - `HAS_MANY`: 同じくテーブルAとBの関係が1対多ならば、Aは多くのBを持っています(e.g. `User`は多くの`Post`を持つ)。
 
-   - `HAS_ONE`: this is special case of `HAS_MANY` where A has at most one
-B (e.g. `User` has at most one `Profile`);
+   - `HAS_ONE`: これはAがたかだか1つのBを持っている`HAS_MANY`の特例です(e.g. `User`はたかだか1つの`Profile`を持つ)。
 
-   - `MANY_MANY`: this corresponds to the many-to-many relationship in
-database. An associative table is needed to break a many-to-many
-relationship into one-to-many relationships, as most DBMS do not support
-many-to-many relationship directly. In our example database schema, the
-`PostCategory` serves for this purpose. In AR terminology, we can explain
-`MANY_MANY` as the combination of `BELONGS_TO` and `HAS_MANY`. For example,
-`Post` belongs to many `Category` and `Category` has many `Post`.
+   - `MANY_MANY`: これはデータベースにおいて多対多の関係と対応します。
+多対多の関係を１対多の関係に分割するために、関連したテーブルが必要です。なぜなら
+大部分のDBMSは、直接多対多の関係をサポートしないためです。
+例題のデータベーススキーマでは、`PostCategory`はこの目的のために使用されます。
+AR用語では、`BELONGS_TO`と`HAS_MANY`の組合せとして、`MANY_MANY`を説明することができます。
+例えば`Post`は多くの`Category`に属しています。そして`Category`には多くの`Post`があります。
 
-Declaring relationship in AR involves overriding the
-[relations()|CActiveRecord::relations] method of [CActiveRecord]. The
-method returns an array of relationship configurations. Each array element
-represents a single relationship with the following format:
+ARでのリレーション宣言は、[CActiveRecord]クラスの[relations()|CActiveRecord::relations]メソッドをオーbライドすることで行います。このメソッドはリレーション構成の配列を返します。
+各々の配列要素は以下のフォーマットで示す一つのリレーションを意味します。
 
 ~~~
 [php]
-'VarName'=>array('RelationType', 'ClassName', 'ForeignKey', ...additional options)
+'VarName'=>array('RelationType', 'ClassName', 'ForeignKey', ...付加オプション)
 ~~~
 
-where `VarName` is the name of the relationship; `RelationType` specifies
-the type of the relationship, which can be one of the four constants:
-`self::BELONGS_TO`, `self::HAS_ONE`, `self::HAS_MANY` and
-`self::MANY_MANY`; `ClassName` is the name of the AR class related to this
-AR class; and `ForeignKey` specifies the foreign key(s) involved in the
-relationship. Additional options can be specified at the end for each
-relationship (to be described later).
+ここで`VarName`はリレーションの名前です。`RelationType`はリレーションのタイプを指定します。
+そしてそれは4つの定数、`self::BELONGS_TO`、`self::HAS_ONE`、`self::HAS_MANY`、`self::MANY_MANY`のうちの1つです。
+`ClassName`はこのARクラスに関連したARクラスの名前です。
+`ForeignKey`はリレーションに関係する外部キーを指定します。
+付加オプションは各々のリレーション(後述)の終わりに指定すことができます。
 
-The following code shows how we declare the relationships for the `User`
-and `Post` classes.
+以下のコードでどのように`User`と`Post`クラスのリレーションを宣言するかを示します。
 
 ~~~
 [php]
@@ -123,7 +101,7 @@ class User extends CActiveRecord
 }
 ~~~
 
-> Info: A foreign key may be composite, consisting of two or more columns.
+> Info|情報: A foreign key may be composite, consisting of two or more columns.
 In this case, we should concatenate the names of the foreign key columns
 and separate them with space or comma. For `MANY_MANY` relationship type,
 the associative table name must also be specified in the foreign key. For
@@ -156,7 +134,7 @@ $post=Post::model()->findByPk(10);
 $author=$post->author;
 ~~~
 
-> Info: If there is no related instance for a relationship, the
+> Info|情報: If there is no related instance for a relationship, the
 corresponding property could be either null or an empty array. For
 `BELONGS_TO` and `HAS_ONE` relationships, the result is null; for
 `HAS_MANY` and `MANY_MANY`, it is an empty array.
