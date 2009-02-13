@@ -1,7 +1,7 @@
 Arbeta med databaser
 ====================
 
-Yii tillhandahåller kraftfullt stöd för databasprogrammering. Baserat på PHP-
+Yii erbjuder kraftfullt stöd för databasprogrammering. Baserat på PHP-
 tillägget Data Objects (PDO) möjliggör Yii Data Access Objects (DAO) åtkomst 
 till olika databashanterare (DBMS) via ett enda enhetligt gränssnitt. 
 Applikationer utvecklade för att använda Yii DAO kan enkelt ställas om för 
