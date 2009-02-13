@@ -9,11 +9,11 @@ invokeringar av [CBaseController::renderFile], kompilerar vyfilen med anpassad
 mallsyntax, och renderar de kompilerade resultaten.
 
 > Info: Det rekommenderas att anpassad mallsyntax bara används till att skriva 
-vyer som med liten sannolikhet kommer att återanvändas. I annat fall behöver 
-folk som återanvänder vyerna tvingas att använda samma anpassade mallsyntax i 
+vyer som med liten sannolikhet kommer att återanvändas. I annat fall kommer 
+personer som återanvänder vyerna att tvingas använda samma anpassade mallsyntax i 
 sina applikationer.
 
-I det fäljande, introduceras hur man använder [CPradoViewRenderer], en 
+I det följande, introduceras hur man använder [CPradoViewRenderer], en 
 vyrenderare som tillåter utvecklare att använda en mallsyntax snarlik den i 
 [Prado-ramverket](http://www.pradosoft.com/). För personer som vill utveckla 
 sina egna vyrenderare, är [CPradoViewRenderer] en bra referens.
