@@ -142,7 +142,7 @@ fragmentcachen. Till exempel,
 
 Snarlikt cache-taggar är urklipps-taggar kortformer för anrop till 
 [CBaseController::beginClip] och [CBaseController::endClip] i en vy. Syntaxen är 
-dom följer,
+som följer,
 
 ~~~
 [php]
