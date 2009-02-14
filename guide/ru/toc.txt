@@ -20,7 +20,7 @@
     - [Создание модели](form.model)
     - [Создание действий](form.action)
     - [Создание формы](form.view)
-    - [Обработка массового ввода (tabular input)](form.table)
+    - [Обработка табличного ввода](form.table)
 
 * Работа с БД
     - [Обзор](database.overview)
