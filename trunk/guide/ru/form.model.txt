@@ -1,29 +1,29 @@
 ﻿Создание модели
 ==============
 
-Before writing the HTML code needed by a form, we should decide what kind
-of data we are expecting from end users and what rules these data should
-comply with. A model class can be used to record these information. A
-model, as defined in the [Model](/doc/guide/basics.model) subsection, is
-the central place for keeping user inputs and validating them.
+Прежде, чем писать HTML код для формы, нам нужно определить, какие данные мы 
+будем получать от пользователей и каким правилам они должны соответствовать. 
+Для фиксации этой информации можно использовать класс модели данных.
+Модель данных, как говорится в разделе [Модель](/doc/guide/basics.model), 
+это центральное место для хранения и проверки данных, вводимых пользователем.
 
-Depending on how we make use of the user input, we can create two types of
-model. If the user input is collected, used and then discarded, we would
-create a [form model](/doc/guide/basics.model); if the user input is
-collected and saved into database, we would use an [active
-record](/doc/guide/database.ar) instead. Both types of model share the same
-base class [CModel] which defines the common interface needed by form.
+В зависимости от того, каким образом используются данные ввода, 
+мы можем создать два типа модели данных. Если мы получаем данные, обрабатываем их, 
+а затем удаляем, то используем [модель формы](/doc/guide/basics.model); если же 
+получаем данные и сохраняем их в базу данных, используем [Active Record](/doc/guide/database.ar).
+Оба типа моделей данных используют один и тот же базовый класс [CModel], который определяет 
+общий интерфейс используемый формой.
 
-> Note: We are mainly using form models in the examples of this section.
-However, the same can also be applied to [active
-record](/doc/guide/database.ar) models.
+> Note|Примечание: В примерах этого раздела используются модели формы. Тем не менее, 
+всё может быть в равной степени применено и к моделям [Active Record](/doc/guide/database.ar).
 
-Defining Model Class
+Определение класса модели
 --------------------
 
-Below we create a `LoginForm` model class used to collect user input on a
-login page. Because the login information is only used to authenticate the
-user and does not need to be saved, we create `LoginForm` as a form model.
+Ниже мы создадим класс модели `LoginForm`, который будет использоваться для 
+получения данных, вводимых пользователем на странице авторизации. Поскольку 
+эти данные используются исключительно в целях аутентификации пользователя и 
+сохранять их не требуется, то создадим модель `LoginForm` как модель формы.
 
 ~~~
 [php]
@@ -35,25 +35,23 @@ class LoginForm extends CFormModel
 }
 ~~~
 
-Three attributes are declared in `LoginForm`: `$username`, `$password` and
-`$rememberMe`. They are used to keep the user-entered username and
-password, and the option whether the user wants to remember his login.
-Because `$rememberMe` has a default value `false`, the corresponding option
-when initially displayed in the login form will be unchecked.
+Мы объявили в `LoginForm` три атрибута: `$username`, `$password` и `$rememberMe`.
+Они используются для хранения имени пользователя, пароля, а также значения опции сохранения 
+имени пользователя. Так как `$rememberMe` по умолчанию имеет значение `false`, то изначально 
+в форме авторизации галочка этой опции будет снята.
 
-> Info: Instead of calling these member variables properties, we use the
-name *attributes* to differentiate them from normal properties. An
-attribute is a property that is mainly used to store data coming from user
-input or database.
+> Info: Термин "атрибут" используется, чтобы отделить свойства, определяемые этими 
+переменными-членами класса, от прочих свойств. Здесь атрибут - это свойство, которое 
+используется в основном для хранения данных, вводимых пользователем, или данных, 
+получаемых из базы данных.
 
-Declaring Validation Rules
+Определение правил проверки
 --------------------------
 
-Once a user submits his inputs and the model gets populated, we need to
-make sure the inputs are valid before using them. This is done by
-performing validation of the inputs against a set of rules. We specify the
-validation rules in the `rules()` method which should return an array of
-rule configurations.
+В момент, когда пользователь отправляет данные формы, а модель их получает, 
+нам необходимо удостовериться, что эти данные корректны, прежде, чем мы будем их использовать.
+Это осуществляется посредством проверки данных в соответствии с набором правил. 
+Правила проверки задаются в методе `rules()`, который возвращает массив сконфигурированных правил.
 
 ~~~
 [php]
@@ -73,7 +71,7 @@ class LoginForm extends CFormModel
 
 	public function authenticate($attribute,$params)
 	{
-		if(!$this->hasErrors())  // we only want to authenticate when no input errors
+		if(!$this->hasErrors())  // аутентификация производится только если нет ошибок ввода
 		{
 			$identity=new UserIdentity($this->username,$this->password);
 			if($identity->authenticate())
@@ -88,27 +86,25 @@ class LoginForm extends CFormModel
 }
 ~~~
 
-The above code specifies that `username` and `password` are both required,
-`password` should be authenticated.
+В коде, представленном выше, `username` и `password` - обязательные для заполнения поля, 
+а поле `password` должно быть проверено также на соответствие указанному имени пользователя.
 
-Each rule returned by `rules()` must be of the following format:
+Каждое правило, возвращаемое `rules()`, должно быть задано в следующем формате:
 
 ~~~
 [php]
-array('AttributeList', 'Validator', 'on'=>'ScenarioList', ...additional options)
+array('AttributeList', 'Validator', 'on'=>'ScenarioList', ...дополнительные параметры)
 ~~~
 
-where `AttributeList` is a string of comma-separated attribute names which
-need to be validated according to the rule; `Validator` specifies what kind of
-validation should be performed; the `on` parameter is optional which specifies
-a list of scenarios where the rule should be applied; and additional options
-are name-value pairs which are used to initialize the corresponding validator's
-property values.
+где `AttributeList` - строка с именами атрибутов, отделенных запятыми, которые должны 
+быть проверены в соответствии с правилами; `Validator` указывает на тип используемой проверки; 
+параметр `on` - необязательный параметр, устанавливающий список сценариев, где должно 
+использоваться правило; а также прочие параметры - пары имя-значение, которые используются для 
+инициализации значений свойств соответствующего валидатора.
 
-There are three ways to specify `Validator` in a validation rule. First,
-`Validator` can be the name of a method in the model class, like
-`authenticate` in the above example. The validator method must be of the
-following signature:
+Есть три способа указать `Validator` в правиле проверки. Во-первых, `Validator` может быть именем 
+метода в классе модели данных, аналогично `authenticate` в примере выше. Сигнатура метода проверки 
+приведена ниже:
 
 ~~~
 [php]
@@ -119,88 +115,82 @@ following signature:
 public function ValidatorName($attribute,$params) { ... }
 ~~~
 
-Second, `Validator` can be the name of a validator class. When the rule is
-applied, an instance of the validator class will be created to perform the
-actual validation. The additional options in the rule are used to
-initialize the instance's attribute values. A validator class must extend
-from [CValidator].
+Второй способ - указать `Validator` в качестве имени класса. В этом случае для проверки данных в момент применения правила создается 
+экземпляр класса проверки. Дополнительные параметры в правиле используются для 
+инициализации значений атрибутов экземпляра. Класс проверки должен быть производным классом от [CValidator].
 
-> Note: When specifying rules for an active record model, we can use a
-special option named `on`. The option can be either `'insert'` or
-`'update'` so that the rule is applied only when inserting or updating the
-record, respectively. If not set, the rule would be applied in both cases
-when `save()` is called.
+> Note|Примечание: Задавая правила для модели Active Record, мы можем использовать специальный параметр `on`.
+Этот параметр может быть типа `'insert'` или `'update'`, и правило применяется соответственно 
+в случае добавления или обновления записи. Если параметр не задан, то правило применяется в 
+обоих случаях, когда вызывается `save()`.
 
-Third, `Validator` can be a predefined alias to a validator class. In the
-above example, the name `required` is the alias to [CRequiredValidator]
-which ensures the attribute value being validated is not empty. Below is
-the complete list of predefined validator aliases:
+Третий вариант - предопределить псевдоним класса валидатора. В примере выше, имя 
+`required` - это псевдоним класса [CRequiredValidator], который проверяет, чтобы 
+проверяемое значение атрибута не было пустым. Ниже приведен полный список предопределенных псевдонимов валидаторов, 
+включенных в состав Yii:
 
-   - `captcha`: alias of [CCaptchaValidator], ensuring the attribute is
-equal to the verification code displayed in a
-[CAPTCHA](http://en.wikipedia.org/wiki/Captcha).
+   - `captcha`: псевдоним класса [CCaptchaValidator], который проверяет, чтобы 
+значение атрибута было равно коду верификации на [капче](http://ru.wikipedia.org/wiki/Captcha);
 
-   - `compare`: alias of [CCompareValidator], ensuring the attribute is
-equal to another attribute or constant.
+   - `compare`: псевдоним класса [CCompareValidator], который проверяет, чтобы 
+значение атрибута совпадало со значением другого атрибута или константой;
 
-   - `email`: alias of [CEmailValidator], ensuring the attribute is a
-valid email address.
+   - `email`: псевдоним класса [CEmailValidator], который отвечает за проверку корректности email адреса;
 
-   - `default`: alias of [CDefaultValueValidator], assigning a default value
-to the specified attributes.
+   - `default`: псевдоним класса [CDefaultValueValidator], который присваивает значение 
+по умолчанию выбранным атрибутам;
 
-   - `file`: alias of [CFileValidator], ensuring the attribute contains
-the name of an uploaded file.
+   - `file`: псевдоним класса [CFileValidator], отвечающего за проверку атрибута на 
+наличие в нем имени загруженного файла;
 
-   - `filter`: alias of [CFilterValidator], transforming the attribute
-with a filter.
+   - `filter`: псевдоним класса [CFilterValidator], преобразовывающего 
+атрибут с использованием фильтра;
 
-   - `in`: alias of [CRangeValidator], ensuring the data is among a
-pre-specified list of values.
+   - `in`: псевдоним класса [CRangeValidator], который проверяет, содержатся ли данные в 
+заданном наборе значений;
 
-   - `length`: alias of [CStringValidator], ensuring the length of the
-data is within certain range.
+   - `length`: псевдоним класса [CStringValidator], который проверяет соответствует ли 
+длина данных заданному интервалу;
 
-   - `match`: alias of [CRegularExpressionValidator], ensuring the data
-matches a regular expression.
+   - `match`: псевдоним класса [CRegularExpressionValidator], проверяющего данные 
+на соответствие регулярному выражению;
 
-   - `numerical`: alias of [CNumberValidator], ensuring the data is a
-valid number.
+   - `numerical`: псевдоним класса [CNumberValidator], проверяющего, являются ли 
+данные корректным числовым значением;
 
-   - `required`: alias of [CRequiredValidator], ensuring the attribute is
-not empty.
+   - `required`: псевдоним класса [CRequiredValidator], который проверяет, чтобы 
+значение атрибута не было пустым;
 
-   - `type`: alias of [CTypeValidator], ensuring the attribute is of
-specific data type.
+   - `type`: псевдоним класса [CTypeValidator], проверяющего соответствие атрибута 
+заданному типу данных;
 
-   - `unique`: alias of [CUniqueValidator], ensuring the data is unique in
-a database table column.
+   - `unique`: псевдоним класса [CUniqueValidator], который проверяет, являются ли 
+данные уникальными в пределах поля базы данных;
 
-   - `url`: alias of [CUrlValidator], ensuring the data is a valid URL.
+   - `url`: псевдоним класса [CUrlValidator], отвечающего за проверку корректности URL.
 
-Below we list some examples of using the predefined validators:
+Ниже представлены несколько примеров использования преопределенных валидаторов:
 
 ~~~
 [php]
-// username is required
+// имя пользователя - обязательное поле формы
 array('username', 'required'),
-// username must be between 3 and 12 characters
+// длина имени пользователя должна быть от 3 до 12 символов включительно
 array('username', 'length', 'min'=>3, 'max'=>12),
-// when in register scenario, password must match password2
+// в сценарии регистрации значения полей "password" и "password2" должны быть равны
 array('password', 'compare', 'compareAttribute'=>'password2', 'on'=>'register'),
-// when in login scenario, password must be authenticated
+// в сценарии авторизации поле `password` должно быть проверено на соответствие указанному имени пользователя
 array('password', 'authenticate', 'on'=>'login'),
 ~~~
 
 
-Securing Attribute Assignments
+Безопасное присваивание значений атрибутам
 ------------------------------
 
-> Note: scenario-based attribute assignment has been available since version 1.0.2.
+> Note|Примечание: возможность присвоения значения атрибуту в зависимости от используемого сценария доступна, начиная с версии 1.0.2.
 
-After a model instance is created, we often need to populate its
-attributes with the data submitted by end-users. This can be done
-conveniently using the following massive assignment:
+После того, как создан экземляр модели данных, нам часто требуется заполнить его данными, 
+которые ввел пользователь. Это можно проделать легко и непринужденно, используя массовое присваивание:
 
 ~~~
 [php]
@@ -209,29 +199,25 @@ if(isset($_POST['LoginForm']))
 	$model->setAttributes($_POST['LoginForm'], 'login');
 ~~~
 
-The last statement is a massive assignment which assigns every entry
-in `$_POST['LoginForm']` to the corresponding model attribute in the
-`login` scenario (specified as the second parameter). It is equivalent to
-the following assignments:
+Последнее выражение в примере как раз и является массовым присваиванием, где значение каждой переменной в 
+`$_POST['LoginForm']` присваивается соответствующему атрибуту модели в сценарии `login` (указано вторым параметром).
+Это эквивалентно следующей операции:
 
 ~~~
 [php]
 foreach($_POST['LoginForm'] as $name=>$value)
 {
-	if($name is a safe attribute)
+	if($name является безопасным атрибутом)
 		$model->$name=$value;
 }
 ~~~
 
-The task of deciding whether a data entry is safe or not is based
-the return value of a method named `safeAttributes` and the specified
-scenario. By default, the method returns all public member variables
-as safe attributes for [CFormModel], while it returns all table columns
-except the primary key as safe attributes for [CActiveRecord]. We may
-override this method to limit safe attributes according to scenarios.
-For example, a user model may contain many attributes, but in `login`
-scenario we only need to use `username` and `password` attributes.
-We can specify this limit as follows:
+Безопасность входных данных задается при помощи метода `safeAttributes` и 
+конкретного сценария. По умолчанию метод возвращает как безопасные все публичные переменные-члены 
+для [CFormModel] и все поля таблицы, кроме первичного ключа, - для [CActiveRecord]. Мы можем переопределить 
+этот метод, чтобы ограничить безопасные атрибуты в соответствии с требованиями сценария. Например, модель, описывающая 
+пользователя, может модержать множество различных атрибутов, но в сценарии авторизации, нам требуются 
+только атрибуты `username` и `password`. Обозначить это можно следующим образом:
 
 ~~~
 [php]
@@ -244,35 +230,35 @@ public function safeAttributes()
 }
 ~~~
 
-More accurately, the return value of the `safeAttributes` method should be
-of the following structure:
+Будет аккуратнее, если структуру значения, возвращаемого методом 
+`safeAttributes` оформить так:
 
 ~~~
 [php]
 array(
-   // these attributes can be massively assigned in any scenario
-   // that is not explicitly specified below
+   // эти атрибуты могут быть *массово присвоены* в любом сценарии,
+   // кроме специально обозначенных ниже
    'attr1, attr2, ...',
 	 *
-   // these attributes can be massively assigned only in scenario 1
+   // эти атрибуты можно *присвоить массово* только в сценарии 'scenario1'
    'scenario1' => 'attr2, attr3, ...',
 	 *
-   // these attributes can be massively assigned only in scenario 2
+   // а эти - только в сценарии 'scenario2'
    'scenario2' => 'attr1, attr3, ...',
 )
 ~~~
 
-If the model is not scenario-sensitive (i.e., it is only used
-in one scenario, or all scenarios share the same set of safe attributes),
-the return value can be simplified as a single string:
+Если модель не завязана на сценарии (т.е. используется только в одном сценарии или же 
+все сценарии работают с единым набором безопасных атрибутов), тогда возвращаемое 
+значение можно упростить до одной строки:
 
 ~~~
 [php]
 'attr1, attr2, ...'
 ~~~
 
-For data entries that are not safe, we need to assign them to the corresponding
-attributes using individual assign statements, like the following:
+В случае небезопасных входных данных, мы должны присваивать значения 
+соответствующим атрибутам, используя отдельные операции присваивания, как представлено ниже:
 
 ~~~
 [php]
@@ -281,31 +267,27 @@ $model->id=1;
 ~~~
 
 
-Triggering Validation
+Выполнение проверки
 ---------------------
 
-Once a model is populated with user-submitted data, we can call [CModel::validate()]
-to trigger the data validation process. The method returns a value
-indicating whether the validation is successful or not. For [CActiveRecord] model,
-validation may also be automatically triggered when we call its [CActiveRecord::save()]
-method.
+Как только модель заполнена пользовательскими данным, вызываем метод [CModel::validate()], 
+чтобы запустить процесс проверки. По итогам проверки метод возвращает положительный или отрицательный результат.
+Для модели [CActiveRecord] проверку можно выполнять автоматически в момент вызова метода [CActiveRecord::save()].
 
-When we call [CModel::validate()], we may specify a scenario parameter.
-Only the validation rules that apply to the specified scenario will be
-executed. A validation rule applies to a scenario if the `on` option
-of the rule is not set or contains the specified scenario name. If we do
-not specify the scenario when calling [CModel::validate()], only those
-rules whose `on` option is not set will be executed.
+При вызове метода [CModel::validate()] мы можем указать дополнительным параметром сценарий, 
+и тогда правила проверки будут применяться только при выполнении соответствующего сценария. 
+Правило применяется к сценарию тогда, когда опция `on` правила не установлена или содержит имя этого сценария.
+Если же при вызове [CModel::validate()] сценарий не указывать, то применяться будут только те правила, 
+опция `on` которых не установлена.
 
-For example, we execute the following statement to perform the validation
-when registering a user:
+Например, в момент регистрации пользователя для осуществления проверки мы выполняем следующее действие:
 
 ~~~
 [php]
 $model->validate('register');
 ~~~
 
-We may declare the validation rules in the form model class as follows,
+ Можно указать правила проверки в классе модели формы таким образом:
 
 ~~~
 [php]
@@ -319,33 +301,30 @@ public function rules()
 }
 ~~~
 
-As a result, the first rule will be applied in all scenarios, while the
-next two rules will only be applied in the `register` scenario.
+В результате, первое правило будет распространяться на любые сценарии, а два последующих будут применяться 
+только к сценарию `register`.
 
-> Note: scenario-based validation has been available since version 1.0.1.
+> Note|Примечание: возможность применения правил проверки в зависимости от используемого сценария доступна, начиная с версии 1.0.1.
 
-
-Retrieving Validation Errors
+Информация об ошибках
 ----------------------------
 
-We can use [CModel::hasErrors()] to check if there is any validation
-error, and if yes, we can use [CModel::getErrors()] to obtain the error
-messages. Both methods can be used for all attributes or an individual
-attribute.
+Чтобы узнать, возникли ли во время выполнения проверки какие-либо ошибки, 
+можно воспользоваться методом [CModel::hasErrors()]. И если ошибки действительно есть, 
+то получить их можно с помощью метода [CModel::getErrors()]. Оба метода могут быть 
+использованы как для всех, так и для конкретного атрибута.
 
-Attribute Labels
+Метки атрибутов
 ----------------
 
-When designing a form, we often need to display a label for each input
-field. The label tells a user what kind of information he is expected to
-enter into the field. Although we can hardcode a label in a view, it would
-offer more flexibility and convenience if we specify it in the
-corresponding model.
+Часто при работе с формами для каждого поля требуется отображать его метку. Она 
+подсказывает пользователю, какие данные ему требуется ввести в поле. Мы, конечно, можем 
+задать метки полей в представлении, но, если указать их непосредствено в модели данных, мы 
+выиграем в удобстве и гибкости.
 
-By default, [CModel] will simply return the name of an attribute as its
-label. This can be customized by overriding the
-[attributeLabels()|CModel::attributeLabels] method. As we will see in the
-following subsections, specifying labels in the model allows us to create a
-form more quickly and powerful.
+По умолчанию [CModel] в качестве меток возвращает названия атрибутов. Изменить их можно, если   
+переопределить метод [attributeLabels()|CModel::attributeLabels]. 
+
+Далее мы увидим, что возможность указания меток в модели данных, позволяет быстро создавать сложные формы.
 
 <div class="revision">$Id: form.model.txt 598 2009-01-29 20:19:28Z qiang.xue $</div>
