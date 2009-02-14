@@ -95,8 +95,8 @@ som ägare till all relevant sessionsinformation.
 Det finns åtskilliga motåtgärder för att skydda mot attacker riktade mot cookie.
 
 * En applikation kan använda SSL till att skapa en säker kommunikationskanal och 
-endast skicka autentiseringscookie över en HTTPS-anslutning. Angripare är 
-oförmögna att dechiffrera innehållet i överförda cookie. 
+endast skicka autentiseringscookie över en HTTPS-anslutning. Angripare förhindras 
+att dechiffrera innehållet i överförda cookie. 
 
 * Låt sessioner upphöra efter inaktivitet av lämplig varaktighet, inklusive alla 
 cookie och sessionssymboler (session tokens), för att minska sannolikheten för attacker. 
