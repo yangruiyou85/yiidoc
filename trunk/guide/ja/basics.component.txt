@@ -1,16 +1,18 @@
 コンポーネント
 =========
 
-Yiiアプリケーションは仕様に基づいて書かれたオブジェクトであるコンポーネント
-郡によって成り立っています。コンポーネントは[CComponent]のインスタンスか、
-その元となるクラスです。コンポーネントの使用は大概の場合プロパティや
-イベントの発生、ハンドリングを伴います。規定クラスである[CComponent]
-はどのようにプロパティやイベントの定義を行うかを指定しています。
+Yiiアプリケーションは、仕様に基づいて書かれたオブジェクトである
+コンポーネント郡によって成り立っています。コンポーネントは
+[CComponent]のインスタンスか、その元となるクラスです。
+コンポーネントの使用は大概の場合、プロパティへのアクセスやイベントの発生、
+ハンドリングを伴います。基底クラスである[CComponent]
+は、どのようにプロパティやイベントの定義を行うかを指定しています。
 
 コンポーネント プロパティ
 ------------------
 
-コンポーネントプロパティはオブジェクトのパブリックメンバ変数の様なものです。値を割り当てたり、読み取る事ができます。以下は例です。
+コンポーネントプロパティはオブジェクトのパブリックなメンバ変数
+の様なものです。値を割り当てたり、読み取る事ができます。以下は例です。
 
 ~~~
 [php]
@@ -18,7 +20,9 @@ $width=$component->textWidth;     // textWidthプロパティを取得
 $component->enableCaching=true;   // enableCachingプロパティをセット
 ~~~
 
-コンポーネントプロパティを定義する為には、単純にコンポーネントクラスのパブリックメンバ変数を宣言すれば良いでしょう。もっと柔軟なやり方は、下記の様にゲッターやセッターメソッドを定義する方法です:
+コンポーネントプロパティを定義する為には、単純にコンポーネントクラスの
+パブリックメンバ変数を宣言すれば良いでしょう。もっと柔軟なやり方は、
+下記の様にゲッターやセッターメソッドを定義する方法です:
 
 ~~~
 [php]
@@ -33,22 +37,33 @@ public function setTextWidth($value)
 }
 ~~~
 
-これらのコードは、書き込み可能な`textWidth`プロパティ(この名前の大文字小文字は区別されません）を定義しています。プロパティの値を読み取る際は`getTextWidth()`が呼ばれ、プロパティの値が返されます;同様に、プロパティに書き込む際は`setTextWidth()`が呼ばれます。もしセッターメソッドが未定義の場合、プロパティは読み取りのみが可能となり、書き込みは例外を発生させるでしょう。プロパティの値を決める際に、ゲッター、セッターメソッドを使用する事は、プロパティの読み込みや書き込み時に実行可能なロジック（例えばバリデーションの実行、イベントの発生など）の追加において有益です。
+これらのコードは、書き込み可能な `textWidth` プロパティ
+(この名前の大文字小文字は区別されません）を定義しています。プロパティの値を
+読み取る際は `getTextWidth()` が呼ばれ、プロパティの値が返されます;同様に、
+プロパティに書き込む際は `setTextWidth()` が呼ばれます。もし
+セッターメソッドが未定義の場合、プロパティは読み取りのみが可能となり、
+書き込みは例外を発生させるでしょう。プロパティの値を決める際に、ゲッター、
+セッターメソッドを使用する事は、プロパティの読み込みや書き込み時に
+実行可能なロジック（例えばバリデーションの実行、イベントの発生など）
+の追加において有益です。
 
->Note|注意: セッター/ゲッターメソッドで定義されたプロパティとクラスのメンバ変数には少し違いがあります。前述の名前は、大文字小文字が区別されませんが、後述は大文字小文字が区別されます。
+>Note|注意: セッター/ゲッターメソッドで定義されたプロパティとクラスの
+メンバ変数には少し違いがあります。前述の名前は、大文字小文字が
+区別されませんが、後述は大文字小文字が区別されます。
 
 コンポーネントイベント
 ---------------
 
-Component events are special properties that take methods (called `event
-handlers`) as their values. Attaching (assigning) a method to an event will
-cause the method to be invoked automatically at the places where the event
-is raised. Therefore, the behavior of a component can be modified in a way
-that may not be foreseen during the development of the component.
+コンポーネントイベントは、('event handlers'と呼ばれる)メソッドを
+値として取る特別なプロパティです。メソッドをイベントに結びつける
+（割り当てる）事によって、イベントが発生した場所から自動的にメソッドが
+呼ばれることになります。このように、コンポーネントの振る舞いは、
+コンポーネントの開発時には予期しなかったであろう動作に改造できます。
 
-A component event is defined by defining a method whose name starts with
-`on`. Like property names defined via getter/setter methods, event names are
-case-insensitive. The following code defines an `onClicked` event:
+コンポーネントイベントは、`on` で始まる名前のメソッドを定義する事によって
+定義されます。ゲッター/セッター メソッドによって定義されるプロパティ名と
+同様に、イベント名は、大文字小文字を区別しません。下記のコードは、
+`onClicked`イベントを定義しています:
 
 ~~~
 [php]
@@ -58,21 +73,23 @@ public function onClicked($event)
 }
 ~~~
 
-where `$event` is an instance of [CEvent] or its child class representing
-the event parameter.
+`$event` の箇所はイベントパラメーターを表す [CEvent]のインスタンスか、
+その子クラスです。
 
-We can attach a method to this event as follows:
+下記の様にメソッドとイベントを結びつけることが出来ます:
 
 ~~~
 [php]
 $component->onClicked=$callback;
 ~~~
 
-where `$callback` refers to a valid PHP callback. It can be a global
-function or a class method. If the latter, the callback must be given as an
-array: `array($object,'methodName')`.
+`$callback` の箇所は、PHPのコールバックの正式な書式を参照します。
+グローバル関数か、クラスメソッドを取ることができます。もしクラスメソッド
+であるならば、コールバックは: `array($object,'methodName')` のような配列が
+与えられなければなりません。
 
-The signature of an event handler must be as follows:
+イベントハンドラーのシグネイチャー(指示の書式)は下記の様な書式
+でなければなりません:
 
 ~~~
 [php]
@@ -82,18 +99,18 @@ function methodName($event)
 }
 ~~~
 
-where `$event` is the parameter describing the event (it originates from
-the `raiseEvent()` call). The `$event` parameter is an instance of [CEvent] or
-its derived class. At the minimum, it contains the information about who
-raises the event.
+`$event` の箇所は(`raiseEvent()`のコールによって生じる)イベントを表す
+パラメーターです。`$event`パラメーターは[CEvent]のインスタンスか、
+その元になるクラスです。これには誰がイベントを発生させたかの情報が
+最低限含まれることになります。
 
-If we call `onClicked()` now, the `onClicked` event will be raised (inside
-`onClicked()`), and the attached event handler will be invoked
-automatically.
+もし今 `onClicked()` をコールしたとすると、`onClicked` イベントが
+（`onClicked()`の中で)発生し、結びついたイベントが自動的に
+呼び出されるでしょう。
 
-An event can be attached with multiple handlers. When the event is raised,
-the handlers will be invoked in the order that they are attached to the event.
-If a handler decides to prevent the rest handlers from being invoked, it can set
-[$event->handled|CEvent::handled] to be true.
+イベントは複数のハンドラに結びつける事ができます。イベントが発生した際、
+ハンドラはイベントに結び付けられた順番で呼び出されます。もし、
+あるハンドラが、残りのハンドラが呼び出される事を防ごうとする場合、
+[$event->handled|CEvent::handled]を true にセットする事が出来ます。
 
 <div class="revision">$Id: basics.component.txt 416 2008-12-28 05:28:11Z qiang.xue $</div>
