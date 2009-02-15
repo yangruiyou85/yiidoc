@@ -5,7 +5,7 @@
 
 * Conceitos Básicos
     - [Modelo-Visão-Controle (MVC)](basics.mvc)
-    - [Scripts de Entrada](basics.entry)
+    - [O Script de Entrada](basics.entry)
     - [Aplicação](basics.application)
     - [Controle](basics.controller)
     - [Modelo](basics.model)
