@@ -214,7 +214,7 @@ o código necessário para as operações do tipo CRUD.
 >
 > onde `caminho/para/php.ini` representa o arquivo PHP.ini correto.
 
-Vamos ver nossa primeira aplicação navegando na seguinte URL:
+Podemos ver nossa primeira aplicação pela seguinte URL:
 
 ~~~
 http://hostname/testdrive/index.php?r=user
