@@ -4,7 +4,7 @@
 Yiiアプリケーションは仕様に基づいて書かれたオブジェクトであるコンポーネント
 郡によって成り立っています。コンポーネントは[CComponent]のインスタンスか、
 その元となるクラスです。コンポーネントの使用は大概の場合プロパティや
-イベントのライジング、ハンドリングを伴います。規定クラスである[CComponent]
+イベントの発生、ハンドリングを伴います。規定クラスである[CComponent]
 はどのようにプロパティやイベントの定義を行うかを指定しています。
 
 コンポーネント プロパティ
@@ -33,20 +33,11 @@ public function setTextWidth($value)
 }
 ~~~
 
-The above code defines a writable property named `textWidth` (the name is
-case-insensitive). When reading the property, `getTextWidth()` is  invoked
-and its returned value becomes the property value; Similarly, when writing
-the property, `setTextWidth()` is invoked. If the setter method is not
-defined, the property would be read-only and writing it would throw an
-exception. Using getter and setter methods to define a property has the
-benefit that additional logic (e.g. performing validation, raising events)
-can be executed when reading and writing the property.
+これらのコードは、書き込み可能な`textWidth`プロパティ(この名前の大文字小文字は区別されません）を定義しています。プロパティの値を読み取る際は`getTextWidth()`が呼ばれ、プロパティの値が返されます;同様に、プロパティに書き込む際は`setTextWidth()`が呼ばれます。もしセッターメソッドが未定義の場合、プロパティは読み取りのみが可能となり、書き込みは例外を発生させるでしょう。プロパティの値を決める際に、ゲッター、セッターメソッドを使用する事は、プロパティの読み込みや書き込み時に実行可能なロジック（例えばバリデーションの実行、イベントの発生など）の追加において有益です。
 
->Note: There is a slight difference between a property defined via getter/setter
-methods and a class member variable. The name of the former
-is case-insensitive while the latter is case-sensitive.
+>Note|注意: セッター/ゲッターメソッドで定義されたプロパティとクラスのメンバ変数には少し違いがあります。前述の名前は、大文字小文字が区別されませんが、後述は大文字小文字が区別されます。
 
-Component Event
+コンポーネントイベント
 ---------------
 
 Component events are special properties that take methods (called `event
