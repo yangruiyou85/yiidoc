@@ -1,142 +1,155 @@
-Conventions
+取り決め
 ===========
 
-Yii favors conventions over configurations. Follow the conventions and one
-can create sophisticated Yii applications without writing and managing
-complex configurations. Of course, Yii can still be customized in nearly
-every aspect with configurations when needed.
+Yiiは構成上での取り決めを支持します。取り決めを守る事で、
+複雑な構成管理をコーディングする事なく洗練されたYiiアプリケーションを
+作成できます。もちろんYiiは、必要であればほぼ全ての局面を構成し直す事で、
+カスタマイズ可能なままです。
 
-Below we describe conventions that are recommended for Yii programming.
-For convenience, we assume that `WebRoot` is the directory that an Yii
-application is installed at.
+下記ではYiiプログラミングで推奨される取り決めを述べます。
+ここでは利便性の為、Yiiアプリケーションのインストールされている位置を
+ `WebRoot` として扱います。
 
 URL
 ---
 
-By default, Yii recognizes URLs with the following format:
+デフォルトでは、YiiはURLを下記のフォーマットで認識します:
 
 ~~~
 http://hostname/index.php?r=ControllerID/ActionID
 ~~~
 
-The `r` GET variable refers to the
-[route](/doc/guide/basics.controller#route) that can be resolved by Yii
-into controller and action. If `ActionID` is omitted, the controller will
-take the default action (defined via [CController::defaultAction]); and if
-`ControllerID` is also omitted (or the `r` variable is absent), the
-application will use the default controller (defined via
-[CWebApplication::defaultController]).
+GET変数 `r` は[route](/doc/guide/basics.controller#route) を参照し、
+Yiiによってコントローラとアクションに解決されます。もし`ActionID` 
+が省略された場合、コントローラはデフォルトアクション
+([CController::defaultAction]で定義されたもの)を使用します:
+そして、もし`ControllerID` も省略された場合(または `r` の変数が無い場合)、
+アプリケーションは([CWebApplication::defaultController]で定義された)
+デフォルトのコントローラを使用します。
 
-With the help of [CUrlManager], it is possible to create and recognize
-more SEO-friendly URLs, such as
-`http://hostname/ControllerID/ActionID.html`. This feature is covered in
-detail in [URL Management](/doc/guide/topics.url).
+[CUrlManager]の助けによって、`http://hostname/ControllerID/ActionID.html`
+の様な、よりSEOフレンドリーなURLを作成することが可能です。この機能は
+[URL Management](/doc/guide/topics.url)によって細かい部分まで
+カバーされています。
 
-Code
+コード
 ----
 
-Yii recommends naming variables, functions and class types in camel case
-which capitalizes each word in the name and joins them without spaces.
-Variable and function names should have their first word all in lower-case,
-in order to differentiate from class names (e.g. `$basePath`,
-`runController()`, `LinkPager`). For private class member variables, it is
-recommended to prefix their names with an underscore character (e.g.
-`$_actionList`).
+Yiiは変数名、関数名、クラス名に、単語の先頭を大文字に変換し
+空白を除いて連結したキャメルケースで命名する事を推奨します。
+変数名と関数名の最初の単語の先頭は、クラス名と区別をつけるために
+小文字で始めて（例えば`$basePath`,`runController()`,
+ `LinkPager`の様にして）下さい。プライベートなクラスメンバ変数は
+アンダースコアを前置詞に使用する（例えば`$_actionList`の様にする）
+事が推奨されています。
 
-Because namespace is not supported prior to PHP 5.3.0, it is recommended
-that classes be named in some unique way to avoid name conflict with
-third-party classes. For this reason, all Yii framework classes are
-prefixed with letter "C".
+名前空間がPHP 5.3.0よりも前のバーションではサポートされていないので、
+サードパーティのクラス名と衝突を避ける為に、独自の命名方法を用いる事が
+推奨されます。この理由によって、Yiiフレームワークでは"C"という文字を
+前置詞として用いています。
 
-A special rule for controller class names is that they must be appended
-with the word `Controller`. The controller ID is then defined as the class
-name with first letter in lower case and the word `Controller` truncated.
-For example, the `PageController` class will have the ID `page`. This rule
-makes the application more secure. It also makes the URLs related with
-controllers a bit cleaner (e.g. `/index.php?r=page/index` instead of
-`/index.php?r=PageController/index`).
+コントローラ名の特別な規則として、`Controller` という単語を語尾に
+追加しなければなりません。コントローラIDは、クラス名の先頭を小文字にし、
+`Controller` の部分を取り除いたものとして定義されます。例えば
+ `PageController` というクラスがあった場合、 `page` 
+というIDを持つことになります。このルールはアプリケーションをより
+安全にします。そして、このコントローラに結びついたURLを少し綺麗に
+(例えば`/index.php?r=PageController/index` の代わりに
+ `/index.php?r=page/index` の様に）します。
 
-Configuration
+設定
 -------------
 
-A configuration is an array of key-value pairs. Each key represents the
-name of a property of the object to be configured, and each value the
-corresponding property's initial value. For example, `array('name'=>'My
-application', 'basePath'=>'./protected')` initializes the `name` and
-`basePath` properties to their corresponding array values.
+設定項目はキーとバリューが対になった配列です。それぞれのキーは設定される
+オブジェクトのプロパティの名前を表し、それぞれの値は結びついたプロパティ
+の初期値です。例えば`array('name'=>'My application',
+ 'basePath'=>'./protected')` は `name` と `basePath` プロパティ
+を結びついた配列の値で初期化します。 
 
-Any writable properties of an object can be configured. If not configured,
-the properties will take their default values. When configuring a property,
-it is worthwhile to read the corresponding documentation so that the
-initial value can be given properly.
+オブジェクトのすべての書き込み可能なプロパティが設定可能です。
+もし何も設定しない場合は、プロパティはその初期値を用います。
+もしプロパティを設定する場合はドキュメントを読むことでプロパティ
+に与えられた初期値が分かるので有益です。
 
-File
+ファイル
 ----
 
-Conventions for naming and using files depend on their types.
+タイプに応じたファイル名の取り決め。
 
-Class files should be named after the public class they contain. For
-example, the [CController] class is in the `CController.php` file.  A
-public class is a class that may be used by any other classes. Each class
-file should contain at most one public class. Private classes (classes that
-are only used by a single public class) may reside in the same file with
-the public class.
+クラスファイルは、それが含むパブリッククラスに従った名前を
+付けなければいけません。例えば、 [CController] クラスが入るのは
+ `CController.php` ファイルになります。パブリッククラスとは
+他のクラスから利用されるであろうクラスです。それぞれのクラスファイル
+は一つまでしかパブリッククラスを含んではいけません。プライベートクラス
+（一つのパブリッククラスによってのみ利用されるクラス）はパブリッククラス
+と同じファイルに入れる事が出来ます。
 
-View files should be named after the view name. For example, the `index`
-view is in the `index.php` file. A view file is a PHP script file that
-contains HTML and PHP code mainly for presentational purpose.
+ビューファイルはビュー名に従って名づけられなければいけません。
+例えば、`index` ビューは `index.php` ファイルの中に入ります。
+ビューファイルは主に表示の目的で、HTMLとPHPコードを含んだ
+PHPスクリプトファイルとなります。
 
-Configuration files can be named arbitrarily. A configuration file is a
-PHP script whose sole purpose is to return an associative array
-representing the configuration.
+設定ファイルは自由に名づけることが出来ます。一つの設定ファイルは、
+設定の為の連想配列を返す事を目的としたPHPスクリプトです。
 
-Directory
+ディレクトリ
 ---------
 
-Yii assumes a default set of directories used for various purposes. Each
-of them can be customized if needed.
+Yiiはデフォルトのディレクトリのセットが様々な目的で利用されることを
+仮定しています。それぞれのディレクトリは、もし必要ならば
+カスタマイズする事が可能です。
 
-   - `WebRoot/protected`: this is the [application base
-directory](/doc/guide/basics.application#application-base-directory) holding all
-security-sensitive PHP scripts and data files. Yii has a default alias
-named `application` associated with this path. This directory and
-everything under should be protected from being accessed by Web users. It
-can be customized via [CWebApplication::basePath].
+   - `WebRoot/protected`: このディレクトリは
+アプリケーションベースディレクトリ
+ [application base directory](/doc/guide/basics.application#application-base-directory)
+で、全てのセキュリティセンシティブなPHPスクリプトとデータファイル
+を保有しています。Yiiはデフォルトでこのパスに結びついた
+ `application` というエイリアスを持っています。このディレクトリと、
+配下の物はウェブユーザからのアクセスに対して守られていなければなりません。
+このディレクトリは [CWebApplication::basePath] によってカスタマイズ
+可能です。
 
-   - `WebRoot/protected/runtime`: this directory holds private temporary
-files generated during runtime of the application. This directory must be
-writable by Web server process. It can be customized via
-[CApplication::runtimePath].
+   - `WebRoot/protected/runtime`: このディレクトリはアプリケーションの
+実行時に作成されたプライベートな一時ファイルを保有します。
+このディレクトリはウェブサーバのプロセスから
+書き込み可能でなければなりません。このディレクトリは 
+[CApplication::runtimePath] によってカスタマイズ可能です。
 
-   - `WebRoot/protected/extensions`: this directory holds all third-party
-extensions. It can be customized via [CApplication::extensionPath].
+   - `WebRoot/protected/extensions`: このディレクトリは全ての
+サードパーティ製の拡張ファイルを保有します。
+[CApplication::extensionPath]によってカスタマイズ可能です。
 
-   - `WebRoot/protected/controllers`: this directory holds all controller
-class files. It can be customized via [CWebApplication::controllerPath].
+   - `WebRoot/protected/controllers`: このディレクトリはコントローラ
+のクラスファイルを保有します。[CWebApplication::controllerPath] によって
+カスタマイズ可能です。
 
-   - `WebRoot/protected/views`: this directory holds all view files,
-including controller views, layout views and system views. It can be
-customized via [CWebApplication::viewPath].
+   - `WebRoot/protected/views`: このディレクトリは、コントローラビュー、
+レイアウトビュー、システムビューを含む全てのビューファイルを保有します。
+[CWebApplication::viewPath] によってカスタマイズ可能です。
 
-   - `WebRoot/protected/views/ControllerID`: this directory holds view
-files for a single controller class. Here `ControllerID` stands for the ID
-of the controller. It can be customized via [CController::getViewPath].
+   - `WebRoot/protected/views/ControllerID`: このディレクトリは
+シングルコントローラクラスのビューファイルを保有します。ここでの
+`ControllerID` はコントローラのIDを意味します。[CController::getViewPath]
+ によってカスタマイズ可能です。
 
-   - `WebRoot/protected/views/layouts`: this directory holds all layout
-view files. It can be customized via [CWebApplication::layoutPath].
+   - `WebRoot/protected/views/layouts`: このディレクトリは全てのレイアウト
+ビューファイルを保有します。[CWebApplication::layoutPath] によって
+カスタマイズ可能です。
 
-   - `WebRoot/protected/views/system`: this directory holds all system
-view files. System views are templates used in displaying exceptions and
-errors. It can be customized via [CWebApplication::systemViewPath].
+   - `WebRoot/protected/views/system`: このディレクトリは全ての
+システムビューファイルを保有します。システムビューは例外やエラーを
+表示する時に使用されるテンプレートです。[CWebApplication::systemViewPath]
+ によってカスタマイズ可能です。
 
-   - `WebRoot/assets`: this directory holds published asset files. An
-asset file is a private file that may be published to become accessible to
-Web users. This directory must be writable by Web server process. It can be
-customized via [CAssetManager::basePath].
+   - `WebRoot/assets`: このディレクトリは発行されたアセットファイル
+を保有します。アセットファイルは、おそらくウェブユーザからアクセス
+出来るよう発行されているプライベートファイルです。このディレクトリは
+ウェブサーバのプロセスから書き込み可能でなければなりません。
+[CAssetManager::basePath] によってカスタマイズ可能です。
 
-   - `WebRoot/themes`: this directory holds various themes that can be
-applied to the application. Each subdirectory represents a single theme
-whose name is the subdirectory name. It can be customized via
-[CThemeManager::basePath].
+   - `WebRoot/themes`: このディレクトリはアプリケーションに
+適用可能な様々なテーマを保有しています。それぞれのサブディレクトリが、
+ディレクトリ名と同じ名前を持った一つのテーマを表しています。
+[CThemeManager::basePath] によってカスタマイズ可能です。
 
 <div class="revision">$Id: basics.convention.txt 170 2008-11-06 20:33:35Z qiang.xue $</div>
