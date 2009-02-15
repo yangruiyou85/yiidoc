@@ -13,9 +13,9 @@ PHPのwarningやnotice、キャッチされない例外が発生した場合は�
 
 > Tip|ヒント: エラーハンドラーは、アプリケーションのコンストラクタでPHP
 ファンクションである
-[set_exception_handler](http://www.php.net/manual/en/function.set-exception-handler.php)
+[set_exception_handler](http://www.php.net/manual/jp/function.set-exception-handler.php)
 と
-[set_error_handler](http://www.php.net/manual/en/function.set-error-handler.php)
+[set_error_handler](http://www.php.net/manual/jp/function.set-error-handler.php)
 によって
 登録されます。もし不要な場合は、[entry script](/doc/guide/basics.entry)で
 `YII_ENABLE_ERROR_HANDLER`と`YII_ENABLE_EXCEPTION_HANDLER`の定数をfalse
@@ -48,61 +48,64 @@ Yiiは二つの例外クラスを定義しています。[CException] と [CHttp
 [statusCode|CHttpException::statusCode] プロパティを持っています。
 例外クラスは次章で述べるように、例外を表示するかどうかを決定します。
 
-> Tip|ヒント: [CHttpException]における例外の発生はユーザの入力ミスを報告するのに
-シンプルな方法です。例えば、もしユーザが不正なpost IDのURLを要求した場合、
-以下のように404error (page not found) をシンプルに表示させることが出来ます:
+> Tip|ヒント: [CHttpException]における例外の発生はユーザの入力ミスを
+報告するのにシンプルな方法です。例えば、もしユーザが不正なpost IDのURLを
+要求した場合、以下のように404error (page not found) をシンプルに表示する
+事が出来ます:
 ~~~
 [php]
 // もし要求されたpost IDが不正な場合
 throw new CHttpException(404,'The specified post cannot be found.');
 ~~~
 
-Displaying Errors
+エラーの表示
 -----------------
 
-When an error is forwarded to the [CErrorHandler] application component,
-it chooses an appropriate view to display the error. If the error is meant
-to be displayed to end users, such as a [CHttpException], it will use a
-view named `errorXXX`, where `XXX` stands for the HTTP status code (e.g.
-400, 404, 500). If the error is an internal one and should only be
-displayed to developers, it will use a view named `exception`. In the
-latter case, complete call stack as well as the error line information will
-be displayed.
+エラーの処理が [CErrorHandler] アプリケーションコンポーネントまで
+流れてくると、エラーを表示する為に相応しい ビュー が選ばれます。
+もしエラーが[CHttpException]のように、エンドユーザーへ表示するタイプの
+ものだった場合、`errorXXX` といった様な名前の ビュー が使用され、この
+`XXX` の部分はHTTPステータスコード(例えば400, 404, 500など)を表します。
+もしエラーが内部的なもので、開発者にのみ表示するべきものであった場合、
+`exeptions` という名前のビューが使用されます。その場合は、エラーの
+起きている行番号をや完全なコールスタック(ファイルの階層情報など)が
+表示されます。
 
-> Info: When the application runs in [production
-mode](/doc/guide/basics.entry#debug-mode), all errors including those internal
-ones will be displayed using view `errorXXX`. This is because the call
-stack of an error may contain sensitive information. In this case,
-developers should rely on the error logs to determine what is the real
-cause of an error.
+> Info|情報: アプリケーションが[production
+mode](/doc/guide/basics.entry#debug-mode)で実行された時、内部的なエラーを
+含む全てのエラーは `errorXXX` という view を使用して表示されます。
+こうなっているのは、エラーのコールスタックが機密に関わる情報を含む可能性が
+ある為です。このモードでは、開発者はエラーの真の原因を究明する為に、
+エラーログに頼ることになるでしょう。
 
-[CErrorHandler] searches for the view file corresponding to a view in the
-following order:
+[CErrorHandler] は下記の順序で対応する view ファイルを探します:
 
-   1. `WebRoot/themes/ThemeName/views/system`: this is the `system` view
-directory under the currently active theme.
+   1. `WebRoot/themes/ThemeName/views/system`: これは
+現在アクティブになっているテーマの中の `system` ビューディレクトリです。
 
-   2. `WebRoot/protected/views/system`: this is the default `system` view
-directory for an application.
+   2. `WebRoot/protected/views/system`: これはアプリケーションの
+デフォルトの `system` ビューディレクトリです。
 
-   3. `yii/framework/views`: this is the standard system view directory
-provided by the Yii framework.
+   3. `yii/framework/views`: これはYiiフレームワークによって供給される
+標準のシステムビューディレクトリです。
 
-Therefore, if we want to customize the error display, we can simply create
-error view files under the system view directory of our application or
-theme. Each view file is a normal PHP script consisting of mainly HTML
-code. For more details, please refer to the default view files under the
-framework's `view` directory.
+したがって、もしエラーの表示をカスタマイズしたい場合は、アプリケーションか
+テーマのシステムビューディレクトリーにエラービューファイルを作成する事で
+容易に実現可能です。それぞれのビューファイルは、大部分がHTMLコードで
+成り立った通常のPHPスクリプトです。詳細はframeworkの`view`ディレクトリの
+デフォルトのビューファイルを参考にして下さい。
 
-Message Logging
+メッセージのログ処理
 ---------------
 
-A message of level `error` will always be logged when an error occurs. If
-the error is caused by a PHP warning or notice, the message will be logged
-with category `php`; if the error is caused by an uncaught exception, the
-category would be `exception.ExceptionClassName` (for [CHttpException] its
-[statusCode|CHttpException::statusCode] will also be appended to the
-category). One can thus exploit the [logging](/doc/guide/topics.logging)
-feature to monitor errors happened during application execution.
+エラーが発生した際、`error` レベルのメッセージは常に記録されます。
+もしPHP warningかnoticeによってエラーが発生した場合、メッセージは
+カテゴリー `php` と共に記録されます。もしエラーが
+キャッチされていない例外として発生した際、カテゴリーは
+`exception.ExceptionClassName`の様になるでしょう。
+([CHttpException]における[statusCode|CHttpException::statusCode] もまた
+カテゴリーに追加されるでしょう。) 
+このようにアプリケーションの実行の間に起きるエラーをモニターする為の
+[logging](/doc/guide/topics.logging)機能を利用することが出来ます。
 
 <div class="revision">$Id: topics.error.txt 170 2008-11-06 20:33:35Z qiang.xue $</div>
