@@ -1,68 +1,71 @@
 パスエイリアスと名前空間
 ========================
 
-Yii uses path aliases extensively. A path alias is associated with a
-directory or file path. It is specified in dot syntax, similar to that of
-widely adopted namespace format:
+Yiiは広範囲に渡るパスエイリアスを使用します。パスエイリアスは、特定の
+ディレクトリ、またはファイルパスと結びつけられます。これは、広範囲に
+採用されている名前空間のフォーマットに似たドットシンタックスによって
+表されます:
 
 ~~~
 RootAlias.path.to.target
 ~~~
 
-where `RootAlias` is the alias of some existing directory. Yii predefines
-two aliases: `system` and `application`. The former is the alias of the Yii
-framework directory, while the latter is the alias of the application's
-`protected` directory. We can call [YiiBase::setPathOfAlias()] to define
-new path aliases (including root aliases).
+`RootAlias`の部分は現存するディレクトリへのエイリアスです。Yiiは二つの
+エイリアスをあらかじめ定義しています: `system` と `application` です。
+`system` はYiiフレームワークのディレクトリへのエイリアスで、`application`
+ はアプリケーションの `protected` ディレクトリへのエイリアスです。新しい
+パスエイリアス(ルートエイリアスを含む)を定義するために、
+[YiiBase::setPathOfAlias()]をコールする事が出来ます。
 
-By using [YiiBase::getPathOfAlias()], an alias can be translated to its
-corresponding path. For example, `system.web.CController` would be
-translated as `yii/framework/web/CController`.
+[YiiBase::getPathOfAlias()]を使用する事によって、結びついたパスへエイリアス
+を変換することができます。例えば、`system.web.CController` は
+ `yii/framework/web/CController` の様に変換されます。
 
-Using aliases, it is very convenient to import the definition of a class.
-For example, if we want to include the definition of the [CController]
-class, we can call the following:
+エイリアスを使用する事によって、クラスの定義をインポートする事が
+大変便利になります。例えば、[CController]の定義をインクルードしたい時、
+下記の様にコールする事が出来ます:
 
 ~~~
 [php]
 Yii::import('system.web.CController');
 ~~~
 
-The [import|YiiBase::import] method differs from `include` and `require`
-in that it is more efficient. The class definition being imported is
-actually not included until it is referenced for the first time. Importing
-the same namespace multiple times is also much faster than `include_once`
-and `require_once`.
+[import|YiiBase::import] メソッドはより効率的という点で `include` や
+ `require` とは違います。インポートされるクラスの定義は、厳密には、
+それが始めて参照されるときまでインクルードされません。同じ名前空間が
+何度もインポートされる場合においても、`include_onde` や `require_once`
+ よりも断然早いのです。
 
-> Tip: When referring to a class defined by the Yii framework, we do not
-need to import or include it. All core Yii classes are pre-imported.
+> Tip|ヒント: Yiiフレームワークで定義されたクラスを参照する場合、
+インポートやインクルードを行う必要はありません。Yiiの全てのコアクラスは、
+あらかじめインポートされています。
 
-We can also use the following syntax to import a whole directory so that
-the class files under the directory can be automatically included when
-needed.
+下記のシンタックスによって、ディレクトリ配下のクラスファイルが、必要な時に
+自動的にインクルードされるように、ディレクトリ全体をインポート
+する事が出来ます。
 
 ~~~
 [php]
 Yii::import('system.web.*');
 ~~~
 
-Besides [import|YiiBase::import], aliases are also used in many other
-places to refer to classes. For example, an alias can be passed to
-[Yii::createComponent()] to create an instance of the corresponding class,
-even if the class file was not included previously.
+ [import|YiiBase::import]の他にも、エイリアスはクラスを参照する為に、
+様々な箇所で使用されます。例えば、もしクラスファイルが予めインクルード
+されていない場合でも、クラスに結びついたインスタンスを作成する為に、
+エイリアスを[Yii::createComponent()] に渡すことが出来ます。
 
-Do not confuse path alias with namespace. A namespace refers to a logical
-grouping of some class names so that they can be differentiated from other
-class names even if their names are the same, while path alias is used to
-refer to a class file or directory. Path alias does not conflict with
-namespace.
+名前空間とパスエイリアスで混乱しないで下さい。パスエイリアスは
+クラスファイルかディレクトリーの参照に使用され、名前空間は、
+クラス名の論理的なグループを参照する事によって、たとえクラス名が同じでも、
+他の名前空間のものとは別に識別する為のものです。
 
-> Tip: Because PHP prior to 5.3.0 does not support namespace
-intrinsically, you cannot create instances of two classes who have the same
-name but with different definitions. For this reason, all Yii framework
-classes are prefixed with a letter 'C' (meaning 'class') so that they can
-be differentiated from user-defined classes. It is recommended that the
-prefix 'C' be reserved for Yii framework use only, and user-defined classes
-be prefixed with other letters.
+> Tip|ヒント: PHP 5.3.0よりも以前のバージョンでは名前空間のサポートが
+本質的に無いので、同じ名前のクラスのインスタンスを作成することが
+出来ない為、異なる定義を行う必要があります。この理由によって、
+全てのYiiフレームワークのクラスは、前置詞として'C'('class'を意味します)
+を付随させていて、この事によって、ユーザが定義したクラスと識別が
+出来るようになっています。前置詞'C'はYiiフレームワークの使用の為に
+リザーブしておき、ユーザ定義によるクラスの前置詞には別の文字列を
+使用して下さい。
 
 <div class="revision">$Id: basics.namespace.txt 169 2008-11-06 19:43:44Z qiang.xue $</div>
