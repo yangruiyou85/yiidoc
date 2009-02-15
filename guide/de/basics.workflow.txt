@@ -41,7 +41,7 @@ benötigt wird.
    8. Erstellen von Übersetzungen, falls
 [Internationalisierung](/doc/guide/topics.i18n) erforderlich ist.
 
-   9. Ausfindig machen von Daten und Views, die gecached werden können und
+   9. Ausfindig machen von Daten und Views, die gecacht werden können und
 Anwenden geeigneter [Cache](/doc/guide/caching.overview)-Techniken.
 
    10. Abschließende [Leistungsoptimierung](/doc/guide/topics.performance) und

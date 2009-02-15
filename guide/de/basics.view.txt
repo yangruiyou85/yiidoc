@@ -63,7 +63,7 @@ Widget
 ------
 
 Ein Widget (engl., sinngem. "Dings") ist eine Instanz vom Typ [CWidget] oder
-dessen Kindklassen. Es handelt sich um eine Komponente, die im wesentlichen für
+dessen Kindklassen. Es handelt sich um eine Komponente, die im Wesentlichen für
 Präsentationszwecke verwendet wird. Widgets werden für gewöhnlich in ein View-Script
 eingebettet, um einen komplexeren, jedoch in sich geschlossen Teil der
 Anwenderoberfläche zu erzeugen. Zum Beispiel kann man ein Kalender-Widget 

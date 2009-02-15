@@ -31,7 +31,7 @@
 * Caching
     - [Übersicht](caching.overview)
     - [Cachen von Daten](caching.data)
-    - [Cachen von Fragmenten](caching.fragment)
+    - [Cachen von Seitenabschnitten](caching.fragment)
     - [Cachen von Seiten](caching.page)
     - [Dynamische Inhalte](caching.dynamic)
 

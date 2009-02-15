@@ -14,7 +14,7 @@ und rufen [set()|CCache::set] auf, um sie zu speichern:
 Yii::app()->cache->set($id, $value);
 ~~~
 
-Die gecacheten Daten verbleiben für immer im Cache, ausser sie werden aufgrund
+Die gecachten Daten verbleiben für immer im Cache, ausser sie werden aufgrund
 bestimmter Cache-Richtlinien entfernt (z.B. wenn die ältesten Cache-Daten
 gelöscht werden, weil der Cache-Speicherplatz voll ist). Um dieses Verhalten
 zu verändern, können wir beim Aufruf von [set()|CCache::set] einen weiteren
@@ -48,10 +48,10 @@ eindeutige ID wählen. Es ist allerdings NICHT nötig, dass die ID auch zwischen
 unterschiedlichen Applikationen eindeutig ist. Die Cache-Komponente ist 
 intelligent genug, um zwischen IDs von unterschiedlichen Anwendungen zu unterscheiden.
 
-Rufen Sie [delete()|CCache::delete] auf, um einen gecacheten Eintrag aus dem
+Rufen Sie [delete()|CCache::delete] auf, um einen gecachten Eintrag aus dem
 Cache zu entfernen, bzw. [flush()|CCache::flush] um den Cache komplett zu
 leeren. Seien Sie beim Aufruf von [flush()|CCache::flush] jedoch vorsichtig,
-da damit auch alle gecacheten Einträge von anderen Applikationen aus dem Cache 
+da damit auch alle gecachten Einträge von anderen Applikationen aus dem Cache 
 entfernt werden.
 
 > Tip|Tipp: Da [CCache] das Interface `ArrayAccess` implementiert, kann eine
@@ -66,10 +66,10 @@ entfernt werden.
 Cachen mit Abhängigkeit
 -----------------------
 
-Die Gültigkeit gecacheter Einträge kann neben einer gesetzten Verfallszeit auch 
+Die Gültigkeit gecachter Einträge kann neben einer gesetzten Verfallszeit auch 
 von bestimmten Änderungen abhängig gemacht werden. Wenn wir zum
 Beispiel den Inhalt einer Datei cachen und diese Datei verändert wird, sollten
-wir die gecachete Kopie für ungültig erklären und statt des gecacheten
+wir die gecachte Kopie für ungültig erklären und statt des gecachten
 Eintrags, den aktualisierten Inhalt der Datei einlesen.
 
 Eine Abhängigkeit (engl. "dependency") wird durch eine Instanz vom Typ 
