@@ -1,0 +1,34 @@
+Überblick
+=========
+
+Yii zu erweitern ist ein normaler Vorgang während der Entwicklung. Wenn Sie
+zum Beispiel einen neuen Controller schreiben, erweitern Sie Yii, indem sie
+von seiner [CController]-Klasse ableiten. Wenn Sie ein neues Widget schreiben,
+erweitern Sie [CWidget] oder eine andere verfügbare Widget-Klasse. Wenn der
+erweiterte Code so geschrieben wurde, dass er auch von Dritten weiterverwendet
+werden kann, sprechen wir von einer *Erweiterung* (engl. "extension").
+
+Eine Erweiterung dient normalerweise einem bestimmten Zweck. In Yii-Begriffen
+kann sie wie folgt klassifiziert werden:
+
+ * [Applikations-Komponente](/doc/guide/basics.application#application-component)
+ * [Widget](/doc/guide/basics.view#widget)
+ * [Controller](/doc/guide/basics.controller)
+ * [Action](/doc/guide/basics.controller#action)
+ * [Filter](/doc/guide/basics.controller#filter)
+ * [Konsohlenbefehl](/doc/guide/topics.console)
+ * Validator: Ein Validator ist eine von [CValidator] abgeleitete Komponente.
+ * Helper: Ein Helper (engl., "Helfer") ist eine Klasse, die nur statische
+Methoden enthält. Sie sind wie globale Funktionen, die den Klassennamen als
+Namespace verwenden.
+ * Modul: Ein Modul ist ein Paket aus mehreren Klassendateien und 
+entsprechenden Asset-Dateien. Ein Modul zielt oft auf fortgeschrittenere
+Funktionen auf höherer Ebene ab, als eine einzelne Komponente. Zum Beispiel
+wäre ein Modul denkbar, das eine Benutzerverwaltung bereitstellt.
+
+Eine Erweiterung kann auch eine Komponente sein, die in keine der genannten
+Kategorien fällt. Tatsächlich ist Yii ist so konzipiert, dass fast sein gesamter
+Code erweitert oder angepasst werden kann, um individuellen Bedürfnissen
+gerecht zu werden.
+
+<div class="revision">$Id$</div>
