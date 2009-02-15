@@ -1,4 +1,4 @@
-URL管理
+URLの取り扱い
 ============
 
 Webアプリケーションの包括的なURLの取り扱いには2つの側面があります。1つ目は
@@ -9,7 +9,7 @@ Webアプリケーションの包括的なURLの取り扱いには2つの側面�
 URLの作り方
 -------------
 
-ULRはコントローラービューの中に直接コーディングしてしまう事も出来ますが、
+URLはコントローラービューの中に直接コーディングしてしまう事も出来ますが、
 次の様に動的な書き方をすることで融通が利く場合が多いでしょう:
 
 ~~~
@@ -18,7 +18,7 @@ $url=$this->createUrl($route,$params);
 ~~~
 
 `$this`はコントローラのインスタンス;
-`$route`はリクエストの[ルート](/doc/guide/basics.controller#route)
+`$route`はリクエストの[route](/doc/guide/basics.controller#route)
 そして`$param`はURLに付加される`GET`パラメーターです。
 
 デフォルトでは、[createUrl|CController::createUrl] によって作成されるURLは
@@ -30,7 +30,7 @@ $url=$this->createUrl($route,$params);
 ~~~
 
 GETクエリの書式は`パラメータ名=値`の一組を&で繋げた形になっていて、
- `r=` の部分はリクエストされた [ルート]
+ `r=` の部分はリクエストされた [route]
 (/doc/guide/basics.controller#route) を示しています。このURLの書式は
 いくつかの言葉ではない文字を含んでいる為、あまりユーザーフレンドリーとは
 言えないでしょう。
@@ -103,7 +103,7 @@ rulesはパターン-ルートの組み合わせから成る配列によって�
 デリミタ(区切り文字)とモデファイア（修飾子のオプション)を取り除いた形の
 正規表現パターンでなければなりません。このパターンは、パスインフォに
 マッチさせる為に使われます。そして、
-[ルート](/doc/guide/basics.controller#route) は正しいコントローラのルート
+[route](/doc/guide/basics.controller#route) は正しいコントローラのルート
 を示していなければなりません。
 
 一つ一つのruleは、いくつかのGETパラメータと結びつける事が出来ます。
@@ -138,7 +138,7 @@ array(
 
    - `$this->createUrl('post/read', array('year'=>2008, 'title'=>'a 
 sample post'))` をコールした場合、3番目のルールが適用される事になり 
-`/index.php/post/a%20sample%20post` が作成されます。
+`/index.php/post/2008/a%20sample%20post` が作成されます。
 
    - `$this->createUrl('post/read')`をコールした場合、どのルールも適用
 されないので `/index.php/post/read` が作成されます。
