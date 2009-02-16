@@ -35,10 +35,10 @@
     - [ページキャッシュ](caching.page)
     - [動的なページ](caching.dynamic)
 
-* Yiiの拡張
+* Yiiのエクステンション
     - [概要](extension.overview)
-    - [拡張を使う](extension.use)
-    - [拡張を開発する](extension.create)
+    - [エクステンションを使う](extension.use)
+    - [エクステンションを作成する](extension.create)
     - [サードパーティライブラリを使う](extension.integration)
 
 * その他のトピック
