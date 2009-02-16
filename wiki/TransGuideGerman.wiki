@@ -67,6 +67,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * Cache (bzw. Caching), _der_
  * Callback, _der_
  * Client, _der_
+ * Constraints (Plural) _die_
  * Controller, _der_
  * Debug, _das_ debuggen, _der_ Debug-Modus
  * Event, _das_
