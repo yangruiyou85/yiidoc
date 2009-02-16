@@ -1,18 +1,31 @@
 モデルの作成
 ==============
 
-フォームに必要なHTMLコードを書く前に、エンドユーザから、どの様なタイプのデータが送られてくる事を期待するか、どの様なルールが適用されるべきかを決定します。モデルクラスはこれらの情報を記録するために使用することができます。モデルはサブセクション [Model](/doc/guide/basics.model) で定義されているように、ユーザの入力を保持し、入力チェックを行う中心的な場所です。
+フォームに必要なHTMLコードを書く前に、エンドユーザから、どの様なタイプの
+データが送られてくる事を期待するか、どの様なルールが適用されるべきかを
+決定します。モデルクラスはこれらの情報を記録するために
+使用することができます。モデルはサブセクション
+ [Model](/doc/guide/basics.model) で定義されているように、
+ユーザの入力を保持し、入力チェックを行う中心的な場所です。
 
-ユーザの入力をどのように扱うかによって、2つのタイプのモデルを作成することができます。もしユーザの入力が収集され、使用された後に破棄される場合は、 [form model](/doc/guide/basics.model) を作成しましょう;もしユーザの入力が収集され、データベースへ保存される場合は代わりに [active
-record](/doc/guide/database.ar) を使いましょう。両方のモデルは共通のインターフェースとして定義された [CModel] という規定クラスを必要とします。
+ユーザの入力をどのように扱うかによって、2つのタイプのモデルを
+作成することができます。もしユーザの入力が収集され、
+使用された後に破棄される場合は、 [form model](/doc/guide/basics.model)
+ を作成しましょう;もしユーザの入力が収集され、データベースへ保存される場合
+は代わりに [active record](/doc/guide/database.ar) を使いましょう。
+両方のモデルは共通のインターフェースとして定義された [CModel]
+ という規定クラスを必要とします。
 
-> Note|注意: このセクションでは例として form model を主に扱いますが、[active
-record](/doc/guide/database.ar) においても同様なことが可能です。
+> Note|注意: このセクションでは例として form model を主に扱いますが、
+[active record](/doc/guide/database.ar) においても同様なことが可能です。
 
 モデルクラスの定義
 --------------------
 
-以下では、ログインページでユーザの入力を収集する為に使用される `LoginForm` モデルクラスを作成します。ログインで扱う情報は認証時にのみ必要で、保存される必要はありませんので、`LoginForm` のモデルは form model として作成します。
+以下では、ログインページでユーザの入力を収集する為に使用される
+ `LoginForm` モデルクラスを作成します。ログインで扱う情報は
+認証時にのみ必要で、保存される必要はありませんので、`LoginForm` 
+のモデルは form model として作成します。
 
 ~~~
 [php]
@@ -24,14 +37,26 @@ class LoginForm extends CFormModel
 }
 ~~~
 
-３つの属性が `LoginForm` の中で宣言されています: `$username`、`$password`、そして `$rememberMe`です。これらはユーザの入力したユーザ名とパスワード、そして、ユーザがログイン情報を保存するかどうかのオプションを保持する為に用いられます。`$rememberMe` は、デフォルトで `false` になっているので、ログインフォームに表示される結びついたオプションは、初期状態ではチェックされてない状態となります。
+３つの属性が `LoginForm` の中で宣言されています: `$username`、`$password`、
+そして `$rememberMe`です。これらはユーザの入力したユーザ名とパスワード、
+そして、ユーザがログイン情報を保存するかどうかのオプションを保持する為に
+用いられます。`$rememberMe` は、デフォルトで `false` になっているので、
+ログインフォームに表示される結びついたオプションは、初期状態では
+チェックされてない状態となります。
 
-> Info|情報: ここでは、これらのメンバ変数を、普通のプロパティと区別する為に、プロパティと呼ばずに *属性* (attribute) と呼びます。属性は主に、ユーザの入力やデータベースのデータを保持する為に用いられるプロパティです。
+> Info|情報: ここでは、これらのメンバ変数を普通のプロパティと区別する為に、
+プロパティと呼ばずに *属性* (attribute) と呼びます。属性は主に、
+ユーザの入力やデータベースのデータを保持する為に用いられるプロパティです。
 
 バリデーションルールの宣言
 --------------------------
 
-ユーザがインプットを送信し、モデルが値を受け取った際、私たちはその値を使用する前に正しい値であるか検証する必要があります。これはインプットに対して、セットになったルールのバリデーション（検証）を実行する事によって成し遂げられます。バリデーションルールは `rules()` メソッドの中で定義し、このメソッドはルールの構成を配列として返さなければいけません。
+ユーザがインプットを送信し、モデルが値を受け取った際、私たちは
+その値を使用する前に正しい値であるか検証する必要があります。
+これはインプットに対して、セットになったルールのバリデーション（検証）
+を実行する事によって成し遂げられます。バリデーションルールは `rules()` 
+メソッドの中で定義し、このメソッドはルールの構成を配列として
+返さなければいけません。
 
 ~~~
 [php]
@@ -66,18 +91,29 @@ class LoginForm extends CFormModel
 }
 ~~~
 
-上記のコードは `username` と `password` の両方が必須であり、`password` は認証に掛けられなければならない事を示しています。
+上記のコードは `username` と `password` の両方が必須であり、`password` 
+は認証に掛けられなければならない事を示しています。
 
-`rules()` によって返される、それぞれのルールは下記の様なフォーマットでなければなりません:
+`rules()` によって返される、それぞれのルールは下記の様なフォーマット
+でなければなりません:
 
 ~~~
 [php]
 array('AttributeList', 'Validator', 'on'=>'ScenarioList', ...additional options)
 ~~~
 
-`AttributeList` の箇所は、ルールによって検証されなければならない属性(attribute)の名前がカンマ区切りの文字列として入ります; `Validator` はどのようなバリデーションが適用されなければならないかを示しています; `on` パラメータはオプションで、ルールが適用されるシナリオのリストを示しています; そして追加のオプション(additional option)の箇所は 名前-値 のペアで、結びついたバリデータのプロパティの値を初期化する為に使用されます。
+`AttributeList` の箇所は、ルールによって検証されなければならない属性
+(attribute)の名前がカンマ区切りの文字列として入ります; `Validator` 
+はどのようなバリデーションが適用されなければならないかを示しています;
+ `on` パラメータはオプションで、ルールが適用されるシナリオのリスト
+を示しています; そして追加のオプション(additional option)の箇所は
+名前-値 のペアで、結びついたバリデータのプロパティの値を初期化する為に
+使用されます。
 
-バリデーションルールの中で `Validator` を指定するには３つの方法があります。ひとつ目に、上記の `authenticate` の例の様に、`Validator` はモデルクラスの中のメソッド名を取る事ができます。バリデータメソッドは下記の様な書式でなければなりません:
+バリデーションルールの中で `Validator` を指定するには３つの方法があります。
+ひとつ目に、上記の `authenticate` の例の様に、`Validator` はモデルクラス
+の中のメソッド名を取る事ができます。バリデータメソッドは下記の様な書式
+でなければなりません:
 
 ~~~
 [php]
@@ -88,38 +124,64 @@ array('AttributeList', 'Validator', 'on'=>'ScenarioList', ...additional options)
 public function ValidatorName($attribute,$params) { ... }
 ~~~
 
-二つ目に、`Validator` はバリデータクラスの名前にする事ができます。ルールが適用されたとき、バリデータクラスのインスタンスが作成され、実際の検証が行われます。追加のオプションの値は、インスタンスの属性の値を初期化する為に用いられます。バリデータクラスは [CValidator] を継承しなければいけません。
+二つ目に、`Validator` はバリデータクラスの名前にする事ができます。
+ルールが適用されたとき、バリデータクラスのインスタンスが作成され、
+実際の検証が行われます。追加のオプションの値は、インスタンスの属性の値を
+初期化する為に用いられます。バリデータクラスは [CValidator]
+ を継承しなければいけません。
 
-> Note|注意: アクティブレコードモデルでルールを定義する場合、`on` という名前の特別なオプションを使用する事ができます。このオプションは `'insert'` か `'update'` のどちらかにする事が可能で、レコードのインサートの時のみにルールが適用されるか、アップデートの時のみにルールが適用されるかをそれぞれ指定することが出来ます。もしセットされていない場合、ルールは `save()` がコールされた時に両方のケースで適用されます。
+> Note|注意: アクティブレコードモデルでルールを定義する場合、`on` 
+という名前の特別なオプションを使用する事ができます。このオプションは
+ `'insert'` か `'update'` のどちらかにする事が可能で、レコードのインサート
+の時のみにルールが適用されるか、アップデートの時のみにルールが
+適用されるかをそれぞれ指定することが出来ます。もしセットされていない場合、
+ルールは `save()` がコールされた時に両方のケースで適用されます。
 
-三つ目に、`Validator` は予め定義されたバリデータクラスのエイリアスを用いる事が出来ます。上記の例にあるように、`required` は [CRangeValidator] のエイリアスで、これは属性の値が、空の値では無いと検証された事を保証します。下記は予め定義されたバリデータのエイリアスの完全なリストです:
+三つ目に、`Validator` は予め定義されたバリデータクラスの
+エイリアスを用いる事が出来ます。上記の例にあるように、`required` は
+ [CRangeValidator] のエイリアスで、これは属性の値が、空の値では無い
+と検証された事を保証します。下記は予め定義されたバリデータの
+エイリアスの完全なリストです:
 
    - `captcha`: [CCaptchaValidator] のエイリアスで、属性の値が
-　[CAPTCHA](http://en.wikipedia.org/wiki/Captcha)で表示されたベリフィケーションコードと等しい事を確認します。
+　[CAPTCHA](http://en.wikipedia.org/wiki/Captcha)で表示された
+ベリフィケーションコードと等しい事を確認します。
 
-   - `compare`: [CCompareValidator] のエイリアスで、 属性の値が、もう一つの属性、または定数と等しい事を確認します。
+   - `compare`: [CCompareValidator] のエイリアスで、 属性の値が、
+もう一つの属性、または定数と等しい事を確認します。
 
-   - `email`: [CEmailValidator] のエイリアスで、属性の値が正式なEメールアドレスである事を確認します。
+   - `email`: [CEmailValidator] のエイリアスで、属性の値が正式な
+Eメールアドレスである事を確認します。
 
-   - `file`: [CFileValidator] のエイリアスで、属性の値にアップロードされたファイルの名前が入っている事を確認します。
+   - `file`: [CFileValidator] のエイリアスで、属性の値にアップロード
+されたファイルの名前が入っている事を確認します。
 
-   - `filter`: [CFilterValidator] のエイリアスで、 属性の値をフィルタによって変形します。
+   - `filter`: [CFilterValidator] のエイリアスで、 属性の値を
+フィルタによって変形します。
 
-   - `in`: [CRangeValidator] のエイリアスで、属性の値が、予め定めた値のリストの中にある事を確認します。
+   - `in`: [CRangeValidator] のエイリアスで、属性の値が、
+予め定めた値のリストの中にある事を確認します。
 
-   - `length`: [CStringValidator] のエイリアスで、データの長さが特定の範囲内にある事を確認します。
+   - `length`: [CStringValidator] のエイリアスで、
+データの長さが特定の範囲内にある事を確認します。
 
-   - `match`: [CRegularExpressionValidator] のエイリアスで、データが正規表現にマッチする事を確認します。
+   - `match`: [CRegularExpressionValidator] のエイリアスで、
+データが正規表現にマッチする事を確認します。
 
-   - `numerical`: [CNumberValidator] のエイリアスで、データが数値として妥当であるかを確認します。
+   - `numerical`: [CNumberValidator] のエイリアスで、
+データが数値として妥当であるかを確認します。
 
-   - `required`: [CRequiredValidator] のエイリアスで、属性が空でない事を確認します。
+   - `required`: [CRequiredValidator] のエイリアスで、
+属性が空でない事を確認します。
 
-   - `type`: [CTypeValidator] のエイリアスでデータが特定の型である事を確認します。
+   - `type`: [CTypeValidator] のエイリアスでデータが
+特定の型である事を確認します。
 
-   - `unique`: [CUniqueValidator] のエイリアスで、データがデータベースのテーブルのカラムで一意な値である事を確認します。
+   - `unique`: [CUniqueValidator] のエイリアスで、データが
+データベースのテーブルのカラムで一意な値である事を確認します。
 
-   - `url`: [CUrlValidator] のエイリアスで、データが妥当なURLである事を確認します。
+   - `url`: [CUrlValidator] のエイリアスで、データが妥当なURLである事
+を確認します。
 
 下記は予め定義されたバリデータを使用した例のリストです:
 
@@ -136,9 +198,18 @@ array('age', 'numeric', 'integerOnly'=>true, 'min'=>0)
 バリデーションの始動
 ---------------------
 
-バリデーションを始動する為に、[CModel::validate()] をコールする事が出来ます。このメソッドは、一つのエラーも起こらずに、バリデーションが成功したかどうかを示す値を返します。アクティブレコードモデルでは、モデルをデータベースに保存する為に、 [save()|CActiveRecord::save] をコールした時点で、バリデーションは自動的に動作します。
+バリデーションを始動する為に、[CModel::validate()] をコールする事
+が出来ます。このメソッドは、一つのエラーも起こらずに、バリデーションが
+成功したかどうかを示す値を返します。アクティブレコードモデルでは、
+モデルをデータベースに保存する為に、 [save()|CActiveRecord::save] 
+をコールした時点で、バリデーションは自動的に動作します。
 
-デフォルトでは、[validate()|CModel::validate] をコールした時、[rules()|CModel::rules] で指定された全ての属性が検証されます。いくつかの状況において、一部の属性だけを検証したい場合があるでしょう。そのようにする場合は、検証したい属性の名前群を [validate()|CModel::validate] をコールする時の最初のパラメータとして渡す事で、下記の様に実現可能です:
+デフォルトでは、[validate()|CModel::validate] をコールした時、
+[rules()|CModel::rules] で指定された全ての属性が検証されます。
+いくつかの状況において、一部の属性だけを検証したい場合があるでしょう。
+そのようにする場合は、検証したい属性の名前群を 
+[validate()|CModel::validate] をコールする時の最初のパラメータ
+として渡す事で、下記の様に実現可能です:
 
 ~~~
 [php]
@@ -149,30 +220,33 @@ $model->validate(array('username','password'));
 シナリオベースバリデーション
 -------------------------
 
-> Note|注意: シナリオベースバリデーションはバージョン1.0.1.から利用可能になりました
+> Note|注意: シナリオベースバリデーションはバージョン1.0.1.から
+利用可能になりました
 
-It is often needed that a model be used in different scenarios. For example,
-a user model may be used in `login`, 'register`, `insert` or `update` scenarios.
-Different scenario may require different validation rules. We call this
-scenario-based validation.
+モデルを異なるシナリオの中で使用する事が必要となる場合が度々あります。
+例えば、ユーザモデルなら `login` , `register` , `insert` または `update` 
+シナリオで使用されるでしょう。異なるシナリオは異なるバリデーションルール
+を必要とするでしょう。これをシナリオベースバリデーションと呼びます。
 
-Scenario-based validation can be achieved by using the `on` parameter mentioned
-in the [Declaring Validation Rules](#declaring-validation-rules) section.
-In particular, if a validation rule should only be applied in certain scenarios,
-we would assign to its `on` parameter with the list of the scenario names.
-And then, when we call [validate()|CModel::validate] to perform the validation,
-we will specify the second parameter as the needed scenario name.
+シナリオベースバリデーションは、
+[Declaring Validation Rules](#declaring-validation-rules) 
+セクションで述べられている `on` パラメータを使用する事で成し遂げられます。
+特に私たちは、バリデーションルールが特定のシナリオだけに
+適用されなければならない場合に、シナリオ名のリストと共に `on` 
+パラメータを付与するでしょう。そしてその時、バリデーションを実行する為に、
+[validate()|CModel::validate] をコールし、二つ目のパラメータを必要とされる
+シナリオの名前にするのです。
 
-For example, we execute the following statement to perform the validation
-when registering a user:
+例えば、ユーザの登録時にバリデーションを行う為に、下記のステートメントを
+実行します:
 
 ~~~
 [php]
 $model->validate(array('username','password','password_repeat'), 'register');
 ~~~
 
-Because the validation is done in the `register` scenario, we would need
-the following rules:
+`register` シナリオの中でバリデーションが行われる為、下記のルールが
+必要になるでしょう:
 
 ~~~
 [php]
@@ -186,31 +260,30 @@ public function rules()
 }
 ~~~
 
-As a result, the first rule will be applied in all scenarios, while the
-next two rules will only be applied in the `register` scenario.
+結果として、最初のルールは全てのシナリオに適用され、次の二つのルールは
+ `register` シナリオの場合にのみ適用される事になるでしょう。
 
 
-Retrieving Validation Errors
+バリデーションエラーの回収
 ----------------------------
 
-We can use [CModel::hasErrors()] to check if there is any validation
-error, and if yes, we can use [CModel::getErrors()] to obtain the error
-messages. Both methods can be used for all attributes or an individual
-attribute.
+バリデーションエラーがあるかどうかをチェックする為に [CModel::hasErrors()]
+ を使用する事ができ、もしエラーがある場合、エラーメッセージ獲得の為に 
+[CModel::getErrors()] を使用する事ができます。メソッドは両方とも、
+個別の属性か全ての属性に対して使用する事が出来ます。
 
-Attribute Labels
+属性のラベル
 ----------------
 
-When designing a form, we often need to display a label for each input
-field. The label tells a user what kind of information he is expected to
-enter into the field. Although we can hardcode a label in a view, it would
-offer more flexibility and convenience if we specify it in the
-corresponding model.
+フォームをデザインする時、それぞれのインプットフィールドにラベルの表示
+が必要となる事が度々あります。ラベルはユーザに、どの様な種類の情報を
+フィールドに入力するかを伝えます。ビューの中にラベルを直接書き込む事も可能
+ですが、結びついたモデルの中で定めた方がより柔軟で便利なことが多いでしょう。
 
-By default, [CModel] will simply return the name of an attribute as its
-label. This can be customized by overriding the
-[attributeLabels()|CModel::attributeLabels] method. As we will see in the
-following subsections, specifying labels in the model allows us to create a
-form more quickly and powerful.
+デフォルトでは、[CModel] は単純に属性の名前をラベルとして返します。
+これは [attributeLabels()|CModel::attributeLabels] メソッドを
+オーバーライドする事でカスタマイズ可能です。次のサブセクション
+に見るように、モデルの中でのラベルの定義は、より早く、
+力強いフォームの作成を私達にもたらします。
 
 <div class="revision">$Id: form.model.txt 367 2008-12-16 20:18:30Z qiang.xue $</div>
