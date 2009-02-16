@@ -1,29 +1,18 @@
-Creating Model
+モデルの作成
 ==============
 
-Before writing the HTML code needed by a form, we should decide what kind
-of data we are expecting from end users and what rules these data should
-comply with. A model class can be used to record these information. A
-model, as defined in the [Model](/doc/guide/basics.model) subsection, is
-the central place for keeping user inputs and validating them.
+フォームに必要なHTMLコードを書く前に、エンドユーザから、どの様なタイプのデータが送られてくる事を期待するか、どの様なルールが適用されるべきかを決定します。モデルクラスはこれらの情報を記録するために使用することができます。モデルはサブセクション [Model](/doc/guide/basics.model) で定義されているように、ユーザの入力を保持し、入力チェックを行う中心的な場所です。
 
-Depending on how we make use of the user input, we can create two types of
-model. If the user input is collected, used and then discarded, we would
-create a [form model](/doc/guide/basics.model); if the user input is
-collected and saved into database, we would use an [active
-record](/doc/guide/database.ar) instead. Both types of model share the same
-base class [CModel] which defines the common interface needed by form.
+ユーザの入力をどのように扱うかによって、2つのタイプのモデルを作成することができます。もしユーザの入力が収集され、使用された後に破棄される場合は、 [form model](/doc/guide/basics.model) を作成しましょう;もしユーザの入力が収集され、データベースへ保存される場合は代わりに [active
+record](/doc/guide/database.ar) を使いましょう。両方のモデルは共通のインターフェースとして定義された [CModel] という規定クラスを必要とします。
 
-> Note: We are mainly using form models in the examples of this section.
-However, the same can also be applied to [active
-record](/doc/guide/database.ar) models.
+> Note|注意: このセクションでは例として form model を主に扱いますが、[active
+record](/doc/guide/database.ar) においても同様なことが可能です。
 
-Defining Model Class
+モデルクラスの定義
 --------------------
 
-Below we create a `LoginForm` model class used to collect user input on a
-login page. Because the login information is only used to authenticate the
-user and does not need to be saved, we create `LoginForm` as a form model.
+以下では、ログインページでユーザの入力を収集する為に使用される `LoginForm` モデルクラスを作成します。ログインで扱う情報は認証時にのみ必要で、保存される必要はありませんので、`LoginForm` のモデルは form model として作成します。
 
 ~~~
 [php]
@@ -35,25 +24,14 @@ class LoginForm extends CFormModel
 }
 ~~~
 
-Three attributes are declared in `LoginForm`: `$username`, `$password` and
-`$rememberMe`. They are used to keep the user-entered username and
-password, and the option whether the user wants to remember his login.
-Because `$rememberMe` has a default value `false`, the corresponding option
-when initially displayed in the login form will be unchecked.
+３つの属性が `LoginForm` の中で宣言されています: `$username`、`$password`、そして `$rememberMe`です。これらはユーザの入力したユーザ名とパスワード、そして、ユーザがログイン情報を保存するかどうかのオプションを保持する為に用いられます。`$rememberMe` は、デフォルトで `false` になっているので、ログインフォームに表示される結びついたオプションは、初期状態ではチェックされてない状態となります。
 
-> Info: Instead of calling these member variables properties, we use the
-name *attributes* to differentiate them from normal properties. An
-attribute is a property that is mainly used to store data coming from user
-input or database.
+> Info|情報: ここでは、これらのメンバ変数を、普通のプロパティと区別する為に、プロパティと呼ばずに *属性* (attribute) と呼びます。属性は主に、ユーザの入力やデータベースのデータを保持する為に用いられるプロパティです。
 
-Declaring Validation Rules
+バリデーションルールの宣言
 --------------------------
 
-Once a user submits his inputs and the model gets populated, we need to
-make sure the inputs are valid before using them. This is done by
-performing validation of the inputs against a set of rules. We specify the
-validation rules in the `rules()` method which should return an array of
-rule configurations.
+ユーザがインプットを送信し、モデルが値を受け取った際、私たちはその値を使用する前に正しい値であるか検証する必要があります。これはインプットに対して、セットになったルールのバリデーション（検証）を実行する事によって成し遂げられます。バリデーションルールは `rules()` メソッドの中で定義し、このメソッドはルールの構成を配列として返さなければいけません。
 
 ~~~
 [php]
@@ -73,7 +51,7 @@ class LoginForm extends CFormModel
 
 	public function authenticate($attribute,$params)
 	{
-		if(!$this->hasErrors())  // we only want to authenticate when no input errors
+		if(!$this->hasErrors())  // インプットエラーが無い場合にのみ認証を行います
 		{
 			$identity=new UserIdentity($this->username,$this->password);
 			if($identity->authenticate())
@@ -88,27 +66,18 @@ class LoginForm extends CFormModel
 }
 ~~~
 
-The above code specifies that `username` and `password` are both required,
-and `password` should be authenticated.
+上記のコードは `username` と `password` の両方が必須であり、`password` は認証に掛けられなければならない事を示しています。
 
-Each rule returned by `rules()` must be of the following format:
+`rules()` によって返される、それぞれのルールは下記の様なフォーマットでなければなりません:
 
 ~~~
 [php]
 array('AttributeList', 'Validator', 'on'=>'ScenarioList', ...additional options)
 ~~~
 
-where `AttributeList` is a string of comma-separated attribute names which
-need to be validated according to the rule; `Validator` specifies what kind of
-validation should be performed; the `on` parameter is optional which specifies
-a list of scenarios where the rule should be applied; and additional options
-are name-value pairs which are used to initialize the corresponding validator's
-property values.
+`AttributeList` の箇所は、ルールによって検証されなければならない属性(attribute)の名前がカンマ区切りの文字列として入ります; `Validator` はどのようなバリデーションが適用されなければならないかを示しています; `on` パラメータはオプションで、ルールが適用されるシナリオのリストを示しています; そして追加のオプション(additional option)の箇所は 名前-値 のペアで、結びついたバリデータのプロパティの値を初期化する為に使用されます。
 
-There are three ways to specify `Validator` in a validation rule. First,
-`Validator` can be the name of a method in the model class, like
-`authenticate` in the above example. The validator method must be of the
-following signature:
+バリデーションルールの中で `Validator` を指定するには３つの方法があります。ひとつ目に、上記の `authenticate` の例の様に、`Validator` はモデルクラスの中のメソッド名を取る事ができます。バリデータメソッドは下記の様な書式でなければなりません:
 
 ~~~
 [php]
@@ -119,87 +88,57 @@ following signature:
 public function ValidatorName($attribute,$params) { ... }
 ~~~
 
-Second, `Validator` can be the name of a validator class. When the rule is
-applied, an instance of the validator class will be created to perform the
-actual validation. The additional options in the rule are used to
-initialize the instance's attribute values. A validator class must extend
-from [CValidator].
+二つ目に、`Validator` はバリデータクラスの名前にする事ができます。ルールが適用されたとき、バリデータクラスのインスタンスが作成され、実際の検証が行われます。追加のオプションの値は、インスタンスの属性の値を初期化する為に用いられます。バリデータクラスは [CValidator] を継承しなければいけません。
 
-> Note: When specifying rules for an active record model, we can use a
-special option named `on`. The option can be either `'insert'` or
-`'update'` so that the rule is applied only when inserting or updating the
-record, respectively. If not set, the rule would be applied in both cases
-when `save()` is called.
+> Notet|注意: アクティブレコードモデルでルールを定義する場合、`on` という名前の特別なオプションを使用する事ができます。このオプションは `'insert'` か `'update'` のどちらかにする事が可能で、レコードのインサートの時のみにルールが適用されるか、アップデートの時のみにルールが適用されるかをそれぞれ指定することが出来ます。もしセットされていない場合、ルールは `save()` がコールされた時に両方のケースで適用されます。
 
-Third, `Validator` can be a predefined alias to a validator class. In the
-above example, the name `required` is the alias to [CRequiredValidator]
-which ensures the attribute value being validated is not empty. Below is
-the complete list of predefined validator aliases:
+三つ目に、`Validator` は予め定義されたバリデータクラスのエイリアスを用いる事が出来ます。上記の例にあるように、`required` は [CRangeValidator] のエイリアスで、これは属性の値が、空の値では無いと検証された事を保証します。下記は予め定義されたバリデータのエイリアスの完全なリストです:
 
-   - `captcha`: alias of [CCaptchaValidator], ensuring the attribute is
-equal to the verification code displayed in a
-[CAPTCHA](http://en.wikipedia.org/wiki/Captcha).
+   - `captcha`: [CCaptchaValidator] のエイリアスで、属性の値が
+　[CAPTCHA](http://en.wikipedia.org/wiki/Captcha)で表示されたベリフィケーションコードと等しい事を確認します。
 
-   - `compare`: alias of [CCompareValidator], ensuring the attribute is
-equal to another attribute or constant.
+   - `compare`: [CCompareValidator] のエイリアスで、 属性の値が、もう一つの属性、または定数と等しい事を確認します。
 
-   - `email`: alias of [CEmailValidator], ensuring the attribute is a
-valid email address.
+   - `email`: [CEmailValidator] のエイリアスで、属性の値が正式なEメールアドレスである事を確認します。
 
-   - `file`: alias of [CFileValidator], ensuring the attribute contains
-the name of an uploaded file.
+   - `file`: [CFileValidator] のエイリアスで、属性の値にアップロードされたファイルの名前が入っている事を確認します。
 
-   - `filter`: alias of [CFilterValidator], transforming the attribute
-with a filter.
+   - `filter`: [CFilterValidator] のエイリアスで、 属性の値をフィルタによって変形します。
 
-   - `in`: alias of [CRangeValidator], ensuring the data is among a
-pre-specified list of values.
+   - `in`: [CRangeValidator] のエイリアスで、属性の値が、予め定めた値のリストの中にある事を確認します。
 
-   - `length`: alias of [CStringValidator], ensuring the length of the
-data is within certain range.
+   - `length`: [CStringValidator] のエイリアスで、データの長さが特定の範囲内にある事を確認します。
 
-   - `match`: alias of [CRegularExpressionValidator], ensuring the data
-matches a regular expression.
+   - `match`: [CRegularExpressionValidator] のエイリアスで、データが正規表現にマッチする事を確認します。
 
-   - `numerical`: alias of [CNumberValidator], ensuring the data is a
-valid number.
+   - `numerical`: [CNumberValidator] のエイリアスで、データが数値として妥当であるかを確認します。
 
-   - `required`: alias of [CRequiredValidator], ensuring the attribute is
-not empty.
+   - `required`: [CRequiredValidator] のエイリアスで、属性が空でない事を確認します。
 
-   - `type`: alias of [CTypeValidator], ensuring the attribute is of
-specific data type.
+   - `type`: [CTypeValidator] のエイリアスでデータが特定の型である事を確認します。
 
-   - `unique`: alias of [CUniqueValidator], ensuring the data is unique in
-a database table column.
+   - `unique`: [CUniqueValidator] のエイリアスで、データがデータベースのテーブルのカラムで一意な値である事を確認します。
 
-   - `url`: alias of [CUrlValidator], ensuring the data is a valid URL.
+   - `url`: [CUrlValidator] のエイリアスで、データが妥当なURLである事を確認します。
 
-Below we list some examples of using the predefined validators:
+下記は予め定義されたバリデータを使用した例のリストです:
 
 ~~~
 [php]
-// ensure password attribute is the same as password2 attribute
+// 属性 password が、属性 password2 と同じである事を確認します。
 array('password', 'compare', 'compareAttribute'=>'password2')
-// ensure username's length is between 3 and 12
+// username の長さが3から12の間である事を確認します。
 array('username', 'length', 'min'=>3, 'max'=>12)
-// ensure age is a non-negative integer
+// age が負の整数では無い事を確認します。
 array('age', 'numeric', 'integerOnly'=>true, 'min'=>0)
 ~~~
 
-Triggering Validation
+バリデーションの始動
 ---------------------
 
-To trigger validation, we can call [CModel::validate()]. The method
-returns a value indicating whether the validation is successful without any
-error. For active record model, when we call [save()|CActiveRecord::save]
-to save the model to database, validation will be automatically performed.
+バリデーションを始動する為に、[CModel::validate()] をコールする事が出来ます。このメソッドは、一つのエラーも起こらずに、バリデーションが成功したかどうかを示す値を返します。アクティブレコードモデルでは、モデルをデータベースに保存する為に、 [save()|CActiveRecord::save] をコールした時点で、バリデーションは自動的に動作します。
 
-By default, when we call [validate()|CModel::validate], all attributes
-specified in [rules()|CModel::rules] will be validated. Sometimes we may
-only want to validate part of those attributes. To do so, we can pass
-the names of the attributes to be validated as the first parameter of the
-[validate()|CModel::validate] call, like the following:
+デフォルトでは、[validate()|CModel::validate] をコールした時、[rules()|CModel::rules] で指定された全ての属性が検証されます。いくつかの状況において、一部の属性だけを検証したい場合があるでしょう。そのようにする場合は、検証したい属性の名前群を [validate()|CModel::validate] をコールする時の最初のパラメータとして渡す事で、下記の様に実現可能です:
 
 ~~~
 [php]
@@ -207,10 +146,10 @@ $model->validate(array('username','password'));
 ~~~
 
 
-Scenario-based Validation
+シナリオベースバリデーション
 -------------------------
 
-> Note: scenario-based validation has been available since version 1.0.1.
+> Note|注意: シナリオベースバリデーションはバージョン1.0.1.から利用可能になりました
 
 It is often needed that a model be used in different scenarios. For example,
 a user model may be used in `login`, 'register`, `insert` or `update` scenarios.
