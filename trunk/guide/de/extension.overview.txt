@@ -1,7 +1,7 @@
-Überblick
+Übersicht
 =========
 
-Yii zu erweitern ist ein normaler Vorgang während der Entwicklung. Wenn Sie
+Während der Entwicklung ist es ganz normal, dass Sie Yii zu erweitern. Wenn Sie
 zum Beispiel einen neuen Controller schreiben, erweitern Sie Yii, indem sie
 von seiner [CController]-Klasse ableiten. Wenn Sie ein neues Widget schreiben,
 erweitern Sie [CWidget] oder eine andere verfügbare Widget-Klasse. Wenn der

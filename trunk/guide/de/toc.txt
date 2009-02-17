@@ -37,8 +37,8 @@
 
 * Yii erweitern
     - [Übersicht](extension.overview)
-    - [Extensions verwenden](extension.use)
-    - [Extensions erstellen](extension.create)
+    - [Erweiterungen verwenden](extension.use)
+    - [Erweiterungen erstellen](extension.create)
     - [Andere Bibliotheken verwenden](extension.integration)
 
 * Spezialthemen
