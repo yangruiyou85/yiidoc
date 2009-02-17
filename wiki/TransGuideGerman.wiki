@@ -34,6 +34,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
 ==== Übersetzbare Fachbegriffe ====
  
  * application base directory - Stammverzeichnis der Anwendung
+ * application component - Komponente, Anwendungskomponente, Applikationskomponente
  * attribute - Attribut (OOP: Eigenschaften von Model-Klassen)
  * base class - Basisklasse (OOP)
  * bootstrap file - Startdatei
