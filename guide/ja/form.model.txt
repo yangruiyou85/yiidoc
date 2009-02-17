@@ -14,7 +14,7 @@
  を作成しましょう;もしユーザの入力が収集され、データベースへ保存される場合
 は代わりに [active record](/doc/guide/database.ar) を使いましょう。
 両方のモデルは共通のインターフェースとして定義された [CModel]
- という規定クラスを必要とします。
+ という基底クラスを必要とします。
 
 > Note|注意: このセクションでは例として form model を主に扱いますが、
 [active record](/doc/guide/database.ar) においても同様なことが可能です。
@@ -139,7 +139,7 @@ public function ValidatorName($attribute,$params) { ... }
 
 三つ目に、`Validator` は予め定義されたバリデータクラスの
 エイリアスを用いる事が出来ます。上記の例にあるように、`required` は
- [CRangeValidator] のエイリアスで、これは属性の値が、空の値では無い
+ [CRequiredValidator] のエイリアスで、これは属性の値が、空の値では無い
 と検証された事を保証します。下記は予め定義されたバリデータの
 エイリアスの完全なリストです:
 
