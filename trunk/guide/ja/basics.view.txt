@@ -80,14 +80,12 @@ $this->render('edit', array(
 ~~~
 
 後の方法は、ウィジェットが本文(body content)を必要としないときに用いられます。
-
-Widgets can be configured to customize its behaviors. This is done by
-settings their initial property values when calling
-[CBaseController::beginWidget] or [CBaseController::widget]. For example,
-when using [CMaskedTextField] widget, we would like to specify the mask
-being used. We can do so by passing an array of those property initial
-values as follows, where the array keys are property names and array values
-the initial values of the corresponding widget properties:
+ウィジェットは、、[CBaseController::beginWidget] もしくは
+[CBaseController::widget] を呼び出す際に、プロパティの初期値を設定する事で、
+挙動をカスタマイズできます。たとえば、[CMaskedTextField] ウィジェットを
+使用する際に、使用されるマスクを指定したい場合、下記のように、
+配列のキーにプロパティ名を、配列の値にそのウィジェットプロパティに
+対応する初期値を指定する形で、プロパティの初期値を配列で渡す事ができます : 
 
 ~~~
 [php]
@@ -98,8 +96,8 @@ $this->widget('CMaskedTextField',array(
 ?>
 ~~~
 
-To define a new widget, extend [CWidget] and override its
-[init()|CWidget::init] and [run()|CWidget::run] methods:
+新しいウィジェットを定義するには、[CWidget] を継承し、
+[init()|CWidget::init] と [run()|CWidget::run] メソッドを上書きします: 
 
 ~~~
 [php]
@@ -117,27 +115,28 @@ class MyWidget extends CWidget
 }
 ~~~
 
-Like a controller, a widget can also have its own view. By default, widget
-view files are located under the `views` subdirectory of the directory
-containing the widget class file. These views can be rendered by calling
-[CWidget::render()], similar to that in controller. The only difference is
-that no layout will be applied to a widget view.
+コントローラのように、ウィジェットはそれ自身のビューを持つことができます。
+デフォルトでは、ウィジェットのビューファイルは、
+そのビューファイルのあるディレクトリの `views` サブディレクトリに位置します。
+コントローラと同じように、ビューは [CWidget::render()] を呼び出すことで
+描画させることができます。
+唯一の違いは、ウィジェットビューにはレイアウトを適用できないことです。
 
-System View
+システムビュー
 -----------
 
-System views refer to the views used by Yii to display error and logging
-information. For example, when a user requests for a non-existing controller
-or action, Yii will throw an exception explaining the error. Yii displays the
-exception using a specific system view.
+システムビューは、Yii によってエラーやロギング情報を表示するために、
+使用されるビューです。たとえば、存在しないコントローラやアクションが
+ユーザによりリクエストされた場合、Yii はそのエラーを説明する例外を投げ、
+特定のシステムビューを使用して、その例外を表示します。
 
-The naming of system views follows some rules. Names like `errorXXX` refer
-to views for displaying [CHttpException] with error code `XXX`. For
-example, if [CHttpException] is raised with error code 404, the `error404`
-view will be displayed.
+システムビュー名は、いくつかのルールに基づきます。`errorXXX` のような名前は、
+エラーコード `XXX` の [CHttpException] エラー表示のためのビューを指します。
+たとえば、もし [CHttpException] がエラーコード404により発生した場合、
+`error404` ビューが表示されます。
 
-Yii provides a set of default system views located under
-`framework/views`. They can be customized by creating the same-named view
-files under `protected/views/system`.
+Yii は `framework/views` 以下に、1セットのデフォルトシステムビューを提供します。
+システムビューをカスタマイズしたい場合、 `protected/views/system` 以下に、
+同じファイル名のビューファイルを作成してください。
 
 <div class="revision">$Id: basics.view.txt 416 2008-12-28 05:28:11Z qiang.xue $</div>
