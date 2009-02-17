@@ -86,6 +86,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * Session, _die_
  * String, _der_
  * Traffic, _der_
+ * Validator, _der_
  * View, _der_
  * Widget, _das_
  * Wrapper, _der_
