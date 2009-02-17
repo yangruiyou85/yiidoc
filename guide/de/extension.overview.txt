@@ -11,12 +11,12 @@ werden kann, sprechen wir von einer *Erweiterung* (engl. "extension").
 Eine Erweiterung dient normalerweise einem bestimmten Zweck. In Yii-Begriffen
 kann sie wie folgt klassifiziert werden:
 
- * [Applikations-Komponente](/doc/guide/basics.application#application-component)
+ * [Komponente](/doc/guide/basics.application#application-component)
  * [Widget](/doc/guide/basics.view#widget)
  * [Controller](/doc/guide/basics.controller)
  * [Action](/doc/guide/basics.controller#action)
  * [Filter](/doc/guide/basics.controller#filter)
- * [Konsohlenbefehl](/doc/guide/topics.console)
+ * [Konsolenbefehl](/doc/guide/topics.console)
  * Validator: Ein Validator ist eine von [CValidator] abgeleitete Komponente.
  * Helper: Ein Helper (engl., "Helfer") ist eine Klasse, die nur statische
 Methoden enthält. Sie sind wie globale Funktionen, die den Klassennamen als

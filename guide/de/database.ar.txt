@@ -51,7 +51,7 @@ Herstellen einer DB-Verbindung
 AR setzt auf eine DB-Verbindung auf um DB-bezogene Operationen durchzuführen.
 Standardmäßig geht es davon aus, dass eine `db`-Applikationskomponente die
 notwendige [CDbConnection]-Instanz angibt, die als DB Verbindung dient. Die
-folgende Applikations-Konfiguration zeigt ein Beispiel:
+folgende Applikationskonfiguration zeigt ein Beispiel:
 
 ~~~
 [php]
