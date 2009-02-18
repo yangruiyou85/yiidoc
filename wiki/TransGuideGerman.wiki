@@ -4,6 +4,12 @@
 
 Yii ist ein herausragendes Framework mit praktisch mustergültigem Quellcode. Genauso sollte auch die Dokumentation durch gute Lesbarkeit überzeugen. Daher sollen hier einige Richtlinien für die Übersetzung an die Hand gegeben werden.
 
+== Einrichten der Umgebung ==
+
+Um die Übersetzungen auch gleich betrachten zu können, gibt es eine Yii-Anwendung innerhalb des Yiidoc-Projekts. Wenn ein SVN-Checkout nach /yiidoc in ein Webverzeichnis vorgenommen wurde, kann z.B. der Guide über diese URL aufgerufen werden:
+
+  http://www.myhost.com/yiidoc?r=guide
+
 
 == Richtlinien für die Übersetzung ==
 
