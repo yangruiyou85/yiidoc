@@ -3,7 +3,7 @@ Pfad-Aliase und Namespace
 
 Yii macht intensiven Gebrauch von Pfad-Aliasen. Ein Pfad-Alias ist mit einem
 Verzeichnis oder einem Dateipfad verbunden. Er wird in Punkt-Syntax angegeben,
-ähnlich zum weitverbreiteten Namespace-Format (engl. "Namensraum"):
+ähnlich zum weitverbreiteten Namespace-Format (Namensraum):
 
 ~~~
 RootAlias.pfad.zu.ziel
@@ -62,7 +62,7 @@ Ein Pfad-Alias kollidiert nicht mit einem Namespace.
 > Tip|Tipp: Da PHP vor Version 5.3.0 von Haus aus noch keine Namespaces
 > unterstützt, können Sie keine Instanzen von Klassen erzeugen, die den selben
 > Namen aber unterschiedliche Definitionen haben. Daher wird allen Klassen des
-> Yii-Frameworks der Buchstabe 'C' (für engl. "Class", Klasse) vorangestellt,
+> Yii-Frameworks der Buchstabe 'C' (von engl.: Class, Klasse) vorangestellt,
 > um Sie von benutzerdefinierten Klassen zu unterscheiden. Es wird empfohlen,
 > dass die Präfix 'C' zur alleinigen Verwendung innerhalb des Yii-Frameworks
 > reserviert bleibt und benutzerdefinierte Klassen mit anderen Präfixen

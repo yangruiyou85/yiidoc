@@ -58,9 +58,9 @@ beim Lesen und Schreiben zusätzliche Logik ausgeführt werden kann
 Event
 -----
 
-Events (engl. "Ereignisse") sind spezielle Eigenschaften von Komponenten, die 
-sog. `Eventhandler`-Methoden (sinngem. "Ereignis-Bearbeiter") als Wert erwarten. 
-Wenn man eine Methode mit einem Event verbindet (engl. "attach"), wird diese Methode beim
+Events (Ereignisse) sind spezielle Eigenschaften von Komponenten, die 
+sog. `Eventhandler`-Methoden (sinngem.: Ereignisbearbeiter) als Wert erwarten. 
+Wenn man eine Methode mit einem Event verbindet (engl.: attach), wird diese Methode beim
 Auslösen des Events ausgeführt. Somit kann das Verhalten einer Komponente in
 einer Weise verändert werden, die bei deren Entwicklung noch nicht vorgesehen
 war.
@@ -124,7 +124,7 @@ Behavior
 
 Seit Version 1.0.2 unterstützen Komponenten auch
 [Mixins](http://www.wikiservice.at/dse/wiki.cgi?MixIn) und können mit einem oder
-mehreren Behaviors (engl. "Verhalten") verbunden werden. Ein *Behavior* ist
+mehreren Behaviors (Verhalten) verbunden werden. Ein *Behavior* ist
 ein Objekt, dessen Methoden von seinen angebundenen Komponenten in dem Sinne 'geerbt'
 werden, dass Funtionalität angesammelt wird, im Gegensatz zur Spezialisierung
 (also normaler Klassenvererbung).

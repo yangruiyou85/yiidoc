@@ -1,4 +1,4 @@
-Das Standard-Handbuch für Yii
+Das Standardhandbuch für Yii
 =============================
 
 All Rights Reserved.

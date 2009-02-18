@@ -5,13 +5,13 @@ Ein `Controller` ist eine Instanz vom Typ [CController] oder dessen
 Kindklassen. Er wird von der Applikation erzeugt, wenn eine Benutzeranfrage
 dafür vorliegt. Wenn ein Controller gestartet wird, 
 führt er die angeforderte Action aus, welche in der Regel die benötigten Models 
-einbindet und einen passenden View rendert (engl., sinngemäß "machen, darstellen") . 
+einbindet und einen passenden View rendert (sinngem.: machen, darstellen) . 
 Eine `Action` ist in ihrer einfachsten Form lediglich eine Klassenmethode des Controllers, 
 deren Name mit `action` anfängt. 
 
-Ein Controller hat eine Standard-Action. Wenn im Benutzer-Request nicht
+Ein Controller hat eine Standardaction. Wenn im Benutzer-Request nicht
 festgelegt wurde, welche Action ausgeführt werden soll, wird die
-Standard-Action ausgeführt. Als Vorgabewert ist die Standard-Action `index`
+Standardaction ausgeführt. Als Vorgabewert ist die Standardaction `index`
 definiert. Sie kann durch Setzen der [CController::defaultAction] verändert 
 werden.
 

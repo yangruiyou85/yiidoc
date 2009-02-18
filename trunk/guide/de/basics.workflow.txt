@@ -1,5 +1,5 @@
-Ablauf der Entwicklung
-======================
+Der Entwicklungsprozess mit Yii
+===============================
 
 Nachdem wir die Grundlagen von Yii beschrieben haben, zeigen wir nun den
 typischen Ablauf bei der Entwicklung einer Yii-Anwendung. Für den Ablaufplan
@@ -47,7 +47,7 @@ Anwenden geeigneter [Cache](/doc/guide/caching.overview)-Techniken.
    10. Abschließende [Leistungsoptimierung](/doc/guide/topics.performance) und
 Online-Stellung.
 
-Für jeden der obigen Schritte kann es nötig sein, "Test cases" (engl., sinngem.
-"automatisierte Funktionstests") zu erstellen und durchzuführen.
+Für jeden der obigen Schritte kann es nötig sein, "Test cases" (sinngem:
+automatisierte Funktionstests) zu erstellen und durchzuführen.
 
 <div class="revision">$Id$</div>

@@ -19,7 +19,7 @@ müssen Sie evtl. auch `php YiiRoot/framework/yiic.php` verwenden.
 
 Damit wird im Verzeichnis `WebRoot/testdrive` die Grundstruktur einer 
 Yii-Anwendung angelegt, wobei `WebRoot` für das Wurzelverzeichnis
-(`DocumentRoot`) Ihres Webservers steht. Die Anwendung enthält alle
+(engl.: `DocumentRoot`) Ihres Webservers steht. Die Anwendung enthält alle
 benötigten Verzeichnisse und Dateien und ist somit ist ein guter
 Ausgangspunkt um weitere Features zu ergänzen.
 
@@ -76,7 +76,7 @@ testdrive/
          console.php         die Konfiguration für Konsolenanwendungen
          main.php            die Konfiguration für Webanwendungen
       controllers/           enthält Klassendateien für Controller
-         SiteController.php  die Klasse des Standard-Controllers
+         SiteController.php  die Klasse des Standardcontrollers
       extensions/            enthält Erweiterungen von Drittanbietern
       messages/              enthält übersetzte Meldungen
       models/                enthält Klassendateien für Models
@@ -84,8 +84,8 @@ testdrive/
          ContactForm.php     das Form-Model für die 'contact'-Action
       runtime/               enthält temporär erzeugte Dateien
       views/                 enthält Controller-Views und Layout-Dateien
-         layouts/            enthält Layout-View-Dateien
-            main.php         das Standard-Layout für alle Views
+         layouts/            enthält View-Dateien des Layouts
+            main.php         das Standardlayout für alle Views
          site/               enthält View-Dateien für den Site-Controller
             contact.php      der View für die 'contact'-Action
             index.php        der View für ide 'index'-Action
@@ -147,14 +147,14 @@ Verzeichnis schreiben können muss.
 Implementierung von CRUD-Operationen
 ------------------------------------
 
-Jetzt kommen wir zum vergnüglichen Teil. Wir möchten CRUD-Operationen (engl.:
-"*C*reate, *R*ead, *U*pdate, *D*elete", "Erstellen, Lesen, Aktualisieren,  Löschen")
+Jetzt kommen wir zum vergnüglichen Teil. Wir möchten CRUD-Operationen (
+für "*C*reate, *R*ead, *U*pdate, *D*elete", "Erstellen, Lesen, Aktualisieren, Löschen")
 für die eben erstellte Tabelle `User` bereitstellen. Eine typische
 Aufgabenstellung praktischer Anwendungen.
 
 Wieder verwenden wir den `yiic`-Befehl, um uns beim Generieren des benötigten
 Codes behilflich zu sein. Dieser Prozess wird übrigens auch als *scaffolding*
-(engl., sinngemäß: "Ein Gerüst erstellen") bezeichnet.
+(sinngem.: ein Gerüst erstellen) bezeichnet.
 
 ~~~
 % cd WebRoot/testdrive
@@ -223,7 +223,7 @@ Benutzerliste erscheinen.
 
 Wiederholen Sie die obigen Schritte, und fügen Sie weitere Benutzer hinzu.
 Beachten Sie, dass auf der Seite der Benutzerliste automatisch eine Seitenblätterung 
-(engl.: "pagination") erscheint, sobald zu viele Einträge für eine Seite vorhanden
+(engl.: pagination) erscheint, sobald zu viele Einträge für eine Seite vorhanden
 sind.
 
 Wenn wir uns mit `admin/admin` als Administrator anmelden, können wir 
