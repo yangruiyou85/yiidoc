@@ -23,9 +23,9 @@ http://hostname/index.php?r=ControllerID/ActionID
 Die GET-Variable `r` bezieht sich auf die
 [Route](/doc/guide/basics.controller#route), die von Yii in Controller und
 Action aufgelöst werden kann. Wenn `ActionID` weggelassen wird, verwendet der
-Controller die Standard-Action (festgelegt über [CController::defaultAction]). 
+Controller die Standardaction (festgelegt über [CController::defaultAction]). 
 Falls auch die ControllerID weggelassen wird (oder die Variable `r` ganz
-fehlt), verwendet die Applikation den Standard-Controller (definiert über
+fehlt), verwendet die Applikation den Standardcontroller (definiert über
 [CWebApplication::defaultController]).
 
 Mit Hilfe des [CUrlManager]s ist es möglich, suchmaschinenfreundliche URLs zu
@@ -102,7 +102,7 @@ Jedes davon kann bei Bedarf angepasst werden.
    - `WebRoot/protected`: Dies ist das [Stammverzeichnis der Anwendung
 ](/doc/guide/basics.application#application-base-directory) das alle
 sicherheitsrelevanten PHP-Scripts und Datendateien enthält. Yii hat einen
-Standard-Alias namens `application`, der mit diesem Pfad verknüpft ist.
+Standardalias namens `application`, der mit diesem Pfad verknüpft ist.
 Dieses Verzeichnis sollte, genau wie alle darunterliegenden, vor Zugriff über das Web
 geschützt werden. Sein Ort kann über [CWebApplication::basePath] angepasst werden.
 

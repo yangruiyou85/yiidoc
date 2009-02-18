@@ -13,7 +13,7 @@
     - [Komponente](basics.component)
     - [Pfad-Aliase und Namespace](basics.namespace)
     - [Konventionen](basics.convention)
-    - [Ablauf der Entwicklung](basics.workflow)
+    - [Der Entwicklungsprozess mit Yii](basics.workflow)
 
 * Mit Formularen arbeiten
     - [Übersicht](form.overview)

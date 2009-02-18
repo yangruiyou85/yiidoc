@@ -72,7 +72,7 @@ Beispiel den Inhalt einer Datei cachen und diese Datei verändert wird, sollten
 wir die gecachte Kopie für ungültig erklären und statt des gecachten
 Eintrags, den aktualisierten Inhalt der Datei einlesen.
 
-Eine Abhängigkeit (engl. "dependency") wird durch eine Instanz vom Typ 
+Eine Abhängigkeit (engl.: dependency) wird durch eine Instanz vom Typ 
 [CCacheDependency] oder einer Kindklasse davon dargestellt. Beim Aufruf von 
 [set()|CCache::set] übergeben wir diese Instanz zusammen mit den zu cachenden Daten.
 

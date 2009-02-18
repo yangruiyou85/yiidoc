@@ -1,7 +1,7 @@
 Cachen von Seitenabschnitten
 ============================
 
-Das Speichern von Seitenabschnitten (engl. "fragment") bezieht sich auf das
+Das Speichern von Seitenabschnitten (engl.: fragment) bezieht sich auf das
 Cachen ganzer Bereiche einer Seite. Wenn auf einer Seite z.B. eine Übersicht der
 Jahresverkäufe in einer Tabelle vorkommt, können wir diese Tabelle im Cache
 speichern, um die Zeit, die zum Erzeugen dieser Tabelle benötigt wird, 
@@ -36,14 +36,14 @@ Beim Aufruf von [beginCache()|CBaseController::beginCache()] können wir als
 zweiten Parameter ein Array mit Cache-Optionen übergeben, um das Cachen von
 Seitenabschnitten anzupassen. Eigentlich sind die Methoden
 [beginCache()|CBaseController::beginCache()]  und
-[endCache()|CBaseController::endCache()] nur praktische Wrapper (engl.,
-sinngem. "Hülle, Umschlag") für das [COutputCache]-Widget. Die verfügbaren 
+[endCache()|CBaseController::endCache()] nur praktische Wrapper (
+sinngem.: Hülle, Umschlag) für das [COutputCache]-Widget. Die verfügbaren 
 Cache-Optionen entsprechen daher den Eigenschaften von [COutputCache].
 
 ### Dauer
 
 Die wahrscheinlich am häufigsten verwendete Eigenschaft ist
-[duration|COutputCache::duration] ("Dauer"), wodurch bestimmt wird, wie lange
+[duration|COutputCache::duration] (Dauer), wodurch bestimmt wird, wie lange
 der Inhalt im Cache gültig bleibt. Sie ähnelt dem Verfallszeit-Parameter
 bei [CCache::set()]. Der folgende Code cacht den Seitenabschnitt für
 mindestens eine Stunde:

@@ -23,7 +23,7 @@ Die Konfiguration besteht aus einem Array mit Schlüssel-/Wertepaaren. Jeder Sch
 steht für den Namen einer Eigenschaft der Applikationsinstanz und jeder
 Wert für den Startwert dieser Eigenschaft. Die folgende Konfiguration
 zum Beispiel bestimmt die Eigenschaften [name|CApplication::name] und
-[defaultController|CWebApplication::defaultController] (Standard-Controller)
+[defaultController|CWebApplication::defaultController] (Standardcontroller)
 der Anwendung.
 
 ~~~
@@ -64,7 +64,7 @@ Stammverzeichnis der Anwendung
 
 Das Stammverzeichnis einer Anwendung bezieht sich auf das Wurzelverzeichnis, das alle 
 sicherheitsbedenklichen PHP-Scripts und Daten enthält. Standardmäßig ist dies
-ein Unterverzeichnis namens `protected` (engl.: "geschützt") innerhalb des
+ein Unterverzeichnis namens `protected` (geschützt) innerhalb des
 Verzeichnisses, das auch das Eingangsscript enthält. Der Ort kann über die
 Eigenschaft [basePath|CWebApplication::basePath] in der
 [Anwendungskonfiguration](#application-configuration) angepasst werden.
@@ -151,7 +151,7 @@ verwaltet die Veröffentlichung privater Asset-Dateien (sinngem.:
 Zusatzdateien).
 
    - [authManager|CWebApplication::authManager]: [CAuthManager] - verwaltet
-die rollenbasierte Zugriffskontrolle ("role-based access control", RBAC).
+die rollenbasierte Zugriffskontrolle (RBAC, engl.: role-based access control).
 
    - [cache|CApplication::cache]: [CCache] - stellt Funktionalität
 zum Cachen von Daten bereit. Beachten Sie, dass Sie eine existierende Klasse (z.B.

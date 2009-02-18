@@ -18,9 +18,9 @@ Views auf. Die Methode sucht dann im Verzeichnis
 Innerhalb eines View-Scripts können wir über `$this` auf die
 Controller-Instanz zugreifen. So können wir im View mit `$this->propertyName` 
 auf jede Eigenschaft des Controllers zugreifen, was man auch als `pull`-Verfahren
-(engl.: "ziehen") bezeichnet. 
+(ziehen) bezeichnet. 
 
-Wir können auch einen `push`-Ansatz (engl.: "schieben") verfolgen, um
+Wir können auch einen `push`-Ansatz (schieben) verfolgen, um
 Daten wie hier an den View zu übergeben:
 
 ~~~
@@ -62,7 +62,7 @@ rendern, ohne ein Layout anzuwenden.
 Widget
 ------
 
-Ein Widget (engl., sinngem. "Dings") ist eine Instanz vom Typ [CWidget] oder
+Ein Widget (sinngem.: Dings) ist eine Instanz vom Typ [CWidget] oder
 dessen Kindklassen. Es handelt sich um eine Komponente, die im Wesentlichen für
 Präsentationszwecke verwendet wird. Widgets werden für gewöhnlich in ein View-Script
 eingebettet, um einen komplexeren, jedoch in sich geschlossen Teil der
