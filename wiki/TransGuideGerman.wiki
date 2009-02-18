@@ -34,7 +34,7 @@ Beispiele:
 
  # _Die Komponente wird lazy (faul) erzeugt, wenn zum ersten mal darauf zugegriffen wird._
  # _Ein Widget (sinngem.: Dings) ist eine..._
- # _...sprechen wir von einer Erweiterung (engl. extension)_
+ # _...sprechen wir von einer Erweiterung (engl.: extension)_
 
 Auch sämtliche Dateinamen für Controller, Views, etc. werden nicht übersetzt. Auch viele spezifische Begriffe wie "Model", "View", "Controller" werden nicht übersetzt, um die Verzahnung mit Verzeichnisnamen (z.B. protected/views) zu erhalten.
 
