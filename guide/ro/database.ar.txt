@@ -151,120 +151,117 @@ sa arate exact ca tipurile de clase si coloanele sa arate exact ca variabilele.
 Creating Record
 ---------------
 
-To insert a new row into a database table, we create a new instance of the
-corresponding AR class, set its properties associated with the table
-columns, and call the [save()|CActiveRecord::save] method to finish the
-insertion.
+Ca sa inseram un nou rand intr-o tabela a bazei de date, cream o instanta a
+clasei AR corespunzatoare, ii setam proprietatile (care sunt asociate cu coloanele
+tabelei) si apelam metoda [save()|CActiveRecord::save] pentru a termina inserarea.
 
 ~~~
 [php]
 $post=new Post;
-$post->title='sample post';
-$post->content='content for the sample post';
+$post->title='Titlul post-ului';
+$post->content='Continutul post-ului';
 $post->createTime=time();
 $post->save();
 ~~~
 
-If the table's primary key is auto-incremental, after the insertion the AR
-instance will contain an updated primary key. In the above example, the
-`id` property will reflect the primary key value of the newly inserted
-post, even though we never change it explicitly.
+Daca cheia primara a tabelei se incrementeaza automat, dupa ce se termina inserarea,
+instanta AR va contine o cheie primara actualizata. In exemplul de mai sus,
+proprietatea `id` va reflecta valoarea cheii primare a post-ului nou inserat, chiar daca
+nu il modificam explicit.
 
-If a column is defined with some static default value (e.g. a string, a
-number) in the table schema, the corresponding property in the AR instance
-will automatically has such a value after the instance is created. One way
-to change this default value is by explicitly declaring the property in the
-AR class:
+Daca o coloana este definita cu o valoare implicita oarecare (ex. un string, un numar)
+in schema tabelei, proprietatea corespunzatoare in instanta AR va avea automat
+atribuita aceasta valoare atunci cand instanta AR este creata. O cale de a modifica
+aceasta valoare este prin a declara explicit proprietatea in clasa AR:
 
 ~~~
 [php]
 class Post extends CActiveRecord
 {
-	public $title='please enter a title';
+	public $title='Va rugam introduceti un titlu';
 	......
 }
 
 $post=new Post;
-echo $post->title;  // this would display: please enter a title
+echo $post->title;  // Aceasta instructiune va afisa: Va rugam introduceti un titlu
 ~~~
 
-Starting from version 1.0.2, an attribute can be assigned a value of [CDbExpression]
-type before the record is saved (either insertion or updating) to the database.
-For example, in order to save a timestamp returned by the MySQL `NOW()` function,
-we can use the following code:
+Incepand cu versiunea 1.0.2 a Yii, unui atribut i se poate asigna o valoare de tip
+[CDbExpression] inainte ca inregistrarea sa fie salvata (fie insert fie update) in baza de date.
+De exemplu, pentru a salva timestamp-ul returnat de functia MySQL `NOW()`, putem folosi
+urmatorul cod:
 
 ~~~
 [php]
 $post=new Post;
 $post->createTime=new CDbExpression('NOW()');
-// $post->createTime='NOW()'; will not work because
-// 'NOW()' will be treated as a string
+// $post->createTime='NOW()'; nu va functionat pentru ca
+// 'NOW()' va fi tratat ca un string
 $post->save();
 ~~~
 
 
-Reading Record
---------------
+Citirea inregistrarilor
+-----------------------
 
-To read data in a database table, we call one of the `find` methods as
-follows.
+Pentru a citi date dintr-o tabela, putem folosi una dintre metodele `find` dupa cum urmeaza.
 
 ~~~
 [php]
-// find the first row satisfying the specified condition
+// find pentru a cauta primul rand care indeplineste conditia specificata
 $post=Post::model()->find($condition,$params);
-// find the row with the specified primary key
+// find pentru a cauta randul cu cheia primara specificata
 $post=Post::model()->findByPk($postID,$condition,$params);
-// find the row with the specified attribute values
+// find pentru a cauta randul cu valorile atributelor specificate
 $post=Post::model()->findByAttributes($attributes,$condition,$params);
-// find the first row using the specified SQL statement
+// find pentru a cauta primul rand folosind instructiunea SQL specificata
 $post=Post::model()->findBySql($sql,$params);
 ~~~
 
-In the above, we call the `find` method with `Post::model()`. Remember
-that the static method `model()` is required for every AR class. The method
-returns an AR instance that is used to access class-level methods
-(something similar to static class methods) in an object context.
+In cele de mai sus, apelam metoda `find` cu `Post::model()`. Sa ne aducem aminte
+ca metoda statica `model()` este necesara pentru fiecare clasa AR. Metoda returneaza
+o instanta AR care este folosita pentru a accesa metodele clasei (asemanator cu metodele
+unei clase statice) in contextul unui obiect. 
 
-If the `find` method finds a row satisfying the query conditions, it will
-return a `Post` instance whose properties contain the corresponding column
-values of the table row. We can then read the loaded values like we do with
-normal object properties, for example, `echo $post->title;`.
+Daca metoda `find` gaseste un rand care indeplineste conditiile cererii, atunci
+va intoarce o instanta `Post` ale carei proprietati contin valorile coloanelor
+corespunzatoare din randul din tabela. Putem acum citi valorile incarcate exact la fel
+cum putem citi valorile proprietatilor unui obiect, de exemplu, `echo $post->title;`.
 
-The `find` method will return null if nothing can be found in the database
-with the given query condition.
+Metoda `find` va intoarce null daca nu este gasit nici un rand din baza de date
+care indeplineste conditiile. 
 
-When calling `find`, we use `$condition` and `$params` to specify query
-conditions. Here `$condition` can be string representing the `WHERE` clause
-in a SQL statement, and `$params` is an array of parameters whose values
-should be bound to the placeholders in `$condition`. For example,
+Cand apelam `find`, folosim `$condition` si `$params` pentru a transmite conditiile. 
+`$condition` poate fi un string in care se retine clauza `WHERE` dintr-o instructiune
+SQL. `$params` este un array de parametri ale caror valori ar trebui sa fie conectate corespunzator
+la placeholder-ele din `$condition`. De exemplu,
 
 ~~~
 [php]
-// find the row with postID=10
+// find pentru a gasi randul cu postID=10
 $post=Post::model()->find('postID=:postID', array(':postID'=>10));
 ~~~
 
-We can also use `$condition` to specify more complex query conditions.
-Instead of a string, we let `$condition` be a [CDbCriteria] instance, which
-allows us to specify conditions other than the `WHERE` clause. For example,
+Putem de asemenea folosi `$condition` pentru a specifica alte conditii mult mai complexe.
+In loc de un string, `$condition` poate fi o instanta a clasei [CDbCriteria], care ne permite
+sa specificam alte conditii pe langa clauza `WHERE`. De exemplu:
 
 ~~~
 [php]
 $criteria=new CDbCriteria;
-$criteria->select='title';  // only select the 'title' column
+$criteria->select='title';  // selecteaza doar coloana 'title'
 $criteria->condition='postID=:postID';
 $criteria->params=array(':postID'=>10);
-$post=Post::model()->find($criteria); // $params is not needed
+$post=Post::model()->find($criteria); // $params nu este necesar
 ~~~
 
-Note, when using [CDbCriteria] as query condition, the `$params` parameter
-is no longer needed since it can be specified in [CDbCriteria], as shown
-above.
+Trebuie sa retinem ca atunci cand folosim [CDbCriteria] pentru conditii, parametrul
+`$params` nu mai este necesar din moment ce poate fi specificat in [CDbCriteria], asa
+cum am aratat mai sus.
 
-An alternative way to [CDbCriteria] is passing an array to the `find` method.
-The array keys and values correspond to the criteria's property name and value,
-respectively. The above example can be rewritten as follows,
+O alta modalitate in ce priveste [CDbCriteria] este sa transmitem un array catre
+metoda `find`. Fiecare pereche key-value din array va corespune unei perechi nume proprietate-valoare.
+Putem sa rescriem exemplul de mai sus astfel:
 
 ~~~
 [php]
@@ -275,144 +272,136 @@ $post=Post::model()->find(array(
 ));
 ~~~
 
-> Info: When a query condition is about matching some columns with the
-specified values, we can use
-[findByAttributes()|CActiveRecord::findByAttributes]. We let the
-`$attributes` parameters be an array of the values indexed by the column
-names. In some frameworks, this task can be achieved by calling methods
-like `findByNameAndTitle`. Although this approach looks attractive, it
-often causes confusion, conflict and issues like case-sensitivity of column
-names.
+> Info: Atunci cand cream o conditie pentru cautarea unor coloane cu anumite valori,
+putem folosi [findByAttributes()|CActiveRecord::findByAttributes].
+Parametrii `$attributes` vor fi transmisi intr-un array de valori indexate dupa numele de coloana.
+In unele framework-uri, acest task poate fi facut prin apelarea unor metode de genul
+`findByNameAndTitle`. Desi pare atractiva aceasta abordare, de obicei cauzeaza confuzie, conflicte
+si probleme (ex. daca numele coloanelor sunt case-sensitive sau nu). 
 
-When multiple rows of data matching the specified query condition, we can
-bring them in all together using the following `findAll` methods, each of
-which has its counterpart `find` method, as we already described.
+Atunci cand se potrivesc mai multe coloane cu conditia noastra, putem sa le extragem
+pe toate in acelasi timp folosind metodele `findAll`, fiecare metoda `find` avand un corespondent `findall`.
 
 ~~~
 [php]
-// find all rows satisfying the specified condition
+// find all pentru a cauta randurile care indeplinesc conditia
 $posts=Post::model()->findAll($condition,$params);
-// find all rows with the specified primary keys
+// find all pentru a cauta randurile care au cheile primare specificate
 $posts=Post::model()->findAllByPk($postIDs,$condition,$params);
-// find all rows with the specified attribute values
+// find all pentru a cauta randurile care au valorile specificate
 $posts=Post::model()->findAllByAttributes($attributes,$condition,$params);
-// find all rows using the specified SQL statement
+// find all pentru a cauta randurile care rows using the specified SQL statement
 $posts=Post::model()->findAllBySql($sql,$params);
 ~~~
 
-If nothing matches the query condition, `findAll` would return an empty
-array. This is different from `find` who would return null if nothing is
-found.
+Daca nu gaseste nimic, `findAll` va intoarce un array gol. Spre deosebire de
+`find` care ar intoarce null daca nu gaseste nimic.
 
-Besides the `find` and `findAll` methods described above, the following
-methods are also provided for convenience:
+Pe langa metodele `find` si `findAll` descrise mai sus, urmatoarele metode sunt de
+asemenea disponibile:
 
 ~~~
 [php]
-// get the number of rows satisfying the specified condition
+// afla cate randuri indeplinesc conditia specificata
 $n=Post::model()->count($condition,$params);
-// get the number of rows using the specified SQL statement
+// afla numarul de randuri folosind instructiunea SQL specificata
 $n=Post::model()->countBySql($sql,$params);
-// check if there is at least a row satisfying the specified condition
+// verifica daca este cel putin un rand care indeplineste conditia specificata
 $exists=Post::model()->exists($condition,$params);
 ~~~
 
-Updating Record
----------------
+Actualizarea inregistrarilor
+----------------------------
 
-After an AR instance is populated with column values, we can change them
-and save them back to the database table.
+Dupa ce o instanta AR este populata cu valorile coloanelor, putem modifica valorile si
+apoi putem salva noul stadiu in baza de date.
 
 ~~~
 [php]
 $post=Post::model()->findByPk(10);
-$post->title='new post title';
-$post->save(); // save the change to database
+$post->title='Titlul nou';
+$post->save(); // salveaza modificarile in baza de date
 ~~~
 
-As we can see, we use the same [save()|CActiveRecord::save] method to
-perform insertion and updating operations. If an AR instance is created
-using the `new` operator, calling [save()|CActiveRecord::save] would insert
-a new row into the database table; if the AR instance is the result of some
-`find` or `findAll` method call, calling [save()|CActiveRecord::save] would
-update the existing row in the table. In fact, we can use
-[CActiveRecord::isNewRecord] to tell if an AR instance is new or not.
+Dupa cum se vede, folosim aceeasi metoda [save()|CActiveRecord::save] pentru a executa
+si inserarea si actualizarea. Daca o instanta AR este creata folosind operatorul `new`,
+atunci [save()|CActiveRecord::save] va insera un nou rand in tabela.
+Daca instanta AR este rezultatul unei metode `find` sau `findAll`,
+atunci [save()|CActiveRecord::save] va actualiza randul existent din tabela. De fapt,
+putem folosi [CActiveRecord::isNewRecord] pentru a verifica daca instanta AR
+este noua sau nu.
 
-It is also possible to update one or several rows in a database table
-without loading them first. AR provides the following convenient
-class-level methods for this purpose:
+Este de asemenea posibil sa actualizam unul sau mai multe randuri dintr-o tabela
+fara sa incarcam inainte. AR pune la dispozitie urmatoarele metode pentru acest scop:
 
 ~~~
 [php]
-// update the rows matching the specified condition
+// actualizeaza randurile care indeplinesc conditia specificata
 Post::model()->updateAll($attributes,$condition,$params);
-// update the rows matching the specified condition and primary key(s)
+// actualizeaza randurile care se potrivesc cu conditia specificata si cu cheile primare specificate
 Post::model()->updateByPk($pk,$attributes,$condition,$params);
-// update counter columns in the rows satisfying the specified conditions
+// actualizeaza contorizarea coloanelor din randurile care indeplinesc conditia specificata
 Post::model()->updateCounters($counters,$condition,$params);
 ~~~
 
-In the above, `$attributes` is an array of column values indexed by column
-names; `$counters` is an array of incremental values indexed by column
-names; and `$condition` and `$params` are as described in the previous
-subsection.
+In cele de mai sus, `$attributes` este un array cu valori de coloane indexate dupa numele coloanelor;
+`$counters` este un array cu valori de incrementare indexate dupa numele coloanelor;
+iar `$condition` si `$params` sunt descrie in subsectiunea anterioara. 
 
-Deleting Record
----------------
+Stergerea inregistrarilor
+-------------------------
 
-We can also delete a row of data if an AR instance has been populated with
-this row.
+Putem de asemenea sterge un rand din tabela daca o instanta AR a fost populata cu acest rand.
 
 ~~~
 [php]
-$post=Post::model()->findByPk(10); // assuming there is a post whose ID is 10
-$post->delete(); // delete the row from the database table
+$post=Post::model()->findByPk(10); // presupunem ca este un post cu ID=10
+$post->delete(); // sterge randul din tabela
 ~~~
 
-Note, after deletion, the AR instance remains unchanged, but the
-corresponding row in the database table is already gone.
+Este de notat ca, dupa stergere, instanta AR ramane neschimbata, dar randul corespunzator din tabela
+este deja sters.
 
-The following class-level methods are provided to delete rows without the
-need of loading them first:
+Urmatoarele metode sunt puse la dispozitie pentru a sterge randuri fara a fi nevoie sa le
+incarcam intai intr-o instanta AR:
 
 ~~~
 [php]
-// delete the rows matching the specified condition
+// sterge randurile care indeplinesc conditia specificata
 Post::model()->deleteAll($condition,$params);
-// delete the rows matching the specified condition and primary key(s)
+// sterge randurile care se potrivesc cu cheile primare si cu conditia specificata
 Post::model()->deleteByPk($pk,$condition,$params);
 ~~~
 
-Data Validation
----------------
+Validarea datelor
+-----------------
 
-When inserting or updating a row, we often need to check if the column
-values comply to certain rules. This is especially important if the column
-values are provided by end users. In general, we should never trust
-anything coming from the client side.
+Atunci cand se insereaza sau se actualizeaza un rand, deseori trebuie sa verificam daca valorile
+coloanelor sunt valide. Validarea datelor este importanta in special daca valorile
+coloanelor sunt furnizate de catre utilizatori. In general, nu ar trebui sa avem niciodata
+incredere in informatiile care vin de la client.
 
-AR performs data validation automatically when
-[save()|CActiveRecord::save] is being invoked. The validation is based on
-the rules specified by in the [rules()|CModel::rules] method of the AR class.
-For more details about how to specify validation rules, refer to
-the [Declaring Validation Rules](/doc/guide/form.model#declaring-validation-rules)
-section. Below is the typical workflow needed by saving a record:
+AR executa validarea datelor automat atunci cand este apelata
+[save()|CActiveRecord::save]. Validarea este bazata pe regulile specificate in metoda
+[rules()|CModel::rules] a clasei AR. Pentru mai multe detalii despre specificarea regulilor
+de validare, trebuie sa vedem sectiunea [Declararea regulilor de validare](/doc/guide/form.model#declaring-validation-rules).
+Mai jos este un flux de lucru necesar salvarii unei inregistrari:
 
 ~~~
 [php]
 if($post->save())
 {
-	// data is valid and is successfully inserted/updated
+	// datele sunt valide si sunt inserate/actualizate cu succes
 }
 else
 {
-	// data is invalid. call getErrors() to retrieve error messages
+	// datele nu sunt valide, trebuie apelata getErrors() pentru a primi mesajele de eroare
 }
 ~~~
 
-When the data for inserting or updating is submitted by end users in an
-HTML form, we need to assign them to the corresponding AR properties. We
-can do so like the following:
+Atunci cand datele care trebuie inserate/actualizate sunt furnizate de catre clienti printr-un
+form HTML, trebuie sa asignam aceste date proprietatilor AR corespunzatoare. Putem face acest lucru in
+felul urmator:
 
 ~~~
 [php]
@@ -421,67 +410,65 @@ $post->content=$_POST['content'];
 $post->save();
 ~~~
 
-If there are many columns, we would see a long list of such assignments.
-This can be alleviated by making use of the
-[attributes|CActiveRecord::attributes] property as shown below. More
-details can be found in the [Securing Attribute Assignments](/doc/guide/form.model#securing-attribute-assignments)
-section and the [Creating Action](/doc/guide/form.action) section.
+Daca sunt multe coloane, vom vedea un sir lung de astfel de atribuiri.
+Pentru a ocoli acest lucru, se poate folosi proprietatea
+[attributes|CActiveRecord::attributes] ca in exemplul de mai jos. Mai multe detalii le gasim
+in sectiunea [Securizarea asignarii atributelor](/doc/guide/form.model#securing-attribute-assignments)
+si in sectiunea [Creare action](/doc/guide/form.action).
 
 ~~~
 [php]
-// assume $_POST['Post'] is an array of column values indexed by column names
+// se presupune ca $_POST['Post'] este un array de valori de coloane indexat dupa numele coloanelor
 $post->attributes=$_POST['Post'];
 $post->save();
 ~~~
 
 
-Comparing Records
------------------
+Compararea inregistrarilor
+--------------------------
 
-Like table rows, AR instances are uniquely identified by their primary key
-values. Therefore, to compare two AR instances, we merely need to compare
-their primary key values, assuming they belong to the same AR class. A
-simpler way is to call [CActiveRecord::equals()], however.
+La fel ca randurile tabelei, instantele AR sunt identificate unic prin valorile cheilor
+lor primare. De aceea, pentru a compara doua instante AR, trebuie sa comparam doar
+valorile cheilor lor primare, presupunand ca ele instantele apartin aceleiasi clase AR.
+O cale mai simpla, totusi, este sa apelam [CActiveRecord::equals()].
 
-> Info: Unlike AR implementation in other frameworks, Yii supports
-composite primary keys in its AR. A composite primary key consists of two
-or more columns. Correspondingly, the primary key value is represented as
-an array in Yii. The [primaryKey|CActiveRecord::primaryKey] property gives
-the primary key value of an AR instance.
+> Info: Spre deosebire de implementarile AR din alte framework-uri, Yii are suport
+pentru chei primare compuse in instantele sale AR. O cheie primara compusa este formata din
+doua sau mai multe coloane. Valoarea cheii primare este reprezentata in Yii ca un array.
+Proprietatea [primaryKey|CActiveRecord::primaryKey] defineste valoarea cheii primare a unei
+instante AR.
 
-Customization
--------------
+Customizare
+-----------
 
-[CActiveRecord] provides a few placeholder methods that can be overridden
-in child classes to customize its workflow.
+[CActiveRecord] pune la dispozitie cateva metode care pot fi suprascrise in clasele derivate
+pentru a schimba fluxul de lucru.
 
-   - [beforeValidate|CModel::beforeValidate] and
-[afterValidate|CModel::afterValidate]: these are invoked before and
-after validation is performed.
+   - [beforeValidate|CModel::beforeValidate] si
+[afterValidate|CModel::afterValidate]: acestea sunt apelate inainte si dupa validare.
 
-   - [beforeSave|CActiveRecord::beforeSave] and
-[afterSave|CActiveRecord::afterSave]: these are invoked before and after
-saving an AR instance.
+   - [beforeSave|CActiveRecord::beforeSave] si
+[afterSave|CActiveRecord::afterSave]: acestea sunt apelate inainte si dupa salvarea
+unei instante AR.
 
-   - [beforeDelete|CActiveRecord::beforeDelete] and
-[afterDelete|CActiveRecord::afterDelete]: these are invoked before and
-after an AR instance is deleted.
+   - [beforeDelete|CActiveRecord::beforeDelete] si
+[afterDelete|CActiveRecord::afterDelete]: acestea sunt apelate inainte si dupa ce o instanta
+AR este stearsa.
 
-   - [afterConstruct|CActiveRecord::afterConstruct]: this is invoked for
-every AR instance created using the `new` operator.
+   - [afterConstruct|CActiveRecord::afterConstruct]: aceasta este apelata pentru fiecare
+instanta AR creata cu operatorul `new`.
 
-   - [afterFind|CActiveRecord::afterFind]: this is invoked for every AR
-instance created as a result of query.
+   - [afterFind|CActiveRecord::afterFind]: aceasta este apelata pentru fiecare instanta AR
+creata ca rezultat al cererii.
 
 
-Using Transaction with AR
--------------------------
+Folosirea tranzactiilor cu AR
+-----------------------------
 
-Every AR instance contains a property named
-[dbConnection|CActiveRecord::dbConnection] which is a [CDbConnection]
-instance. We thus can use the
-[transaction](/doc/guide/database.dao#using-transactions) feature provided by Yii
-DAO if it is desired when working with AR:
+Fiecare instanta AR contine o proprietate cu numele
+[dbConnection|CActiveRecord::dbConnection] care este o instanta [CDbConnection].
+De aceea, putem folosi [tranzactii](/doc/guide/database.dao#using-transactions),
+feature pus la dispozitie de Yii DAO in cazul in care se doreste folosirea lor cu AR.
 
 ~~~
 [php]
@@ -489,10 +476,10 @@ $model=Post::model();
 $transaction=$model->dbConnection->beginTransaction();
 try
 {
-	// find and save are two steps which may be intervened by another request
-	// we therefore use a transaction to ensure consistency and integrity
+	// find si save sunt doi pasi care pot fi intrerupti de o alta cerere
+	// de aceea, folosirea unei tranzactii asigura consistenta si integritate datelor
 	$post=$model->findByPk(10);
-	$post->title='new post title';
+	$post->title='Titlu nou post';
 	$post->save();
 	$transaction->commit();
 }
