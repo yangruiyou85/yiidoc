@@ -28,15 +28,13 @@ Bei persönlicher Anrede des Lesers wird immer die "Sie"-Form verwendet.
 
 Fachbegriffe werden nicht übersetzt, wenn sie im deutschen Sprachraum einigermaßen gebräuchlich sind (z.B. Framework). Klassen-, Funktions- und Variablennamen in Yii werden prinzipiell *nicht* übersetzt. 
 
-Bei Begriffen, die nicht übersetzt werden oder schwer verständlichen Klassennamen kann *bei der ersten Verwendung* eine deutsche Übersetzung in Klammern folgen. Sinngemäße freie Übersetzungen werden mit *sinngem.:* gekennzeichnet. Wird ein Begriff übersetzt und seine englische Bezeichnung taucht aber auch im Framework an mehreren Stellen auf, kann der englische Begriff in Klammern angeführt werden.
+Bei Begriffen, die nicht übersetzt werden oder schwer verständlichen Klassennamen kann *bei der ersten Verwendung* eine deutsche Übersetzung in Klammern folgen (Bsp. 1). Sinngemäße freie Übersetzungen werden mit *sinngem.:* gekennzeichnet (Bsp. 2). Wird ein Begriff übersetzt und seine englische Originalbezeichnung ist im Framework oft von Bedeutung, kann der englische Begriff in Klammern angeführt werden (Bsp. 3).
 
 Beispiele:
 
- * _Die Komponente wird lazy (faul) erzeugt, wenn zum ersten mal darauf zugegriffen wird._
- * _Ein Widget (sinngem.: Dings) ist eine..._
- * _...sprechen wir von einer Erweiterung (engl. extension)_
-
-Erklärung bzw. der englische Originalbegriff in Klammern folgen. Ebenso in Situtationen wo der übersetzte Begriff nicht mehr eindeutig ist, wie etwa bei "Eigenschaft" ("property").
+ # _Die Komponente wird lazy (faul) erzeugt, wenn zum ersten mal darauf zugegriffen wird._
+ # _Ein Widget (sinngem.: Dings) ist eine..._
+ # _...sprechen wir von einer Erweiterung (engl. extension)_
 
 Auch sämtliche Dateinamen für Controller, Views, etc. werden nicht übersetzt. Auch viele spezifische Begriffe wie "Model", "View", "Controller" werden nicht übersetzt, um die Verzahnung mit Verzeichnisnamen (z.B. protected/views) zu erhalten.
 
