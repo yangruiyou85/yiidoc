@@ -58,6 +58,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * authorization manager - Autorisierungsmanager
  * base class - Basisklasse (OOP)
  * bootstrap file - Startdatei
+ * business rule - Geschäftsregel
  * command - Befehl, Kommando
  * component - Komponente
  * contact - Kontakt (Kontaktseite, ...)
