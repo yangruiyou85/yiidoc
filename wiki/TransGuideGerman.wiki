@@ -54,6 +54,8 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * attribute - Attribut (OOP: Eigenschaften von Model-Klassen)
  * authentication - Authentifiezerung
  * authorization - Berechtigung, Autorisierung
+ * authorization item - Autorisierungselement
+ * authorization manager - Autorisierungsmanager
  * base class - Basisklasse (OOP)
  * bootstrap file - Startdatei
  * command - Befehl, Kommando
@@ -71,10 +73,12 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * logout - abmelden, Abmeldung
  * method - Methode
  * object - Objekt (OOP)
+ * operation (RBAC) - Operation
  * path alias - Pfad-Alias
  * property (member, attribute, ..) - Eigenschaft (gilt jedoch nicht für Instanzvariable, Member, Attribut eines Models)
  * role - Rolle
  * role-based access control - Rollenbasierte Zugriffskontrolle
+ * task (RBAC) - Aufgabe
  * user - Benutzer
  * web application - Webanwendung
 
