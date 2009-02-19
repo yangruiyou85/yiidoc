@@ -1,61 +1,57 @@
 Data Access Objects (DAO)
 =========================
 
-Data Access Objects (DAO) provides a generic API to access data stored in
-different database management systems (DBMS). As a result, the underlying
-DBMS can be changed to a different one without requiring change of the code
-which uses DAO to access the data.
+Data Access Objects (DAO) は、異なるデータベース管理システム (DBMS) 上に保存されたデータに
+接続するための包括的なAPIを提供します。
+DAO を用いてデータにアクセスすることで、コードを変更せずに異なる DBMS を利用する事が可能になります
 
-Yii DAO is built on top of [PHP Data Objects
-(PDO)](http://php.net/manual/en/book.pdo.php) which is an extension
-providing unified data access to many popular DBMS, such as MySQL,
-PostgreSQL. Therefore, to use Yii DAO, the PDO extension and the specific
-PDO database driver (e.g. `PDO_MYSQL`) have to be installed.
+Yii DAO は MySQL や PostgreSQL といった多くのポピュラーな DBMS への統一的なデータアクセスを提供する
+[PHP Data Objects (PDO)](http://php.net/manual/en/book.pdo.php) 拡張を用いて構築されています。
+そのため、Yii DAO を利用するには、PDO 拡張と特定の PDO データベースドライバ
+(たとえば `PDO_MYSQL`)がインストールされている必要があります。
 
-Yii DAO mainly consists of the following four classes:
+Yii DAO は、主に以下の 4 つのクラスから構成されています: 
 
-   - [CDbConnection]: represents a connection to a database.
-   - [CDbCommand]: represents an SQL statement to execute against a database.
-   - [CDbDataReader]: represents a forward-only stream of rows from a query result set.
-   - [CDbTransaction]: represents a DB transaction.
+   - [CDbConnection]: データベースとの接続を表します。
+   - [CDbCommand]: データベースに対して実行する SQL 文を表します。
+   - [CDbDataReader]: クエリ結果セットから後戻りしない行列を表します。
+   - [CDbTransaction]: DB トランザクションを表します。
 
-In the following, we introduce the usage of Yii DAO in different
-scenarios.
+以下に、違うシナリオ中での Yii DAO の使用方法を紹介します。
 
-Establishing Database Connection
+データベース接続の確立
 --------------------------------
 
-To establish a database connection, create a [CDbConnection] instance and
-activate it. A data source name (DSN) is needed to specify the information
-required to connect to the database. A username and password may also be
-needed to establish the connection. An exception will be raised in case an
-error occurs during establishing the connection (e.g. bad DSN or invalid
-username/password).
+データベース接続を確立させるには、[CDbConnection] のインスタンスを作成し、
+それを active にします。データソース名 (DSN) はデータベースに接続するために
+要求される情報を指定するために必要です。おそらく username と password も
+接続を確立させるために必要でしょう。接続を確立する際にエラーが起こると
+例外が発生します。(たとえば、間違った DSN や無効な username/password)
 
 ~~~
 [php]
 $connection=new CDbConnection($dsn,$username,$password);
-// establish connection. You may try...catch possible exceptions
+// 接続を確立する。try...catch で例外処理を行う事もできます
 $connection->active=true;
 ......
-$connection->active=false;  // close connection
+$connection->active=false;  // 接続を閉じる
 ~~~
 
-The format of DSN depends on the PDO database driver in use. In general, a
-DSN consists of the PDO driver name, followed by a colon, followed by the
-driver-specific connection syntax. See [PDO
-documentation](http://www.php.net/manual/en/pdo.construct.php) for complete
-information. Below is a list of commonly used DSN formats:
+DSN のフォーマットは、使用する PDO データベースドライバに依存します。
+一般的には、DSN はその PDO ドライバ名に続けてコロン、その後に、
+ドライバ個別の接続シンタックスを指定します。詳細な情報は、
+[PDO documentation](http://www.php.net/manual/en/pdo.construct.php) を参照してください。
+以下に、一般に用いられる DSN フォーマットのリストを示します:
 
    - SQLite: `sqlite:/path/to/dbfile`
    - MySQL: `mysql:host=localhost;dbname=testdb`
    - PostgreSQL: `pgsql:host=localhost;port=5432;dbname=testdb`
 
-Because [CDbConnection] extends from [CApplicationComponent], we can also
-use it as an [application
-component](/doc/guide/basics.application#application-component). To do so, configure
-in a `db` (or other name) application component in the [application
-configuration](/doc/guide/basics.application#application-configuration) as follows,
+[CDbConnection] は [CApplicationComponent] から拡張されているため、
+[アプリケーションコンポーネント](/doc/guide/basics.application#application-component)
+として使用できます。そうするには、
+[application configuration](/doc/guide/basics.application#application-configuration) 内で
+`db` (もしくは他の名前の)アプリケーションコンポーネントを下記のように設定します。
 
 ~~~
 [php]
@@ -73,10 +69,10 @@ array(
 )
 ~~~
 
-We can then access the DB connection via `Yii::app()->db` which is already
-activated automatically, unless we explictly configure
-[CDbConnection::autoConnect] to be false. Using this approach, the single
-DB connection can be shared in multiple places in our code.
+その後、[CDbConnection::autoConnect] 設定が flase になっていない限り、
+すでに自動的にアクティブになっている `Yii::app()->db` を利用して
+DB 接続にアクセスできます。このアプローチを使うと、単一の DB 接続を、
+コード中の色々な場所で共有することができます。
 
 Executing SQL Statements
 ------------------------
