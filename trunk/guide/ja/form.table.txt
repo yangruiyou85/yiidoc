@@ -1,24 +1,26 @@
-Collecting Tabular Input
+HTMLテーブル式入力の収集
 ========================
 
-Sometimes we want to collect user input in a batch mode. That is, the user
-can enter the information for multiple model instances and submit them all
-at once. We call this *tabular input* because the input fields are
-often presented in an HTML table.
+私達はユーザの入力をバッチモードとして束にして集めたいと思う事
+が良くあります。複数モデルのインスタンスの情報を、ユーザが一度に送信できる
+様にする場合です。こういった場合の入力フィールドは、往々にしてHTMLテーブル
+で提供されるので、ここではこれを *HTMLテーブル式入力* (tabular input)
+ と呼びます。
 
-To work with tabular input, we first need to create or populate an array
-of model instances, depending on whether we are inserting or updating the
-data. We then retrieve the user input data from the `$_POST` variable and
-assign it to each model. A slight difference from single model input is
-that we retrieve the input data using `$_POST['ModelClass'][$i]` instead of
-`$_POST['ModelClass']`.
+HTMLテーブル式入力 では、まず初めに、データをインサートするか
+アップデートするかに従って、モデルインスタンスの為の配列を作成するか、
+（アップデートの際は）データの入った状態にします。その後、
+ユーザの入力したデータを `$_POST` 変数から回収し、
+それぞれのモデルへ割り当てます。シングルモデルの場合とのわずかな違いは、
+入力データの回収の為に、`$_POST['ModelClass']` の代わりに
+ `$_POST['ModelClass'][$i]` を用いる点です。
 
 ~~~
 [php]
 public function actionBatchUpdate()
 {
-	// retrieve items to be updated in a batch mode
-	// assuming each item is of model class 'Item'
+	// 一括でアップデートをする為にアイテムを回収します。
+	// 各アイテムが 'Item' モデルクラス だと仮定します。
 	$items=$this->getItemsToUpdate();
 	if(isset($_POST['Item']))
 	{
@@ -29,16 +31,16 @@ public function actionBatchUpdate()
 				$item->attributes=$_POST['Item'][$i];
 			$valid=$valid && $item->validate();
 		}
-		if($valid)  // all items are valid
-			// ...do something here
+		if($valid)  // 全てのアイテムが検証を通る際に
+			// 処理する内容をここに…
 	}
-	// displays the view to collect tabular input
+	// HTMLテーブル式入力 をバッチ(一纏め)で回収する為のビューを表示
 	$this->render('batchUpdate',array('items'=>$items));
 }
 ~~~
 
-Having the action ready, we need to work on the `batchUpdate` view to
-display the input fields in an HTML table.
+アクションが準備されたら、HTMLテーブルとして入力フィールドを表示する為の
+`batchUpdate` ビューの作成に取り掛かる必要があります。
 
 ~~~
 [php]
@@ -61,11 +63,11 @@ display the input fields in an HTML table.
 </div><!-- yiiForm -->
 ~~~
 
-Note in the above that we use `"name[$i]"` instead of `"name"` as the
-second parameter when calling [CHtml::activeTextField].
+上記では、[CHtml::activeTextField] がコールされた際の二番目のパラメータ
+として、`"name"` の代わりに `"name[$i]"` を使用している事
+に注意してください。
 
-If there is anything validation error, the corresponding input fields will
-be highlighted automatically, just like the single model input we described
-earlier on.
+もし何か検証にエラーがある場合は、シングルモデルでの入力の際
+に述べたのと同様に、結びついた入力フィールドが自動的にハイライトされます、
 
 <div class="revision">$Id: form.table.txt 468 2009-01-04 20:57:35Z qiang.xue $</div>
