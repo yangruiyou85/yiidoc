@@ -68,6 +68,6 @@ public function actionBatchUpdate()
 に注意してください。
 
 もし何か検証にエラーがある場合は、シングルモデルでの入力の際
-に述べたのと同様に、結びついた入力フィールドが自動的にハイライトされます、
+に述べたのと同様に、結びついた入力フィールドが自動的にハイライトされます。
 
 <div class="revision">$Id: form.table.txt 468 2009-01-04 20:57:35Z qiang.xue $</div>
