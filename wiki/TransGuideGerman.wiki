@@ -1,3 +1,5 @@
+#summary Guideline For German Translation
+
 = Richtlinien für die Übersetzung ins Deutsche =
 
 == Einleitung ==
