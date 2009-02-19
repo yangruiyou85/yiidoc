@@ -47,7 +47,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
 
 ==== Übersetzbare Fachbegriffe ====
  
- * access control filter - Zugriffskontrollenfilter
+ * access control filter - Zugangskontrollfilter
  * application base directory - Stammverzeichnis der Anwendung
  * application component - Komponente, Anwendungskomponente, Applikationskomponente
  * application user component - Userkomponente (als Teil des auth frameworks)
