@@ -51,7 +51,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * application component - Komponente, Anwendungskomponente, Applikationskomponente
  * attribute - Attribut (OOP: Eigenschaften von Model-Klassen)
  * authentication - Authentifiezerung
- * authorization - Autorisierung
+ * authorization - Berechtigung, Autorisierung
  * base class - Basisklasse (OOP)
  * bootstrap file - Startdatei
  * command - Befehl, Kommando
