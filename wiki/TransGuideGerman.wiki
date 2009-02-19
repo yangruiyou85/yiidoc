@@ -79,7 +79,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * property (member, attribute, ..) - Eigenschaft (gilt jedoch nicht für Instanzvariable, Member, Attribut eines Models)
  * role - Rolle
  * role-based access control - Rollenbasierte Zugriffskontrolle
- * task (RBAC) - Aufgabe
+ * task (RBAC) - Tätigkeit
  * user - Benutzer
  * web application - Webanwendung
 
