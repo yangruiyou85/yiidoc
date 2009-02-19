@@ -49,6 +49,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  
  * application base directory - Stammverzeichnis der Anwendung
  * application component - Komponente, Anwendungskomponente, Applikationskomponente
+ * application user component - Userkomponente (als Teil des auth frameworks)
  * attribute - Attribut (OOP: Eigenschaften von Model-Klassen)
  * authentication - Authentifiezerung
  * authorization - Berechtigung, Autorisierung
