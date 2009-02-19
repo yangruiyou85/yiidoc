@@ -50,6 +50,8 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * application base directory - Stammverzeichnis der Anwendung
  * application component - Komponente, Anwendungskomponente, Applikationskomponente
  * attribute - Attribut (OOP: Eigenschaften von Model-Klassen)
+ * authentication - Authentifizerung
+ * authorization - Autorisierung
  * base class - Basisklasse (OOP)
  * bootstrap file - Startdatei
  * command - Befehl, Kommando
