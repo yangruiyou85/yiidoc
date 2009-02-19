@@ -42,7 +42,7 @@
     - [Andere Bibliotheken verwenden](extension.integration)
 
 * Spezialthemen
-    - [URL Management](topics.url)
+    - [URL-Management](topics.url)
     - [Authentifizierung und Autorisierung](topics.auth)
     - [Motive (Themes)](topics.theming)
     - [Protokolle (Logging)](topics.logging)
