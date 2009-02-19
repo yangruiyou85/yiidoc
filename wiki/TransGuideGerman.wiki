@@ -67,6 +67,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * home - Start (Startseite, ...)
  * loader (yii loader, etc.) - Ladescript
  * login - anmelden, Anmeldung (Anmeldeseite, ...)
+ * logout - abmelden, Abmeldung
  * method - Methode
  * object - Objekt (OOP)
  * path alias - Pfad-Alias
