@@ -195,7 +195,7 @@ für unser `User`-Model bilden.
 
 > Note|Hinweis: Sobald Sie Änderungen an Ihrem Code oder Ihrer
 Konfiguration vornehmen, starten Sie bitte `yiic shell` neu, damit 
-die Änderungen wirksam werden. Stellen Sie ausserdem sicher, dass Sie die 
+die Änderungen wirksam werden. Stellen Sie außerdem sicher, dass Sie die 
 richtige Kommandozeilen-Version (CLI) von PHP verwenden. Andernfalls begegnen 
 Ihnen Fehler wie "...could not find driver" ("...konnte Treiber nicht finden"), 
 obwohl Sie sich sicher waren, dass Sie PDO und den zugehörigen Datenbanktreiber 

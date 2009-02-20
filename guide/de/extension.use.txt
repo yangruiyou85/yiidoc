@@ -49,7 +49,7 @@ return array(
 
 Danach können wir von jeder Stelle aus über `Yii::app()->xyz` auf die
 Komponente zugreifen. Die Komponente wird `lazy` (faul) erzeugt, also
-erst dann, wenn zum ersten mal auf sie zugegriffen wird), ausser, wir führen
+erst dann, wenn zum ersten mal auf sie zugegriffen wird), außer, wir führen
 sie in der Eigenschaft `preload` auf.
 
 

@@ -14,7 +14,7 @@ und rufen [set()|CCache::set] auf, um sie zu speichern:
 Yii::app()->cache->set($id, $value);
 ~~~
 
-Die gecachten Daten verbleiben für immer im Cache, ausser sie werden aufgrund
+Die gecachten Daten verbleiben für immer im Cache, außer sie werden aufgrund
 bestimmter Cache-Richtlinien entfernt (z.B. wenn die ältesten Cache-Daten
 gelöscht werden, weil der Cache-Speicherplatz voll ist). Um dieses Verhalten
 zu verändern, können wir beim Aufruf von [set()|CCache::set] einen weiteren
