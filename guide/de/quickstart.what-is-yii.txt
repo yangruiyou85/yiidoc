@@ -41,4 +41,4 @@ Projekte noch um eine Ansammlung sonstiger Dritt-Produkte. Vielmehr ist Yii
 das Ergebnis der umfangreichen Erfahrungen des Autors im Bereich Web-Entwicklung,
 sowie einer Untersuchung der meisten populären Web-Frameworks und -anwendungen.
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: quickstart.what-is-yii.txt 257 2008-11-21 13:35:04Z qiang.xue $</div>
