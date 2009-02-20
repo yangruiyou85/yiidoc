@@ -74,4 +74,4 @@ Die Existenz von gecachten Daten wird nicht garantiert, selbst wenn diese
 niemals verfallen. Benutzern Sie daher einen Cache niemals als beständigen
 Speicher (speichern Sie dort also z.B. keine Sessiondaten).
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: caching.overview.txt 468 2009-01-04 20:57:35Z qiang.xue $</div>

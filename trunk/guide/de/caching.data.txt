@@ -108,4 +108,4 @@ definiert.
    - [CChainedCacheDependency]: Eine Änderung bei dieser Abhängigkeit tritt auf,
 wenn bei einer der Abhängigkeiten der Kette eine Änderung eingetreten ist.
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: caching.data.txt 169 2008-11-06 19:43:44Z qiang.xue $</div>
