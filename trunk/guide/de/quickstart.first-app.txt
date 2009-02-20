@@ -14,8 +14,13 @@ Starten Sie `yiic` von der Kommandozeile wie folgt:
 ~~~
 
 > Note|Hinweis: Wenn Sie `yiic` unter Mac OS, Linux or Unix starten, müssen Sie evtl.
-die Zugriffsrechte der `yiic`-Datei auf *ausführbar* setzen. Statt `yiic`
-müssen Sie evtl. auch `php YiiRoot/framework/yiic.php` verwenden.
+> die Zugriffsrechte der `yiic`-Datei auf *ausführbar* setzen. Alternativ
+> können sie den Befehl auch wie folgt aufrufen:
+>
+> ~~~
+> % cd WebRoot/testdrive
+> % php YiiRoot/framework/yiic.php webapp WebRoot/testdrive
+> ~~~
 
 Damit wird im Verzeichnis `WebRoot/testdrive` die Grundstruktur einer 
 Yii-Anwendung angelegt, wobei `WebRoot` für das Wurzelverzeichnis
@@ -194,14 +199,20 @@ generiert die Controller-Klassen und Views die zusammen die CRUD-Operationen
 für unser `User`-Model bilden.
 
 > Note|Hinweis: Sobald Sie Änderungen an Ihrem Code oder Ihrer
-Konfiguration vornehmen, starten Sie bitte `yiic shell` neu, damit 
-die Änderungen wirksam werden. Stellen Sie außerdem sicher, dass Sie die 
-richtige Kommandozeilen-Version (CLI) von PHP verwenden. Andernfalls begegnen 
-Ihnen Fehler wie "...could not find driver" ("...konnte Treiber nicht finden"), 
-obwohl Sie sich sicher waren, dass Sie PDO und den zugehörigen Datenbanktreiber 
-bereits aktiviert haben. Die Ursache für diese Art von Fehler liegt häufig 
-darin, dass der Kommandozeilen-Interpreter von PHP die falsche `php.ini`
-verwendet.
+>Konfiguration vornehmen, starten Sie bitte `yiic shell` neu, damit 
+>die Änderungen wirksam werden. 
+> 
+>Stellen Sie außerdem sicher, dass Sie die richtige Kommandozeilen-Version (CLI) 
+>von PHP verwenden. Falls Ihnen Fehler wie "...could not find driver" 
+>("...konnte Treiber nicht finden") begegnen, obwohl beim Testen der
+>Anforderungen angezeigt wurde, dass PDO und der zugehörige Datenbanktreiber
+>bereits aktiviert sind, können Sie versuchen, `yiic` wie folgt aufzurufen:
+>
+> ~~~
+> % php -c pfad/zu/php.ini protected/yiic.php shell
+> ~~~
+> 
+>wobei `pfad/zu/php.ini` die richtige INI-Datei für PHP darstellt.
 
 Genießen wir unsere Arbeit, indem wir die folgende URL aufrufen:
 
@@ -247,4 +258,4 @@ schreiben müssen!
 
 
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: quickstart.first-app.txt 702 2009-02-18 19:29:48Z qiang.xue $</div>
