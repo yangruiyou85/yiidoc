@@ -1,4 +1,4 @@
-﻿* Начало
+* Начало
     - [Что такое Yii](quickstart.what-is-yii)
     - [Установка](quickstart.installation)
     - [Создание первого Yii-приложения](quickstart.first-app)
