@@ -68,6 +68,9 @@ And if we modify the translated page according to the source page with
 a newer revision number, we should modify this revision reference
 accordingly.
 
+NOTE: you should not set "id" as SVN keyword for the translated pages.
+Otherwise, the above ID reference will be automatically modified by SVN.
+
 We will develop a command line tool to scan the translations and find
 out a list of translated pages that are out of date.
 
