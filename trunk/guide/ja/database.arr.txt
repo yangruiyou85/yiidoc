@@ -101,20 +101,18 @@ class User extends CActiveRecord
 }
 ~~~
 
-> Info|情報: A foreign key may be composite, consisting of two or more columns.
-In this case, we should concatenate the names of the foreign key columns
-and separate them with space or comma. For `MANY_MANY` relationship type,
-the associative table name must also be specified in the foreign key. For
-example, the `categories` relationship in `Post` is specified with the
-foreign key `PostCategory(postID, categoryID)`.
+> Info|情報: 外部キーは2個以上の列で構成される複合キーでもかまいません。
+この場合は名前は外部キー名の結合となるべきであり、スペースまたはカンマで分割されます。
+`MANY_MANY`のリレーションにおいては、関連したテーブル名は、外部キーでも指定されなければなりません。
+例えば、`Post`における`categories`リレーションは外部キー`PostCategory(postID, categoryID)`により指定されます。
 
-The declaration of relationships in an AR class implicitly adds a property
-to the class for each relationship. After a relational query is performed,
-the corresponding property will be populated with the related AR
-instance(s). For example, if `$author` represents a `User` AR instance,
-we can use `$author->posts` to access its related `Post` instances.
 
-Performing Relational Query
+ARクラスのリレーションの宣言は、各々のリレーションのために暗黙のうちにプロパティをクラスに加えます。
+リレーショナルなクエリが実行された後、対応するプロパティは関連するARインスタンスで満されます。
+例えば、`$author`が`User`ARインスタンスを表している場合、関連した`Post`インスタンスにアクセスするために`$author->posts`を
+使うことがあります。
+
+リレーショナルクエリの実行
 ---------------------------
 
 The simplest way of performing relational query is by reading a relational
