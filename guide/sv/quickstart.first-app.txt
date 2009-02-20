@@ -32,7 +32,7 @@ inloggningssidan. Startsidan visar lite information om applikationen samt
 användarens inloggningsstatus, kontaktsidan presenterar ett kontaktformulär som 
 användare kan fylla i för att skicka sina förfrågningar och inloggningssidan ger 
 användare möjlighet att bli autentiserade för åtkomst till priviligierat 
-innehåll. Se nedanstående skärmdumpar för närmare detlajer.
+innehåll. Se nedanstående skärmdumpar för närmare detaljer.
 
 ![Starsida](first-app1.png)
 
