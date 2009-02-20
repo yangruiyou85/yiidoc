@@ -64,15 +64,21 @@ by copying the following line from the source page:
 
 <div class="revision">$Id: basics.application.txt 626 ... $</div>
 
-And if we modify the translated page according to the source page with
-a newer revision number, we should modify this revision reference
+A source page is updated, it will have a different revision number,
+and we can use this number to detect if the corresponding translation
+is up-to-date or not. We can then use SVN's tool to compare two revisions,
+find out the changes to the source page, and synchronize the translation
 accordingly.
 
-NOTE: you should not set "id" as SVN keyword for the translated pages.
-Otherwise, the above ID reference will be automatically modified by SVN.
+NOTE: we should not set "id" as SVN keyword for the translated pages.
+Otherwise, the above revision reference will be automatically modified by SVN.
 
-We will develop a command line tool to scan the translations and find
-out a list of translated pages that are out of date.
+We have developed a command line tool to simplify the above task.
+Under the yiidoc directory and in a command window, run the following command:
+
+protected/yiic syncguide de
+
+The command will check if translations in German are up-to-date.
 
 
 How to Synchronize Messages
