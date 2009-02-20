@@ -54,4 +54,4 @@ Bild-URL wie folgt zusammenbauen:
 Yii::app()->theme->baseUrl . '/images/BildName.gif'
 ~~~
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: topics.theming.txt 170 2008-11-06 20:33:35Z qiang.xue $</div>

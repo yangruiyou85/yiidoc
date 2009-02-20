@@ -540,4 +540,4 @@ if(Yii::app()->user->checkAccess('aktualisiereEigenenBeitrag',$params))
 }
 ~~~
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: topics.auth.txt 677 2009-02-14 04:27:48Z qiang.xue $</div>
