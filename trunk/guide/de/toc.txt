@@ -43,7 +43,7 @@
 
 * Spezialthemen
     - [URL-Management](topics.url)
-    - [Authentifizierung und Autorisierung](topics.auth)
+    - [Authentifizierung und Berechtigung](topics.auth)
     - [Motive (Themes)](topics.theming)
     - [Protokolle (Logging)](topics.logging)
     - [Fehlerbehandlung](topics.error)

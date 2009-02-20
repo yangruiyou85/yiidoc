@@ -1,53 +1,61 @@
-Authentication and Authorization
-================================
+Authentifizierung und Berechtigung
+==================================
 
-Authentication and authorization are required for a Web page that should
-be limited to certain users. Authentication is about verifying whether
-someone is who he claims he is. It usually involves a username and a
-password, but may include any other methods of demonstrating identity, such
-as a smart card, fingerprints, etc. Authorization is finding out if the
-person, once identified (authenticated), is permitted to manipulate
-specific resources. This is usually determined by finding out if that
-person is of a particular role that has access to the resources.
+Authentifizierung und Berechtigung (engl.: authorization) spielen bei einer
+Webseite dann eine Rolle, wenn diese für bestimmte Benutzer nur beschränkt 
+zugänglich sein soll. Bei der *Authentifizierung* wird geprüft, ob jemand auch 
+tatsächlich der ist, der er vorgibt zu sein. In der Regel kommen dazu
+Benutzername und Passwort zum Einsatz.  Man könnte aber auch alle anderen 
+zur Identifizierung geeigneten Methoden verwenden, wie z.B. eine Chipkarte, 
+den Fingerabdruck, etc. Über die *Berechtigung* wird festgestellt, ob die
+authentifizierte (bzw. auch identifizierte) Person auch berechtigt ist, die
+angegebene Ressource zu verändern. Normalerweise wird dazu geprüft, ob die
+Person einer bestimmten Rolle zugeordnet ist, die Zugriff auf die Ressource
+hat. 
 
-Yii has a built-in authentication/authorization (auth) framework which is
-easy to use and can be customized for special needs.
+Yii hat ein eigenes Authentifizierungs-/Berechtigungs-Framework
+(Auth-Framework) eingebaut, das einfach anzuwenden ist und an spezielle
+Bedürfnisse angepasst werden kann.
 
-The central piece in the Yii auth framework is a pre-declared *user
-application component* which is an object implementing the [IWebUser]
-interface. The user component represents the persistent identity
-information for the current user. We can access it at any place using
-`Yii::app()->user`.
+Zentraler Bestandteil des Yii-Auth-Frameworks ist eine in der Anwendung 
+vordefinierte *Userkomponente* (Benutzerkomponente), ein Objekt, 
+dass das [IWebUser]-Interface implementiert. Die Userkomponente stellt die
+beständigen Identitätsdaten für den aktuellen Benutzer dar. 
+Über `Yii::app()->user` kann von jeder Stelle aus darauf zugegriffen werden.
 
-Using the user component, we can check if a user is logged in or not via
-[CWebUser::isGuest]; we can [login|CWebUser::login] and
-[logout|CWebUser::logout] a user; we can check if the user can perform
-specific operations by calling [CWebUser::checkAccess]; and we can also
-obtain the [unique identifier|CWebUser::name] and other persistent identity
-information about the user.
+Mittels der Userkomponente können wir über [CWebUser::isGuest] prüfen, 
+ob ein Benutzer angemeldet ist oder nicht. Wir können einen Benutzer mit
+[login|CWebUser::login] an- bzw. mit [logout|CWebUser::logout] abmelden.
+Mit [CWebUser::checkAccess] können wir prüfen, ob der Benutzer bestimmte
+Operationen ausführen kann. Und wir können außerdem den [eindeutigen
+Bezeichner|CWebUser::name] und weitere beständige Identitätsdaten des
+Benutzers abfragen.
 
-Defining Identity Class
------------------------
 
-In order to authenticate a user, we define an identity class which
-contains the actual authentication logic. The identity class should
-implement the [IUserIdentity] interface. Different classes may be
-implemented for different authentication approaches (e.g. OpenID, LDAP). A
-good start is by extending [CUserIdentity] which is a base class for the
-authentication approach based on username and password.
+Definieren der Identitätsklasse
+-------------------------------
 
-The main work in defining an identity class is the implementation of the
-[IUserIdentity::authenticate] method. An identity class may also declare
-additional identity information that needs to be persistent during the user
-session.
+Um einen Benutzer zu authentifizieren, definieren wir eine Identitätsklasse
+(engl.: identity class), die die eigentliche Authentifizierungslogik enthält. 
+Die Identitätsklasse sollte das Interface [IUserIdentity] implementieren. Je nach
+Authentifizierungsmethode (z.B. OpenID, LDAP), können unterschiedliche
+Identitätsklassen angelegt werden. Für den Anfang empfiehlt es sich, zunächst 
+[CUserIdentity] zu erweitern. Diese Klasse ist die Basisklasse für alle
+Authentifzierungsmethoden, die auf Benutzernamen und Passwort basieren.
 
-In the following example, we validate the given username and password
-against the user table in a database using [Active
-Record](/doc/guide/database.ar). We also override the `getId` method to
-return the `_id` variable which is set during authentication (the default
-implementation would return the username as the ID). During authentication,
-we store the retrieved `title` information in a state with the same name by
-calling [CBaseUserIdentity::setState].
+Die Hauptaufgabe beim Anlegen einer Identitätsklasse besteht darin, die Methode 
+[IUserIdentity::authenticate] zu implementieren. Eine Identitätsklasse kann auch
+weitere Identitätsdaten deklarieren, die während einer Benutzersitzung beständig
+gehalten werden sollen.
+
+Im folgenden Beispiel verwenden wir einen [ActiveRecord](/doc/guide/database.ar)
+um eine gegebene Kombination aus Benutzername und Passwort anhand der Daten in
+der Benutzertabelle einer Datenbank zu prüfen. Wir überschreiben außerdem die
+Methode `getId`, damit sie die Variable `_id` zurückliefert, die wir während
+der Authentifizierung gesetzt haben (standardmäßig würde der Benutzername als
+ID zurückgegeben werden). Während der Authentifizierung speichern wir mit
+[CBaseUserIdentity::setState] den ausgelesenen Wert für `title` in einem 
+Status (engl.: state) mit dem selben Namen.
 
 ~~~
 [php]
@@ -77,70 +85,78 @@ class UserIdentity extends CUserIdentity
 }
 ~~~
 
-Information stored in a state (by calling [CBaseUserIdentity::setState]) will be passed
-to [CWebUser] which stores them in a persistent storage, such as session.
-These information can be accessed like properties of [CWebUser]. For example, we
-can obtain the `title` information of the current user by `Yii::app()->user->title`
-(This has been available since version 1.0.3. In prior versions, we should use
-`Yii::app()->user->getState('title')`, instead.)
+Daten, die (durch Aufruf von [CBaseUserIdentity::setState]) in einem Status
+gespeichert werden, werden an [CWebUser] übergeben, wo sie in
+einem beständigen Speicher, wie etwa der Session, abgelegt werden.
+Auf diese Daten kann wie auf Eigenschaften von [CWebUser] zugegriffen werden.
+Wir können zum Beispiel die Information `title` des aktuellen Benutzers über
+`Yii::app()->user->title` abfragen. (Dies ist seit Version 1.0.3 möglich. In
+früheren Versionen mussten wir stattdessen
+`Yii::app()->user->getState('title')` verwenden.)
 
-> Info: By default, [CWebUser] uses session as persistent storage for user
-identity information. If cookie-based login is enabled (by setting
-[CWebUser::allowAutoLogin] to be true), the user identity information may
-also be saved in cookie. Make sure you do not declare sensitive information
-(e.g. password) to be persistent.
 
-Login and Logout
+> Info|Info: Standardmäßig verwendet [CWebUser] die Session als beständigen
+Speicher für Identitätsdaten. Wenn die cookie-basierte Anmeldung aktiviert
+wird (indem [CWebUser::allowAutoLogin] auf true gesetzt wurde), können
+Identitätsdaten auch in einem Cookie gespeichert werden. Stellen Sie sicher,
+dass sie keine heiklen Informationen (z.B. Passwörter) beständig halten.
+
+
+An- und Abmelden
 ----------------
 
-Using the identity class and the user component, we can
-implement login and logout actions easily.
+Mit der Identitätsklasse und der Userkomponente können wir An- und
+Abmeldeoperationen leicht implementieren.
 
 ~~~
 [php]
-// Login a user with the provided username and password.
+// Benutzer per übergebenem Benutzernamen/Passwort anmelden
 $identity=new UserIdentity($username,$password);
 if($identity->authenticate())
 	Yii::app()->user->login($identity);
 else
 	echo $identity->errorMessage;
 ......
-// Logout the current user
+// Aktuellen Benutzer abmelden
 Yii::app()->user->logout();
 ~~~
 
-By default, a user will be logged out after a certain period of inactivity,
-depending on the [session configuration](http://www.php.net/manual/en/session.configuration.php).
-To change this behavior, we can set the [allowAutoLogin|CWebUser::allowAutoLogin]
-property of the user component to be true and pass a duration parameter to
-the [CWebUser::login] method. The user will then remain logged in for
-the specified duration, even if he closes his browser window. Note that
-this feature requires the user's browser to accept cookies.
+Standardmäßig wird ein Benutzer abgemeldet, wenn er für eine bestimmte Zeit
+nicht aktiv war. Diese hängt von der
+[Session-Konfiguration](http://de2.php.net/manual/de/session.configuration.php)
+ab. Um dieses Verhalten zu ändern, können wir die Eigenschaft
+[allowAutoLogin|CWebUser::allowAutoLogin] der Userkomponente auf true setzen
+und eine Dauer als Parameter an die [CWebUser::login]-Methode übergeben. Der
+Benutzer bleibt dann für die angegebene Zeit angemeldet, auch wenn das
+Browserfenster geschlossen wird. Beachten Sie, dass der Benutzer dazu in
+seinem Browser Cookies akzeptieren muss.
 
 ~~~
 [php]
-// Keep the user logged in for 7 days.
-// Make sure allowAutoLogin is set true for the user component.
+// Benutzer für 7 Tage angemeldet lassen.
+// Stellen Sie sicher, dass allowAutoLogin 
+// in der Userkomponente auf true gesetzt ist
 Yii::app()->user->login($identity,3600*24*7);
 ~~~
 
-Access Control Filter
+Zugangskontrollfilter
 ---------------------
 
-Access control filter is a preliminary authorization scheme that checks if
-the current user can perform the requested controller action. The
-authorization is based on user's name, client IP address and request types.
-It is provided as a filter named as
-["accessControl"|CController::filterAccessControl].
+Der Zugangskontrollfilter (engl.: access control filter) ist ein
+vorläufiges Berechtigungssystem, das überprüft, ob der aktuelle Benutzer eine
+bestimmte Controller-Action ausführen darf. Die Berechtigungsprüfung basiert
+auf dem Benutzernamen, der IP-Adresse des Clients und dem Requesttyp. Er steht
+als Filter mit dem Namen ["accessControl"|CController::filterAccessControl]
+zur Verfügung.
 
-> Tip: Access control filter is sufficient for simple scenarios. For
-complex access control, you may use role-based access (RBAC) which is to be
-covered shortly.
+> Tip|Tipp: Der Zugangskontrollfilter reicht für einfache Szenarien aus. Für
+kompliziertere Zugriffskontrollen können Sie die rollenbasierte
+Zugriffskontrolle (RBAC) einsetzen, die wir in Kürze behandeln werden.
 
-To control the access to actions in a controller, we install the access
-control filter by overriding [CController::filters] (see
-[Filter](/doc/guide/basics.controller#filter) for more details about
-installing filters).
+Um den Zugriff auf Actions in unserem Controller zu regeln, aktivieren wir den
+Zugangskontrollfilter indem wir [CController::filters] überschreiben (siehe
+[Filter](/doc/guide/basics.controller#filter) für weitere Details zur
+Anwendung von Filtern).
 
 ~~~
 [php]
@@ -156,11 +172,11 @@ class PostController extends CController
 }
 ~~~
 
-In the above, we specify that the [access
-control|CController::filterAccessControl] filter should be applied to every
-action of `PostController`. The detailed authorization rules used by the
-filter are specified by overriding [CController::accessRules] in the
-controller class.
+Hier legen wir fest, dass der
+[Zugangskontrollfilter|CController::filterAccessControl] auf alle Actions von
+`PostController` angewendet werden soll. Die ausführlichen Berechtigungsregeln
+für den Filter werden definiert, indem wir [CController::accessRules]
+im Controller überschreiben.
 
 ~~~
 [php]
@@ -187,84 +203,90 @@ class PostController extends CController
 }
 ~~~
 
-The above code specifies three rules, each represented as an array. The
-first element of the array is either `'allow'` or `'deny'` and the rest
-name-value pairs specify the pattern parameters of the rule. These rules
-read: the `create` and `edit` actions cannot be executed by anonymous
-users; the `delete` action can be executed by users with `admin` role;
-and the `delete` action cannot be executed by anyone.
+Dieser Code legt drei Regeln über jeweils ein Array fest. Das erste Element
+eines solchen Arrays ist entweder `'allow'` (erlaube) oder `'deny'` (verbiete). Die
+restlichen Name-/Wert-Paare legen die Gültigkeit der Regel fest. Die Regeln
+oben lesen sich wie folgt: Die Actions `create` und `edit` können nicht von
+anonymen Benutzern aufgerufen werden. Die `delete`-Action kann von Benutzern
+mit der Rolle `admin` ausgeführt werden. Und die `delete`-Action kann von
+keinem Benutzer ausgeführt werden.
 
-The access rules are evaluated one by one in the order they are specified.
-The first rule that matches the current pattern (e.g. username, roles,
-client IP, address) determines the authorization result. If this rule is an `allow`
-rule, the action can be executed; if it is a `deny` rule, the action cannot
-be executed; if none of the rules matches the context, the action can still
-be executed.
+Die Zugriffsregeln werden eine nach der anderen in der Reihenfolge ihrer
+Definition ausgewertet. Die erste Regel, die vollständig mit dem vorliegenden 
+Kontext (z.B. Benutzername, Rolle, IP-Adresse) übereinstimmt, bestimmt das Ergebnis 
+der Berechtigungsprüfung. Falls es sich um eine `allow`-Regel handelt, kann die
+Action ausgeführt werden. Liegt eine `deny`-Regel vor, kann die Action nicht
+ausgeführt werden. Wenn keine der Regeln mit dem aktuellen Kontext übereinstimmt,
+kann die Action immer noch ausgeführt werden.
 
-> Tip: To ensure an action does not get executed under certain contexts,
-> it is beneficial to always specify a matching-all `deny` rule at the end
-> of rule set, like the following:
+
+> Tip|Tipp: Um sicherzustellen, dass eine Action nicht doch unter einem bestimmten
+> Kontext ausgeführt werden kann, ist es hilfreich, eine immergültige
+> `deny`-Regel ans Ende seiner Regeln zu setzen: 
 > ~~~
 > [php]
 > return array(
->     // ... other rules...
->     // the following rule denies 'delete' action for all contexts
+>     // ... Andere Regeln ...
+>     // Die folgende Regel verbietet die 'delete'-Action in jedem Kontext
 >     array('deny',
 >         'action'=>'delete',
 >     ),
 > );
 > ~~~
-> The reason for this rule is because if none of the rules matches a context,
-> an action will be executed.
+> Diese Regel ist nötig, da eine Action ausgeführt werden kann, wenn keine
+> Regel mit einem gegebenen Kontext übereinstimmt.
 
-An access rule can match the following context parameters:
+Eine Zugriffsregel kann auf folgende Kontextparameter zutreffen:
 
-   - [actions|CAccessRule::actions]: specifies which actions this rule
-matches.
+   - [actions|CAccessRule::actions]: Definiert, welche Actions diese Regel
+betrifft.
 
-   - [users|CAccessRule::users]: specifies which users this rule matches.
-The current user's [name|CWebUser::name] is used for matching. Three
-special characters can be used here:
+   - [users|CAccessRule::users]: Definiert, welche Benutzer diese Regel
+betrifft. Zur Prüfung wird der [Name|CWebUser::name] des aktuellen Benutzers
+herangezogen. Hier können drei spezielle Zeichen verwendet werden:
 
-	   - `*`: any user, including both anonymous and authenticated users.
-	   - `?`: anonymous users.
-	   - `@`: authenticated users.
+	   - `*`: Jeder Benutzer, inkl. anonyme und authentifizierte Benutzer.
+	   - `?`: Anonyme (nicht angemeldete) Benutzer.
+	   - `@`: Authentifizierte (angemeldete) Benutzer.
 
-   - [roles|CAccessRule::roles]: specifies which roles that this rule matches.
-This makes use of the [role-based access control](#role-based-access-control)
-feature to be described in the next subsection. In particular, the rule
-is applied if [CWebUser::checkAccess] returns true for one of the roles.
-Note, you should mainly use roles in an `allow` rule because by definition,
-a role represents a permission to do something.
+   - [roles|CAccessRule::roles]: Definiert, welche Rollen diese Regel
+betrifft. Dazu wird die [rollenbasierte
+Zugriffskontrolle](#role-based-access-control) verwendet, die wir im nächsten
+Abschnitt beschreiben werden. Konkret wird diese Regel angewendet, wenn
+[CWebUser::checkAccess] für eine der Rollen true zurückliefert. Beachten Sie,
+dass Sie Rollen vor allem in `allow`-Regeln einsetzen sollen, da eine Rolle
+per Definition eine Erlaubnis darstellt, etwas bestimmtes zu tun.
 
-   - [ips|CAccessRule::ips]: specifies which client IP addresses this rule
-matches.
+   - [ips|CAccessRule::ips]: Definiert, welche Client-IP-Adressen diese
+Regel betrifft. 
 
-   - [verbs|CAccessRule::verbs]: specifies which request types (e.g.
-`GET`, `POST`) this rule matches.
+   - [verbs|CAccessRule::verbs]: Definiert, welche Requesttypen (z.B. 'GET',
+'POST') diese Regel betrifft.
 
-   - [expression|CAccessRule::expression]: specifies a PHP expression whose value
-indicates whether this rule matches. In the expression, you can use variable `$user`
-which refers to `Yii::app()->user`. This option has been available since version 1.0.3.
+   - [expression|CAccessRule::expression]: Definiert einen PHP-Ausdruck,
+dessen Wert darüber entscheidet, ob die Regel zutrifft oder nicht. Im Ausdruck
+können Sie `$user` für `Yii::app()->user` verwenden. Diese Option ist seit
+Version 1.0.3 verfügbar.
 
 
-### Handling Authorization Result
+### Umgang mit Autorisierungsergebnissen
 
-When authorization fails, i.e., the user is not allowed to perform the
-specified action, one of the following two scenarios may happen:
+Wenn die Autorisierung verweigert wird, der Benutzer also nicht berechtigt
+ist, die angegebene Action auszuführen, liegt eine der beiden folgenden
+Situationen vor:
 
-   - If the user is not logged in and if the [loginUrl|CWebUser::loginUrl]
-property of the user component is configured to be the URL of the login
-page, the browser will be redirected to that page.
+   - Falls der Benutzer nicht angemeldet ist und die Eigenschaft
+[loginUrl|CWebUser::loginUrl] der Userkomponente auf die URL der Anmeldeseite
+gesetzt wurde, wird der Browser auf diese Seite umgeleitet.
 
-   - Otherwise an HTTP exception will be displayed with error code 401.
+   - Andernfalls wird eine HTTP-Exception mit dem Fehlercode 401 angezeigt.
 
-When configuring the [loginUrl|CWebUser::loginUrl] property, one can
-provide a relative or absolute URL. One can also provide an array which
-will be used to generate a URL by calling [CWebApplication::createUrl]. The
-first array element should specify the
-[route](/doc/guide/basics.controller#route) to the login controller
-action, and the rest name-value pairs are GET parameters. For example,
+Beim Konfigurieren der [loginUrl|CWebUser::loginUrl] kann eine relative oder
+absolute URL angegeben werden. Man kann auch ein Array angeben, das an
+[CWebApplication::createUrl] übergeben wird, um damit eine URL zu erzeugen.
+Das erste Element dieses Arrays sollte die [Route](/doc/guide/basics.controller#route) 
+zur Anmelde-Action eines Controllers angeben. Der Rest kann aus 
+Name-/Wert-Paaren für GET-Parameter bestehen. Ein Beispiel:
 
 ~~~
 [php]
@@ -272,105 +294,117 @@ array(
 	......
 	'components'=>array(
 		'user'=>array(
-			// this is actually the default value
+			// Dies entspricht auch dem Vorgabewert
 			'loginUrl'=>array('site/login'),
 		),
 	),
 )
 ~~~
 
-If the browser is redirected to the login page and the login is
-successful, we may want to redirect the browser back to the page that
-caused the authorization failure. How do we know the URL for that page? We
-can get this information from the [returnUrl|CWebUser::returnUrl] property
-of the user component. We can thus do the following to perform the
-redirection:
+Wenn der Browser auf die Anmeldeseite umgeleitet wird und die Anmeldung
+erfolgreich verläuft, können wir den Browser zurück auf die Seite schicken,
+bei der die Autorisierung verweigert wurde. Woher wissen wir die URL dieser
+Seite? Wir können sie über die Eigenschaft [returnUrl|CWebUser::returnUrl] der
+aktuellen Userkomponente beziehen. Dadurch können wir wie folgt vorgehen, um die
+Umleitung durchzuführen:
 
 ~~~
 [php]
 Yii::app()->request->redirect(Yii::app()->user->returnUrl);
 ~~~
 
-Role-Based Access Control
--------------------------
+Rollenbasierte Zugriffskontrolle
+--------------------------------
 
-Role-Based Access Control (RBAC) provides a simple yet powerful
-centralized access control. Please refer to the [Wiki
-article](http://en.wikipedia.org/wiki/Role-based_access_control) for more
-details about comparing RBAC with other more traditional access control
-schemes.
+Die rollenbasierte Zugriffskontrolle (RBAC, engl.: role-based access control)
+bietet eine einfache und trotzdem leistungsfähige zentralisierte
+Zugriffssteuerung. Für weitere Ausführungen zum Vergleich von RBAC mit anderen
+traditionelleren Verfahren der Zugriffskontrolle beachten Sie bitte auch den
+entsprechenden [Wiki-Artikel](http://de.wikipedia.org/wiki/RBAC) (evtl. auch
+in der ausührlicheren [englischen
+Version](http://en.wikipedia.org/wiki/Role-based_access_control)).
 
-Yii implements a hierarchical RBAC scheme via its
-[authManager|CWebApplication::authManager] application component. In the
-following ,we first introduce the main concepts used in this scheme; we
-then describe how to define authorization data; at the end we show how to
-make use of the authorization data to perform access checking.
+Yii implementiert über seine
+[authManager|CWebApplication::authManager]-Komponente ein hierarchisches 
+RBAC-Schema. Im folgenden behandeln wir zunächst die Grundkonzepte dieses
+Schemas. Wir beschreiben dann, wie Autorisierungsdaten definiert werden.
+Schließlich zeigen wir, wie die Autorisierungsdaten bei der Zugriffsprüfung 
+verwendet werden.
 
-### Overview
+### Übersicht
 
-A fundamental concept in Yii's RBAC is *authorization item*. An
-authorization item is a permission to do something (e.g. creating new blog
-posts, managing users). According to its granularity and targeted audience,
-authorization items can be classified as *operations*,
-*tasks* and *roles*. A role consists of tasks, a task
-consists of operations, and an operation is a permission that is atomic.
-For example, we can have a system with `administrator` role which consists
-of `post management` task and `user management` task. The `user management`
-task may consist of `create user`, `update user` and `delete user`
-operations. For more flexibility, Yii also allows a role to consist of
-other roles or operations, a task to consist of other tasks, and an
-operation to consist of other operations.
+Einer der grundlegenden Begriffe bei RBAC mit Yii ist das
+*Autorisierungselement* (engl.: authorization item). Ein Autorisierungselement
+steht für die Erlaubnis, etwas bestimmtes zu tun (z.B. einen Blogeintrag anzulegen
+oder Benutzer zu verwalten). Gemäß ihrer Beschaffenheit und dem anvisierten
+Zielpublikum können Autorisierungselemente in *Operationen* (engl.:
+operations), *Tätigkeiten* (engl.: tasks) und *Rollen* (engl.: roles) eingeteilt
+werden. Eine Rolle besteht aus Tätigkeiten, eine Tätigkeit aus Operationen. Eine
+Operation steht für eine atomare Berechtigung. 
 
-An authorization item is uniquely identified by its name.
+In einem System kann es zum Beispiel eine Rolle `administrator` geben. Sie 
+besteht aus den Tätigkeiten `Beiträge verwalten` und `Benutzer verwalten`. 
+Die Tätigkeit `Benutzer verwalten` könnte aus den Operationen
+`Benutzer anlegen`, `Benutzer aktualisieren` und `Benutzer löschen` bestehen. 
+Um das System noch noch flexibler zu machen, erlaubt es Yii
+sogar, dass eine Rolle aus weiteren Rollen oder Operationen besteht, eine
+Tätigkeit aus anderen Tätigkeiten und eine Operation aus anderen Operationen. 
 
-An authorization item may be associated with a *business rule*. A
-business rule is a piece of PHP code that will be executed when performing
-access checking with respect to the item. Only when the execution returns
-true, will the user be considered to have the permission represented by the
-item. For example, when defining an operation `updatePost`, we would like
-to add a business rule that checks if the user ID is the same as the post's
-author ID so that only the author himself can have the permission to update
-a post.
+Ein Autorisierungselement wird eindeutig über seinen Namen identifiziert.
 
-Using authorization items, we can build up an *authorization
-hierarchy*. An item `A` is a parent of another item `B` in the
-hierarchy if `A` consists of `B` (or say `A` inherits the permission(s)
-represented by `B`). An item can have multiple child items, and it can also
-have multipe parent items. Therefore, an authorization hierarchy is a
-partial-order graph rather than a tree. In this hierarchy, role items sit
-on top levels, operation items on bottom levels, while task items in
-between.
+Ein Autorisierungselement kann mit einer *Geschäftsregel* (engl.: business
+rule) verbunden sein. Eine Geschäftsregel ist ein kurzer PHP-Code, der
+ausgeführt wird, wenn eine Zugriffsprüfung unter Bezug auf das Element
+stattfindet. Die vom Element dargestellte Berechtigung wird dem Benutzer nur
+dann erteilt, wenn die Ausführung dieses Codes true zurückliefert. Wenn wir
+zum Beispiel eine Operation `aktualisiereBeitrag` definieren, 
+können wir eine Geschäftsregel hinzufügen, die prüft, ob die ID des Benutzers 
+mit derjenigen des Beitragsautors übereinstimmt, so dass nur der Autor selbst
+berechtigt ist, seine Beiträge zu aktualisieren.
 
-Once we have an authorization hierarchy, we can assign roles in this
-hierarchy to application users. A user, once assigned with a role, will
-have the permissions represented by the role. For example, if we assign the
-`administrator` role to a user, he will have the administrator permissions
-which include `post management` and `user management` (and the
-corresponding operations such as `create user`).
+Durch den Einsatz von Autorisierungselementen können wir ein
+*Autorisierungshierarchie* aufbauen. Ein Element `A` ist das Elternelement
+eines anderen Elements `B` in der Hierarchie, wenn `A` aus `B` besteht (oder
+anders ausgedrückt `A` die von `B` dargestellten Berechtigung(en) erbt).
+Ein Element kann mehrere Kindelemente haben und auch mehrere Elternelemente
+besitzen. Eine Autorisierungshierarchie ist daher eher ein Graph partieller 
+Ordnung als eine Baumstruktur. In dieser Hierarchie stehen Rollen auf der
+obersten Ebene, Operationen auf der untersten und Tätigkeiten zwischen diesen
+beiden.
 
-Now the fun part starts. In a controller action, we want to check if the
-current user can delete the specified post. Using the RBAC hierarchy and
-assignment, this can be done easily as follows:
+Haben wir eine Autorisierungshierarchie erstellt, können wir Benutzern Rollen
+aus dieser Hierarchie zuweisen. Wenn einem Benutzer eine Rolle zugewiesen
+wurde, hat er alle von der Rolle dargestellten Berechtigungen. Weisen wir
+einem Benutzer z.B. die Rolle `administrator` zu, hat er Administratorrechte,
+was die Tätigkeiten `Beiträge verwalten` und `Benutzer verwalten` beinhaltet 
+(sowie die zugehörigen Operationen wie `Benutzer anlegen`). 
+
+Jetzt beginnt der vergnügliche Teil. In einer Controller-Action möchten wir
+prüfen, ob der aktuelle Benutzer den angegebenen Beitrag löschen kann.
+Verwenden wir die RBAC-Hierarchie und -Zuweisung, kann das ganz leicht wie
+folgt erledigt werden:
 
 ~~~
 [php]
-if(Yii::app()->user->checkAccess('deletePost'))
+if(Yii::app()->user->checkAccess('löscheBeitrag'))
 {
-	// delete the post
+	// Beitrag löschen
 }
 ~~~
 
-### Configuring Authorization Manager
+### Konfiguration des Berechtigungsmanagers
 
-Before we set off to define an authorization hierarchy and perform access
-checking, we need to configure the
-[authManager|CWebApplication::authManager] application component. Yii
-provides two types of authorization managers: [CPhpAuthManager] and
-[CDbAuthManager]. The former uses a PHP script file to store authorization
-data, while the latter stores authorization data in database. When we
-configure the [authManager|CWebApplication::authManager] application
-component, we need to specify which component class to use and what are the
-initial property values for the component. For example,
+Bevor wir mit damit loslegen können, eine Autorisierungshierarchie anzulegen 
+und den Zugriffschutz zu verwenden, müssen wir die Anwendungskomponente
+[authManager|CWebApplication::authManager] konfigurieren. Yii bietet zwei
+Arten von Berechtigungsmanagern (engl.: authorization manager): 
+[CPhpAuthManager] und [CDbAuthManager].
+Ersterer verwendet eine PHP-Datei zum Speichern der Autorisierungsdaten,
+letzerer eine Datenbank. Beim Konfigurieren der
+[authManager|CWebApplication::authManager]-Komponente müssen wir angeben,
+welche Klasse wir benutzen wollen, und welche Startwerte für deren
+Eigenschaften verwendet werden sollen. Ein Beispiel:
+
 
 ~~~
 [php]
@@ -378,7 +412,7 @@ return array(
 	'components'=>array(
 		'db'=>array(
 			'class'=>'CDbConnection',
-			'connectionString'=>'sqlite:path/to/file.db',
+			'connectionString'=>'sqlite:pfad/zu/datei.db',
 		),
 		'authManager'=>array(
 			'class'=>'CDbAuthManager',
@@ -388,113 +422,121 @@ return array(
 );
 ~~~
 
-We can then access the [authManager|CWebApplication::authManager]
-application component using `Yii::app()->authManager`.
+Danach können wir über `Yii::app()->authManager` auf den
+[authManager|CWebApplication::authManager] zugreifen.
 
-### Defining Authorization Hierarchy
+> Note|Hinweis: Wenn Sie Umlaute für die Bezeichnung Ihrer
+Autorisierungselemente verwenden möchten, achten Sie bitte darauf, dass sie
+die entsprechenden Tabellen mit UTF-8-Codierung anlegen und sie bei der
+Konfiguration der Datenbankverbindung die Eigenschaft 
+[CDbConnection::charset] ebenfalls auf `utf8` setzen.
 
-Defining authorization hierarchy involves three steps: defining
-authorization items, establishing relationships between authorization
-items, and assigning roles to application users. The
-[authManager|CWebApplication::authManager] application component provides a
-whole set of APIs to accomplish these tasks.
+### Anlegen einer Autorisierungshierarchie
 
-To define an authorization item, call one of the following methods,
-depending on the type of the item:
+Das Anlegen einer Autorisierungshierarchie beinhaltet drei Schritte: 
+Autorisierungselemente anlegen, zwischen diesen Elementen Beziehungen 
+definieren und Benutzern Rollen zuweisen. Die
+[authManager|CWebApplication::authManager]-Komponente bietet eine ganze Reihe
+von APIs um dies zu bewerkstelligen.
 
-   - [CAuthManager::createRole]
-   - [CAuthManager::createTask]
-   - [CAuthManager::createOperation]
+Rufen Sie je nach Art des Elements eine der folgenden Methoden auf, um ein
+Autorisierungselement zu erstellen:
 
-Once we have a set of authorization items, we can call the following
-methods to establish relationships between authorization items:
+   - [CAuthManager::createRole] (erzeugt Rolle)
+   - [CAuthManager::createTask] (erzeugt Tätigkeit)
+   - [CAuthManager::createOperation] (erzeugt Operation)
 
-   - [CAuthManager::addItemChild]
-   - [CAuthManager::removeItemChild]
-   - [CAuthItem::addChild]
-   - [CAuthItem::removeChild]
+Wenn wir eine Reihe von Autorisierungselementen angelegt haben, können wir mit
+den folgenden Methoden Beziehungen zwischen diesen Elementen definieren:
 
-And finally, we call the following methods to assign role items to
-individual users:
+   - [CAuthManager::addItemChild] (definiert Eltern-Kind-Beziehung)
+   - [CAuthManager::removeItemChild] (entfernt Eltern-Kind-Beziehung)
+   - [CAuthItem::addChild] (definiert Kind-Beziehung von Elternelement aus)
+   - [CAuthItem::removeChild] (entfernt Kind-Beziehung von Elternelement aus)
 
-   - [CAuthManager::assign]
-   - [CAuthManager::revoke]
+Um schließlich einzelnen Benutzern Rollen zuzuweisen rufen wir folgende Methoden
+auf:
 
-Below we show an example about building an authorization hierarchy with
-the provided APIs:
+   - [CAuthManager::assign] (weist Rolle zu)
+   - [CAuthManager::revoke] (entfernt zugewiesene Rolle)
+
+Unten sehen wir ein Beispiel, wie wir mit der verfügbaren API ein
+Autorisierungshierarchie aufbauen:
 
 ~~~
 [php]
 $auth=Yii::app()->authManager;
 
-$auth->createOperation('createPost','create a post');
-$auth->createOperation('readPost','read a post');
-$auth->createOperation('updatePost','update a post');
-$auth->createOperation('deletePost','delete a post');
+$auth->createOperation('erstelleBeitrag','Einen Beitrag erstellen');
+$auth->createOperation('leseBeitrag','Einen Beitrag lesen');
+$auth->createOperation('aktualisiereBeitrag','Einen Beitrag aktualisieren');
+$auth->createOperation('löscheBeitrag','Einen Beitrag löschen');
 
 $bizRule='return Yii::app()->user->id==$params["post"]->authID;';
-$task=$auth->createTask('updateOwnPost','update a post by author himself',$bizRule);
-$task->addChild('updatePost');
+$task=$auth->createTask('aktualisiereEigenenBeitrag','Einen eigenen Beitrag aktualisieren',$bizRule);
+$task->addChild('aktualisiereBeitrag');
 
-$role=$auth->createRole('reader');
-$role->addChild('readPost');
+$role=$auth->createRole('leser');
+$role->addChild('leseBeitrag');
 
-$role=$auth->createRole('author');
-$role->addChild('reader');
-$role->addChild('createPost');
-$role->addChild('updateOwnPost');
+$role=$auth->createRole('autor');
+$role->addChild('leser');
+$role->addChild('erstelleBeitrag');
+$role->addChild('aktualisiereEigenenBeitrag');
 
-$role=$auth->createRole('editor');
-$role->addChild('reader');
-$role->addChild('updatePost');
+$role=$auth->createRole('redakteur');
+$role->addChild('leser');
+$role->addChild('aktualisiereBeitrag');
 
 $role=$auth->createRole('admin');
-$role->addChild('editor');
-$role->addChild('author');
-$role->addChild('deletePost');
+$role->addChild('redakteur');
+$role->addChild('autor');
+$role->addChild('löscheBeitrag');
 
-$auth->assign('reader','readerA');
-$auth->assign('author','authorB');
-$auth->assign('editor','editorC');
+$auth->assign('leser','leserA');
+$auth->assign('autor','autorB');
+$auth->assign('redakteur','redakteurC');
 $auth->assign('admin','adminD');
 ~~~
 
-Note that we associate a business rule with the `updateOwnPost` task. In
-the business rule we simply check if the current user ID is the same as the
-specified post's author ID. The post information in the `$params` array is
-supplied by developers when performing access checking.
+Beachten Sie, dass wir die Tätigkeit `aktualisiereEigenenBeitrag` mit einer 
+Geschäftsregel versehen haben. In dieser Regel prüfen wir einfach, ob die aktuelle
+Benuzter-ID der Autor-ID des angegebenen Beitrags entspricht. Die
+Beitragsdaten im `$params`-Array werden vom Entwickler bei der Zugangsprüfung
+übergeben.
 
-> Info: While the above example looks long and tedious, it is mainly for
-demonstrative purpose. Developers usually need to develop some user
-interfaces so that end users can use to establish an authorization
-hierarchy more intuitively.
+> Info|Info: Das Verfahren oben mutet etwas langwierig an, dient aber lediglich
+Demonstrationszwecken. In der Regel müssen Entwickler
+Benutzerschnittstellen entwerfen, mit denen Autorisierungshierarchien
+intuitiver erstellt werden können.
 
-### Access Checking
+### Zugriffsprüfung
 
-To perform access checking, we first need to know the name of the
-authorization item. For example, to check if the current user can create a
-post, we would check if he has the permission represented by the
-`createPost` operation. We then call [CWebUser::checkAccess] to perform the
-access checking:
+Bevor wir eine Zugriffsprüfung durchführen können, brauchen wir erst den
+Namen des Autorisierungselements. Um zum Beispiel zu testen, ob der aktuelle
+Benutzer einen Beitrag erstellen kann, würden wir prüfen, ob er die von der
+Operation `erstelleBeitrag` dargestellte Berechtigung besitzt. Für die Prüfung
+rufen wir dann [CWebUser::checkAccess] auf:
 
 ~~~
 [php]
-if(Yii::app()->user->checkAccess('createPost'))
+if(Yii::app()->user->checkAccess('erstelleBeitrag'))
 {
-	// create post
+	// Beitrag erstellen
 }
 ~~~
 
-If the authorization rule is associated with a business rule which
-requires additional parameters, we can pass them as well. For example, to
-check if a user can update a post, we would do
+Wenn die Autorisierungsregel mit einer Geschäftsregel verbunden ist, die
+weitere Parameter erfordert, können wir diese ebenfalls mit übergeben. Um zum
+Beispiel zu prüfen, ob ein Benutzer einen Beitrag aktualisieren darf, können
+wir so vorgehen:
 
 ~~~
 [php]
 $params=array('post'=>$post);
-if(Yii::app()->user->checkAccess('updateOwnPost',$params))
+if(Yii::app()->user->checkAccess('aktualisiereEigenenBeitrag',$params))
 {
-	// update post
+	// Beitrag aktualisieren
 }
 ~~~
 
