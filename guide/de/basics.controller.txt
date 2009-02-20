@@ -30,13 +30,16 @@ Route
 -----
 
 Controller und Actions werden durch ihre IDs identifiziert. Eine Controller-ID
-hat das Format `pfad.zu.xyz`, was der Controller-Datei 
+hat das Format `pfad/zu/xyz`, was der Controller-Datei 
 `protected/controllers/pfad/zu/XyzController.php` entspricht, wobei das Kürzel
-`xyz` durch tatsächliche Namen ersetzt werden sollte (z.B. entspricht `post`
+`xyz` durch echte Namen ersetzt werden sollte (z.B. entspricht `post`
 der Datei `protected/controllers/PostController.php`). Die Action-ID ist der
 Name der Action-Methode ohne die `action`-Präfix. Wenn eine Controller-Klasse
 z.B. eine Methode namens `actionEdit` enthält, entspricht dies der Action-ID
 `edit`.
+
+> Note|Hinweis: Vor Version 1.0.3 war das Format der Controller-ID
+`pfad.zu.xyz` statt `pfad/zu/xyz`.
 
 Eine bestimmte Controller-/Action-Kombination wird von Benutzern in Form einer
 sogenannten Route angefordert. Eine Route setzt sich aus Controller- und
@@ -71,7 +74,7 @@ anzuzeigen.
 entsprechende Controller-Konfiguration verwendet, um die Controller-Instanz zu
 erstellen.
 
-   - Falls die ID im Format `'pfad.zu.xyz'` vorliegt, wird von der
+   - Falls die ID im Format `'pfad/zu/xyz'` vorliegt, wird von der
 Controller-Klasse `XyzController` in der Datei
 `protected/controllers/pfad/zu/XyzController.php` ausgegangen. Die
 Controller-ID `admin.user` würde zum Beispiel in die Controller-Klasse
@@ -232,4 +235,4 @@ Filter angewendet werden soll und auf welche nicht. Oben soll der Filter
 weder Plus noch Minus in der Filterkonfiguration auftauchen, wird der Filter
 auf alle Actions angewendet.
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: basics.controller.txt 715 2009-02-20 02:08:24Z qiang.xue $</div>

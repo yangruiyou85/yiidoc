@@ -27,4 +27,4 @@ welche eine einzelne Zeile in einer Datenbanktabelle darstellt. Die Felder der
 Zeile werden auf die Eigenschaften des AR-Objekts abgebildet. Details zu AR
 finden Sie unter [ActiveRecord](/doc/guide/database.ar).
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: basics.model.txt 162 2008-11-05 12:44:08Z weizhuo $</div>
