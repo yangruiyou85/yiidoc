@@ -48,7 +48,7 @@ EOD;
 				echo $display."not translated yet.\n";
 			else if(!preg_match('/\$Id:\s*([\w\.\-]+)\s*(\d+)/iu',$content,$matches) || $name!==$matches[1])
 				echo $display."revision token not found in translation.\n";
-			else if($matches[2]===$srcRevision)
+			else if($matches[2]>=$srcRevision)
 				echo $display."up-to-date.\n";
 			else
 				echo $display."outdated (source: r$srcRevision, translation: r{$matches[2]}).\n";
