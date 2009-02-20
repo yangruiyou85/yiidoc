@@ -55,6 +55,22 @@ the translation of the token word and use "|" as the separator. For example,
 > Tip|translation for 'tip': ......
 
 
+How to Synchronize the Guide
+----------------------------
+
+In order to keep track of the changes made to the source guide pages,
+for every translated page, we should append the source revision number
+by copying the following line from the source page:
+
+<div class="revision">$Id: basics.application.txt 626 ... $</div>
+
+And if we modify the translated page according to the source page with
+a newer revision number, we should modify this revision reference
+accordingly.
+
+We will develop a command line tool to scan the translations and find
+out a list of translated pages that are out of date.
+
 
 How to Synchronize Messages
 ---------------------------
