@@ -48,4 +48,4 @@ eines Filters: Ein Widget (Filter) beginnt, bevor der eingebettete Inhalt
 (Action) ausgewertet wird und endet, nachdem dieser Inhalt (Action)
 ausgewertet wurde.
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: caching.page.txt 162 2008-11-05 12:44:08Z weizhuo $</div>
