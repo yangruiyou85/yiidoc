@@ -1,4 +1,5 @@
 * Komma igång
+	- [Översikt](index)
     - [Vad är Yii](quickstart.what-is-yii)
     - [Installation](quickstart.installation)
     - [Skapa en första Yii-applikation](quickstart.first-app)
