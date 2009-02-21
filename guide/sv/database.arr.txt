@@ -261,8 +261,12 @@ relationella frågan. De sammanfattas nedan.
    kolumnreferenser behöver göras otvetydiga med hjälp av `aliasToken` (t.ex. 
    `??.id=10`).
 
+   - `params`: parametrarna som skall kopplas ihop med den genererade SQL-satsen. 
+   Dessa skall ges som en array bestående av namn-värdepar. Detta alternativ har 
+   varit tillgängligt från och med version 1.0.3.
+
    - `on`: motsvarar `ON`-ledet. Villkoret som specificeras här kommer att läggas till 
-   sammanslagningsvillkoret med hjälp av `AND`-operatorn. Detta alternativ hr 
+   sammanslagningsvillkoret med hjälp av `AND`-operatorn. Detta alternativ har 
    varit tillgängligt från och med version 1.0.2.
 
    - `order`: motsvarar `ORDER BY`-ledet. Det är som standard tomt. Märk att 
@@ -285,6 +289,13 @@ relationella frågan. De sammanfattas nedan.
    är null, vilket innebär att tabellalias genereras automatiskt. Detta skiljer 
    sig från `aliasToken` på så sätt att den senare bara är en platshållare och 
    ersätts med faktiskt tabellalias.
+
+   - `together`: huruvida tabellen associerad med detta samband skall tvingas till 
+   en ovillkorlig sammanslagning (join) med den primära tabellen. Detta alternativ 
+   är endast relevant för samband av typerna HAS_MANY och MANY_MANY. Om alternativet 
+   inte anges eller sätts till false, kommer varje HAS_MANY- eller MANY_MANY-samband 
+   att, av prestandaskäl, ha sin egen JOIN-sats. Detta alternativ har varit tillgängligt 
+   från och med version 1.0.3.
 
 Dessutom är följande alternativ tillgängliga för vissa samband när lazy loading används:
 
@@ -357,4 +368,4 @@ User::model()->with(array(
 ))->findAll();
 ~~~
 
-<div class="revision">$Id: database.arr.txt 626 2009-02-04 20:51:13Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 678 2009-02-14 17:46:26Z qiang.xue $</div>
