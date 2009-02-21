@@ -60,8 +60,7 @@ attributet i modellen. Om attributet har ett inmatningsfel, ändras ledtextens
 CSS-klass till `error`, vilket förändrar ledtextens utseende med hjälp av 
 tillämpliga CSS-stilar. På liknande sätt genererar [CHtml::activeTextField()] 
 ett textinmatningsfält för det specificerade attributet i modellen och ändrar 
-dess CSS-klass i händelse av inmatningsfel. För fler detaljer kring användning 
-av [CHtml], se [Använda hjälpklasser](/doc/guide/view.helper).
+dess CSS-klass i händelse av inmatningsfel.
 
 Om CSS-stilarna som används är de som finns i filen `form.css`, tillhandahållen 
 av `yiic`-skriptet, kommer det genererade formuläret att se ut i stil med följande:
@@ -70,4 +69,4 @@ av `yiic`-skriptet, kommer det genererade formuläret att se ut i stil med följ
 
 ![Loginsidan med felmeddelanden](login2.png)
 
-<div class="revision">$Id: form.view.txt 297 2008-11-30 23:01:07Z qiang.xue $</div>
+<div class="revision">$Id: form.view.txt 708 2009-02-19 04:47:16Z qiang.xue $</div>

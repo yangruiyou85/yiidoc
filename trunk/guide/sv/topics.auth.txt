@@ -43,16 +43,17 @@ ytterligare identitetsinformation som behöver förbli icke-flyktig under pågå
 användarsession.
 
 I följande exempel, valideras angivet användarnamn och lösenord med hjälp av 
-[Active Record](/doc/guide/database.ar) mot tabellen user i en databas. Dessutom 
-görs `title`-propertyn icke-flyktigo med hjälp av metoderna 
-[CBaseUserIdentity::getState] och [CBaseUserIdentity::setState]. Resulatet blir 
-att det, under användarsessionens hela varaktighet, går att erhålla användarens 
-titelinformation via `Yii::app()->user->getState('title')`.
+[Active Record](/doc/guide/database.ar) mot tabellen user i en databas. Vi 
+åsidosätter även metoden `getId` så att den returnerar variabeln `_id`, vilken 
+åsätts ett värde under autentiseringen (standardimplementeringen returnerar 
+användarnamnet som ID). Under autentiseringen kan inhämtad `title`-information 
+lagras i ett state med samma namn medelst anrop av [CBaseUserIdentity::setState].
 
 ~~~
 [php]
 class UserIdentity extends CUserIdentity
 {
+	private $_id;
 	public function authenticate()
 	{
 		$record=User::model()->findByAttributes(array('username'=>$this->username));
@@ -62,23 +63,26 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		else
 		{
-			$this->title=$record->title;
+			$this->_id=$record->id;
+			$this->setState('title', $record->title);
 			$this->errorCode=self::ERROR_NONE;
 		}
 		return !$this->errorCode;
     }
 
-	public function getTitle()
+	public function getId()
 	{
-		return $this->getState('title');
-	}
-
-	public function setTitle($value)
-	{
-		$this->setState('title',$value);
+		return $this->_id;
 	}
 }
 ~~~
+
+Information som sparas i ett state (genom anrop av [CBaseUserIdentity::setState]) 
+förmedlas till [CWebUser] vilken lagrar den i icke-flyktigt minne, så som session.
+Sådan information kan kommas åt i form av propertyn i [CWebUser]. Till exempel, går 
+det att erhålla `title`-information för aktuell användare via  `Yii::app()->user->title`
+(Detta sätt har varit tillgängligt från version 1.0.3. I tidigare versioner, användes 
+`Yii::app()->user->getState('title')`, i stället.)
 
 > Info: Som standard använder [CWebUser] sessionen för icke-flyktig lagring av 
 information om användaridentitet. Om cookie-baserad inloggning gjorts möjlig 
@@ -491,4 +495,4 @@ if(Yii::app()->user->checkAccess('updateOwnPost',$params))
 }
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 564 2009-01-21 22:07:10Z qiang.xue $</div>
+<div class="revision">$Id: topics.auth.txt 651 2009-02-11 16:29:26Z qiang.xue $</div>

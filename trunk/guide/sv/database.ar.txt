@@ -147,7 +147,9 @@ ord i namnet ges inledande versal varefter orden sätts samman utan blanksteg;
 kolumnnamn är lika som tabellnamn förutom att deras första bokstav är gemen. 
 Till exempel används `Post` som namn på tabellen som lagrar postningar; 
 `createTime` är namnet på en av dess kolumner. Detta gör att tabeller mer liknar 
-klasstyper och att kolumner liknar variabler.
+klasstyper och att kolumner liknar variabler. Lägg dock märke till att användning 
+av kamelnotation även kan innebära komplikationer tillsammans med vissa 
+databashanterare, t ex MySQL, eftersom beteendet kan variera mellan olika operativsystem.
 
 
 Skapa DB-post
@@ -499,4 +501,4 @@ catch(Exception $e)
 }
 ~~~
 
-<div class="revision">$Id: database.ar.txt 546 2009-01-19 15:00:39Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 684 2009-02-16 19:22:33Z qiang.xue $</div>
