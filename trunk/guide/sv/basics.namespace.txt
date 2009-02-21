@@ -9,10 +9,14 @@ förekommande namnområdesformatet (namespace format):
 RootAlias.path.to.target
 ~~~
 
-där `RootAlias` är alias för någon befintlig katalog. Yii fördefinierar två 
-alias: `system` och `application`. Det förra är alias för Yii:s framework-
-katalog, medan det senare är alias för applikationens `protected`-katalog. Genom 
-anrop till [YiiBase::setPathOfAlias()] kan nya sökvägsalias definieras (inklusive rot-alias).
+där `RootAlias` är alias för någon befintlig katalog. Nya sökvägsalias kan definieras 
+genom anrop av [YiiBase::setPathOfAlias()]. För att underlätta fördefinierar Yii 
+följande rot-alias:
+
+ - `system`: refererar till Yii:s framework-katalog;
+ - `application`: refererar till applikationens [rotkatalog](/doc/guide/basics.application#application-base-directory);
+ - `webroot`: refererar till katalogen som innehåller [startskriptet](/doc/guide/basics.entry). Detta alias har varit tillgängligt sedan version 1.0.3.
+ - `module`: refererar till katalogen med den för tillfället aktiva applikationsmodulen. Detta alias har varit tillgängligt sedan version 1.0.3.
 
 Genom anrop till [YiiBase::getPathOfAlias()] kan ett alias översättas till dess 
 motsvarande sökväg. Till exempel, `system.web.CController` skulle översättas 
@@ -60,4 +64,4 @@ att de kan skiljas från användardefinierade klaser. Det rekommenderas att C-
 prefixet reserveras för användning endast av Yii-ramverket, och att 
 användardefinierade klasser förses med någon annan prefixbokstav.
 
-<div class="revision">$Id: basics.namespace.txt 169 2008-11-06 19:43:44Z qiang.xue $</div>
+<div class="revision">$Id: basics.namespace.txt 718 2009-02-20 14:56:10Z qiang.xue $</div>

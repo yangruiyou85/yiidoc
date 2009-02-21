@@ -122,7 +122,7 @@ flera behavior och på så sätt åstadkomma 'multipelt arv'.
 Behavior-klasser måste implementera gränssnittet [IBehavior]. De flesta behavior 
 kan utvidga basklassen [CBehavior]. Om en behavior behöver sammankoplas med en 
 [modell](/doc/guide/basics.model) kan den även utgå från dvs utvidga 
-[CFormBehavior] eller [CActiveRecordBehavior], vilka implementerar tillkommande 
+[CModelBehavior] eller [CActiveRecordBehavior], vilka implementerar tillkommande 
 finesser specifika för modeller.
 
 För att använda en behavior, måste den först - genom anrop till dess 
@@ -171,4 +171,4 @@ koppla någon/några av sina metoder till komponentens händelser (events). En
 behavior kan, genom att göra detta, ges en chans att observera eller ändra 
 komponentens normala exekveringsflöde.
 
-<div class="revision">$Id: basics.component.txt 584 2009-01-26 22:26:33Z qiang.xue $</div>
+<div class="revision">$Id: basics.component.txt 679 2009-02-14 20:19:55Z qiang.xue $</div>

@@ -27,13 +27,16 @@ class SiteController extends CController
 Route
 -----
 
-Kontroller och åtgärd identifieras genom ID:n. Controller ID har formatet 
-`path.to.xyz` motsvarande kontrollerklassfilen 
+Kontroller och åtgärd identifieras genom ID:n. Controller-ID har formatet 
+`path/to/xyz` motsvarande kontrollerklassfilen 
 `protected/controllers/path/to/XyzController.php`, där ledet `xyz` skall 
 ersättas med aktuella namn (t.ex. `post` motsvarar 
-`protected/controllers/PostController.php`). Action ID är en åtgärds metodnamn 
+`protected/controllers/PostController.php`). Action-ID är en åtgärds metodnamn 
 minus dess `action`-prefix. Exempelvis, om en kontrollerklass innehåller en 
 metod `actionEdit` så är ID för motsvarande åtgärd `edit`.
+
+> Note|Märk: Före version 1.0.3, var formatet för controller-ID `path.to.xyz`
+i stället för `path/to/xyz`.
 
 Användare begär körning av en viss kontroller och åtgärd genom att ange en 
 route. En route består av controller ID samt action ID separerat av ett 
@@ -60,7 +63,7 @@ att bestämma kontrollerklass samt var dess klassfil är placerad.
 
    - Om begärt ID kan hittas i [CWebApplication::controllerMap], används motsvarande kontrollerkonfiguration för att skapa kontrollerinstansen.
 
-   - Om begärt ID har formatet `'path.to.xyz'`, förmodas kontrollerklassen vara `Xyz` och motsvarande klassfil `protected/controllers/path/to/XyzController.php`. Exempelvis kontroller-ID `admin.user` resolveras som kontrollerklassen `UserController` med klassfilen `protected/controllers/admin/UserController.php`. Om klassfilen inte kan hittas ges en 404 [CHttpException].
+   - Om begärt ID har formatet `'path/to/xyz'`, förmodas kontrollerklassen vara `XyzController` och motsvarande klassfil `protected/controllers/path/to/XyzController.php`. Exempelvis kontroller-ID `admin.user` resolveras som kontrollerklassen `UserController` med klassfilen `protected/controllers/admin/UserController.php`. Om klassfilen inte kan hittas ges en 404 [CHttpException].
 
 
 Action
@@ -133,7 +136,8 @@ innan en begärd åtgärd utförs; ett prestandafilter kan användas för att
 mäta tidåtgång vid exekvering av en åtgärd.
 
 En åtgärd kan ha flera filter. Filtren körs i den ordning de förekommer i 
-filterdeklarationen. Ett filter kan förhindra exekvering av åtgärden såväl som återstående ej exekverade filter.
+filterdeklarationen. Ett filter kan förhindra exekvering av åtgärden såväl som 
+återstående ej exekverade filter.
 
 Ett filter kan definieras som en metod i kontrollerklassen. Metoden namn måste 
 börja med `filter`. Exempelvis förekomsten av en metod `filterAccessControl` 
@@ -208,4 +212,4 @@ filtret `postOnly` på åtgärderna `edit` och `create`, medan `PerformanceFilte
 tillämpas på alla åtgärder UTOM `edit` och `create`. Om varken plus eller minus 
 förekommer i filterkonfigurationen tillämpas filtret på alla åtgärder.
 
-<div class="revision">$Id: basics.controller.txt 598 2009-01-29 20:19:28Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 713 2009-02-20 01:50:45Z qiang.xue $</div>
