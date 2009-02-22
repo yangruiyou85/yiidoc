@@ -16,7 +16,7 @@ public function actionLogin()
 		$form->attributes=$_POST['LoginForm'];
 		// ユーザの入力の検証、検証が通った際は前のページへリダイレクト
 		if($form->validate())
-			$this->redirect($this->user->returnUrl);
+			$this->redirect($Yii::app()->user->returnUrl);
 	}
 	// ログインフォームの表示
 	$this->render('login',array('user'=>$form));
@@ -32,11 +32,12 @@ public function actionLogin()
 次のサブセクションで内容を述べる `login` ビューを発行します。
 
 > Tip|ヒント: `login` アクションの中で、認証が必要となる前のページを
- `$this->user->returnUrl` によって取得しています。 これは、[CController]
- がユーザのセッション情報(例えばユーザ名、ステータス)を表す [CWebUser]
- (またはその子クラス) の インスタンスである `user` という名前のプロパティ
-を持っているためです。詳細は [Authentication and
-Authorization](/doc/guide/topics.auth) を参照して下さい。
+ `$Yii::app()->user->returnUrl` によって取得しています。
+ `$Yii::app()->user` コンポーネントは、[CWebUser] 
+(或いはその派生)クラスで、ユーザのセッション情報
+(例えばユーザ名、ステータス)を表します。詳細は 
+[Authentication and Authorization](/doc/guide/topics.auth) 
+を参照して下さい。
 
 `login` アクションに現れる下記のPHPステートメントに特に注目しましょう:
 
@@ -70,4 +71,4 @@ $form->rememberMe=$_POST['LoginForm']['rememberMe'];
 さあ、残りのタスクは、必要なインプットフィールドとHTMLフォームを含んだ
  `login` ビューの作成です。
 
-<div class="revision">$Id: form.action.txt 468 2009-01-04 20:57:35Z qiang.xue $</div>
+<div class="revision">$Id: form.action.txt 626 2009-02-04 20:51:13Z qiang.xue $</div>
