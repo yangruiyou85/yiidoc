@@ -1,19 +1,27 @@
 Pfad-Aliase und Namespace
 =========================
 
-Yii macht intensiven Gebrauch von Pfad-Aliasen. Ein Pfad-Alias ist mit einem
-Verzeichnis oder einem Dateipfad verbunden. Er wird in Punkt-Syntax angegeben,
+Yii macht intensiven Gebrauch von Pfad-Aliasen. Ein Pfad-Alias verweist auf
+ein Verzeichnis oder einen Dateipfad. Er wird in Punkt-Syntax angegeben,
 ähnlich zum weitverbreiteten Namespace-Format (Namensraum):
 
 ~~~
 RootAlias.pfad.zu.ziel
 ~~~
 
-wobei `RootAlias` den Alias eines existierenden Verzeichnisses darstellt. Zwei
-Aliase werden von Yii vorbelegt: `system` und `application`. Ersterer ist ein
-Alias für das Framework-Verzeichnis von Yii, der zweite für das `protected`-Verzeichnis 
-der Anwendung. Wir können [YiiBase::setPathOfAlias()] aufrufen, um neue
-Pfad-Aliase zu definieren (inklusive RootAliase).
+wobei `RootAlias` den Alias eines existierenden Verzeichnisses darstellt. 
+Durch Aufrufen von [YiiBase::setPathOfAlias()] können wir neue Pfad-Aliase 
+definieren. Der Einfachheit halber sind schon folgende RootAliase
+vordefiniert:
+
+ - `system`: verweist auf das Frameworkverzeichnis von Yii
+ - `application`: verweist auf das
+[Stammverzeichnis](/doc/guide/basics.application#application-base-directory) der Anwendung
+ - `webroot`: verweist auf das Verzeichnis, das das
+[Eingangsscript](/doc/guide/basics.entry) enthält. Dieser Alias ist seit
+Version 1.0.3 verfügbar.
+ - `module`: verweist auf das Verzeichnis des gerade aktiven Applikationsmoduls. Dieser Alias ist seit
+Version 1.0.3 verfügbar.
 
 Mit [YiiBase::getPathOfAlias()] kann ein Alias in seinen entsprechenden Pfad
 übersetzt werden. `system.web.CController` würde zum Beispiel nach
@@ -68,4 +76,4 @@ Ein Pfad-Alias kollidiert nicht mit einem Namespace.
 > reserviert bleibt und benutzerdefinierte Klassen mit anderen Präfixen
 > versehen werden.
 
-<div class="revision">$Id: basics.namespace.txt 169 2008-11-06 19:43:44Z qiang.xue $</div>
+<div class="revision">$Id: basics.namespace.txt 723 2009-02-21 18:14:05Z qiang.xue $</div>
