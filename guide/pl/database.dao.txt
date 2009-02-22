@@ -134,7 +134,7 @@ foreach($dataReader as $row) { ... }
 $rows=$dataReader->readAll();
 ~~~
 
-> Przypis: W odróżnieniu od [query()|CDbCommand::query], wszystkie metody `queryXXX()` 
+> Note|Przypis: W odróżnieniu od [query()|CDbCommand::query], wszystkie metody `queryXXX()` 
 zwracają dane bezpośrednio. Na przykład, [queryRow()|CDbCommand::queryRow]
 zwraca tablicę reprezentującą pierwszy wiersz wyniku zapytań.
 

@@ -1,31 +1,31 @@
-Active Record
+Wzorzec Active Record
 =============
 
-Although Yii DAO can handle virtually any database-related task, chances
-are that we would spend 90% of our time in writing some SQL statements
-which perform the common CRUD (create, read, update and delete) operations.
-It is also difficult to maintain our code when they are mixed with SQL
-statements. To solve these problems, we can use Active Record.
+Chociaż Yii DAO może uporać się z wirtualnymi oraz bazodanowymi zadaniami, istnieje 
+szansa, że będziemy spędzać 90% naszego czasu pisząc wyrażenia SQL, które wykonują 
+operacje CRUD (create - tworzenie, read - czytanie, update - aktualizowanie oraz 
+delete - usuwanie). Trudno również jest zarządzać kodem, który jest pomieszany 
+z wyrażeniami SQL. Do rozwiązania tych problemów możemy użyć wzorca Rekordu Aktywnego (ang. Active Record).
 
-Active Record (AR) is a popular Object-Relational Mapping (ORM) technique.
-Each AR class represents a database table (or view) whose attributes are
-represented as the AR class properties, and an AR instance represents a row
-in that table. Common CRUD operations are implemented as AR methods. As a
-result, we can access our data in a more object-oriented way. For example,
-we can use the following code to insert a new row to the `Post` table:
+
+Aktywny Rekord (AR) jest popularną techniką mapowania obiektowo-relacyjnego. 
+Każda klasa AR reprezentuje tabelę bazy danych (lub widok), których atrybuty reprezentowane są 
+poprzez atrybuty klasy AR a instancja AR reprezentuje wiersz w  tej tabeli. 
+Wspólne operacje CRUD są zaimplementowane jako metody AR. W rezultacie, posiadamy dostęp do 
+naszych danych w bardziej zorientowany obiektowo sposób. Na przykład: możemy użyć poniższego kodu
+aby wstawić nowy wiersz do tabeli `Post`:
 
 ~~~
 [php]
 $post=new Post;
-$post->title='sample post';
-$post->content='post body content';
+$post->title='przykładowy post';
+$post->content='zawartość postu';
 $post->save();
 ~~~
 
-In the following we describe how to set up AR and use it to perform CRUD
-operations. We will show how to use AR to deal with database relationships
-in the next section. For simplicity, we use the following database table
-for our examples in this section.
+W dalszej części opiszemy jak utworzyć AR i użyć go do wykonywania operacji CRUD. 
+W następnej sekcji pokażemy jak używać AR by radzić sobie z relacjami w bazach danych. 
+Dla uproszczeniam używamy w przykładach tej sekcji następującej tabeli bazy danych.
 
 ~~~
 [sql]
@@ -37,18 +37,18 @@ CREATE TABLE Post (
 );
 ~~~
 
-> Note: AR is not meant to solve all database-related tasks. It is best
-used for modeling database tables in PHP constructs and performing queries
-that do not involve complex SQLs. Yii DAO should be used for those complex
-scenarios.
+> Tip|Podpowiedź: AR nie został pomyślany do rozwiązywania wszystkich zadań związanych z bazą danych. 
+Najlepiej używać go do modelowania tabel baz danych w konstrukcjach PHP oraz wykonywania 
+zapytań, które nie zawierają skomplikowanego kodu SQL. Dla tych skomplikowanych 
+scenariuszy powinno używać się Yii DAO.
 
-Establishing DB Connection
+Ustanawianie połączeń DB
 --------------------------
 
-AR relies on a DB connection to perform DB-related operations. By default,
-it assumes that the `db` application component gives the needed
-[CDbConnection] instance which serves as the DB connection. The following
-application configuration shows an example:
+AR jest zależy od połączenia DB gdy wykonuje operacje zależne od DB. Domyślnie, 
+zakłada, że komponent aplikacji `db` dostarcza wymaganej instancji [CDbConnection] 
+która reprezentuje połączenie z bazą danych. Poniżej znajduje się przykładowa konfiguracja 
+aplikacji
 
 ~~~
 [php]
@@ -57,46 +57,42 @@ return array(
 		'db'=>array(
 			'class'=>'system.db.CDbConnection',
 			'connectionString'=>'sqlite:path/to/dbfile',
-			// turn on schema caching to improve performance
+			// włączenie cache'owania schematu celem zwiększenia wydajności
 			// 'schemaCachingDuration'=>3600,
 		),
 	),
 );
 ~~~
 
-> Tip: Because Active Record relies on the metadata about tables to
-determine the column information, it takes time to read the metadata and
-analyze it. If the schema of your database is less likely to be changed,
-you should turn on schema caching by configuring the
-[CDbConnection::schemaCachingDuration] property to be a value greater than
-0.
+> Tip|Podpowiedź: Ponieważ Rekord Aktywny zależy od metadanych tabeli zawierających 
+informacje o kolumnach, zajmuje mu to nieco czasu, aby je odczytać oraz zanalizować. 
+Jeśli prawdopodobieństwo, że schemat twojej bazy danych jest małe, powinieneś 
+włączyć cache'owanie schematu bazy danych poprzez skonfigurowanie właściwości 
+[CDbConnection::schemaCachingDuration] poprzez przypisanie jej wartości większej niż 0.
 
-Support for AR is limited by DBMS. Currently, only the following DBMS are
-supported:
+Wsparcie dla AR jest ograniczone przez DBMS. Aktualnie, tylko następujące DBMS są wspierane:
 
-   - [MySQL 4.1 or later](http://www.mysql.com)
-   - [PostgreSQL 7.3 or later](http://www.postgres.com)
-   - [SQLite 2 and 3](http://www.sqlite.org)
+   - [MySQL 4.1 lub późniejsze](http://www.mysql.com)
+   - [PostgreSQL 7.3 lub późniejsze](http://www.postgres.com)
+   - [SQLite 2 oraz 3](http://www.sqlite.org)
 
-If you want to use an application component other than `db`, or if you
-want to work with multiple databases using AR, you should override
-[CActiveRecord::getDbConnection()]. The [CActiveRecord] class is the base
-class for all AR classes.
 
-> Tip: There are two ways to work with multiple databases in AR. If the
-schemas of the databases are different, you may create different base AR
-classes with different implementation of
-[getDbConnection()|CActiveRecord::getDbConnection]. Otherwise, dynamically
-changing the static variable [CActiveRecord::db] is a better idea.
+Jeśli chesz używać komponentu aplikacji innego niż `db` lub jeśli chcesz pracować z wieloma 
+bazami danych używając AR, powinieneś nadpisać metodę [CActiveRecord::getDbConnection()]. 
+Klasa [CActiveRecord] jest klasą bazową dla wszystkich klas AR.
 
-Defining AR Class
+> Tip|Podpowiedź: Istnieją dwa sposoby pracowania z wieloma bazami danych z użyciem AR. 
+Jeśli schematy bazy danych różnią się, możesz utworzyć różne bazowe klasy AR z różniącymi się 
+implementacjami metody [getDbConnection()|CActiveRecord::getDbConnection]. W przecwinym przypadku, 
+lepszym pomysłem jest dynamiczna zmiana statycznej zmiennej [CActiveRecord::db].
+
+Definiowanie klasy AR
 -----------------
 
-To access a database table, we first need to define an AR class by
-extending [CActiveRecord]. Each AR class represents a single database
-table, and an AR instance represents a row in that table. The following
-example shows the minimal code needed for the AR class representing the
-`Post` table.
+Aby uzyskać dostęp do tabeli bazy danych musimy najpierw zdefiniować klasę AR poprzez 
+rozszerzenie [CActiveRecord]. Każda klasa AR reprezentuje jedną tabele bazy danych 
+a jedna instancja reprezentuje wiersz tej tabeli. Następujący przykład pokazuje minimalny 
+kod potrzebny aby klasa AR reprezentowała tabelę `Post`.
 
 ~~~
 [php]
@@ -109,10 +105,10 @@ class Post extends CActiveRecord
 }
 ~~~
 
-> Tip: Because AR classes are often referenced in many places, we can
-> import the whole directory containing the AR class, instead of including
-> them one by one. For example, if all our AR class files are under
-> `protected/models`, we can configure the application as follows:
+> Tip|Podpowiedź: Ponieważ klasy AR są często używane w wielu różnych miejsach, 
+> możemy zaimportować zawartość folderu zawierającego klasy AR zamiast
+> dołączać je jedna po drugiej. Na przykład, jeśli wszystkie nasze pliki zawierające klasy AR 
+> znajdują się w katalogu `protected/models`, możemy skonfigurować aplikację w następujący sposób:
 > ~~~
 > [php]
 > return array(
@@ -122,29 +118,27 @@ class Post extends CActiveRecord
 > );
 > ~~~
 
-By default, the name of the AR class is the same as the database table
-name. Override the [tableName()|CActiveRecord::tableName] method if they
-are different. The [model()|CActiveRecord::model] method is declared as
-such for every AR class (to be explained shortly).
+Domyślnie, nazwa klasy AR jest identyczna z nazwą tabeli w bazie danych. Jeśli nazwa 
+klasy różni się, nadpisz metodę [tableName()|CActiveRecord::tableName]. Metoda [model()|CActiveRecord::model] 
+jest zadeklarowana jako taka dla każdej klasy AR (wyjaśnienie tego nastąpi później).
 
-Column values of a table row can be accessed as properties of the
-corresponding AR class instance. For example, the following code sets the
-`title` column (attribute):
+Wartości kolumn wiersza tabeli są dostępne jako właściwości odpowiednich instancji klasy AR.
+Na przykład, następujący kod ustawia kolumnę (arrybut) `title`:
 
 ~~~
 [php]
 $post=new Post;
-$post->title='a sample post';
+$post->title='przykładowy post';
 ~~~
 
-Although we never explicitly declare the `title` property in the `Post`
-class, we can still access it in the above code. This is because `title` is
-a column in the `Post` table, and CActiveRecord makes it accessible as a
-property with the help of the PHP `__get()` magic method. An exception will
-be thrown if we attempt to access a non-existing column in the same way.
+Chociaż nigdy bezpośrednio nie zdeklarowaliśmy właściwości `title` w klasie `Post`, 
+jest ona dostępna w powyższym kodzie. Dzieje się tak, ponieważ `title` jest kolumną 
+w tabeli `Post` a CActiveRecord czyni ją dostępną poprzez właściwość przy pomocy 
+magicznej metody PHP `__get()`. Jeśli w ten sam sposób spróbujemy uzyskać dostęp 
+do nieistniejącej kolumny wyjątek zostanie rzucowy.
 
-> Info: For better readability, we suggest naming database tables and
-columns in camel case. In particular, table names are formed by
+> Info|Info: Celem lepszej przejrzystości, sugerujemy aby nazywać tabele bazy danych 
+oraz kolumny stosując notację wielbłąda (ang. camel case). W szczególności, table names are formed by
 capitalizing each word in the name and joining them without spaces; column
 names are similar to table names except their first letter is in lower
 case. For example, we use `Post` to name the table storing posts; and we
@@ -279,7 +273,7 @@ $post=Post::model()->find(array(
 ));
 ~~~
 
-> Info: When a query condition is about matching some columns with the
+> Info|Info: When a query condition is about matching some columns with the
 specified values, we can use
 [findByAttributes()|CActiveRecord::findByAttributes]. We let the
 `$attributes` parameters be an array of the values indexed by the column
