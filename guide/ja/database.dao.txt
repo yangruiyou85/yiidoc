@@ -74,84 +74,78 @@ array(
 DB 接続にアクセスできます。このアプローチを使うと、単一の DB 接続を、
 コード中の色々な場所で共有することができます。
 
-Executing SQL Statements
+SQL 文の実行
 ------------------------
 
-Once a database connection is established, SQL statements can be executed
-using [CDbCommand]. One creates a [CDbCommand] instance by calling
-[CDbConnection::createCommand()] with the specified SQL statement:
+一度データベース接続を確立すれば、[CDbCommand] を使用して SQL 文を実行できます。
+まず、特定の SQL 文を [CDbConnection::createCommand()] を呼び、[CDbCommand]
+のインスタンスを作成します:
 
 ~~~
 [php]
 $command=$connection->createCommand($sql);
-// if needed, the SQL statement may be updated as follows:
+// もし必要なら、SQL 文を下記のように更新できます:
 // $command->text=$newSQL;
 ~~~
 
-A SQL statement is executed via [CDbCommand] in one of the following two
-ways:
+SQL 文は、次の2つの方法のうちのいずれかで、[CDbCommand] によって実行されます:
 
-   - [execute()|CDbCommand::execute]: performs a non-query SQL statement,
-such as `INSERT`, `UPDATE` and `DELETE`. If successful, it returns the
-number of rows that are affected by the execution.
+   - [execute()|CDbCommand::execute]: `INSERT`, `UPDATE`, `DELETE` のような、
+non-query型の SQL 文を実行します。成功した場合、SQL 文の実行によって影響された
+行数を返します。
 
-   - [query()|CDbCommand::query]: performs an SQL statement that returns
-rows of data, such as `SELECT`. If successful, it returns a [CDbDataReader]
-instance from which one can traverse the resulting rows of data. For
-convenience, a set of `queryXXX()` methods are also implemented which
-directly return the query results.
+   - [query()|CDbCommand::query]: `SELECT` のような、データ行を返す SQL 文を実行します。
+成功した場合、結果行列を行き来できる [CDbDataReader] インタンスが返されます。
+便宜上、直接クエリ結果を返す、`queryXXX()` メソッドのセットも実装されます。
 
-An exception will be raised if an error occurs during the execution of SQL
-statements.
+SQL 文の実行中にエラーが発生した場合は、例外が発生します。
 
 ~~~
 [php]
-$rowCount=$command->execute();   // execute the non-query SQL
-$dataReader=$command->query();   // execute a query SQL
-$rows=$command->queryAll();      // query and return all rows of result
-$row=$command->queryRow();       // query and return the first row of result
-$column=$command->queryColumn(); // query and return the first column of result
-$value=$command->queryScalar();  // query and return the first field in the first row
+$rowCount=$command->execute();   // non-query 型 SQL の実行
+$dataReader=$command->query();   // query 型 SQL の実行
+$rows=$command->queryAll();      // クエリを行い、結果の全行を返す
+$row=$command->queryRow();       // クエリを行い、結果の最初の行を返す
+$column=$command->queryColumn(); // クエリを行い、結果の最初の列を返す
+$value=$command->queryScalar();  // クエリを行い、最初の行の最初の項目を返す
 ~~~
 
-Fetching Query Results
+クエリ結果の取得
 ----------------------
 
-After [CDbCommand::query()] generates the [CDbDataReader] instance, one
-can retrieve rows of resulting data by calling [CDbDataReader::read()]
-repeatedly. One can also use [CDbDataReader] in PHP's `foreach` language
-construct to retrieve row by row.
+[CDbCommand::query()] により [CDbDataReader] インスタンスを生成した後に、
+[CDbDataReader::read()] を繰り返し呼ぶことで、結果データの行を取り出せます。
+データを一行ずつ取り出すために、PHP の `foreach` 文の中で [CDbDataReader] を
+使用できます。
 
 ~~~
 [php]
 $dataReader=$command->query();
-// calling read() repeatedly until it returns false
+// false が返るまで、繰り返し read() を呼び出します
 while(($row=$dataReader->read())!==false) { ... }
-// using foreach to traverse through every row of data
+// foreach を用いてデータの全行を取り出します
 foreach($dataReader as $row) { ... }
-// retrieving all rows at once in a single array
+// 1つの配列として、一回で全行を取り出します
 $rows=$dataReader->readAll();
 ~~~
 
-> Note: Unlike [query()|CDbCommand::query], all `queryXXX()` methods
-return data directly. For example, [queryRow()|CDbCommand::queryRow]
-returns an array representing the first row of the querying result.
+> Note|注意: [query()|CDbCommand::query] と異なり、全ての `queryXXX()` メソッドは
+直接データを返します。たとえば、[queryRow()|CDbCommand::queryRow] は、
+クエリ結果の最初の行に相当する配列を返します。
 
-Using Transactions
+トランザクションの使用
 ------------------
 
-When an application executes a few queries, each reading and/or writing
-information in the database, it is important to be sure that the database
-is not left with only some of the queries carried out. A transaction,
-represented as a [CDbTransaction] instance in Yii, may be initiated in this
-case:
+アプリケーションがいくつかのクエリを（各クエリがデータベース中の情報を読み書きして）実行する場合、
+データベースが全てのクエリを確実に実行したかどうかを確認することは重要です。
+Yii の [CDbTransaction] インスタンスとして表されるトランザクションは、このような場合に開始できます:
 
-   - Begin the transaction.
-   - Execute queries one by one. Any updates to the database are not visible to the outside world.
-   - Commit the transaction. Updates become visible if the transaction is successful.
-   - If one of the queries fails, the entire transaction is rolled back.
+   - トランザクションを開始する。
+   - 1つずつクエリを実行する。データベースへのどんな更新も外の世界には見えません。
+   - トランザクションをコミットする。処理が成功した場合、更新が適用されます。
+   - もしクエリのひとつが失敗した場合、全処理がロールバックされます。
 
-The above workflow can be implemented using the following code:
+上記のワークフローは次のコードを使用して実装できます:
 
 ~~~
 [php]
@@ -160,74 +154,72 @@ try
 {
 	$connection->createCommand($sql1)->execute();
 	$connection->createCommand($sql2)->execute();
-	//.... other SQL executions
+	//.... 他の SQL の実行
 	$transaction->commit();
 }
-catch(Exception $e) // an exception is raised if a query fails will be raised
+catch(Exception $e) // クエリの実行に失敗した場合、例外が発生します
 {
 	$transaction->rollBack();
 }
 ~~~
 
-Binding Parameters
+パラメータのバインディング
 ------------------
 
-To avoid [SQL injection
-attacks](http://en.wikipedia.org/wiki/SQL_injection) and to improve
-performance of executing repeatedly used SQL statements, one can "prepare"
-an SQL statement with optional parameter placeholders that are to be
-replaced with the actual parameters during the parameter binding process.
+[SQL インジェクション攻撃](http://ja.wikipedia.org/wiki/SQL%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3)
+を避け、繰り返し使用される SQL 文の実行パフォーマンスの改善のために、
+パラメータバインドプロセスの間に実引数と置き換えられることになっている
+オプションのパラメータプレースホルダと SQL 文を“準備”できます。
 
-The parameter placeholders can be either named (represented as unique
-tokens) or unnamed (represented as question marks). Call
-[CDbCommand::bindParam()] or [CDbCommand::bindValue()] to replace these
-placeholders with the actual parameters. The parameters do not need to be
-quoted: the underlying database driver does it for you. Parameter binding
-must be done before the SQL statement is executed.
+パラメータプレースホルダは名前をつける（ユニークなトークンとして表す）か、
+つけない（クエスチョンマークとして表す）事が可能です。
+[CDbCommand::bindParam()] か [CDbCommand::bindValue()] を呼び出す事で、
+これらのプレースホルダを実引数に置き換えます。
+パラメータをクオート（引用符で囲む）する必要はありません: 
+データベースドライバにより、その処理は行われます。SQL 文が実行される前に、パラメータバインディングが行われます。
 
 ~~~
 [php]
-// an SQL with two placeholders ":username" and ":email"
+// ":username" と ":email" の 2 つのプレースホルダを利用する SQL
 $sql="INSERT INTO users(username, email) VALUES(:username,:email)";
 $command=$connection->createCommand($sql);
-// replace the placeholder ":username" with the actual username value
+// プレースホルダ ":username" を実際の username 値で置き換える
 $command->bindParam(":username",$username,PDO::PARAM_STR);
-// replace the placeholder ":email" with the actual email value
+// プレースホルダ ":email" を実際の email 値で置き換える
 $command->bindParam(":email",$email,PDO::PARAM_STR);
 $command->execute();
-// insert another row with a new set of parameters
+// 別のパラメータを使って別の行を INSERT する
 $command->bindParam(":username",$username2,PDO::PARAM_STR);
 $command->bindParam(":email",$email2,PDO::PARAM_STR);
 $command->execute();
 ~~~
+[bindParam()|CDbCommand::bindParam] と [bindValue()|CDbCommand::bindValue]
+メソッドは、とても似ています。唯一の違いは、前者は PHP 変数のリファレンスを、
+後者は値をパラメータにバインドするということです。
+大きなデータをパラメータに指定する場合は、パフォーマンス的に
+前者の方法を利用する事を推奨します。
 
-The methods [bindParam()|CDbCommand::bindParam] and
-[bindValue()|CDbCommand::bindValue] are very similar. The only difference
-is that the former binds a parameter with a PHP variable reference while
-the latter with a value. For parameters that represent large block of data
-memory, the former is preferred for performance consideration.
+バインディングパラメータについての詳細については、
+[関連する PHP ドキュメント](http://www.php.net/manual/ja/pdostatement.bindparam.php)
+を参照してください。
 
-For more details about binding parameters, see the [relevant PHP
-documentation](http://www.php.net/manual/en/pdostatement.bindparam.php).
-
-Binding Columns
+カラムのバインディング
 ---------------
 
-When fetching query results, one can also bind columns with PHP variables
-so that they are automatically populated with the latest data each time a
-row is fetched.
+クエリの結果を抽出（フェッチ）する場合、カラムと PHP 変数をバインドすることで、
+一行抽出されるごとに、変数に最新のデータが自動的に入るようにする事ができます。
 
 ~~~
 [php]
 $sql="SELECT username, email FROM users";
 $dataReader=$connection->createCommand($sql)->query();
-// bind the 1st column (username) with the $username variable
+// 1つめのカラム (username) を $username 変数にバインドする
 $dataReader->bindColumn(1,$username);
-// bind the 2nd column (email) with the $email variable
+// 2つめのカラム (email) を $email 変数にバインドする
 $dataReader->bindColumn(2,$email);
 while($dataReader->read()!==false)
 {
-    // $username and $email contain the username and email in the current row
+    // $username と $email には、現在の行の username と email の内容が入っています
 }
 ~~~
 
