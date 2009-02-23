@@ -70,6 +70,8 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * global state - globaler Status
  * home - Start (Startseite, ...)
  * loader (yii loader, etc.) - Ladescript
+ * log (to) - loggen, protokollieren
+ * log level - Logstufe, Protokollierungsstufe, Stufe
  * login - anmelden, Anmeldung (Anmeldeseite, ...)
  * logout - abmelden, Abmeldung
  * method - Methode
