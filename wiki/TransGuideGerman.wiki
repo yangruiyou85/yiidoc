@@ -76,7 +76,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * login - anmelden, Anmeldung (Anmeldeseite, ...)
  * logout - abmelden, Abmeldung
  * method - Methode
- * message routing - Nachrichtenweiterleitung
+ * message routing - Nachrichtenrouting
  * message filtering - Nachrichtenfilterung
  * object - Objekt (OOP)
  * operation (RBAC) - Operation
