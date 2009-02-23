@@ -171,11 +171,16 @@ Ciclul de viata al aplicatiei
 Atunci cand se trateaza o cerere client, aplicatia va trece prin urmatoarele stadii: 
 
    1. Seteaza tratarea de erori si autoloader-ul de clase;
+   
    2. Inregistreaza componentele nucleu ale aplicatiei;
+   
    3. Incarca configuratia aplicatiei;
+   
    4. Initializeaza aplicatia cu [CApplication::init()]
 	   - Incarca componentele statice ale aplicatiei;
+	   
    5. Activeaza evenimentul [onBeginRequest|CApplication::onBeginRequest];
+   
    6. Proceseaza cererea client:
 	   - Analizeaza cererea client;
 	   - Creaza controller-ul necesar;
