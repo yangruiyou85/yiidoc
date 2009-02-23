@@ -72,12 +72,16 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * loader (yii loader, etc.) - Ladescript
  * log (to) - loggen, protokollieren
  * log level - Logstufe, Protokollierungsstufe, Stufe
+ * log route - Nachrichtenroute
  * login - anmelden, Anmeldung (Anmeldeseite, ...)
  * logout - abmelden, Abmeldung
  * method - Methode
+ * message routing - Nachrichtenweiterleitung
+ * message filtering - Nachrichtenfilterung
  * object - Objekt (OOP)
  * operation (RBAC) - Operation
  * path alias - Pfad-Alias
+ * performance profiling - Leistungsmessung
  * property (member, attribute, ..) - Eigenschaft (gilt jedoch nicht für Instanzvariable, Member, Attribut eines Models)
  * role - Rolle
  * role-based access control - Rollenbasierte Zugriffskontrolle
