@@ -1,4 +1,5 @@
 * Getting Started
+	- [Overview](index)
     - [What is Yii](quickstart.what-is-yii)
     - [Installation](quickstart.installation)
     - [Creating First Yii Application](quickstart.first-app)
@@ -53,3 +54,5 @@
     - [Console Applications](topics.console)
     - [Security](topics.security)
     - [Performance Tuning](topics.performance)
+
+<div class="revision">$Id: toc.txt 723 2009-02-21 18:14:05Z qiang.xue $</div>
