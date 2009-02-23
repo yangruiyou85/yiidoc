@@ -187,4 +187,4 @@ Atunci cand se trateaza o cerere client, aplicatia va trece prin urmatoarele sta
 	   - Ruleaza controller-ul;
    7. Activeaza evenimentul [onEndRequest|CApplication::onEndRequest];
 
-<div class="revision">$Id: basics.application.txt 416 2008-12-28 05:28:11Z qiang.xue $</div>
+<div class="revision">$Id: basics.application.txt 626 2009-02-04 20:51:13Z qiang.xue $</div>
