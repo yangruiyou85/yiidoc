@@ -495,4 +495,4 @@ if(Yii::app()->user->checkAccess('updateOwnPost',$params))
 }
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 651 2009-02-11 16:29:26Z qiang.xue $</div>
+<div class="revision">$Id: topics.auth.txt 677 2009-02-14 04:27:48Z qiang.xue $</div>

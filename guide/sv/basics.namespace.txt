@@ -64,4 +64,4 @@ att de kan skiljas från användardefinierade klaser. Det rekommenderas att C-
 prefixet reserveras för användning endast av Yii-ramverket, och att 
 användardefinierade klasser förses med någon annan prefixbokstav.
 
-<div class="revision">$Id: basics.namespace.txt 718 2009-02-20 14:56:10Z qiang.xue $</div>
+<div class="revision">$Id: basics.namespace.txt 723 2009-02-21 18:14:05Z qiang.xue $</div>
