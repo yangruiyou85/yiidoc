@@ -1,61 +1,60 @@
 Data Access Objects (DAO)
 =========================
 
-Data Access Objects (DAO) provides a generic API to access data stored in
-different database management systems (DBMS). As a result, the underlying
-DBMS can be changed to a different one without requiring change of the code
-which uses DAO to access the data.
+DAO (Obiecte accesare date) pune la dispozitie un API generic pentru accesul
+datelor stocate in diverse DBMS (Sisteme de Management Baze de Date). 
+Ca urmare, DBMS-ul poate fi schimbat oricand cu altul, fara sa fie nevoie
+sa schimbam codul nostru in care folosim DAO sa accesam datele. 
 
-Yii DAO is built on top of [PHP Data Objects
-(PDO)](http://php.net/manual/en/book.pdo.php) which is an extension
-providing unified data access to many popular DBMS, such as MySQL,
-PostgreSQL. Therefore, to use Yii DAO, the PDO extension and the specific
-PDO database driver (e.g. `PDO_MYSQL`) have to be installed.
+Yii DAO este construit pe baza [PDO](http://php.net/manual/en/book.pdo.php) (obiecte date PHP)
+care este o extensie PHP ce pune la dispozitie accesul unificat la date stocate
+in diverse DBMS cunoscute, precum MySQL si PostgreSQL. De aceea, pentru a folosi
+Yii DAO, trebuie instalate extensia PDO si driverul PDO de baze de date specific 
+(ex. `PDO_MYSQL`).
 
-Yii DAO mainly consists of the following four classes:
+Yii DAO este format in principal din urmatoarele patru clase:
 
-   - [CDbConnection]: represents a connection to a database.
-   - [CDbCommand]: represents an SQL statement to execute against a database.
-   - [CDbDataReader]: represents a forward-only stream of rows from a query result set.
-   - [CDbTransaction]: represents a DB transaction.
+   - [CDbConnection]: reprezinta conexiunea la o baza de date.
+   - [CDbCommand]: reprezinta o instructiune SQL de executat.
+   - [CDbDataReader]: reprezinta un flux doar de citire de randuri dintr-un set de rezultate.
+   - [CDbTransaction]: reprezinta o tranzactie DB.
 
-In the following, we introduce the usage of Yii DAO in different
-scenarios.
+In cele ce urmeaza, explicam folosirea Yii DAO in diverse scenarii.
 
-Establishing Database Connection
---------------------------------
+Stabilirea conexiunii la baza de date
+-------------------------------------
 
-To establish a database connection, create a [CDbConnection] instance and
-activate it. A data source name (DSN) is needed to specify the information
-required to connect to the database. A username and password may also be
-needed to establish the connection. An exception will be raised in case an
-error occurs during establishing the connection (e.g. bad DSN or invalid
-username/password).
+Pentru a stabili o conexiune, cream o instanta [CDbConnection] si o activam.
+Avem nevoie de un DSN (nume pentru sursa de date) pentru a specifica
+informatiile necesare pentru conectarea la baza de date. Pot fi necesare si
+un nume si o parola pentru stabilirea conexiunii. Va fi generata o exceptie
+in cazul in care apare o eroare la stabilirea conexiunii (ex. DSN gresit sau
+nume/parola gresite).
 
 ~~~
 [php]
 $connection=new CDbConnection($dsn,$username,$password);
-// establish connection. You may try...catch possible exceptions
+// stabilirea conexiunii. Putem incerca try-catch pentru a identifica exceptii posibile
 $connection->active=true;
 ......
-$connection->active=false;  // close connection
+$connection->active=false;  // inchidere conexiune
 ~~~
 
-The format of DSN depends on the PDO database driver in use. In general, a
-DSN consists of the PDO driver name, followed by a colon, followed by the
-driver-specific connection syntax. See [PDO
-documentation](http://www.php.net/manual/en/pdo.construct.php) for complete
-information. Below is a list of commonly used DSN formats:
+Formatul DSN-ului depinde de driverul PDO folosit. In general,
+DSN este format din numele driver-ului PDO, urmat de semnul `:`, urmat de sintaxa
+conexiunii specifice driver-ului. Pentru informatii complete, trebuie vazuta
+[documentatia PDO](http://www.php.net/manual/en/pdo.construct.php). 
+Mai jos este o lista de format-uri obisnuite pentru DSN:
 
    - SQLite: `sqlite:/path/to/dbfile`
    - MySQL: `mysql:host=localhost;dbname=testdb`
    - PostgreSQL: `pgsql:host=localhost;port=5432;dbname=testdb`
 
-Because [CDbConnection] extends from [CApplicationComponent], we can also
-use it as an [application
-component](/doc/guide/basics.application#application-component). To do so, configure
-in a `db` (or other name) application component in the [application
-configuration](/doc/guide/basics.application#application-configuration) as follows,
+Pentru ca [CDbConnection] este derivata din clasa [CApplicationComponent], o putem
+folosi de asemenea pe postul de [componenta aplicatie](/doc/guide/basics.application#application-component).
+Pentru a face acest lucru, configuram componenta aplicatie
+`db` (sau alta componenta aplicatie, daca se doreste)
+din [configurarea aplicatiei](/doc/guide/basics.application#application-configuration) dupa cum urmeaza:
 
 ~~~
 [php]
@@ -73,40 +72,38 @@ array(
 )
 ~~~
 
-We can then access the DB connection via `Yii::app()->db` which is already
-activated automatically, unless we explictly configure
-[CDbConnection::autoConnect] to be false. Using this approach, the single
-DB connection can be shared in multiple places in our code.
+Putem dupa aceea sa accesam conexiunea DB prin `Yii::app()->db`, care este
+activata automat (putem interzice acest comportament prin setarea cu false a
+proprietatii [CDbConnection::autoConnect]. Folosind aceasta metoda
+conexiunea DB poate fi utilizata oriunde in cod.
 
-Executing SQL Statements
-------------------------
+Executarea instructiunilor SQL
+------------------------------
 
-Once a database connection is established, SQL statements can be executed
-using [CDbCommand]. One creates a [CDbCommand] instance by calling
-[CDbConnection::createCommand()] with the specified SQL statement:
+O data ce este stabilita o conexiune DB, instructiunile SQL pot fi executate
+folosind [CDbCommand]. Cream o instanta [CDbCommand] prin apelarea
+[CDbConnection::createCommand()] cu instructiunea SQL specificata:
 
 ~~~
 [php]
 $command=$connection->createCommand($sql);
-// if needed, the SQL statement may be updated as follows:
+// daca este necesar, instructiunea SQL poate fi actualizata asa:
 // $command->text=$newSQL;
 ~~~
 
-A SQL statement is executed via [CDbCommand] in one of the following two
-ways:
+O instructiune SQL este executata prin [CDbCommand] in unul din urmatoarele doua moduri:
 
-   - [execute()|CDbCommand::execute]: performs a non-query SQL statement,
-such as `INSERT`, `UPDATE` and `DELETE`. If successful, it returns the
-number of rows that are affected by the execution.
+   - [execute()|CDbCommand::execute]: executa o instructiune SQL,
+precum `INSERT`, `UPDATE` si `DELETE`. Daca are succes, returneaza
+numarul de randuri afectate.
 
-   - [query()|CDbCommand::query]: performs an SQL statement that returns
-rows of data, such as `SELECT`. If successful, it returns a [CDbDataReader]
-instance from which one can traverse the resulting rows of data. For
-convenience, a set of `queryXXX()` methods are also implemented which
-directly return the query results.
+   - [query()|CDbCommand::query]: executa o instructiune SQL care returneaza
+randuri de date, precum `SELECT`. Daca are succes, returneaza o instanta [CDbDataReader]
+pe care putem sa o parcurgem pentru a folosi randurile de date rezultate.
+Pentru usurinta, este implementat de asemenea un set de metode `queryXXX()`
+care returneaza direct rezultatele cererii.
 
-An exception will be raised if an error occurs during the execution of SQL
-statements.
+Va fi generata o exceptie daca apare vreo eroare in timpul executiei instructiunilor SQL.
 
 ~~~
 [php]
