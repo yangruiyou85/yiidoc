@@ -212,4 +212,4 @@ filtret `postOnly` på åtgärderna `edit` och `create`, medan `PerformanceFilte
 tillämpas på alla åtgärder UTOM `edit` och `create`. Om varken plus eller minus 
 förekommer i filterkonfigurationen tillämpas filtret på alla åtgärder.
 
-<div class="revision">$Id: basics.controller.txt 713 2009-02-20 01:50:45Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 715 2009-02-20 02:08:24Z qiang.xue $</div>

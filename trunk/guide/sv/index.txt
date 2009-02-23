@@ -9,4 +9,4 @@ Alla rättigheter förbehållna.
 
 Översättning till svenska: tri <triboe@gmail.com>
 
-<div class="revision">$Id: index.txt 686 2009-02-17 02:49:02Z qiang.xue $</div>
+<div class="revision">$Id: index.txt 687 2009-02-17 02:57:56Z qiang.xue $</div>

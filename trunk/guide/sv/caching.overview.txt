@@ -19,8 +19,8 @@ array(
 		'cache'=>array(
 			'class'=>'system.caching.CMemCache',
 			'servers'=>array(
-				array('host'=>'server1', 'port'=>11211, 'weigth'=>60),
-				array('host'=>'server2', 'port'=>11211, 'weigth'=>40),
+				array('host'=>'server1', 'port'=>11211, 'weight'=>60),
+				array('host'=>'server2', 'port'=>11211, 'weight'=>40),
 			),
 		),
 	),
@@ -63,4 +63,5 @@ används på respektive nivåer.
 existensen av cachelagrat data även sådant vars giltighetstid inte löpt ut. Av denna 
 anledning, använd inte cache för icke-flyktig lagring (t.ex. använd inte cache 
 till att lagra sessionsdata).
-<div class="revision">$Id: caching.overview.txt 468 2009-01-04 20:57:35Z qiang.xue $</div>
+
+<div class="revision">$Id: caching.overview.txt 723 2009-02-21 18:14:05Z qiang.xue $</div>
