@@ -1,9 +1,9 @@
 Felhantering
 ============
 
-Yii tillhandahåller ett komplett felhanteringsramverk baserat på exception-
-mekanismen i PHP 5. När en applikation skapas för att hantera en inkommen 
-request från användare, registrerar den sin metod 
+Yii tillhandahåller ett komplett felhanteringsramverk baserat på 
+exception-mekanismen i PHP 5. När en applikation skapas för att hantera en 
+inkommen request från användare, registrerar den sin metod 
 [handleError|CApplication::handleError] för hantering av PHP:s varningar och 
 påpekanden; och den registrerar sin metod 
 [handleException|CApplication::handleException] för hantering av icke-uppfångade 
@@ -13,24 +13,24 @@ att ta över kontrollen och starta den nödvändiga felhanteringsproceduren.
 
 > Tip|Tips: Registreringen av felhanterare sker i applikationens konstruktor 
 genom anrop till PHP-funktionerna 
-[set_exception_handler](http://www.php.net/manual/en/function.set-exception-
-handler.php) och [set_error_handler](http://www.php.net/manual/en/function.set-
-error-handler.php). Om det inte skulle vara önskvärt att Yii hanterar fel och 
+[set_exception_handler](http://www.php.net/manual/en/function.set-exception-handler.php) 
+och [set_error_handler](http://www.php.net/manual/en/function.set-error-handler.php). 
+Om det inte skulle vara önskvärt att Yii hanterar fel och 
 exception, kan konstanterna `YII_ENABLE_ERROR_HANDLER` respektive 
 `YII_ENABLE_EXCEPTION_HANDLER` sättas till false i 
 [startskriptet](/doc/guide/basics.entry).
 
 Som standard, signalerar [errorHandler|CApplication::errorHandler] (eller 
-[exception|CApplication::exceptionHandler]) en [onError|CApplication::onError]-
-händelse (eller [onException|CApplication::onException]-händelse). Om fel (eller 
+[exception|CApplication::exceptionHandler]) en [onError|CApplication::onError]-händelse 
+(eller [onException|CApplication::onException]-händelse). Om fel (eller 
 exception respektive) inte fångas upp av någon händelsehanterare, kommer 
 applikationskomponenten [errorHandler|CErrorHandler] att konsulteras.
 
 Signalera exception
 -------------------
 
-Att signalera en exception i Yii avviker inte från att signalera en normal PHP-
-exception. Man använder följande syntax för att signalera en exception när så 
+Att signalera en exception i Yii avviker inte från att signalera en normal 
+PHP-exception. Man använder följande syntax för att signalera en exception när så 
 erfordras:
 
 ~~~
@@ -47,8 +47,8 @@ förklaras.
 
 > Tip|Tips: Att signalera en [CHttpException] är ett enkelt sätt att rapportera 
 > handhavandefel av användare. Till exempel, om användaren levererar ett ogiltigt 
-> post-ID i URL:en, kan vi helt enkelt göra följande för att presentera ett 404- 
-> felmedelande (sidan hittades inte): 
+> post-ID i URL:en, kan vi helt enkelt göra följande för att presentera ett 
+> 404-felmedelande (sidan hittades inte): 
 > ~~~ 
 > [php] 
 > // if post ID is invalid 
@@ -75,14 +75,14 @@ anledningen till problemet.
 
 [CErrorHandler] söker efter en vyfil till motsvarande vy i följande ordning:
 
-   1. `WebRoot/themes/ThemeName/views/system`: detta är katalogen för `system`-
-   vyer under det för närvarande aktiva temat.
+   1. `WebRoot/themes/ThemeName/views/system`: detta är katalogen för `system`-vyer 
+   under det för närvarande aktiva temat.
 
-   2. `WebRoot/protected/views/system`: detta är standardkatalogen för `system`-
-   vyer i en applikation.
+   2. `WebRoot/protected/views/system`: detta är standardkatalogen för `system`-vyer 
+   i en applikation.
 
-   3. `yii/framework/views`: detta är standardkatalogen för systemvyer som Yii-
-   ramverket tillhandahåller.
+   3. `yii/framework/views`: detta är standardkatalogen för systemvyer som Yii-ramverket 
+   tillhandahåller.
 
 Vi kan därför. om vi vill använda anpassade felmeddelanden, helt enkelt skapa 
 vyfiler med felmeddelanden i applikationens alternativt temats katalog med 

@@ -115,7 +115,7 @@ return array(
 );
 ~~~
 
-Ovan, läggs ett `db`-element till i `components`, vilket instruerar 
+Ovan läggs ett `db`-element till i `components`, vilket instruerar 
 applikationen att ansluta till SQLite-databasen 
 `WebRoot/testdrive/protected/data/source.db` när så erfordras.
 
@@ -180,13 +180,6 @@ Crud 'user' has been successfully created. You may access it via:
 http://hostname/path/to/index.php?r=user
 ~~~
 
-> Note|Märk: Om förändringar görs i koden eller konfigurationen, starta om `yiic 
-shell` så att den nya koden eller konfigurationen kan få effekt. Kontrollera 
-också att rätt PHP CLI används för att exekvera `yiic`. I annat fall kan fel i 
-stil med "...could not find driver" uppstå, trots att PDO och motsvarande 
-databasdrivrutin redan är aktiva. Anledningen till den sortens fel är ofta att 
-den ej tilltänkta PHP CLI:n använder en oväntad `php.ini`.
-
 Ovan används `shell`-kommandot i `yiic` till att interagera med mallapplikationen. 
 Vid kommandoprompten kör vi två underkommandon: `model User` och `crud User`. 
 Den förra skapar en modellklass för tabellen `User`, medan den senare läser 
@@ -223,7 +216,7 @@ Upprepa ovanstående för att lägga till fler användare. Lägg märke till att
 listsidan automatiskt kommer att paginera user-posterna om de är för många för 
 att visas på en sida.
 
-Genom inloggning som administratör med `admin/admin`, kan user:s administrationssida visas genom följande URL:
+Genom inloggning som administratör med `admin/admin`, kan user:s administrationssida visas via följande URL:
 
 ~~~
 http://hostname/testdrive/index.php?r=user/admin

@@ -37,10 +37,10 @@ CREATE TABLE Post (
 );
 ~~~
 
-> Note|Märk: AR är inte tänkt att lösa alla databasrelaterade uppgifter. Den kommer 
-bäst till användning för att modellera databastabeller som PHP-konstruktioner 
-och genomföra sådana frågor som inte omfattar komplexa SQL-satser. Yii:s DAO 
-bör användas för dessa komplexa scenarier.
+> Note|Märk: AR är inte tänkt att lösa alla databasrelaterade uppgifter. Tekniken kommer 
+bäst till användning för att modellera databastabeller i form av PHP-konstruktioner 
+samt genomföra sådana frågor som inte inbegriper komplexa SQL-satser. Yii:s DAO 
+bör användas för mer komplexa scenarier.
 
 Upprätta en databasanslutning
 -----------------------------
@@ -65,8 +65,8 @@ return array(
 ~~~
 
 > Tip|Tips: Eftersom Active Record förlitar sig på metadata om tabeller för att 
-avgöra information om kolumner, åtgår tid till att läsa metadata och til att 
-analysera det. Om det är mindre troligt att databasschemat kommer att ändras, 
+avgöra information om kolumner, åtgår tid till att läsa metadata och till att 
+analysera den. Om det är mindre troligt att databasschemat kommer att ändras, 
 bör schemacachning slås på genom att konfigurera 
 [CDbConnection::schemaCachingDuration]-propertyn till ett värde större än 0.
 
@@ -192,7 +192,7 @@ echo $post->title;  // this would display: please enter a title
 
 Med start i version 1.0.2, kan ett attribut tilldelas ett värde av typen 
 [CDbExpression] innan posten sparas till databasen (antingen insättning eller 
-uppdatering). Till exempel, för att spara en tidstämpel returnerad av MySQL:s 
+uppdatering). Exempelvis, för att spara en tidstämpel, returnerad av MySQL:s 
 funktion `NOW()`, kan följande kod användas:
 
 ~~~
@@ -216,7 +216,7 @@ För att läsa data i en databastabell, anropa någon av följande `find`-metode
 $post=Post::model()->find($condition,$params);
 // leta upp raden med angiven primärnyckel
 $post=Post::model()->findByPk($postID,$condition,$params);
-// leta upp en rad som har angivna atttributvärden
+// leta upp en rad som har angivna attributvärden
 $post=Post::model()->findByAttributes($attributes,$condition,$params);
 // leta upp den första raden genom användning av specifierad SQL-sats
 $post=Post::model()->findBySql($sql,$params);
@@ -237,8 +237,8 @@ frågevillkoret.
 
 I anropet till `find` används `$condition` och `$params` för att specificera 
 frågevillkor. Här kan `$condition` vara en sträng som representerar `WHERE`-
-ledet i en SQL-sats, och `$params` en array av parametrar vars värden kommer att 
-kopplas till platshållarn i `$condition`. Till exempel,
+ledet i en SQL-sats, `$params` en array av parametrar vars värden kommer att 
+kopplas till platshållaren i `$condition`. Till exempel,
 
 ~~~
 [php]
@@ -247,8 +247,8 @@ $post=Post::model()->find('postID=:postID', array(':postID'=>10));
 ~~~
 
 `$condition` kan också användas för att specificera mer komplexa frågevillkor. I 
-stället för en sträng kan $condition` vara en instans av [CDbCriteria], vilken 
-tillåter oss att specificera andra vilkor än `enbart WHERE`-ledet. Till exempel,
+stället för en sträng kan `$condition` vara en instans av [CDbCriteria], vilken 
+tillåter oss att specificera andra villkor än `enbart WHERE`-ledet. Till exempel,
 
 ~~~
 [php]
@@ -295,7 +295,7 @@ har en motsvarande `find`-metod, så som beskrivits ovan.
 $posts=Post::model()->findAll($condition,$params);
 // leta upp alla rader med den specificerade primärnyckeln
 $posts=Post::model()->findAllByPk($postIDs,$condition,$params);
-// leta upp alla rader som har angivna atttributvärden
+// leta upp alla rader som har angivna attributvärden
 $posts=Post::model()->findAllByAttributes($attributes,$condition,$params);
 // leta upp alla rader genom användning av specifierad SQL-sats
 $posts=Post::model()->findAllBySql($sql,$params);
@@ -305,7 +305,7 @@ Om inget matchar frågevillkoret, returnerar `findAll` en tom array. Detta
 skiljer sig från `find` som skulle returnera null om inget hittades.
 
 Förutom `find`- och `findAll`-metoderna som beskrivs ovan, finns även följande 
-metoder tillgängliga convenience:
+metoder tillgängliga:
 
 ~~~
 [php]
@@ -320,7 +320,7 @@ $exists=Post::model()->exists($condition,$params);
 Uppdatera DB-post
 -----------------
 
-Efter det att en AR-instans initierats med kolumnvärden, kan dessa ändras och 
+Efter det att en AR-instans initialiserats med kolumnvärden, kan dessa ändras och 
 sparas tillbaka till databastabellen.
 
 ~~~
@@ -361,7 +361,7 @@ delavsnitt.
 Ta bort DB-post
 ---------------
 
-Det går också att ta bort en rad med data om en AR-instans har initierats med denna rad.
+Det går också att ta bort en rad med data om en AR-instans har initialiserats med denna rad.
 
 ~~~
 [php]
@@ -394,9 +394,9 @@ lita blint på något som kommer från klientsidan.
 AR utför datavalidering automatiskt när [save()|CActiveRecord::save] anropas. 
 Valideringen baseras på de regler som fins specificerade i metoden 
 [rules()|CModel::rules] i AR-klassen. Fler detaljer angående specificering av 
-valideringsregler återfinns i sektionen [Deklarera 
-Valideringsregler](/doc/guide/form.model#declaring- validation-rules). Nedan 
-ses det typiska arbetsflödet som behövs för att spara en databaspost:
+valideringsregler återfinns i sektionen 
+[Deklarera valideringsregler](/doc/guide/form.model#declaring-validation-rules). 
+Nedan ses det typiska arbetsflödet som behövs för att spara en databaspost:
 
 ~~~
 [php]
@@ -423,9 +423,9 @@ $post->save();
 
 Om det handlar om många kolumner, kommer listan med tilldelningar att bli lång. 
 Detta kan mildras genom användning av propertyn 
-[attributes|CActiveRecord::attributes] så som visas nedan. För fler detaljer se 
-avsnittet [Säkra Attributilldelningar](/doc/guide/form.model#securing-
-attribute-assignments) samt avsnittet [Skapa Åtgärd](/doc/guide/form.action).
+[attributes|CActiveRecord::attributes] så som visas nedan. För fler detaljer se avsnittet 
+[Säkra upp attributilldelningar](/doc/guide/form.model#securing-attribute-assignments) 
+samt avsnittet [Skapa Action](/doc/guide/form.action).
 
 ~~~
 [php]
@@ -479,8 +479,9 @@ Använda Transaction med AR
 
 Varje AR-instans innehåller en property benämnd 
 [dbConnection|CActiveRecord::dbConnection], vilken är en instans av 
-[CDbConnection]. Sålunda kan [transaction](/doc/guide/database.dao#using-
-transactions)-finessen som tillhandahålls av Yii DAO användas med AR om så önskas:
+[CDbConnection]. Sålunda kan 
+[transaction](/doc/guide/database.dao#using-transactions)-finessen 
+som tillhandahålls av Yii DAO användas med AR om så önskas:
 
 ~~~
 [php]

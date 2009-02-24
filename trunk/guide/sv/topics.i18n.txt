@@ -48,9 +48,8 @@ till det språk (locale) som applikationens källkodsfiler använder.
 Internationalisering är endast aktuell om de två språken är olika.
 
 Man kan konfigurera [målspråk|CApplication::language] i 
-[applikationskonfigurationen](/doc/guide/basics.application#application-
-configuration), eller ändra det dynamiskt innan någon internationalisering 
-uppträder.
+[applikationskonfigurationen](/doc/guide/basics.application#application-configuration), 
+eller ändra det dynamiskt innan någon internationalisering uppträder.
 
 > Tip|Tips: Ibland vill vi kunna sätta målspråket till det språk en användare 
 föredrar (specificerat som användarens preferenser i webbläsaren). För att 
@@ -201,8 +200,8 @@ renderingsmetoderna anropas i en kontroller eller widget, kommer vyfilerna att
 `zh_cn` medan [källspråket|CApplication::sourceLanguage] är `en_us`, leder 
 rendering av en vy vid namn `edit` till att vyfilen 
 `protected/views/ControllerID/zh_cn/edit.php` eftersöks. Om filen hittas, kommer 
-denna översatta version att användas för rendering; i annat fall används filen 
-`protected/views/ControllerID/edit.php` i stället.
+denna översatta version att användas för rendering; i annat fall används i stället 
+filen protected/views/ControllerID/edit.php`.
 
 Översatta filer kan även användas för andra ändamål, till exempel för att visa 
 en översatt bild eller ladda en localeberoende datafil.
@@ -212,14 +211,14 @@ Formatering av datum och tid
 
 Datum och tid har ofta skilda format i olika länder eller regioner. Uppgiften 
 att formatera datum och tid består därför av att generera en datum- eller 
-tidsträng som passar för specificerad locale. Yii tillhandahåller 
+tidsträng som passar för angiven locale. Yii tillhandahåller 
 [CDateFormatter] för detta ändamål.
 
 Varje instans av [CDateFormatter] är associerad med en (mål-)locale. 
 Datumformateraren för hela applikationens locale kan nås via applikationens 
 property [dateFormatter|CApplication::dateFormatter].
 
-Klassen [CDateFormatter] tillhandahåller huvudsakligen av två metoder för 
+Klassen [CDateFormatter] tillhandahåller huvudsakligen två metoder för 
 formatering av datumtid i UNIX-stil.
 
    - [format|CDateFormatter::format]: denna metod formaterar den givna UNIX-

@@ -39,8 +39,8 @@ metod `actionEdit` så är ID för motsvarande åtgärd `edit`.
 i stället för `path/to/xyz`.
 
 Användare begär körning av en viss kontroller och åtgärd genom att ange en 
-route. En route består av controller ID samt action ID separerat av ett 
-snedstreck. Till exempel rutten `post/edit` refererar till `PostController` och 
+route. En route består av controller-ID samt action-ID separerat av ett 
+snedstreck. Exempel: `post/edit` refererar till `PostController` och 
 dess `edit`-åtgärd. Som standard refererar URL:en 
 `http://hostname/index.php?r=post/edit` till denna kontroller resp. åtgärd.
 
@@ -107,8 +107,8 @@ Ovan används sökvägsalias `application.controllers.post.UpdateAction` för at
 specificera att åtgärdsklassens fil är `protected/controllers/post/UpdateAction.php`.
 
 Med hjälp av klassbaserade åtgärder kan en applikation organiseras modulärt. 
-Till exempel följande katalogstruktur kan användas för att organisera koden för 
-controller:
+Till exempel kan följande katalogstruktur användas för att organisera kontrollrar och
+åtgärdsklasser:
 
 ~~~
 protected/
@@ -129,8 +129,8 @@ protected/
 Filter
 ------
 
-Filter är ett stycke kod som är konfigurerat att exekveras före och/eller efter 
-exekvering av en kontrolleråtgärd. Till exempel ett filter för 
+Filter är ett stycke kod som konfigureras att exekvera före och/eller efter 
+exekvering av en kontrolleråtgärd. Exempel: ett filter för 
 tillträdeskontroll kan köras för att säkerställa att användaren är autenticerad 
 innan en begärd åtgärd utförs; ett prestandafilter kan användas för att 
 mäta tidåtgång vid exekvering av en åtgärd.

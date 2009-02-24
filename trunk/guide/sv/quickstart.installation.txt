@@ -24,7 +24,7 @@ http://hostname/path/to/yii/requirements/index.php
 ~~~
 
 Minimikrav för Yii är att webbservern stöder PHP 5.1.0 eller senare. Yii har 
-testats med [Apache HTTP server](http://httpd.apache.org/) på Windows och Linux 
+testats med [Apache HTTP-server](http://httpd.apache.org/) på Windows och Linux 
 operativsystem. Det bör även gå att köra på andra webbservrar och plattformar 
 förutsatt att PHP 5 stöds.
 

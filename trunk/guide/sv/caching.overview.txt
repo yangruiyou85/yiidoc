@@ -44,7 +44,7 @@ Här följer en sammanfattning av de tillgängliga cachekomponenterna:
    - [CDbCache]: använder en databastabell för cachelagring av  data. Som 
    standard skapas en SQLite3-databas i runtime-katalogen. Det går att explicit 
    ange en databas CDbCache skall använda genom att sätta dess 
-   [connectionID|CDbCache::connectionID]-egenskap.
+   [connectionID|CDbCache::connectionID]-property.
 
 > Tip|Tips: Eftersom alla dessa cachekomponenter utvidgar samma basklass [CCache], 
 kan man byta till en annan typ av cache utan att modifiera kod som använder sig 
@@ -56,11 +56,11 @@ cache för att lagra ett enstaka stycke data, som en variabel. Detta benämns
 som delar av ett vyskript genererat. På den högsta nivån kan vi cachelagra en 
 hel sida och leverera den från cache efter behov.
 
-I några av de följande delavsnitten kommer utförligt att behandlas hur cachning 
+I några av de följande underavsnitten kommer utförligt att behandlas hur cachning 
 används på respektive nivåer.
 
 > Note|Märk: Cache är per definition ett flyktigt lagringsmedium. Det garanterar inte 
-existensen av cachelagrat data även sådant vars giltighetstid inte löpt ut. Av denna 
+existensen av cachelagrat data, även sådant vars giltighetstid inte löpt ut. Av denna 
 anledning, använd inte cache för icke-flyktig lagring (t.ex. använd inte cache 
 till att lagra sessionsdata).
 

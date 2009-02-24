@@ -11,7 +11,7 @@ kontrollern ombesörjer kommunikation mellan modell och vy.
 
 Utöver MVC, introducerar Yii även en förgrundskontroller (front-controller), 
 Application, som representerar exekveringsomgivning vid bearbetning av inkomna 
-request. Application delar upp en request från användare och skickar denna 
+request. Application löser upp en request från användare och skickar denna 
 vidare till relevant kontroller för fortsatt behandling.
 
 Följande diagram visar den statiska strukturen hos en Yii-applikation:
@@ -32,7 +32,7 @@ den hanterar en request från användare:
    denna request genom att köra startskriptet `index.php`.
    
    2. Startskriptet skapar ett applikationsobjekt, en instans av 
-   [application](/doc/guide/basics.application) och kör den.
+   [application](/doc/guide/basics.application) samt kör denna.
    
    3. Applikationsobjektet skaffar sig detaljerad information om användarens 
    request från 

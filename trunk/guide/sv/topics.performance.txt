@@ -23,7 +23,7 @@ Att stänga av debugläget är ett annat enkelt sätt att öka prestanda. En Yii
 applikation körs i debugläge om konstanten `YII_DEBUG` är definierad till true. 
 Debugläge är användbart under utvecklingsfasen, men det försämrar prestanda 
 eftersom vissa komponenter orsakar extra arbete i debugläge. Till exempel 
-meddelandeloggaren kan behäva registrera tillkommande debuginformation för varje 
+meddelandeloggaren kan behöva registrera tillkommande debuginformation för varje 
 meddelande som loggas.
 
 Använd `yiilite.php`
@@ -39,7 +39,7 @@ trace-satser tas bort ur den sammanslagna filen. Därför reducerar man genom at
 använda `yiilite.php` antalet filer som behöver inkluderas, samt undviker 
 exekvering av trace-satser.
 
-Lägg märke till att användning av `yiilite.php` utan APC kan faktiskt försämra 
+Lägg märke till att användning av `yiilite.php` utan APC faktiskt kan försämra 
 prestanda, eftersom `yiilite.php` innehåller klasser som inte nödvändigtvis 
 används i varje request men som tar upp extra parsningstid. Det har observerats 
 att användning av `yiilite.php` är långsammare i vissa serverkonfigurationer, 

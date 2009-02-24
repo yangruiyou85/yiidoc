@@ -2,8 +2,8 @@ Sökvägsalias och namnområde
 ===========================
 
 Yii använder sökvägsalias extensivt. Ett sökvägsalias är associerat till en 
-katalog eller filsökväg. Det specificeras med punktnotation, snarlikt det vitt 
-förekommande namnområdesformatet (namespace format):
+katalog eller filsökväg. Det specificeras med punktnotation, snarlikt detta vanligt 
+förekommande namnområdesformat (namespace format):
 
 ~~~
 RootAlias.path.to.target
@@ -58,9 +58,9 @@ med samma namn, medan sökvägsalias används för att referera till en klassfil
 eller sökväg. Det uppstår ingen konflikt mellan sökvägsalias och namnområden.
 
 > Tip|Tips: Då PHP före version 5.3.0 inte har inbyggt stöd för namnområden, går det 
-inte att ha instanser av två klasser med samma namn, men olika definitioner. Av 
+inte att ha instanser av två klasser med samma namn men olika definitioner. Av 
 denna anledning har alla Yii-klasser namn med prefixet 'C' (som i 'class'), så 
-att de kan skiljas från användardefinierade klaser. Det rekommenderas att C-
+att de kan skiljas från användardefinierade klasser. Det rekommenderas att C-
 prefixet reserveras för användning endast av Yii-ramverket, och att 
 användardefinierade klasser förses med någon annan prefixbokstav.
 
