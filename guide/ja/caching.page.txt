@@ -1,4 +1,4 @@
-ページキャッシュ
+繝壹�ｼ繧ｸ繧ｭ繝｣繝�繧ｷ繝･
 ============
 
 Page caching refers to caching the content of a whole page. Page caching
