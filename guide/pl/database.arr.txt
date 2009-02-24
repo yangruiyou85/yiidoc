@@ -17,7 +17,7 @@ diagramie zależności encji (ER) celem zilustrowania przykładów w tej sekcji.
 
 ![Diagram ER](er.png)
 
-> Info|Info: Wsparcie dla ograniczeń kluczów obcych różmi sie w róznych DBMS.
+> Info|Info: Wsparcie dla ograniczeń kluczów obcych różni sie w różnych DBMS.
 >
 > SQLite nie wspiera ograniczeń kluczów obcych, lecz wciąż możesz deklarować
 > ograniczenia, podczas tworzenia tabel. AR może wykorzystać te deklaracje
@@ -118,80 +118,77 @@ class User extends CActiveRecord
 }
 ~~~
 
-> Info: A foreign key may be composite, consisting of two or more columns.
-In this case, we should concatenate the names of the foreign key columns
-and separate them with space or comma. For `MANY_MANY` relationship type,
-the associative table name must also be specified in the foreign key. For
-example, the `categories` relationship in `Post` is specified with the
-foreign key `PostCategory(postID, categoryID)`.
+> Info|Info: Klucz obcy może być kluczem złożonym, zawierającym dwie lub więcej kolumn.
+W takim przypadku, powinniśmy powiązać nazwy kolumn dla kluczy obcych i rozdzielić je spacją 
+lub przecinkiem. Dla typu relacji `MANY_MANY`, nazwa tablicy asocjacyjnej musi 
+również być określona w kluczach obcych. Na przykład, relacja kategorii `categories` w `Post`
+jest określona przez klucz obcy `PostCategory(postID, categoryID)`.
 
-The declaration of relationships in an AR class implicitly adds a property
-to the class for each relationship. After a relational query is performed,
-the corresponding property will be populated with the related AR
-instance(s). For example, if `$author` represents a `User` AR instance,
-we can use `$author->posts` to access its related `Post` instances.
+Deklaracja relacji w klasie AR 
+The declaration of relationships in an AR class domyślnie dodaje właściwość do klasy 
+dla każdej relacji. Po tym jak zapytanie relacyjne jest wykonywane, odpowiadająca 
+właściwość będzie wypełniona odpowiadającymi instancjami AR. Na przykład, jeśli `$author` 
+reprezentuje instancję AR `User`, możemy użyć `$author->posts` aby dostać się do 
+powiązanych instancji `Post`.
 
-Performing Relational Query
+Wykonywanie zapytań relacyjnych
 ---------------------------
-
-The simplest way of performing relational query is by reading a relational
-property of an AR instance. If the property is not accessed previously, a
-relational query will be initiated, which joins the two related tables and
-filters with the primary key of the current AR instance. The query result
-will be saved to the property as instance(s) of the related AR class. This
-is known as the *lazy loading* approach, i.e., the relational query
-is performed only when the related objects are initially accessed. The
-example below shows how to use this approach:
+Najprostszym sposobem wykonania relacyjnego zapytania jest odczytanie relacyjnej 
+właściwości instancji AR. Jeśli właściwość nie była wcześniej odczytywana, 
+zapytanie relacyjne będzie zainicjowane, któe połączy dwie połączone tabele 
+i odfiltruje przy użyciu klucza głównego aktualnej instancji AR. Wynik zapytania 
+będzie zapisany we właściwości jako instancja(e) powiązanej klasy AR. Jest to znane 
+jako technika *lazy loading*, np. pytanie relacyjne jest wykonywane tylko wtedy, 
+gdy powiązane obiekty są dostępne jako inicjalne. Poniższy przykład pokazuje jak 
+używać tego podejścia:
 
 ~~~
 [php]
-// retrieve the post whose ID is 10
+// zwróć post, którego ID wynosi 10
 $post=Post::model()->findByPk(10);
-// retrieve the post's author: a relational query will be performed here
+// zwróć autora posta: tutaj będzie wykonane zapytanie relacyjne
 $author=$post->author;
 ~~~
 
-> Info: If there is no related instance for a relationship, the
-corresponding property could be either null or an empty array. For
-`BELONGS_TO` and `HAS_ONE` relationships, the result is null; for
-`HAS_MANY` and `MANY_MANY`, it is an empty array.
+> Info|Info: Jeśli nie istnieją żadne powiązane instancje dla relacji,
+odpowiednie właściwości mogą być puystą tablicą bądź wartością null. 
+Dla relacji `BELONGS_TO` oraz `HAS_ONE` wynikiem jest wartość null; dla 
+`HAS_MANY` oraz `MANY_MANY` jest to pusta tablica.
 
-The lazy loading approach is very convenient to use, but it is not
-efficient in some scenarios. For example, if we want to access the author
-information for `N` posts, using the lazy approach would involve executing
-`N` join queries. We should resort to the so-called *eager loading*
-approach under this circumstance.
+Podejście lazy loading jest bardzo poręczne w użyciu, ale nie jest wydajne w niektórych 
+scenariuszach. Na przykład, jeśli chcemy uzyskać dostęp do informacje o autorze dla 
+`N` postów, używając podejścia lazy loading wykonamy `N` zapytań z użyciem join. 
+W tych warunkach powinniśmy uciec się do takzwanego podejścia *eager loading*.
 
-The eager loading approach retrieves the related AR instances together
-with the main AR instance(s). This is accomplished by using the
-[with()|CActiveRecord::with] method together with one of the
-[find|CActiveRecord::find] or [findAll|CActiveRecord::findAll] methods in
-AR. For example,
+
+Podejście eager loading zwraca powiązane instancje AR razem z główną(ymi) instancją(ami) AR. 
+Osiągamy to poprzez użycie metody [with()|CActiveRecord::with] razem z jedną z metod AR 
+[find|CActiveRecord::find] lub  [findAll|CActiveRecord::findAll]. Na przykład, 
 
 ~~~
 [php]
 $posts=Post::model()->with('author')->findAll();
 ~~~
 
-The above code will return an array of `Post` instances. Unlike the lazy
-approach, the `author` property in each `Post` instance is already
-populated with the related `User` instance before we access the property.
-Instead of executing a join query for each post, the eager loading approach
-brings back all posts together with their authors in a single join query!
+Powyższy kod zwróci tablicę instancji `Post`. W odróżnieniu od podejścia lazy loading
+właściwość `author` w każdej instancji `Post` jest już wypełniona odpowiednią instancją 
+`User` zanim będziemy próbowali uzyskać dostęp do własności.
+Zamiast wywoływania zapytania z join dla każdego posty, podejście eager loading zwraca
+wszystkie posty razem wraz z autorami za pomocą jednego zapytania z join!
 
-We can specify multiple relationship names in the
-[with()|CActiveRecord::with] method and the eager loading approach will
-bring them back all in one shot. For example, the following code will bring
-back posts together with their authors and categories:
+Możemy wyspecyfikować wielokrotnie nazwy relacji w metodzie
+[with()|CActiveRecord::with] a technika eager loading approach dostarczy nam je spowrotem 
+za jednym razem. Na przykłąd, następujący kod zwróci posty razem z ich autorami oraz 
+kategoriami:
 
 ~~~
 [php]
 $posts=Post::model()->with('author','categories')->findAll();
 ~~~
 
-We can also do nested eager loading. Instead of a list of relationship
-names, we pass in a hierarchical representation of relationship names to
-the [with()|CActiveRecord::with] method, like the following,
+Możemy również korzystać z zagnieżdżonych eager loading. Zamiast listy nazw relacji, 
+przekazujemy w reprezentacji hierarchicznej nazwy relacji do metody the 
+[with()|CActiveRecord::with] w następujący sposób:
 
 ~~~
 [php]
@@ -201,13 +198,13 @@ $posts=Post::model()->with(
 	'categories')->findAll();
 ~~~
 
-The above example will bring back all posts together with their author and
-categories. It will also bring back each author's profile and posts.
+Powyższy przykład zwróci wszystkie posty razem z ich autorami oraz kategoriami. 
+Zwróci również dla każdego autora profil oraz posty.
 
-> Note: The usage of the [with()|CActiveRecord::with] method has been changed
-> since version 1.0.2. Please read the corresponding API documentation carefully.
+> Note|Przypis: Sposób użycia metody [with()|CActiveRecord::with] został zmieniony 
+> wraz z wersją 1.0.2. Proszę przeczytać z uwagą odpowiadającą jej dokumentację API.
 
-The AR implementation in Yii is very efficient. When eager loading
+Implementacja AR w Yii jest bardzi wydajna. When eager loading
 a hierarchy of related objects involving `N` `HAS_MANY` or `MANY_MANY`
 relationships, it will take `N+1` SQL queries to obtain the needed results.
 This means it needs to execute 3 SQL queries in the last example because of
