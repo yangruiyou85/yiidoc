@@ -1,0 +1,56 @@
+テーマ
+=====
+
+テーマはウェブアプリケーションのページの外観をカスタマイズする為の
+システマティックな方法です。新しいテーマを適用することで、
+ウェブアプリケーション全体のデザインを簡単にドラマチック
+に変える事が出来ます。
+
+Yiiでの各テーマは、ビューファイル、レイアウトファイル、
+画像やCSSやJavaScriptなどの関連するリソースで成り立った
+ディレクトリを表しています。テーマの名前はディレクトリ名
+になっています。全てのテーマは、`WebRoot/themas` 
+という同じディレクトリの中に置かれます。
+いかなる場合でも有効に出来るテーマは一つだけです。
+
+> Tip: The default theme root directory `WebRoot/themes` can be configured
+to be a different one. Simply configure the
+[basePath|CThemeManager::basePath] and the [baseUrl|CThemeManager::baseUrl]
+properties of the [themeManager|CWebApplication::themeManager] application
+component to be the desired ones.
+
+When we call [render|CController::render] or
+[renderPartial|CController::renderPartial] to display a view, the
+corresponding view file as well as the layout file will be looked for in
+the currently active theme. And if found, those files will be rendered.
+Otherwise, it falls back to the default location as specified by
+[viewPath|CController::viewPath] and
+[layoutPath|CWebApplication::layoutPath].
+
+To activate a theme, set the [theme|CWebApplication::theme] property of
+the Web application to be the name of the desired theme. This can be done
+either in the [application
+configuration](/doc/guide/basics.application#application-configuration) or during runtime in
+controller actions.
+
+> Note: Theme name is case-sensitive. If you attempt to activate a theme
+that does not exist, `Yii::app()->theme` will return `null`.
+
+Contents under a theme directory should be organized in the same way as
+those under the [application base
+path](/doc/guide/basics.application#application-base-directory). For example, all view files
+must be located under `views`, layout view files under `views/layouts`, and
+system view files under `views/system`. Because the `views` directory may
+contain security-sensitive data, it should be configured to prevent from
+being accessed by Web users.
+
+> Tip: Inside a theme view, we often need to link other theme resource
+files. For example, we may want to show an image file under the theme's
+`images` directory. Using the [baseUrl|CTheme::baseUrl] property of the
+currently active theme, we can generate the URL for the image as follows,
+~~~
+[php]
+Yii::app()->theme->baseUrl . '/images/FileName.gif'
+~~~
+
+<div class="revision">$Id: topics.theming.txt 170 2008-11-06 20:33:35Z qiang.xue $</div>
