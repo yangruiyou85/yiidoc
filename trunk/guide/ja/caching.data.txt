@@ -44,66 +44,68 @@ if($value===false)
 }
 ~~~
 
-When choosing the ID for a variable to be cached, make sure the ID is
-unique among all other variables that may be cached in the application. It
-is NOT required that the ID is unique across applications because the cache
-component is intelligent enough to differentiate IDs for different
-applications.
+変数をキャッシュするために ID を選ぶとき、
+ID がアプリケーション中でキャッシュされるかもしれない、
+他の全ての変数内でユニークである事を確かめてください。
+キャッシュコンポーネントでは、他のアプリケーションで同じ ID が使われていたとしても
+それらを区別出来るため、ID がアプリケーションを横切ってユニークである必要はありません。
 
-To remove a cached value from cache, call [delete()|CCache::delete]; and
-to remove everything from cache, call [flush()|CCache::flush]. Be very
-careful when calling [flush()|CCache::flush] because it also removes cached
-data that are from other applications.
+キャッシュから、キャッシュされた値を削除するには、[delete()|CCache::delete]
+を呼びます。また、全てのキャッシュを削除するには、[flush()|CCache::flush]
+を呼びます。[flush()|CCache::flush] は、他のアプリケーションのデータを含む、
+全てのキャッシュデータを削除するため、このメソッドを呼ぶ際は、
+細心の注意を払ってください。
 
-> Tip: Because [CCache] implements `ArrayAccess`, a cache component can be
-> used liked an array. The followings are some examples:
+> Tip|ヒント: [CCache] は `ArrayAccess` により実装されているため、
+> キャッシュコンポーネントは配列のように扱えます。下記に例を示します:
 > ~~~
 > [php]
 > $cache=Yii::app()->cache;
-> $cache['var1']=$value1;  // equivalent to: $cache->set('var1',$value1);
-> $value2=$cache['var2'];  // equivalent to: $value2=$cache->get('var2');
+> $cache['var1']=$value1;  // $cache->set('var1',$value1); と同等
+> $value2=$cache['var2'];  // $value2=$cache->get('var2'); と同等
 > ~~~
 
-Cache Dependency
+キャッシュ依存関係
 ----------------
 
-Besides expiration setting, cached data may also be invalidated according
-to some dependency changes. For example, if we are caching the content of
-some file and the file is changed, we should invalidate the cached copy and
-read the latest content from the file instead of the cache.
+有効期限設定に加えて、キャッシュデータも依存関係のあるデータの変更により、
+無効にされるかもしれません。
+たとえば、あるファイルの内容がキャッシュされており、ファイルが変更された場合、
+キャッシュされたコピーを無効にし、キャッシュの代わりにファイルから
+最新のデータを読み込む必要があります。
 
-We represent a dependency as an instance of [CCacheDependency] or its
-child class. We pass the dependency instance along with the data to be
-cached when calling [set()|CCache::set].
+[CCacheDependency] か、その子クラスのインスタンスとして依存関係を表します。
+[set()|CCache::set] を呼ぶ際に、キャッシュされるデータと共に、
+依存関係のインスタンスを指定します。
 
 ~~~
 [php]
-// the value will expire in 30 seconds
-// it may also be invalidated earlier if the dependent file is changed
+// 値は 30 秒間有効です
+// さらに、依存関係にあるファイルが変更された場合、有効期限内でも無効になります
 Yii::app()->cache->set($id, $value, 30, new CFileCacheDependency('FileName'));
 ~~~
 
-Now if we retrieve `$value` from cache by calling [get()|CCache::get], the
-dependency will be evaluated and if it is changed, we will get a false
-value, indicating the data needs to be regenerated.
+今、[get()|CCache::get] を呼び、キャッシュから `$value` を取り出そうとすると、
+依存関係が調査され、それが変更されていてば、データを再生成する必要が
+あることを知らせるために、false 値が返ります。
 
-Below is a summary of the available cache dependencies:
+以下に、利用可能なキャッシュ依存関係の概要です:
 
-   - [CFileCacheDependency]: the dependency is changed if the file's last
-modification time is changed.
+   - [CFileCacheDependency]: ファイルの最終更新日時が変更された場合、
+依存関係が変更されます。
 
-   - [CDirectoryCacheDependency]: the dependency is changed if any of the
-files under the directory and its subdirectories is changed.
+   - [CDirectoryCacheDependency]: ディレクトリや、サブディレクトリ下の
+ファイルのいずれかが変更された場合、依存関係が変更されます。
 
-   - [CDbCacheDependency]: the dependency is changed if the query result
-of the specified SQL statement is changed.
+   - [CDbCacheDependency]: 指定された SQL 文のクエリ結果が変わった場合に、
+依存関係が変更されます。
 
-   - [CGlobalStateCacheDependency]: the dependency is changed if the value
-of the specified global state is changed. A global state is a variable that
-is persistent across multiple requests and multiple sessions in an
-application. It is defined via [CApplication::setGlobalState()].
+   - [CGlobalStateCacheDependency]: 指定されたグローバルステートが変更された場合に、
+依存関係が変更されます。グローバルステートは、アプリケーション内での多数のリクエスト、
+および、多数のセッションを横断して持続する変数です。これは、
+[CApplication::setGlobalState()] により定義されます。
 
-   - [CChainedCacheDependency]: the dependency is changed if any of the
-dependencies on the chain is changed.
+   - [CChainedCacheDependency]: チェーン上の依存関係のいずれかが変更された場合、
+依存関係が変更されます。
 
 <div class="revision">$Id: caching.data.txt 169 2008-11-06 19:43:44Z qiang.xue $</div>
