@@ -3,7 +3,7 @@ Sidcachning
 
 Sidcachning refererar till cachning av innehållet för en hel sida. Sidcachning 
 kan inträffa på olika ställen. Till exempel kan klienten/webbläsaren, genom val 
-av en lämplig page header, fås att cachelagra sidan som presenteras under en 
+av en lämplig page header, fås att cachelagra sidan som presenteras, under en 
 begränsasd tid. Själva webbapplikationen kan också cachelagra sidinnehållet. I 
 detta delavsnitt, fokuserar vi på det senare tillvägagångssättet.
 
@@ -17,7 +17,7 @@ innehållsvyn.
 
 För cachning av en hel sida skall åtgärden som genererar sidinnehållet hoppas 
 över. [COutputCache] kan användas som ett 
-[filter](/doc/guide/basics.controller#filter) att åstadkomma detta. Följande kod 
+[filter](/doc/guide/basics.controller#filter) för att åstadkomma detta. Följande kod 
 visar hur cachefiltret kan konfigureras:
 
 ~~~

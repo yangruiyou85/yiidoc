@@ -2,7 +2,7 @@ Konsolapplikationer
 ===================
 
 Konsolapplikationer används huvudsakligen av webbapplikationer till att utföra 
-offline-arbete, så som kodgenerering, kompilering av sökindex, skick mail, etc. 
+offline-arbete, så som kodgenerering, kompilering av sökindex, skicka mail, etc. 
 Yii erbjuder ett ramverk för att skriva konsolapplikationer på ett 
 objektorienterat och systematiskt sätt.
 
@@ -72,12 +72,12 @@ Använda verktyget `yiic`
 Vi har använt `yiic`-verktyget för att [skapa en första 
 applikation](/doc/guide/quickstart.first-app). Faktum är att verktyget `yiic` är 
 implementerat som en konsolapplikation vars startskriptfil är 
-`framework/yiic.php`. Genomatt använda `yiic`, kan vi utföra uppgifter såsom 
+`framework/yiic.php`. Genom att använda `yiic`, kan vi utföra uppgifter såsom 
 skapa ett skelett till en webbapplikation, generera en kontroller- eller 
 modellklass, generera kod som behövs för att utföra CRUD-operationer, extrahera 
 meddelanden som skall översättas, etc.
 
-Verktyget `yiic` kan utökas genomtillägg av egna anpassade kommandon. För att 
+Verktyget `yiic` kan utökas genom tillägg av egna anpassade kommandon. För att 
 göra så, börjar vi med ett applikationsskelett skapat med hjälp av kommandot 
 `yiic webapp`, så som beskrivs i [Skapa en första Yii-
 applikation](/doc/guide/quickstart.first-app). Kommandot `yiic webapp` genererar 

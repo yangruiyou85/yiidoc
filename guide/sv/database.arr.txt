@@ -141,7 +141,7 @@ Utföra relationell fråga
 Det enklaste sättet att utföra en relationell fråga är genom att läsa en 
 relationell property i en AR-instans. Om denna property inte har lästs tidigare 
 kommer en relationell fråga att initieras, som slår samman de två relaterade 
-tabellerna och filterar med primärnyckeln i aktuell AR-instans. Frågeresultatet 
+tabellerna och filtrerar med primärnyckeln i aktuell AR-instans. Frågeresultatet 
 kommer att sparas i propertyn som en eller flera instanser av den relaterade AR-
 klassen. Detta förfarande är känt som *lazy loading*, dvs den relationella 
 frågan utförs först när relaterade objekt refereras till första gången. Exemplet 
@@ -161,7 +161,7 @@ propertyn anta värdet null eller en tom array. För sambanden `BELONGS_TO` och
 array.
 
 Tillvägagångssättet med lazy loading är mycket bekvämt att använda, men har 
-lägre prestanda i vissa scenarier. till exempel, om vi vill få tillgång till 
+lägre prestanda i vissa scenarier. Till exempel, om vi vill få tillgång till 
 information om författare för `N` postningar, kommer tillvägagångssättet lazy 
 att omfatta körning av `N` join-frågor. Under dessa omständigheter bör det 
 alternativa tillvägagångssättet, kallat *eager loading*, användas.
@@ -169,7 +169,7 @@ alternativa tillvägagångssättet, kallat *eager loading*, användas.
 Tillvägagångssättet eager loading hämtar in relaterade AR-instanser tillsammans 
 med huvudinstansen (-instanserna). Detta åstadkommes genom användning av metoden 
 [with()|CActiveRecord::with] tillsammans med en av [find|CActiveRecord::find]-
-eller [findAll|CActiveRecord::findAll]-metoderna i AR. For example,
+eller [findAll|CActiveRecord::findAll]-metoderna i AR. Till exempel,
 
 ~~~
 [php]
@@ -218,7 +218,7 @@ av relaterade objekt omfattande `N` `HAS_MANY`- eller `MANY_MANY`-samband,
 behövs `N+1` SQL-frågor för att uppnå önskat resultat. Detta innebär att den 
 behöver exekvera 3 SQL-frågor i det förra exemplet, på grund av propertyna 
 `posts` och `categories`. Andra ramverk tar ett mer radikalt grepp genom att 
-använda en enda SQL-fråga. Vid en första anblick, verkar radikala angreppssättet 
+använda en enda SQL-fråga. Vid en första anblick, verkar det radikala angreppssättet 
 mer effektivt, på grund av att färre frågor behöver avkodas och exekveras av 
 databashanteraren. Men det är i verkligheten opraktiskt av två skäl. För det 
 första, finns det många repetitiva datakolumner i resultatet, vilka kräver mer 
@@ -229,7 +229,7 @@ ohanterlig i takt med att fler samband omfattas.
 Sedan version 1.0.2, går det även att tvinga fram att en relationell fråga 
 utförs med hjälp av endast en SQL-fråga. Detta sker helt enkelt genom att ett 
 anrop till [together()|CActiveFinder::together] läggs till efter 
-[with()|CActiveRecord::with]. till exempel,
+[with()|CActiveRecord::with]. Till exempel,
 
 ~~~
 [php]
@@ -252,7 +252,7 @@ Som nämnts kan ytterligare alternativ anges i sambandsdeklarationer. Dessa
 alternativ, specificerade i form av namn-värdepar, används för att anpassa den 
 relationella frågan. De sammanfattas nedan.
 
-   - `select`: en lista med med kolumenr som skall selekteras till den 
+   - `select`: en lista med med kolumner som skall selekteras till den 
    relaterade AR-klassen. Den har standardvärdet '*', vilket innebär alla 
    kolumner. Kolumnnamn skall göras otvetydiga med hjälp av `aliasToken` om de 
    används i ett uttryck (t.ex. `COUNT(??.name) AS nameCount`).
@@ -352,11 +352,11 @@ Alternativ för dynamisk relationell fråga
 -----------------------------------------
 
 Med start från och med version 1.0.2, går det att använda alternativ för 
-dynamisk relationell fråga både med [with()|CActiveRecord::with] och `with`-
-alternativet. Alternativen för dynamiskt skriver över existerande alternativ som 
-specificerats i metoden [relations()|CActiveRecord::relations]. Till exempel, 
-för att, med ovanstående `User`-modell, använda tillvägagångssättet eager 
-loading till att hämta in postningar tillhörande en författare i *stigande 
+dynamisk relationell fråga både med metoden [with()|CActiveRecord::with] och 
+med `with`-alternativet. De dynamiska alternativen skriver över existerande 
+alternativ som specificerats i metoden [relations()|CActiveRecord::relations]. 
+Till exempel, för att, med ovanstående `User`-modell, använda tillvägagångssättet 
+eager loading till att hämta in postningar tillhörande en författare i *stigande 
 ordningsföljd* (`order`-alternativet i sambandet specificerar fallande 
 ordningsföljd), kan man göra följande:
 

@@ -19,7 +19,7 @@ Yii::log($message, $level, $category);
 Yii::trace($message, $category);
 ~~~
 
-När ett meddelande loggas, behöver dess kategory och nivå level anges. Kategori 
+När ett meddelande loggas, behöver dess kategori och nivå level anges. Kategori 
 är en sträng på formatet `xxx.yyy.zzz` har likheter med 
 [sökvägsalias](/doc/guide/basics.namespace). Till exempel, om ett meddelande 
 loggas i [CController], kan vi använda kategorin `system.web.CController`. 
@@ -54,8 +54,7 @@ För att använda meddelandestyrning, behöver en applikationskomponent,
 [CLogRouter], installeras och förhandsladdas. Dessutom behöver dess property 
 [routes|CLogRouter::routes] konfigureras med de loggvägar vi vill ha. Följande 
 visar ett exempel på den erforderliga 
-[applikationskonfigurationen](/doc/guide/basics.application#application-
-configuration):
+[applikationskonfigurationen](/doc/guide/basics.application#application-configuration):
 
 ~~~
 [php]
@@ -123,7 +122,7 @@ Prestandaprofilering
 --------------------
 
 Prestandaprofilering är en speciell typ av meddelandeloggning. 
-Prestandaprofilering kan användas för att mäta tidåtgången för at exekvera 
+Prestandaprofilering kan användas till att mäta tidåtgången för att exekvera 
 specificerade kodblock och lokalisera vilka prestandasänkorna är.
 
 För att använda prestandaprofilering, behöver vi identifiera vilka kodblock som 
@@ -144,9 +143,8 @@ korsa varandras blockgränser. De måste antingen befinna sig parallellt på sam
 nivå eller inneslutas helt i ett omgivande kodblock.
 
 För att presentera resultatet av profileringen behöver en applikationskomponent, 
-[CLogRouter] installeras, med en [CProfileLogRoute] loggningsväg. Detta är det 
-samma som vi gör vid vanlig meddelandestyrning. [CProfileLogRoute]-
-loggningsvägen kommer att presentera prestandaresultaten vid slutet av den 
-aktuella sidan.
+[CLogRouter] installeras, med en [CProfileLogRoute] loggningsväg. Detta är 
+detsamma som vi gör vid vanlig meddelandestyrning. [CProfileLogRoute]-loggningsvägen 
+kommer att presentera prestandaresultaten vid slutet av den aktuella sidan.
 
 <div class="revision">$Id: topics.logging.txt 170 2008-11-06 20:33:35Z qiang.xue $</div>

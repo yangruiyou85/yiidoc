@@ -28,7 +28,7 @@ request är av typen POST (underförstått att det ifyllda login-formuläret
 skickats), förses `$form` med inskickad data `$_POST['LoginForm']`; därefter 
 valideras inmatningen och om denna befinns korrekt styrs användarens webbläsare 
 till sidan som tidigare erfordrade autentisering. Om däremot valideringen 
-misslyckas, eller åtgärden körs initialt, renderas `login`-vyn vars innehåll 
+misslyckas, eller åtgärden körs initialt, renderas `login`-vyn, vars innehåll 
 kommer att beskrivas i nästa underavsnitt.
 
 > Tip|Tips: I `login`-åtgärden används `Yii::app()->user->returnUrl` för att få 
@@ -47,8 +47,8 @@ $form->attributes=$_POST['LoginForm'];
 Som beskrivits i  [Säkra upp 
 attributtilldelningar](/doc/guide/form.model#securing-attribute-assignments), 
 tilldelar denna rad modellen de data användaren skickat in. Propertyn 
-`attributes` definieras av [CModel] vilken förväntar sig en array av namn-
-värdepar och tilldelar varje värde till motsvarande attribut i modellen. Så om 
+`attributes` definieras av [CModel] vilken förväntar sig en array av 
+namn-värdepar och tilldelar varje värde till motsvarande attribut i modellen. Så om 
 `$_POST['LoginForm']` ger oss en sådan array, är ovanstående kodrad ekvivalent 
 med följande längre kodavsnitt (förutsatt att varje erforderligt attribut finns 
 med i arrayen):

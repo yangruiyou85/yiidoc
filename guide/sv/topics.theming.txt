@@ -26,16 +26,17 @@ standardplatserna för vyer och layouter specificerade i
 [layoutPath|CWebApplication::layoutPath].
 
 För att aktivera ett tema, sätt webbapplikationens property 
-[theme|CWebApplication::theme] till namnet på det önskade temat. Detta kan 
-antingen göras i [applikationskonfigurationen](/doc/guide/basics.application#application-
-configuration) eller vid körning, i en kontrolleråtgärd.
+[theme|CWebApplication::theme] till namnet på det önskade temat. 
+Detta kan antingen göras i 
+[applikationskonfigurationen](/doc/guide/basics.application#application-configuration) 
+eller vid körning, i en kontrolleråtgärd.
 
 > Note|Märk: Temanamn är skiftlägeskänsliga (case-sensitive). Om man försöker 
 att aktivera ett tema som inte kan hittas returnerar `Yii::app()->theme` `null`.
 
 Innehåll under temats katalog skall organiseras på samma sätt som det under 
-[applikationens rotkatalog](/doc/guide/basics.application#application-base-
-directory). Till exempel, alla vyfiler måste placeras under `views`, 
+[applikationens rotkatalog](/doc/guide/basics.application#application-base-directory). 
+Till exempel, alla vyfiler måste placeras under `views`, 
 layoutvyfiler under `views/layouts` och systemvyfiler under `views/system`. 
 Eftersom katalogen `views` kan innehålla ur säkerhetssynpunkt känslig data, 
 skall den konfigureras för att förhindra webbanvändare tillgång.

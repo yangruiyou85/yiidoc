@@ -22,7 +22,7 @@ $component->enableCaching=true;   // set the enableCaching property
 
 För att definiera en property kan vi helt enkelt definiera en publik 
 medlemsvariabel i komponentklassen. Ett mer flexibelt sätt är att definiera 
-getter- och setter-metoder i komponentklassen, på följande sätt:
+getter- och setter-metoder i komponentklassen på följande sätt:
 
 ~~~
 [php]
@@ -43,7 +43,7 @@ anropas och dess returvärde bildar propertyns värde. Likaledes, vid skrivning
 till propertyn kommer `setTextWidth()` att köras. Propertyn kan bara läsas om en 
 settermetod inte definierats, försök att skriva leder till en exception. 
 Användande av getter- och settermetoder för att definiera en property ger den 
-extra fördelen att ytterligare logik  (t.ex. genomföra validering, signalera 
+extra fördelen att ytterligare logik  (t.ex. för att genomföra validering, signalera 
 event) kan exekveras i samband med läsning/skrivning av propertyn.
 
 > Note|Märk: Det finns en liten skillnad mellan en property definierad genom getter-
@@ -59,7 +59,7 @@ till att metoden automatiskt kommer att genomlöpas på de ställen där händel
 signaleras. Av denna anledning kan beteendet hos en komponent anpassas på sätt 
 som inte var möjliga att förutse vid utvecklingen av komponenten.
 
-En komponents händelse definieras genom att en metod definieras vars namn börja 
+En komponents händelse definieras genom att en metod definieras vars namn börjar 
 med `on`. Precis som propertyn definierade med getter-/settermetoder är 
 händelsers namn okänsliga för skiftläge (case-insensitive). Följande kodexempel 
 definierar en `onClicked`-händelse:
@@ -115,7 +115,7 @@ Komponents "Behavior"
 Från och med version 1.0.2 har komponenter försetts med stöd för 
 [mixin](http://en.wikipedia.org/wiki/Mixin) och kan sammankopplas med en eller 
 flera behavior. En  *behavior* är ett objekt vars metoder kan ärvas 'inherited' 
-av dess sammankopplade komponent genom att samla ihop funktionalitet i stället 
+av dess sammankopplade komponent genom att aggregera funktionalitet i stället 
 för specialisering (dvs normalt klassarv). En komponent kan sammankopplas med 
 flera behavior och på så sätt åstadkomma 'multipelt arv'.
 
@@ -139,7 +139,7 @@ $component->test();
 
 En sammankopplad behavior kan adresseras precis som en normal property i 
 komponenten. Till exempel, om en behavior med namnet `tree` är sammankopplad med 
-en komponent, kan en referens till denna behavior erhållas på detta sätt:
+en komponent, kan en referens till denna behavior erhållas på följande sätt:
 
 ~~~
 [php]

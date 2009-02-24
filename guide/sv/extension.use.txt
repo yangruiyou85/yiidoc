@@ -26,7 +26,8 @@ Applikationskomponent
 ---------------------
 
 För att använda en [applikationskomponent](/doc/guide/basics.application#application-component),
-behöver först ett nytt värde läggas till i [applikationskonfigurationen](/doc/guide/basics.application#application-configuration),
+behöver först ett nytt värde läggas till i 
+[applikationskonfigurationen](/doc/guide/basics.application#application-configuration),
 närmare bestämt i dess `components`-property, enligt följande:
 
 ~~~
@@ -142,8 +143,7 @@ Kontroller
 En [kontroller](/doc/guide/basics.controller) tillhandahåller en uppsättning 
 åtgärder som kan begäras av användare. För att använda en kontrollerutvidgning, 
 behöver propertyn [CWebApplication::controllerMap] konfigureras i 
-[applikationskonfigurationen](/doc/guide/basics.application#application-
-configuration):
+[applikationskonfigurationen](/doc/guide/basics.application#application-configuration):
 
 ~~~
 [php]
@@ -221,7 +221,7 @@ konfigurationsfilen för webbapplikationen blir `protected/config/main.php`.
 Modul
 -----
 
-En modul består typiskt av mer än en klassfil och är ofta en mix a ovanstående 
+En modul består typiskt av mer än en klassfil och är ofta en mix av ovanstående 
 utvidgningstyper. Följ därför respektive instruktioner för att använda en modul.
 
 Generell komponent

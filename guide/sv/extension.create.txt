@@ -39,8 +39,8 @@ utvidga [CApplicationComponent]. Den viktigaste metoden att implementera är
 [IApplicationComponent::init] i vilken komponenten utför sina initialiseringar. 
 Denna metod anropas när komponenten skapats och initiala propertyvärden 
 (specificerade i 
-[applikationskonfiguration](/doc/guide/basics.application#application-
-configuration)) har applicerats.
+[applikationskonfiguration](/doc/guide/basics.application#application-configuration)) 
+har applicerats.
 
 Som standard skapas och initieras en applikationskomponent endast när den 
 anropas för första gången i samband med hantering av användarens request. Om en 
@@ -130,7 +130,7 @@ En [åtgärd](/doc/guide/basics.controller#action) skall ärva från och utvidga
 är [IAction::run].
 
 Filter
- ------ 
+------ 
  
 Ett [filter](/doc/guide/basics.controller#filter) skall ärva från och 
 utvidga [CFilter] eller nedärvd klass. Huvudsakliga metoder som behöver 
@@ -167,7 +167,7 @@ utvidgning skall ärva från och utvidga [CExtController] istället för
 kontrollerns vyfiler är placerade under `application.views.ControllerID`, medan 
 [CExtController] antar att vyfilerna är placerade i katalogen `views`, en 
 underkatalog till katalogen innehållande kontrollerns klassfil. På det sättet 
-blir det lättare att fortsatt distribuera kontrollern eftersom dess vyfiler förblir 
+blir det lättare att vidaredistribuera kontrollern eftersom dess vyfiler förblir 
 placerade i anslutning till kontrollerns klassfil.
 
 
@@ -218,7 +218,7 @@ Modul
 -----
 
 En generell riktlinje för utveckling av en modul är att den skall vara komplett 
-i sig, samt oberoende. Resursfiler (så som CSS, JavaScript, bilder) modulen 
+i sig, samt oberoende. Resursfiler (så som CSS, JavaScript, bilder) som modulen 
 använder sig av, skall distribueras tillsammans med modulen. Modulen skall även 
 publicera dessa så att de blir åtkomliga för webbanvändare.
 

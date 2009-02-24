@@ -41,9 +41,9 @@ spara de resulterande PHP-filerna i
 källkod har ändrats, kommer PHP-filerna att genereras på nytt. Därför åsamkar 
 [CPradoViewRenderer] mycket liten prestandaförlust.
 
-> Tip|Tips: Medan [CPradoViewRenderer] huvudsakligen introduceras et antal nya 
+> Tip|Tips: Medan [CPradoViewRenderer] huvudsakligen introducerar ett antal nya 
 mall-taggar för att göra det lättare och snabbare att skriva vyer, kan man 
-fortfarande skriva PHP-kod precis som vanligt vyernas källkod.
+fortfarande skriva PHP-kod precis som vanligt i vyernas källkod.
 
 I det följande introduceras de mall-taggar som stöds av [CPradoViewRenderer].
 

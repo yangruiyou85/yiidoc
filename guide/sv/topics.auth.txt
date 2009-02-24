@@ -81,8 +81,8 @@ Information som sparas i ett state (genom anrop av [CBaseUserIdentity::setState]
 förmedlas till [CWebUser] vilken lagrar den i icke-flyktigt minne, så som session.
 Sådan information kan kommas åt i form av propertyn i [CWebUser]. Till exempel, går 
 det att erhålla `title`-information för aktuell användare via  `Yii::app()->user->title`
-(Detta sätt har varit tillgängligt från version 1.0.3. I tidigare versioner, användes 
-`Yii::app()->user->getState('title')`, i stället.)
+(Detta sätt har varit tillgängligt från version 1.0.3. I tidigare versioner användes 
+i stället `Yii::app()->user->getState('title')`.)
 
 > Info: Som standard använder [CWebUser] sessionen för icke-flyktig lagring av 
 information om användaridentitet. Om cookie-baserad inloggning gjorts möjlig 
@@ -110,8 +110,8 @@ Yii::app()->user->logout();
 ~~~
 
 Som standard loggas en användare ut efter en viss tid utan aktivitet, beroende på 
-[sessionskonfigurationen](http://www.php.net/manual/en/session.configuration.php 
-). Detta beteende kan man ändra genom att propertyn 
+[sessionskonfigurationen](http://www.php.net/manual/en/session.configuration.php). 
+Detta beteende kan man ändra genom att propertyn 
 [allowAutoLogin|CWebUser::allowAutoLogin] i user-komponenten sätts till true 
 samt genom att lämna en varaktighetsparameter till metoden [CWebUser::login]. 
 Användaren kommer då att förbli inloggad hela den specificerade varaktigheten, 
@@ -203,8 +203,8 @@ en `allow`-regel, kan åtgärden exekveras; om den är en `deny`-regel, kan
 åtgärden fortfarande att kunna köras.
 
 > Tip|Tips: För att säkerställa att en viss åtgärd inte körs i vissa kontext,
-> är det fördelaktigt att alltid specificera en `deny`-regel som matchar allt 
-> i slutet av regeluppsättningen, som i det följande:
+> är det fördelaktigt att i slutet av regeluppsättningen alltid specificera en 
+> `deny`-regel som matchar allt , som i det följande:
 > ~~~
 > [php]
 > return array(
@@ -232,8 +232,8 @@ En åtkomstregel kan matcha följande kontextparametrar:
 	   - `@`: autentiserade användare.
 
    - [roles|CAccessRule::roles]: specificerar vilka roller denna regel matchar. 
-   Till detta används finessen [rollbaserad åtkomstkontroll](#role-based-
-   access-control) som kommer att beskrivas i nästa underavsnitt. Mer 
+   Till detta används finessen [rollbaserad åtkomstkontroll](#role-based-access-control) 
+   som kommer att beskrivas i nästa underavsnitt. Mer 
    detaljerat, regeln appliceras om [CWebUser::checkAccess] returnerar true för 
    någon av rollerna. Lägg märke till att roller huvudsakligen bör användas i en 
    `allow`-regel eftersom, per definition, representerar en roll tillåtelse att 
@@ -322,7 +322,7 @@ En auktoriseringsartikel identifieras unikt av dess namn.
 
 En auktoriseringsartikel kan associeras med en *affärsregel* (business rule). En 
 affärsregel är ett stycke PHP-kod som kommer att exekveras när åtkomstkontroll 
-skall utföras enligt auktoriseringsartikeln. endast om exekveringen returnerar 
+skall utföras enligt auktoriseringsartikeln. Endast om exekveringen returnerar 
 true, kommer användaren att anses ha rättigheten som representeras av 
 auktoriseringsartikeln. Till exempel, när operationen `updatePost` definieras, 
 vill vi antagligen lägga till en affärsregel som kollar om användar-ID är samma 
@@ -397,7 +397,7 @@ tilldela applikationsanvändare roller. Applikationskomponenten
 API:er för detta ändamål.
 
 För att definiera en auktoriseringsartikel, anropa en av följande metoder,
-depending on the type of the item:
+beroende på typ av artikel:
 
    - [CAuthManager::createRole]
    - [CAuthManager::createTask]

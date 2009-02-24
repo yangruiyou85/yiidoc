@@ -19,7 +19,7 @@ Yii:s DAO består i huvudsak av följande fyra klasser:
    - [CDbDataReader]: representerar en icke-reversibel följd av rader ur en frågas resultatmängd.
    - [CDbTransaction]: representerar en databastransaktion.
 
-I följande stycken introducas användning av Yii:s DAO i olika scenarier.
+I följande stycken introduceras användning av Yii:s DAO i olika scenarier.
 
 Upprätta en databasanslutning
 -----------------------------
@@ -42,9 +42,9 @@ $connection->active=false;  // close connection
 
 Formatet för ett DSN bestäms av vilken databasspecifik PDO-drivrutin som 
 används. Generellt sett består ett DSN av namnet på PDO-drivrutinen följt av ett 
-kolon, följt av drivrutinsspecifik anslutningssyntax. Se [PDO-
-dokumentationen](http://www.php.net/manual/en/pdo.construct.php) för fullständig 
-information. Nedan återges en lista med vanligtvis använda DSN-format:
+kolon, följt av drivrutinsspecifik anslutningssyntax. Se 
+[PDO-dokumentationen](http://www.php.net/manual/en/pdo.construct.php) för 
+fullständig information. Nedan återges en lista med vanligtvis använda DSN-format:
 
    - SQLite: `sqlite:/path/to/dbfile`
    - MySQL: `mysql:host=localhost;dbname=testdb`
@@ -53,8 +53,9 @@ information. Nedan återges en lista med vanligtvis använda DSN-format:
 Eftersom [CDbConnection] är en utvidgning av [CApplicationComponent], kan vi 
 även använda den som just en 
 [applikationskomponent](/doc/guide/basics.application#application-component). 
-För att göra så, konfigurera in en `db` (eller annat namn) applikationskomponent i [applikationskonfigurationen](/doc/guide/basics.application#application-
-configuration) enligt följande,
+För att göra så, konfigurera in en `db` (eller annat namn) applikationskomponent i 
+[applikationskonfigurationen](/doc/guide/basics.application#application-configuration) 
+enligt följande,
 
 ~~~
 [php]
@@ -74,7 +75,7 @@ array(
 
 Därefter kan databasanslutningen tillgås via `Yii::app()->db` som redan är 
 automatiskt aktiverad, utom i det fall [CDbConnection::autoConnect] uttryckligen 
-konfigurerats till false. Med användandet detta tillvägagångssätt kan en enda 
+konfigurerats till false. Med användande av detta tillvägagångssätt kan en enda 
 DB-anslutning delas av kod på flera ställen.
 
 Exekvering av SQL-satser
@@ -82,7 +83,7 @@ Exekvering av SQL-satser
 
 När en databasanslutning väl har etablerats, kan SQL-satser exekveras med hjälp 
 av [CDbCommand]. Man skapar en instans av [CDbCommand] genom anrop till 
-[CDbConnection::createCommand()] med SQL-satsen specifierad:
+[CDbConnection::createCommand()] med SQL-satsen angiven:
 
 ~~~
 [php]

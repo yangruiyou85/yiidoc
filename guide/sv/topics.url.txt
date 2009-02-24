@@ -34,19 +34,19 @@ erhålla följande URL:
 
 där parametrarna återfinns i frågesträngen sammanslagna till en lista av 
 `Namn=Värde`-par separerade av och-tecken (&), och där `r`-parametern 
-specificerar request-[route](/doc/guide/basics.controller#route). Detta URL-
-format är inte speciellt användarvänligt eftersom det erfordrar ett antal 
+specificerar request-[route](/doc/guide/basics.controller#route). Detta 
+URL-format är inte speciellt användarvänligt eftersom det erfordrar ett antal 
 ordfrämmande tecken.
 
 Ovanstående URL kan fås att se renare ut samt mer självförklarande genom 
 användning av det så kallade `path`-formatet, vilket eliminerar frågesträngen 
-och placerar även GET-parametrarna i den del av URL:en som innehåller path-info:
+och dessutom placerar GET-parametrarna i den del av URL:en som innehåller path-info:
 
 ~~~
 /index.php/post/read/id/100
 ~~~
 
-För att byta URL:format konfigurera vi applikationskomponenten 
+För att byta URL:format konfigurerar vi applikationskomponenten 
 [urlManager|CWebApplication::urlManager] så att 
 [createUrl|CController::createUrl] automatiskt kan byta till det nya formatet 
 och så att applikationen korrekt kan begripa de nya URL:erna:
@@ -65,7 +65,7 @@ array(
 ~~~
 
 Lägg märke till att vi inte behöver klass för komponenten 
-[urlManager|CWebApplication::urlManager] den är fördeklarerad som [CUrlManager] 
+[urlManager|CWebApplication::urlManager], den är fördeklarerad som [CUrlManager] 
 i [CWebApplication].
 
 > Tip|Tips: URL:en som genereras av metoden [createUrl|CController::createUrl] 
@@ -157,9 +157,8 @@ routeparametern, kommer regeln att användas för att generera URL:en.
 
 Om GET-parametrarna som lämnas till [createUrl|CController::createUrl] är fler 
 än de som behövs i en regel, hamnar de överflödiga parametrarna i en query-
-sträng. Till exempel, ur anropet `$this-
->createUrl('post/read',array('id'=>100,'year'=>2008))`, erhålls 
-`/index.php/post/100?year=2008`. För att få dessa tillkommande parametrar att 
+sträng. Till exempel, ur anropet `$this->createUrl('post/read',array('id'=>100,'year'=>2008))`, 
+erhålls `/index.php/post/100?year=2008`. För att få dessa tillkommande parametrar att 
 hamna i pathinfo-delen, kompletterar vi regeln med `/*`. Med regeln 
 `post/<id:\d+>/*` erhåller vi URL:en `/index.php/post/100/year/2008`.
 
@@ -182,9 +181,9 @@ konfigurerar webbservern såväl som applikationskomponenten
 [urlManager|CWebApplication::urlManager].
 
 Webbservern behöver konfigureras så att URL:en utan startskriptdelen fortfarande 
-kommer att hanteras av startskriptet. För [Apache HTTP 
-server](http://httpd.apache.org/), kan detta åstadkommas genom att slå på URL 
-rewriting engine och specificera några rewriting-regler rules. Båda dessa saker 
+kommer att hanteras av startskriptet. För [Apache HTTP-server](http://httpd.apache.org/), 
+kan detta åstadkommas genom att slå på URL rewriting engine och 
+specificera några rewriting-regler. Båda dessa saker 
 kan härbärgeras i en `.htaccess`-fil placerad i katalogen som innehåller 
 startkriptet. Följande är ett exempel:
 

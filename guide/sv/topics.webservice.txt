@@ -33,7 +33,7 @@ reflection](http://www.php.net/manual/en/language.oop5.reflection.php) för att
 identifiera vilka metoder som kan fjärrinvokeras och vilka deras parametrar och 
 returvärden är.
 
-Låt oss börja med en enkel aktiekurstjänst. Denna tjäns medger att en klient 
+Låt oss börja med en enkel aktiekurstjänst. Denna tjänst medger att en klient 
 frågar om priset på en viss aktie. Service providern definieras som följer. Lägg 
 märke till att vi definierar providerklassen `StockController` genom att ärva 
 från och utvidga [CController]. Detta är inte ett krav. Varför vi gör så 
@@ -147,7 +147,7 @@ markerade med `@soap` i sina doc comments.
 Vi kan även använda arraytyper genom att lägga till `[]` i slutet av en primitiv 
 eller sammansatt typ. Det specificerar en array av denna typ.
 
-Nedan ses ett exempel som definierar webb-API:n`getPosts` vilken returnerar en 
+Nedan ses ett exempel som definierar webb-API:n `getPosts` vilken returnerar en 
 array med `Post`-objekt.
 
 ~~~

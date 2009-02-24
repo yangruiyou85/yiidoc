@@ -3,12 +3,12 @@ Applikationsobjekt
 
 Application utgör exekveringsomgivning vid behandling av inkommande request. 
 Dess huvudsakliga uppgift är att dela upp en request från användare och skicka 
-denna vidare till relevant controller för fortsatt bearbetning. Den tjänar också 
+denna vidare till relevant kontroller för fortsatt bearbetning. Den tjänar också 
 som central plats för konfigurationer på applikationsnivå. Av denna anledning 
 kallas Application även `front-controller`.
 
-Application skapas som en singleton av [startskriptet](/doc/guide/basics.entry) 
-och kan alltid nås via [Yii::app()|YiiBase::app].
+Application skapas av [startskriptet](/doc/guide/basics.entry) som en singleton 
+vilken alltid kan nås via [Yii::app()|YiiBase::app].
 
 
 Applikationens konfiguration
@@ -19,7 +19,7 @@ erhålls normalt genom att bifoga en konfigureringsfil (eller array) för
 initiering av propertyvärden i samband med att applikationsinstansen skapas. Ett 
 alternativt sätt är att ärva från och utöka [CWebApplication].
 
-Konfigurationen är en array bestående av par av nyckel-värde. Varje nyckel 
+Konfigurationen är en array bestående av nyckel-värdepar. Varje nyckel 
 representerar namnet på en property i applikationsobjektet, det tillhörande 
 värdet blir propertyns initialvärde. Exempel: följande konfiguration sätter 
 applikationens [namn|CApplication::name] och propertyn 
@@ -53,8 +53,8 @@ $app=Yii::createWebApplication($configFile);
 
 > Tip|Tips: Om applikationens konfiguration är mycket omfattande kan den delas upp 
 på flera filer, var och en bidragande med ett avsnitt av konfigurationsarrayen. 
-De separata filerna kombineras därefter till en komplett konfigurationsarray med 
-hjälp av PHP `include()` i konfigurationens huvudfil.
+De separata filerna kombineras därefter med hjälp av PHP `include()` till en komplett 
+konfigurationsarray i konfigurationens huvudfil.
 
 
 Applikationens rotkatalog
@@ -67,7 +67,7 @@ Placeringen kan anpassas via propertyn [basePath|CWebApplication::basePath] i
 [applikationens konfiguration](#application-configuration).
 
 Innehållet i applikationens rotkatalog med underkataloger skall inte vara 
-tillgängliga för webbanvändare. Med [Apache HTTP 
+tillgängliga för webbanvändare. Med [Apache HTTP- 
 server](http://httpd.apache.org/), kan detta lätt ordnas genom att placera en 
 fil med namnet `.htaccess` i rotkatalogen. Innehållet i `.htaccess` är som följer:
 
@@ -185,8 +185,8 @@ Vid behandling av en inkommen request från användare genomgår en applikation 
 
    6. Bearbeta användarens request:
 	   - Behandla inkommen request från användare;
-	   - Skapa controller;
-	   - Exekvera controller;
+	   - Skapa kontroller;
+	   - Exekvera kontroller;
 
    7.Signalera händelsen [onEndRequest|CApplication::onEndRequest];
 
