@@ -1,83 +1,86 @@
-﻿Fragment Caching
+﻿Кэширование фрагментов
 ================
 
-Fragment caching refers to caching a fragment of a page. For example, if a
-page displays a summary of yearly sale in a table, we can store this table
-in cache to eliminate the time needed to generate it for each request.
+Кэширование фрагментов относится к кэшированию фрагментов страницы. Например, 
+если страница отображает суммарные годовые продажы в таблице, мы можем сохранить
+эту таблицу в кэше с целью исключения времени, требуемого для генерации таблицы 
+при каждом запросе.
 
-To use fragment caching, we call
-[CController::beginCache()|CBaseController::beginCache()] and
-[CController::endCache()|CBaseController::endCache()] in a controller's
-view script. The two methods mark the beginning and the end of the page
-content that should be cached, respectively. Like [data
-caching](/doc/guide/caching.data), we need an ID to identify the fragment
-being cached.
+Для использования кэширования фрагментов мы вызываем 
+[CController::beginCache()|CBaseController::beginCache()] и
+[CController::endCache()|CBaseController::endCache()] в скрипте 
+представления контроллера. Эти два метода являются метками начала и конца 
+содержимого страницы, которое должно быть кэшировано. Как и в [кэшировании 
+данных](/doc/guide/caching.data), нам нужен идентификатор (ID) для определения
+кэшируемого фрагмента.
 
 ~~~
 [php]
-...other HTML content...
+...некое HTML-содержимое...
 <?php if($this->beginCache($id)) { ?>
-...content to be cached...
+...кэшируемое содержимое...
 <?php $this->endCache(); } ?>
-...other HTML content...
+...другое HTML-содержимое...
 ~~~
 
-In the above, if [beginCache()|CBaseController::beginCache()] returns
-false, the cached content will be automatically inserted at the place;
-otherwise, the content inside the `if`-statement will be executed and be
-cached when [endCache()|CBaseController::endCache()] is invoked.
+В коде выше, если метод [beginCache()|CBaseController::beginCache()] возвращает
+false, то кэшированное содержимое будет автоматически вставлено в данное место,
+иначе, содержимое внутри выражения `if` будет выполнено и сохранено
+в кэше, когда будет вызван метод [endCache()|CBaseController::endCache()].
 
-Caching Options
+Параметры кэширования
 ---------------
 
-When calling [beginCache()|CBaseController::beginCache()], we can supply
-an array as the second parameter consisting of caching options to customize
-the fragment caching. As a matter of fact, the
-[beginCache()|CBaseController::beginCache()] and
-[endCache()|CBaseController::endCache()] methods are a convenient wrapper
-of the [COutputCache] widget. Therefore, the caching options can be initial
-values for any properties of [COutputCache].
+Вызывая метод [beginCache()|CBaseController::beginCache()], мы можем передать
+в качестве второго параметра массив, содержащий параметры кэширования для
+управления кэшированием фрагмента. Фактически, методы 
+[beginCache()|CBaseController::beginCache()] и
+[endCache()|CBaseController::endCache()] являются удобной оберткой 
+виджета [COutputCache]. Поэтому, параметры кэширования могут быть 
+начальными значениями для любых свойств виджета [COutputCache].
 
-### Duration
+### Длительность (срок действия)
 
-Perhaps the most commonly option is [duration|COutputCache::duration]
-which specifies how long the content can remain valid in cache. It is
-similar to the expiration parameter of [CCache::set()]. The following code
-caches the content fragement for at most one hour:
+Наверное, наиболее часто используемым параметром является
+[duration|COutputCache::duration],
+который определяет, насколько долго содержимое кэша будет оставаться
+действительным (валидным). Это похоже на параметр срока действия метода
+[CCache::set()]. Код ниже кэширует фрагмент на время не более часа:
 
 ~~~
 [php]
-...other HTML content...
+...другое HTML-содержимое...
 <?php if($this->beginCache($id, array('duration'=>3600))) { ?>
-...content to be cached...
+...кэшируемое содержимое...
 <?php $this->endCache(); } ?>
-...other HTML content...
+...другое HTML-содержимое...
 ~~~
 
-If we do not set the duration, it would default to 60, meaning the cached
-content will be invalidated after 60 seconds.
+Если мы не установим длительность, она будет равна 60 (значение по умолчанию).
+Это значит, что кэшированное содержимое станет недействительным через 60 секунд.
 
-### Dependency
+### Зависимость
 
-Like [data caching](/doc/guide/caching.data), content fragment being
-cached can also have dependencies. For example, the content of a post being
-displayed depends on whether or not the post is modified.
+Как и [кэширование данных](/doc/guide/caching.data), кэшируемое содержимое
+фрагмента тоже может иметь зависимости. Например, отображение содержимого
+сообщения зависит от того, изменено или нет это сообщение.
 
-To specify a dependency, we set the [dependency|COutputCache::dependency]
-option, which can be either an object implementing [ICacheDependency] or a
-configuration array that can be used to generate the dependency object. The
-following code specifies the fragment content depends on the change of
-`lastModified` column value:
+Для определения зависимости, мы устанавливаем параметр
+[dependency|COutputCache::dependency], который может быть либо объектом,
+реализующим интерфейс [ICacheDependency], либо массивом настроек, который может
+быть использован для генерации объекта зависимости. Следующий код 
+определяет содержимое фрагмента, зависящее от изменения значения
+столбца `lastModified`:
 
 ~~~
 [php]
-...other HTML content...
+...другое HTML-содержимое...
 <?php if($this->beginCache($id, array('dependency'=>array(
 		'class'=>'system.caching.dependencies.CDbCacheDependency',
 		'sql'=>'SELECT MAX(lastModified) FROM Post')))) { ?>
-...content to be cached...
+...кэшируемое содержимое...
 <?php $this->endCache(); } ?>
-...other HTML content...
+...другое HTML-содержимое...
 ~~~
 
 ### Variation
