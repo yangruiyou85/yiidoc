@@ -1,34 +1,33 @@
-Relational Active Record
+Relacyjny Rekord Aktywny
 ========================
 
-We have already seen how to use Active Record (AR) to select data from a
-single database table. In this section, we describe how to use AR to join
-several related database tables and bring back the joint data set.
+Dotychczas zobaczyliśmy jak używać Rekordu Aktywnego (AR) aby wybierać dane z jednej
+tabeli bazodanowej. W tej sekcji opiszemy jak używać AR aby połączyć kilka powiązanych 
+tabel baz danych i zwrócić połączony zbiór danych. 
 
-In order to use relational AR, it is required that primary-foreign key
-relationships are well defined between tables that need to be joined. AR
-relies on the metadata about these relationships to determine how to join
-the tables.
+W celu używania relacyjnego AR, wymagane jest, aby relacja dla obcego, klucza główny 
+była dobrze zdeiniowana pomiędzy tabelami, które będą łączone. AR polega na metadanych 
+tych relacji gdy decyduje jak połączyć tabele.
 
-> Note: Starting from version 1.0.1, you can use relational AR even
-> if you do not define any foreign key constraints in your database.
+> Note|Przypis: Poczynając od wersji 1.0.1, możesz używać relacyjnego AR nawet jeśli
+> nie zdefiniowałeś kluczów obcych w swojej bazie danych.
 
-For simplicity, we will use the database schema shown in the
-following entity-relationship (ER) diagram to illustrate examples in this
-section.
+Dla uproszczenia, będziemy używali schematu bazy danych pokazanego na następnym 
+diagramie zależności encji (ER) celem zilustrowania przykładów w tej sekcji.
 
-![ER Diagram](er.png)
+![Diagram ER](er.png)
 
-> Info: Support for foreign key contraints varies in different DBMS.
+> Info|Info: Wsparcie dla ograniczeń kluczów obcych różmi sie w róznych DBMS.
 >
-> SQLite does not support foreign key constraints, but you can still
-> declare the constraints when creating tables. AR can exploit these
-> declarations to correctly support relational queries.
+> SQLite nie wspiera ograniczeń kluczów obcych, lecz wciąż możesz deklarować
+> ograniczenia, podczas tworzenia tabel. AR może wykorzystać te deklaracje
+> aby prawidłowo wspierać relacyjne zapytania.
 >
-> MySQL supports foreign key constraints with InnoDB engine, but not with
-> MyISAM. It is thus recommended that you use InnoDB for your MySQL database.
-> When using MyISAM, you may exploit the following trick so that
-> you can perform relational queries using AR:
+> MySQL wspiera ograniczenia kluczów obcych gdy używany jest silnik InnoDB, 
+> w przeciwieństwie do silnika MyISAM. Zalecamy zatem używannie InnoDB dla twoich
+> baz danych MySQL.
+> Podczas używania MyISAM, możesz wykorzystać następujący trik
+> aby móc wykonywać relacyjne zapytania przy użyciu AR:
 > ~~~
 > [sql]
 > CREATE TABLE Foo
@@ -42,61 +41,57 @@ section.
 >      COMMENT 'CONSTRAINT FOREIGN KEY (fooID) REFERENCES Foo(id)'
 > );
 > ~~~
-> In the above, we use `COMMENT` keyword to describe the foreign key constraint
-> which can be read by AR to recognize the described relationship.
+> Powyżej użyliśmy słowa kluczowego `COMMENT` aby opisać ograniczenia klucza obcego
+> co może zostać przeczytanie przez AR aby rozponać opisywaną relację.
 
-
-
-Declaring Relationship
+Deklarowanie relacji
 ----------------------
 
-Before we use AR to perform relational query, we need to let AR know how
-one AR class is related with another.
+Zanim użyjemy AR aby wykonać relacyjne zapytanie, musimy pozwolić AR poznać jak 
+jedna klasa AR jest powiązana z drugą.
 
-Relationship between two AR classes is directly associated with the
-relationship between the database tables represented by the AR classes.
-From database point of view, a relationship between two tables A and B has
-three types: one-to-many (e.g. `User` and `Post`), one-to-one (e.g.
-`User` and `Profile`) and many-to-many (e.g. `Category` and `Post`). In AR,
-there are four types of relationships:
+Relacja pomiędzy dwoma klasami AR jest bezpośrednio związana z relacją pomiędzy 
+tabelami bazy danych representowanych przez klasę AR. Z punkty widzenia bazy danych
+relacja pomiędzy dwoma tabelami A i B może występować w 3 wariantach:
+jeden-do-wielu (ang. one-to-many; np. `User` i `Post`), jeden-do-jednego (ang. one-to-one; 
+np. `User` i `Profile`) oraz wiele-do-wielu (ang. many-to-many; np. `Category` i `Post`). 
+W AR występują cztery rodzaje relacji:
 
-   - `BELONGS_TO`: if the relationship between table A and B is
-one-to-many, then B belongs to A (e.g. `Post` belongs to `User`);
+   - `BELONGS_TO` (należy do): jeśli relacja pomiędzy tabelą A i B to jeden-do-jednego, 
+   wtedy B należy do (np. post `Post` należy do użytkownika `User`);
 
-   - `HAS_MANY`: if the relationship between table A and B is one-to-many,
-then A has many B (e.g. `User` has many `Post`);
+   - `HAS_MANY` (posiada wiele): jeśli relacja pomiędzy tabelą A i B to jeden-do-wielu
+   wtedy A ma wiele B (np. uzytkownik `User` ma wiele postów `Post`);
 
-   - `HAS_ONE`: this is special case of `HAS_MANY` where A has at most one
-B (e.g. `User` has at most one `Profile`);
+   - `HAS_ONE` (posiada jedną): to jest specjalny przypadek relacji `HAS_MANY` gdzie A posiada 
+   co najwyżej jedno B (np. użytkownik `User` ma co najwyżej jeden profil `Profile`);
 
-   - `MANY_MANY`: this corresponds to the many-to-many relationship in
-database. An associative table is needed to break a many-to-many
-relationship into one-to-many relationships, as most DBMS do not support
-many-to-many relationship directly. In our example database schema, the
-`PostCategory` serves for this purpose. In AR terminology, we can explain
-`MANY_MANY` as the combination of `BELONGS_TO` and `HAS_MANY`. For example,
-`Post` belongs to many `Category` and `Category` has many `Post`.
+   - `MANY_MANY` (wiele do wielu): odpowiada relacji bazodanowej wiele-do-wielu. 
+   Aby rozbić relację wiele-do-wielu na jeden-do-wielu potrzebna jest tablica asocjacyjna, 
+   chyba, że DBMS nie wspiera bezpośrednio relacji wiele-do-wielu.
+   W naszym przykładzie schemat bazy danych `PostCategory` zostanie użyty w tym celu. 
+   W terminologii AR, możemy wytłumaczyć . In AR terminology, we can explain relację 
+   wiele-do-wielu jako kombinację `BELONGS_TO` oraz `HAS_MANY`. Na przykład, 
+post `Post` należy do wielu kategorii `Category` a kategoria `Category` posiada wiele postów `Post`.
 
-Declaring relationship in AR involves overriding the
-[relations()|CActiveRecord::relations] method of [CActiveRecord]. The
-method returns an array of relationship configurations. Each array element
-represents a single relationship with the following format:
+Deklarowanie relacji w AR wymaga nadpisania metody [relations()|CActiveRecord::relations] 
+z [CActiveRecord]. Metoda zwraca tablicę konfiguracji relacji. Każdy element tablicy 
+reprezentuje pojedynczą relację opisaną w następującym formacie:
 
 ~~~
 [php]
-'VarName'=>array('RelationType', 'ClassName', 'ForeignKey', ...additional options)
+'NazwaZmiennej'=>array('TypRelacji', 'NazwaKlasy', 'KluczObcy', ...dodatkowe opcje)
 ~~~
 
-where `VarName` is the name of the relationship; `RelationType` specifies
-the type of the relationship, which can be one of the four constants:
-`self::BELONGS_TO`, `self::HAS_ONE`, `self::HAS_MANY` and
-`self::MANY_MANY`; `ClassName` is the name of the AR class related to this
-AR class; and `ForeignKey` specifies the foreign key(s) involved in the
-relationship. Additional options can be specified at the end for each
-relationship (to be described later).
+gdzie `NazwaZmiennej` jest nazwą relacji; `TypRelacji` specyfikuje type relacji i posiada
+jedną z czterech stałych wartości:
+`self::BELONGS_TO`, `self::HAS_ONE`, `self::HAS_MANY` oraz
+`self::MANY_MANY`; `NazwaKlasy` jest nazwą klasy AR powiązanej z tą klasą; oraz 
+`KluczObcy` określa klucz(e) obcy(e) powiązane z tą relacją. Dodatkowe opcje moga być
+określone na końcu każdej relacji (więcej szczegółów w dalszej części).
 
-The following code shows how we declare the relationships for the `User`
-and `Post` classes.
+Następujący kod pokazuje jak możemy zadeklarować relacja dla klasy użytkownika `User`
+oraz postu `Post`.
 
 ~~~
 [php]
