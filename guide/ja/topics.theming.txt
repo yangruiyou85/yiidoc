@@ -13,41 +13,45 @@ Yiiでの各テーマは、ビューファイル、レイアウトファイル�
 という同じディレクトリの中に置かれます。
 いかなる場合でも有効に出来るテーマは一つだけです。
 
-> Tip: The default theme root directory `WebRoot/themes` can be configured
-to be a different one. Simply configure the
-[basePath|CThemeManager::basePath] and the [baseUrl|CThemeManager::baseUrl]
-properties of the [themeManager|CWebApplication::themeManager] application
-component to be the desired ones.
+> Tip|ヒント: デフォルトのテーマディレクトリ `WebRoot/themes`
+ は別の物に設定可能です。[basePath|CThemeManager::basePath] と 
+[baseUrl|CThemeManager::baseUrl] 
+ [themeManager|CWebApplication::themeManager] 
+アプリケーションコンポーネントのプロパティを望む物に設定して下さい。
 
-When we call [render|CController::render] or
-[renderPartial|CController::renderPartial] to display a view, the
-corresponding view file as well as the layout file will be looked for in
-the currently active theme. And if found, those files will be rendered.
-Otherwise, it falls back to the default location as specified by
-[viewPath|CController::viewPath] and
-[layoutPath|CWebApplication::layoutPath].
+ビューを表示する為に、[render|CController::render] か 
+[renderPartial|CController::renderPartial] をコールした際、
+結びついたビューファイルは、レイアウトファイルと同様に、
+現在アクティブになっているテーマの中から探されます。そして見つかった場合は、
+それらのファイルがレンダリングされます。そうでない場合は、
+[viewPath|CController::viewPath] と [layoutPath|CWebApplication::layoutPath] 
+で定められたデフォルトの場所へと探す場所が代替されます。
 
-To activate a theme, set the [theme|CWebApplication::theme] property of
-the Web application to be the name of the desired theme. This can be done
-either in the [application
-configuration](/doc/guide/basics.application#application-configuration) or during runtime in
-controller actions.
+テーマを有効にするには、ウェブアプリケーションのプロパティである、
+[theme|CWebApplication::theme] の名前を望むものにセットします。
+これは [application
+configuration](/doc/guide/basics.application#application-configuration) 
+の中か、コントローラアクションの処理の中のどちらでも行うことが可能です。
 
-> Note: Theme name is case-sensitive. If you attempt to activate a theme
-that does not exist, `Yii::app()->theme` will return `null`.
+> Note|注意: テーマの名前は大文字小文字を区別します。もしアクティブ
+にしようとしたテーマが存在していない場合、`Yii::app()->theme` は 
+`null` を返すでしょう。
 
-Contents under a theme directory should be organized in the same way as
-those under the [application base
-path](/doc/guide/basics.application#application-base-directory). For example, all view files
-must be located under `views`, layout view files under `views/layouts`, and
-system view files under `views/system`. Because the `views` directory may
-contain security-sensitive data, it should be configured to prevent from
-being accessed by Web users.
+テーマディレクトリの中身は [application base
+path](/doc/guide/basics.application#application-base-directory) 
+の中身と同様の方法で纏められなければなりません。例えば、
+全てのビューファイルは `views` の中に置かれ、レイアウトビューファイルは 
+`views/layouts' の中、システムビューファイルは `views/system` 
+の中で無ければいけません。`views` ディレクトリは、
+セキュリティに関わるデータを含む事がありえる為、
+ウェブユーザーからのアクセスを防ぐ様に設定するべきです。
 
-> Tip: Inside a theme view, we often need to link other theme resource
-files. For example, we may want to show an image file under the theme's
-`images` directory. Using the [baseUrl|CTheme::baseUrl] property of the
-currently active theme, we can generate the URL for the image as follows,
+> Tip|ヒント: 私たちはテーマビューの中で、他のテーマのリソースファイル
+へのリンクを必要とすることが度々あります。例えば、あるテーマの `images` 
+ディレクトリの中の画像を表示したい事があるでしょう。
+現在アクティブになっているテーマの [baseUrl|CTheme::baseUrl] 
+プロパティを用いることで、下記の様に画像へのURLを生成する事が出来ます。
+
 ~~~
 [php]
 Yii::app()->theme->baseUrl . '/images/FileName.gif'
