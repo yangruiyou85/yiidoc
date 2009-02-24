@@ -137,132 +137,131 @@ w tabeli `Post` a CActiveRecord czyni ją dostępną poprzez właściwość przy
 magicznej metody PHP `__get()`. Jeśli w ten sam sposób spróbujemy uzyskać dostęp 
 do nieistniejącej kolumny wyjątek zostanie rzucowy.
 
-> Info|Info: Celem lepszej przejrzystości, sugerujemy aby nazywać tabele bazy danych 
-oraz kolumny stosując notację wielbłąda (ang. camel case). W szczególności, table names are formed by
-capitalizing each word in the name and joining them without spaces; column
-names are similar to table names except their first letter is in lower
-case. For example, we use `Post` to name the table storing posts; and we
-use `createTime` to name the table's primary key column. This makes tables
-look more like class types and columns like variables. Note, however, using camel case may also bring you inconvenience for some DBMS, such as MySQL, as they may behave differently on different operation systems.
+> Info|Info: Celem uzyskania lepszej przejrzystości, sugerujemy aby nazywać tabele bazy danych 
+oraz kolumny stosując notację wielbłąda (ang. camel case). W szczególności, nazwy tabel 
+formatowane są poprzez używanie dużej litery dla każdego słowa w nazwie oraz połączenie ich (słów)
+bez spacji; nazwy kolumn są podobne do nazw tabel z tą różnicą, że ich pierwsza 
+litera w nazwie jest mała. Na przykład używamy nazwy `Post` by nazwać tabelę przechowującą 
+posty; używamy nazwy `createTime` by nazwać kolumnę będącą kluczem głównym. 
+To powoduje, że tabele wyglądają bardziej jak typy klas a kolumny jak zmienne.
+Pamiętaj jednak, że używanie notacji wielbłąda może powodować również kłopoty dla niektórych
+DBMS, takich jak MySQL, ponieważ zachowują się one różnie na różnych systemach operacyjnych.
 
 
-Creating Record
+Tworzenie rekordu
 ---------------
 
-To insert a new row into a database table, we create a new instance of the
-corresponding AR class, set its properties associated with the table
-columns, and call the [save()|CActiveRecord::save] method to finish the
-insertion.
+Aby wstawić nowy wiersz do tabeli bazy danych, tworzymy nową instancję odpowiedniej 
+klasy AR, ustawiamy jej włąściwości powiązane z kolumnami tabel i wołamy metodę 
+[save()|CActiveRecord::save] aby zakończyć wstawianie.
 
 ~~~
 [php]
 $post=new Post;
-$post->title='sample post';
-$post->content='content for the sample post';
+$post->title='przykładowy post';
+$post->content='zawartość przykładowego postu';
 $post->createTime=time();
 $post->save();
 ~~~
 
-If the table's primary key is auto-incremental, after the insertion the AR
-instance will contain an updated primary key. In the above example, the
-`id` property will reflect the primary key value of the newly inserted
-post, even though we never change it explicitly.
+Jeśli klucz główny tabeli jest autoinkrementowalny, po wstawieniu, instancja będzie 
+zawierała zaktualizowaną wartość klucza głównego. w powyższym przykładzie właściwość
+`id` odpowiada wartości klucza głównego nowo wstawionego postu, mimo że nigdy nie zmienialiśmy
+tej wartości bezpośrednio.
 
-If a column is defined with some static default value (e.g. a string, a
-number) in the table schema, the corresponding property in the AR instance
-will automatically has such a value after the instance is created. One way
-to change this default value is by explicitly declaring the property in the
-AR class:
+Jeśli kolumna została zdefiniowana wraz z jakąś statyczną, domyślną wartością (np. 
+łańcuch znaków, liczba) w schemacie tabeli bazy danych, odpowiadająca jej własność 
+w instancji AR będzie automatycznie posiadała tą wartość, gdy instancja zostanie utworzona.
+Jednym ze sposobów zmiany tej wartości domyślnej jest bezpośrednie zdeklarowanie 
+właściwości w klasie AR:
 
 ~~~
 [php]
 class Post extends CActiveRecord
 {
-	public $title='please enter a title';
+	public $title='proszę wprowadź tytuł';
 	......
 }
 
 $post=new Post;
-echo $post->title;  // this would display: please enter a title
+echo $post->title;  // to wyświetli tekst: proszę wprowadź tytuł
 ~~~
 
-Starting from version 1.0.2, an attribute can be assigned a value of [CDbExpression]
-type before the record is saved (either insertion or updating) to the database.
-For example, in order to save a timestamp returned by the MySQL `NOW()` function,
-we can use the following code:
+Poczynając od wersji 1.0.2 atrybut może mieć przypisaną wartość typu [CDbExpression]
+zanim rekord zostanie zapisany (zarówno podczas wstawiania jak i aktualizacji) do bazy danych.
+Na przykład, w celu zapisania stępla czasu (ang. timestamp) zwracanego przez funkcję MYSQL 
+`NOW()`, możemy użyć następującego kodu:
 
 ~~~
 [php]
 $post=new Post;
 $post->createTime=new CDbExpression('NOW()');
-// $post->createTime='NOW()'; will not work because
-// 'NOW()' will be treated as a string
+// $post->createTime='NOW()'; nie zadziała ponieważ 
+// 'NOW()' będzie potraktowany jako łańcuch znaków
 $post->save();
 ~~~
 
 
-Reading Record
+Odczytywanie rekordu
 --------------
 
-To read data in a database table, we call one of the `find` methods as
-follows.
+Abu odczytać dane z tabeli bazodanowej wołany jedną z następujących metod `find`:
 
 ~~~
 [php]
-// find the first row satisfying the specified condition
+// znajduje pierwszy wiersz spełniający określone warunki
 $post=Post::model()->find($condition,$params);
-// find the row with the specified primary key
+// znajduje wiersz o konkretnym kluczu głównym
 $post=Post::model()->findByPk($postID,$condition,$params);
-// find the row with the specified attribute values
+// znajduje wiersz o określonych wartościach atrybutów
 $post=Post::model()->findByAttributes($attributes,$condition,$params);
-// find the first row using the specified SQL statement
+// znajduje pierwszy wiersz używając określonego wyrażenia SQL
 $post=Post::model()->findBySql($sql,$params);
 ~~~
 
-In the above, we call the `find` method with `Post::model()`. Remember
-that the static method `model()` is required for every AR class. The method
-returns an AR instance that is used to access class-level methods
-(something similar to static class methods) in an object context.
+Powyżej, wywołujemy merodę `find` wraz z `Post::model()`. Pamiętaj, że ta statyczna metoda `model()`
+jest wymagana dla każdej klasy AR. Metoda ta zwraca instancję A, która jest używana 
+by otrzymać dostęp do metod na poziomie klasy w kontekście obiektu (coś podobnego
+do statycznych metod klas).
 
-If the `find` method finds a row satisfying the query conditions, it will
-return a `Post` instance whose properties contain the corresponding column
-values of the table row. We can then read the loaded values like we do with
-normal object properties, for example, `echo $post->title;`.
+Jeśli metoda `find` znajdzie wiersz spełniający warunki zapytania, zwróci ona instancję 
+`Post`, której właściwości będą zawierać odpowiadające kolumnom wartości wiersza tabeli.
+Możemy wtedy czytać załadowane wartości tak jak to robimy w przypadku właściwości obiektu, 
+na przykład, `echo $post->title;`.
 
-The `find` method will return null if nothing can be found in the database
-with the given query condition.
+Metoda `find` zwróci wartość null, jeśli nie znajdzie niczego w bazie danych, co spełniałoby
+dane warunki zapytania.
 
-When calling `find`, we use `$condition` and `$params` to specify query
-conditions. Here `$condition` can be string representing the `WHERE` clause
-in a SQL statement, and `$params` is an array of parameters whose values
-should be bound to the placeholders in `$condition`. For example,
+Podczas wywoływania metody `find` używamy `$condition` (warunków) oraz `$params` (parametrów) 
+aby określić warunki zapytania. Tutaj `$condition` może być ciągiem znaków reprezentujących 
+klauzulę `WHERE` w wyrażeniu SQL a `$params` jest tablicą parametrów, których wartości 
+powinny być przypięte do placeholderów w `$condition`. Na przykład:
 
 ~~~
 [php]
-// find the row with postID=10
+// znajdź wiersz z postID=10
 $post=Post::model()->find('postID=:postID', array(':postID'=>10));
 ~~~
 
-We can also use `$condition` to specify more complex query conditions.
-Instead of a string, we let `$condition` be a [CDbCriteria] instance, which
-allows us to specify conditions other than the `WHERE` clause. For example,
+Możemy również używać `$condition` do zdefiniowania bardziej rozbudowanych warunków 
+zapytań. Zamiast łańcuchem znaków, `$condition` może być instancją [CDbCriteria], 
+która pozwala na określenie warunków innych niż klauzula `WHERE`. Na przykład:
 
 ~~~
 [php]
 $criteria=new CDbCriteria;
-$criteria->select='title';  // only select the 'title' column
+$criteria->select='title';  // wybierz tylko kolumnę 'title' 
 $criteria->condition='postID=:postID';
 $criteria->params=array(':postID'=>10);
-$post=Post::model()->find($criteria); // $params is not needed
+$post=Post::model()->find($criteria); // $params nie jest wymagane
 ~~~
 
-Note, when using [CDbCriteria] as query condition, the `$params` parameter
-is no longer needed since it can be specified in [CDbCriteria], as shown
-above.
+Zauważ, że kiedu używamy [CDbCriteria] jako warunków zapytania, wartość parametru `$params` 
+jest niepotrzebna, gdyż może być ona zdefiniowana w [CDbCriteria], tak jak pokazano powyżej.
 
-An alternative way to [CDbCriteria] is passing an array to the `find` method.
-The array keys and values correspond to the criteria's property name and value,
-respectively. The above example can be rewritten as follows,
+Alternatywnym sposobem do [CDbCriteria] jest przekazanie tablicy do metody `find`.
+Klucze i wartości tablicy odpowiadają nazwom i wartościom właściwości kryteriów. 
+Powyższy przykład może zostać przepisany w następujący sposób:
 
 ~~~
 [php]
