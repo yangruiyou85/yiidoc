@@ -33,25 +33,31 @@ EOD;
 		$srcPath=Yii::getPathOfAlias('application').'/../guide/source';
 
 		$files=CFileHelper::findFiles($srcPath,array('fileTypes'=>array('txt'),'level'=>0));
+		$results=array();
 		foreach($files as $file)
 		{
 			$name=basename($file);
-			$display=str_pad($name,30,' ',STR_PAD_LEFT).': ';
 			$srcContent=file_get_contents($file);
 			if(!preg_match('/\$Id:\s*([\w\.\-]+)\s*(\d+)/iu',$srcContent,$matches) || $name!==$matches[1])
 			{
-				echo $display."revision token not found in source file.\n";
+				$results[$name]="revision token not found in source file.";
 				continue;
 			}
 			$srcRevision=$matches[2];
 			if(!is_file($path.'/'.$name) || ($content=file_get_contents($path.'/'.$name))===$srcContent)
-				echo $display."not translated yet.\n";
+				$results[$name]="not translated yet.";
 			else if(!preg_match('/\$Id:\s*([\w\.\-]+)\s*(\d+)/iu',$content,$matches) || $name!==$matches[1])
-				echo $display."revision token not found in translation.\n";
+				$results[$name]="revision token not found in translation.";
 			else if($matches[2]>=$srcRevision)
-				echo $display."up-to-date.\n";
+				$results[$name]="up-to-date.";
 			else
-				echo $display."outdated (source: r$srcRevision, translation: r{$matches[2]}).\n";
+				$results[$name]="outdated (source: r$srcRevision, translation: r{$matches[2]}).";
+		}
+
+		asort($results);
+		foreach($results as $name=>$result)
+		{
+			echo str_pad($name,30,' ',STR_PAD_LEFT).': '.$result."\n";
 		}
 	}
 }
