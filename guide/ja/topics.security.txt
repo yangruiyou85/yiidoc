@@ -1,21 +1,23 @@
-Security
+セキュリティ
 ========
 
-Cross-site Scripting Prevention
+クロスサイトスクリプティングの防止
 -------------------------------
-Cross-site scripting (also known as XSS) occurs when a web application
-gathers malicious data from a user. Often attackers will inject JavaScript,
-VBScript, ActiveX, HTML, or Flash into a vulnerable application to fool other
-application users and gather data from them. For example, a poorly design
-forum system may display user input in forum posts without any checking.
-An attacker can then inject a piece of malicious JavaScript code into a post
-so that when other users read this post, the JavaScript runs unexpectedly
-on their computers.
+クロスサイトスクリプティング（XSS としても良く知られます）は
+ウェブアプリケーションが悪意のあるデータをユーザーから集めた時に
+引き起こされます。攻撃者は度々、他のアプリケーションユーザを弄び
+彼らからデータを収集する為に、JavaScript、VBScript、ActiveX、HTML、
+或いはFlashを攻撃されやすいアプリケーションの中へ注入します。例えば、
+貧弱にデザインされたフォーラムのシステムは、ユーザーのフォーラムへの
+投稿の入力を全くチェックする事なく表示するでしょう。この時、
+攻撃者は悪意のあるJavaScriptのコードのかけらを投稿へ注入し、
+他のユーザー達がこの投稿を読んだ時、JavaScriptは彼らのコンピュータ
+の中で突然動き出すのです。
 
-One of the most important measures to prevent XSS attacks is to check user input
-before displaying them. One can do HTML-encoding with the user input to achieve
-this goal. However, in some situations, HTML-encoding may not be preferable
-because it disables all HTML tags.
+XSS攻撃に他する防御の、もっとも重要な手段の一つは、ユーザーからの入力
+を表示する前にチェックする事です。これを成し遂げる為に、HTMLエンコーディング
+を施す人も居るでしょう。しかしながら、HTMLエンコーディングは全てのHTMLタグ
+を使えなくしてしまう為、これが望ましくない状況もあるでしょう。
 
 Yii incorporates the work of [HTMLPurifier](http://htmlpurifier.org/)
 and provides developers with a useful component called [CHtmlPurifier]
