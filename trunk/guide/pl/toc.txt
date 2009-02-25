@@ -40,19 +40,19 @@
     - [Przegląd](extension.overview)
     - [Używanie rozszerzeń](extension.use)
     - [Tworzenie rozszerzeń](extension.create)
-    - [Używanie zewnętrznyc bibliotek](extension.integration)
+    - [Używanie zewnętrznych bibliotek](extension.integration)
 
 * Tematy specjalne
     - [Zarządzanie adresami URL](topics.url)
     - [Uwierzytelnienie i autoryzacja](topics.auth)
     - [Używanie tematów](topics.theming)
     - [Logowanie](topics.logging)
-    - [Kotnrola błędów](topics.error)
+    - [Kontrola błędów](topics.error)
     - [Webserwisy](topics.webservice)
     - [Internacjonalizacja (I18N)](topics.i18n)
     - [Alternatywne składnie szablonów](topics.prado)
     - [Konsola aplikacji](topics.console)
-    - [Bezpieczeństow](topics.security)
+    - [Bezpieczeństwo](topics.security)
     - [Polepszanie wydajności](topics.performance)
 
 <div class="revision">$Id: toc.txt 723 2009-02-21 18:14:05Z qiang.xue $</div>

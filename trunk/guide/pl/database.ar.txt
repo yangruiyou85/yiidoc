@@ -12,7 +12,7 @@ Aktywny Rekord (AR) jest popularną techniką mapowania obiektowo-relacyjnego.
 Każda klasa AR reprezentuje tabelę bazy danych (lub widok), których atrybuty reprezentowane są 
 poprzez atrybuty klasy AR a instancja AR reprezentuje wiersz w  tej tabeli. 
 Wspólne operacje CRUD są zaimplementowane jako metody AR. W rezultacie, posiadamy dostęp do 
-naszych danych w bardziej zorientowany obiektowo sposób. Na przykład: możemy użyć poniższego kodu
+naszych danych w bardziej obiektowo zorientowany sposób. Na przykład: możemy użyć poniższego kodu
 aby wstawić nowy wiersz do tabeli `Post`:
 
 ~~~
@@ -25,7 +25,7 @@ $post->save();
 
 W dalszej części opiszemy jak utworzyć AR i użyć go do wykonywania operacji CRUD. 
 W następnej sekcji pokażemy jak używać AR by radzić sobie z relacjami w bazach danych. 
-Dla uproszczeniam używamy w przykładach tej sekcji następującej tabeli bazy danych.
+Dla uproszczeniami używamy w przykładach tej sekcji następującej tabeli bazy danych.
 
 ~~~
 [sql]
@@ -83,7 +83,7 @@ Klasa [CActiveRecord] jest klasą bazową dla wszystkich klas AR.
 
 > Tip|Podpowiedź: Istnieją dwa sposoby pracowania z wieloma bazami danych z użyciem AR. 
 Jeśli schematy bazy danych różnią się, możesz utworzyć różne bazowe klasy AR z różniącymi się 
-implementacjami metody [getDbConnection()|CActiveRecord::getDbConnection]. W przecwinym przypadku, 
+implementacjami metody [getDbConnection()|CActiveRecord::getDbConnection]. W przeciwnym przypadku, 
 lepszym pomysłem jest dynamiczna zmiana statycznej zmiennej [CActiveRecord::db].
 
 Definiowanie klasy AR
@@ -105,7 +105,7 @@ class Post extends CActiveRecord
 }
 ~~~
 
-> Tip|Podpowiedź: Ponieważ klasy AR są często używane w wielu różnych miejsach, 
+> Tip|Podpowiedź: Ponieważ klasy AR są często używane w wielu różnych miejscach, 
 > możemy zaimportować zawartość folderu zawierającego klasy AR zamiast
 > dołączać je jedna po drugiej. Na przykład, jeśli wszystkie nasze pliki zawierające klasy AR 
 > znajdują się w katalogu `protected/models`, możemy skonfigurować aplikację w następujący sposób:
@@ -123,7 +123,7 @@ klasy różni się, nadpisz metodę [tableName()|CActiveRecord::tableName]. Meto
 jest zadeklarowana jako taka dla każdej klasy AR (wyjaśnienie tego nastąpi później).
 
 Wartości kolumn wiersza tabeli są dostępne jako właściwości odpowiednich instancji klasy AR.
-Na przykład, następujący kod ustawia kolumnę (arrybut) `title`:
+Na przykład, następujący kod ustawia kolumnę (atrybut) `title`:
 
 ~~~
 [php]
@@ -135,7 +135,7 @@ Chociaż nigdy bezpośrednio nie zdeklarowaliśmy właściwości `title` w klasi
 jest ona dostępna w powyższym kodzie. Dzieje się tak, ponieważ `title` jest kolumną 
 w tabeli `Post` a CActiveRecord czyni ją dostępną poprzez właściwość przy pomocy 
 magicznej metody PHP `__get()`. Jeśli w ten sam sposób spróbujemy uzyskać dostęp 
-do nieistniejącej kolumny wyjątek zostanie rzucowy.
+do nieistniejącej kolumny wyjątek zostanie rzucony.
 
 > Info|Info: Celem uzyskania lepszej przejrzystości, sugerujemy aby nazywać tabele bazy danych 
 oraz kolumny stosując notację wielbłąda (ang. camel case). W szczególności, nazwy tabel 
@@ -152,7 +152,7 @@ Tworzenie rekordu
 ---------------
 
 Aby wstawić nowy wiersz do tabeli bazy danych, tworzymy nową instancję odpowiedniej 
-klasy AR, ustawiamy jej włąściwości powiązane z kolumnami tabel i wołamy metodę 
+klasy AR, ustawiamy jej właściwości powiązane z kolumnami tabel i wołamy metodę 
 [save()|CActiveRecord::save] aby zakończyć wstawianie.
 
 ~~~
@@ -189,7 +189,7 @@ echo $post->title;  // to wyświetli tekst: proszę wprowadź tytuł
 
 Poczynając od wersji 1.0.2 atrybut może mieć przypisaną wartość typu [CDbExpression]
 zanim rekord zostanie zapisany (zarówno podczas wstawiania jak i aktualizacji) do bazy danych.
-Na przykład, w celu zapisania stępla czasu (ang. timestamp) zwracanego przez funkcję MYSQL 
+Na przykład, w celu zapisania stempla czasu (ang. timestamp) zwracanego przez funkcję MYSQL 
 `NOW()`, możemy użyć następującego kodu:
 
 ~~~
@@ -219,7 +219,7 @@ $post=Post::model()->findByAttributes($attributes,$condition,$params);
 $post=Post::model()->findBySql($sql,$params);
 ~~~
 
-Powyżej, wywołujemy merodę `find` wraz z `Post::model()`. Pamiętaj, że ta statyczna metoda `model()`
+Powyżej, wywołujemy metodę `find` wraz z `Post::model()`. Pamiętaj, że ta statyczna metoda `model()`
 jest wymagana dla każdej klasy AR. Metoda ta zwraca instancję A, która jest używana 
 by otrzymać dostęp do metod na poziomie klasy w kontekście obiektu (coś podobnego
 do statycznych metod klas).
@@ -256,7 +256,7 @@ $criteria->params=array(':postID'=>10);
 $post=Post::model()->find($criteria); // $params nie jest wymagane
 ~~~
 
-Zauważ, że kiedu używamy [CDbCriteria] jako warunków zapytania, wartość parametru `$params` 
+Zauważ, że kiedy używamy [CDbCriteria] jako warunków zapytania, wartość parametru `$params` 
 jest niepotrzebna, gdyż może być ona zdefiniowana w [CDbCriteria], tak jak pokazano powyżej.
 
 Alternatywnym sposobem do [CDbCriteria] jest przekazanie tablicy do metody `find`.
@@ -315,8 +315,8 @@ $exists=Post::model()->exists($condition,$params);
 Aktualizowanie rekordu
 ---------------
 
-Po tym jak instancja AR została wypełniona wartościami kolumm, możemy zmienić je 
-i zapisać je spowrotem w tabeli bazodanowej.
+Po tym jak instancja AR została wypełniona wartościami kolumn, możemy zmienić je 
+i zapisać je z powrotem w tabeli bazodanowej.
 
 ~~~
 [php]
@@ -329,7 +329,7 @@ Jak widać, używamy tej samej metody [save()|CActiveRecord::save] do wykonania 
 wstawiania jak i aktualizowania. Jeśli instancja AR została utworzona za pomocą 
 operatora `new`, wywołanie [save()|CActiveRecord::save] spowoduje wstawienie nowego wiersza
 do tabeli bazy danych; jeśli instancja AR jest rezultatem wywołania metody `find` 
-lub `findAll`, wywołanine [save()|CActiveRecord::save] spowoduje zaktualizowanie istniejącego
+lub `findAll`, wywołanie [save()|CActiveRecord::save] spowoduje zaktualizowanie istniejącego
 wiersza w tabeli. Oczywiście, możemy użyć [CActiveRecord::isNewRecord] aby powiedzieć 
 czy instancja AR jest nowa czy też nie.
 
@@ -349,7 +349,7 @@ Post::model()->updateCounters($counters,$condition,$params);
 
 W powyższych przykładach, `$attributes` jest tablicą wartości kolumn indeksowanych 
 przez nazwy kolumn; `$counters` jest tablicą zwiększających się wartości indeksowanych przez
-nazwy kolumn; `$condition` oraz `$params` są opisane w poprzeniej sekcji.
+nazwy kolumn; `$condition` oraz `$params` są opisane w poprzedniej sekcji.
 
 Usuwanie rekordu
 ---------------
@@ -372,7 +372,7 @@ wcześniejszego wczytywania:
 [php]
 // usuń wiersze spełniające określone warunki
 Post::model()->deleteAll($condition,$params);
-// usuń wiersze pasujące do określonyc warunków oraz klucza(y) głównego(ych)
+// usuń wiersze pasujące do określonych warunków oraz klucza(y) głównego(ych)
 Post::model()->deleteByPk($pk,$condition,$params);
 ~~~
 
@@ -380,12 +380,12 @@ Walidacja danych
 ---------------
 
 Często podczas wstawiania lub aktualizowania wiersza mamy potrzebę sprawdzić 
-czy wartości kolumny spełniają pewne warunki. Jest to szczególnie ważne, jesli 
+czy wartości kolumny spełniają pewne warunki. Jest to szczególnie ważne, jeśli 
 wartości kolumn dostarczane są przez użytkowników końcowych. Uogólniające, nigdy 
 nie powinniśmy ufać niczemu przychodzącemu od strony klienta.
 
-AR autamatycznie dokonuje walidacji podczas wywoływania metody [save()|CActiveRecord::save]. 
-Walidacja bazuje na regułach okreśonych w metodzie [rules()|CModel::rules] klasy AR.
+AR automatycznie dokonuje walidacji podczas wywoływania metody [save()|CActiveRecord::save]. 
+Walidacja bazuje na regułach określonych w metodzie [rules()|CModel::rules] klasy AR.
 Aby uzyskać więcej szczegółów jak określać reguły walidacji, zobacz sekcję  
 [Deklarowanie reguł walidacji](/doc/guide/form.model#declaring-validation-rules). 
 Poniżej znajduje się typowy przepływ podczas zapisywania rekordu.
@@ -398,7 +398,7 @@ if($post->save())
 }
 else
 {
-  // dane są niepoprwane. Wywołaj getErrors() aby otrzymać komunikaty błędów
+  // dane są niepoprawne. Wywołaj getErrors() aby otrzymać komunikaty błędów
 }
 ~~~
 
@@ -415,14 +415,14 @@ $post->save();
 
 Jeśli mamy wiele kolumn, będziemy widzieli długą listę takich przypisań. Można to
 zmniejszyć poprzez używanie właściwości [attributes|CActiveRecord::attributes] 
-w sposób jaki pokazano poniżej. Więcej szczcegółów można znaleźć w sekcji 
+w sposób jaki pokazano poniżej. Więcej szczegółów można znaleźć w sekcji 
 [Zabezpieczaniu przypisań atrybutów](/doc/guide/form.model#securing-attribute-assignments)
 oraz sekcji [Tworzeniu akcji](/doc/guide/form.action).
 
 ~~~
 [php]
 // zakładamy, że $_POST['Post'] jest tablicą wartości kolumn indeksowanych przez 
-// nazwu kolumn
+// nazwy kolumn
 $post->attributes=$_POST['Post'];
 $post->save();
 ~~~
@@ -430,7 +430,7 @@ $post->save();
 Porównywanie rekordów
 -----------------
 
-Tak jak wiersze tabel, instancje AR są unikalnie identyfikowane przez ich wartości 
+Tak jak wiersze tabel, instancje AR są jednoznacznie identyfikowane przez ich wartości 
 kluczy głównych. Dlatego też, porównując dwie instancje AR, musimy porównać jedynie ich
 wartości kluczy głównych, zakładając, że należą do tej samej klasy AR. Jednakże 
 najprostszym sposobem jest wywołanie [CActiveRecord::equals()].
@@ -443,7 +443,7 @@ wartości kluczy głównych reprezentowane są w Yii pod postacią tablicy. Wła
 Dostosowywanie (do własnych potrzeb)
 -------------
 
-[CActiveRecord] dostarczas kilku metod "wypełniaczy", które moga być nadpisane 
+[CActiveRecord] dostarcza kilku metod "wypełniaczy", które mogą być nadpisane 
 w klasach potomnych aby dostosować ich sterowanie kolejnością zadań (ang. workflow).
 
    - [beforeValidate|CModel::beforeValidate] oraz
@@ -467,7 +467,7 @@ Używanie transakcji w AR
 Każda instancja AR zawiera właściwość nazwaną [dbConnection|CActiveRecord::dbConnection] 
 która jest instancją [CDbConnection]. Możemy wtedy używać funkcjonalności 
 [transakcji](/doc/guide/database.dao#using-transactions) dostarczanej przez Yii DAO 
-jeśli występuje taka potrzena podczas pracy z AR:
+jeśli występuje taka potrzeba podczas pracy z AR:
 
 ~~~
 [php]
@@ -476,7 +476,7 @@ $transaction=$model->dbConnection->beginTransaction();
 try
 {
 	// szukanie i zapisywanie są dwoma krokami, które mogą być przychodzić za pomocą 
-	// innych rządań, dlatego też używamy transkakcji aby być pewnymi logiki oraz spójności danych
+	// innych żądań, dlatego też używamy transakcji aby być pewnymi logiki oraz spójności danych
 	$post=$model->findByPk(10);
 	$post->title='nowy tytuł postu';
 	$post->save();

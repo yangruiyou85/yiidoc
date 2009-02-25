@@ -6,25 +6,25 @@ tabeli bazodanowej. W tej sekcji opiszemy jak używać AR aby połączyć kilka 
 tabel baz danych i zwrócić połączony zbiór danych. 
 
 W celu używania relacyjnego AR, wymagane jest, aby relacja dla obcego, klucza główny 
-była dobrze zdeiniowana pomiędzy tabelami, które będą łączone. AR polega na metadanych 
+była dobrze zdefiniowana pomiędzy tabelami, które będą łączone. AR polega na metadanych 
 tych relacji gdy decyduje jak połączyć tabele.
 
 > Note|Przypis: Poczynając od wersji 1.0.1, możesz używać relacyjnego AR nawet jeśli
-> nie zdefiniowałeś kluczów obcych w swojej bazie danych.
+> nie zdefiniowałeś kluczy obcych w swojej bazie danych.
 
 Dla uproszczenia, będziemy używali schematu bazy danych pokazanego na następnym 
 diagramie zależności encji (ER) celem zilustrowania przykładów w tej sekcji.
 
 ![Diagram ER](er.png)
 
-> Info|Info: Wsparcie dla ograniczeń kluczów obcych różni sie w różnych DBMS.
+> Info|Info: Wsparcie dla ograniczeń kluczy obcych różni sie w różnych DBMS.
 >
-> SQLite nie wspiera ograniczeń kluczów obcych, lecz wciąż możesz deklarować
+> SQLite nie wspiera ograniczeń kluczy obcych, lecz wciąż możesz deklarować
 > ograniczenia, podczas tworzenia tabel. AR może wykorzystać te deklaracje
 > aby prawidłowo wspierać relacyjne zapytania.
 >
-> MySQL wspiera ograniczenia kluczów obcych gdy używany jest silnik InnoDB, 
-> w przeciwieństwie do silnika MyISAM. Zalecamy zatem używannie InnoDB dla twoich
+> MySQL wspiera ograniczenia kluczy obcych gdy używany jest silnik InnoDB, 
+> w przeciwieństwie do silnika MyISAM. Zalecamy zatem używanie InnoDB dla twoich
 > baz danych MySQL.
 > Podczas używania MyISAM, możesz wykorzystać następujący trik
 > aby móc wykonywać relacyjne zapytania przy użyciu AR:
@@ -51,7 +51,7 @@ Zanim użyjemy AR aby wykonać relacyjne zapytanie, musimy pozwolić AR poznać 
 jedna klasa AR jest powiązana z drugą.
 
 Relacja pomiędzy dwoma klasami AR jest bezpośrednio związana z relacją pomiędzy 
-tabelami bazy danych representowanych przez klasę AR. Z punkty widzenia bazy danych
+tabelami bazy danych reprezentowanych przez klasę AR. Z punkty widzenia bazy danych
 relacja pomiędzy dwoma tabelami A i B może występować w 3 wariantach:
 jeden-do-wielu (ang. one-to-many; np. `User` i `Post`), jeden-do-jednego (ang. one-to-one; 
 np. `User` i `Profile`) oraz wiele-do-wielu (ang. many-to-many; np. `Category` i `Post`). 
@@ -61,7 +61,7 @@ W AR występują cztery rodzaje relacji:
    wtedy B należy do (np. post `Post` należy do użytkownika `User`);
 
    - `HAS_MANY` (posiada wiele): jeśli relacja pomiędzy tabelą A i B to jeden-do-wielu
-   wtedy A ma wiele B (np. uzytkownik `User` ma wiele postów `Post`);
+   wtedy A ma wiele B (np. użytkownik `User` ma wiele postów `Post`);
 
    - `HAS_ONE` (posiada jedną): to jest specjalny przypadek relacji `HAS_MANY` gdzie A posiada 
    co najwyżej jedno B (np. użytkownik `User` ma co najwyżej jeden profil `Profile`);
@@ -135,7 +135,7 @@ Wykonywanie zapytań relacyjnych
 ---------------------------
 Najprostszym sposobem wykonania relacyjnego zapytania jest odczytanie relacyjnej 
 właściwości instancji AR. Jeśli właściwość nie była wcześniej odczytywana, 
-zapytanie relacyjne będzie zainicjowane, któe połączy dwie połączone tabele 
+zapytanie relacyjne będzie zainicjowane, które połączy dwie połączone tabele 
 i odfiltruje przy użyciu klucza głównego aktualnej instancji AR. Wynik zapytania 
 będzie zapisany we właściwości jako instancja(e) powiązanej klasy AR. Jest to znane 
 jako technika *lazy loading*, np. pytanie relacyjne jest wykonywane tylko wtedy, 
@@ -151,14 +151,14 @@ $author=$post->author;
 ~~~
 
 > Info|Info: Jeśli nie istnieją żadne powiązane instancje dla relacji,
-odpowiednie właściwości mogą być puystą tablicą bądź wartością null. 
+odpowiednie właściwości mogą być pustą tablicą bądź wartością null. 
 Dla relacji `BELONGS_TO` oraz `HAS_ONE` wynikiem jest wartość null; dla 
 `HAS_MANY` oraz `MANY_MANY` jest to pusta tablica.
 
 Podejście lazy loading jest bardzo poręczne w użyciu, ale nie jest wydajne w niektórych 
 scenariuszach. Na przykład, jeśli chcemy uzyskać dostęp do informacje o autorze dla 
 `N` postów, używając podejścia lazy loading wykonamy `N` zapytań z użyciem join. 
-W tych warunkach powinniśmy uciec się do takzwanego podejścia *eager loading*.
+W tych warunkach powinniśmy uciec się do tak zwanego podejścia *eager loading*.
 
 
 Podejście eager loading zwraca powiązane instancje AR razem z główną(ymi) instancją(ami) AR. 
@@ -177,8 +177,8 @@ Zamiast wywoływania zapytania z join dla każdego posty, podejście eager loadi
 wszystkie posty razem wraz z autorami za pomocą jednego zapytania z join!
 
 Możemy wyspecyfikować wielokrotnie nazwy relacji w metodzie
-[with()|CActiveRecord::with] a technika eager loading approach dostarczy nam je spowrotem 
-za jednym razem. Na przykłąd, następujący kod zwróci posty razem z ich autorami oraz 
+[with()|CActiveRecord::with] a technika eager loading approach dostarczy nam je z powrotem 
+za jednym razem. Na przykład, następujący kod zwróci posty razem z ich autorami oraz 
 kategoriami:
 
 ~~~
@@ -204,7 +204,7 @@ Zwróci również dla każdego autora profil oraz posty.
 > Note|Przypis: Sposób użycia metody [with()|CActiveRecord::with] został zmieniony 
 > wraz z wersją 1.0.2. Proszę przeczytać z uwagą odpowiadającą jej dokumentację API.
 
-Implementacja AR w Yii jest bardzi wydajna. When eager loading
+Implementacja AR w Yii jest bardzo wydajna. When eager loading
 a hierarchy of related objects involving `N` `HAS_MANY` or `MANY_MANY`
 relationships, it will take `N+1` SQL queries to obtain the needed results.
 This means it needs to execute 3 SQL queries in the last example because of
