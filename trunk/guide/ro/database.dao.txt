@@ -107,52 +107,50 @@ Va fi generata o exceptie daca apare vreo eroare in timpul executiei instructiun
 
 ~~~
 [php]
-$rowCount=$command->execute();   // execute the non-query SQL
-$dataReader=$command->query();   // execute a query SQL
-$rows=$command->queryAll();      // query and return all rows of result
-$row=$command->queryRow();       // query and return the first row of result
-$column=$command->queryColumn(); // query and return the first column of result
-$value=$command->queryScalar();  // query and return the first field in the first row
+$rowCount=$command->execute();   // executa SQL
+$dataReader=$command->query();   // executa o cerere SQL
+$rows=$command->queryAll();      // o cerere care returneaza toate randurile rezultate
+$row=$command->queryRow();       // o cerere care returneaza primul rand dintre rezultate
+$column=$command->queryColumn(); // o cerere care returneaza prima coloana din rezultate
+$value=$command->queryScalar();  // o cerere care returneaza primul camp din primul rand
 ~~~
 
-Fetching Query Results
-----------------------
+Extragerea rezultatelor cererii
+-------------------------------
 
-After [CDbCommand::query()] generates the [CDbDataReader] instance, one
-can retrieve rows of resulting data by calling [CDbDataReader::read()]
-repeatedly. One can also use [CDbDataReader] in PHP's `foreach` language
-construct to retrieve row by row.
+Dupa ce [CDbCommand::query()] genereaza instanta [CDbDataReader], putem extrage
+randurile cu datele rezultate prin apelarea repetata a [CDbDataReader::read()].
+Putem de asemenea folosi [CDbDataReader] intr-un `foreach` pentru a extrage fiecare rand in parte.
 
 ~~~
 [php]
 $dataReader=$command->query();
-// calling read() repeatedly until it returns false
+// apelam repetat read() pana cand returneaza false
 while(($row=$dataReader->read())!==false) { ... }
-// using foreach to traverse through every row of data
+// folosim foreach pentru a trece prin fiecare rand de date
 foreach($dataReader as $row) { ... }
-// retrieving all rows at once in a single array
+// extragem toate randurile o data intr-un singur array
 $rows=$dataReader->readAll();
 ~~~
 
-> Note: Unlike [query()|CDbCommand::query], all `queryXXX()` methods
-return data directly. For example, [queryRow()|CDbCommand::queryRow]
-returns an array representing the first row of the querying result.
+> Note|Nota: Spre deosebire de [query()|CDbCommand::query], toate metodele `queryXXX()`
+returneaza date direct. De exemplu, [queryRow()|CDbCommand::queryRow]
+returneaza un array care reprezinta primul rand din rezultatele cererii.
 
-Using Transactions
-------------------
+Folosirea tranzactiilor
+-----------------------
 
-When an application executes a few queries, each reading and/or writing
-information in the database, it is important to be sure that the database
-is not left with only some of the queries carried out. A transaction,
-represented as a [CDbTransaction] instance in Yii, may be initiated in this
-case:
+Cand o aplicatie executa cateva cereri, operatii de citire sau/si scriere
+in baza de date, este important sa ne asiguram ca baza de date sa contina toate schimbarile
+facute de aceste operatii. In aceste cazuri, poate fi initiata o tranzactie,
+reprezentata prin instanta [CDbTransaction] din Yii:
 
-   - Begin the transaction.
-   - Execute queries one by one. Any updates to the database are not visible to the outside world.
-   - Commit the transaction. Updates become visible if the transaction is successful.
-   - If one of the queries fails, the entire transaction is rolled back.
+   - Incepem tranzactia.
+   - Executam cererile una cate una. Orice actualizare nu este vizibila in exteriorul bazei de date.
+   - Executam tranzactia. Actualizarile devin vizibile daca tranzactia a avut succes.
+   - Daca o cerere esueaza, intreaga tranzactie este derulata inapoi.
 
-The above workflow can be implemented using the following code:
+Fluxul de lucru de mai sus poate fi implementat folosind urmatorul cod:
 
 ~~~
 [php]
@@ -161,74 +159,74 @@ try
 {
 	$connection->createCommand($sql1)->execute();
 	$connection->createCommand($sql2)->execute();
-	//.... other SQL executions
+	//.... alte executii SQL
 	$transaction->commit();
 }
-catch(Exception $e) // an exception is raised if a query fails will be raised
+catch(Exception $e) // daca o cerere esueaza, este generata o exceptie
 {
 	$transaction->rollBack();
 }
 ~~~
 
-Binding Parameters
-------------------
+Conectarea de parametri (Binding)
+---------------------------------
 
-To avoid [SQL injection
-attacks](http://en.wikipedia.org/wiki/SQL_injection) and to improve
-performance of executing repeatedly used SQL statements, one can "prepare"
-an SQL statement with optional parameter placeholders that are to be
-replaced with the actual parameters during the parameter binding process.
+Pentru a evita [atacurile SQL injection] (http://en.wikipedia.org/wiki/SQL_injection) si pentru a
+imbunatati performanta executiilor cererilor SQL folosite des, putem "prepara"
+o instructiune SQL cu placeholder-e de parametri optionali care vor fi inlocuiti
+cu parametrii reali in timpul procesului de conectare de parametri.
 
-The parameter placeholders can be either named (represented as unique
-tokens) or unnamed (represented as question marks). Call
-[CDbCommand::bindParam()] or [CDbCommand::bindValue()] to replace these
-placeholders with the actual parameters. The parameters do not need to be
-quoted: the underlying database driver does it for you. Parameter binding
-must be done before the SQL statement is executed.
+Placeholder-ele de parametri pot avea nume (token-uri unice)
+sau pot fi anonime (prin semne de intrebare). Apelam
+[CDbCommand::bindParam()] sau [CDbCommand::bindValue()] pentru a inlocui aceste
+placeholder-e cu parametrii reali. Conectarea parametrilor trebuie facuta inainte
+ca instructiunea SQL sa fie executata.
 
 ~~~
 [php]
-// an SQL with two placeholders ":username" and ":email"
+// o cerere SQL cu 2 placeholdere ":username" si ":email"
 $sql="INSERT INTO users(username, email) VALUES(:username,:email)";
 $command=$connection->createCommand($sql);
-// replace the placeholder ":username" with the actual username value
+
+// inlocuim placeholder-ul ":username" cu valoarea reala username
 $command->bindParam(":username",$username,PDO::PARAM_STR);
-// replace the placeholder ":email" with the actual email value
+
+// inlocuim placeholder-ul ":email" cu valoarea reala email
 $command->bindParam(":email",$email,PDO::PARAM_STR);
 $command->execute();
-// insert another row with a new set of parameters
+
+// inseram un alt rand cu un nou set de parametri
 $command->bindParam(":username",$username2,PDO::PARAM_STR);
 $command->bindParam(":email",$email2,PDO::PARAM_STR);
 $command->execute();
 ~~~
 
-The methods [bindParam()|CDbCommand::bindParam] and
-[bindValue()|CDbCommand::bindValue] are very similar. The only difference
-is that the former binds a parameter with a PHP variable reference while
-the latter with a value. For parameters that represent large block of data
-memory, the former is preferred for performance consideration.
+Metodele [bindParam()|CDbCommand::bindParam] si [bindValue()|CDbCommand::bindValue] sunt foarte
+asemanatoare. Singura diferenta este ca [bindParam()|CDbCommand::bindParam] conecteaza un parametru
+cu o referinta a unei variabile PHP, in timp ce [bindValue()|CDbCommand::bindValue] conecteaza
+un parametru cu o valoare. Pentru parametri care reprezinta blocuri mai de date memorate, este de preferat
+sa folosim [bindParam()|CDbCommand::bindParam] din considerente de perfomanta.
 
-For more details about binding parameters, see the [relevant PHP
-documentation](http://www.php.net/manual/en/pdostatement.bindparam.php).
+Pentru mai multe detalii despre conectarea de parametrii, trebuie vazuta 
+[sectiunea din documentatia PHP](http://www.php.net/manual/en/pdostatement.bindparam.php).
 
-Binding Columns
----------------
+Conectarea coloanelor (Binding)
+-------------------------------
 
-When fetching query results, one can also bind columns with PHP variables
-so that they are automatically populated with the latest data each time a
-row is fetched.
+Cand extragem rezultatele cererii, putem sa conectam si coloane la variabile PHP pentru a fi
+populate automat cu ultimele date, de fiecare data cand se extrage un rand nou.
 
 ~~~
 [php]
 $sql="SELECT username, email FROM users";
 $dataReader=$connection->createCommand($sql)->query();
-// bind the 1st column (username) with the $username variable
+// conectam prima coloana (username) cu variabila $username
 $dataReader->bindColumn(1,$username);
-// bind the 2nd column (email) with the $email variable
+// conectam a doua coloana (email) cu variabila $email
 $dataReader->bindColumn(2,$email);
 while($dataReader->read()!==false)
 {
-    // $username and $email contain the username and email in the current row
+    // $username si $email contin username si email din randul curent
 }
 ~~~
 
