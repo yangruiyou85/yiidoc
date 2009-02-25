@@ -18,7 +18,7 @@ Yii DAO składa się głównie z następujących czterech klas:
    - [CDbConnection]: reprezentuje połączenie z bazą danych,
    - [CDbCommand]: reprezentuje zapytanie SQL, wykonywane na bazie danych,
    - [CDbDataReader]: represents a forward-only stream of rows from a query result set.
-   - [CDbTransaction]: reprezentuje transakchję DB.
+   - [CDbTransaction]: reprezentuje transakcję DB.
 
 
 W dalszej części, przedstawimy użycie Yii DAO w różnych scenariuszach.
@@ -43,7 +43,7 @@ $connection->active=false;  // zamknij połączenie
 
 Format adres DNS zależy od używanego sterownika PDO dla danej bazy danych. Uogólniając, 
 DNS składa się z nazwy sterownika PDO, po którym następuje przecinek a następnie 
-zależna od sterwonika składnia połączenia. Zobacz [dokumentację PDO](http://www.php.net/manual/en/pdo.construct.php) 
+zależna od sterownika składnia połączenia. Zobacz [dokumentację PDO](http://www.php.net/manual/en/pdo.construct.php) 
 aby uzyskać więcej informacji. Poniżej znajduje się lista najczęściej używanych formatów DNS:
 
    - SQLite: `sqlite:/sciezka/do/pliku/bazy`
@@ -73,7 +73,7 @@ array(
 ~~~
 
 Dostęp do połączenia DB, można uzyskać poprzez `Yii::app()->db`. Jest ono automatycznie 
-aktywowane, chyba że wyraźnie skonfugurujemy [CDbConnection::autoConnect] jako false. 
+aktywowane, chyba że wyraźnie skonfigurujemy [CDbConnection::autoConnect] jako false. 
 Używając tego podejścia, jedno połączenie DB może być dzielone w wielu miejscach w naszym kodzie.
 
 Wykonywanie wyrażeń SQL
@@ -101,17 +101,17 @@ dwóch sposobów:
    - [query()|CDbCommand::query]: wywołuje wyrażenie SQL, które zwraca wiersze z danymi, 
    takie jak `SELECT`. Jeśli zakończy się sukcesem, zwróci instancję [CDbDataReader], za pomocą której 
    można przejrzeć wynikowe wiersze danych. Dla wygody został zaimplementowany zestaw metod `queryXXX()`, 
-   które to zwracają bezpośredio wyniki zapytań.
+   które to zwracają bezpośrednio wyniki zapytań.
 
-Wyjątek zostanie rzucony, jeśli podczas wykonywanania wyrażenia SQL wystąpi błąd.
+Wyjątek zostanie rzucony, jeśli podczas wykonywania wyrażenia SQL wystąpi błąd.
 
 ~~~
 [php]
 $rowCount=$command->execute();   // wykonaj wyrażenie SQL nie będące zapytaniem
 $dataReader=$command->query();   // wykonaj zapytanie SQL
 $rows=$command->queryAll();      // zapytaj i zwróć wszystkie, wynikowe wiersze 
-$row=$command->queryRow();       // zapytaj i zwróc pierwszy wiersz z wyników
-$column=$command->queryColumn(); // zapytaj i zwróc pierwszą kolumnę sposród wyników
+$row=$command->queryRow();       // zapytaj i zwróć pierwszy wiersz z wyników
+$column=$command->queryColumn(); // zapytaj i zwróć pierwszą kolumnę spośród wyników
 $value=$command->queryScalar();  // zapytaj i zwróć pierwsze pole w pierwszym wierszu
 ~~~
 
@@ -177,9 +177,9 @@ wyrażenie SQL z opcjonalnymi placeholderami parametrów, które to będą zast�
 przez aktualne parametry podczas procesu przypinania parametrów.
 
 Placeholdery parametrów mogą być nawet nazwane (reprezentowane jako unikalne tokeny) 
-lub mogą nie posiadać nazwy (reprezetnowane za pomocą znaku zapytania). Aby zastąpić te 
+lub mogą nie posiadać nazwy (reprezentowane za pomocą znaku zapytania). Aby zastąpić te 
 placeholdery aktualnymi parametrami wywołaj [CDbCommand::bindParam()] lub [CDbCommand::bindValue()].
-Parametry te nie muszą być objęte cudzysłowiem, ukryty sterownik bazy danych zrobi to za Ciebie. 
+Parametry te nie muszą być objęte cudzysłowem, ukryty sterownik bazy danych zrobi to za Ciebie. 
 Przypinanie parametrów musi nastąpić zanim wyrażenie SQL zostanie wykonane.
 
 ~~~
