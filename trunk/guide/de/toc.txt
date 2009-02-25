@@ -47,7 +47,7 @@
     - [Motive (Themes)](topics.theming)
     - [Protokolle (Logging)](topics.logging)
     - [Fehlerbehandlung](topics.error)
-    - [Web Service](topics.webservice)
+    - [Webservice](topics.webservice)
     - [Internationalisierung (I18N)](topics.i18n)
     - [Alternative Template-Syntax](topics.prado)
     - [Konsolenanwendungen](topics.console)
