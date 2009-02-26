@@ -105,9 +105,9 @@ $postPerPage=Yii::app()->controller->module->postPerPage;
 // $postPerPage=$this->module->postPerPage;
 ~~~
 
-En kontrolleråtgärd i en modul kan nås via en [route](/doc/guide/basics.controller#route) 
+En kontrolleråtgärd i en modul kan nås via en [route](/doc/guide/basics.controller#route) på formatet
 `moduleID/controllerID/actionID`. Exempel: om vi antar att ovanstående `forum`-modul har en 
-kontroller `PostController`, kan vi använda en [route](/doc/guide/basics.controller#route) 
+kontroller `PostController`, kan vi som [route](/doc/guide/basics.controller#route) använda 
 `forum/post/create` för att referera till åtgärden `create` i denna kontroller. Motsvarande 
 URL för denna route blir då `http://www.example.com/index.php?r=forum/post/create`.
 
@@ -123,7 +123,7 @@ Nästlad modul
 Moduler kan vara nästlade. Det vill säga, en modul kan innehålla en annan modul. 
 Vi kallar den förra *föräldramodul* (parent module), den senare *barnmodul* (child module). 
 Barnmoduler måste placeras i underkataloger till föräldramodulens `modules`-katalog. 
-För att komma åt en kontrolleråtgärd i en barnmodul, använder vi en route 
+För att komma åt en kontrolleråtgärd i en barnmodul, använder vi följande route 
 `parentModuleID/childModuleID/controllerID/actionID`.
 
 
