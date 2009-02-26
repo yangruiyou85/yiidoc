@@ -1,9 +1,9 @@
-Creating Action
-===============
+Creare action
+=============
 
-Once we have a model, we can start to write logic that is needed to
-manipulate the model. We place this logic inside a controller action. For
-the login form example, the following code is needed:
+O data ce avem un model, putem incepe sa scriem codul care este necesar pentru a ne folosi
+de model. Putem crea acest cod intr-un action al unui controller. Pentru exemplul
+cu formularul de logare, este necesar urmatorul cod:
 
 ~~~
 [php]
@@ -14,44 +14,43 @@ public function actionLogin()
 	{
 		// collects user input data
 		$form->attributes=$_POST['LoginForm'];
-		// validates user input and redirect to previous page if validated
+		// valideaza input-urile si se face redirect spre pagina anterioara,
+		// daca are succes validarea
 		if($form->validate())
 			$this->redirect(Yii::app()->user->returnUrl);
 	}
-	// displays the login form
+	// afiseaza formularul de logare
 	$this->render('login',array('user'=>$form));
 }
 ~~~
 
-In the above, we first create a `LoginForm` instance; if the request is a
-POST request (meaning the login form is submitted), we populate `$form`
-with the submitted data `$_POST['LoginForm']`; we then validate the input
-and if successful, redirect the user browser to the page that previously
-needed authentication. If the validation fails, or if the action is
-initially accessed, we render the `login` view whose content is to be
-described in the next subsection.
+In codul de mai sus, mai intai cream o instanta `LoginForm`; daca cererea este
+o cerere POST (adica s-a apasat butonul de submit), populam `$form`
+cu datele primite aflate in `$_POST['LoginForm']`; apoi putem valida input-urile
+si daca sunt valide, atunci se face redirectarea utilizatorului catre pagina care
+a cerut autentificarea. Daca validarea esueaza, sau daca action-ul este accesat prima data,
+atunci generam view-ul `login` al carui continut va fi descris in urmatoarea sub-sectiune.
 
-> Tip: In the `login` action, we use `Yii::app()->user->returnUrl` to get the
-URL of the page that previously needed authentication. The component
-`Yii::app()->user` is of type [CWebUser] (or its child class) which
-represents user session information (e.g. username, status). For more details,
-see [Authentication and Authorization](/doc/guide/topics.auth).
+> Tip|Sfat: In action-ul `login`, folosim `Yii::app()->user->returnUrl` pentru a afla
+URL-ul paginii care a avut nevoie anterior de autentificare. Componenta
+`Yii::app()->user` este de tip [CWebUser] (sau de timpul unei clase derivate din aceasta) care
+contine informatiile despre utilizator (ex. username, status). Pentru mai mult detalii,
+trebuie vazuta sectiunea [Autentificare si autorizare](/doc/guide/topics.auth).
 
-Let's pay special attention to the following PHP statement that appears in
-the `login` action:
+Trebuie sa acordam o atentie speciala urmatoarei instructiuni PHP care apare in action-ul `login`:
 
 ~~~
 [php]
 $form->attributes=$_POST['LoginForm'];
 ~~~
 
-As we described in [Securing Attribute Assignments](/doc/guide/form.model#securing-attribute-assignments),
-this line of code populates the model with the user submitted data.
-The `attributes` property is defined by [CModel] which
-expects an array of name-value pairs and assigns each value to the
-corresponding model attribute. So if `$_POST['LoginForm']` gives us
-such an array, the above code would be equivalent to the following lengthy
-one (assuming every needed attribute is present in the array):
+Dupa cum am explicat in [Securizarea asignarilor de atribute](/doc/guide/form.model#securing-attribute-assignments),
+aceasta linie de cod populeaza modelul cu datele trimise de catre utilizator.
+Proprietatea `attributes` este definita de catre [CModel], care asteapta
+un array de perechi nume-valoare si care asigneaza fiecare valoare la
+atributul corespunzator al modelului. Deci, daca `$_POST['LoginForm']` ne da
+un astfel de array, presupunand ca fiecare atribut necesar este in acest array,
+codul de mai sus ar fi echivalent cu urmatorul cod (care poate fi foarte lung daca sunt multe atribute):
 
 ~~~
 [php]
@@ -60,14 +59,13 @@ $form->password=$_POST['LoginForm']['password'];
 $form->rememberMe=$_POST['LoginForm']['rememberMe'];
 ~~~
 
-> Note: In order to let `$_POST['LoginForm']` to give us an array instead of a
-string, we stick to a convention when naming input fields in the view. In
-particular, for an input field corresponding to attribute `a` of model
-class `C`, we name it as `C[a]`. For example, we would use
-`LoginForm[username]` to name the input field corresponding to the
-`username` attribute.
+> Note|Nota: Pentru a permite `$_POST['LoginForm']` sa ne dea un array in loc de un string,
+aderam la o conventie atunci cand denumim campurile input din view. In particular,
+pentru un camp input care corespunde cu atributul `a1` din clasa modelului
+`C`, vom numi acest input `C[a1]`. De exemplu, vom folosi
+`LoginForm[username]` pentru a numi campul input corespunzator cu atributul `username`.
 
-The remaining task now is to create the `login` view which should contain
-an HTML form with the needed input fields.
+Ce mai ramane de facut este sa cream view-ul `login` care ar trebui sa contina un
+formular HTML care sa contina campurile input necesare.
 
 <div class="revision">$Id: form.action.txt 626 2009-02-04 20:51:13Z qiang.xue $</div>
