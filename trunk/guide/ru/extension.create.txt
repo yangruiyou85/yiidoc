@@ -1,100 +1,39 @@
-Creating Extensions
-===================
+Создание расширений
 
-Because an extension is meant to be used by third-party developers, it takes
-some additional efforts to create it. The followings are some general guidelines:
+Так как расширение может быть использовано сторонними разработчиками, при его создании имеются дополнительные требования:
+Расширение должно быть самодостаточным. Это значит, что его внешние зависимости должны быть минимальными. Для пользователей может стать серьёзной проблемой то, что расширение требует установку дополнительных пакетов, классов или исходных файлов.
+Файлы, принадлежащие расширению, должны быть собраны в одной директории, чье имя является названием расширения.
+Классы в расширении должны иметь приставки в названии, чтобы избежать конфликт с классами в других расширениях.
+Расширение должно идти с подробным руководством по установке и с API документацией. Это поможет сократить время и усилия, затрачиваемые для использования расширения сторонними разработчиками.
+Расширение должно использовать надлежащую лицензию. Если вы хотите создать расширение, которое могут использовать как открытые, так и закрытые проекты, то вы можете использовать такие лицензии, как BSD, MIT и так далее, но вы не можете использовать GPL, так как она заявляет, что разрабатываемый код должен быть открытым.
+Далее мы вам расскажем, как создать новое расширение в соответствии с классификацией, описанной в обзоре. Это описание поможет вам, если вы хотите создать свой собственный компонент, используемый только в вашем проекте.
+(Aplication Component)Компонент приложения
+Компонент приложения должен использовать интерфейс IApplicationComponent или наследовать CApplicationComponent. Основной метод, который нужно реализовать из IApplicationComponent, это IApplicationComponent::init(), в котором выполняются некоторые действия по инициализации. Этот метод выполняется после создания компоненты и исходные значения свойств(указзыаные в конфигурации приложения) переданны.
 
-* An extension should be self-contained. That is, its external dependency should
-  be minimal. It would be a headache for its users if an extension requires
-  installation of additional packages, classes or resource files.
-* Files belonging to an extension should be organized under the same
-  directory whose name is the extension name
-* Classes in an extension should be prefixed with some letter(s) to avoid
-  naming conflict with classes in other extensions.
-* An extension should come with detailed installation and API documentation.
-  This would reduce the time and effort needed by other developers when they
-  use the extension.
-* An extension should be using an appropriate license. If you want to make
-  your extension to be used by both open-source and closed-source projects,
-  you may consider using licenses such as BSD, MIT, etc., but not GPL as it
-  requires its derived code to be open-source as well.
+По умолчанию компонента приложения создается и инициализируется только тогда, когда вызывается первый раз вовремя обработки запроса. Если создания компоненты требуется еще раз после того как сущность приложения была создана, от пользователя потребуется идентификатор в свойство CApplication::preload. 
 
-In the following, we describe how to create a new extension, according to
-its categorization as described in [overview](/doc/guide/extension.overview).
-These descriptions also apply when you are creating a component mainly used
-in your own projects.
+Widget(Виджет)
 
-Application Component
----------------------
-
-An [application component](/doc/guide/basics.application#application-component)
-should implement the interface [IApplicationComponent] or extend
-from [CApplicationComponent]. The main method needed to be implemented is
-[IApplicationComponent::init] in which the component performs some initialization
-work. This method is invoked after the component is created and the initial property
-values (specified in [application configuration](/doc/guide/basics.application#application-configuration))
-are applied.
-
-By default, an application component is created and initialized only when it
-is accessed for the first time during request handling. If an application component
-needs to be created right after the application instance is created, it should
-require the user to list its ID in the [CApplication::preload] property.
-
-
-Widget
-------
-
-A [widget](/doc/guide/basics.view#widget) should extend from [CWidget] or its
-child classes.
-
-The easiest way of creating a new widget is extending an existing widget and
-overriding its methods or changing its default property values. For example, if
-you want to use a nicer CSS style for [CTabView], you could configure its
-[CTabView::cssFile] property when using the widget. You can also extend [CTabView]
-as follows so that you no longer need to configure the property when using the widget.
-
-~~~
-[php]
+Виджет должен наследовать CWidget или его потомков.
+Просто способ написания виджета это наследование существующего виджета и переписывание его методов или изменения значения свойств по умолчанию. К примеру, если вы хотите использовать более красивый CSS стиль для CTabView, вы можете настроить его в свойстве CTabView::cssFile, когда используете виджет. Также вы можете наследовать CTabView как показано ниже, и вам больше не нужно будеть настраивать свойство, когда вы используете виджет.
 class MyTabView extends CTabView
 {
 	public function init()
 	{
 		if($this->cssFile===null)
 		{
-			$file=dirname(__FILE__).DIRECTORY_SEPARATOR.'tabview.css';
+			$file=dirname( FILE ).DIRECTORY SEPARATOR.’tabview.css’;
 			$this->cssFile=Yii::app()->getAssetManager()->publish($file);
 		}
 		parent::init();
 	}
 }
-~~~
+В приведенном выше примере, мы переписали метод CWidget::init() и указали в CWidget::cssFile по ссылке к нашему новому CSS стилю по умолчанию, если он не указан. Мы положим новый CSS файл в туже директорию, что и содержит виджет MyTabView, и по этому она может быть использованна как расширение. Так как файл к css-стилем не доступен через веб,нам необходимо выпустить его в актив.
 
-In the above, we override the [CWidget::init] method and assign to
-[CTabView::cssFile] the URL to our new default CSS style if the property
-is not set. We put the new CSS style file under the same directory
-containing the `MyTabView` class file so that they can be packaged as
-an extension. Because the CSS style file is not Web accessible, we need
-to publish as an asset.
+Для созадния виджета с нуля, нам необходимо применить два метода: CWidget::init() and CWidget::run(). Вызывается когда мы используем $this->beginWidget для вставки виджета в представление, и второй метод вызывается когда, используется $this->endWidget. Если мы хотим управлять отображающимся контентом между вызовами двух методов, мы можем начать буферизацию вывода в CWidget::init() и получить буферизованный вывод в CWidget::run() для следующей обработки.
 
-To create a new widget from scratch, we mainly need to implement two methods:
-[CWidget::init] and [CWidget::run]. The first method is called when we
-use `$this->beginWidget` to insert a widget in a view, and the
-second method is called when we call `$this->endWidget`.
-If we want to capture and process the content displayed between these two
-method invocations, we can start [output buffering](http://us3.php.net/manual/en/book.outcontrol.php)
-in [CWidget::init] and retrieve the buffered output in [CWidget::run]
-for further processing.
+Виджет часто предпологает включение CSS, JavaScript и других файловых ресурсов на странице, в которой используется виджет. Мы называем такие файлы assets(активами) потому что они поставляются вместе с классом виджета и обычно не доступны для веб-пользователей. В следствии того, что нужно сделать их веб доступными, мы должны опубликовать их, используя CWebApplication::assetMenager, как показано, на ниже приведенном, участке кода. Кроме того если мы хотим включить CSS или JavaScript на текущей странице, мы должны зарегистрировать их, используя CClientScript.
 
-A widget often involves including CSS, JavaScript or other resource files
-in the page that uses the widget. We call these files *assets* because
-they stay together with the widget class file and are usually not accessible by
-Web users. In order to make these files Web accessible, we need to publish
-them using [CWebApplication::assetManager], as shown in the above code snippet.
-Besides, if we want to include a CSS or JavaScript file in the current page,
-we need to register it using [CClientScript]:
-
-~~~
-[php]
 class MyWidget extends CWidget
 {
 	protected function registerClientScript()
@@ -105,112 +44,65 @@ class MyWidget extends CWidget
 		$cs->registerScriptFile($jsFile);
 	}
 }
-~~~
 
-A widget may also have its own view files. If so, create a directory named
-`views` under the directory containing the widget class file, and put all the
-view files there. In the widget class, in order to render a widget view, use
-`$this->render('ViewName')`, which is similar to what we do in a controller.
+Виджет может иметь свои собственные файлы представления. Если так, то создайте директорию называемую «views» в директории содержащей файл с классом виджета, и положите все файлы представления туда. В классе виджета, следует от рендерить обзор, используя  $this->render(’ViewName’), который аналогичен тому, что мы делаем в контроллере.
 
-Action
-------
+Action(действие)
+ 
+Действие должно наследывать класс CAction или его потомков. Основной метод, который должен быть реализован в действии это IAction::run. 
+Filter(фильтр)
+Фильтр должен наследывать класс Cfilter или его детей. Основные методы, которые нужно реализовать для фильтра это  CFilter::preFilter и CFilter::postFilter. Первый вызывается до совершение действия, когда второй выполняется после.
 
-An [action](/doc/guide/basics.controller#action) should extend from [CAction]
-or its child classes. The main method that needs to be implemented for an action
-is [IAction::run].
-
-Filter
-------
-A [filter](/doc/guide/basics.controller#filter) should extend from [CFilter]
-or its child classes. The main methods that need to be implemented for a filter
-are [CFilter::preFilter] and [CFilter::postFilter]. The former is invoked before
-the action is executed while the latter after.
-
-~~~
-[php]
 class MyFilter extends CFilter
 {
 	protected function preFilter($filterChain)
 	{
-		// logic being applied before the action is executed
+		// logic being applied before the action is executed	
 		return true; // false if the action should not be executed
 	}
-
 	protected function postFilter($filterChain)
 	{
 		// logic being applied after the action is executed
 	}
 }
-~~~
 
-The parameter `$filterChain` is of type [CFilterChain] which contains information
-about the action that is currently filtered.
+Параметр $fileterChain является обьектом типа CfilterChain, который содержит информацию о действие, которое сейчас фильтрируется.
 
-
-Controller
-----------
-A [controller](/doc/guide/basics.controller) distributed as an extension
-should extend from [CExtController], instead of [CController]. The main reason
-is because [CController] assumes the controller view files are located under
-`application.views.ControllerID`, while [CExtController] assumes the view
-files are located under the `views` directory which is a subdirectory of
-the directory containing the controller class file. Therefore, it is easier
-to redistribute the controller since its view files are staying together
-with the controller class file.
+Контроллер(Controller)
+Контроллер, поставляющийся как расширение, должен наследовать CExtendController, вместо CController. Основная причина этого то, что CController предполагает, что файлы принадлежащие представлению контроллера расположены в  application.views.ControllerID, тогда как  CextendController предпологают что файлы представления лежат в директории «views», которая является поддиректорией директории, содержащей файл с классом контроллером. Темболее, это проще для распространения контроллера, так как все его представления остаются вместе с файлом класса контроллера.
 
 
-Validator
----------
-A validator should extend from [CValidator] and implement its
-[CValidator::validateAttribute] method.
-
-~~~
-[php]
+Validator(Валидатор)
+Валидатор должен наследоваться от CValidator и должен осуществить его CValidator::validateAttribute метод.
 class MyValidator extends CValidator
 {
 	protected function validateAttribute($model,$attribute)
-	{
+	{	
 		$value=$model->$attribute;
 		if($value has error)
-			$model->addError($attribute,$errorMessage);
+		$model->addError($attribute,$errorMessage);
 	}
 }
-~~~
 
-Console Command
----------------
-A [console command](/doc/guide/topics.console) should extend from
-[CConsoleCommand] and implement its [CConsoleCommand::run] method.
-Optionally, we can override [CConsoleCommand::getHelp] to provide
-some nice help information about the command.
+Console Command(Команда консоли)
+Комманда консоли наследует класс CconsoleCommand и реализовать метод на CСonsoleCommand::run. Опционально вы можете переписать CconsoleCommand::getHelp() для предоставления некоторой информации о команде.
 
-~~~
-[php]
 class MyCommand extends CConsoleCommand
 {
 	public function run($args)
 	{
 		// $args gives an array of the command-line arguments for this command
 	}
-
 	public function getHelp()
-	{
-		return 'Usage: how to use this command';
-	}
+	{	
+		return ’Usage: how to use this command’;
+	}	
 }
-~~~
 
-Module
-------
-The general guideline for developing a module is that it should be self-contained.
-Resource files (such as CSS, JavaScript, images) that are used by a module should
-be distributed together with the module. And the module should publish them
-so that they can be Web accessible.
+Module(Модуль)
+При разработки модуль нужно руководствоваться тем, что он должен быть само достаточным. Файлы ресурсов(CSS,JavaScript,картинки), которые использует модуль, должны поставляться с модулем. И модуль должен предоставлять их так, что бы они были веб-доступными.
 
-Generic Component
------------------
-Developing a generic component extension is like writing a class. Again, the component
-should also be self-contained so that it can be easily used by other developers.
-
+Типовой компонент 
+Разработка типового компонента это как написание класса. Опять же компонент, должен быть само достаточным, что бы он мог легко использоваться другими разработчиками.
 
 <div class="revision">$Id: extension.create.txt 273 2008-11-25 03:11:45Z qiang.xue $</div>
