@@ -1,31 +1,29 @@
-Using Extensions
-================
+Folosirea extensiilor
+=====================
 
-Using an extension usually involves the following three steps:
+Folosirea unei extensii implica urmatorii trei pasi:
 
-  1. Download the extension from Yii's
-     [extension repository](http://www.yiiframework.com/extensions/).
-  2. Unpack the extension under the `extensions/xyz` subdirectory of
-     [application base directory](/doc/guide/basics.application#application-base-directory),
-     where `xyz` is the name of the extension.
-  3. Import, configure and use the extension.
+  1. Descarcarea extensiei din [depozitul de extensii](http://www.yiiframework.com/extensions/) de pe site-ul Yii.
+  2. Dezarhivarea extensiei in subdirectorul `extensions/xyz` din
+     [directorul de baza al aplicatiei](/doc/guide/basics.application#application-base-directory),
+     unde `xyz` este numele extensiei.
+  3. Importarea, configurarea si folosirea extensiei.
 
-Each extension has a name that uniquely identifies it among all extensions.
-Given an extension named as `xyz`, we can always use the path alias
-`application.extensions.xyz` to locate its base directory which contains
-all files of `xyz`.
+Fiecare extensie are un nume care o identifica unic fata de celelalte extensii. 
+Daca extensia are numele `xyz`, putem folosi oricand alias-ul de cale
+`application.extensions.xyz` pentru a localiza directorul de baza care contine toate
+fisierele extensiei `xyz`.
 
-Different extensions have different requirements about importing,
-configuration and usage. In the following, we summarize common usage scenarios
-about extensions, according to their categorization described in the
-[overview](/doc/guide/extension.overview).
+Fiecare extensie are cerinte specifice in ce priveste importarea,
+configurarea si folosirea. In cele ce urmeaza, facem un sumar al scenariilor obisnuite
+de folosire, urmand categorisirea descrisa in sectiunea [Generalitati despre extensii](/doc/guide/extension.overview).
 
-Application Component
----------------------
+Componenta aplicatie
+--------------------
 
-To use an [application component](/doc/guide/basics.application#application-component),
-we first need to change the [application configuration](/doc/guide/basics.application#application-configuration)
-by adding a new entry to its `components` property, like the following:
+Pentru a folosi o [componenta de aplicatie](/doc/guide/basics.application#application-component),
+trebuie sa modificam fisierul de [configurare a aplicatiei](/doc/guide/basics.application#application-configuration)
+prin adaugarea unei noi intrari la proprietatea `components`, in felul urmator:
 
 ~~~
 [php]
@@ -37,36 +35,36 @@ return array(
             'property1'=>'value1',
             'property2'=>'value2',
         ),
-        // other component configurations
+        // alte configuratii de componente
     ),
 );
 ~~~
 
-Then, we can access the component at any place using `Yii::app()->xyz`. The component
-will be lazily created (that is, created when it is accessed for the first time)
-unless we list it the `preload` property.
+Apoi, putem accesa componenta oriunde in cod, folosind `Yii::app()->xyz`. Componenta
+la fi creata prin abordarea lazy (adica, ea va fi creata atunci cand este accesata prima data).
+Putem specifica incarcarea ei in proprietatea `preload`, pentru a fi creata automat o data cu aplicatia.
 
 
 Widget
 ------
 
-[Widgets](/doc/guide/basics.view#widget) are mainly used in [views](/doc/guide/basics.view).
-Given a widget class `XyzClass` belonging to the `xyz` extension, we can use it in
-a view as follows,
+[Widget-urile](/doc/guide/basics.view#widget) sunt cel mai folosite in [view-uri](/doc/guide/basics.view).
+Daca avem o clasa widget `XyzClass` (care apartine extensiei `xyz`), putem s-o folosim
+intr-un view in felul urmator:
 
 ~~~
 [php]
-// widget that does not need body content
+// widget care nu are nevoie de continut body
 <?php $this->widget('application.extensions.xyz.XyzClass', array(
     'property1'=>'value1',
     'property2'=>'value2')); ?>
 
-// widget that can contain body content
+// widget care poate contine un body
 <?php $this->beginWidget('application.extensions.xyz.XyzClass', array(
     'property1'=>'value1',
     'property2'=>'value2')); ?>
 
-...body content of the widget...
+...continutul body al widget-ului...
 
 <?php $this->endWidget(); ?>
 ~~~
@@ -74,10 +72,10 @@ a view as follows,
 Action
 ------
 
-[Actions](/doc/guide/basics.controller#action) are used by a [controller](/doc/guide/basics.controller)
-to respond specific user requests. Given an action class `XyzClass` belonging to
-the `xyz` extension, we can use it by overriding the [CController::actions] method
-in our controller class:
+[Action-urile](/doc/guide/basics.controller#action) sunt folosite de un [controller](/doc/guide/basics.controller)
+pentru a raspunde diverselor cereri din partea utilizatorilor web. Daca avem o clasa action `XyzClass`
+(care apartine extensiei `xyz`), putem s-o folosim prin suprascrierea metodei [CController::actions]
+din clasa controller-ului nostru:
 
 ~~~
 [php]
@@ -91,23 +89,21 @@ class TestController extends CController
 				'property1'=>'value1',
 				'property2'=>'value2',
 			),
-			// other actions
+			// alte action-uri
 		);
 	}
 }
 ~~~
 
-Then, the action can be accessed via [route](/doc/guide/basics.controller#route)
-`test/xyz`.
+Apoi, action-ul poate fi accesat prin [routa](/doc/guide/basics.controller#route) `test/xyz`.
 
-Filter
+Filtru
 ------
-[Filters](/doc/guide/basics.controller#filter) are also used by a [controller](/doc/guide/basics.controller).
-Their mainly pre- and post-process the user request when it is handled by an
-[action](/doc/guide/basics.controller#action).
-Given a filter class `XyzClass` belonging to
-the `xyz` extension, we can use it by overriding the [CController::filters] method
-in our controller class:
+[Filtrele](/doc/guide/basics.controller#filter) sunt de asemenea folosite de catre un [controller](/doc/guide/basics.controller).
+In principal asigura posibilitatea de a executa un cod inainte si dupa procesarea unei cereri din
+partea utilizatorului web atunci cand este tratata de un [action](/doc/guide/basics.controller#action).
+Daca avem o clasa filtru `XyzClass`(care apartine extensiei `xyz`), putem s-o folosim
+prin suprascrierea metodei [CController::filters] din clasa controller-ului nostru:
 
 ~~~
 [php]
@@ -121,22 +117,22 @@ class TestController extends CController
 				'property1'=>'value1',
 				'property2'=>'value2',
 			),
-			// other filters
+			// alte filtre
 		);
 	}
 }
 ~~~
 
-In the above, we can use plus and minus operators in the first array element
-to apply the filter to limited actions only. For more details, please refer
-to the documentation of [CController].
+In codul de mai sus, putem sa folosim operatorii `+` si `-` in primul element al array-ului
+pentru a aplica filtrul doar unor anumite action-uri. Pentru mai multe detalii, putem vedea
+sectiunea despre [CController] din documentatie.
 
 Controller
 ----------
-A [controller](/doc/guide/basics.controller) provides a set of actions that can
-be requested by users. In order to use a controller extension, we need to
-configure the [CWebApplication::controllerMap] property in the
-[application configuration](/doc/guide/basics.application#application-configuration):
+Un [controller](/doc/guide/basics.controller) asigura un set de action-uri care pot fi
+cerute de catre utilizatorii web. Pentru afolosi un controller al unei extensii, trebuie sa configuram
+proprietatea [CWebApplication::controllerMap] din fisierul care contine
+[configurarea aplicatiei](/doc/guide/basics.application#application-configuration):
 
 ~~~
 [php]
@@ -147,25 +143,24 @@ return array(
 			'property1'=>'value1',
 			'property2'=>'value2',
 		),
-		// other controllers
+		// alte controller-e
 	),
 );
 ~~~
 
-Then, an action `a` in the controller can be accessed via
-[route](/doc/guide/basics.controller#route) `xyz/a`.
+Apoi, un action `a` din controller poate fi accesat prin
+[ruta](/doc/guide/basics.controller#route) `xyz/a`.
 
 Validator
 ---------
-A validator is mainly used in a [model](/doc/guide/basics.model) class
-(one that extends from either [CFormModel] or [CActiveRecord]).
-Given a validator class `XyzClass` belonging to
-the `xyz` extension, we can use it by overriding the [CModel::rules] method
-in our model class:
+Un validator este folosit in special intr-o clasa [model](/doc/guide/basics.model)
+(una care este derivata fie din [CFormModel] fie din [CActiveRecord]).
+Daca avem o clasa validator `XyzClass` (care apartine extensiei `xyz`), putem s-o folosim
+prin suprascrierea metodei [CModel::rules] din clasa modelului nostru:
 
 ~~~
 [php]
-class MyModel extends CActiveRecord // or CFormModel
+class MyModel extends CActiveRecord // sau CFormModel
 {
 	public function rules()
 	{
@@ -176,18 +171,18 @@ class MyModel extends CActiveRecord // or CFormModel
 				'property1'=>'value1',
 				'property2'=>'value2',
 			),
-			// other validation rules
+			// alte reguli de validare
 		);
 	}
 }
 ~~~
 
-Console Command
+Comanda de consola
 ---------------
-A [console command](/doc/guide/topics.console) extension usually enhances
-the `yiic` tool with an additional command. Given a console command
-`XyzClass` belonging to the `xyz` extension, we can use it by configuring
-the configuration for the console application:
+O [comanda de consola](/doc/guide/topics.console) a unei extensii de obicei imbunatateste
+unealta `yiic` prin adaugarea unei noi comenzi. Daca avem o clasa cu o comanda de consola
+`XyzClass` (care apartine unei extensii `xyz`), putem s-o folosim prin modificarea fisierului
+de configurare al aplicatiei de consola:
 
 ~~~
 [php]
@@ -198,19 +193,18 @@ return array(
 			'property1'=>'value1',
 			'property2'=>'value2',
 		),
-		// other commands
+		// alte comenzi
 	),
 );
 ~~~
 
-Then, we can use the `yiic` tool is equipped with an additional
-command `xyz`.
+Apoi, putem folosi unealta `yiic` care va avea incorporata noua comanda `xyz`.
 
-> Note: A console application usually uses a configuration file
-that is different from the one used by a Web application. If an application
-is created using `yiic webapp` command, then the configuration file
-for the console application `protected/yiic` is `protected/config/console.php`,
-while the configuration file for the Web application is `protected/config/main.php`.
+> Note|Nota: O aplicatie de consola de obicei foloseste un fisier de configurare
+care este diferit decat cel folosit de o aplicatie Web. Daca o aplicatie este creata
+folosind comanda `yiic webapp`, atunci fisierul de configurare
+pentru aplicatia de consola `protected/yiic` este `protected/config/console.php`,
+in timp ce fisierul de configurare pentru aplicatia Web este `protected/config/main.php`.
 
 Module
 ------
