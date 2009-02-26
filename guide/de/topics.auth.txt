@@ -540,4 +540,39 @@ if(Yii::app()->user->checkAccess('aktualisiereEigenenBeitrag',$params))
 }
 ~~~
 
+### Verwenden von Standardrollen
+
+> Note|Hinweis: Standardrollen können seit Version 1.0.3 verwendet werden.
+
+Viele Webanwendungen verwenden einige spezielle Rollen, die den meisten oder
+allen Systembenutzern zugewiesen werden müssen. Wir könnten zum Beispiel allen
+authentifizierten Benutzern einige Berechtigungen zuweisen wollen. Es würde
+viel zusätzlichen Verwaltungsaufwand bedeuten, wenn wir diese Rollenzuweisung
+jeweils einzeln durchführen und speichern wollten. Um dieses Problem zu
+umgehen, können wir *Standardrollen* (engl.: default roles) verwenden.
+
+Eine Standardrolle ist eine Rolle, die implizit allen Benutzern zugewiesen
+wird und zwar authentifizierten Benutzern genauso, wie Gästen. Wir müssen sie
+nicht explizit einem Benutzer zuweisen. Beim Aufruf von
+[CWebUser::checkAccess] werden zunächst die Standardrollen überprüft, als ob
+sie dem Benutzer zugewiesen worden wären.
+
+Standardrollen müssen in der Eigenschaft [CAuthManager::defaultRoles]
+deklariert werden.
+
+Da eine Standardrolle jedem Benutzer zugewiesen wird, muss sie normalerweise
+mit einer Geschäftsregel verbunden werden, um festzustellen, ob dir Rolle
+wirklich auf den Benutzer zutrifft. Der folgende Code definiert zum Beispiel
+zwei Rollen, "authentifiziert" und "gast", die letzendlich authentifizierten
+Benutzern und Gästen entsprechend zugeordnet werden.
+
+~~~
+[php]
+$bizRule='return !Yii::app()->user->isGuest;';
+$auth->createRole('authentifiziert',$bizRule);
+
+$bizRule='return Yii::app()->user->isGuest;';
+$auth->createRole('gast',$bizRule);
+~~~
+
 <div class="revision">$Id: topics.auth.txt 677 2009-02-14 04:27:48Z qiang.xue $</div>
