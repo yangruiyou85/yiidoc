@@ -7,23 +7,20 @@ controller for further processing. It also serves as the central place for
 keeping application-level configurations. For this reason, application is
 also called `front-controller`.
 
-Application is created as a singleton by the [entry script](/doc/guide/basics.entry).
-The application singleton can be accessed at any place via [Yii::app()|YiiBase::app].
+[入口脚本](/doc/guide/basics.entry)将应用创建为一个单例.
+应用单例可以在任何位置通过 [Yii::app()|YiiBase::app] 来访问.
 
 
 应用配置
 --------
 
-默认情况下, 应用是 [CWebApplication] 的一个实例. 要对其进行定制, 
+默认情况下, 应用是 [CWebApplication] 类的一个实例. 要对其进行定制, 
 通常是在应用实例被创建的时候提供一个配置文件 (或数组) 来初始化其属性值.
-An alternative way of customizing application is to extend [CWebApplication].
+另一个定制应用的方法就是扩展 [CWebApplication] 类.
 
-The configuration is an array of key-value pairs. Each key represents the
-name of a property of the application instance, and each value the
-corresponding property's initial value. For example, the following
-configuration configures the [name|CApplication::name] and
-[defaultController|CWebApplication::defaultController] properties of the
-application.
+配置是一个键值对的数组. 每个键名都对应应用实例的一个属性, 相应的值为属性的初始值.
+举例来说, 下面的代码设定了应用的 [名称|CApplication::name] 和 
+[默认控制器|CWebApplication::defaultController] 属性.
 
 ~~~
 [php]
@@ -51,7 +48,7 @@ like the following, which is usually done in the [entry script](/doc/guide/basic
 $app=Yii::createWebApplication($configFile);
 ~~~
 
-> Tip: If the application configuration is very complex, we can split it
+> Tip|提示: If the application configuration is very complex, we can split it
 into several files, each returning a portion of the configuration array.
 Then, in the main configuration file, we call PHP `include()` to include
 the rest configuration files and merge them into a complete configuration
@@ -119,7 +116,7 @@ To access an application component, use `Yii::app()->ComponentID`, where
 An application component may be disabled by setting `enabled` to be false
 in its configuration. Null is returned when we access a disabled component.
 
-> Tip: By default, application components are created on demand. This means
+> Tip|提示: By default, application components are created on demand. This means
 an application component may not be created at all if it is not accessed
 during a user request. As a result, the overall performance may not be
 degraded even if an application is configured with many components. Some
