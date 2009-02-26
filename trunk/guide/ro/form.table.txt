@@ -1,24 +1,24 @@
-Collecting Tabular Input
-========================
+Colectarea input-urilor tabulare
+================================
 
-Sometimes we want to collect user input in a batch mode. That is, the user
-can enter the information for multiple model instances and submit them all
-at once. We call this *tabular input* because the input fields are
-often presented in an HTML table.
+Uneori vrem sa colectam date de la utilizator in mod automat. Adica, utilizatorul
+poate introduce informatiile pentru mai multe instante de modele si sa le trimita pe toate
+o data. Denumim aceasta modalitate *input tabular* deoarece campurile input sunt de obicei
+prezentate intr-un tabel HTML.
 
-To work with tabular input, we first need to create or populate an array
-of model instances, depending on whether we are inserting or updating the
-data. We then retrieve the user input data from the `$_POST` variable and
-assign it to each model. A slight difference from single model input is
-that we retrieve the input data using `$_POST['ModelClass'][$i]` instead of
+Pentru a folosi un input tabular, trebuie intai sa cream si sa populam un array
+de instante cu modelele respective, in functie ce trebuie sa facem, inserare sau actualizare
+de date. Apoi, trebuie sa extragem datele primite de la utilizator din variabila `$_POST`
+si sa asignam aceste date fiecarui model. O diferenta mica fata de asignarea in cazul
+unui singur model, este ca extragem datele de intrare folosind `$_POST['ModelClass'][$i]` in loc de
 `$_POST['ModelClass']`.
 
 ~~~
 [php]
 public function actionBatchUpdate()
 {
-	// retrieve items to be updated in a batch mode
-	// assuming each item is of model class 'Item'
+	// extragem elementele de actualizat automat
+	// presupunem ca fiecare element este al clasei modelului 'Item'
 	$items=$this->getItemsToUpdate();
 	if(isset($_POST['Item']))
 	{
@@ -29,16 +29,16 @@ public function actionBatchUpdate()
 				$item->attributes=$_POST['Item'][$i];
 			$valid=$valid && $item->validate();
 		}
-		if($valid)  // all items are valid
-			// ...do something here
+		if($valid)  // toate elementele sunt valide
+			// ...se executa ceva aici
 	}
-	// displays the view to collect tabular input
+	// afisam view-ul pentru colectarea input-ului tabular
 	$this->render('batchUpdate',array('items'=>$items));
 }
 ~~~
 
-Having the action ready, we need to work on the `batchUpdate` view to
-display the input fields in an HTML table.
+Avand action-ul pregatit, trebuie sa cream view-ul `batchUpdate` pentru a
+afisa campurile input intr-o tabela HTML.
 
 ~~~
 [php]
@@ -61,11 +61,9 @@ display the input fields in an HTML table.
 </div><!-- yiiForm -->
 ~~~
 
-Note in the above that we use `"name[$i]"` instead of `"name"` as the
-second parameter when calling [CHtml::activeTextField].
+Trebuie notat ca folosim `"name[$i]"` in loc de `"name"` cand apelam [CHtml::activeTextField].
 
-If there is anything validation error, the corresponding input fields will
-be highlighted automatically, just like the single model input we described
-earlier on.
+Daca este vreo eroare de validare, campurile input corespunzatoare vor fi evidentiate
+automat, in acelasi fel ca in cazul input-urilor unui singur model, caz descris mai devreme.
 
 <div class="revision">$Id: form.table.txt 468 2009-01-04 20:57:35Z qiang.xue $</div>
