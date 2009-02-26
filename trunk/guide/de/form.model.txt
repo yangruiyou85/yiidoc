@@ -1,32 +1,32 @@
-﻿Das Model erstellen
-===================
+﻿Erstellen des Models
+====================
 
-Bevor wir den HTML-Code für ein Formular schreiben sollten wir entscheiden
+Bevor wir den HTML-Code für ein Formular schreiben, sollten wir entscheiden,
 welche Daten wir vom Endbenutzer erwarten und welche Regeln diese Daten
 erfüllen sollen. Eine Model-Klasse kann genutzt werden um diese Informationen
-aufzunehmen. Ein Model, wie im Unterkapitel [Model](/doc/guide/basics.model)
-definiert, ist der zentrale Ort zur Aufbewahrung und Validierung von
+aufzunehmen. Wie im Abschnitt [Model](/doc/guide/basics.model)
+definiert, ist ein Model ein zentraler Ort zur Aufbewahrung und Validierung von
 Benutzereingaben.
 
-Abhängig davon, wie wir die Benutzereingaben verwenden, können wir 2 Model-Typen
-erzeugen. Wenn Benutzereingaben erfasst, verarbeitet und dann verworfen
-werden, werden wir ein [Formular-Model](/doc/guide/basics.model) erstellen;
-wenn die Benutzereingaben erfasst und in einer Datenbank gespeichert werden,
-werden wir stattdessen einen [ActiveRecord](/doc/guide/database.ar) erzeugen.
-Beide Model-Typen benutzen die gleiche Basisklasse [CModel], die die übliche
-Schnittstelle zum Formular definiert.
+Je nachdem, wie wir die Benutzereingaben weiterverwenden, können wir zwischen
+zwei Model-Typen wählen. Wenn Benutzereingaben erfasst, verarbeitet und dann verworfen
+werden sollen, erstellen wir ein [Formular-Model](/doc/guide/basics.model).
+Wenn die Benutzereingaben erfasst und in einer Datenbank gespeichert werden,
+verwenden wir stattdessen einen [ActiveRecord](/doc/guide/database.ar).
+Beide Model-Typen benutzen die gleiche Basisklasse [CModel], in der die 
+gemeinsame Schnittstelle zu einem Formular definiert ist.
 
-> Note|Anm.: Wir benutzen hauptsächlich das Formular-Model in den Beispielen dieses
-Abschnitts. Ebenso könnte das [ActiveRecord](/doc/guide/database.ar)-Model 
-angewendet werden. 
+> Note|Hinweis: In den Beispielen dieses Abschnitts benutzen wir hauptsächlich
+Formular-Models. Genausogut könnte ein [ActiveRecord](/doc/guide/database.ar)
+verwendet werden. 
 
 Definieren der Model-Klasse
 ---------------------------
 
-Weiter unten erzeugen wir eine `LoginForm` Model-Klasse um die Benutzereingaben
-einer Login-Seite zu erfassen. Da die Login-Information nur dazu benutzt wird
-den Benutzer zu authentisieren und nicht gespeichert werden muss, erstellen
-wir die `LoginForm` als Formular-Model.
+Unten erzeugen wir die Model-Klasse `LoginForm`, um die Benutzereingaben
+einer Anmeldeseite zu erfassen. Da die Anmeldeinformationen nur dazu benutzt
+werden, den Benutzer zu authentifizieren und nicht gespeichert werden müssen, 
+erstellen wir `LoginForm` als Formular-Model.
 
 ~~~
 [php]
@@ -38,26 +38,26 @@ class LoginForm extends CFormModel
 }
 ~~~
 
-Die `LoginForm` deklariert drei Attribute: `$username`, `$password` und
-`$rememberMe`. Sie werden dazu benutzt den vom Benutzer eingegebenen
-Benutzernamen, das Passwort sowie die Option, ob der Benutzer möchte, dass
-sein Login aktiviert bleibt, festzuhalten. Da `$rememberMe` den Standardwert
-`false` hat, wird die entsprechende Option bei der Erstanzeige des Login-Formulars
+`LoginForm` deklariert drei Attribute: `$username` (Benutzername), 
+`$password` (Passwort) und `$rememberMe` (sinngem.: Angemeldet bleiben). 
+Sie dienen zum Speichern des eingegebenen Benutzernamens, des Passworts und der
+Option "Angemeldet bleiben". Da `$rememberMe` den Standardwert `false` hat, 
+wird die entsprechende Option beim ersten Aufruf des Anmeldeformulars
 nicht markiert.
 
-> Info|Info: Anstatt "Eigenschaften" benutzen wir für Klassen-Eigenschaften 
-den Begriff *Attribute* um sie von normalen Eigenschaften zu unterscheiden. Ein
+> Info|Info: Anstatt "Eigenschaften" benutzen wir für Klasseneigenschaften 
+den Begriff *Attribute*, um sie von normalen Eigenschaften zu unterscheiden. Ein
 Attribut ist eine Eigenschaft, die hauptsächlich dazu benutzt wird, Daten aus
 Benutzereingaben oder aus der Datenbank zu speichern.
 
-Festlegen von Validierungsregeln
--------------------------------
+Regeln für die Gültigkeitsprüfung angeben
+-----------------------------------------
 
-Nachdem der Benutzer seine Eingaben abgeschickt hat und das Model befüllt wurde
-müssen wir sicherstellen, dass die Eingaben valide sind bevor wir sie benutzen.
-Das geschieht durch Validierung gegen eine Reihe von Regeln. Wir legen die
-Validierungsregeln mit der `rules()` Methode fest, die ein Array von Regel-
-anforderungen zurückgibt.
+Sobald der Benutzer seine Eingaben abschickt und das Model befüllt
+wird, müssen wir sicherstellen, dass die Daten gültig sind, bevor wir sie
+weiterverwenden. Das geschieht durch eine Gültigkeitsprüfung (engl.:
+validation) anhand eine Reihe von Regeln. Wir legen diese Regeln mit der Methode
+`rules()` fest, die ein Array von Regelkonfigurationen zurückgeben sollte.
 
 ~~~
 [php]
@@ -86,63 +86,63 @@ class LoginForm extends CFormModel
 				Yii::app()->user->login($identity,$duration);
 			}
 			else
-				$this->addError('password','Incorrect password.');
+				$this->addError('password','Falsches Passwort.');
 		}
 	}
 }
 ~~~
 
-Der obige Code legt fest, dass sowohl `username` als auch `password` erforderlich
+Der obige Code legt fest, dass sowohl `username` als auch `password` zwingend erforderlich
 sind und `password` authentifiziert werden soll.
 
-Jede Regel, die von `rules()` zurückgegeben wird, muss folgendem Format entsprechen:
+Jede der Regeln, die von `rules()` zurückgegeben werden, muss folgendem Format entsprechen:
 
 ~~~
 [php]
-array('AttributeList', 'Validator', 'on'=>'ScenarioList', ...zusätzliche Optionen)
+array('AttributListe', 'Validator', 'on'=>'SzenarienListe', ...Zusätzliche Optionen)
 ~~~
 
-wobei `AttributeList` eine Reihung durch Komma getrennter Attributsnamen ist,
-die entsprechend der Regel validiert werden muss; `Validator` legt fest, was
-für eine Überprüfung durchgeführt werden soll; der `on` Parameter ist optional
-und bestimmt eine Liste von Szenarien, auf die die Regel angewendet werden soll; 
-und `zusätzliche Optionen` sind Namen-Wert Paare, die dazu dienen, die entsprechenden
-Werte der Eigenschaften des Validierers zu initialisieren.
+wobei `AttributListe` eine durch Kommas getrennte Reihe von zu Attributnamen ist, 
+die entsprechend der Regel auf Gültigkeit geprüft werden sollen. `Validator` (sinngem.:
+Gültigkeitsprüfer) legt fest, welche Überprüfung durchgeführt werden soll. Der
+`on` (bei) Parameter ist optional und definiert eine Liste von Szenarien, in denen die Regel 
+angewendet werden soll.  `Zusätzliche Optionen` sind Namen-Werte-Paare, die dazu dienen, 
+die entsprechenden Eigenschaftswerte des Validators zu initialisieren.
 
-Es gibt drei Arten die Validierungsregeln von `Validator` festzulegen. Erstens
-kann `Validator` der Name einer Methode der Model-Klasse sein wie `authenticate`
-im obigen Beispiel. Die Validierungsmethode muss folgendem Muster entsprechen:
+Es gibt drei Arten, um einen `Validator` in einer Prüfregel anzugeben. Erstens
+kann `Validator` der Name einer Methode der Model-Klasse sein, wie `authenticate`
+im obigen Beispiel. Diese Prüfmethode muss folgendem Muster entsprechen:
 
 ~~~
 [php]
 /**
- * @param string der Name des Attributs, das validiert werden soll
- * @param array Optionen aus der Validierungsregel
+ * @param string der Name des Attributs, das geprüft werden soll
+ * @param array Optionen der Prüfregel 
  */
 public function ValidatorName($attribute,$params) { ... }
 ~~~
 
-Zweitens kann `Validator` der Name einer Validierungsklasse sein. Wenn die
-Regel angewendet wird, wird eine Instanz dieser Validierungsklasse erzeugt um
-die jeweilige Validierung durchzuführen. Die zusätzlichen Optionen der Regel
-werden dazu benutzt, die Werte von Eigenschaften der Instanz zu initialisieren. 
-Eine Validierungsklasse muss von [CValidator] abgeleitet werden.
+Zweitens kann `Validator` der Name einer Klasse zur Gültigkeitsprüfung sein. Wenn die
+Regel angewendet wird, wird eine Instanz dieser Klasse erzeugt, um
+die jeweilige Gültigkeitsprüfung durchzuführen. Die zusätzlichen Optionen der Regel
+werden dazu benutzt, die Eigenschaftswerte dieser Instanz zu initialisieren. 
+Eine Klasse zur Gültigkeitsprüfung muss von [CValidator] abgeleitet werden.
 
-> Note|Anm.: Bei der Festlegung von Regeln für ein ActiveRecord-Model können
-wir eine spezielle Option `on` verwenden. Der Optionswert kann entweder `'insert'`
-oder `'update'` sein, die Regel wird dann beim Einfügen bzw. Aktualisieren
-des Datensatzes angewendet. Falls nicht gesetzt, wird die Regel in beiden Fällen,
-wenn `save()` aufgerufen wird, angewendet.
+> Note|Hinweis: Beim Festlegen der Regeln für einen ActiveRecord können
+wir eine spezielle Option `on` verwenden. Der Wert dafür kann entweder `'insert'`
+oder `'update'` sein. Die Regel wird dann beim Einfügen bzw. Aktualisieren
+des Datensatzes angewendet. Falls nicht gesetzt, wird die Regel beim Aufruf
+von `save()` in beiden Fällen angewendet.
 
-Drittens kann `Validator` eine vordefinierte Verknüpfung zu einer Validierungsklasse
-sein. Im obigen Beispiel ist der Name `required` eine Verknüpfung zu [CRequiredValidator],
-damit ist sichergestellt, dass der Wert des zu validierenden Attributs nicht leer ist.
-Nachfolgend die komplette Liste der vordefinierten Validierungsverknüpfungen:
+Drittens kann `Validator` eine vordefinierter Alias für eine Prüfklasse sein. 
+Im obigen Beispiel ist der Name `required` (benötigt) ein Alias zu [CRequiredValidator].
+Damit ist sichergestellt, dass der Wert des zu prüfenden Attributs nicht leer ist.
+Nachfolgend die komplette Liste der vordefinierten Validatoraliase:
 
    - `captcha`: Alias für [CCaptchaValidator], garantiert die Übereinstimmung des Attributs
 mit dem angezeigten [CAPTCHA](http://de.wikipedia.org/wiki/Captcha) Verifikationscode.
 
-   - `compare`: Alias für [CCompareValidator], garantiert die Gleichheit zu mit einem anderen
+   - `compare`: Alias für [CCompareValidator], garantiert die Gleichheit mit einem anderen
 Attribut oder einer Konstanten.
 
    - `email`: Alias für [CEmailValidator], garantiert eine gültige E-Mail Adresse.
@@ -150,10 +150,10 @@ Attribut oder einer Konstanten.
    - `default`: Alias für [CDefaultValueValidator], Zuweisung eines Standardwertes für
 das angegebene Attribut.
 
-   - `file`: Alias für [CFileValidator], garantiert als Attributwert den Namen einer
-hochgeladnen Datei.
+   - `file`: Alias für [CFileValidator], garantiert dass der Attributwert den Namen einer
+hochgeladenen Datei enthält.
 
-   - `filter`: Alias für [CFilterValidator], Umformung des Attributs durch einem Filter.
+   - `filter`: Alias für [CFilterValidator], Umformung des Attributs durch einen Filter.
 
    - `in`: Alias für [CRangeValidator], garantiert, dass die Daten mit einem Wert in
 einer vordefinierten Liste übereinstimmen.
@@ -164,22 +164,23 @@ innerhalb eines bestimmten Bereichs liegen.
    - `match`: Alias für [CRegularExpressionValidator], garantiert, dass die Daten 
 einem regulären Ausdruck entsprechen.
 
-   - `numerical`: Alias für [CNumberValidator], garantiert, dass die Daten eine gültige
-Zahl sind.
+   - `numerical`: Alias für [CNumberValidator], garantiert, dass das Attribut
+eine gültige Zahl ist.
 
-   - `required`: Alias für [CRequiredValidator], garantiert, das das Attribut nicht
+   - `required`: Alias für [CRequiredValidator], garantiert, dass das Attribut nicht
 leer ist.
 
    - `type`: Alias für [CTypeValidator], garantiert, dass das Attribut einem bestimmten
 Datentyp entspricht.
 
-   - `unique`: Alias für [CUniqueValidator], garantiert, dass die Daten einmalig in einer
-Spalte der Datenbanktabelle sind.
+   - `unique`: Alias für [CUniqueValidator], garantiert, dass das Attribut nur
+einmal in einer Datenbankspalte vorkommt.
 
-   - `url`: Alias für [CUrlValidator], garantiert, das die Daten ein gültiger URL sind.
+   - `url`: Alias für [CUrlValidator], garantiert, das die Daten eine gültige
+URL enthalten.
 
-Nachfolgend sind einige Beispiele für die Verwendung von vordefinierten Validierern
-aufgelistet:
+Nachfolgend sind einige Beispiele für die Verwendung von vordefinierten
+Validatoren aufgelistet:
 
 ~~~
 [php]
@@ -193,13 +194,14 @@ array('password', 'compare', 'compareAttribute'=>'password2', 'on'=>'register'),
 array('password', 'authenticate', 'on'=>'login'),
 ~~~
 
-Gesicherte Attributzuweisung
--------------------------------
+Absichern von Attributzuweisungen
+---------------------------------
 
-> Note|Anm.: die szenarienbasierte Attributzuweisung ist seit der Version 1.0.2 verfügbar
+> Note|Hinweis: Die szenarienbasierte Attributzuweisung ist seit der Version 1.0.2 verfügbar
 
-Nachdem ein Model instanziert wurde müssen wir oft seine Attributwerte mit Daten, die
-von Endbenutzern geliefert werden, befüllen. Das kann bequem über folgende Massenzuweisung geschehen:
+Nachdem ein Model instanziiert wurde, müssen wir seine Attributwerte oft mit
+Daten befüllen, die von Endbenutzern geliefert werden. Das kann bequem über 
+folgende Massenzuweisung geschehen:
 
 ~~~
 [php]
@@ -208,28 +210,29 @@ if(isset($_POST['LoginForm']))
 	$model->setAttributes($_POST['LoginForm'], 'login');
 ~~~
 
-Die letzte Anweisung ist eine Massenzuweisung, die jeden Eintrag in
-`$_POST['LoginForm']` dem entsprechenden Model-Attribut in einem `login`-
-Szenario (festgelegt durch den zweiten Parameter) zuweist. Das ist
+Die letzte Anweisung ist eine Massenzuweisung, bei der jeder Eintrag in
+`$_POST['LoginForm']` dem entsprechenden Model-Attribut des `login`-Szenarios 
+(festgelegt durch den zweiten Parameter) zugewiesen wird. Dies ist
 äquivalent zu folgender Zuweisung:
 
 ~~~
 [php]
 foreach($_POST['LoginForm'] as $name=>$value)
 {
-	if($name is a safe attribute)
+	if($name ist ein sicheres Attribut)
 		$model->$name=$value;
 }
 ~~~
 
-Die Entscheidung, ob eine Datenerfassung gesichert ist oder nicht, basiert auf 
-auf dem Rückgabewert der Methode `safeAttributes` und dem festgelegten Szenario.
-Als Standardwert liefert diese Methode alle als public deklarierten Attribute
-als gesicherte Attribute für [CFormModel], während es für [CActiveRecord] alle 
-Tabellenspalten außer dem Primärschlüssel sind. Wir können diese Methode 
-überschreiben um die sicheren Attribute entsprechend dem Szenario zu 
-reduzieren. Zum Beispiel kann ein Benutzer-Model viele Attribute enthalten,
-aber bei einem `login`-Szenario nutzen wir nur die Attribute `username` und
+Die Entscheidung, ob eine Attribut sicher ist oder nicht, basiert auf 
+auf dem Rückgabewert der Methode `safeAttributes` (sichere Attribute) und 
+dem angegebenen Szenario.
+Als Standardwert liefert diese Methode für [CFormModel] alle als public deklarierten 
+Attribute und für [CActiveRecord] alle Tabellenspalten außer dem
+Primärschlüssel als sichere Attribute zurück.  Wir können diese Methode 
+überschreiben, um die je nach Szenario sicheren Attribute einzuschränken.
+Ein Benutzer-Model kann zum Beispiel viele Attribute enthalten,
+im `login`-Szenario brauchen wir aber nur die Attribute `username` und
 `password`. Wir können diese Einschränkung wie folgt festlegen:
 
 ~~~
@@ -243,35 +246,36 @@ public function safeAttributes()
 }
 ~~~
 
-Etwas genauer: der Rückgabewert der `safeAttributes` Methode sollte dem
-folgenden Aufbau entsprechen:
+Genauer gesagt, sollte der Rückgabewert von `safeAttributes` folgendem 
+Aufbau entsprechen:
 
 ~~~
 [php]
 array(
-    // diese Attribute können in jedem Szenario, das weiter unten nicht 
-    // explizit angegeben ist, per Massenzuweisung befüllt werden
+    // Diese Attribute können per Massenzuweisung in jedem Szenario befüllt
+	// werden, das unten nicht explizit angegeben wird
     'attr1, attr2, ...',
 	 *
-   // diese Attribute können nur in `scenario 1` per Massenzuweisung befüllt werden
-   'scenario1' => 'attr2, attr3, ...',
+   // Diese Attribute können nur in `szenario1` per Massenzuweisung befüllt werden
+   'szenario1' => 'attr2, attr3, ...',
 	 *
-   // diese Attribute können nur in `scenario 2` per Massenzuweisung befüllt werden
-   'scenario2' => 'attr1, attr3, ...',
+   // Diese Attribute können nur in `scenario2` per Massenzuweisung befüllt werden
+   'Scenario2' => 'attr1, attr3, ...',
 )
 ~~~
 
-Wenn ein Model nicht szenario-sensitiv ist (d. h. es wird nur für ein Szenario
-benutzt oder alle Szenarien nutzen das gleiche Set gesicherter Attribute)
-kann der Rückgabewert zu einer einzigen Zeichenkette vereinfacht werden:
+Wenn ein Model keine Unterscheidung nach Szenarien braucht (es also nur 
+in einem Szenario benutzt wird oder in allen Szenarien die selben Attribute
+als sicher gelten) kann der Rückgabewert zu einer einzelnen Zeichenkette 
+vereinfacht werden:
 
 ~~~
 [php]
 'attr1, attr2, ...'
 ~~~
 
-Dateneingaben, die nicht gesichert sind, müssen wir dem entsprechenden Attribut
-durch eine individuelle Anweisung, wie im Folgenden, zuweisen:
+Eingegebenene Daten, die nicht sicher sind, müssen wir dem entsprechenden
+Attribut wie im Folgenden von Hand zuweisen:
 
 ~~~
 [php]
@@ -279,20 +283,20 @@ $model->permission='admin';
 $model->id=1;
 ~~~
 
-Auslösen der Validierung
-------------------------
+Auslösen der Gültigkeitsprüfung
+-------------------------------
 
-Nachdem ein Model mit vom Benutzer übermittelten Daten befüllt ist, können
-wir [CModel::validate()] aufrufen, um den Validierungsprozess auszulösen. Die
-Methode liefert einen Rückgabewert, der anzeigt, ob die Validierung erfolgreich war
-oder nicht. Für das [CActiveRecord]-Model wird die Validierung automatisch 
-ausgelöst, wenn wir seine [CActiveRecord::save()]-Methode aufrufen.
+Sobald ein Model mit den vom Benutzer übermittelten Daten befüllt ist, können
+wir [CModel::validate()] aufrufen, um die Gültigkeitsprüfung durchzuführen.
+Der Rückgabewert dieser Methode zeigt an, ob die Prüfung erfolgreich war
+oder nicht. Für das [CActiveRecord]-Model wird die Gültigkeitsprüfung automatisch 
+ausgelöst, wenn wir dessen Methode [CActiveRecord::save()] aufrufen.
 
-Wenn wir [CModel::validate()] aufrufen, können wir einen Szenario-Parameter
-angeben. Nur Validierungsregeln, die für das angegebene Szenario gelten
-werden ausgeführt. Eine Validierungsregel gilt für ein Szenario, wenn die
-`on` Option der Regel nicht gesetzt ist oder den angegeben Namen des Szenarios
-enthält. Wenn wir kein Szenario beim Aufruf von [CModel::validate()] angeben,
+Beim Aufruf von [CModel::validate()], können wir einen Szenario-Parameter
+angeben. Dabei werden nur die in diesem Szenario geltenden Prüfregeln ausgeführt.
+Eine Regel gilt für ein Szenario, wenn die `on` Option der Regel entweder nicht gesetzt ist, 
+oder den Namen dieses Szenarios enthält.
+Wenn wir kein Szenario beim Aufruf von [CModel::validate()] angeben,
 werden nur die Regeln, bei denen die `on` Option nicht gesetzt ist ausgeführt.
 
 Zur Validierung der Anmeldung eines Benutzers führen wir beispielsweise folgende
@@ -303,7 +307,7 @@ Anweisung aus:
 $model->validate('register');
 ~~~
 
-Wir können die Validierungsregeln im Formular-Model wie folgt angeben:
+Wir können die Prüfregeln im Formular-Model wie folgt angeben:
 
 ~~~
 [php]
@@ -317,32 +321,33 @@ public function rules()
 }
 ~~~
 
-Demzufolge wird die erste Regel in allen Szenarios angewendet, während
-die beiden nächsten Regeln nur im `register` Szenario zum Einsatz kommen.
+Demzufolge wird die erste Regel in allen Szenarien angewendet, während
+die beiden nächsten Regeln nur im Szenario `register` zum Einsatz kommen.
 
-> Note|Anm.: die szenarienbasierte Validierung ist seit der Version 1.0.1 verfügbar
+> Note|Hinweis: Die szenarienbasierte Validierung ist seit Version 1.0.1
+verfügbar.
 
-Abfragen von Validierungsfehlern
---------------------------------
+Abfragen von Fehlern bei der Gültigkeitsprüfung
+-----------------------------------------------
 
-wir können zur Kontrolle, ob irgendein Validierungsfehler auftritt,
-[CModel::hasErrors()] anwenden, und, falls ja, [CModel::getErrors()]
-um die Fehlermeldung zu erhalten. Beide Methoden können für alle oder
-ein einzelnes Attribut benutzt werden.
+Um zu ermitteln, ob bei der Gültigkeitsprüfung ein Fehler aufgetreten ist,
+können wir [CModel::hasErrors()] verwenden. Falls ja, erhalten wir mit
+[CModel::getErrors()] die Fehlermeldung. Beide Methoden können für alle oder
+ein einzelnes Attribut verwendet werden.
 
 Attribut-Label
-----------------------
+--------------
 
-Beim Entwurf eines Formulars ist es oft erforderlich für jedes Eingabefeld einen
-Label (Beschriftung) anzuzeigen. Dieser Label informiert den Benutzer über die Art der
-Information, die von seinem Eintrag in das Feld erwartet wird. Obwohl wir einen
-Label hart in die View codieren können ist es flexibler und bequemer, wenn wir
-ihn im entsprechenden Model angeben.
+Beim Entwurf eines Formulars ist es oft erforderlich für jedes Eingabefeld ein
+Label (Beschriftung) anzuzeigen. Dieses Label informiert den Benutzer über die Art der
+Information, die er in das Feld eintragen soll. Obwohl wir ein Label fest in
+einem View hinterlegen können, wäre es flexibler und bequemer, es im entsprechenden 
+Model anzugeben.
 
-Als Standardwert wird [CModel] einfach den Namen des Attributs als Label
-zurückgeben. Das kann durch Überschreiben der [attributeLabels()|CModel::attributeLabels]-
-Methode angepasst werden. Wie wir im folgenden Unterkapitel sehen werden, erlaubt
-es uns die Angebe von Labels im Model ein Formular schneller und wirkungsvoller zu
-entwerfen.
+Als Standardwert gibt [CModel] einfach den Namen des Attributs als Label zurück.
+Dies kann durch Überschreiben der Methode [attributeLabels()|CModel::attributeLabels]
+angepasst werden. Wie wir in den folgenden Abschnitten sehen werden, erlaubt
+es uns die Angebe von Labels im Model, ein Formular schneller und wirkungsvoller zu
+erstellen.
 
 <div class="revision">$Id: form.model.txt 258 2009-02-07 20:51:13Z peter.matulla $</div>

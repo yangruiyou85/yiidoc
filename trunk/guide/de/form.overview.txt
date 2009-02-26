@@ -1,21 +1,22 @@
 ﻿Mit Formularen arbeiten
 =======================
 
-Das Erfassen von Benutzerdaten mit HTML-Formularen ist eine der hauptsächlichen
-Aufgaben bei der Entwicklung von Webanwendungen. Neben dem Entwurf eines Formulars
-müssen Entwickler es mit vorhandenen Daten oder Standardwerten füllen,
-die Benutzereingaben überprüfen, zutreffende Fehlermeldungen ausgeben und die
-Eingabe im permanenten Speicher sichern. Durch die MVC Architektur von Yii wird
-dieser Workflow stark vereinfacht.
+Eine der Hauptaufgaben bei der Entwicklung von Webanwendungen, besteht im Erfassen
+von Benutzerdaten mit HTML-Formularen. Entwickler müssen dazu Formulare
+entwerfen, diese mit vorhandenen Daten oder Standardwerten füllen, 
+Benutzereingaben überprüfen, zutreffende Fehlermeldungen ausgeben und die
+Eingabe in einem permanenten Speicher sichern. Durch die MVC Architektur von Yii wird
+dieser Ablauf stark vereinfacht.
 
-Die folgenden Schritte sind typischerweise erforderlich, wenn in Yii mit
-Formularen gearbeitet wird:
+Um in Yii mit Formularen zu arbeiten, sind normalerweise folgende Schritte
+erforderlich:
 
    1. Anlegen einer Model-Klasse, die die zu erfassenden Datenfelder repräsentiert.
-   2. Entwurf einer Controller-Action mit einem Code, der auf Benutzereingaben reagiert.
+   2. Entwurf einer Controller-Action, um auf das Abschicken eines Formulars zu
+reagieren.
    3. Anlegen eines Formulars in einem View-Script, das in Verbindung mit der
       Controller-Action steht.
 
-Im nächsten Unterabschnitt beschreiben wir jeden dieser Schritte im Detail.   
+In den nächsten Abschnitten beschreiben wir jeden dieser Schritte im Detail.   
 
-<div class="revision">$Id: form.overview.txt 258 2009-02-07 20:51:13Z peter.matulla $</div>
+<div class="revision">$Id: form.overview.txt 163 2008-11-05 12:51:48Z weizhuo $</div>
