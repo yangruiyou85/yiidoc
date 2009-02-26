@@ -1,26 +1,25 @@
-﻿Erfassen von tabellarischen Eingaben
-====================================
+﻿Erfassen tabellarischer Eingaben
+================================
 
-Manchmal wollen wir einen Satz Benutzereingaben erfassen, d. h. der Benutzer
-kann Informationen für mehrere Model-Instanzen eingeben und alle auf einmal
-abschicken. Wir nennen dies *tabellarische Eingabe* weil die Eingabefelder oft
+Manchmal wollen wir eine ganze Reihe von Benutzereingaben erfassen, d.h. der Benutzer
+kann Informationen für mehrere Model-Instanzen auf einmal eingeben und
+abschicken. Wir nennen dies *tabellarische Eingabe*, weil die Eingabefelder oft
 als HTML-Tabelle dargestellt werden.
 
-Um mit tabellarischen Eingaben zu arbeiten, müssen wir zuerst, abhängig davon,
-ob wir Daten einfügen oder aktualisieren wollen, ein Array mit Model-Instanzierungen
-erzeugen oder mit Daten befüllen. Wir fragen dann die vom Benutzer eingegebenen Daten
-über die `$_POST` Variable ab und ordnen sie jeder Model-Instanz zu. Eine kleiner
-Unterschied gegenüber der Eingabe für eine einzelne Model-Instanz ist, dass wir die
-eingegebenen Daten über `$_POST['ModelClass'][$i]` anstatt über `$_POST['ModelClass']`
-erhalten.
+Um mit tabellarischen Eingaben zu arbeiten, müssen wir zuerst ein Array mit
+Model-Instanzen erstellen oder befüllen, je nachdem, ob wir Daten einfügen oder 
+aktualisieren wollen. Dann beziehen wir die vom Benutzer eingegebenen Daten
+von der `$_POST`-Variable und ordnen sie den einzelnen Model-Instanzen zu. 
+Im Unterschied zum Vorgehen bei einer einzelnen Model-Instanz, beziehen wir
+die Daten mit `$_POST['ModelClass'][$i]` statt `$_POST['ModelClass']`.
 
 ~~~
 [php]
 public function actionBatchUpdate()
 {
-	// frage zu aktualisierende Datensätze  ab
-    // unter der Annahme, dass jeder Datensatz zur Model-
-    // Klasse 'Item' gehört
+	// Zu aktualisierende Datensätze abfragen
+    // Es wird davon ausgegangen, dass jeder Datensatz vom 
+	// Typ 'Item' ist 
 	$items=$this->getItemsToUpdate();
 	if(isset($_POST['Item']))
 	{
@@ -32,22 +31,22 @@ public function actionBatchUpdate()
 			$valid=$valid && $item->validate();
 		}
 		if($valid)  // alle Daten sind gültig
-			// ...tu hier etwas
+			// ...Tu hier etwas
 	}
-	// zeige die View an und erfasse die tabellarische Eingabe
+	// Zeigt den View an und erfasst tabellarische Eingabe
 	$this->render('batchUpdate',array('items'=>$items));
 }
 ~~~
 
-Nachdem die Action fertig ist, müssen wir an der `batchUpdate` View
-arbeiten um die Eingabefelder in einer HTML-Tabelle anzuzeigen.
+Nachdem die Action bereit steht, müssen wir am View `batchUpdate`
+arbeiten, um die Eingabefelder in einer HTML-Tabelle anzuzeigen.
 
 ~~~
 [php]
 <div class="yiiForm">
 <?php echo CHtml::form(); ?>
 <table>
-<tr><th>Name</th><th>Price</th><th>Count</th><th>Description</th></tr>
+<tr><th>Name</th><th>Preis</th><th>Anzahl</th><th>Beschreibung</th></tr>
 <?php foreach($items as $i=>$item): ?>
 <tr>
 <td><?php echo CHtml::activeTextField($item,"name[$i]"); ?></td>
@@ -58,16 +57,16 @@ arbeiten um die Eingabefelder in einer HTML-Tabelle anzuzeigen.
 <?php endforeach; ?>
 </table>
 
-<?php echo CHtml::submitButton('Save'); ?>
+<?php echo CHtml::submitButton('Speichern'); ?>
 </form>
 </div><!-- yiiForm -->
 ~~~
 
-Beachten Sie, dass wir oben `"name[$i]"` anstatt `"name"` als zweiten
-Parameter benutzen, wenn wir [CHtml::activeTextField] aufrufen.
+Beachten Sie, dass wir beim Aufruf von [CHtml::activeTextField] 
+`"name[$i]"` statt `"name"` als zweiten Parameter benutzen.
 
-Falls irgendein Validierungfehler auftritt, werden die entsprechenden
-Eingabefelder automatisch, wie bereits bei der Einzeleingabe für
-ein Model beschrieben, hervorgehoben.
+Falls ein Fehler bei der Gültigkeitsprüfung auftritt, werden die entsprechenden
+Eingabefelder automatisch hervorgehoben, wie bereits bei der Einzeleingabe für
+ein Model beschrieben.
 
-<div class="revision">$Id: form.table.txt 270 2009-02-09 20:57:35Z peter.matulla $</div>
+<div class="revision">$Id: form.table.txt 468 2009-01-04 20:57:35Z qiang.xue $</div>

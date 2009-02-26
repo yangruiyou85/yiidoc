@@ -1,34 +1,35 @@
 ﻿ActiveRecord
 ============
 
-Obwohl Yii DAO praktisch jede datenbankbezogene Aufgabe erledigen kann
-besteht das Risiko, dass wir 90% unserer Zeit mit dem Schreiben von
-SQL Anweisungen für die die üblichen CRUD (create, read, update and delete)
-Operationen aufwenden. Es ist auch schwer Code zu warten, wenn er
+Obwohl Yii DAO praktisch jede datenbankbezogene Aufgabe erledigen kann,
+werden wir wahrscheinlich 90% unserer Zeit mit dem Schreiben von
+SQL-Anweisungen für die die üblichen CRUD-Operationen (create, read, update and delete)
+verbringen. Auch die Codewartung wird erschwert, wenn dieser
 mit SQL Anweisungen durchmischt ist. Zur Lösung dieser Probleme können wir 
 ActiveRecord nutzen.
 
-ActiveRecord (AR) ist eine gängige Objektrelationale-Abbildung-Technik (ORM, englisch:
-object-relational mapping). Jede AR-Klasse repräsentiert eine Tabelle der
-Datenbank (oder eine View) deren Attribute durch AR-Klasseneigenschaften
-repräsentiert werden und eine AR-Instanz repräsentiert eine Zeile in der Tabelle.
-Übliche CRUD Operationen sind als AR-Methoden implementiert. Das hat zur Folge,
-dass wir auf unsere Daten in einer mehr objektorientierten Weise zugreifen
-können. Zum Beispiel können wir den folgenden Code dazu benutzen eine neue Zeile
+ActiveRecord (AR) ist eine gängige Objektrelationale-Abbildungstechnik (ORM,
+engl.: object-relational mapping). Jede AR-Klasse repräsentiert eine Tabelle der
+Datenbank (oder einen View) deren Attribute durch AR-Klasseneigenschaften
+repräsentiert werden. Eine AR-Instanz repräsentiert eine Zeile in der Tabelle.
+Übliche CRUD-Operationen sind als AR-Methoden implementiert. Das hat zur Folge,
+dass wir auf unsere Daten auf eher objektorientierte Weise zugreifen
+können. Zum Beispiel können wir den folgenden Code dazu benutzen, eine neue Zeile
 in die `Post`-Tabelle einzufügen:
 
 ~~~
 [php]
 $post=new Post;
-$post->title='sample post';
-$post->content='post body content';
+$post->title='Beispielbeitrag';
+$post->content='Inhalt des Beitrags';
 $post->save();
 ~~~
 
-Im Folgenden beschreiben wir, AR-Instanzen anzulegen und für CRUD Operationen
-zu benutzen. Wir werden im nächsten Kapitel zeigen, wie wir AR nutzen, um mit
-Beziehungen in einer Datenbank (DB) umzugehen. Der Einfachheit halber benutzen wir
-die folgende Datenbanktabelle für unsere Beispiele in diesem Abschnitt
+Im Folgenden beschreiben wir, wie wir AR-Instanzen anzulegen und für CRUD Operationen
+benutzen können. Wir werden im nächsten Kapitel darauf eingehen, wie wir AR
+verwenden können, um mit Beziehungen in einer Datenbank (DB) umzugehen. 
+Der Einfachheit halber benutzen wir die folgende Datenbanktabelle 
+für unsere Beispiele in diesem Abschnitt:
 
 ~~~
 [sql]
@@ -40,15 +41,15 @@ CREATE TABLE Post (
 );
 ~~~
 
-> Note|Anm.: AR ist nicht dafür gedacht alle datenbankbezogenen Aufgaben zu lösen.
-Es ist zweckmäßig um Datenbanktabellen in PHP abzubilden und für
-Abfragen, die kein komplexes SQL erfordern. Yii DAO sollte in komplexen Szenarien
+> Note|Hinweis: AR ist nicht dafür gedacht, alle datenbankbezogenen Aufgaben zu lösen.
+Er ist zweckmäßig um Datenbanktabellen in PHP abzubilden sowie für
+Abfragen, die kein komplexes SQL erfordern. In komplexeren Fällen sollte Yii DAO 
 benutzt werden.
 
 Herstellen einer DB-Verbindung
 ------------------------------
 
-AR setzt auf eine DB-Verbindung auf um DB-bezogene Operationen durchzuführen.
+AR setzt auf eine DB-Verbindung auf, um DB-bezogene Operationen durchzuführen.
 Standardmäßig geht es davon aus, dass eine `db`-Applikationskomponente die
 notwendige [CDbConnection]-Instanz angibt, die als DB Verbindung dient. Die
 folgende Applikationskonfiguration zeigt ein Beispiel:
