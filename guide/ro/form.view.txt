@@ -1,30 +1,29 @@
-Creating Form
-=============
+Creare formular
+===============
 
-Writing the `login` view is straightforward. We start with a `form` tag
-whose action attribute should be the URL of the `login` action described
-previously. We then insert labels and input fields for the attributes
-declared in the `LoginForm` class. At the end we insert a submit button
-which can be clicked by users to submit the form. All these can be done in
-pure HTML code.
+Scrierea view-ului `login` este destul de directa. Pornim cu tagul `form`
+al carui atribut action ar trebui sa fie URL-ul action-ului `login` descris anterior.
+Apoi inseram label-uri si campuri input pentru atributele declarate in clasa
+`LoginForm`. La sfarsit, inseram un buton submit care poate fi apasat de utilizator
+pentru a trimite datele. Toate acestea pot fi facute in HTML simplu.
 
-Yii provides a few helper classes to facilitate view composition. For
-example, to create a text input field, we can call [CHtml::textField()]; to
-create a drop-down list, call [CHtml::dropDownList()].
+Yii pune la dispozitie unele clase ajutatoare (helper) pentru a facilita compunerea view-urilor.
+De exemplu, pentru a crea un camp input text, putem apela [CHtml::textField()]; pentru a crea
+o lista drop-down, apelam [CHtml::dropDownList()].
 
-> Info: One may wonder what is the benefit of using helpers if they
-> require similar amount of code when compared with plain HTML code. The
-> answer is that the helpers can provide more than just HTML code. For
-> example, the following code would generate a text input field which can
-> trigger form submission if its value is changed by users.
+> Info: Ar putea aparea intrebarea: 'Dar care este beneficiul folosirii helper-elor daca
+> este nevoie de o cantitate similara de cod comparativ cu codul simplu HTML?'. Raspunsul
+> este ca helper-ele pot pune la dispozitie mai multe lucruri decat cod HTML. De exemplu,
+> urmatorul cod va genera un camp input text care va declansa submiterea formularului
+> in cazul in care valoarea sa este schimbata de catre utilizator:
 > ~~~
 > [php]
 > CHtml::textField($name,$value,array('submit'=>''));
 > ~~~
-> It would otherwise require writing clumsy JavaScript everywhere.
+> Altfel, ar fi nevoie de scrierea de javascript peste tot.
 
-In the following, we use [CHtml] to create the login form. We assume that
-the variable `$user` represents `LoginForm` instance.
+Mai jos, folosim [CHtml] pentru a crea formularul de logare. Presupunem ca variabila
+`$user` reprezinta instanta `LoginForm`.
 
 ~~~
 [php]
@@ -54,19 +53,18 @@ Remember me next time<br/>
 </div><!-- yiiForm -->
 ~~~
 
-The above code generates a more dynamic form. For example,
-[CHtml::activeLabel()] generates a label associated with the specified
-model attribute. If the attribute has an input error, the label's CSS class
-will be changed to `error`, which changes the appearance of the label with
-appropriate CSS styles. Similarly, [CHtml::activeTextField()] generates a
-text input field for the specified model attribute and changes its CSS
-class upon any input error.
+Codul de mai sus genereaza un formular mai dinamic. De exemplu,
+[CHtml::activeLabel()] genereaza un label asociat cu atributul specificat al modelului.
+Daca atributul are o eroare la intrare, clasa CSS a label-ului va fi `error`, ceea ce va
+schimba aspectul label-ului cu stiluri CSS corespunzatoare. In mod similar,
+[CHtml::activeTextField()] genereaza un camp input text pentru atributul specificat al modelului
+si ii schimba clasa CSS in cazul unei erori de intrare.
 
-If we use the CSS style file `form.css` provided by the `yiic` script, the
-generated form would be like the following:
+Daca folosim fisierul cu stiluri CSS `form.css` pus la dispozitie de unealta `yiic`, formularul
+generat va arata in felul urmator:
 
-![The login page](login1.png)
+![Pagina login](login1.png)
 
-![The login with error page](login2.png)
+![Pagina login cu erori](login2.png)
 
 <div class="revision">$Id: form.view.txt 715 2009-02-20 02:08:24Z qiang.xue $</div>
