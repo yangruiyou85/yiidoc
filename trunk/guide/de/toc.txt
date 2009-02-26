@@ -21,7 +21,7 @@
     - [Erstellen des Models](form.model)
     - [Erstellen der Action](form.action)
     - [Erstellen des Formulars](form.view)
-    - [Tabellarische Eingaben](form.table)
+    - [Erfassen tabellarischer Eingaben](form.table)
 
 * Arbeiten mit Datenbanken
     - [Übersicht](database.overview)

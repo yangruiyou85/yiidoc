@@ -1,21 +1,23 @@
 ﻿Arbeiten mit Datenbanken
 ========================
 
-Yii unterstützt wirkungsvoll die Datenbankprogrammierung. Basierend auf der
-PHP Data Objects (PDO)-Erweiterung ermöglicht es Yii Data Access Objects (DAO)
-auf unterschiedliche Datenbankmanagementsysteme (DBMS) über eine einzige,
-einheitliche Schnittstelle zuzugreifen. Anwendungen, die Yii's DAO nutzen
-können leicht auf ein anderes DBMS umgestellt werden ohne den Code für den
-Zugriff auf die Daten ändern zu müssen. ActiveRecord (AR) von Yii, implementiert 
-nach dem weit verbreiteten Ansatz der Objektrelationalen Abbildung (Object-
-Relational Mapping, ORM), vereinfacht zusätzlich die Datenbank Programmierung.
-Durch die Darstellung einer Tabelle als Klasse und einer Zeile als Instanz
-vermeidet Yii AR die sich wiederholende Aufgabe, solche SQL-Anweisungen zu schreiben,
-die sich hauptsächlich mit CRUD (create, read, update und delete) Operationen befassen.
+Yii bietet leistungsstarke Features für die Datenbankprogrammierung. Basierend auf der
+PHP Data Objects (PDO)-Extension kann man mit Yii Data Access Objects (DAO)
+über eine einheitliche Schnittstelle auf unterschiedliche Datenbankmanagementsysteme (DBMS) 
+zugreifen. Anwendungen, die Yiis DAO benutzen, können leicht auf ein anderes DBMS 
+umgestellt werden, ohne den Code für den Zugriff auf die Daten ändern zu müssen. 
+Yiis ActiveRecord (AR) wurde nach dem 
+weit verbreiteten Ansatz der Objektrelationalen Abbildung (Object-Relational
+Mapping, ORM) implementiert. Er vereinfacht die Datenbank Programmierung
+zusätzlich.  Indem eine Tabelle von einer Klasse und eine Tabellenzeile von
+einer Instanz verkörpert wird, vermeidet Yii AR das sich stets wiederholende
+Schreiben von SQL-Anweisungen, die sich hauptsächlich mit CRUD-Operationen (für 
+"*C*reate, *R*ead, *U*pdate, *D*elete", "Erstellen, Lesen, Aktualisieren, Löschen")
+befassen.
 
-Obwohl Yii's DAO und AR fast alle datenbankbezogenen Aufgaben erledigen kann,
-können Sie trotzdem ihre eigene Datenbankbibliothek für ihre Yii Anwendung nutzen.
-Tatsache ist, dass das Yii Framework sorgfältig daraufhin konzipiert ist, mit
-sonstigen Fremdbibliotheken eingesetzt werden zu können.
+Obwohl man mit Yiis DAO und AR fast alle datenbankbezogenen Aufgaben erledigen kann,
+können Sie trotzdem Ihre eigene Datenbankbibliothek für Ihre Yii Anwendung nutzen.
+Tatsächlich wurde bei der Konzeption von Yii viel Sorgfalt darauf verwendet,
+andere Fremdbibliotheken mit einbinden zu können.
 
-<div class="revision">$Id: database.overview.txt 280 2009-02-10 12:51:48Z peter.matulla $</div>
+<div class="revision">$Id: database.overview.txt 163 2008-11-05 12:51:48Z weizhuo $</div>
