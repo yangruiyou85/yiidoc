@@ -213,9 +213,8 @@ class MyCommand extends CConsoleCommand
 
 Module
 ------
-Bitte beachten Sie den Abschnitt über
-[Module](/doc/guide/basics.module#creating-module) für Details zur Erstellung von
-Modulen. 
+Für Details zur Erstellung von Modulen, beachten Sie bitte das Kapitel über
+[Module](/doc/guide/basics.module#creating-module). 
 
 Die allgemeine Richtlinie für die Entwicklung eines Moduls lautet: Es sollte in
 sich geschlossen sein. Sämtliche Dateien, die vom Modul verwendet werden (wie

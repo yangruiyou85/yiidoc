@@ -58,7 +58,7 @@ mit dem enthaltenen `hello world`-Demo durch.
 Einsatz von Cache-Techniken
 ---------------------------
 
-Wie im Abschnitt [Caching](/doc/guide/caching.overview) beschrieben, bietet
+Wie im Kapitel [Caching](/doc/guide/caching.overview) beschrieben, bietet
 Yii verschiedene Cache-Lösungen, die die Leistungsfähigkeit einer Anwendung
 bedeutend verbessern können. Falls das Erzeugen bestimmter Daten sehr viel
 Zeit in Anspruch nimmt, können wir diese [Daten cachen](/doc/guide/caching.data) um

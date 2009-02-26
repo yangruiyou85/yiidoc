@@ -1,8 +1,8 @@
 Erstellen der ersten Yii-Anwendung
 ==================================
 
-Um einen ersten Eindruck von Yii zu bekommen, beschreiben wir in diesem Abschnitt,
-wie wir eine einfache Yii-Anwendung anlegen. Dazu verwenden wir den 
+Um einen ersten Eindruck von Yii zu bekommen, beschreiben wir in diesem
+Kapitel, wie wir eine einfache Yii-Anwendung anlegen. Dazu verwenden wir den 
 mächtigen `yiic`-Befehl, ein Hilfsprogramm, das automatisch Code für verschiedene 
 Zwecke generieren kann. Wir gehen davon aus, dass Yii im Verzeichnis
 `YiiRoot` installiert wurde.
