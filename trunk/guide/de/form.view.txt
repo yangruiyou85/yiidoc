@@ -1,31 +1,31 @@
-﻿Das Formular erstellen
-======================
+﻿Erstellen des Formulars
+=======================
 
-Die `login`-View zu schreiben ist einfach. Wir beginnen mit dem `form` Tag,
-dessen Action Attribut die URL der zuvor beschriebenen `login`-Action ist.
-Wir ergänzen dann mit den Labeln und Eingabefeldern der in der `LoginForm`-Klasse
-erklärten Attribute. Zum Schluss fügen Buttons zum Absenden/Abbrechen
-hinzu. Das alles lässt sich mit reinem HTML-Code machen.
+Den `login`-View zu schreiben ist einfach. Wir beginnen mit dem `form` Tag,
+dessen action-Attribut die URL der zuvor beschriebenen `login`-Action ist.
+Wir ergänzen dann Label und Eingabefeldern für die in der Klasse `LoginForm`
+definierten Attribute. Zum Schluss fügen wir einen Button zum Absenden
+hinzu. Das alles lässt sich mit reinem HTML-Code bewerkstelligen.
 
-Yii hat einige Helferklassen, die die Gestaltung von Views erleichtern. Beispielsweise
-können wir, um ein Textfeld zu erstellen, [CHtml::textField()] oder, um eine
-Dropdown-Liste zu erstellen, [CHtml::dropDownList()] aufrufen.
+Yii bietet einige Helferklassen, die die Gestaltung von Views erleichtern. Um 
+beispielsweise ein Textfeld oder eine Dropdown-Liste zu erstellen, können wir 
+[CHtml::textField()] bzw. [CHtml::dropDownList()] aufrufen.
 
-> Info: Man kann sich fragen welchen Nutzen diese Helfer bringen, wenn
-> sie doch fast die gleiche Menge an Code, verglichen mit einfachem
-> HTML, erfordern. Die Antwort ist, dass die Helfer mehr als reiner HTML-Code
+> Info: Man könnte sich fragen, welchen Nutzen diese Helfer bringen, wenn
+> sie doch, verglichen mit einfachem HTML, fast die gleiche Menge an Code
+> erfodern. Die Antwort ist, dass die Helfer mehr als nur HTML-Code
 > bieten. Zum Beispiel erzeugt der folgende Code ein Texteingabefeld, das
-> das Absenden des Formulars einleitet wenn sein Wert vom Benutzer verändert
+> das Absenden des Formulars einleitet, wenn sein Wert vom Benutzer verändert
 > wurde.
 > ~~~
 > [php]
 > CHtml::textField($name,$value,array('submit'=>''));
 > ~~~
-> Dies würde andernfalls das Schreiben von holprigem JavaScript irgendwo
+> Dies würde andernfalls überall klobigen JavaScript-Code
 > erforderlich machen.
 
 Nachfolgend benutzen wir [CHtml] um das Login-Formular zu erstellen. Wir
-unterstellen, dass die Variable `$user` eine Instanz von `LoginForm` ist.
+nehmen an, dass die Variable `$user` eine Instanz von `LoginForm` ist.
 
 ~~~
 [php]
@@ -47,7 +47,7 @@ unterstellen, dass die Variable `$user` eine Instanz von `LoginForm` ist.
 
 <div class="action">
 <?php echo CHtml::activeCheckBox($user,'rememberMe'); ?>
-Remember me next time<br/>
+Angemeldet bleiben<br />
 <?php echo CHtml::submitButton('Login'); ?>
 </div>
 
@@ -55,16 +55,15 @@ Remember me next time<br/>
 </div><!-- yiiForm -->
 ~~~
 
-Der obige Code generiert ein dynamisches Formular. Zum Beispiel erzeugt
-[CHtml::activeLabel()] einen Label, der mit dem aufgeführten Model-Attribut
+Der obige Code generiert ein dynamischeres Formular. [CHtml::activeLabel()] 
+erzeugt zum Beispiel ein Label, das mit dem angegebenen Model-Attribut
 verknüpft ist. Wenn bei dem Attribut ein Eingabefehler auftritt, ändert
-sich die CSS-Klasse des Labels in `error`, was wiederum das Erscheinungsbild des
-Labels durch entsprechende CSS-Formate verändert. Gleichermaßen erzeugt
+sich die CSS-Klasse des Labels in `error`, was über entsprechende CSS-Stile
+wiederum das Erscheinungsbild des Labels ändert. Gleichermaßen erzeugt
 [CHtml::activeTextField()] ein Texteingabefeld für das angegebene Model-Attribut
-und verändert seine CSS-Klasse im Falle eines Eingabefehlers. Für weitere
-Detail zur Nutzung von [CHtml] siehe [Using Helpers](/doc/guide/view.helper).
+und verändert ebenfalls seine CSS-Klasse im Falle eines Eingabefehlers. 
 
-Wenn wir die mit den `yiic`-Skripten mitgelieferte Style-Sheet-Datei `form.css`
+Wenn wir die mit den `yiic`-Skripten mitgelieferte Stylesheet-Datei `form.css`
 nutzen, sieht das erzeugte Formular folgendermaßen aus:
 
 
@@ -72,4 +71,4 @@ nutzen, sieht das erzeugte Formular folgendermaßen aus:
 
 ![Die Login-Seite mit Fehlern](login2.png)
 
-<div class="revision">$Id: form.view.txt 269 2009-02-09 23:01:07Z peter.matulla $</div>
+<div class="revision">$Id: form.view.txt 715 2009-02-20 02:08:24Z qiang.xue $</div>
