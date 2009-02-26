@@ -90,4 +90,4 @@ förutom de som är standard. Vi kan också skapa egna kommandon som skall anvä
 med `yiic shell`. För att göra så, placera bara kommandonas klassfiler i 
 katalogen `protected/commands/shell`.
 
-<div class="revision">$Id: topics.console.txt 170 2008-11-06 20:33:35Z qiang.xue $</div>
+<div class="revision">$Id: topics.console.txt 745 2009-02-25 21:45:42Z qiang.xue $</div>
