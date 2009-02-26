@@ -2,7 +2,7 @@ Model
 =====
 
 Ein Model ist eine Instanz vom Typ [CModel] oder dessen Kindklassen. Models
-werden verwendet, um Daten sowie die für sie relevanten Geschäftsregeln festzuhalten.
+werden verwendet, um Daten, sowie die für sie relevanten Geschäftsregeln festzuhalten.
 
 Ein Model repräsentiert ein einzelnes Datenobjekt. Es kann sich um eine Zeile
 in einer Datenbanktabelle oder ein Formular mit Benutzereingaben handeln.
