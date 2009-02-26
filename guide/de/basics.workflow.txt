@@ -7,7 +7,7 @@ gehen wir davon aus, dass die Anforderungen für Yii bereits geprüft und die
 nötige Entwurfsanalyse der Anwendung durchgeführt wurde.
 
    1. Erstellen der grundsätzlichen Verzeichnisstruktur. Um diesen Prozess zu
-beschleunigen, kann der `yiic`-Befehl verwendet werden, wie im Abschnitt 
+beschleunigen, kann der `yiic`-Befehl verwendet werden, wie im Kapitel
 [Erstellen der ersten Yii-Anwendung](/doc/guide/quickstart.first-app)
 beschrieben.
 

@@ -5,7 +5,7 @@ Beim Cachen von Seiten wird der Inhalt einer ganzen Seite gecacht. Dies kann
 an verschiedenen Stellen geschehen. Zum Beispiel kann der Client-Browser
 bereits eine betrachtete Seite für einen begrenzten Zeitraum cachen, indem man
 einen passenden Seiten-Header wählt. Auch die Webanwendung selbst kann den
-Inhalt einer Seite im Cache speichern. In diesem Abschnitt sehen wir uns
+Inhalt einer Seite im Cache speichern. In diesem Kapitel sehen wir uns
 letzeren Ansatz näher an.
 
 Das Cachen einer Seite kann als Spezialfall des [Cachens von

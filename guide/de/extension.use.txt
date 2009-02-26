@@ -224,8 +224,8 @@ liegt.
 
 Module
 ------
-Bitte beachten Sie den Abschnitt über
-[Module](/doc/guide/basics.module#using-module) um mehr über den Einsatz von
+Bitte beachten Sie das Kapitel über
+[Module](/doc/guide/basics.module#using-module), um mehr über den Einsatz von
 Modulen zu erfahren.
 
 Allgemeine Komponenten
