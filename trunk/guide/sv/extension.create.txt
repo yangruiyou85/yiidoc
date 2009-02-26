@@ -42,7 +42,7 @@ Denna metod anropas när komponenten skapats och initiala propertyvärden
 [applikationskonfiguration](/doc/guide/basics.application#application-configuration)) 
 har applicerats.
 
-Som standard skapas och initieras en applikationskomponent endast när den 
+Som standard skapas och initialiseras en applikationskomponent endast när den 
 anropas för första gången i samband med hantering av användarens request. Om en 
 applikationskomponent behöver skapas direkt efter instansiering av 
 applikationen, bör den ställa kravet på användaren att dess ID listas i 

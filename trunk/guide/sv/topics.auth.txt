@@ -495,4 +495,37 @@ if(Yii::app()->user->checkAccess('updateOwnPost',$params))
 }
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 677 2009-02-14 04:27:48Z qiang.xue $</div>
+
+### Använda standardroller
+
+> Note|Märk: Finessen standardroller har varit tillgänglig sedan version 1.0.3
+
+Många webbapplikationer behöver ett antal mycket specialiserade roller som 
+tilldelas varje eller åtminstone de flesta systemanvändarna. Vi kanske vill 
+tilldela alla autentiserade användare vissa rättigheter. Det kan skapa en 
+hel del underhållsproblem om vi väljer att uttryckligt specificera och lagra 
+dessa rolltilldelningar. Vi kan dra nytta av *standardroller* för att lösa 
+detta problem.
+
+En standardroll är en roll som underförstått tilldelas varje användare, inklusive
+både autentiserade och gäster. Vi behöver inte uttryckligen tilldela denna till en 
+användare. När [CWebUser::checkAccess] körs kommer standardroller att kontrolleras 
+först, som om de hade tilldelats användaren.
+
+Standardroller måste deklareras i propertyn [CAuthManager::defaultRoles].
+
+Eftersom en standardroll tilldelas alla användare, behöver den i regel associeras 
+med en affärsregel som avgör om rollen verkligen skall tillämpas på användaren. 
+Exempel: följande kod definierar två roller, "authenticated" och "guest", 
+vilka i praktiken tillämpas på autentiserade användare respektive gästanvändare.
+
+~~~
+[php]
+$bizRule='return !Yii::app()->user->isGuest;';
+$auth->createRole('authenticated');
+
+$bizRule='return Yii::app()->user->isGuest;';
+$auth->createRole('guest',$bizRule);
+~~~
+
+<div class="revision">$Id: topics.auth.txt 745 2009-02-25 21:45:42Z qiang.xue $</div>
