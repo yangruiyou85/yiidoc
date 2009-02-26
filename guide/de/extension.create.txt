@@ -213,6 +213,10 @@ class MyCommand extends CConsoleCommand
 
 Module
 ------
+Bitte beachten Sie den Abschnitt über
+[Module](/doc/guide/basics.module#creating-module) für Details zur Erstellung von
+Modulen. 
+
 Die allgemeine Richtlinie für die Entwicklung eines Moduls lautet: Es sollte in
 sich geschlossen sein. Sämtliche Dateien, die vom Modul verwendet werden (wie
 z.B. CSS-, Javascript-, Bilddateien) sollten zusammen mit dem Modul geliefert
@@ -225,4 +229,4 @@ Eine allgemeine Erweiterungskomponente zu entwickeln, bedeutet, eine Klasse zu
 schreiben. Auch hier gilt: Die Komponente sollte in sich geschlossen sein, so
 dass sie von anderen Entwicklern einfach eingesetzt werden kann.
 
-<div class="revision">$Id: extension.create.txt 273 2008-11-25 03:11:45Z qiang.xue $</div>
+<div class="revision">$Id: extension.create.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>

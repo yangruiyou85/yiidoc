@@ -20,8 +20,6 @@ vordefiniert:
  - `webroot`: verweist auf das Verzeichnis, das das
 [Eingangsscript](/doc/guide/basics.entry) enthält. Dieser Alias ist seit
 Version 1.0.3 verfügbar.
- - `module`: verweist auf das Verzeichnis des gerade aktiven Applikationsmoduls. Dieser Alias ist seit
-Version 1.0.3 verfügbar.
 
 Mit [YiiBase::getPathOfAlias()] kann ein Alias in seinen entsprechenden Pfad
 übersetzt werden. `system.web.CController` würde zum Beispiel nach
@@ -76,4 +74,4 @@ Ein Pfad-Alias kollidiert nicht mit einem Namespace.
 > reserviert bleibt und benutzerdefinierte Klassen mit anderen Präfixen
 > versehen werden.
 
-<div class="revision">$Id: basics.namespace.txt 723 2009-02-21 18:14:05Z qiang.xue $</div>
+<div class="revision">$Id: basics.namespace.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>

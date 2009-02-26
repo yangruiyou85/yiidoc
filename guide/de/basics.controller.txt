@@ -77,10 +77,15 @@ erstellen.
    - Falls die ID im Format `'pfad/zu/xyz'` vorliegt, wird von der
 Controller-Klasse `XyzController` in der Datei
 `protected/controllers/pfad/zu/XyzController.php` ausgegangen. Die
-Controller-ID `admin.user` würde zum Beispiel in die Controller-Klasse
+Controller-ID `admin/user` würde zum Beispiel in die Controller-Klasse
 `UserController` und die Datei `protected/controllers/admin/UserController.php`
 aufgelöst werden. Falls die Klassendatei nicht existiert, wird eine 
 404-[CHttpException] ausgelöst.
+
+Falls [Module](/doc/guide/basics.module) verwendet werden (seit Version 1.0.3
+verfügbar), unterscheidet sich der obige Prozess etwas. Die Anwendung prüft in
+diesem Fall, ob sich die ID auf einen Controller eines Moduls bezieht. Falls
+ja, erzeugt sie zunächst die Modulinstanz und danach die Controllerinstanz.
 
 Action
 ------
@@ -235,4 +240,4 @@ Filter angewendet werden soll und auf welche nicht. Oben soll der Filter
 weder Plus noch Minus in der Filterkonfiguration auftauchen, wird der Filter
 auf alle Actions angewendet.
 
-<div class="revision">$Id: basics.controller.txt 715 2009-02-20 02:08:24Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 745 2009-02-25 21:45:42Z qiang.xue $</div>
