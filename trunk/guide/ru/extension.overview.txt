@@ -1,29 +1,28 @@
-Overview
-========
+Предисловие
+===========
 
-Extending Yii is a common activity during development. For example, when
-you write a new controller, you extend Yii by inheriting its  [CController]
-class; when you write a new widget, you are extending [CWidget] or an existing
-widget class. If the extended code is designed to be reused by third-party
-developers, we call it an *extension*.
+Расширение Yii является очень активной в процессе разработки. К примеру, когда вы пишете новый контроллер вы, вы расширяете Yii через наследование его класса CController, когда вы пишите новый виджет вы расширяете Cwidget или существующий класс виджета. Если выш код расширения спроектирован так, что может использоваться сторонними разработчиками, мы назавем его расширением(extension) 
+Расширение, как правило служит для одной цели. В рамках yii, их можно классифицировать как:
 
-An extension usually serves for a single purpose. In Yii's terms, it can be
-classified as follows,
+компонент приложения(application component)
 
- * [application component](/doc/guide/basics.application#application-component)
- * [widget](/doc/guide/basics.view#widget)
- * [controller](/doc/guide/basics.controller)
- * [action](/doc/guide/basics.controller#action)
- * [filter](/doc/guide/basics.controller#filter)
- * [console command](/doc/guide/topics.console)
- * validator: a validator is a component class extending [CValidator].
- * helper: a helper is a class with only static methods. It is like global
-   functions using the class name as their namespace.
- * [module](/doc/guide/basics.module): a module is a self-contained software unit that consists of [models](/doc/guide/basics.model), [views](/doc/guide/basics.view), [controllers](/doc/guide/basics.controller) and other supporting components. In many aspects, a module resembles to an [application](/doc/guide/basics.application). The main difference is that a  For example, we could have a module that provides user management functionalities.
+виджет(widget)
 
-An extension can also be a component that does not fall into any of the above
-categories. As a matter of fact, Yii is carefully designed such that nearly
-every piece of its code can be extended and customized to fit for individual
-needs.
+контроллер(controller)
+
+действие(action)
+
+фильтр(filter)
+консольная команда(console command)
+валидатор: валидатор это компонент расширяющий
+
+ класс(CValidator)
+помощник(helper): 	помщник это класс только со статическими методами. Это как глобальные функции, использующие имя класса, как ихнее именное пространство.
+
+модуль(module): модуль это пакет из нескольких классов с соответствующими файлами активами. Модуль часто имеет более высокий уровень, и более продвинутую функциональность, нежели чем единственный компонент. Для примера, мы можем иметь модуль, который предоставляет функционал для управления пользователями.
+
+Расширение так же может не входить не в одну из представленных выше категорий.
+
+Следует отметить тот факт, что  yii окуратно спроектирован так что каждый кусок его кода может расширяться и настраиваться для индивидуальных нужд.
 
 <div class="revision">$Id: extension.overview.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
