@@ -93,8 +93,8 @@ Konfigurationsdateien können beliebig benannt werden. Eine Konfigurationsdatei
 ist ein PHP-Script dessen einziger Zweck darin besteht, ein assoziatives Array
 zurückzuliefern, das eine Konfiguration darstellt.
 
-Verzeichnis
------------
+Verzeichnisse
+-------------
 
 Yii geht von einigen vorgegebenen Verzeichnissen für verschiedene Zwecke aus.
 Jedes davon kann bei Bedarf angepasst werden.
@@ -114,6 +114,9 @@ Webserver-Prozess muss in dieses Verzeichnis schreiben können. Sein Ort kann
    - `WebRoot/protected/extensions`: Dieses Verzeichnis enthält alle
 Erweiterungen von Drittanbietern. Sein Ort kann über
 [CApplication::extensionPath] angepasst werden.
+
+   - `WebRoot/protected/modules`: Dieses Verzeichnis enthält alle
+[Module](/doc/guide/basics.module) der Anwendung, jedes davon in einem Unterverzeichnis
 
    - `WebRoot/protected/controllers`: Dieses Verzeichnis enthält alle
 Klassendateien für Controller. Sein Ort kann über
@@ -147,4 +150,4 @@ Sein Ort kann über [CAssetManager::basePath] angepasst werden.
 (Motive), die auf eine Applikation angewendet werden können. Sein Ort kann
 über [CThemeManager::basePath] angepasst werden.
 
-<div class="revision">$Id: basics.convention.txt 170 2008-11-06 20:33:35Z qiang.xue $</div>
+<div class="revision">$Id: basics.convention.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>

@@ -21,14 +21,17 @@ kann sie wie folgt klassifiziert werden:
  * Helper: Ein Helper (Helfer) ist eine Klasse, die nur statische
 Methoden enthält. Sie sind quasi globale Funktionen, die den Klassennamen als
 Namespace verwenden.
- * Modul: Ein Modul ist ein Paket aus mehreren Klassendateien und 
-entsprechenden Asset-Dateien. Ein Modul zielt oft auf fortgeschrittenere
-Funktionen auf höherer Ebene ab, als eine einzelne Komponente. Zum Beispiel
-wäre ein Modul denkbar, das eine Benutzerverwaltung bereitstellt.
+ * [Modul](/doc/guide/basics.module): Ein Modul ist eine in sich geschlossene
+Softwareeinheit, die aus [Models](/doc/guide/basics.model),
+[Views](/doc/guide/basics.view), [Controllern](/doc/guide/basics.controller)
+und anderen tragenden Komponenten besteht. In vielerlei Hinsicht erinnert ein
+Modul an eine [Applikation](/doc/guide/basics.application). Der wesentliche
+Unterschied besteht darin, dass ein Modul nicht für sich allein betrieben werden 
+kann und in eine Applikation eingebettet werden muss. 
 
 Eine Erweiterung kann auch eine Komponente sein, die in keine der genannten
 Kategorien fällt. Tatsächlich ist Yii ist so konzipiert, dass fast sein gesamter
 Code erweitert oder angepasst werden kann, um individuellen Bedürfnissen
 gerecht zu werden.
 
-<div class="revision">$Id: extension.overview.txt 235 2008-11-18 04:27:50Z qiang.xue $</div>
+<div class="revision">$Id: extension.overview.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>

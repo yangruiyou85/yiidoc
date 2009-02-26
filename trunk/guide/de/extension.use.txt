@@ -224,9 +224,9 @@ liegt.
 
 Module
 ------
-Ein Modul besteht in der Regel aus mehr als einer Klassendatei und ist oft
-eine Mischung der oben aufgeführten Erweiterungstypen. Befolgen Sie daher die
-entsprechende Anleitung, um ein Modul zu verwenden.
+Bitte beachten Sie den Abschnitt über
+[Module](/doc/guide/basics.module#using-module) um mehr über den Einsatz von
+Modulen zu erfahren.
 
 Allgemeine Komponenten
 ----------------------
@@ -242,4 +242,4 @@ Eigenschaften konfigurieren oder ihre Methoden aufrufen. Möglicherweise
 möchten wir sie auch erweitern, um neue Kindklassen zu erstellen.
 
 
-<div class="revision">$Id: extension.use.txt 235 2008-11-18 04:27:50Z qiang.xue $</div>
+<div class="revision">$Id: extension.use.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
