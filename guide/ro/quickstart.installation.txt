@@ -24,7 +24,7 @@ urmatorul:
 http://hostname/path/to/yii/requirements/index.php
 ~~~
 
-Cerinta minima este ca serverul nostru Web sa suporte versiunea PHP 5.1.0
+Cerinta minima este ca serverul Web sa suporte versiunea PHP 5.1.0
 (sau o versiune mai recenta). Platforma Yii a fost testata
 cu [serverul HTTP Apache](http://httpd.apache.org/) in Windows si Linux.
 Poate rula de asemenea si pe alte servere Web atat timp cat este pus la
