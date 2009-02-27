@@ -62,7 +62,7 @@ myproject/
    css/                      contine fisiere CSS
    images/                   contine imagini
    themes/                   contine teme
-   protected/                containg fisierele protejate ale aplicatiei
+   protected/                contine fisierele protejate ale aplicatiei
       yiic                   scriptul yiic de linie de comanda
       yiic.bat               scriptul yiic de linie de comanda pt Windows
       commands/              contine comenzi customizate pt 'yiic'
