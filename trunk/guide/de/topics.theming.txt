@@ -18,14 +18,6 @@ Eigenschaften [basePath|CThemeManager::basePath] (Basispfad) und
 [baseUrl|CThemeManager::baseUrl] (Basis-URL) der
 [themeManager|CWebApplication::themeManager]-Anwendungskomponente.
 
-Wenn wir [render|CController::render] oder
-[renderPartial|CController::renderPartial] zum Anzeigen eines Views aufrufen,
-werden die entsprechenden View- und Layout-Dateien im Verzeichnis des gerade 
-aktiven Motivs gesucht und, falls dort vorgefunden, zum Rendern verwendet.
-Andernfalls werden sie an den Standardorten gesucht, wie mit
-[viewPath|CController::viewPath] und [layoutPath|CWebApplication::layoutPath]
-vorgegeben. 
-
 Setzen Sie die Eigenschaft [theme|CWebApplication::theme] der Webanwendung auf
 den Namen des gewünschten Motivs, um ein Motiv anzuwenden. Dies kann
 entweder in der
@@ -40,8 +32,30 @@ Die Inhalte eines Motivverzeichnisses sollten genau wie im [Stammverzeichnis
 der Anwendung](/doc/guide/basics.application#application-base-directory)
 abgelegt werden. Alle View-Dateien müssen sich zum Beispiel in `views`,
 Layout-Dateien in `views/layout` und System-View-Dateien unter `views/system`
-befinden. Da das `views`-Verzeichnis sicherheitskritische Daten enthalten
+befinden. Wenn wir z.B. den View `create` für `PostController` durch einen
+View des Themes `classic` ersetzen möchten, sollten wir die neue Datei unter 
+`WebRoot/themes/classic/views/post/create.php` ablegen.
+
+Für die View-Dateien eines Controllers, der in einem
+[Modul](/doc/guide/basics.module) enthalten ist, sollte die entsprechende
+View-Datei des Motivs ebenfalls unterhalb des `views`-Verzeichnisses abgelegt
+werden. Wenn der genannte `PostController` zum Beispiel in einem Modul namens
+`forum` enthalten ist, sollten wir die View-Datei für `create` unter
+`WebRoot/themes/classic/views/forum/post/create.php` abspeichern. Falls das
+`forum`-Modul selbst wiederum als verschachteltes Modul in einem Modul namens 
+`support` enthalten ist, sollte die View-Datei unter
+`WebRoot/themes/classic/views/support/forum/post/create.php` liegen.
+
+> Note|Hinweis: Da das `views`-Verzeichnis sicherheitskritische Daten enthalten
 könnte, sollten Sie dafür sorgen, dass es nicht vom Web aus zugänglich ist. 
+
+Wenn wir [render|CController::render] oder
+[renderPartial|CController::renderPartial] zum Anzeigen eines Views aufrufen,
+werden die entsprechenden View- und Layout-Dateien im Verzeichnis des gerade 
+aktiven Motivs gesucht und, falls dort vorgefunden, zum Rendern verwendet.
+Andernfalls werden sie an den Standardorten gesucht, wie mit
+[viewPath|CController::viewPath] und [layoutPath|CWebApplication::layoutPath]
+vorgegeben. 
 
 > Tip|Tipp: Innerhalb eines Motiv-Views müssen wir evtl. öfter auf andere
 Ressource-Dateien des Motivs verlinken. Zum Beispiel könnten wir eine
@@ -54,4 +68,4 @@ Bild-URL wie folgt zusammenbauen:
 Yii::app()->theme->baseUrl . '/images/BildName.gif'
 ~~~
 
-<div class="revision">$Id: topics.theming.txt 170 2008-11-06 20:33:35Z qiang.xue $</div>
+<div class="revision">$Id: topics.theming.txt 759 2009-02-26 21:23:53Z qiang.xue $</div>
