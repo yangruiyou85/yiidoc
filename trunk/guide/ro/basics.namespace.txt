@@ -9,11 +9,18 @@ sintaxa cu puncte, la fel cu formatul namespace adoptat in lume:
 RootAlias.path.catre.destinatie
 ~~~
 
-`RootAlias` este alias-ul unui director existent. Yii predefineste doua alias-uri:
-`system` si `application`. `system` este alias-ul directorului in care se afla platforma Yii.
-`application` este alias-ul directorului `protected` al aplicatiei. Putem apela [YiiBase::setPathOfAlias()] pentru
-a defini alias-uri noi, inclusiv alias-uri radacina).
+`RootAlias` este alias-ul unui director existent. Prin apelarea [YiiBase::setPathOfAlias()],
+putem defini noi alias-uri de cale. Pentru convenienta, Yii predefineste urmatoarele alias-uri radacina:
 
+ - `system`: se refera la directorul platformei Yii;
+ - `application`: se refera la [directorul de baza al aplicatiei](/doc/guide/basics.application#application-base-directory);
+ - `webroot`: se refera la directorul care contine fisierul cu [scriptul de intrare](/doc/guide/basics.entry).
+ Acest alias este disponibil incepand cu versiunea 1.0.3.
+
+In plus, daca aplicatia foloseste [module](/doc/guide/basics.module), un alias radacina este
+de asemenea predefinit pentru fiecare ID de modul si se refera la calea modulului respectiv.
+Acest feature este disponibil incepand cu versiunea 1.0.3.
+ 
 Folosind [YiiBase::getPathOfAlias()], un alias poate fi tradus in path-ul corespunzator.
 De exemplu, `system.web.CController` ar fi tradus in `yii/framework/web/CController`.
 
@@ -58,4 +65,4 @@ vor fi diferite fata de clasele definite ulterior de catre utilizatori. Este rec
 sa prefixam cu 'C' doar clasele din platforma Yii, iar clasele definite de utilizatori sa fie
 prefixate cu alte litere.
 
-<div class="revision">$Id: basics.namespace.txt 169 2008-11-06 19:43:44Z qiang.xue $</div>
+<div class="revision">$Id: basics.namespace.txt 766 2009-02-27 17:22:13Z qiang.xue $</div>
