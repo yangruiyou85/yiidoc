@@ -117,7 +117,7 @@ O componenta poate fi atasata impreuna cu mai multe behaviours, obtinand astfel 
 
 Clasele behavior trebuie sa implementeze interfata [IBehavior]. Cele mai multe behaviours extind clasa de baza
 [CBehavior]. Daca o clasa behaviour are nevoie sa fie atasata unui [model](/doc/guide/basics.model), poate extinde
-si clasa [CFormBehavior] sau [CActiveRecordBehavior] care implementeaza features specifice modelelor.
+si clasa [CModelBehavior] sau [CActiveRecordBehavior] care implementeaza features specifice modelelor.
 
 Pentru a folosi behavior, trebuie sa fie atasat unei componente inainte de toate apeland metoda clasei behaviour
 [attach()|IBehavior::attach]. Dupa aceea putem apela o metoda behavior prin componenta:
@@ -160,4 +160,4 @@ Atunci cand clasele behaviour sunt folosite impreuna cu [evenimente](#component-
 Un behaviour, atunci cand este atasat unei componente, poate atasa unele din metodele sale unor evenimente
 ale componentei. Astfel, behaviour are posibilitatea de a observa sau de a schimba fluxul de executie normal al componentei.
 
-<div class="revision">$Id: basics.component.txt 584 2009-01-26 22:26:33Z qiang.xue $</div>
+<div class="revision">$Id: basics.component.txt 683 2009-02-16 05:20:17Z qiang.xue $</div>
