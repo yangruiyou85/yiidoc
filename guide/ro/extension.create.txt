@@ -196,8 +196,10 @@ class MyCommand extends CConsoleCommand
 ~~~
 
 Modul
-------
-Principiul general pentru dezvoltarea unui modul este ca ar trebui sa fie de sine statator.
+-----
+Pentru a crea un modul, trebuie vazuta sectiunea despre [module](/doc/guide/basics.module#creating-module).
+
+Un principiu general pentru dezvoltarea unui modul este ca ar trebui sa fie de sine statator.
 Fisierele cu resursele lui (CSS, JavaScript, imagini) ar trebui sa fie distribuite impreuna cu modulul.
 In acelasi timp, modului trebuie sa le publice pentru a fi accesibile utilizatorilor Web.
 
@@ -206,5 +208,4 @@ Componenta generica
 Dezvoltarea unei extensii de componenta generica este la fel ca scrierea unei clase.
 Din nou, ar trebui sa fie de sine statatoare pentru a fi usor de folosit de alti programatori.
 
-
-<div class="revision">$Id: extension.create.txt 273 2008-11-25 03:11:45Z qiang.xue $</div>
+<div class="revision">$Id: extension.create.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
