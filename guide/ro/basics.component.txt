@@ -100,7 +100,7 @@ Trebuie sa contina cel putin informatiile despre cine a activat evenimentul.
 Daca apelam `onClicked()` in acest moment, evenimentul `onClicked` va fi activat (in interiorul lui
 `onClicked()`), iar event handler-ul atasat va fi invocat automat. 
 
-Un eveniment poate fi atasat mai multor handler-e.  Cand un eveniment este activat,
+Un eveniment poate fi atasat mai multor handlere.  Cand un eveniment este activat,
 handler-ele vor fi invocate in ordinea in care au fost atasate evenimentului.
 Daca un handler decide sa intrerupa invocarea hadler-elor urmatoare, poate sa seteze
 [$event->handled|CEvent::handled] cu valoarea true.
