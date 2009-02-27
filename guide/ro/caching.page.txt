@@ -1,5 +1,5 @@
-Caching de pagini
-=================
+Cache de pagini
+===============
 
 Caching-ul de pagini se refera la memorarea in cache a continutului unei
 intregi pagini. Caching-ul de pagini poate aparea si in aplicatia server

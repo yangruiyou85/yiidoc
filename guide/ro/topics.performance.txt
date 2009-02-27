@@ -1,5 +1,5 @@
-Performance Tuning
-==================
+Imbunatatirea performantei
+==========================
 
 Performance of Web applications is affected by many factors. Database
 access, file system operations, network bandwidth are all potential

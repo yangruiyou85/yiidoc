@@ -1,4 +1,4 @@
-Logging
+Log-uri
 =======
 
 Yii provides a flexible and extensible logging feature. Messages logged

@@ -1,53 +1,52 @@
-Authentication and Authorization
-================================
+Autentificare si autorizare
+===========================
 
-Authentication and authorization are required for a Web page that should
-be limited to certain users. Authentication is about verifying whether
-someone is who he claims he is. It usually involves a username and a
-password, but may include any other methods of demonstrating identity, such
-as a smart card, fingerprints, etc. Authorization is finding out if the
-person, once identified (authenticated), is permitted to manipulate
-specific resources. This is usually determined by finding out if that
-person is of a particular role that has access to the resources.
+Autentificarea si autorizarea sunt necesare daca o pagina Web trebuie
+sa fie accesata doar de anumiti utilizatori. Autentificarea in sine asigura
+ca cineva este cine pretinde ca este. De obicei, este nevoie de un nume de 
+utilizator si o parola, dar poate include si alte metode pentru demonstrarea identitatii,
+precum smart card, amprente, etc. Autorizarea este calea prin care o persoana,
+o data ce a fost identificata (autentificata), are permisiunea sa acceseze/modifice
+anumite resurse. Acest lucru se face de obicei verificand daca respectiva persoana
+are un anumit rol care are permisiunea de a accesa resursele in cauza.
 
-Yii has a built-in authentication/authorization (auth) framework which is
-easy to use and can be customized for special needs.
+Yii incorporeaza un sistem de autentificare/autorizare care este usor de folosit
+si de modificat pentru orice nevoi.
 
-The central piece in the Yii auth framework is a pre-declared *user
-application component* which is an object implementing the [IWebUser]
-interface. The user component represents the persistent identity
-information for the current user. We can access it at any place using
+Centrul sistemului de autentificare al Yii este *componenta
+de aplicatie user*, un obiect care implementeaza interfata [IWebUser].
+Componenta user reprezinta informatiile persistente despre identitatea utilizatorului
+curent. Putem accesa aceasta componenta de oriunde din cod prin
 `Yii::app()->user`.
 
-Using the user component, we can check if a user is logged in or not via
-[CWebUser::isGuest]; we can [login|CWebUser::login] and
-[logout|CWebUser::logout] a user; we can check if the user can perform
-specific operations by calling [CWebUser::checkAccess]; and we can also
-obtain the [unique identifier|CWebUser::name] and other persistent identity
-information about the user.
+Folosind componenta user, putem verifica daca un utilizator este logat sau nu prin
+[CWebUser::isGuest]; putem sa logam un user prin metoda [login|CWebUser::login] si sa
+il delogam prin metoda [logout|CWebUser::logout]; putem sa verificam daca utilizatorul
+are dreptul sa execute anumite operatii prin apelul metodei [CWebUser::checkAccess];
+de asemenea, putem sa obtinem [identificatorul unic|CWebUser::name] si alte informatii
+persistente despre identitatea utilizatorului.
 
-Defining Identity Class
------------------------
+Definirea clasei de identitate
+------------------------------
 
-In order to authenticate a user, we define an identity class which
-contains the actual authentication logic. The identity class should
-implement the [IUserIdentity] interface. Different classes may be
-implemented for different authentication approaches (e.g. OpenID, LDAP). A
-good start is by extending [CUserIdentity] which is a base class for the
-authentication approach based on username and password.
+Pentru a autentifica un utilizator, definim o clasa de identitate care
+contine codul efectiv de autentificare. Clasa de identitate ar trebui sa
+implementeze interfata [IUserIdentity]/ Mai multe clase pot implementa
+abordari diferite de autentificare (ex. OpenID, LDAP). Un start bun ar fi
+sa derivam clasa [CUserIdentity] care este clasa de baza pentru autentificarea
+pe baza unui nume si a unei parole.
 
-The main work in defining an identity class is the implementation of the
-[IUserIdentity::authenticate] method. An identity class may also declare
-additional identity information that needs to be persistent during the user
-session.
+Cel mai important lucru in definirea unei clase de identitate este implementarea
+metodei [IUserIdentity::authenticate]. O clasa de identitate poate sa declare de asemenea
+informatii aditionale despre identitate care trebuie sa fie persistente in timpul sesiunii
+utilizatorului.
 
-In the following example, we validate the given username and password
-against the user table in a database using [Active
-Record](/doc/guide/database.ar). We also override the `getId` method to
-return the `_id` variable which is set during authentication (the default
-implementation would return the username as the ID). During authentication,
-we store the retrieved `title` information in a state with the same name by
-calling [CBaseUserIdentity::setState].
+In urmatorul exemplu, validam numele si parola folosind tabela
+user dintr-o baza de date prin intermediul [Active
+Record](/doc/guide/database.ar). De asemenea, suprascriem metoda `getId` pentru a
+returna variabila `_id` care este setata in timpul autentificarii (valoarea returnata
+implicit pentru ID este numele utilizatorului username). In timpul autentificarii,
+memoram informatia `title` prin apelarea metodei [CBaseUserIdentity::setState].
 
 ~~~
 [php]
@@ -77,28 +76,29 @@ class UserIdentity extends CUserIdentity
 }
 ~~~
 
-Information stored in a state (by calling [CBaseUserIdentity::setState]) will be passed
-to [CWebUser] which stores them in a persistent storage, such as session.
-These information can be accessed like properties of [CWebUser]. For example, we
-can obtain the `title` information of the current user by `Yii::app()->user->title`
-(This has been available since version 1.0.3. In prior versions, we should use
-`Yii::app()->user->getState('title')`, instead.)
+Informatiile memorate (prin apelul metodei [CBaseUserIdentity::setState]) vor fi
+trimise catre [CWebUser] care le memoreaza mai departe intr-un mediu de stocare persistent,
+ca de exemplu sesiunea utilizatorului. Aceste informatii pot fi accesate ca proprietati
+ale clasei [CWebUser]. De exemplu, putem obtine informatia
+`title` a utilizatorului curent prin `Yii::app()->user->title`
+(Acest lucru este disponibil incepand cu versiunea 1.0.3. In versiunile anterioare, trebuie sa
+folosim `Yii::app()->user->getState('title')`).
 
-> Info: By default, [CWebUser] uses session as persistent storage for user
-identity information. If cookie-based login is enabled (by setting
-[CWebUser::allowAutoLogin] to be true), the user identity information may
-also be saved in cookie. Make sure you do not declare sensitive information
-(e.g. password) to be persistent.
+> Info: Implicit, [CWebUser] foloseste sesiunea utilizatorului ca mediu de stocare persistent
+pentru informatiile referitoare la identitatea utilizatorului. Daca logarea bazata pe cookie-uri
+este activata (prin setarea [CWebUser::allowAutoLogin] cu valoarea `true`), informatiile despre
+identitatea utilizatorului pot fi salvate si in cookie-uri. Totusi trebuie sa ne asiguram ca nu
+memoram in cookie-uri informatii care ar trebui sa fie ascunse (ex. parola).
 
-Login and Logout
-----------------
+Login si Logout
+---------------
 
-Using the identity class and the user component, we can
-implement login and logout actions easily.
+Folosind calasa de identitate si componenta user, putem implementa usor action-urile
+de logare si delogare.
 
 ~~~
 [php]
-// Login a user with the provided username and password.
+// Logheaza un user cu numele si parola date
 $identity=new UserIdentity($username,$password);
 if($identity->authenticate())
 	Yii::app()->user->login($identity);

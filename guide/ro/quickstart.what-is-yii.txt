@@ -1,41 +1,39 @@
-What is Yii
+Ce este Yii
 ===========
 
-Yii is a high-performance component-based PHP framework for developing
-large-scale Web applications. It enables maximum reusability in Web
-programming and can significantly accelerate the development process. The
-name Yii (pronounced as `/i:/`) stands for *easy*,
-*efficient* and *extensible*.
+Yii este o platforma PHP bazata pe componente de mare perfomanta pentru
+dezvoltarea aplicatiilor Web de orice fel. Permite reutilizarea la maxim a codului scris
+si poate accelera drastic procesul de dezvoltare. Numele Yii (pronuntat `/i:/`) inseamna *usor*,
+*eficient* si *extensibil*.
 
-Requirements
-------------
+Cerinte
+-------
 
-To run an Yii-powered Web application, you need a Web server supporting
-PHP 5.1.0 or higher.
+Pentru a rula o aplicatie bazata pe Yii, trebuie sa avem un server Web care pune la dispozitie minim
+versiunea 5.1.0 de PHP.
 
-For developers who want to use Yii, understanding object-oriented
-programming (OOP) is very helpful, because Yii is a pure OOP framework.
+Pentru programatorii care vor sa foloseasca Yii, intelegerea programarii orientata pe obiecte (POO)
+ajuta foarte mult, pentru ca Yii este o platforma pura POO.
 
-What is Yii Best for?
----------------------
+La ce foloseste Yii cel mai mult?
+---------------------------------
 
-Yii is a generic Web programming framework that can be used for developing
-virtually all sorts of Web applications. Because it is light-weighted and
-equipped with sophisticated caching solutions, it is especially suitable
-for developing high-traffic applications, such as portals, forums, content
-management systems (CMS), e-commerce systems, etc.
+Yii este o platforma de programare Web generica ce poate fi folosita pentru dezvoltarea
+unei game foarte largi de aplicatii. Deoarece este foarte mica, si echipata cu
+solutii de caching sofisticate, este folositoare in special pentru dezvoltarea
+aplicatiilor cu trafic foarte mare: portaluri, forumuri, sisteme
+de genstiune continut (CMS), sisteme e-commerce, etc.
 
-How is Yii Compared with Other Frameworks?
+Cum se compara Yii cu alte platforme PHP?
 ------------------------------------------
 
-Like most PHP frameworks, Yii is an MVC framework.
+Ca cele mai multe platforme PHP, Yii este o platforma MVC.
 
-Yii excels over other PHP frameworks in that it is efficient, feature-rich
-and clearly-documented. Yii is carefully designed from the beginning to fit
-for serious Web application development. It is neither a byproduct of some
-project nor a conglomerate of third-party work. It is the result of the
-authors' rich experience of Web application development and the
-investigation and reflection of the most popular Web programming frameworks
-and applications.
+Yii exceleaza, fata de celelalte platforme PHP, la capitolele eficienta, feature-uri si documentatie.
+Yii a fost inca de la inceput foarte atent proiectata pentru a fi utila dezvoltarii
+serioase de aplicatii Web. Nu este nici un rezultat al vreunui proiect, nici un conglomerat
+de componente third-party. Este rezultatul experientei bogate a autorilor
+in dezvoltarea aplicatiilor Web. In aceeasi masura este rezultatul unei investigari atente
+ale celor mai populare aplicatii si platforme de programare Web.
 
 <div class="revision">$Id: quickstart.what-is-yii.txt 257 2008-11-21 13:35:04Z qiang.xue $</div>

@@ -30,77 +30,76 @@ Fara sa scriem nici o linie de cod, putem testa prima noastra aplicatie Yii
 prin accesarea urmatorului URL intr-un browser Web: 
 
 ~~~
-http://hostname/testdrive/index.php
+http://hostname/myproject/index.php
 ~~~
 
-As we can see, the application has three pages: the homepage, the contact page
-and the login page. The homepage shows some information about the application as
-well as the user login status, the contact page displays a contact form that users
-can fill in to submit their inquiries, and the login page allows users to be
-authenticated before accessing privileged contents.
-See the following screenshots for more details.
+Dupa cum putem vedea, aplicatia are trei pagini: pagina home, pagina contact
+si pagina de logare. Pagina home contine cateva informatii despre aplicatie
+si despre utilizator. Pagina de contact afiseaza un formular de contact care poate fi
+completat de catre utilizatori. Pagina de logare permite utilizatorilor sa fie autentificati 
+inainte de a accesa continut pentru care au nevoie de anumite privilegii.
+Putem vedea screenshot-urile urmatoare pentru mai multe detalii.
 
-![Home page](first-app1.png)
+![Pagina home](first-app1.png)
 
-![Contact page](first-app2.png)
+![Pagina contact](first-app2.png)
 
-![Contact page with input errors](first-app3.png)
+![Pagina contact cu afisare erori la intrarea datelor](first-app3.png)
 
-![Contact page with success](first-app4.png)
+![Pagina contact cu afisare succes](first-app4.png)
 
-![Login page](first-app5.png)
+![Pagina de logare](first-app5.png)
 
 
-The following diagram shows the directory structure of our application.
-Please see [Conventions](/doc/guide/basics.convention#directory) for detailed
-explanation about this structure.
+Urmatoarea diagrama ne arata structura de directoare a aplicatiei.
+Trebuie vazuta sectiunea [Conventii](/doc/guide/basics.convention#directory) pentru
+explicatii detaliate despre aceasta structura.
 
 ~~~
-testdrive/
-   index.php                 Web application entry script file
-   assets/                   containing published resource files
-   css/                      containing CSS files
-   images/                   containing image files
-   themes/                   containing application themes
-   protected/                containg protected application files
-      yiic                   yiic command line script
-      yiic.bat               yiic command line script for Windows
-      commands/              containing customized 'yiic' commands
-         shell/              containing customized 'yiic shell' commands
-      components/            containing reusable user components
-         MainMenu.php        the 'MainMenu' widget class
-         Identity.php        the 'Identity' class used for authentication
-         views/              containing view files for widgets
-            mainMenu.php     the view file for 'MainMenu' widget
-      config/                containing configuration files
-         console.php         the console application configuration
-         main.php            the Web application configuration
-      controllers/           containing controller class files
-         SiteController.php  the default controller class
-      extensions/            containing third-party extensions
-      messages/              containing translated messages
-      models/                containing model class files
-         LoginForm.php       the form model for 'login' action
-         ContactForm.php     the form model for 'contact' action
-      runtime/               containing temporarily generated files
-      views/                 containing controller view and layout files
-         layouts/            containing layout view files
-            main.php         the default layout for all views
-         site/               containing view files for the 'site' controller
-            contact.php      the view for 'contact' action
-            index.php        the view for 'index' action
-            login.php        the view for 'login' action
-         system/             containing system view files
+myproject/
+   index.php                 fisierul php de intrare in aplicatia Web
+   assets/                   contine fisiere cu resurse accesibile din Web
+   css/                      contine fisiere CSS
+   images/                   contine imagini
+   themes/                   contine teme
+   protected/                containg fisierele protejate ale aplicatiei
+      yiic                   scriptul yiic de linie de comanda
+      yiic.bat               scriptul yiic de linie de comanda pt Windows
+      commands/              contine comenzi customizate pt 'yiic'
+         shell/              contine comenzi customizate pt 'yiic shell'
+      components/            contine componente utilizator reutilizabile
+         MainMenu.php        clasa widget-ului 'MainMenu'
+         Identity.php        clasa 'Identity' folosita pentru autentificare
+         views/              contine fisiere view pentru widget-uri
+            mainMenu.php     fisierul view pentru widget-ul 'MainMenu'
+      config/                contine fisiere de configurare
+         console.php         configuratia aplicatiei consola
+         main.php            configuratia aplicatiei Web
+      controllers/           contine fisierele cu clasele controller-elor
+         SiteController.php  clasa controller-ului implicit
+      extensions/            contine extensii third-party
+      messages/              contine mesaje traduse
+      models/                contine fisiere cu clasele modelelor
+         LoginForm.php       modelul de tip formular pentru action-ul 'login'
+         ContactForm.php     modelul de tip formular pentru action-ul 'contact'
+      runtime/               contine fisiere generate temporar
+      views/                 contine fisiere layout si view-urile controller-elor
+         layouts/            contine fisiere layout pt view-uri
+            main.php         layout-ul implicit pt toate view-urile
+         site/               contine fisierele view pentru controller-ul 'site'
+            contact.php      view-ul pentru action-ul 'contact'
+            index.php        view-ul pentru action-ul 'index'
+            login.php        view-ul pentru action-ul 'login'
+         system/             contine fisierele view pt erorile sistemului
 ~~~
 
-Connecting to Database
-----------------------
+Conectarea la baza de date
+--------------------------
 
-Most Web applications are backed by databases. Our test-drive application
-is not an exception. To use a database, we first need to tell the
-application how to connect to it. This is done by changing the application
-configuration file `WebRoot/testdrive/protected/config/main.php`, as shown
-below:
+Majoritatea aplicatiilor Web folosesc baze de date, iar aplicatia noastra
+nu este o exceptie. Pentru a folosi o baza de date, trebuie sa spunem
+aplicatiei cum sa se conecteze la ea. Putem face acest lucru prin modificarea fisierului
+de configurare al aplicatiei `WebRoot/myproject/protected/config/main.php`, in felul urmator:
 
 ~~~
 [php]
@@ -116,17 +115,17 @@ return array(
 );
 ~~~
 
-In the above, we add a `db` entry to `components`, which instructs the
-application to connect to the SQLite database
-`WebRoot/testdrive/protected/data/source.db` when needed.
+In codul de mai sus, adaugam o intrare `db` la `components`. Acest lucru spune
+aplicatiei sa se conecteze la baza de date SQLite
+`WebRoot/myproject/protected/data/source.db` atunci cand este necesar.
 
-> Note: To use Yii's database feature, we need to enable PHP PDO extension
-and the driver-specific PDO extension. For the test-drive application, we
-would need the `php_pdo` and `php_pdo_sqlite` extensions to be turned on.
+> Note|Nota: Pentru a folosi o baza de date in Yii, trebuie sa activam extensia PHP PDO
+si extensia PDO cu driver-ul specific pentru baza de date pe care vrem sa o folosim. 
+Pentru aplicatia noastra, trebuie ca extensiile `php_pdo` si `php_pdo_sqlite` sa fie activate.
 
-To this end, we need to prepare a SQLite database so that the above
-configuration can be effective. Using some SQLite admin tool, we can create
-a database with the following schema:
+Trebuie sa cream o baza de date SQLite astfel incat configuratia de mai sus sa
+functioneze. Folosind orice unealta de administrare SQLite, putem crea o baza de date
+cu urmatoarea structura:
 
 ~~~
 [sql]
@@ -138,27 +137,26 @@ CREATE TABLE User (
 );
 ~~~
 
-For simplicity, we only create a single `User` table in our database. The
-SQLite database file is saved as
-`WebRoot/testdrive/protected/data/source.db`. Note that both the file and the
-containing directory must be made writable by the Web server process, as
-required by SQLite.
+Pentru simplitate, cream o singura tabela (`User`) in baza de date. Fisierul
+bazei de date SQLite este salvat avand urmatoarea cale: `WebRoot/myproject/protected/data/source.db`. 
+Trebuie remarcat ca fisierul bazei de date si directorul care contine acest fisier
+trebuie sa permita scrierea de catre serverul Web server. 
 
 
-Implementing CRUD Operations
-----------------------------
+implementarea operatiilor CRUD
+------------------------------
 
-Now is the fun part. We would like to implement the CRUD (create, read,
-update and delete) operations for the `User` table we just created. This is
-also commonly needed in practical applications.
+Acum este partea interesanta. Pentru ca vrem sa implementam operatiile CRUD (create, read,
+update si delete) pentru tabela `User` tocmai creata. Aceste operatii sunt foarte folosite
+in aplicatiile reale.
 
-Instead of taking trouble to write actual code, we would use the powerful
-`yiic` tool again to automatically generate the code for us. This
-process is also known as *scaffolding*. Open a command line window, and execute
-the commands listed as follows,
+In loc de a ne chinui sa scriem codul pentru aceste operatii, mai bine folosim unealta
+`yiic` din nou pentru a genera automat codul pentru noi. Acest proces mai este cunoscut sub
+numele de *scaffolding*. Deschidem o fereastra cu linia de comanda, si executam urmatoarele
+comenzi:
 
 ~~~
-% cd WebRoot/testdrive
+% cd WebRoot/myproject
 % protected/yiic shell
 Yii Interactive Tool v1.0
 Please type 'help' for help. Type 'exit' to quit.
@@ -166,7 +164,7 @@ Please type 'help' for help. Type 'exit' to quit.
    generate User.php
 
 The 'User' class has been successfully created in the following file:
-    D:\wwwroot\testdrive\protected\models\User.php
+    D:\wwwroot\myproject\protected\models\User.php
 
 If you have a 'db' database connection, you can test it now with:
     $model=User::model()->find();
@@ -175,7 +173,7 @@ If you have a 'db' database connection, you can test it now with:
 >> crud User
    generate UserController.php
    generate create.php
-      mkdir D:/wwwroot/testdrive/protected/views/user
+      mkdir D:/wwwroot/myproject/protected/views/user
    generate update.php
    generate list.php
    generate show.php
@@ -184,61 +182,58 @@ Crud 'user' has been successfully created. You may access it via:
 http://hostname/path/to/index.php?r=user
 ~~~
 
-In the above, we use the `yiic shell` command to interact with our
-skeleton application. At the prompt, we execute two sub-commands: `model User`
-and `crud User`. The former generates a model class for the `User` table,
-while the latter reads the `User` model and generates the code needed
-the CRUD operations.
+In cele de mai sus, folosim comanda `yiic shell` pentru a interactiona cu aplicatia
+noastra. Executam doua sub-comenzi: `model User` si `crud User`.
+`model User` genereaza clasa modelului tabelei `User`.
+`crud User` citeste modelul `User` si genereaza codul necesar pentru operatiile CRUD.
 
-> Note: You may encounter errors like "...could not find driver", even
-> though the requirement checker shows you have already enabled PDO
-> and the corresponding PDO driver. If this happens, you may try
-> to run the `yiic` tool as follows,
+> Note|Nota: Putem intalni erori de genul "...could not find driver", chiar daca
+> verificarea cerintelor necesare a avut succes si arata ca avem activate extensia PDO
+> si driverul PDO corespunzator pentru baza noastra de date. Daca se intampla acest lucru,
+> putem incerca sa rulam unealta `yiic` in felul urmator:
 >
 > ~~~
 > % php -c path/to/php.ini protected/yiic.php shell
 > ~~~
 >
-> where `path/to/php.ini` represents the correct PHP ini file.
+> unde `path/to/php.ini` reprezinta fisierul ini corect al PHP.
 
-Let's enjoy our work by browsing the following URL:
-
-~~~
-http://hostname/testdrive/index.php?r=user
-~~~
-
-This will display a list of user entries in the `User` table. Since our
-table is empty, nothing will appear at the moment.
-
-Click the `New User` link on the page. We will be brought to the login
-page if we have not logged in before. After logged in, we are shown with
-an input form that allows us to add a new user entry. Complete the form and
-click on the `Create` button. If there is any input error, a nice error
-prompt will be shown which prevents us from saving the input. Back to the
-user list, we should see the newly added user appearing in the list.
-
-Repeat the above steps to add more users. Notice that user list page
-will automatically paginate the user entries if there are too many to be
-displayed in one page.
-
-If we login as an administrator using `admin/admin`, we can view the user
-admin page with the following URL:
+Acum ne putem bucura de rezultate folosind urmatorul URL:
 
 ~~~
-http://hostname/testdrive/index.php?r=user/admin
+http://hostname/myproject/index.php?r=user
 ~~~
 
-This will show us a nice table of user entries. We can click on the table
-header cells to sort the corresponding columns. And like the user list page,
-the admin page also performs pagination when there are too many user entries
-to be displayed in one page.
+Acest URL va afisa o lista cu intrari de utilizatori din tabela `User`. Din moment ce
+tabela noastra este goala, nu apare nimic in acest moment.
 
-All these nice features come without requiring us to write a single line
-of code!
+Apasam pe link-ul `New User` din pagina. Va aparea pagina de logare
+in cazul in care nu ne-am mai logat anterior. Dupa ce ne-am logat, apare
+un formular de intrare care ne permite sa adaugam o noua intrare de utilizator.
+Completam formularul si apasam pe butonul `Create`. Daca avem vreo eroare la intrare,
+va aparea un prompt dragut cu erorile in cauza. Astfel suntem impiedicati sa salvam datele.
+Revenind la lista de utilizatori, ar trebui sa vedem utilizatorul nou adaugat ca apare in lista.
 
-![User admin page](first-app6.png)
+Repetam pasii de mai sus pentru a adauga mai multi utilizatori. Putem remarca
+faptul ca pagina cu lista utilizatorilor va face paginare automat daca sunt prea multi
+utilizatori de afisat pe o singura pagina.
 
-![Create new user page](first-app7.png)
+Daca ne logam ca administrator folosind `admin/admin`, putem vedea pagina utilizatorului
+admin in URL-ul acesta:
+
+~~~
+http://hostname/myproject/index.php?r=user/admin
+~~~
+
+Vom vedea aici o tabela cu intrarile utilizatorilor. Putem apasa pe celulele header ale
+tabelei pentru a sora coloanele corespunzator. La fel ca si pagina cu lista utilizatorilor,
+pagina admin face paginare automata.
+
+Beneficiem de toate aceste feature-uri fara sa scriem nici macar o linie de cod!
+
+![Pagina utilizatorului admin](first-app6.png)
+
+![Pagina creare utilizator nou](first-app7.png)
 
 
 

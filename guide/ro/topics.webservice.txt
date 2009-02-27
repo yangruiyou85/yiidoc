@@ -1,5 +1,5 @@
-Web Service
-===========
+Servicii Web
+============
 
 [Web service](http://en.wikipedia.org/wiki/Web_service) is a software
 system designed to support interoperable machine-to-machine interaction
