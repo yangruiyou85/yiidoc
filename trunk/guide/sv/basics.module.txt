@@ -76,7 +76,7 @@ return array(
 );
 ~~~
 
-En modul kan även konfigureras med initiala propertyvärdens. Tillvägagångssättet är mycket snarlikt 
+En modul kan även konfigureras med initiala propertyvärden. Tillvägagångssättet är mycket snarlikt 
 konfigurering av [applikationskomponenter](/doc/guide/basics.application#application-component). 
 Exempel: `forum`-modulen kan i sin modulklass ha en property `postPerPage`, vilken kan konfigureras i 
 [applikationskonfigurationen](/doc/guide/basics.application#application-configuration) på följande sätt:

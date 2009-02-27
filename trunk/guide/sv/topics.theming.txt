@@ -17,14 +17,6 @@ till en anan katalog. Konfigurera bara applikationskomponenten
 [basePath|CThemeManager::basePath] och [baseUrl|CThemeManager::baseUrl] efter 
 önskemål.
 
-Vid anrop till [render|CController::render] eller 
-[renderPartial|CController::renderPartial] för att presentera en vy, kommer 
-motsvarande vyfil samt layoutfil att eftersökas i det för tillfället aktiva 
-temat. Om de hittas används de för renderingen. I annat fall används 
-standardplatserna för vyer och layouter specificerade i 
-[viewPath|CController::viewPath] respektive 
-[layoutPath|CWebApplication::layoutPath].
-
 För att aktivera ett tema, sätt webbapplikationens property 
 [theme|CWebApplication::theme] till namnet på det önskade temat. 
 Detta kan antingen göras i 
@@ -38,8 +30,27 @@ Innehåll under temats katalog skall organiseras på samma sätt som det under
 [applikationens rotkatalog](/doc/guide/basics.application#application-base-directory). 
 Till exempel, alla vyfiler måste placeras under `views`, 
 layoutvyfiler under `views/layouts` och systemvyfiler under `views/system`. 
-Eftersom katalogen `views` kan innehålla ur säkerhetssynpunkt känslig data, 
+Om vi till exempel vill ersätta vyn `create` tillhörande `PostController` 
+med en vy ur temat `classic`, skall den nya vyfilen sparas som 
+`WebRoot/themes/classic/views/post/create.php`.
+
+För vyer som tillhör kontrollrar i en [modul](/doc/guide/basics.module), skall även 
+motsvarande vyfiler som tillhör teman placeras under katalogen `views`.
+Till exempel, om tidigare nämnda `PostController` återfinns i modulen `forum`, 
+skall vyfilen `create` sparas som `WebRoot/themes/classic/views/forum/post/create.php`. 
+Om modulen `forum` är nästlad i en annan modul, `support`, skall vyfilen istället sparas 
+som `WebRoot/themes/classic/views/support/forum/post/create.php`.
+
+> Note: Eftersom katalogen `views` kan innehålla ur säkerhetssynpunkt känslig data, 
 skall den konfigureras för att förhindra webbanvändare tillgång.
+
+Vid anrop till [render|CController::render] eller 
+[renderPartial|CController::renderPartial] för att presentera en vy, kommer 
+motsvarande vyfil samt layoutfil att eftersökas i det för tillfället aktiva 
+temat. Om de hittas används de för renderingen. I annat fall används 
+standardplatserna för vyer och layouter specificerade i 
+[viewPath|CController::viewPath] respektive 
+[layoutPath|CWebApplication::layoutPath].
 
 > Tip|Tips: Inuti en temavy, behöver ofta länkning ske till andra 
 temaresursfiler. Till exempel, kan vi vilja visa en bildfil under temats katalog 
@@ -50,4 +61,4 @@ temaresursfiler. Till exempel, kan vi vilja visa en bildfil under temats katalog
 > Yii::app()->theme->baseUrl . '/images/FileName.gif' 
 > ~~~ 
 
-<div class="revision">$Id: topics.theming.txt 170 2008-11-06 20:33:35Z qiang.xue $</div>
+<div class="revision">$Id: topics.theming.txt 759 2009-02-26 21:23:53Z qiang.xue $</div>
