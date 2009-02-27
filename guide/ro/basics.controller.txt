@@ -23,16 +23,19 @@ class SiteController extends CController
 ~~~
 
 
-Route
------
+Rute
+----
 
 Controller-ele si action-urile sunt identificate prin ID-uri. ID-ul controller are formatul
-`cale.catre.xyz` care corespunde fisierului fizic al controller-ului
+`cale/catre/xyz` care corespunde fisierului fizic al controller-ului
 `protected/controllers/cale/catre/XyzController.php`, where the token `xyz`
 should be replaced by actual names (ex. `post` corespunde cu
 `protected/controllers/PostController.php`). ID-ul action este numele metodei action
 fara prefixul `action`. De exemplu, daca o clasa controller contine o metoda cu numele
 `actionEdit`, atunci ID-ul este `edit`.
+
+> Note|Nota: Inainte de versiunea 1.0.3, ID-ul controller-ului era in formatul `cale.catre.xyz`
+in loc de `cale/catre/xyz`.
 
 Utilizatorii cer un anumit controller si un anumit action prin intermediul unui route (ruta).
 Route este format prin concatenarea unui ID controller si al unui ID action separate prin slash (/).
@@ -44,6 +47,10 @@ Si implicit, URL-ul `http://hostname/index.php?r=post/edit` va cere acest contro
 >In modul case-insensitive, trebuie sa ne asiguram ca urmam conventia ca directoarele care contin
 >fisierele cu clasele controller-ului sunt in lower case, si ca atat [controller map|CWebApplication::controllerMap]
 >cat si [action map|CController::actions] folosesc key-uri in lower case.
+
+Incepand cu versiunea 1.0.3, o aplicatie poate contine [module](/doc/guide/basics.module). Ruta pentru un action
+dintr-un controller din interiorul unui modul are formatul `moduleID/controllerID/actionID`. Pentru mai multe detalii,
+trebuie vazuta [sectiunea despre module](/doc/guide/basics.module).
 
 Instantierea Controller-ului
 ----------------------------
@@ -59,11 +66,16 @@ aducem aplicatia in modul de mentenanta, offline sau invizibila in Web in spatel
    - Daca ID-ul este gasit in [CWebApplication::controllerMap], configuratia controller-ului care este precizata
 acolo va fi folosita pentru a crea instanta controller-ului. 
 
-   - Daca ID-ul este in formatul 'cale.catre.xyz'`, numele clasei controller-ului se presupune ca este
-`Xyz` si fisierul fizic al clasei este `protected/controllers/cale/catre/XyzController.php`. De exemplu,
+   - Daca ID-ul este in formatul 'cale/catre/xyz'`, numele clasei controller-ului se presupune ca este
+`XyzController` si fisierul fizic al clasei este `protected/controllers/cale/catre/XyzController.php`. De exemplu,
 un ID de controller `admin.user` ar conduce la clasa `UserController` si la fisierul fizic
 `protected/controllers/admin/UserController.php`. Daca fisierul fizic al clasei nu exista, atunci se genereaza [CHttpException] 404.
 
+In cazul in care [modulele](/doc/guide/basics.module) sunt folosite 
+(posibil incepand cu versiunea 1.0.3), procesul de mai sus este un pic
+diferit. In particular, aplicatia va verifica daca ID-ul se refera la
+un controller din interiorul unui modul, si daca da, atunci va fi creata intai
+instanta modulului respectiv, iar apoi va fi creata instanta controller-ului.
 
 Action
 ------
@@ -207,5 +219,4 @@ In codul de mai sus, filtrul `postOnly` va fi aplicat action-urilor
 `edit` si `create`, in timp ce filtrul `PerformanceFilter` ar trebui aplicat la toate action-urile
 CU EXCEPTIA action-urilor `edit` si `create`. Daca nu apare nici plus nici minus in configuratia filtrului,
 atunci filtrul va fi aplicat tuturor action-urilor.
-
-<div class="revision">$Id: basics.controller.txt 626 2009-02-04 20:51:13Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 745 2009-02-25 21:45:42Z qiang.xue $</div>

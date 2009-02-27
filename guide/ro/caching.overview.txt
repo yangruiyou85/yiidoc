@@ -19,8 +19,8 @@ array(
 		'cache'=>array(
 			'class'=>'system.caching.CMemCache',
 			'servers'=>array(
-				array('host'=>'server1', 'port'=>11211, 'weigth'=>60),
-				array('host'=>'server2', 'port'=>11211, 'weigth'=>40),
+				array('host'=>'server1', 'port'=>11211, 'weight'=>60),
+				array('host'=>'server2', 'port'=>11211, 'weight'=>40),
 			),
 		),
 	),
@@ -68,5 +68,4 @@ Nu asigura existenta unei portiuni de date care a fost memorata in cache, chiar
 daca aceasta portiune teoretic nu a expirat inca. De aceea, cache-ul nu trebuie
 folosit ca un mediu de stocare persistent (ex. a nu se folosi cache-ul pentru a
 memora date despre sesiune).
-
-<div class="revision">$Id: caching.overview.txt 468 2009-01-04 20:57:35Z qiang.xue $</div>
+<div class="revision">$Id: caching.overview.txt 723 2009-02-21 18:14:05Z qiang.xue $</div>
