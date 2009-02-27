@@ -224,5 +224,4 @@ Yii::import('application.extensions.xyz.XyzClass');
 Apoi, putem crea o instanta a clasei, putem sa ii configuram proprietatile
 si sa ii apelam metodele. De asemenea, putem sa o derivam pentru a crea noi clase derivate.
 
-
-<div class="revision">$Id: extension.use.txt 235 2008-11-18 04:27:50Z qiang.xue $</div>
+<div class="revision">$Id: extension.use.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
