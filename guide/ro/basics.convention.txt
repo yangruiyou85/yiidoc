@@ -105,6 +105,9 @@ Acest director trebuie sa dea drepturi de scriere procesului serverului Web.
    - `WebRoot/protected/extensions`: acest director contine toate extensiile third-party. 
 Acest director poate fi schimbat prin [CApplication::extensionPath].
 
+   - `WebRoot/protected/modules`: acest director contine toate
+[modulele](/doc/guide/basics.module) aplicatiei, fiecare reprezentand un subdirector.
+
    - `WebRoot/protected/controllers`: acest director contine toate fisierele cu clasele
 controller-elor. Acest director poate fi schimbat prin [CWebApplication::controllerPath].
 
@@ -131,4 +134,4 @@ director trebuie sa dea drept de scriere procesului serverului Web. Acest direct
 aplicatia Yii. Fiecare subdirector reprezinta o singura tema al carui nume este numele
 subdirectorului respectiv. Acest director poate fi schimbat prin [CThemeManager::basePath].
 
-<div class="revision">$Id: basics.convention.txt 170 2008-11-06 20:33:35Z qiang.xue $</div>
+<div class="revision">$Id: basics.convention.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
