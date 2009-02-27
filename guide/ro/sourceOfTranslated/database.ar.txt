@@ -149,7 +149,7 @@ capitalizing each word in the name and joining them without spaces; column
 names are similar to table names except their first letter is in lower
 case. For example, we use `Post` to name the table storing posts; and we
 use `createTime` to name the table's primary key column. This makes tables
-look more like class types and columns like variables. Note, however, using camel case may also bring you inconvenience for some DBMS, such as MySQL, as they may behave differently on different operation systems.
+look more like class types and columns like variables.
 
 
 Creating Record
@@ -506,4 +506,4 @@ catch(Exception $e)
 }
 ~~~
 
-<div class="revision">$Id: database.ar.txt 687 2009-02-17 02:57:56Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 546 2009-01-19 15:00:39Z qiang.xue $</div>
