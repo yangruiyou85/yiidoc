@@ -1,36 +1,53 @@
 Module
 ======
 
-> Note: Support for module has been available since version 1.0.3.
+> Note|Nota: Suportul pentru module este disponibil incepand cu versiunea 1.0.3.
 
-A module is a self-contained software unit that consists of [models](/doc/guide/basics.model), [views](/doc/guide/basics.view), [controllers](/doc/guide/basics.controller) and other supporting components. In many aspects, a module resembles to an [application](/doc/guide/basics.application). The main difference is that a module cannot be deployed alone and it must reside inside of an application. Users can access the controllers in a module like they do with normal application controllers.
+Un modul este o unitate software de sine statatoare care este formata din [modele](/doc/guide/basics.model), 
+[view-uri](/doc/guide/basics.view), [controllere](/doc/guide/basics.controller) si alte
+componente suportate. In multe privinte, un modul seamana cu o [aplicatie](/doc/guide/basics.application).
+Principala diferenta este ca un modul nu poate fi decat in interiorul unei aplicatii. 
+Utilizatorii pot accesa controller-ele dintr-un modul la fel cum acceseaza controller-ele normale din aplicatie.
 
-Modules are useful in several scenarios. For a large-scale application, we may divide it into several modules, each being developed and maintained separately. Some commonly used features, such as user management, comment management, may be developed in terms of modules so that they can be reused easily in future projects.
+Modulele sunt utile in cateva scenarii. Pentru o aplicatie complexa, putem alege sa o impartim
+in mai multe module, fiecare fiind dezvoltat si intretinut separat. Unele feature-uri, folosite in mod obisnuit,
+precum gestiunea utilizatorilor, gestiunea comentariilor, pot fi dezvoltate ca module astfel incat ele vor fi
+reutilizate usor in proiectele viitoare.
 
 
-Creating Module
----------------
+Creare modul
+------------
 
-A module is organized as a directory whose name serves as its unique [ID|CWebModule::id]. The structure of the module directory is similar to that of the [application base directory](/doc/guide/basics.application#application-base-directory). The following shows the typical directory structure of a module named `forum`:
+Un modul este organizat ca un director al carui nume este [ID-ul|CWebModule::id] sau unic. 
+Strunctura directorului modulului este similara cu cea a [directorului de baza al aplicatiei](/doc/guide/basics.application#application-base-directory).
+Structura de directoare tipica a unui modul cu numele `forum` ar arata in felul urmator:
 
 ~~~
 forum/
-   ForumModule.php            the module class file
-   components/                containing reusable user components
-      views/                  containing view files for widgets
-   controllers/               containing controller class files
-      DefaultController.php   the default controller class file
-   extensions/                containing third-party extensions
-   models/                    containing model class files
-   views/                     containing controller view and layout files
-      layouts/                containing layout view files
-      default/                containing view files for DefaultController
-         index.php            the index view file
+   ForumModule.php            fisierul clasei modulului
+   components/                contine componente utilizator reutilizabile
+      views/                  contine fisierele view ale widget-urilor
+   controllers/               contine fisierele claselor controller-elor
+      DefaultController.php   fisierul clasei controller-ului implicit
+   extensions/                contine extensii third-party
+   models/                    contine fisierele cu clasele modelelor
+   views/                     contine fisierele de layout si view-urile controller-elor
+      layouts/                contine fisierele layout pt view-uri
+      default/                contine fisierele view pentru DefaultController
+         index.php            view-ul index 
 ~~~
 
-A module must have a module class that extends from [CWebModule]. The class name is determined using the expression `ucfirst($id).'Module'`, where `$id` refers to the module ID (or the module directory name). The module class serves as the central place for storing information shared among the module code. For example, we can use [CWebModule::params] to store module parameters, and use [CWebModule::components] to share [application components](/doc/guide/basics.application#application-component) at the module level.
+Un modul trebuie sa aiba o clasa de modul care sa fie derivata din [CWebModule].
+Numele clasei este determinat folosind expresia `ucfirst($id).'Module'`,
+unde `$id` se refera la ID-ul modulului (acelasi cu numele directorului modulului).
+Clasa modulului serveste ca loc central pentru stocarea informatiilor vizibile peste tot
+in codul modulului. De exemplu, putem folosi [CWebModule::params] pentru a stoca parametrii
+modulului si sa folosim [CWebModule::components] pentru a shera
+[componentele aplicatiei](/doc/guide/basics.application#application-component) la nivelul modulului.
 
-> Tip: We can use the `yiic` tool to create the basic skeleton of a new module. For example, to create the above `forum` module, we can execute the following commands in a command line window:
+> Tip|Sfat: Putem folosi unealta `yiic` pentru a crea un schelet simplu al unui nou modul.
+> De exemplu, pentru a crea modulul `forum` de mai sus, putem executa urmatoarele comenzi
+intr-o linie de comanda:
 >
 > ~~~
 > % cd WebRoot/testdrive
@@ -41,10 +58,14 @@ A module must have a module class that extends from [CWebModule]. The class name
 > ~~~
 
 
-Using Module
-------------
+Folosirea modulului
+-------------------
 
-To use a module, first place the module directory under `modules` of the [application base directory](/doc/guide/basics.application#application-base-directory). Then declare the module ID in the [modules|CWebApplication::modules] property of the application. For example, in order to use the above `forum` module, we can use the following [application configuration](/doc/guide/basics.application#application-configuration):
+Pentru a folosi un modul, trebuie sa punem directorul modulului in directorul 
+`modules` din [directorul de baza al aplicatiei](/doc/guide/basics.application#application-base-directory).
+Apoi sa declaram ID-ul modulului in proprietatea [modules|CWebApplication::modules] a aplicatiei.
+De exemplu, pentru a folosi modulul `forum` de mai sus, putem folosi urmatoarea 
+[configuratie de aplicatie](/doc/guide/basics.application#application-configuration):
 
 ~~~
 [php]
@@ -55,7 +76,10 @@ return array(
 );
 ~~~
 
-A module can also be configured with initial property values. The usage is very similar to configuring [application components](/doc/guide/basics.application#application-component). For example, the `forum` module may have a property named `postPerPage` in its module class which can be configured in the [application configuration](/doc/guide/basics.application#application-configuration) as follows:
+Un modul poate sa fie de asemenea configurat cu valori initiale pentru proprietatile sale.
+Folosirea este foarte similara cu configurarea [componentelor aplicatiei](/doc/guide/basics.application#application-component).
+De exemplu, modulul `forum` poate avea o proprietate cu numele `postPerPage` (in clasa sa) care poate fi configurata
+in [configuratia aplicatiei](/doc/guide/basics.application#application-configuration) in felul urmator:
 
 ~~~
 [php]
@@ -70,24 +94,35 @@ return array(
 );
 ~~~
 
-The module instance may be accessed via the [module|CController::module] property of the currently active controller. Through the module instance, we can then access information that are shared at the module level. For example, in order to access the above `postPerPage` information, we can use the following expression:
+Instanta modulului poate fi accesata prin proprietatea [module|CController::module] a controller-ului activ in acest moment.
+Prin instanta modulului, putem accesa apoi informatiile care sunt sherate la nivel de modul.
+De exemplu, pentru a accesa informatia `postPerPage` de mai sus, putem folosi urmatoarea expresie:
 
 ~~~
 [php]
 $postPerPage=Yii::app()->controller->module->postPerPage;
-// or the following if $this refers to the controller instance
+// sau urmatoarea daca $this se refera la instanta controller-ului
 // $postPerPage=$this->module->postPerPage;
 ~~~
 
-A controller action in a module can be accessed using the [route](/doc/guide/basics.controller#route) `moduleID/controllerID/actionID`. For example, assuming the above `forum` module has a controller named `PostController`, we can use the [route](/doc/guide/basics.controller#route) `forum/post/create` to refer to the `create` action in this controller. The corresponding URL for this route would be `http://www.example.com/index.php?r=forum/post/create`.
+Un action de controller din interiorul unui modul poate fi accesat prin
+[ruta](/doc/guide/basics.controller#route) `moduleID/controllerID/actionID`.
+De exemplu, presupunand ca modulul `forum` de mai sus are un controller cu numele `PostController`,
+putem folosi [ruta](/doc/guide/basics.controller#route) `forum/post/create` pentru a ne referi la action-ul `create` din acest controller.
+URL-ul corespunzator pentru aceasta ruta va fi `http://www.example.com/index.php?r=forum/post/create`.
 
-> Tip: If a controller is in a sub-directory of `controllers`, we can still use the above [route](/doc/guide/basics.controller#route) format. For example, assuming `PostController` is under `forum/controllers/admin`, we can refer to the `create` action using `forum/admin/post/create`.
+> Tip|Sfat: Daca un controller este intr-un subdirector din `controllers`, inca
+> putem folosi formatul [rutei](/doc/guide/basics.controller#route) de mai sus. De exemplu,
+> presupunand ca `PostController` este sub `forum/controllers/admin`, putem sa apelam 
+> action-ul `create` folosind ruta `forum/admin/post/create`.
 
 
-Nested Module
--------------
+Module imbricate
+----------------
 
-Modules can be nested. That is, a module can contain another module. We call the former *parent module* while the latter *child module*. Child modules must be placed under the `modules` directory of the parent module. To access a controller action in a child module, we should use the route `parentModuleID/childModuleID/controllerID/actionID`.
-
+Modulele pot fi imbricate. Adica, un modul poate contine alt modul. Le puntem denumi
+*modulul parinte* si *modulul copil*. Modulele copil trebuie sa fie pus in directorul `modules`
+al modulului parinte. Pentru a accesa un action al unui controller dintr-un modul copil,
+trebuie sa folosim ruta `parentModuleID/childModuleID/controllerID/actionID`.
 
 <div class="revision">$Id: basics.module.txt 745 2009-02-25 21:45:42Z qiang.xue $</div>
