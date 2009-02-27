@@ -221,8 +221,8 @@ konfigurationsfilen för webbapplikationen blir `protected/config/main.php`.
 Modul
 -----
 
-En modul består typiskt av mer än en klassfil och är ofta en mix av ovanstående 
-utvidgningstyper. Följ därför respektive instruktioner för att använda en modul.
+Se avsnittet om [moduler](/doc/guide/basics.module#using-module) för 
+information om hur man använder en modul.
 
 Generell komponent
 ------------------
@@ -237,4 +237,4 @@ Sedan kan en instans av klassen skapas, dess propertyn konfigureras och dess
 metoder anropas. Man kan även ärva och utvidga komponentens klass.
 
 
-<div class="revision">$Id: extension.use.txt 235 2008-11-18 04:27:50Z qiang.xue $</div>
+<div class="revision">$Id: extension.use.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>

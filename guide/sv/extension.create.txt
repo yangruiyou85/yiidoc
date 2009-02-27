@@ -216,6 +216,8 @@ class MyCommand extends CConsoleCommand
 
 Modul
 -----
+Se avsnittet om [moduler](/doc/guide/basics.module#creating-module) för 
+information om hur man skapar en modul.
 
 En generell riktlinje för utveckling av en modul är att den skall vara komplett 
 i sig, samt oberoende. Resursfiler (så som CSS, JavaScript, bilder) som modulen 
@@ -230,4 +232,4 @@ Utveckling av en generell utvidgningskomponent är som att skriva en klass.
 lätthet kan användas av andra utvecklare.
 
 
-<div class="revision">$Id: extension.create.txt 273 2008-11-25 03:11:45Z qiang.xue $</div>
+<div class="revision">$Id: extension.create.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>

@@ -99,6 +99,8 @@ av dem kan anpassas om så önskas.
 
    - `WebRoot/protected/extensions`: denna katalog innehåller alla tredjepartstillägg. Anpassning kan ske via [CApplication::extensionPath].
 
+   - `WebRoot/protected/modules`: denna katalog innehåller alla applikationens [moduler](/doc/guide/basics.module), var och en representerad som en underkatalog.
+
    - `WebRoot/protected/controllers`: denna katalog innehåller alla kontrollerklassfiler. Anpassning kan ske via [CWebApplication::controllerPath].
 
    - `WebRoot/protected/views`: denna katalog innehåller alla vyfiler, inklusive kontrollervyer, layoutvyer samt systemvyer. Anpassning kan ske via [CWebApplication::viewPath].
@@ -113,4 +115,4 @@ av dem kan anpassas om så önskas.
 
    - `WebRoot/themes`: denna katalog innehåller olika teman att applicera på applikationen. Varje underkatalog representerar ett specifikt tema med samma namn som underkatalogen. Anpassning kan ske via [CThemeManager::basePath].
 
-<div class="revision">$Id: basics.convention.txt 170 2008-11-06 20:33:35Z qiang.xue $</div>
+<div class="revision">$Id: basics.convention.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>

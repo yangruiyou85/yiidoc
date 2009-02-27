@@ -332,7 +332,7 @@ att uppdatera en postning.
 Genom användning av auktoriseringsartiklar kan vi bygga upp en 
 *auktoriseringshierarki*. En artikel `A` är förälder till en annan artikel `B` i 
 hierarkin om `A` består av `B` (eller säg `A` ärver rättigheter(na) som `B` 
-representerar). En artikel kan ha flera avkommeartiklar (child items), och den 
+representerar). En artikel kan ha flera barnartiklar (child items), och den 
 kan också ha flera föräldraartiklar. Av denna anledning är en 
 auktoriseringshierarki en partiellt ordnad graf snarare än en trädstruktur. I 
 denna hierarki placerar sig rollartiklar på översta nivån, operationer på de 
@@ -513,6 +513,20 @@ användare. När [CWebUser::checkAccess] körs kommer standardroller att kontrol
 först, som om de hade tilldelats användaren.
 
 Standardroller måste deklareras i propertyn [CAuthManager::defaultRoles].
+Exempelvis följande konfiguration deklarerar två roller som standardroller, 
+nämligen `authenticated` och `guest`.
+
+~~~
+[php]
+return array(
+	'components'=>array(
+		'authManager'=>array(
+			'class'=>'CDbAuthManager',
+			'defaultRoles'=>array('authenticated', 'guest'),
+		),
+	),
+);
+~~~
 
 Eftersom en standardroll tilldelas alla användare, behöver den i regel associeras 
 med en affärsregel som avgör om rollen verkligen skall tillämpas på användaren. 
@@ -528,4 +542,4 @@ $bizRule='return Yii::app()->user->isGuest;';
 $auth->createRole('guest',$bizRule);
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 745 2009-02-25 21:45:42Z qiang.xue $</div>
+<div class="revision">$Id: topics.auth.txt 759 2009-02-26 21:23:53Z qiang.xue $</div>

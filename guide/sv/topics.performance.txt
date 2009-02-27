@@ -41,7 +41,7 @@ exekvering av trace-satser.
 
 Lägg märke till att användning av `yiilite.php` utan APC faktiskt kan försämra 
 prestanda, eftersom `yiilite.php` innehåller klasser som inte nödvändigtvis 
-används i varje request men som tar upp extra parsningstid. Det har observerats 
+används i varje request men som tar upp extra parsningstid. Det har också observerats 
 att användning av `yiilite.php` är långsammare i vissa serverkonfigurationer, 
 även när APC är påslagen. Bästa sättet att avgöra huruvida `yiilite.php` skall 
 användas eller inte, är att köra en benchmark med den medföljande `hello world`-
@@ -101,4 +101,75 @@ Sist men inte minst, använd om möjligt `LIMIT` i `SELECT`-frågor. Detta undvi
 inhämtning av överväldigande mängder data från databasen med risk att förbruka 
 allt minne som allokerats för PHP.
 
-<div class="revision">$Id: topics.performance.txt 571 2009-01-24 19:06:11Z qiang.xue $</div>
+Minimering av skriptfiler
+-------------------------
+
+Komplexa sidor behöver ofta inkludera många externa JavaScript- och CSS-filer. 
+Eftersom varje skriptfil kräver en extra fråga till och svar från servern bör vi 
+minimera antalet skriptfiler genom att kombinera dem till ett mindre antal. 
+Vi bör också överväga att reducera storleken på varje skriptfil så att överföringstiden 
+i nätverket reduceras. Det finns ett flertal verktyg att tillgå för hjälp ur dessa aspekter.
+
+För en sida som genererats av Yii, är det stor risk att en del skriptfiler har renderats av 
+komponenter som vi inte vill ändra (t.ex. Yii:s kärnkomponenter, tredjepartskomponenter). 
+För att minimera dessa skriptfiler behöver vi göra det i två steg.
+
+> Note|Märk: Finessen `scriptMap` som beskrivs nedan har varit tillgänglig fr o m version 1.0.3.
+
+Först deklarerar vi att skripten skall minimeras genom att konfigurera propertyn 
+[scriptMap|CClientScript::scriptMap] i applikationskomponenten [clientScript|CWebApplication::clientScript]. 
+Detta kan ske antingen i applikationskonfigurationen eller i kod. Till exempel,
+
+~~~
+[php]
+$cs=Yii::app()->clientScript;
+$cs->scriptMap=array(
+	'jquery.js'=>'/js/all.js',
+	'jquery.ajaxqueue.js'=>'/js/all.js',
+	'jquery.metadata.js'=>'/js/all.js',
+	......
+);
+~~~
+
+Det ovanstående kod gör, är att mappa dessa JavaScript-filer till URL:en `/js/all.js`. 
+Om någon av dessa JavaScript-filer behöver inkluderas av någon komponent, kommer Yii 
+att inkludera URL:en (en gång), i stället för de individuella skriptfilerna.
+
+I det andra steget behöver vi använda några verktyg för att slå samman (och kanske komprimera) 
+JavaScript-filerna till en enda fil samt spara den som `js/all.js`.
+
+Samma förfarande används för CSS-filer.
+
+Vi kan också öka sidladdningshastigheten med hjäp av [Google AJAX Libraries API](http://code.google.com/apis/ajaxlibs/). 
+Till exempel kan `jquery.js` inkluderas från Google:s servrar i stället för från egen server. För att åstadkomma det 
+konfigurerar vi först `scriptMap` på följande sätt,
+
+~~~
+[php]
+$cs=Yii::app()->clientScript;
+$cs->scriptMap=array(
+	'jquery.js'=>false,
+	'jquery.ajaxqueue.js'=>false,
+	'jquery.metadata.js'=>false,
+	......
+);
+~~~
+
+Genom mappningen av dessa skriptfiler till false, förhindrar vi Yii att generera kod för att inkludera dessa filer. 
+I stället lägger vi in följande kod i våra sidor för att uttryckligen inkludera skriptfilerna från Google,
+
+~~~
+[php]
+<head>
+<?php echo CGoogleApi::bootstrap(); ?>
+
+<?php echo CHtml::script(
+	CGoogleApi::load('jquery','1.3.2') . "\n" .
+	CGoogleApi::load('jquery.ajaxqueue.js') . "\n" .
+	CGoogleApi::load('jquery.metadata.js')
+); ?>
+......
+</head>
+~~~
+
+<div class="revision">$Id: topics.performance.txt 759 2009-02-26 21:23:53Z qiang.xue $</div>
