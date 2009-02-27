@@ -50,7 +50,7 @@ den Begriff *Attribute*, um sie von normalen Eigenschaften zu unterscheiden. Ein
 Attribut ist eine Eigenschaft, die hauptsächlich dazu benutzt wird, Daten aus
 Benutzereingaben oder aus der Datenbank zu speichern.
 
-Regeln für die Gültigkeitsprüfung angeben
+Angeben der Regeln zur Gültigkeitsprüfung
 -----------------------------------------
 
 Sobald der Benutzer seine Eingaben abschickt und das Model befüllt
