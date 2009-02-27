@@ -1,5 +1,5 @@
-Caching de date
-===============
+Cache de date
+=============
 
 Cashing-ul de date se refera la memorarea unor variabile PHP in cache si folosirea lor
 mai tarziu prin extragerea lor din cache. In acest scop, clasa componentei de baza cache

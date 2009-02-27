@@ -1,5 +1,5 @@
-Caching
-=======
+Cache
+=====
 
 Caching este o modalitate eficienta si ieftina de a imbunatati performanta
 unei aplicatii Web. Prin memorarea datelor statice in cache si prin servirea

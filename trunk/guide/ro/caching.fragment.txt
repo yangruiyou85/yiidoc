@@ -1,5 +1,5 @@
-Caching de fragmente
-====================
+Cache de fragmente
+==================
 
 Caching-ul de fragmente se refera la memorarea in cache a unui fragment
 dintr-o pagina. De exemplu, daca o pagina afiseaza un sumar al vanzarilor anuale

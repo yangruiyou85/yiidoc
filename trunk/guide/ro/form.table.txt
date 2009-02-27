@@ -1,4 +1,4 @@
-Colectarea input-urilor tabulare
+Colectare input-uri tabulare
 ================================
 
 Uneori vrem sa colectam date de la utilizator in mod automat. Adica, utilizatorul
