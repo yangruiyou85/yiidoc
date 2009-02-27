@@ -1,33 +1,33 @@
-Creating First Yii Application
-==============================
+Crearea primei aplicatii Yii
+============================
 
-To get an initial experience with Yii, we describe in this section how to
-create our first Yii application. We will use the powerful `yiic` tool
-which can be used to automate code creation for certain tasks. For convenience,
-we assume that `YiiRoot` is the directory where Yii is installed, and `WebRoot`
-is the document root of our Web server.
+Pentru a intra in contact prima data cu Yii, descriem in aceasta sectiune cum sa cream
+prima noastra aplicatie Yii. Vom folosi unealta (foarte puternica) `yiic`
+pe care o vom folosi pentru a crea automat cod pentru anumite taskuri. Pentru convenienta,
+presupunem ca `YiiRoot` este directorul in care a fost instalata platforma Yii, iar `WebRoot`
+este documentul radacina al serverului nostru Web.
 
-Run `yiic` on the command line as follows:
+Rulam `yiic` in linia de comanda in felul urmator:
 
 ~~~
-% YiiRoot/framework/yiic webapp WebRoot/testdrive
+% YiiRoot/framework/yiic webapp WebRoot/myproject
 ~~~
 
-> Note: When running `yiic` on Mac OS, Linux or Unix, you may need to
-> change the permission of the `yiic` file so that it is executable.
-> Alternatively, you may run the tool as follows,
+> Note|Nota: Atunci cand rulam `yiic` in Mac OS, Linux sau Unix, va trebui sa modificam
+> permisiunile fisierului `yiic` pentru a fi executabil.
+> Altfel, putem rula unealta si in felul urmator:
 >
 > ~~~
-> % cd WebRoot/testdrive
-> % php YiiRoot/framework/yiic.php webapp WebRoot/testdrive
+> % cd WebRoot/myproject
+> % php YiiRoot/framework/yiic.php webapp WebRoot/myproject
 > ~~~
 
-This will create a skeleton Yii application under the directory
-`WebRoot/testdrive`. The application has a directory structure that is
-is needed by most Yii applications.
+Aceste comenzi vor crea un schelet de aplicatie Yii in directorul
+`WebRoot/myproject`. Aplicatia are o structura de directoare care este necesarea
+pentru majoritatea aplicatiilor Yii.
 
-Without writing a single line of code, we can test drive our first Yii
-application by accessing the following URL in a Web browser:
+Fara sa scriem nici o linie de cod, putem testa prima noastra aplicatie Yii
+prin accesarea urmatorului URL intr-un browser Web: 
 
 ~~~
 http://hostname/testdrive/index.php
