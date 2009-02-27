@@ -1,7 +1,7 @@
 Ghidul Yii
 ==========
 
-Acest tutorial este eliberat in [Termenii documentatiei Yii](http://www.yiiframework.com/doc/terms/).
+Acest tutorial este scris in [Termenii documentatiei Yii](http://www.yiiframework.com/doc/terms/).
 
 Toate drepturile rezervate.
 
