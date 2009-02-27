@@ -14,12 +14,15 @@ Durch Aufrufen von [YiiBase::setPathOfAlias()] können wir neue Pfad-Aliase
 definieren. Der Einfachheit halber sind schon folgende RootAliase
 vordefiniert:
 
- - `system`: verweist auf das Frameworkverzeichnis von Yii
- - `application`: verweist auf das
+ - `system`: Verweist auf das Frameworkverzeichnis von Yii
+ - `application`: Verweist auf das
 [Stammverzeichnis](/doc/guide/basics.application#application-base-directory) der Anwendung
- - `webroot`: verweist auf das Verzeichnis, das das
+ - `webroot`: Verweist auf das Verzeichnis, das das
 [Eingangsscript](/doc/guide/basics.entry) enthält. Dieser Alias ist seit
 Version 1.0.3 verfügbar.
+ - `moduleID`: Verweist auf das Stammverzeichnis des
+[Moduls](/doc/guide/basics.module). Falls keine Module konfiguriert wurden,
+ist kein Alias definiert. Dieser Alias ist seit Version 1.0.3 verfügbar.
 
 Mit [YiiBase::getPathOfAlias()] kann ein Alias in seinen entsprechenden Pfad
 übersetzt werden. `system.web.CController` würde zum Beispiel nach
@@ -74,4 +77,4 @@ Ein Pfad-Alias kollidiert nicht mit einem Namespace.
 > reserviert bleibt und benutzerdefinierte Klassen mit anderen Präfixen
 > versehen werden.
 
-<div class="revision">$Id: basics.namespace.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
+<div class="revision">$Id: basics.namespace.txt 759 2009-02-26 21:23:53Z qiang.xue $</div>

@@ -49,7 +49,7 @@ Beachten Sie, dass der Einsatz von `yiilite.php` ohne APC die
 Leistungsfähigkeit sogar verringern kann, da `yiilite.php` einige Klassen
 enthält, die nicht notwendigerweise bei jedem Request verwendet werden und
 somit zusätzliche Zeit für deren Auswertung benötigt wird. In einigen
-Serverkonfiguration wurde sogar beobachtet, dass `yiilite.php` selbst mit
+Serverkonfiguration wurde außerdem beobachtet, dass `yiilite.php` selbst mit
 aktiviertem APC langsamer ist. Um zu entscheiden, ob
 `yiilite.php` eingesetzt wird oder nicht, führt man am besten einen Benchmark
 mit dem enthaltenen `hello world`-Demo durch.
@@ -114,4 +114,83 @@ Verwenden Sie schließlich `LIMIT` in Ihren `SELECT`-Abfragen. Dadurch wird
 verhindert, dass unermessliche Daten aus der Datenbank gelesen werden und den
 Speicher aufbrauchen, der PHP zugewiesen wurde.
 
-<div class="revision">$Id: topics.performance.txt 571 2009-01-24 19:06:11Z qiang.xue $</div>
+Minimieren von Scriptdateien
+----------------------------
+
+Komplexe Seiten müssen häufig viele externe JavaScript- und CSS-Dateien
+einbinden. Da jede Datei einen weiteren Abfragezyklus zum Server hervorrufen
+würde, sollten wir die Anzahl der Scriptdateien minimieren, indem wir sie in
+wenigen Dateien zusammenfassen. Wir sollten auch in Betracht ziehen, die Größe 
+jeder Scriptdatei zu verkleinern, um die Übertragungszeit über das Netzwerk zu
+verringern. Für diese zwei Aufgaben gibt es viele Hilfsprogramme.
+
+Für eine von Yii generierte Seite ist die Wahrscheinlichkeit sehr hoch, dass
+von Komponenten einige Scriptdateien gerendert werden, die wir nicht verändern
+möchten (z.B. von Yii-Kernkomponenten oder Komponten von Drittanbietern). Um
+diese Dateien zu verkleinern, bedarf es zweier Schritte.
+
+> Note|Hinweis: Das im folgenden beschriebene `scriptMap`-Feature ist seit
+Version 1.0.3 verfügbar.
+
+Als erstes legen wir die zu minimierenden Scripte über die Eigenschaft
+[scriptMap|CClientScript::scriptMap] der
+[clientScript|CWebApplication::clientScript]-Anwendungskomponente fest. Dies
+kann entweder in der Anwendungskonfiguration oder per Code erfolgen. Zum
+Beispiel:
+
+~~~
+[php]
+$cs=Yii::app()->clientScript;
+$cs->scriptMap=array(
+	'jquery.js'=>'/js/all.js',
+	'jquery.ajaxqueue.js'=>'/js/all.js',
+	'jquery.metadata.js'=>'/js/all.js',
+	......
+);
+~~~
+
+Dieser Code bildet die JavaScript-Dateien auf die URL `/js/all.js` ab. Wenn
+eine dieser Dateien von einer Komponente eingebunden werden muss, bindet Yii
+(einmal) die URL, statt der einzelnen Scriptdateine ein.
+
+Zweitens müssen wir ein Hilsprogramm verwenden, um die JavaScript-Dateien zu
+einer einzelnen Datei zusammenzufassen (und vielleicht auch zu komprimieren)
+und unter `js/all.js` zu speichern.
+
+Der selbe Trick gilt auch für CSS-Dateien.
+
+Wir können die Ladezeit von Seiten auch mit Hilfe der [Google AJAX Libraries
+API](http://code.google.com/apis/ajaxlibs/) verbessern. Wir können zum
+Beispiel `jquery.js` von Google-Servern einbinden, statt von unserem eigenen
+Server. Um dies zu erreichen, konfigurieren wir `scriptMap` wie folgt:
+
+~~~
+[php]
+$cs=Yii::app()->clientScript;
+$cs->scriptMap=array(
+	'jquery.js'=>false,
+	'jquery.ajaxqueue.js'=>false,
+	'jquery.metadata.js'=>false,
+	......
+);
+~~~
+
+Indem wir diese Scriptdateien auf false abbilden, verhindern wir, dass Yii den
+Code zum Einbinden dieser Dateien generiert. Stattdessen schreiben wir den
+folgenden Code in unsere Seiten, um die Dateien explizit von Google
+einzubinden.
+
+~~~
+[php]
+<head>
+<?php echo CGoogleApi::bootstrap(); ?>
+
+<?php echo CHtml::script(
+	CGoogleApi::load('jquery','1.3.2') . "\n" .
+	CGoogleApi::load('jquery.ajaxqueue.js') . "\n" .
+	CGoogleApi::load('jquery.metadata.js')
+); ?>
+......
+</head>
+~~~
+<div class="revision">$Id: topics.performance.txt 759 2009-02-26 21:23:53Z qiang.xue $</div>
