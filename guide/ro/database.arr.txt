@@ -251,6 +251,10 @@ Implicit, aceasta lista este '*', adica toate coloanele. Numele de coloane ar tr
 sa fie diferentiate folosind `aliasToken` daca apar intr-o expresie (ex.
 `COUNT(??.name) AS nameCount`).
 
+   - `params`: parametrii care vor fi legati la instructiunea SQL.
+Ar trebui sa primeasca un array cu perechi nume-valoare. Aceasta optiune este disponibila
+incepand cu versiunea 1.0.3.
+
    - `condition`: clauza `WHERE`. Implicit nu contine nimic, Referintele catre coloane
 trebuie sa fie diferentiate folosind `aliasToken` (ex. `??.id=10`).
 
@@ -275,6 +279,12 @@ Aceasta optiune este disponibila din versiunea 1.0.1 a Yii. Implicit este null,
 adica alias-ul tabelei este generat automat. Este diferit fata de
 `aliasToken`. `aliasToken` este doar un placeholder si va fi inlocuit cu alias-ul
 tabelei in cauza.
+
+   - `together`: daca tabela asociata cu aceasta relatie should ar trebui sa faca un join fortat
+cu tabela primara. Aceasta optiune are sens pentru relatiile HAS_MANY si MANY_MANY. 
+Daca optiunea nu este setata sau este false, fiecare relatie HAS_MANY sau MANY_MANY
+va avea instructiunea ei JOIN proprie pentru a imbunatati performanta.
+Aceasta optiune este disponibila incepand cu versiunea 1.0.3.
 
 In plus, sunt disponibile urmatoarele optiuni pentru anumite relatii
 in timpul abordarii lazy loading:
@@ -347,4 +357,4 @@ User::model()->with(array(
 ))->findAll();
 ~~~
 
-<div class="revision">$Id: database.arr.txt 626 2009-02-04 20:51:13Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 683 2009-02-16 05:20:17Z qiang.xue $</div>

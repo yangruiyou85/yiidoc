@@ -147,6 +147,10 @@ diferenta ca prima litera trebuie sa fie litera mica. De exemplu, folosim `Post`
 denumi tabela care memoreaza post-urile; vom folosi `createTime` pentru a denumi
 coloana tabelei care este cheie primara. Denumind astfel tabelele si coloanele, facem tabelele
 sa arate exact ca tipurile de clase si coloanele sa arate exact ca variabilele.
+De notat ca folosirea camel case poate crea unele inconveniente cu unele DBMS-uri,
+ca MySQL, pentru ca s-ar putea comporta diferit in sisteme de operare diferite.
+
+
 
 Creating Record
 ---------------
@@ -489,4 +493,4 @@ catch(Exception $e)
 }
 ~~~
 
-<div class="revision">$Id: database.ar.txt 546 2009-01-19 15:00:39Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 687 2009-02-17 02:57:56Z qiang.xue $</div>
