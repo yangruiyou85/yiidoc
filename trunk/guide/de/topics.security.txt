@@ -85,7 +85,7 @@ return array(
 Verwenden Sie statt eines HTML-form-Tags den Aufruf [CHtml::form]. 
 Die Methode [CHtml::form] sorgt dafür, dass der nötige
 Zufallswert in einem Hidden-Feld eingefügt wird, so dass er zur
-CSRF-Validierung mit zurückgesendet werden kann.
+CSRF-Gültigkeitsprüfung mit zurückgesendet werden kann.
 
 
 Schutz vor Cookie-Angriffen
@@ -104,13 +104,13 @@ entschlüsseln.
 Zeit verfallen um die Wahrscheinlichkeit eines Angriffs zu verringern.
 * Verhindern Sie Cross-Site Scripting, was zur Ausführung von schädlichem Code
 im Browser des Anwenders führen kann und so dessen Cookies zugänglich macht.
-* Validieren Sie Cookiedaten und stellen Sie fest, ob diese verändert wurden.
+* Prüf Sie Cookiedaten auf Gültigkeit und stellen Sie fest, ob diese verändert wurden.
 
-Yii implementiert ein Schema zur Cookie-Validierung, das Cookies vor
+Yii implementiert ein Schema zur Cookie-Überprüfung, das Cookies vor
 Veränderung schützt. Falls aktiv, wird insbesondere eine HMAC-Prüfung der
 Cookiewerte durchgeführt.
 
-Cookie-Validierung ist standardmäßig nicht aktiviert. Um sie einzuschalten,
+Die Cookie-Überprüfung ist standardmäßig nicht aktiviert. Um sie einzuschalten,
 konfigurieren Sie die [CHttpRequest]-Komponente in der
 [Anwendungskonfiguration](/doc/guide/basics.application#application-configuration)
 wie folgt:
@@ -126,7 +126,7 @@ return array(
 );
 ~~~
 
-Um die Cookie-Validierung anzuwenden, müssen wir über die
+Um die Cookie-Überprüfung anzuwenden, müssen wir über die
 [cookies|CHttpRequest::cookies]-Collection auf Cookies zugreifen, statt diese
 direkt über `$_COOKIES` anzusprechen:
 

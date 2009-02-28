@@ -48,7 +48,7 @@ aufgerufen. Wenn die Setter-Methode nicht definiert ist, ist die Eigenschaft
 nur lesbar und beim Schreiben würde eine Exception ausgelöst. Der Einsatz von
 Getter-/Setter-Methoden zum Definieren einer Eigenschaft hat den Vorteil, das
 beim Lesen und Schreiben zusätzliche Logik ausgeführt werden kann 
-(z.B. Validierung durchführen, Events auslösen).
+(z.B. Gültigkeitsprüfung durchführen, Events auslösen).
 
 
 >Note|Hinweis: Es gibt einen kleinen Unterschied zwischen einer Eigenschaft,

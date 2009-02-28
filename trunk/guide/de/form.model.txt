@@ -5,8 +5,8 @@ Bevor wir den HTML-Code für ein Formular schreiben, sollten wir entscheiden,
 welche Daten wir vom Endbenutzer erwarten und welche Regeln diese Daten
 erfüllen sollen. Eine Model-Klasse kann genutzt werden um diese Informationen
 aufzunehmen. Wie im Abschnitt [Model](/doc/guide/basics.model)
-definiert, ist ein Model ein zentraler Ort zur Aufbewahrung und Validierung von
-Benutzereingaben.
+definiert, ist ein Model ein zentraler Ort zur Aufbewahrung und
+Gültigkeitsprüfung von Benutzereingaben.
 
 Je nachdem, wie wir die Benutzereingaben weiterverwenden, können wir zwischen
 zwei Model-Typen wählen. Wenn Benutzereingaben erfasst, verarbeitet und dann verworfen
@@ -299,7 +299,7 @@ oder den Namen dieses Szenarios enthält.
 Wenn wir kein Szenario beim Aufruf von [CModel::validate()] angeben,
 werden nur die Regeln, bei denen die `on` Option nicht gesetzt ist ausgeführt.
 
-Zur Validierung der Anmeldung eines Benutzers führen wir beispielsweise folgende
+Zur Gültigkeitsprüfung der Anmeldung eines Benutzers führen wir beispielsweise folgende
 Anweisung aus:
 
 ~~~
@@ -324,7 +324,7 @@ public function rules()
 Demzufolge wird die erste Regel in allen Szenarien angewendet, während
 die beiden nächsten Regeln nur im Szenario `register` zum Einsatz kommen.
 
-> Note|Hinweis: Die szenarienbasierte Validierung ist seit Version 1.0.1
+> Note|Hinweis: Die szenarienbasierte Gültigkeitsprüfung ist seit Version 1.0.1
 verfügbar.
 
 Abfragen von Fehlern bei der Gültigkeitsprüfung
