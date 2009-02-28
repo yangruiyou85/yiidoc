@@ -34,7 +34,7 @@
     - [データキャッシュ](caching.data)
     - [フラグメントキャッシュ](caching.fragment)
     - [ページキャッシュ](caching.page)
-    - [動的なページ](caching.dynamic)
+    - [ダイナミックコンテンツ](caching.dynamic)
 
 * Yiiのエクステンション
     - [概要](extension.overview)
