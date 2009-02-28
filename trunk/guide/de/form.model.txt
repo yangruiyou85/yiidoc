@@ -338,7 +338,7 @@ ein einzelnes Attribut verwendet werden.
 Attribut-Label
 --------------
 
-Beim Entwurf eines Formulars ist es oft erforderlich für jedes Eingabefeld ein
+Beim Entwurf eines Formulars ist es oft erforderlich, für jedes Eingabefeld ein
 Label (Beschriftung) anzuzeigen. Dieses Label informiert den Benutzer über die Art der
 Information, die er in das Feld eintragen soll. Obwohl wir ein Label fest in
 einem View hinterlegen können, wäre es flexibler und bequemer, es im entsprechenden 
@@ -347,7 +347,7 @@ Model anzugeben.
 Als Standardwert gibt [CModel] einfach den Namen des Attributs als Label zurück.
 Dies kann durch Überschreiben der Methode [attributeLabels()|CModel::attributeLabels]
 angepasst werden. Wie wir in den folgenden Kapiteln sehen werden, erlaubt
-uns die Angebe von Labels im Model, ein Formular schneller und wirkungsvoller zu
+uns die Angabe von Labels im Model, ein Formular schneller und wirkungsvoller zu
 erstellen.
 
 <div class="revision">$Id: form.model.txt 598 2009-01-29 20:19:28Z qiang.xue $</div>

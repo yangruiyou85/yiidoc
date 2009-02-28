@@ -45,15 +45,15 @@ authentifizieren, bevor Ihnen Zugriff auf geschützte Inhalte gewährt wird.
 Die folgenden Screenshots zeigen mehr Details:
 
 
-![Home page](first-app1.png)
+![Startseite](first-app1.png)
 
-![Contact page](first-app2.png)
+![Kontaktseite](first-app2.png)
 
-![Contact page with input errors](first-app3.png)
+![Kontaktseite mit Eingabefehlern](first-app3.png)
 
-![Contact page with success](first-app4.png)
+![Kontaktseite im Erfolgsfall](first-app4.png)
 
-![Login page](first-app5.png)
+![Anmeldeseite](first-app5.png)
 
 
 Das folgende Diagramm zeigt die Verzeichnisstruktur unserer Anwendung. Für
@@ -125,7 +125,7 @@ Indem wir einen `db`-Eintrag zu `components` (Komponenten) hinzufügen,
 weisen wir die Applikation an, sich bei Bedarf mit der SQLite-Datenbank 
 `WebRoot/testdrive/protected/data/source.db` zu verbinden.
 
-> Note|Hinweis: Um Yiis Datenbankfunktionen benutzen zu können, müssen wir in PHP die 
+> Note|Hinweis: Um Yii’s Datenbankfunktionen benutzen zu können, müssen wir in PHP die 
 PDO-Erweiterung inkl. der treiberspezifischen PDO-Erweiterung einschalten.
 Für die Testanwendung müssen also `php_pdo` und `php_pdo_sqlite` aktiviert
 sein.
@@ -252,9 +252,9 @@ angezeigt, sobald zu viele Benutzer für eine Seite vorhanden sind.
 All diese feinen Features erhalten wir, ohne dafür eine einzige Zeile Code
 schreiben müssen!
 
-![User admin page](first-app6.png)
+![Administrationsseite für Benutzer](first-app6.png)
 
-![Create new user page](first-app7.png)
+![Seite zum Erstellen eines neuen Benutzers](first-app7.png)
 
 
 

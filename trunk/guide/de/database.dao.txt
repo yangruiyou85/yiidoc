@@ -1,7 +1,7 @@
 ﻿Data Access Objects (DAO)
 =========================
 
-Data Access Objects (DAO, Datenzugriffsobjekte) bieten eine allgemeine
+Data Access Objects (Datenzugriffsobjekte, DAO) bieten eine allgemeine
 API (Programmierschnittstelle) für den Zugriff auf Daten, die in unterschiedlichen 
 Datenbankmanagementsystemen (DBMS) gespeichert sind. Dadurch kann das zugrundeliegende DBMS ausgetauscht
 werden ohne dass der Code, der DAO für den Zugriff auf die Daten nutzt, geändert
@@ -100,7 +100,7 @@ Eine SQL-Anweisung wird über [CDbCommand] auf eine der folgenden beiden Arten
 ausgeführt:
 
    - [execute()|CDbCommand::execute]: führt eine SQL-Anweisung aus, die keine
-Abfrage ist, wie `INSERT`, `UPDATE` and `DELETE`,  aus. Bei Erfolg, liefert sie die Anzahl
+Abfrage ist, wie `INSERT`, `UPDATE` und `DELETE`,  aus. Bei Erfolg, liefert sie die Anzahl
 der betroffenen Zeilen zurück.
 
    - [query()|CDbCommand::query]: führt eine SQL-Abfrage wie `SELECT` aus, die
@@ -151,7 +151,7 @@ Verwenden von Transaktionen
 
 Wenn eine Anwendung einige Abfragen ausführt, von denen jede Informationen
 aus der Datenbank liest und/oder in sie schreibt, ist es wichtig, sicherzustellen, 
-dass in der Datenbank nicht nur ein paar dieser Abfragen ausgeführt wurden.
+dass in der Datenbank auch alle davon ausgeführt wurden.
 In diesem Fall kann eine Transaktion gestartet werden, welche in Yii 
 durch eine [CDbTransaction]-Instanz repräsentiert wird:
 
@@ -190,8 +190,8 @@ kann man eine SQL Anweisung mit optionalen Platzhaltern für Parameter
 "vorbereiten" (engl. prepare). Die Platzhalter werden während des 
 Bindungsprozesses durch die eigentlichen Parameter ersetzt.
 
-Die Platzhalter für Parameter können entweder (durch eine eindeutige
-Zeichenkette) benannt oder unbenannt sein (dargestellt durch Fragezeichen). Rufen Sie
+Die Platzhalter für Parameter können entweder benannt (durch eine eindeutige
+Zeichenkette) oder unbenannt (dargestellt durch Fragezeichen) sein. Rufen Sie
 [CDbCommand::bindParam()] oder [CDbCommand::bindValue()] auf, um diese Platzhalter
 durch die eigentlichen Parameter zu ersetzen. Die Parameter müssen nicht in
 Anführungszeichen gesetzt werden. Der zugrundeliegende Datenbanktreiber erledigt 
@@ -240,7 +240,7 @@ $dataReader->bindColumn(1,$username);
 /$dataReader->bindColumn(2,$email);
 while($dataReader->read()!==false)
 {
-    // $username und $email enthalten den Benutzernamen und die and E-Mail Adresse der aktuellen Zeile
+    // $username und $email enthalten den Benutzernamen und die E-Mail-Adresse der aktuellen Zeile
 }
 ~~~
 

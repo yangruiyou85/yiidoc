@@ -3,7 +3,7 @@
 
 Den `login`-View zu schreiben ist einfach. Wir beginnen mit dem `form` Tag,
 dessen action-Attribut die URL der zuvor beschriebenen `login`-Action ist.
-Wir ergänzen dann Label und Eingabefeldern für die in der Klasse `LoginForm`
+Wir ergänzen dann Label und Eingabefelder für die in der Klasse `LoginForm`
 definierten Attribute. Zum Schluss fügen wir einen Button zum Absenden
 hinzu. Das alles lässt sich mit reinem HTML-Code bewerkstelligen.
 
@@ -24,7 +24,7 @@ beispielsweise ein Textfeld oder eine Dropdown-Liste zu erstellen, können wir
 > Dies würde andernfalls überall klobigen JavaScript-Code
 > erforderlich machen.
 
-Nachfolgend benutzen wir [CHtml] um das Login-Formular zu erstellen. Wir
+Nachfolgend benutzen wir [CHtml], um das Anmeldeformular zu erstellen. Wir
 nehmen an, dass die Variable `$user` eine Instanz von `LoginForm` ist.
 
 ~~~
@@ -57,7 +57,7 @@ Angemeldet bleiben<br />
 
 Der obige Code generiert ein dynamischeres Formular. [CHtml::activeLabel()] 
 erzeugt zum Beispiel ein Label, das mit dem angegebenen Model-Attribut
-verknüpft ist. Wenn bei dem Attribut ein Eingabefehler auftritt, ändert
+verknüpft ist. Wenn beim Attribut ein Eingabefehler auftritt, ändert
 sich die CSS-Klasse des Labels in `error`, was über entsprechende CSS-Stile
 wiederum das Erscheinungsbild des Labels ändert. Gleichermaßen erzeugt
 [CHtml::activeTextField()] ein Texteingabefeld für das angegebene Model-Attribut
@@ -67,8 +67,8 @@ Wenn wir die mit den `yiic`-Skripten mitgelieferte Stylesheet-Datei `form.css`
 nutzen, sieht das erzeugte Formular folgendermaßen aus:
 
 
-![Die Login-Seite](login1.png)
+![Die Anmeldeseite](login1.png)
 
-![Die Login-Seite mit Fehlern](login2.png)
+![Die Anmeldeseite mit Fehlern](login2.png)
 
 <div class="revision">$Id: form.view.txt 715 2009-02-20 02:08:24Z qiang.xue $</div>

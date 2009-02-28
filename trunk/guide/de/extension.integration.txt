@@ -1,7 +1,7 @@
 Andere Bibliotheken verwenden
 =============================
 
-Um Yiis Funktionalität leicht durch Bibliotheken von Drittanbietern erweitern
+Um Yii’s Funktionalität leicht durch Bibliotheken von Drittanbietern erweitern
 zu können, wurde bei der Planung viel Sorgfalt auf diesen Punkt verwendet. 
 Bei der Verwendung von solchen Bibliotheken ist der Entwickler oft mit
 Problemen im Zusammenhang mit Klassenbezeichnungen und Dateieinbindungen
