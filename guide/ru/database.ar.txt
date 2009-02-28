@@ -2,13 +2,13 @@
 =============
 
 Хотя Yii DAO справляется практически с любыми задачами, касающимися работы с БД, почти наверняка 
-90% нашего времени уйдут на написание SQL-выражений, 
+90% времени уйдут на написание SQL-выражений, 
 реализующих общие операции CRUD (создание, чтение, обновление и удаление). Кроме того, 
 код, перемешанный с SQL-выражениями, поддерживать проблематично. Для решения этих 
 проблем мы можем воспользоваться Active Record.
 
-Active Record реализует популярный подход объектно-реляционного проекцирования (ORM). 
-Каждый класс AR отражает таблицу (или представление) базы данных , экземпляр AR - строку в этой таблице, 
+Active Record реализует популярный подход объектно-реляционного проецирования (ORM). 
+Каждый класс AR отражает таблицу (или представление) базы данных, экземпляр AR - строку в этой таблице, 
 а общие операции CRUD реализованы как методы AR. В результате, мы можем работать с большей 
 объектно-ориентированностью. Например, используя следующий код, можно вставить новую строку в 
 таблицу `Post`.
@@ -37,14 +37,14 @@ CREATE TABLE Post (
 
 > Note|Примечание: AR не дает решения для всех задач, касающихся работы с базами данных. 
 Лучше всего его использовать для моделирования таблиц в конструкциях PHP и для 
-несложных SQL-запросов. Для сложных случае следует использоваться Yii DAO.
+несложных SQL-запросов. Для сложных случаев следует использовать Yii DAO.
 
 
 Соединение с базой данных
 --------------------------
 
 Для работы AR требуется подключение к базе данных. По умолчанию, предполагается, что 
-компонент приложения `db` предоставляет необходимый экзмепляр класса [CDbConnection], 
+компонент приложения `db` предоставляет необходимый экземпляр класса [CDbConnection], 
 который отвечает за подключение к базе. Ниже приведен пример конфигурации приложения:
 
 ~~~
@@ -118,7 +118,7 @@ class Post extends CActiveRecord
 Если они различаются, потребуется переопределить метод [tableName()|CActiveRecord::tableName]. 
 Метод [model()|CActiveRecord::model] объявляется для каждого AR-класса.
 
-Значения полей в строке таблицы доступны как атрибут соответствующего экземпляра AR-класса.
+Значения полей в строке таблицы доступны как атрибуты соответствующего экземпляра AR-класса.
 Например, код ниже устанавливает значение для атрибута `title`:
 
 ~~~
@@ -128,14 +128,14 @@ $post->title='тестовый пост';
 ~~~
 
 Хотя мы никогда не объявляем заранее свойство `title` класса `Post`, 
-тем не менее, мы можем обратиться к нему как в коде выше. Это возможно по причине того, что 
-`title` является полем в таблице `Post` и CActiveRecord делает его доступным в качестве свойства 
+мы, тем не менее, можем обратиться к нему как в коде выше. Это возможно по причине того, что 
+`title` является полем в таблице `Post` и [CActiveRecord] делает его доступным в качестве свойства 
 благодаря волшебному методу PHP `__get()`. Если аналогичным образом обратиться к несуществующему полю, 
 будет вызвано исключение.
 
 
 > Info|Инфо: для лучшей читаемость кода, мы предлагаем называть таблицы базы данных и поля таблиц 
-в горбатом (camel) регистре, т.е. слова в названии таблицы пишутся слитно без пробелов и каждое слово 
+в гОрБаТоМ (camel) регистре, т.е. слова в названии таблицы пишутся слитно без пробелов и каждое слово 
 начинается с прописной буквы, аналогично для полей таблицы, кроме того, что первая буква в названии строчная. 
 Например, таблицу, где хранятся посты, называем `Post`, а поле - первичный ключ - `createTime`. Такой подход 
 делает таблицы похожими на классы, а поля - на переменные. Однако, имейте в виду, что горбатый регистр 
@@ -158,7 +158,7 @@ $post->createTime=time();
 $post->save();
 ~~~
 
-Если первичный ключ таблицы автоинкрементный, то после добавления экзмепляр AR 
+Если первичный ключ таблицы автоинкрементный, то после добавления экземпляр AR 
 будет содержать обновленное значение первичного ключа. В примере выше, свойство 
 `id` всегда будет содержать первичный ключ для новой записи.
 
@@ -180,7 +180,7 @@ echo $post->title;  // отобразится: пожалуйста, введи�
 ~~~
 
 Начиная с версии 1.0.2, до сохранения записи (добавления или обновления) атрибуту 
-может быть присвоено значение типа [CDbExpression]. Например для сохранения текущей даты, 
+может быть присвоено значение типа [CDbExpression]. Например, для сохранения текущей даты, 
 возвращаемой функцией MySQL `NOW()`, можно использовать следующий код:
 
 ~~~
@@ -210,50 +210,45 @@ $post=Post::model()->findByAttributes($attributes,$condition,$params);
 $post=Post::model()->findBySql($sql,$params);
 ~~~
 
-In the above, we call the `find` method with `Post::model()`. Remember
-that the static method `model()` is required for every AR class. The method
-returns an AR instance that is used to access class-level methods
-(something similar to static class methods) in an object context.
+*Выше мы вызываем метод `find` через `Post::model()`. Запомните, что статический метод `model()` 
+обязателен для каждого AR-класса. Это метод возвращает экземпляр AR, используемый для 
+доступа к методам уровня класса (что-то схожее со статическими методами класса) в контексте объекта.*
 
-If the `find` method finds a row satisfying the query conditions, it will
-return a `Post` instance whose properties contain the corresponding column
-values of the table row. We can then read the loaded values like we do with
-normal object properties, for example, `echo $post->title;`.
+Если метод `find` находит строку, соответствующую условиям запроса, он возвращает экземпляр 
+класса `Post`, свойства которого содержат значения соответствующих полей строки таблицы. Далее мы 
+можем читать загруженные значения аналогично обычным свойствам объектам, например, `echo $post->title;`.
 
-The `find` method will return null if nothing can be found in the database
-with the given query condition.
+В случае, если в базе нет данных, соответствующих условиям запроса, метод `find` вернет значение null.
 
-When calling `find`, we use `$condition` and `$params` to specify query
-conditions. Here `$condition` can be string representing the `WHERE` clause
-in a SQL statement, and `$params` is an array of parameters whose values
-should be bound to the placeholders in `$condition`. For example,
+Параметры `$condition` и `$params` используются для уточнения запроса. В данном случае `$condition` 
+может быть строкой, соответствующей оператору `WHERE` в SQL-выражении, а `$params` - массивом параметров, значения 
+которых должны быть привязаны к маркерам, указанным в `$condition`. Например:
 
 ~~~
 [php]
-// find the row with postID=10
+// найдем строку, где postID=10
 $post=Post::model()->find('postID=:postID', array(':postID'=>10));
 ~~~
 
-We can also use `$condition` to specify more complex query conditions.
-Instead of a string, we let `$condition` be a [CDbCriteria] instance, which
-allows us to specify conditions other than the `WHERE` clause. For example,
+Кроме того, можно использовать `$condition` для указания более сложных условий запроса. Вместо строки параметр
+`$condition` может быть экземпляром класса [CDbCriteria], который позволяет указать иные условия 
+нежели `WHERE` выражение. К примеру:
 
 ~~~
 [php]
 $criteria=new CDbCriteria;
-$criteria->select='title';  // only select the 'title' column
+$criteria->select='title';  // выбираем только поле 'title'
 $criteria->condition='postID=:postID';
 $criteria->params=array(':postID'=>10);
-$post=Post::model()->find($criteria); // $params is not needed
+$post=Post::model()->find($criteria); // $params не требуется
 ~~~
 
-Note, when using [CDbCriteria] as query condition, the `$params` parameter
-is no longer needed since it can be specified in [CDbCriteria], as shown
-above.
+Обратите внимание, если в качестве условия запроса используется [CDbCriteria], то параметр
+`$params` уже не нужен, поскольку его можно указать непосредственно в [CDbCriteria], как показано выше.
 
-An alternative way to [CDbCriteria] is passing an array to the `find` method.
-The array keys and values correspond to the criteria's property name and value,
-respectively. The above example can be rewritten as follows,
+Помимо использования [CDbCriteria], есть другой способ указать условие - передать методу 
+массив ключей и значений, соответствующих именам и значениям свойств критерия. Пример выше можно переписать
+следующим образом: 
 
 ~~~
 [php]
@@ -264,144 +259,127 @@ $post=Post::model()->find(array(
 ));
 ~~~
 
-> Info: When a query condition is about matching some columns with the
-specified values, we can use
-[findByAttributes()|CActiveRecord::findByAttributes]. We let the
-`$attributes` parameters be an array of the values indexed by the column
-names. In some frameworks, this task can be achieved by calling methods
-like `findByNameAndTitle`. Although this approach looks attractive, it
-often causes confusion, conflict and issues like case-sensitivity of column
-names.
+> Info|Инфо: В случае, когда условие заключается в соответствии значениям некоторых полей, можно воспользоваться
+методом [findByAttributes()|CActiveRecord::findByAttributes], где параметр `$attributes` представляет собой 
+массив значений, проиндексированных по имени поля. В некоторых фреймворках эта задача решается путем использования методов 
+типа `findByNameAndTitle`. Хотя такой способ и выглядит привлекательно, часто он вызывает путаницу и проблемы, связанные с чувствительностью 
+имен полей к регистру.
 
-When multiple rows of data matching the specified query condition, we can
-bring them in all together using the following `findAll` methods, each of
-which has its counterpart `find` method, as we already described.
+В случае, если условию запроса отвечает множество срок, мы можем получить их все, используя 
+методы `findAll`, приведенные ниже. Как мы отметили ранее, каждый из этих методов `findAll` имеет `find` аналог.
 
 ~~~
 [php]
-// find all rows satisfying the specified condition
+// найдем все строки удовлетворяющие условию
 $posts=Post::model()->findAll($condition,$params);
-// find all rows with the specified primary keys
+// найдем все строки с указанными значениями первичного ключа
 $posts=Post::model()->findAllByPk($postIDs,$condition,$params);
-// find all rows with the specified attribute values
+// найдем все строки с указанными значениями атрибута
 $posts=Post::model()->findAllByAttributes($attributes,$condition,$params);
-// find all rows using the specified SQL statement
+// найдем все строки, используя SQL-выражение
 $posts=Post::model()->findAllBySql($sql,$params);
 ~~~
 
-If nothing matches the query condition, `findAll` would return an empty
-array. This is different from `find` who would return null if nothing is
-found.
+В отличие от `find`, метод `findAll` в случае, если нет ни одной строки, удовлетворяющей запросу 
+возвращает не null, а пустой массив.
 
-Besides the `find` and `findAll` methods described above, the following
-methods are also provided for convenience:
+Помимо методов `find` и `findAll` описанных выше, для удобства также доступны следующие методы:
 
 ~~~
 [php]
-// get the number of rows satisfying the specified condition
+// получим количество строк удовлетворяющих условию
 $n=Post::model()->count($condition,$params);
-// get the number of rows using the specified SQL statement
+// получим количество строк с использованием указанного SQL-выражения
 $n=Post::model()->countBySql($sql,$params);
-// check if there is at least a row satisfying the specified condition
+// проверим, есть ли хотя бы одна строка, удовлетворяющая условию
 $exists=Post::model()->exists($condition,$params);
 ~~~
 
-Updating Record
+Обновление записи
 ---------------
 
-After an AR instance is populated with column values, we can change them
-and save them back to the database table.
+Заполнив экземпляр AR значениями полей, мы изменяем эти значения и сохраняем их обратно в БД.
 
 ~~~
 [php]
 $post=Post::model()->findByPk(10);
 $post->title='new post title';
-$post->save(); // save the change to database
+$post->save(); // сохраняем изменения в базу данных
 ~~~
 
-As we can see, we use the same [save()|CActiveRecord::save] method to
-perform insertion and updating operations. If an AR instance is created
-using the `new` operator, calling [save()|CActiveRecord::save] would insert
-a new row into the database table; if the AR instance is the result of some
-`find` or `findAll` method call, calling [save()|CActiveRecord::save] would
-update the existing row in the table. In fact, we can use
-[CActiveRecord::isNewRecord] to tell if an AR instance is new or not.
+Как можно было заметить, мы используем метод [save()|CActiveRecord::save] для добавления и обновления записей. 
+Если экземпляр AR создан с использованием оператора `new`, то вызов метода [save()|CActiveRecord::save] 
+приведет к добавлению новой строки в базу данных. В случае же, если экземпляр AR создан как результат вызова методов 
+`find` и `findAll`, вызов метода [save()|CActiveRecord::save] обновит данные существующей строки в таблице.
+На самом деле, можно использовать свойство [CActiveRecord::isNewRecord] для указания, является экземпляр AR новым или нет.
 
-It is also possible to update one or several rows in a database table
-without loading them first. AR provides the following convenient
-class-level methods for this purpose:
+Кроме того, можно обновить одну или несколько строк в таблице без их предварительной загрузки. Для этого в 
+AR существуют следующие методы уровня класса:
 
 ~~~
 [php]
-// update the rows matching the specified condition
+// обновим строки, отвечающие заданному условию
 Post::model()->updateAll($attributes,$condition,$params);
-// update the rows matching the specified condition and primary key(s)
+// обновим строки, удовлетворяющие заданному условию и первичному ключу (или нескольким ключам)
 Post::model()->updateByPk($pk,$attributes,$condition,$params);
-// update counter columns in the rows satisfying the specified conditions
+// обновим поля-счетчики в строках, удовлетворяющих заданным условиям
 Post::model()->updateCounters($counters,$condition,$params);
 ~~~
 
-In the above, `$attributes` is an array of column values indexed by column
-names; `$counters` is an array of incremental values indexed by column
-names; and `$condition` and `$params` are as described in the previous
-subsection.
+Здесь `$attributes` - это массив значений полей, проиндексированных по имени поля, 
+`$counters` - массив инкрементных значений, проиндексированных по имени поля, 
+`$condition` и `$params` аналогично описанию выше.
 
-Deleting Record
+Удаление записи
 ---------------
 
-We can also delete a row of data if an AR instance has been populated with
-this row.
+Мы можем удалить строку, если экземпляр AR был заполнен значениями этой строки.
 
 ~~~
 [php]
-$post=Post::model()->findByPk(10); // assuming there is a post whose ID is 10
-$post->delete(); // delete the row from the database table
+$post=Post::model()->findByPk(10); // предполагаем, что пост с ID=10 существует
+$post->delete(); // удаляем строку из таблицы
 ~~~
 
-Note, after deletion, the AR instance remains unchanged, but the
-corresponding row in the database table is already gone.
+Обратите внимание, что после удаления экземпляр AR не меняется, но соответствующей записи в 
+таблице уже нет.
 
-The following class-level methods are provided to delete rows without the
-need of loading them first:
+Следующие методы используются для удаления строк без их предварительной загрузки:
 
 ~~~
 [php]
-// delete the rows matching the specified condition
+// удалим строки, соответствующие указанному условию
 Post::model()->deleteAll($condition,$params);
-// delete the rows matching the specified condition and primary key(s)
+// удалим строки, соответствующие указанному условию и первичному ключу (или нескольким ключам)
 Post::model()->deleteByPk($pk,$condition,$params);
 ~~~
 
-Data Validation
+Проверка данных
 ---------------
 
-When inserting or updating a row, we often need to check if the column
-values comply to certain rules. This is especially important if the column
-values are provided by end users. In general, we should never trust
-anything coming from the client side.
+Часто во время добавления или обновления строки, нам требуется проверить, соответствуют ли 
+значения полей некоторым правилам. Особенно это важно в случае данных, поступающих со стороны клиента, - 
+в подавляющем большинстве случаев этим данным доверять нельзя. 
 
-AR performs data validation automatically when
-[save()|CActiveRecord::save] is being invoked. The validation is based on
-the rules specified by in the [rules()|CModel::rules] method of the AR class.
-For more details about how to specify validation rules, refer to
-the [Declaring Validation Rules](/doc/guide/form.model#declaring-validation-rules)
-section. Below is the typical workflow needed by saving a record:
+AR осуществляет проверку данных автоматически в момент вызова метода [save()|CActiveRecord::save]. 
+Проверка основана на правилах, заданных в методе AR-класса [rules()|CModel::rules]. Детально ознакомиться с 
+тем, как задаются правила проверки, можно в разделе [Определение правил проверки](/doc/guide/form.model#declaring-validation-rules).
+Ниже приведем типичный порядок обработки в момент сохранения записи:
 
 ~~~
 [php]
 if($post->save())
 {
-	// data is valid and is successfully inserted/updated
+	// данные корректны и успешно добавлены\обновлены
 }
 else
 {
-	// data is invalid. call getErrors() to retrieve error messages
+	// данные некорректны, сообщения об ошибках могут быть получены путем вызова метода getErrors()
 }
 ~~~
 
-When the data for inserting or updating is submitted by end users in an
-HTML form, we need to assign them to the corresponding AR properties. We
-can do so like the following:
+В момент, когда данные для добавления или обновления отправляются пользователем через форму ввода, нам требуется 
+присвоить их соответствующим свойствам AR. Это можно проделать следующим образом:
 
 ~~~
 [php]
@@ -410,67 +388,55 @@ $post->content=$_POST['content'];
 $post->save();
 ~~~
 
-If there are many columns, we would see a long list of such assignments.
-This can be alleviated by making use of the
-[attributes|CActiveRecord::attributes] property as shown below. More
-details can be found in the [Securing Attribute Assignments](/doc/guide/form.model#securing-attribute-assignments)
-section and the [Creating Action](/doc/guide/form.action) section.
+Если полей будет много, мы получим простыню из подобных присваиваний. Этого можно избежать, если 
+использовать свойство [attributes|CActiveRecord::attributes] как показано ниже. Подробности можно найти в 
+разделах [Безопасное присваивание значений атрибутам](/doc/guide/form.model#securing-attribute-assignments) и 
+[Создание действия](/doc/guide/form.action).
 
 ~~~
 [php]
-// assume $_POST['Post'] is an array of column values indexed by column names
+// предполагаем, что $_POST['Post'] является массивом значений полей, проиндексированных по имени поля
 $post->attributes=$_POST['Post'];
 $post->save();
 ~~~
 
 
-Comparing Records
+Сравнение записей
 -----------------
 
-Like table rows, AR instances are uniquely identified by their primary key
-values. Therefore, to compare two AR instances, we merely need to compare
-their primary key values, assuming they belong to the same AR class. A
-simpler way is to call [CActiveRecord::equals()], however.
+Экземпляры AR идентифицируются уникальным образом по значениям первичного ключа, аналогично строкам таблицы, поэтому 
+для сравнения двух экземпляров нам нужно просто сравнить значения их первичных ключей, предполагая, что оба экземпляра одного AR-класса. 
+Однако можно проделать это еще проще, вызвав метод [CActiveRecord::equals()].
 
-> Info: Unlike AR implementation in other frameworks, Yii supports
-composite primary keys in its AR. A composite primary key consists of two
-or more columns. Correspondingly, the primary key value is represented as
-an array in Yii. The [primaryKey|CActiveRecord::primaryKey] property gives
-the primary key value of an AR instance.
+> Info|Инфо: В отличие от реализации AR в других фреймворках, Yii поддерживает в AR составные первичные ключи. Составной первичный ключ состоит их двух и более полей таблицы. Соответственно, первичный ключ в Yii представлен как массив, а свойство [primaryKey|CActiveRecord::primaryKey] 
+содержит значение первичного ключа для экземпляра AR.
 
-Customization
+Тонкая настройка
 -------------
 
-[CActiveRecord] provides a few placeholder methods that can be overridden
-in child classes to customize its workflow.
+Класс [CActiveRecord] предоставляет несколько методов, которые могут быть переопределены в дочерних классах 
+для тонкой настройки работы AR.
 
-   - [beforeValidate|CModel::beforeValidate] and
-[afterValidate|CModel::afterValidate]: these are invoked before and
-after validation is performed.
+   - [beforeValidate|CModel::beforeValidate] и [afterValidate|CModel::afterValidate]: 
+методы вызываются до и после осуществления проверки;
 
-   - [beforeSave|CActiveRecord::beforeSave] and
-[afterSave|CActiveRecord::afterSave]: these are invoked before and after
-saving an AR instance.
+   - [beforeSave|CActiveRecord::beforeSave] и [afterSave|CActiveRecord::afterSave]: 
+методы вызываются до и после сохранения экземпляра AR;
 
-   - [beforeDelete|CActiveRecord::beforeDelete] and
-[afterDelete|CActiveRecord::afterDelete]: these are invoked before and
-after an AR instance is deleted.
+   - [beforeDelete|CActiveRecord::beforeDelete] и [afterDelete|CActiveRecord::afterDelete]: 
+методы вызываются до и после удаления экземпляра AR;
 
-   - [afterConstruct|CActiveRecord::afterConstruct]: this is invoked for
-every AR instance created using the `new` operator.
+   - [afterConstruct|CActiveRecord::afterConstruct]: метод вызывается для каждого экземпляра AR, 
+созданного с использованием оператора `new`;
 
-   - [afterFind|CActiveRecord::afterFind]: this is invoked for every AR
-instance created as a result of query.
+   - [afterFind|CActiveRecord::afterFind]: метод вызывается для каждого экземпляра AR, созданного в результате выполнения запроса.
 
-
-Using Transaction with AR
+Использование транзакций с AR
 -------------------------
 
-Every AR instance contains a property named
-[dbConnection|CActiveRecord::dbConnection] which is a [CDbConnection]
-instance. We thus can use the
-[transaction](/doc/guide/database.dao#using-transactions) feature provided by Yii
-DAO if it is desired when working with AR:
+Каждый экземпляр AR содержит свойство [dbConnection|CActiveRecord::dbConnection], которое является экземпляром класса [CDbConnection]. 
+Соответственно, в случае необходимости можно использовать возможность [транзакции](/doc/guide/database.dao#using-transactions), 
+предоставляемую Yii DAO:
 
 ~~~
 [php]
@@ -478,8 +444,8 @@ $model=Post::model();
 $transaction=$model->dbConnection->beginTransaction();
 try
 {
-	// find and save are two steps which may be intervened by another request
-	// we therefore use a transaction to ensure consistency and integrity
+	// поиск и сохранение - шаги, которые можно разбить третьим запросом
+	// соответственно мы используем транзакцию, чтобы удостовериться в целостности
 	$post=$model->findByPk(10);
 	$post->title='new post title';
 	$post->save();
