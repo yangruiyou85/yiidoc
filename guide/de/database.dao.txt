@@ -8,9 +8,9 @@ werden ohne dass der Code, der DAO für den Zugriff auf die Daten nutzt, geände
 werden muss.
 
 Yii-DAO setzt auf [PHP Data Objects (PDO)](http://php.net/manual/en/book.pdo.php)
-auf. Das ist eine Extension, die einen einheitlichen Datenzugriff auf viele, 
+auf. Das ist eine Erweiterung, die einen einheitlichen Datenzugriff auf viele, 
 weit verbreitete DBMS biete, wie z.B. MySQL und PostgreSQL. Um Yii-DAO nutzen
-zu können, müssen daher die PDO-Extension und die spezifischen PDO-Datenbanktreiber,
+zu können, müssen daher die PDO-Erweiterung und die spezifischen PDO-Datenbanktreiber,
 (z.B. `PDO_MYSQL`) installiert werden.
 
 Yii-DAO besteht hauptsächlich aus den folgenden vier Klassen:

@@ -1,8 +1,8 @@
 Erweiterungen verwenden
 =======================
 
-Zum Einsatz einer Erweiterung sind in der Regel folgende drei Schritte
-erforderlich:
+Zum Einsatz einer Erweiterung (engl.: Extension) sind in der Regel folgende 
+drei Schritte erforderlich:
 
   1. Die Erweiterung aus dem [Extension
   repository](http://www.yiiframework.com/extensions/) von Yii herunterladen

@@ -2,7 +2,7 @@
 ========================
 
 Yii bietet leistungsstarke Features für die Datenbankprogrammierung. Basierend auf der
-PHP Data Objects (PDO)-Extension kann man mit Yii Data Access Objects (DAO)
+PHP Data Objects (PDO)-Erweiterung kann man mit Yii Data Access Objects (DAO)
 über eine einheitliche Schnittstelle auf unterschiedliche Datenbankmanagementsysteme (DBMS) 
 zugreifen. Anwendungen, die Yiis DAO benutzen, können leicht auf ein anderes DBMS 
 umgestellt werden, ohne den Code für den Zugriff auf die Daten ändern zu müssen. 
