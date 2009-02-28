@@ -1,62 +1,62 @@
-ƒ‚ƒWƒ…[ƒ‹
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 ======
 
-> Note|’ˆÓ: ƒ‚ƒWƒ…[ƒ‹‚Í version 1.0.3 ˆÈ~‚ÅƒTƒ|[ƒg‚³‚ê‚Ü‚µ‚½B
+> Note|æ³¨æ„: ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯ version 1.0.3 ä»¥é™ã§ã‚µãƒãƒ¼ãƒˆã•ã‚Œã¾ã—ãŸã€‚
 
-ƒ‚ƒWƒ…[ƒ‹‚ÍA[ƒ‚ƒfƒ‹](/doc/guide/basics.model)A
-[ƒrƒ…[](/doc/guide/basics.view)A[ƒRƒ“ƒgƒ[ƒ‰](/doc/guide/basics.controller)
-‚Æ‚»‚Ì‘¼‚ÌƒTƒ|[ƒg‚µ‚Ä‚¢‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚©‚ç\¬‚³‚ê‚éŽ©ŒÈŠ®Œ‹‚µ‚½
-ƒ\ƒtƒgƒEƒFƒAƒ†ƒjƒbƒg‚Å‚·B
-‘½‚­‚Ì–Ê‚Åƒ‚ƒWƒ…[ƒ‹‚ÍA [ƒAƒvƒŠƒP[ƒVƒ‡ƒ“](/doc/guide/basics.application)
-‚ÉŽ—‚Ä‚¢‚Ü‚·BŽå‚Èˆá‚¢‚ÍAƒ‚ƒWƒ…[ƒ‹‚Í’P“Æ‚Å‚Í”z’u‚¸AƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì“à•”‚É
-‘¶Ý‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚Æ‚¢‚¤“_‚Å‚·B
-ƒ†[ƒU[‚ÍA’Êí‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰‚Å‚·‚é‚æ‚¤‚ÉA
-‚»‚ÌƒRƒ“ƒgƒ[ƒ‰‚ÉƒAƒNƒZƒX‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯ã€[ãƒ¢ãƒ‡ãƒ«](/doc/guide/basics.model)ã€
+[ãƒ“ãƒ¥ãƒ¼](/doc/guide/basics.view)ã€[ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©](/doc/guide/basics.controller)
+ã¨ãã®ä»–ã®ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‹ã‚‰æ§‹æˆã•ã‚Œã‚‹è‡ªå·±å®Œçµã—ãŸ
+ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ¦ãƒ‹ãƒƒãƒˆã§ã™ã€‚
+å¤šãã®é¢ã§ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯ã€ [ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³](/doc/guide/basics.application)
+ã«ä¼¼ã¦ã„ã¾ã™ã€‚ä¸»ãªé•ã„ã¯ã€ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯å˜ç‹¬ã§ã¯é…ç½®ãšã€ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®å†…éƒ¨ã«
+å­˜åœ¨ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ã¨ã„ã†ç‚¹ã§ã™ã€‚
+ãƒ¦ãƒ¼ã‚¶ãƒ¼ã¯ã€é€šå¸¸ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã§ã™ã‚‹ã‚ˆã†ã«ã€
+ãã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
 
-ƒ‚ƒWƒ…[ƒ‹‚Í‚¢‚­‚Â‚©‚ÌƒVƒiƒŠƒI‚Å–ð—§‚¿‚Ü‚·B
-‘å‹K–ÍƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å‚ÍA‚»‚ê‚ð‚¢‚­‚Â‚©‚Ìƒ‚ƒWƒ…[ƒ‹‚É•ª‚¯A
-ŠeX“Æ—§‚µ‚ÄŠJ”­‚Æ•ÛŽç‚³‚ê‚é‚©‚à‚µ‚ê‚Ü‚¹‚ñB
-ƒ†[ƒU[ŠÇ—‚âƒRƒƒ“ƒgŠÇ—‚Ì‚æ‚¤‚Èˆê”Ê“I‚É—p‚¢‚ç‚ê‚é‹@”\‚ðA
-«—ˆ‚ÌƒvƒƒWƒFƒNƒg‚ÅŠÈ’P‚ÉÄ—˜—p‚Å‚«‚é‚æ‚¤‚ÉA
-ƒ‚ƒWƒ…[ƒ‹‚ÅŠJ”­‚³‚ê‚é‚©‚à‚µ‚ê‚Ü‚¹‚ñB
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯ã„ãã¤ã‹ã®ã‚·ãƒŠãƒªã‚ªã§å½¹ç«‹ã¡ã¾ã™ã€‚
+å¤§è¦æ¨¡ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ã¯ã€ãã‚Œã‚’ã„ãã¤ã‹ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã«åˆ†ã‘ã€
+å„ã€…ç‹¬ç«‹ã—ã¦é–‹ç™ºã¨ä¿å®ˆã•ã‚Œã‚‹ã‹ã‚‚ã—ã‚Œã¾ã›ã‚“ã€‚
+ãƒ¦ãƒ¼ã‚¶ãƒ¼ç®¡ç†ã‚„ã‚³ãƒ¡ãƒ³ãƒˆç®¡ç†ã®ã‚ˆã†ãªä¸€èˆ¬çš„ã«ç”¨ã„ã‚‰ã‚Œã‚‹æ©Ÿèƒ½ã‚’ã€
+å°†æ¥ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã§ç°¡å˜ã«å†åˆ©ç”¨ã§ãã‚‹ã‚ˆã†ã«ã€
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã§é–‹ç™ºã•ã‚Œã‚‹ã‹ã‚‚ã—ã‚Œã¾ã›ã‚“ã€‚
 
-ƒ‚ƒWƒ…[ƒ‹‚Ìì¬
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ä½œæˆ
 ---------------
 
-ƒ‚ƒWƒ…[ƒ‹‚Íƒ†ƒj[ƒN‚È [ID|CWebModule::id] ‚Æ‚È‚é–¼‘O‚ÌƒfƒBƒŒƒNƒgƒŠ‰º‚É
-‚Ü‚Æ‚ß‚ç‚ê‚Ü‚·Bƒ‚ƒWƒ…[ƒ‹‚ÌƒfƒBƒŒƒNƒgƒŠ\¬‚ÍA
-[ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒx[ƒXƒfƒBƒŒƒNƒgƒŠ](/doc/guide/basics.application#ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒx[ƒXƒfƒBƒŒƒNƒgƒŠ)
-‚ÆŽ—‚Ä‚¢‚Ü‚·B
-ˆÈ‰º‚ÉA `forum` ‚Æ‚¢‚¤–¼‘O‚Ìƒ‚ƒWƒ…[ƒ‹‚ÌƒfƒBƒŒƒNƒgƒŠ\¬‚ðŽ¦‚µ‚Ü‚·:
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯ãƒ¦ãƒ‹ãƒ¼ã‚¯ãª [ID|CWebModule::id] ã¨ãªã‚‹åå‰ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä¸‹ã«
+ã¾ã¨ã‚ã‚‰ã‚Œã¾ã™ã€‚ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ§‹æˆã¯ã€
+[ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª](/doc/guide/basics.application#ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª)
+ã¨ä¼¼ã¦ã„ã¾ã™ã€‚
+ä»¥ä¸‹ã«ã€ `forum` ã¨ã„ã†åå‰ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ§‹æˆã‚’ç¤ºã—ã¾ã™:
 
 ~~~
 forum/
-   ForumModule.php            ƒ‚ƒWƒ…[ƒ‹ƒNƒ‰ƒXƒtƒ@ƒCƒ‹
-   components/                Ä—˜—p‰Â”\‚Èƒ†[ƒUƒRƒ“ƒ|[ƒlƒ“ƒg‚ðŠÜ‚Þ
-      views/                  ƒEƒCƒWƒFƒbƒg‚Ì‚½‚ß‚Ìƒrƒ…[‚ðŠÜ‚Þ
-   controllers/               ƒRƒ“ƒgƒ[ƒ‰ƒNƒ‰ƒXƒtƒ@ƒCƒ‹‚ðŠÜ‚Þ
-      DefaultController.php   ƒfƒtƒHƒ‹ƒgƒRƒ“ƒgƒ[ƒ‰ƒNƒ‰ƒXƒtƒ@ƒCƒ‹
-   extensions/                ƒT[ƒhƒp[ƒeƒBƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“‚ðŠÜ‚Þ
-   models/                    ƒ‚ƒfƒ‹ƒNƒ‰ƒXƒtƒ@ƒCƒ‹‚ðŠÜ‚Þ
-   views/                     ƒRƒ“ƒgƒ[ƒ‰ƒrƒ…[‚ÆƒŒƒCƒAƒEƒgƒtƒ@ƒCƒ‹‚ðŠÜ‚Þ
-      layouts/                ƒŒƒCƒAƒEƒgƒrƒ…[ƒtƒ@ƒCƒ‹‚ðŠÜ‚Þ
-      default/                ƒfƒtƒHƒ‹ƒgƒRƒ“ƒgƒ[ƒ‰‚Ì‚½‚ßƒrƒ…[ƒtƒ@ƒCƒ‹‚ðŠÜ‚Þ
-         index.php            ƒCƒ“ƒfƒbƒNƒXƒrƒ…[ƒtƒ@ƒCƒ‹
+   ForumModule.php            ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¯ãƒ©ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
+   components/                å†åˆ©ç”¨å¯èƒ½ãªãƒ¦ãƒ¼ã‚¶ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å«ã‚€
+      views/                  ã‚¦ã‚¤ã‚¸ã‚§ãƒƒãƒˆã®ãŸã‚ã®ãƒ“ãƒ¥ãƒ¼ã‚’å«ã‚€
+   controllers/               ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚¯ãƒ©ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å«ã‚€
+      DefaultController.php   ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚¯ãƒ©ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
+   extensions/                ã‚µãƒ¼ãƒ‰ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¨ã‚¯ã‚¹ãƒ†ãƒ³ã‚·ãƒ§ãƒ³ã‚’å«ã‚€
+   models/                    ãƒ¢ãƒ‡ãƒ«ã‚¯ãƒ©ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å«ã‚€
+   views/                     ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ“ãƒ¥ãƒ¼ã¨ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’å«ã‚€
+      layouts/                ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆãƒ“ãƒ¥ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å«ã‚€
+      default/                ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®ãŸã‚ãƒ“ãƒ¥ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å«ã‚€
+         index.php            ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ“ãƒ¥ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«
 ~~~
 
-ƒ‚ƒWƒ…[ƒ‹‚Í [CWebModule] ‚æ‚èŒp³‚³‚ê‚½ƒ‚ƒWƒ…[ƒ‹ƒNƒ‰ƒX‚ðŽ‚Â•K—v‚ª‚ ‚è‚Ü‚·B
-ƒNƒ‰ƒX–¼‚Í `$id` ‚Éƒ‚ƒWƒ…[ƒ‹IDi‚à‚µ‚­‚ÍAƒ‚ƒWƒ…[ƒ‹ƒfƒBƒŒƒNƒgƒŠ–¼j‚ð“ü‚êA
-`ucfirst($id).'Module'` ‚Æ‚¢‚¤Œ`Ž®‚ð—p‚¢‚ÄŒˆ’è‚µ‚Ü‚·B
-ƒ‚ƒWƒ…[ƒ‹ƒNƒ‰ƒX‚ÍAƒ‚ƒWƒ…[ƒ‹ƒR[ƒhŠÔ‚Å‹¤’Ê‚µ‚ÄŽg—p‚³‚ê‚éî•ñ‚ðŠi”[‚·‚é
-’†S•”•ª‚Æ‚È‚è‚Ü‚·B
-‚½‚Æ‚¦‚ÎAƒ‚ƒWƒ…[ƒ‹ƒpƒ‰ƒ[ƒ^‚ðŠi”[‚·‚é‚½‚ß‚É [CWebModule::params] ‚ðA
-ƒ‚ƒWƒ…[ƒ‹ƒŒƒxƒ‹‚Å
-[ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒRƒ“ƒ|[ƒlƒ“ƒg](/doc/guide/basics.application#ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒRƒ“ƒ|[ƒlƒ“ƒg)
-‚ð‹¤—L‚·‚é‚½‚ß‚É [CWebModule::components] ‚ðŽg—p‚Å‚«‚Ü‚·B
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯ [CWebModule] ã‚ˆã‚Šç¶™æ‰¿ã•ã‚ŒãŸãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¯ãƒ©ã‚¹ã‚’æŒã¤å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+ã‚¯ãƒ©ã‚¹åã¯ `$id` ã«ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«IDï¼ˆã‚‚ã—ãã¯ã€ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåï¼‰ã‚’å…¥ã‚Œã€
+`ucfirst($id).'Module'` ã¨ã„ã†å½¢å¼ã‚’ç”¨ã„ã¦æ±ºå®šã—ã¾ã™ã€‚
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¯ãƒ©ã‚¹ã¯ã€ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚³ãƒ¼ãƒ‰é–“ã§å…±é€šã—ã¦ä½¿ç”¨ã•ã‚Œã‚‹æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹
+ä¸­å¿ƒéƒ¨åˆ†ã¨ãªã‚Šã¾ã™ã€‚
+ãŸã¨ãˆã°ã€ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã« [CWebModule::params] ã‚’ã€
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¬ãƒ™ãƒ«ã§
+[ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ](/doc/guide/basics.application#ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ)
+ã‚’å…±æœ‰ã™ã‚‹ãŸã‚ã« [CWebModule::components] ã‚’ä½¿ç”¨ã§ãã¾ã™ã€‚
 
-> Tip|ƒqƒ“ƒg: V‚µ‚¢ƒ‚ƒWƒ…[ƒ‹‚ÌŠî–{“I‚ÈƒXƒPƒ‹ƒgƒ“‚ðì¬‚·‚é‚½‚ß‚É `yiic`
-ƒc[ƒ‹‚ðŽg—p‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B‚½‚Æ‚¦‚ÎAã‹L‚µ‚½ `forum` ƒ‚ƒWƒ…[ƒ‹‚ð
-ì‚é‚É‚ÍAƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ƒEƒBƒ“ƒhƒE‚Å‰º‹LƒRƒ}ƒ“ƒh‚ðŽÀs‚µ‚Ü‚·B
+> Tip|ãƒ’ãƒ³ãƒˆ: æ–°ã—ã„ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®åŸºæœ¬çš„ãªã‚¹ã‚±ãƒ«ãƒˆãƒ³ã‚’ä½œæˆã™ã‚‹ãŸã‚ã« `yiic`
+ãƒ„ãƒ¼ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚ãŸã¨ãˆã°ã€ä¸Šè¨˜ã—ãŸ `forum` ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’
+ä½œã‚‹ã«ã¯ã€ã‚³ãƒžãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§ä¸‹è¨˜ã‚³ãƒžãƒ³ãƒ‰ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 >
 > ~~~
 > % cd WebRoot/testdrive
@@ -67,17 +67,17 @@ forum/
 > ~~~
 
 
-ƒ‚ƒWƒ…[ƒ‹‚ÌŽg—p
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ä½¿ç”¨
 ------------
 
-ƒ‚ƒWƒ…[ƒ‹‚ðŽg—p‚·‚é‚É‚ÍA‚Ü‚¸
-[ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒx[ƒXƒfƒBƒŒƒNƒgƒŠ](/doc/guide/basics.application#ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒx[ƒXƒfƒBƒŒƒNƒgƒŠ)
-‚Ì `modules` ƒfƒBƒŒƒNƒgƒŠ‚Ì‰º‚É‚»‚Ìƒ‚ƒWƒ…[ƒ‹ƒfƒBƒŒƒNƒgƒŠ‚ð”z’u‚µ‚Ü‚·B
-ŽŸ‚ÉAƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì [modules|CWebApplication::modules] ƒvƒƒpƒeƒB‚ÅA
-ƒ‚ƒWƒ…[ƒ‹ ID ‚ðéŒ¾‚µ‚Ü‚·B
-‚½‚Æ‚¦‚ÎAã‹L `forum` ƒ‚ƒWƒ…[ƒ‹‚ðŽg—p‚·‚é‚½‚ß‚ÉA
-[ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú\¬](/doc/guide/basics.application#ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú\¬)
-‚Å‰º‹L‚Ì‚æ‚¤‚É‚µ‚Ü‚·B
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹ã«ã¯ã€ã¾ãš
+[ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª](/doc/guide/basics.application#ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª)
+ã® `modules` ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ä¸‹ã«ãã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’é…ç½®ã—ã¾ã™ã€‚
+æ¬¡ã«ã€ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã® [modules|CWebApplication::modules] ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã§ã€
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ« ID ã‚’å®£è¨€ã—ã¾ã™ã€‚
+ãŸã¨ãˆã°ã€ä¸Šè¨˜ `forum` ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã«ã€
+[ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åˆæœŸæ§‹æˆ](/doc/guide/basics.application#ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åˆæœŸæ§‹æˆ)
+ã§ä¸‹è¨˜ã®ã‚ˆã†ã«ã—ã¾ã™ã€‚
 
 ~~~
 [php]
@@ -88,14 +88,14 @@ return array(
 );
 ~~~
 
-ƒ‚ƒWƒ…[ƒ‹‚Í‰ŠúƒvƒƒpƒeƒB’l‚ÅÝ’è‚·‚é‚±‚Æ‚à‰Â”\‚Å‚·B
-Žg—p•û–@‚ÍA
-[ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒRƒ“ƒ|[ƒlƒ“ƒg](/doc/guide/basics.application#ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒRƒ“ƒ|[ƒlƒ“ƒg)
-‚ÌÝ’è‚Æ”ñí‚ÉŽ—‚Ä‚¢‚Ü‚·B
-‚½‚Æ‚¦‚ÎA`forum` ƒ‚ƒWƒ…[ƒ‹‚ª‚»‚Ìƒ‚ƒWƒ…[ƒ‹ƒNƒ‰ƒX’†‚É `postPerPage`
-‚Æ‚¢‚¤–¼‘O‚ÌƒvƒƒpƒeƒB‚ðŽ‚Á‚Ä‚¢‚ê‚ÎA‰º‹L‚Ì‚æ‚¤‚É
-[ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú\¬](/doc/guide/basics.application#ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú\¬)
-‚Ì’†‚ÅÝ’è‚Å‚«‚Ü‚·B
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯åˆæœŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å€¤ã§è¨­å®šã™ã‚‹ã“ã¨ã‚‚å¯èƒ½ã§ã™ã€‚
+ä½¿ç”¨æ–¹æ³•ã¯ã€
+[ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ](/doc/guide/basics.application#ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ)
+ã®è¨­å®šã¨éžå¸¸ã«ä¼¼ã¦ã„ã¾ã™ã€‚
+ãŸã¨ãˆã°ã€`forum` ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒãã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¯ãƒ©ã‚¹ä¸­ã« `postPerPage`
+ã¨ã„ã†åå‰ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’æŒã£ã¦ã„ã‚Œã°ã€ä¸‹è¨˜ã®ã‚ˆã†ã«
+[ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åˆæœŸæ§‹æˆ](/doc/guide/basics.application#ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åˆæœŸæ§‹æˆ)
+ã®ä¸­ã§è¨­å®šã§ãã¾ã™ã€‚
 
 ~~~
 [php]
@@ -110,47 +110,47 @@ return array(
 );
 ~~~
 
-ƒ‚ƒWƒ…[ƒ‹‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÍŒ»Ý‚ÌƒAƒNƒeƒBƒu‚ÈƒRƒ“ƒgƒ[ƒ‰’†‚Ì
-[module|CController::module] ƒvƒƒpƒeƒB‚É‚æ‚Á‚ÄƒAƒNƒZƒX‚Å‚«‚Ü‚·B
-ƒ‚ƒWƒ…[ƒ‹ƒCƒ“ƒXƒ^ƒ“ƒX‚ð’Ê‚¶‚ÄAƒ‚ƒWƒ…[ƒ‹ƒŒƒxƒ‹‚Å‹¤—L‚³‚ê‚Ä‚¢‚éî•ñ‚É
-ƒAƒNƒZƒX‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·
-‚½‚Æ‚¦‚ÎAã‹L‚Ì `postPerPage` î•ñ‚ÉƒAƒNƒZƒX‚·‚é‚½‚ß‚ÉA
-‰º‹L‚Ì•\Œ»‚ðŽg—p‚Å‚«‚Ü‚·:
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¯ç¾åœ¨ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ä¸­ã®
+[module|CController::module] ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«ã‚ˆã£ã¦ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã™ã€‚
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’é€šã˜ã¦ã€ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¬ãƒ™ãƒ«ã§å…±æœ‰ã•ã‚Œã¦ã„ã‚‹æƒ…å ±ã«
+ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™
+ãŸã¨ãˆã°ã€ä¸Šè¨˜ã® `postPerPage` æƒ…å ±ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ãŸã‚ã«ã€
+ä¸‹è¨˜ã®è¡¨ç¾ã‚’ä½¿ç”¨ã§ãã¾ã™:
 
 ~~~
 [php]
 $postPerPage=Yii::app()->controller->module->postPerPage;
-// ‚à‚µ‚­‚ÍA‚à‚µ $this ‚ªƒRƒ“ƒgƒ[ƒ‰ƒCƒ“ƒXƒ^ƒ“ƒX‚ðŽQÆ‚·‚é‚È‚ç‰º‹L‚Ì‚æ‚¤‚É
+// ã‚‚ã—ãã¯ã€ã‚‚ã— $this ãŒã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å‚ç…§ã™ã‚‹ãªã‚‰ä¸‹è¨˜ã®ã‚ˆã†ã«
 // $postPerPage=$this->module->postPerPage;
 ~~~
 
-ƒ‚ƒWƒ…[ƒ‹‚Å‚ÌƒRƒ“ƒgƒ[ƒ‰ƒAƒNƒVƒ‡ƒ“‚Í
-[ƒ‹[ƒgi“¹‹Øj](/doc/guide/basics.controller#ƒ‹[ƒgi“¹‹Øj)
-`moduleID/controllerID/actionID` ‚ðŽg—p‚µ‚ÄƒAƒNƒZƒX‚Å‚«‚Ü‚·B
-‚½‚Æ‚¦‚ÎAã‹L‚Ì `forum` ƒ‚ƒWƒ…[ƒ‹‚ª `PostController` ‚Æ‚¢‚¤–¼‘O‚Ì
-ƒRƒ“ƒgƒ[ƒ‰‚ðŽ‚Á‚Ä‚¢‚ê‚ÎA‚±‚ÌƒRƒ“ƒgƒ[ƒ‰‚Ì `create` ƒAƒNƒVƒ‡ƒ“‚ð
-ŽQÆ‚·‚é‚½‚ß‚ÉA
-[ƒ‹[ƒgi“¹‹Øj](/doc/guide/basics.controller#ƒ‹[ƒgi“¹‹Øj)
-`forum/post/create` ‚ðŽg—p‚Å‚«‚Ü‚·B
-‚±‚Ìƒ‹[ƒg‚É‘Î‰ž‚·‚é URL ‚Í
-`http://www.example.com/index.php?r=forum/post/create` ‚É‚È‚è‚Ü‚·B
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã§ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã¯
+[ãƒ«ãƒ¼ãƒˆï¼ˆé“ç­‹ï¼‰](/doc/guide/basics.controller#ãƒ«ãƒ¼ãƒˆï¼ˆé“ç­‹ï¼‰)
+`moduleID/controllerID/actionID` ã‚’ä½¿ç”¨ã—ã¦ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã™ã€‚
+ãŸã¨ãˆã°ã€ä¸Šè¨˜ã® `forum` ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒ `PostController` ã¨ã„ã†åå‰ã®
+ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’æŒã£ã¦ã„ã‚Œã°ã€ã“ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã® `create` ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’
+å‚ç…§ã™ã‚‹ãŸã‚ã«ã€
+[ãƒ«ãƒ¼ãƒˆï¼ˆé“ç­‹ï¼‰](/doc/guide/basics.controller#ãƒ«ãƒ¼ãƒˆï¼ˆé“ç­‹ï¼‰)
+`forum/post/create` ã‚’ä½¿ç”¨ã§ãã¾ã™ã€‚
+ã“ã®ãƒ«ãƒ¼ãƒˆã«å¯¾å¿œã™ã‚‹ URL ã¯
+`http://www.example.com/index.php?r=forum/post/create` ã«ãªã‚Šã¾ã™ã€‚
 
-> Tip|ƒqƒ“ƒg: ƒRƒ“ƒgƒ[ƒ‰‚ª `controllers` ‚ÌƒTƒuƒfƒBƒŒƒNƒgƒŠ‚É‚ ‚é‚È‚çA
-ã‹L‚Ì [ƒ‹[ƒgi“¹‹Øj](/doc/guide/basics.controller#ƒ‹[ƒgi“¹‹Øj)
-ƒtƒH[ƒ}ƒbƒg‚ð‚Ü‚¾Žg—p‚Å‚«‚Ü‚·B
-‚½‚Æ‚¦‚ÎA`PostController` ‚ª `forum/controllers/admin` ‰º‚É‚ ‚éê‡A
-`forum/admin/post/create` ‚ðŽg—p‚µ‚Ä‚¢‚é `create` ƒAƒNƒVƒ‡ƒ“‚ðŽQÆ‚Å‚«‚Ü‚·B
+> Tip|ãƒ’ãƒ³ãƒˆ: ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãŒ `controllers` ã®ã‚µãƒ–ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ã‚ã‚‹ãªã‚‰ã€
+ä¸Šè¨˜ã® [ãƒ«ãƒ¼ãƒˆï¼ˆé“ç­‹ï¼‰](/doc/guide/basics.controller#ãƒ«ãƒ¼ãƒˆï¼ˆé“ç­‹ï¼‰)
+ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã‚’ã¾ã ä½¿ç”¨ã§ãã¾ã™ã€‚
+ãŸã¨ãˆã°ã€`PostController` ãŒ `forum/controllers/admin` ä¸‹ã«ã‚ã‚‹å ´åˆã€
+`forum/admin/post/create` ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ `create` ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’å‚ç…§ã§ãã¾ã™ã€‚
 
-ƒ‚ƒWƒ…[ƒ‹‚ÌƒlƒXƒg‰»
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ãƒã‚¹ãƒˆåŒ–
 -------------
 
-ƒ‚ƒWƒ…[ƒ‹‚ÍƒlƒXƒg‰»‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-‚±‚ê‚ÍAƒ‚ƒWƒ…[ƒ‹‚ª‘¼‚Ìƒ‚ƒWƒ…[ƒ‹‚ðŠÜ‚Þ‚±‚Æ‚ª‚Å‚«‚é‚Æ‚¢‚¤‚±‚Æ‚Å‚·B
-‘OŽÒ‚Ì *eƒ‚ƒWƒ…[ƒ‹* ‚ðŒÄ‚Ño‚µ‚½ã‚ÉAŒãŽÒ‚Ì *Žqƒ‚ƒWƒ…[ƒ‹* ‚ð
-ŒÄ‚Ño‚µ‚Ü‚·BŽqƒ‚ƒWƒ…[ƒ‹‚Íeƒ‚ƒWƒ…[ƒ‹‚Ì `modules` ƒfƒBƒŒƒNƒgƒŠ‰º‚É
-”z’u‚³‚ê‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
-Žqƒ‚ƒWƒ…[ƒ‹‚ÅƒRƒ“ƒgƒ[ƒ‰ƒAƒNƒVƒ‡ƒ“‚ÉƒAƒNƒZƒX‚·‚é‚½‚ß‚ÉA
-ƒ‹[ƒg `parentModuleID/childModuleID/controllerID/actionID` ‚ð
-Žg—p‚µ‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
+ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯ãƒã‚¹ãƒˆåŒ–ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
+ã“ã‚Œã¯ã€ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒä»–ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’å«ã‚€ã“ã¨ãŒã§ãã‚‹ã¨ã„ã†ã“ã¨ã§ã™ã€‚
+å‰è€…ã® *è¦ªãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«* ã‚’å‘¼ã³å‡ºã—ãŸä¸Šã«ã€å¾Œè€…ã® *å­ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«* ã‚’
+å‘¼ã³å‡ºã—ã¾ã™ã€‚å­ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯è¦ªãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã® `modules` ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä¸‹ã«
+é…ç½®ã•ã‚Œãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚
+å­ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ãŸã‚ã«ã€
+ãƒ«ãƒ¼ãƒˆ `parentModuleID/childModuleID/controllerID/actionID` ã‚’
+ä½¿ç”¨ã—ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚
 
 <div class="revision">$Id: basics.module.txt 745 2009-02-25 21:45:42Z qiang.xue $</div>
