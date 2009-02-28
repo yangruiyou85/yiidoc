@@ -19,54 +19,57 @@ XSS攻撃に他する防御の、もっとも重要な手段の一つは、ユ�
 を施す人も居るでしょう。しかしながら、HTMLエンコーディングは全てのHTMLタグ
 を使えなくしてしまう為、これが望ましくない状況もあるでしょう。
 
-Yii incorporates the work of [HTMLPurifier](http://htmlpurifier.org/)
-and provides developers with a useful component called [CHtmlPurifier]
-that encapsulates [HTMLPurifier](http://htmlpurifier.org/). This component
-is capable of removing all malicious code with a thoroughly audited,
-secure yet permissive whitelist and making sure the filtered content is
-standard-compliant.
+Yiiは[HTMLPurifier](http://htmlpurifier.org/) の働きに賛同し、
+[CHtmlPurifier] という、[HTMLPurifier](http://htmlpurifier.org/) 
+を包み込んだ便利なコンポーネントを開発者へ供給します。このコンポーネント
+は全ての悪意のあるコードを徹底的に検査して取り除く事に役立ち、
+許可されたホワイトリストの使用や、コンテンツのフィルタリングの確認
+といった標準に準拠しているのでとても安全です。
 
-The [CHtmlPurifier] component can be used as either a [widget](/doc/guide/basics.view#widget)
-or a [filter](/doc/guide/basics.controller#filter). When used as a widget,
-[CHtmlPurifier] will purify contents displayed in its body in a view. For example,
+[CHtmlPurifier] コンポーネントは、[widget](/doc/guide/basics.view#widget)
+としても[filter](/doc/guide/basics.controller#filter)としても使用可能です。
+ウィジェットとして使用した場合、[CHtmlPurifier] は
+ビューのボディーに表示されたコンテンツから不純物を取り除くでしょう。
+例えば、
 
 ~~~
 [php]
 <?php $this->beginWidget('CHtmlPurifier'); ?>
-...display user-entered content here...
+...ここへユーザーが入力したコンテンツが表示されます...
 <?php $this->endWidget(); ?>
 ~~~
 
 
-Cross-site Request Forgery Prevention
+クロスサイトリクエストフォージェリの阻止
 -------------------------------------
 
-Cross-Site Request Forgery (CSRF) attacks occur when a
-malicious web site causes a user’s web browser to perform
-an unwanted action on a trusted site. For example, a malicious
-web site has a page that contains an image tag whose `src` points
-to a banking site: `http://bank.example/withdraw?transfer=10000&to=someone`.
-If a user who has a login cookie for the banking site happens to
-visit this malicous page, the action of transferring 10000 dollars
-to someone will be executed. Contrary to cross-site,
-which exploits the trust a user has for a particular site,
-CSRF exploits the trust that a site has for a particular user.
+クロスサイトリクエストフォージェリ(CSRF)による攻撃は、
+悪意のあるウェブサイトが、ユーザーのブラウザに対して、
+信頼済みのサイトへ望んでないアクションを行わせる事で引き起こされます。
+例えば、悪意のあるウェブサイトがイメージタグを含んでいて、その`src`が、
+オンラインバンクのサイトの
+`http://bank.example/withdraw?transfer=10000&to=someone` 
+になっているとします。もしユーザーが、オンラインバンキングへ
+ログインした状態のクッキーを持っていて、この悪意のあるコードを含んだサイト
+を訪れた場合、someone へ10000ドル送金(transfer)するアクション
+が引き起こされるでしょう。CSRFは、狙ったクロスサイトに対して
+ユーザーが持っていた信頼を利用し、そのサイトがユーザーに対して
+持っていた信頼を利用するのです。
 
-To prevent CSRF attacks, it is important to abide to the rule
-that `GET` requests should only be allowed to retrieve data rather
-than modify any data on the server. And for `POST` requests, they
-should include some random value which can be recognized by the server
-to ensure the form is submitted from and the result is sent back to
-the same origin.
+CSRF攻撃を防ぐには、`GET` リクエストがデータの取得にのみ許可され、
+一切のサーバーのデータを変更する事が出来ないというルール
+に従う事が重要です。そして `POST` リクエストについては、
+フォームによるリクエストの送信者と、サーバーが結果を送る相手が
+同一である事を認識出来るようにする為の、いくつかのランダムな値
+を保有させるべきです。
 
-Yii implements a CSRF prevention scheme to help defeat `POST`-based attacks.
-It is based on storing a random value in a cookie and comparing this value
-with the value submitted via the `POST` request.
+Yiiは、`POST` によるCSRF攻撃を防ぐスキーマを実装しています。
+これは、ランダムな値をクッキーに保存し、`POST` リクエストによって
+送信された値と比較する事で成り立っています。
 
-By default, the CSRF prevention is disabled. To enable it, configure the
-[CHttpRequest] application component in the
-[application configuration](/doc/guide/basics.application#application-configuration)
-as follows,
+初期状態では、CSRFに対する防御は無効になっています。有効にするには 
+[application configuration](/doc/guide/basics.application#application-configuration) 
+の中で[CHttpRequest] コンポーネントを下記の様に設定して下さい。
 
 ~~~
 [php]
@@ -79,16 +82,17 @@ return array(
 );
 ~~~
 
-And to display a form, call [CHtml::form] instead of writing the HTML form
-tag directly. The [CHtml::form] method will embed the necessary random
-value in a hidden field so that it can be submitted for CSRF validation.
+そしてフォームを表示するには、HTMLフォームのタグを直接書く代わりに、
+[CHtml::form] をコールします。[CHtml::form] メソッドは hidden 
+フィールドに必要なランダムな値を含んでいるので、これをCSRFバリデーション
+として送信させる事ができます。
 
 
-Cookie Attack Prevention
+クッキー攻撃の防止
 ------------------------
-Protecting cookies from being attacked is of extreme important, as session
-IDs are commonly stored in cookies. If one gets hold of a session ID,
-he essentially owns all relevant session information.
+セッションIDがクッキーに含まれている場合、クッキーを攻撃から守る事は、
+とてつもなく大切です。もし誰かがセッションIDを手中に収めた場合、
+彼はセッションに関連する全ての情報を手に入れた事になります。
 
 There are several countermeasures to prevent cookies from being attacked.
 
