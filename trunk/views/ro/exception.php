@@ -27,12 +27,12 @@ pre {font-family:"Lucida Console";font-size:10pt;}
 <body>
 <h1><?php echo $data['type']; ?></h1>
 
-<h3>Description</h3>
+<h3>Descriere</h3>
 <p class="message">
 <?php echo nl2br(CHtml::encode($data['message'])); ?>
 </p>
 
-<h3>Source File</h3>
+<h3>Fisierul sursa</h3>
 <p>
 <?php echo CHtml::encode($data['file'])."({$data['line']})"; ?>
 </p>
