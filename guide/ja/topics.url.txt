@@ -19,7 +19,7 @@ $url=$this->createUrl($route,$params);
 
 `$this`はコントローラのインスタンス;
 `$route`はリクエストの[route](/doc/guide/basics.controller#route)
-そして`$param`はURLに付加される`GET`パラメーターです。
+そして`$param`はURLに付加される`GET`パラメータです。
 
 デフォルトでは、[createUrl|CController::createUrl] によって作成されるURLは
 いわゆる`get`クエリの書式になります。例えば、 `$route='post/read'` かつ
