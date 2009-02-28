@@ -36,7 +36,7 @@ språk utbytbart.
 Givet ett locale-ID, kan man erhålla motsvarande [CLocale]-instans genom 
 `CLocale::getInstance($localeID)` eller `CApplication::getLocale($localeID)`.
 
-> Info: Yii kommer med locale-data för nästan varje språk och region. Denna data 
+> Info: Yii kommer med locale-data för nästan varje språk och region. Dessa data 
 erhålls från [Common Locale Data Repository](http://unicode.org/cldr/) (CLDR). 
 För varje locale används endast en delmängd av data CLDR tillhandahåller, 
 eftersom originaldata även omfattar mycket sällan använd information.
@@ -204,7 +204,7 @@ denna översatta version att användas för rendering; i annat fall används i s
 filen protected/views/ControllerID/edit.php`.
 
 Översatta filer kan även användas för andra ändamål, till exempel för att visa 
-en översatt bild eller ladda en localeberoende datafil.
+en översatt bild eller ladda en locale-beroende datafil.
 
 Formatering av datum och tid
 ----------------------------
@@ -258,4 +258,4 @@ eller flyttal (double).
    formaterar det givna talet genom användning av det fördefinierade 
    procentmönstret i mål-localens data.
 
-<div class="revision">$Id: topics.i18n.txt 584 2009-01-26 22:26:33Z qiang.xue $</div>
+<div class="revision">$Id: topics.i18n.txt 772 2009-02-28 18:23:17Z qiang.xue $</div>

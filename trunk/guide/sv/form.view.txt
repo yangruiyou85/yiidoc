@@ -35,12 +35,12 @@ variabeln `$user` representerar `LoginForm`-instansen.
 
 <div class="simple">
 <?php echo CHtml::activeLabel($user,'username'); ?>
-<?php echo CHtml::activeTextField($user,'username') ?>
+<?php echo CHtml::activeTextField($user,'username'); ?>
 </div>
 
 <div class="simple">
 <?php echo CHtml::activeLabel($user,'password'); ?>
-<?php echo CHtml::activePasswordField($user,'password')
+<?php echo CHtml::activePasswordField($user,'password');
 ?>
 </div>
 
@@ -69,4 +69,4 @@ av `yiic`-skriptet, kommer det genererade formuläret att se ut i stil med följ
 
 ![Loginsidan med felmeddelanden](login2.png)
 
-<div class="revision">$Id: form.view.txt 715 2009-02-20 02:08:24Z qiang.xue $</div>
+<div class="revision">$Id: form.view.txt 772 2009-02-28 18:23:17Z qiang.xue $</div>
