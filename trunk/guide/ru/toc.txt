@@ -29,12 +29,12 @@
     - [Активная запись](database.ar)
     - [Реляционная активная запись](database.arr)
 
-* Кеширование
+* Кэширование
     - [Обзор](caching.overview)
-    - [Кеширование данных](caching.data)
-    - [Кеширование фрагментов](caching.fragment)
-    - [Кеширование страниц](caching.page)
-    - [Динамическое содержимое](caching.dynamic)
+    - [Кэширование данных](caching.data)
+    - [Кэширование фрагментов](caching.fragment)
+    - [Кэширование страниц](caching.page)
+    - [Кэширование динамического содержимого](caching.dynamic)
 
 * Расширение Yii
     - [Обзор](extension.overview)
