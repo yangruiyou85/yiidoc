@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>Page Not Found</title>
+<title>Pagina negasita</title>
 <style type="text/css">
 /*<![CDATA[*/
 body {font-family:"Verdana";font-weight:normal;color:black;background-color:white;}
@@ -17,14 +17,14 @@ p {font-family:"Verdana";font-weight:normal;color:black;font-size:9pt;margin-top
 </style>
 </head>
 <body>
-<h1>Page Not Found</h1>
+<h1>Pagina negasita</h1>
 <h2><?php echo nl2br(CHtml::encode($data['message'])); ?></h2>
 <p>
-The requested URL was not found on this server.
-If you entered the URL manually please check your spelling and try again.
+URL-ul cerut nu a fost gasit pe acest server.
+Va rugam sa verificati URL-ul, daca l-ati introdus manual, apoi incercati din nou.
 </p>
 <p>
-If you think this is a server error, please contact <?php echo $data['admin']; ?>.
+In cazul in care credeti ca este o eroare de partea serverului, va rugam contactati <?php echo $data['admin']; ?>.
 </p>
 <div class="version">
 <?php echo date('Y-m-d H:i:s',$data['time']) .' '. $data['version']; ?>

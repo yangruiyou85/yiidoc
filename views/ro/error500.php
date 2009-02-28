@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>Internal Server Error</title>
+<title>Eroare interna server</title>
 
 <style type="text/css">
 /*<![CDATA[*/
@@ -19,14 +19,14 @@ p {font-family:"Verdana";font-weight:normal;color:black;font-size:9pt;margin-top
 </head>
 
 <body>
-<h1>Internal Server Error</h1>
+<h1>Eroare interna server</h1>
 <h2><?php echo nl2br(CHtml::encode($data['message'])); ?></h2>
 <p>
-An internal error occurred while the Web server was processing your request.
-Please contact <?php echo $data['admin']; ?> to report this problem.
+A aparut o eroare interna in timp ce serverul Web procesa cererea dvs.
+Va rugam contactati <?php echo $data['admin']; ?> pentru a raporta aceasta problema.
 </p>
 <p>
-Thank you.
+Va multumim.
 </p>
 <div class="version">
 <?php echo date('Y-m-d H:i:s',$data['time']) .' '. $data['version']; ?>

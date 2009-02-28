@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>Service Unavailable</title>
+<title>Service indisponibil</title>
 <style type="text/css">
 /*<![CDATA[*/
 body {font-family:"Verdana";font-weight:normal;color:black;background-color:white;}
@@ -17,12 +17,12 @@ p {font-family:"Verdana";font-weight:normal;color:black;font-size:9pt;margin-top
 </style>
 </head>
 <body>
-<h1>Service Unavailable</h1>
+<h1>Service indisponibil</h1>
 <p>
-Our system is currently under maintenance. Please come back later.
+Sistemul nostru este deocamdata intr-o perioada de mentenanta. Va rugam sa reveniti mai tarziu.
 </p>
 <p>
-Thank you.
+Va multumim.
 </p>
 <div class="version">
 <?php echo date('Y-m-d H:i:s',$data['time']) .' '. $data['version']; ?>
