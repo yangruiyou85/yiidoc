@@ -98,49 +98,49 @@ de logare si delogare.
 
 ~~~
 [php]
-// Logheaza un user cu numele si parola date
+// Logheaza un utilizator cu numele si parola date
 $identity=new UserIdentity($username,$password);
 if($identity->authenticate())
 	Yii::app()->user->login($identity);
 else
 	echo $identity->errorMessage;
 ......
-// Logout the current user
+// Delogheaza utilizatorului curent
 Yii::app()->user->logout();
 ~~~
 
-By default, a user will be logged out after a certain period of inactivity,
-depending on the [session configuration](http://www.php.net/manual/en/session.configuration.php).
-To change this behavior, we can set the [allowAutoLogin|CWebUser::allowAutoLogin]
-property of the user component to be true and pass a duration parameter to
-the [CWebUser::login] method. The user will then remain logged in for
-the specified duration, even if he closes his browser window. Note that
-this feature requires the user's browser to accept cookies.
+Implicit, un utilizator va fi delogat dupa o anumita perioada de timp
+de inactivitate, perioada care depinde de [configuratia sesiunii](http://www.php.net/manual/en/session.configuration.php).
+Pentru a modifica acest comportament, putem seta cu true proprietatea [allowAutoLogin|CWebUser::allowAutoLogin]
+componentei user si sa transmitem un parametru cu durata
+catre metoda [CWebUser::login]. Utilizatorul va ramane dupa aceea logat o perioada egala
+cu perioada specificata in acest parametru, chiar daca inchide fereastra browser-ului web.
+Este de notat faptul ca acest feature presupune ca browser-ul utilizatorului accepta cookie-uri.
 
 ~~~
 [php]
-// Keep the user logged in for 7 days.
-// Make sure allowAutoLogin is set true for the user component.
+// tinem userul logat timp de 7 zile.
+// trebuie sa ne asiguram ca proprietatea allowAutoLogin este setata cu true in componenta user.
 Yii::app()->user->login($identity,3600*24*7);
 ~~~
 
-Access Control Filter
----------------------
+Filtrul de control al accesului
+-------------------------------
 
-Access control filter is a preliminary authorization scheme that checks if
-the current user can perform the requested controller action. The
-authorization is based on user's name, client IP address and request types.
-It is provided as a filter named as
+Filtrul de control al accesului este o schema preliminara de autorizare care verifica
+daca utilizatorul curent poate executa action-ul cerut. Autorizarea se foloseste de
+numele utilizatorului, IP-ul clientului si tipul cererii.
+Este pus la dispozitie ca un filtru cu numele
 ["accessControl"|CController::filterAccessControl].
 
-> Tip: Access control filter is sufficient for simple scenarios. For
-complex access control, you may use role-based access (RBAC) which is to be
-covered shortly.
+> Tip|Sfat: Filtrul de control al accesului este suficient pentru scenariile simple.
+Pentru un control al accesului complex, va trebui probabil sa folositi RBAC
+(acces bazat pe roluri) care va fi explicat mai jos.
 
-To control the access to actions in a controller, we install the access
-control filter by overriding [CController::filters] (see
-[Filter](/doc/guide/basics.controller#filter) for more details about
-installing filters).
+Pentru a controla accesul la action-urile unui controller, instalam filtrul
+de control al accesului prin suprascrierea [CController::filters] (vedeti
+[Filter](/doc/guide/basics.controller#filter) pentru mia multe detalii despre
+instalarea filtrelor).
 
 ~~~
 [php]
@@ -156,11 +156,11 @@ class PostController extends CController
 }
 ~~~
 
-In the above, we specify that the [access
-control|CController::filterAccessControl] filter should be applied to every
-action of `PostController`. The detailed authorization rules used by the
-filter are specified by overriding [CController::accessRules] in the
-controller class.
+In codul de mai sus, specificam ca filtrul [access
+control|CController::filterAccessControl] ar trebui sa fie aplicat pentru
+toate action-urile controller-ului `PostController`. Regulile de autorizarea detaliate
+folosite de catre filtru sunt specificate prin suprascrierea
+[CController::accessRules] din clasa controller-ului.
 
 ~~~
 [php]
@@ -187,71 +187,67 @@ class PostController extends CController
 }
 ~~~
 
-The above code specifies three rules, each represented as an array. The
-first element of the array is either `'allow'` or `'deny'` and the rest
-name-value pairs specify the pattern parameters of the rule. These rules
-read: the `create` and `edit` actions cannot be executed by anonymous
-users; the `delete` action can be executed by users with `admin` role;
-and the `delete` action cannot be executed by anyone.
+Codul de mai sus specifica trei reguli, fiecare reprezentata de un array. 
+Primul element din array este `'allow'` sau `'deny'` iar restul perechilor
+nume-valoare specifica parametrii pattern ai regulii. Aceste reguli
+ne spun: action-urile `create` si `edit` nu pot fi executate de catre
+utilizatorii anonimi; action-ul `delete` poate fi executat de utilizatorii cu rolul `admin`;
+action-ul `delete` nu poate fi executat de nimeni.
 
-The access rules are evaluated one by one in the order they are specified.
-The first rule that matches the current pattern (e.g. username, roles,
-client IP, address) determines the authorization result. If this rule is an `allow`
-rule, the action can be executed; if it is a `deny` rule, the action cannot
-be executed; if none of the rules matches the context, the action can still
-be executed.
+Regulile de acces sunt evaluate una cate una in ordinea in care sunt specificate.
+Prima regula care se potriveste cu pattern-ul curent (ex. numele utilizatorului, rolurile,
+IP-ul client, adresa) determina rezultatul autorizarii. Daca aceasta regula este o regula `allow`,
+action-ul poate fi executat; daca este o regula `deny`, action-ul nu poate fi executat;
+daca nici una dintre aceste reguli nu se potriveste cu contextul, action va fi executat.
 
-> Tip: To ensure an action does not get executed under certain contexts,
-> it is beneficial to always specify a matching-all `deny` rule at the end
-> of rule set, like the following:
+> Tip|Sfat: Pentru a ne asigura ca un action nu va fi executat in anumite contexte,
+> este bine sa specificam mereu o regula `deny` la sfarsitul setului de reguli care sa
+> interzica executarea action-ului:
 > ~~~
 > [php]
 > return array(
->     // ... other rules...
->     // the following rule denies 'delete' action for all contexts
+>     // ... alte reguli...
+>     // urmatoarea regula interzice action-ul 'delete' in absolut orice context
 >     array('deny',
 >         'action'=>'delete',
 >     ),
 > );
 > ~~~
-> The reason for this rule is because if none of the rules matches a context,
-> an action will be executed.
+> Motivul pentru care adaugam aceasta regula este ca daca nici o regula nu se
+> potriveste, action-ul va fi executat. 
 
-An access rule can match the following context parameters:
+O regula de acces poate sa se potriveasca cu urmatorii parametri de context:
 
-   - [actions|CAccessRule::actions]: specifies which actions this rule
-matches.
+   - [actions|CAccessRule::actions]: precizeaza lista de action-uri pentru care se aplica regula.
 
-   - [users|CAccessRule::users]: specifies which users this rule matches.
-The current user's [name|CWebUser::name] is used for matching. Three
-special characters can be used here:
+   - [users|CAccessRule::users]: precizeaza utilizatorii pentru care se aplica regula.
+Este folosit [numele|CWebUser::name] utilizatorului curent. Trei caractere speciale pot fi folosite aici:
 
-	   - `*`: any user, including both anonymous and authenticated users.
-	   - `?`: anonymous users.
-	   - `@`: authenticated users.
+	   - `*`: orice utilizator, anonim sau autentificat.
+	   - `?`: utilizatorii anonimi.
+	   - `@`: utilizatorii autentificati.
 
-   - [roles|CAccessRule::roles]: specifies which roles that this rule matches.
-This makes use of the [role-based access control](#role-based-access-control)
-feature to be described in the next subsection. In particular, the rule
-is applied if [CWebUser::checkAccess] returns true for one of the roles.
-Note, you should mainly use roles in an `allow` rule because by definition,
-a role represents a permission to do something.
+   - [roles|CAccessRule::roles]: precizeaza caror roluri li se aplica regula curenta.
+Se foloseste [controlul accesului bazat pe roluri](#role-based-access-control)
+care va fi descris in sub-sectiunea urmatoare. In particular, regula
+este aplicata daca [CWebUser::checkAccess] returneaza true pentru unul dintre roluri.
+De notat este faptul ca ar trebui sa folosim rolurile in regulile `allow` pentru ca, prin definitie,
+un rol reprezinta o permisiune de a face ceva.
 
-   - [ips|CAccessRule::ips]: specifies which client IP addresses this rule
-matches.
+   - [ips|CAccessRule::ips]: precizeaza caror adrese IP li se va aplica regula.
 
-   - [verbs|CAccessRule::verbs]: specifies which request types (e.g.
-`GET`, `POST`) this rule matches.
+   - [verbs|CAccessRule::verbs]: precizeaza caror tipuri de cereri (ex.
+`GET`, `POST`) li se va aplica regula.
 
-   - [expression|CAccessRule::expression]: specifies a PHP expression whose value
-indicates whether this rule matches. In the expression, you can use variable `$user`
-which refers to `Yii::app()->user`. This option has been available since version 1.0.3.
+   - [expression|CAccessRule::expression]: precizeaza o expresie PHP a carei valoare
+indica daca aceasta regula se va aplica sau nu. In aceasta expresie putem folosi variabila `$user`
+care se refera la `Yii::app()->user`. Aceasta optiune este disponibila incepand cu versiunea 1.0.3.
 
 
-### Handling Authorization Result
+### Tratarea rezultatelor de autorizare
 
-When authorization fails, i.e., the user is not allowed to perform the
-specified action, one of the following two scenarios may happen:
+Cand autorizarea esueaza, adica utilizatorul nu are dreptul sa executa action-ul specificat,
+se poate intampla unul dintre urmatoarele doua scenarii:
 
    - If the user is not logged in and if the [loginUrl|CWebUser::loginUrl]
 property of the user component is configured to be the URL of the login
