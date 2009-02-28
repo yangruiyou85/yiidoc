@@ -74,7 +74,7 @@ Dokumentation zu rate zu ziehen, um den Startwert richtig anzugeben.
 Datei
 -----
 
-Bei Dateien hängen die Konventionen bezüglich ihrere Bezeichnung und
+Bei Dateien hängen die Konventionen bezüglich ihrer Bezeichnung und
 Verwendung von deren Typ ab.
 
 Klassendateien sollten nach der öffentlichen Klasse benannt sein, die sie
@@ -90,7 +90,7 @@ zum Beispiel befindet sich in der Datei `index.php`. Eine View-Datei ist ein
 PHP-Script das hauptsächlich HTML und PHP für Anzeigezwecke enthält.
 
 Konfigurationsdateien können beliebig benannt werden. Eine Konfigurationsdatei
-ist ein PHP-Script dessen einziger Zweck darin besteht, ein assoziatives Array
+ist ein PHP-Script, dessen einziger Zweck darin besteht, ein assoziatives Array
 zurückzuliefern, das eine Konfiguration darstellt.
 
 Verzeichnisse
