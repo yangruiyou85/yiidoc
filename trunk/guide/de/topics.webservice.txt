@@ -23,8 +23,8 @@ aufgerufen wird, instanziiert Yii den enstprechenden Dienstanbieter und ruft
 die angeforderte API auf, um die Anfrage zu verarbeiten.
 
 > Note|Hinweis: [CWebService] basiert auf der 
-[SOAP-Extension](http://www.php.net/manual/de/ref.soap.php) von PHP. Stellen
-Sie sicher, dass diese Extension aktiviert wurde, bevor Sie die Beispiele in
+[SOAP-Erweiterung](http://www.php.net/manual/de/ref.soap.php) von PHP. Stellen
+Sie sicher, dass diese Erweiterung aktiviert wurde, bevor Sie die Beispiele in
 diesem Abschnitt ausprobieren.
 
 Definieren eines Dienstanbieters

@@ -10,13 +10,13 @@ Stellen, an denen Verbesserungen im Sinne einer erhöhten
 Leistungsfähigkeit vorgenommen werden können.
 
 
-Aktivieren der APC-Extension
+Aktivieren der APC-Erweiterung
 ----------------------------
 
 Der wahrscheinlich einfachste Weg, um die gesamte Leistungsfähigkeit einer Anwendung zu
 verbessern, ist die Aktivierung der
-[APC-Extension](http://www.php.net/manual/de/book.apc.php) in PHP. Die
-Extension cached und optimiert PHPs Zwischencode (engl.: intermediate code) 
+[APC-Erweiterung](http://www.php.net/manual/de/book.apc.php) in PHP. Die
+Erweiterung cached und optimiert PHPs Zwischencode (engl.: intermediate code) 
 und spart somit die Zeit, die bei jedem eingehenden Request für das 
 Auswerten eines PHP-Scripts nötig wäre.
 
@@ -34,7 +34,7 @@ geloggten Nachricht.
 Verwenden von `yiilite.php`
 ---------------------------
 
-Falls die [APC-Extension](http://www.php.net/manual/en/book.apc.php) von PHP
+Falls die [APC-Erweiterung](http://www.php.net/manual/en/book.apc.php) von PHP
 aktiviert wurde, können wir `yii.php` durch eine andere Startdatei namens
 `yiilite.php` ersetzen, um die Leistungsfähigkeit einer Yii-Anwendung weiter
 zu erhöhen.
