@@ -30,7 +30,7 @@ setarile din fisierul php.ini sunt corecte.
 Felicitari! Configuratia serverului dvs indeplineste toate cerintele Yii.
 <?php elseif($result<0): ?>
 Configuratia serverului dvs indeplineste cerintele minime pentru Yii. 
-Va rugam sa cititi avertismentele afisate mai jos, in cazul in care aplicatia pe care o veti crea
+Va rugam sa cititi avertismentele afisate mai jos, in cazul in care aplicatia pe care o veti crea 
 va folosi respectivele feature-uri.
 <?php else: ?>
 Din pacate, configuratia serverului dvs nu indeplineste cerintele Yii.
