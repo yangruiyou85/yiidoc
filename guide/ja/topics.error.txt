@@ -2,16 +2,16 @@
 ==============
 
 YiiはPHP5の例外メカニズムを元にした完全なエラーハンドリングを提供します。
-アプリケーションがユーザのリクエストによって呼び出された時、
+アプリケーションがユーザーのリクエストによって呼び出された時、
 アプリケーションは[handleError|CApplication::handleError]メソッドをPHP
 warningとnoticeを扱うために登録し、
 [handleException|CApplication::handleException]メソッドをPHP exeptions
 (例外)を扱うために登録します。したがって、もしアプリケーションの実行時に
 PHPのwarningやnotice、キャッチされない例外が発生した場合は、
-エラーハンドラーがコントロールを横取りし、必要なエラーハンドリングの処理を
+エラーハンドラがコントロールを横取りし、必要なエラーハンドリングの処理を
 開始します。
 
-> Tip|ヒント: エラーハンドラーは、アプリケーションのコンストラクタでPHP
+> Tip|ヒント: エラーハンドラは、アプリケーションのコンストラクタでPHP
 ファンクションである
 [set_exception_handler](http://www.php.net/manual/jp/function.set-exception-handler.php)
 と
@@ -25,7 +25,7 @@ PHPのwarningやnotice、キャッチされない例外が発生した場合は�
 （[exception|CApplication::exceptionHandler]も同様）は
 [onError|CApplication::onError]
 (または[onException|CApplication::onException])イベントを発生させます。
-これらは、もしエラー（あるいは例外）がイベントハンドラーに全く
+これらは、もしエラー（あるいは例外）がイベントハンドラに全く
 ハンドルされていない場合、[errorHandler|CErrorHandler]アプリケーション
 コンポーネントから助けを呼びます。
 
@@ -49,7 +49,7 @@ Yiiは二つの例外クラスを定義しています。[CException] と [CHttp
 例外クラスは次章で述べるように、例外を表示するかどうかを決定します。
 
 > Tip|ヒント: [CHttpException]における例外の発生はユーザの入力ミスを
-報告するのにシンプルな方法です。例えば、もしユーザが不正なpost IDのURLを
+報告するのにシンプルな方法です。例えば、もしユーザーが不正なpost IDのURLを
 要求した場合、以下のように404error (page not found) をシンプルに表示する
 事が出来ます:
 ~~~
