@@ -44,9 +44,19 @@ forum/
          index.php            インデックスビューファイル
 ~~~
 
-A module must have a module class that extends from [CWebModule]. The class name is determined using the expression `ucfirst($id).'Module'`, where `$id` refers to the module ID (or the module directory name). The module class serves as the central place for storing information shared among the module code. For example, we can use [CWebModule::params] to store module parameters, and use [CWebModule::components] to share [application components](/doc/guide/basics.application#application-component) at the module level.
+モジュールは [CWebModule] より継承されたモジュールクラスを持つ必要があります。
+クラス名は `$id` にモジュールID（もしくは、モジュールディレクトリ名）を入れ、
+`ucfirst($id).'Module'` という形式を用いて決定します。
+モジュールクラスは、モジュールコード間で共通して使用される情報を格納する
+中心部分となります。
+たとえば、モジュールパラメータを格納するために [CWebModule::params] を、
+モジュールレベルで
+[アプリケーションコンポーネント](/doc/guide/basics.application#アプリケーションコンポーネント)
+を共有するために [CWebModule::components] を使用できます。
 
-> Tip: We can use the `yiic` tool to create the basic skeleton of a new module. For example, to create the above `forum` module, we can execute the following commands in a command line window:
+> Tip|ヒント: 新しいモジュールの基本的なスケルトンを作成するために `yiic`
+ツールを使用することができます。たとえば、上記した `forum` モジュールを
+作るには、コマンドラインウィンドウで下記コマンドを実行します。
 >
 > ~~~
 > % cd WebRoot/testdrive
@@ -57,10 +67,17 @@ A module must have a module class that extends from [CWebModule]. The class name
 > ~~~
 
 
-Using Module
+モジュールの使用
 ------------
 
-To use a module, first place the module directory under `modules` of the [application base directory](/doc/guide/basics.application#application-base-directory). Then declare the module ID in the [modules|CWebApplication::modules] property of the application. For example, in order to use the above `forum` module, we can use the following [application configuration](/doc/guide/basics.application#application-configuration):
+モジュールを使用するには、まず
+[アプリケーションベースディレクトリ](/doc/guide/basics.application#アプリケーションベースディレクトリ)
+の `modules` ディレクトリの下にそのモジュールディレクトリを配置します。
+次に、アプリケーションの [modules|CWebApplication::modules] プロパティで、
+モジュール ID を宣言します。
+たとえば、上記 `forum` モジュールを使用するために、
+[アプリケーション初期構成](/doc/guide/basics.application#アプリケーション初期構成)
+で下記のようにします。
 
 ~~~
 [php]
@@ -71,7 +88,14 @@ return array(
 );
 ~~~
 
-A module can also be configured with initial property values. The usage is very similar to configuring [application components](/doc/guide/basics.application#application-component). For example, the `forum` module may have a property named `postPerPage` in its module class which can be configured in the [application configuration](/doc/guide/basics.application#application-configuration) as follows:
+モジュールは初期プロパティ値で設定することも可能です。
+使用方法は、
+[アプリケーションコンポーネント](/doc/guide/basics.application#アプリケーションコンポーネント)
+の設定と非常に似ています。
+たとえば、`forum` モジュールがそのモジュールクラス中に `postPerPage`
+という名前のプロパティを持っていれば、下記のように
+[アプリケーション初期構成](/doc/guide/basics.application#アプリケーション初期構成)
+の中で設定できます。
 
 ~~~
 [php]
@@ -86,24 +110,47 @@ return array(
 );
 ~~~
 
-The module instance may be accessed via the [module|CController::module] property of the currently active controller. Through the module instance, we can then access information that are shared at the module level. For example, in order to access the above `postPerPage` information, we can use the following expression:
+モジュールのインスタンスは現在のアクティブなコントローラ中の
+[module|CController::module] プロパティによってアクセスできます。
+モジュールインスタンスを通じて、モジュールレベルで共有されている情報に
+アクセスすることができます
+たとえば、上記の `postPerPage` 情報にアクセスするために、
+下記の表現を使用できます:
 
 ~~~
 [php]
 $postPerPage=Yii::app()->controller->module->postPerPage;
-// or the following if $this refers to the controller instance
+// もしくは、もし $this がコントローラインスタンスを参照するなら下記のように
 // $postPerPage=$this->module->postPerPage;
 ~~~
 
-A controller action in a module can be accessed using the [route](/doc/guide/basics.controller#route) `moduleID/controllerID/actionID`. For example, assuming the above `forum` module has a controller named `PostController`, we can use the [route](/doc/guide/basics.controller#route) `forum/post/create` to refer to the `create` action in this controller. The corresponding URL for this route would be `http://www.example.com/index.php?r=forum/post/create`.
+モジュールでのコントローラアクションは
+[ルート（道筋）](/doc/guide/basics.controller#ルート（道筋）)
+`moduleID/controllerID/actionID` を使用してアクセスできます。
+たとえば、上記の `forum` モジュールが `PostController` という名前の
+コントローラを持っていれば、このコントローラの `create` アクションを
+参照するために、
+[ルート（道筋）](/doc/guide/basics.controller#ルート（道筋）)
+`forum/post/create` を使用できます。
+このルートに対応する URL は
+`http://www.example.com/index.php?r=forum/post/create` になります。
 
-> Tip: If a controller is in a sub-directory of `controllers`, we can still use the above [route](/doc/guide/basics.controller#route) format. For example, assuming `PostController` is under `forum/controllers/admin`, we can refer to the `create` action using `forum/admin/post/create`.
+> Tip|ヒント: コントローラが `controllers` のサブディレクトリにあるなら、
+上記の [ルート（道筋）](/doc/guide/basics.controller#ルート（道筋）)
+フォーマットをまだ使用できます。
+たとえば、`PostController` が `forum/controllers/admin` 下にある場合、
+`forum/admin/post/create` を使用している `create` アクションを参照できます。
 
-
-Nested Module
+モジュールのネスト化
 -------------
 
-Modules can be nested. That is, a module can contain another module. We call the former *parent module* while the latter *child module*. Child modules must be placed under the `modules` directory of the parent module. To access a controller action in a child module, we should use the route `parentModuleID/childModuleID/controllerID/actionID`.
-
+モジュールはネスト化することができます。
+これは、モジュールが他のモジュールを含むことができるということです。
+前者の *親モジュール* を呼び出した上に、後者の *子モジュール* を
+呼び出します。子モジュールは親モジュールの `modules` ディレクトリ下に
+配置されなければなりません。
+子モジュールでコントローラアクションにアクセスするために、
+ルート `parentModuleID/childModuleID/controllerID/actionID` を
+使用しなければなりません。
 
 <div class="revision">$Id: basics.module.txt 745 2009-02-25 21:45:42Z qiang.xue $</div>
