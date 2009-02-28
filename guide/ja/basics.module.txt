@@ -1,0 +1,109 @@
+モジュール
+======
+
+> Note|注意: モジュールは version 1.0.3 以降でサポートされました。
+
+モジュールは、[モデル](/doc/guide/basics.model)、
+[ビュー](/doc/guide/basics.view)、[コントローラ](/doc/guide/basics.controller)
+とその他のサポートしているコンポーネントから構成される自己完結した
+ソフトウェアユニットです。
+多くの面でモジュールは、 [アプリケーション](/doc/guide/basics.application)
+に似ています。主な違いは、モジュールは単独では配置ず、アプリケーションの内部に
+存在しなければならないという点です。
+ユーザーは、通常のアプリケーションコントローラでするように、
+そのコントローラにアクセスすることができます。
+
+モジュールはいくつかのシナリオで役立ちます。
+大規模アプリケーションでは、それをいくつかのモジュールに分け、
+各々独立して開発と保守されるかもしれません。
+ユーザー管理やコメント管理のような一般的に用いられる機能を、
+将来のプロジェクトで簡単に再利用できるように、
+モジュールで開発されるかもしれません。
+
+モジュールの作成
+---------------
+
+モジュールはユニークな [ID|CWebModule::id] となる名前のディレクトリ下に
+まとめられます。モジュールのディレクトリ構成は、
+[アプリケーションベースディレクトリ](/doc/guide/basics.application#アプリケーションベースディレクトリ)
+と似ています。
+以下に、 `forum` という名前のモジュールのディレクトリ構成を示します:
+
+~~~
+forum/
+   ForumModule.php            モジュールクラスファイル
+   components/                再利用可能なユーザコンポーネントを含む
+      views/                  ウイジェットのためのビューを含む
+   controllers/               コントローラクラスファイルを含む
+      DefaultController.php   デフォルトコントローラクラスファイル
+   extensions/                サードパーティエクステンションを含む
+   models/                    モデルクラスファイルを含む
+   views/                     コントローラビューとレイアウトファイルを含む
+      layouts/                レイアウトビューファイルを含む
+      default/                デフォルトコントローラのためビューファイルを含む
+         index.php            インデックスビューファイル
+~~~
+
+A module must have a module class that extends from [CWebModule]. The class name is determined using the expression `ucfirst($id).'Module'`, where `$id` refers to the module ID (or the module directory name). The module class serves as the central place for storing information shared among the module code. For example, we can use [CWebModule::params] to store module parameters, and use [CWebModule::components] to share [application components](/doc/guide/basics.application#application-component) at the module level.
+
+> Tip: We can use the `yiic` tool to create the basic skeleton of a new module. For example, to create the above `forum` module, we can execute the following commands in a command line window:
+>
+> ~~~
+> % cd WebRoot/testdrive
+> % protected/yiic shell
+> Yii Interactive Tool v1.0
+> Please type 'help' for help. Type 'exit' to quit.
+> >> module forum
+> ~~~
+
+
+Using Module
+------------
+
+To use a module, first place the module directory under `modules` of the [application base directory](/doc/guide/basics.application#application-base-directory). Then declare the module ID in the [modules|CWebApplication::modules] property of the application. For example, in order to use the above `forum` module, we can use the following [application configuration](/doc/guide/basics.application#application-configuration):
+
+~~~
+[php]
+return array(
+	......
+	'modules'=>array('forum',...),
+	......
+);
+~~~
+
+A module can also be configured with initial property values. The usage is very similar to configuring [application components](/doc/guide/basics.application#application-component). For example, the `forum` module may have a property named `postPerPage` in its module class which can be configured in the [application configuration](/doc/guide/basics.application#application-configuration) as follows:
+
+~~~
+[php]
+return array(
+	......
+	'modules'=>array(
+	    'forum'=>array(
+	        'postPerPage'=>20,
+	    ),
+	),
+	......
+);
+~~~
+
+The module instance may be accessed via the [module|CController::module] property of the currently active controller. Through the module instance, we can then access information that are shared at the module level. For example, in order to access the above `postPerPage` information, we can use the following expression:
+
+~~~
+[php]
+$postPerPage=Yii::app()->controller->module->postPerPage;
+// or the following if $this refers to the controller instance
+// $postPerPage=$this->module->postPerPage;
+~~~
+
+A controller action in a module can be accessed using the [route](/doc/guide/basics.controller#route) `moduleID/controllerID/actionID`. For example, assuming the above `forum` module has a controller named `PostController`, we can use the [route](/doc/guide/basics.controller#route) `forum/post/create` to refer to the `create` action in this controller. The corresponding URL for this route would be `http://www.example.com/index.php?r=forum/post/create`.
+
+> Tip: If a controller is in a sub-directory of `controllers`, we can still use the above [route](/doc/guide/basics.controller#route) format. For example, assuming `PostController` is under `forum/controllers/admin`, we can refer to the `create` action using `forum/admin/post/create`.
+
+
+Nested Module
+-------------
+
+Modules can be nested. That is, a module can contain another module. We call the former *parent module* while the latter *child module*. Child modules must be placed under the `modules` directory of the parent module. To access a controller action in a child module, we should use the route `parentModuleID/childModuleID/controllerID/actionID`.
+
+
+<div class="revision">$Id: basics.module.txt 745 2009-02-25 21:45:42Z qiang.xue $</div>
