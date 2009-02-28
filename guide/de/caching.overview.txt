@@ -7,7 +7,7 @@ erhöhen. Indem relativ statische Daten im Cache gespeichert und bei Bedarf
 auch von dort ausgeliefert werden, sparen wir die Zeit, um diese Daten
 erneut zu generieren.
 
-Das Einsatz eines Caches besteht in Yii im Wesentlichen aus Zugriffen auf
+Der Einsatz eines Caches besteht in Yii im Wesentlichen aus Zugriffen auf
 die Cache-Komponente der Anwendung. In der folgenden Konfiguration
 wird eine Cache-Komponente festgelegt, die Memcache mit zwei Cache-Servern
 verwendet.

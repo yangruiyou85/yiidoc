@@ -48,7 +48,7 @@ eines Benutzers eine unbeabsichtigte Aktion auf einer vertrauenswürdigen
 Website aus. Eine bösartige Site könnte zum Beispiel einen img-Tag enthalten,
 dessen `src` auf eine Onlinebanking-Site verweist:
 `http://beispiel.bank/buchung?transfer=10000&an=irgendjemand`. Falls ein
-Anwender, der die Logindaten zur Onlinebanking-Website in einem Cookie
+Anwender, der die Anmeldedaten zur Onlinebanking-Website in einem Cookie
 gespeichert hat, die bösartige Site besucht, wird evtl. die Überweisung über
 10000 EUR an irgendjemand ausgeführt. Im Gegensatz zum Cross-Site-Angriff, bei
 dem das Vertrauen eines Anwenders in eine bestimmte Site ausgenutzt wird, wird

@@ -157,7 +157,7 @@ $author=$post->author;
 
 > Info|Info: Wenn es keine verbundene Instanz für die Beziehung gibt, kann die
 entsprechende Eigenschaft null oder ein leeres Array sein. Für die `BELONGS_TO`
-und `HAS_ONE` Beziehungen ist das Ergebnis null, für `HAS_MANY` and `MANY_MANY`
+und `HAS_ONE` Beziehungen ist das Ergebnis null, für `HAS_MANY` und `MANY_MANY`
 ein leerer Array.
 
 Die `lazy loading`-Methode ist sehr bequem einzusetzen, aber in einigen Szenarien

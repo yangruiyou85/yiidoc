@@ -1,9 +1,9 @@
 ﻿ActiveRecord
 ============
 
-Obwohl man mit Yii DAO praktisch jede datenbankbezogene Aufgabe erledigen kann,
+Obwohl man mit Yii-DAO praktisch jede datenbankbezogene Aufgabe erledigen kann,
 werden wir wahrscheinlich 90% unserer Zeit mit dem Schreiben von
-SQL-Anweisungen für die üblichen CRUD-Operationen (create, read, update and delete)
+SQL-Anweisungen für die üblichen CRUD-Operationen (create, read, update und delete)
 verbringen. Auch die Codewartung wird erschwert, wenn dieser
 mit SQL Anweisungen durchmischt ist. Zur Lösung dieser Probleme können wir 
 ActiveRecord nutzen.
@@ -25,7 +25,7 @@ $post->content='Inhalt des Beitrags';
 $post->save();
 ~~~
 
-Im Folgenden beschreiben wir, wie wir AR-Instanzen anlegen und für CRUD Operationen
+Im Folgenden beschreiben wir, wie wir AR-Instanzen anlegen und für CRUD-Operationen
 benutzen können. Im nächsten Kapitel werden wir dann darauf eingehen, wie wir AR
 verwenden können, um mit Beziehungen in einer Datenbank (DB) umzugehen. 
 Der Einfachheit halber benutzen wir für die Beispiele in diesem Abschnitt 
@@ -42,8 +42,8 @@ CREATE TABLE Post (
 ~~~
 
 > Note|Hinweis: AR ist nicht dafür gedacht, alle datenbankbezogenen Aufgaben zu lösen.
-AR ist zweckmäßig um Datenbanktabellen in PHP abzubilden sowie für
-Abfragen, die kein komplexes SQL erfordern. In komplexeren Fällen sollte Yii DAO 
+AR ist zweckmäßig, um Datenbanktabellen in PHP abzubilden sowie für
+Abfragen, die kein komplexes SQL erfordern. In komplexeren Fällen sollte Yii-DAO 
 benutzt werden.
 
 Aufbau einer DB-Verbindung
@@ -320,7 +320,7 @@ Falls die Abfragebedingung von keiner Zeile erfüllt wird, liefert `findAll`
 ein leeres Array zurück. Dies unterscheidet sich von `find`, das null
 zurückliefert, falls nichts gefunden wurde.
 
-Zusätzlich zu den oben beschriebenen `find`- and `findAll`-Methoden, werden 
+Zusätzlich zu den oben beschriebenen `find`- und `findAll`-Methoden, werden 
 für bequemen Zugriff noch die folgenden Methoden bereitgestellt:
 
 ~~~
@@ -463,7 +463,7 @@ die Werte ihrer Primärschlüssel vergleichen, vorausgesetzt, sie gehören beide
 zur selben AR-Klasse. Einfacher geht dies jedoch über einen Aufruf von 
 [CActiveRecord::equals()].
 
-> Info|Info: Im Unterschied zu anderen Frameworks, unterstützen Yiis AR
+> Info|Info: Im Unterschied zu anderen Frameworks, unterstützen Yii’s AR
 zusammengesetzte Primärschlüssel. Ein zusammengesetzter Primärschlüssel besteht aus zwei
 oder mehr Feldern. Entsprechend wird der Primärschlüsselwert in Yii als Array 
 dargestellt. Die Eigenschaft [primaryKey|CActiveRecord::primaryKey] liefert den Wert
@@ -500,7 +500,7 @@ Transaktionen mit AR
 Jede AR-Instanz hat eine Eigenschaft mit dem Namen 
 [dbConnection|CActiveRecord::dbConnection], welche eine Instanz von [CDbConnection]
 darstellt. Bei Bedarf können wir deshalb beim Arbeiten mit AR das Transaktions-Feature 
-von Yii DAO verwenden:
+von Yii-DAO verwenden:
 
 ~~~
 [php]
