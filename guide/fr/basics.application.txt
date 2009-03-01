@@ -206,4 +206,4 @@ par les étapes suivantes :
 	   - Exécution du contrôleur;
    7. Levée de l'évènement [onEndRequest|CApplication::onEndRequest];
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: basics.application.txt 626 $</div>
