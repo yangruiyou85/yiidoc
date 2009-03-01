@@ -9,7 +9,7 @@ RootAlias.path.to.target
 
 `RootAlias` 则是一些已经存在目录的别名.通过调用 [YiiBase::setPathOfAlias()] 我们可以定义新的路径别名(包括根目录别名).
 
-为了方便起见,Yii 预定义了以下根目录别名: `system` 和 `application`. 前者是 Yii 框架目录的别名, 而后者则是程序 protected 目录的别名.
+为了方便起见,Yii 预定义了以下根目录别名:
 
  - `system`: 指向 Yii 框架目录;
  - `application`: 指向应用程序 [基本目录(base directory)](/doc/guide/basics.application#application-base-directory);
