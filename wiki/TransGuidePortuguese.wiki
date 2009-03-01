@@ -43,9 +43,20 @@ Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal
 
 = Convenções adotadas na tradução =
 
-*Lista de conveções*:
+*Lista de convenções*:
   * A definir
 
 = Observações =
   * Lembre-se sempre de dar o _Update_ no svn antes de editar um arquivo.
+  * Lembre-se sempre de salvar as traduções no formato UTF-8 (UTF-8 Plain).
+  * Quem participar da tradução do Guide deve colocar seus créditos no arquivo /guide/pt/index.php.
+  * As traduções estarão disponíveis no site do Yii Framework a cada lançamento do mesmo.
+  * Para visualizar e testar suas traduções utilize o seguinte modelo de URL:
+      http://endereco/yiidoc/index.php?r=guide
+  * Para traduzir o título dos quadros de Notas e Dicas (Note / Tips) utilize o separador |, veja a seguir:
+      *> >Note|Nota: ...
+      *> >Tip|Dica: ...
+  * Consulte o Readme para saber como sincronizar o Guia e as Messages e manter a documentação sempre atualizada.
+
+      
   
