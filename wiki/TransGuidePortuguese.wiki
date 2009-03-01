@@ -3,7 +3,7 @@
 
 = Introdução =
 
-Atualmente estamos traduzindo o Guia definitivo para o Yii e está é a principal prioridade no momento. 
+Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal prioridade no momento. 
 
 = Arquivos em tradução: =
   * /messages/pt/yii.php (Ricardo)
