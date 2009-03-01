@@ -1,0 +1,52 @@
+#summary Convenções para a tradução do yiidoc em Português.
+#labels Portuguese,PT
+
+= Introdução =
+
+Atualmente estamos traduzindo o Guia definitivo para o Yii e está é a principal prioridade no momento. 
+
+= Arquivos em tradução: =
+  * /messages/pt/yii.php (Ricardo)
+  * /guide/pt/basics.controller (Luiz.uo)
+
+
+= Arquivos já traduzidos: =
+
+*Guia Definitivo para o Yii*:
+
+  * /guide/pt/quickstart.what-is-yii.txt (Luiz)
+  * /guide/pt/quickstart.installation.txt (Luiz)
+  * /guide/pt/quickstart.first-app.txt (Luiz)
+  * /guide/pt/basics.mvc.txt (Luiz)
+  * /guide/pt/basics.entry.txt (Luiz)
+  * /guide/pt/basics.application.txt (Luiz)
+  * /guide/pt/form.overview.txt (Wanderson)
+  * /guide/pt/database.overview.txt (Wanderson)
+  * /guide/pt/form.overview.txt (Wanderson)
+
+*Mensagens do Framework Yii*:
+  * /views/pt/error400.php (Luiz)
+  * /views/pt/error401.php (Luiz)
+  * /views/pt/error404.php (Luiz)
+  * /views/pt/error500.php(Luiz)
+  * /views/pt/error503.php (Luiz)
+  * /views/pt/error.php (Luiz)
+  * /views/pt/exception.php (Luiz)
+  * /views/pt/log.php (Luiz)
+  * /views/pt/log-firebug.php (Luiz)
+  * /views/pt/profile-callstack.php(Luiz)
+  * /views/pt/profile-callstack-firebug.php (Luiz)
+  * /views/pt/profile-summary.php (Luiz)
+  * /views/pt/profile-summary-firebug.php (Luiz)
+  * /requirements/views/pt/index.php (Luiz)
+  * /requirements/messages/pt/yii.php (Flávio - Revisado por Luiz )
+
+
+= Convenções adotadas na tradução =
+
+*Lista de conveções*:
+  * A definir
+
+= Observações =
+  * Lembre-se sempre de dar o _Update_ no svn antes de editar um arquivo.
+  
