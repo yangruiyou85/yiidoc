@@ -22,7 +22,6 @@ Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal
   * /guide/pt/basics.application.txt (Luiz)
   * /guide/pt/form.overview.txt (Wanderson)
   * /guide/pt/database.overview.txt (Wanderson)
-  * /guide/pt/form.overview.txt (Wanderson)
 
 *Mensagens do Framework Yii*:
   * /views/pt/error400.php (Luiz)
