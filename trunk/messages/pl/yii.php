@@ -177,7 +177,7 @@ return array (
   'View file "{file}" does not exist.' => 'Plik widoku "{file}" nie istnieje.',
   'Yii application can only be created once.' => 'Aplikacja Yii może być utworzona tyko raz.',
   'You are not authorized to perform this action.' => 'Nie jesteś upoważniony do wykonania tej czynności.',
-  'Your request is not valid.' => 'Twoje żądanie jest nie jest poprawne.',
+  'Your request is not valid.' => 'Twoje żądanie nie jest poprawne.',
   '{attribute} "{value}" has already been taken.' => '{attribute} "{value}" został już wykorzystany.',
   '{attribute} cannot be blank.' => '{attribute} nie może być pusty.',
   '{attribute} is invalid.' => '{attribute} jest nieprawidłowy.',
