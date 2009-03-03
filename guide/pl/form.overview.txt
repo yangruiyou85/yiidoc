@@ -1,19 +1,18 @@
-Working with Form
+Praca z formularzami
 =================
 
-Collecting user data via HTML forms is one of the major tasks in Web
-application development. Besides designing forms, developers need to
-populate the form with existing data or default values, validate user
-input, display appropriate error messages for invalid input, and save the
-input to persistent storage. Yii greatly simplifies this workflow with its
-MVC architecture.
+Zbieranie danych od użytkownika poprzez formularze HTML jest jednym z głównych 
+zadań podczas tworzenia aplikacji webowych. Poza zaprojektowaniem formularza, 
+developer musi wypełnić formularz istniejącymi danymi lub też wartościami 
+domyślnymi i zapisać te dane wejściowe w pamięci trwałej. Yii bardzo upraszcza 
+ten przepływ informacji za pomocą swojej architektury MVC. 
 
-The following steps are typically needed when dealing with forms in Yii:
+Następujące kroki są zazwyczaj wymagane kiedy mamy do czynienia z formularzami w Yii:
 
-   1. Create a model class representing the data fields to be collected;
-   1. Create a controller action with code that responds to form submission.
-   1. Create a form in the view script file associated with the controller action.
+   1. utworzenie klasy modelu reprezentującej pola danych, które będą zbierane.
+   1. utworzenie kontrolera akcji wraz z kodem, który odpowiada za przesłanie formularza.
+   1. utworzenie formularza w pliku widoku, który jest powiązany z kontrolerem akcji.
 
-In the next subsections, we describe each of these steps in detail.
+W następnych punktach opiszemy szczegółowo każdy z tych kroków. 
 
 <div class="revision">$Id: form.overview.txt 163 2008-11-05 12:51:48Z weizhuo $</div>
