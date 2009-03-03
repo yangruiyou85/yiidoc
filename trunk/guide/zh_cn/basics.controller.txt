@@ -51,13 +51,10 @@ and action.
 Since version 1.0.3, an application can contain [modules](/doc/guide/basics.module). The route for a controller action inside a module is in the format of `moduleID/controllerID/actionID`. For more details, see the [section about modules](/doc/guide/basics.module).
 
 
-Controller Instantiation
+控制器实例化
 ------------------------
 
-A controller instance is created when [CWebApplication] handles an
-incoming request. Given the ID of the controller, the application will use
-the following rules to determine what the controller class is and where the
-class file is located.
+[CWebApplication]在处理一个新请求时，实例化一个控制器。程序通过控制器的ID，并按如下规则确定控制器类及控制器类所在位置
 
    - If [CWebApplication::catchAllRequest] is specified, a controller
 will be created based on this property, and the user-specified controller ID
@@ -115,13 +112,10 @@ class PostController extends CController
 }
 ~~~
 
-In the above, we use the path alias
-`application.controllers.post.UpdateAction` to specify that the action
-class file is `protected/controllers/post/UpdateAction.php`.
+如上所示，使用路径别名`application.controllers.post.UpdateAction` 确定action类文件为`protected/controllers/post/UpdateAction.php`.
 
 Writing class-based actions, we can organize an application in a modular
-fashion. For example, the following directory structure may be used to
-organize the code for controllers:
+fashion以模块方式组织程序。例如，可以使用下边的目录结构组织控制器代码:
 
 ~~~
 protected/
