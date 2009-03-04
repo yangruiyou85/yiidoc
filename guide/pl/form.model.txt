@@ -220,15 +220,15 @@ foreach($_POST['LoginForm'] as $name=>$value)
 }
 ~~~
 
-The task of deciding whether a data entry is safe or not is based
-the return value of a method named `safeAttributes` and the specified
-scenario. By default, the method returns all public member variables
-as safe attributes for [CFormModel], while it returns all table columns
-except the primary key as safe attributes for [CActiveRecord]. We may
-override this method to limit safe attributes according to scenarios.
-For example, a user model may contain many attributes, but in `login`
-scenario we only need to use `username` and `password` attributes.
-We can specify this limit as follows:
+Decyzja o tym, czy dane wejściowe są bezpieczne czy też nie jest podejmowana
+na podstawie wartości zwracanej przez metodę `safeAttributes` dla wybranego scenariusza. 
+Domyślnie metoda ta zwraca wszystkie publiczne zmienne jako bezpieczne atrybuty,
+dla klasy [CFormModel], jednakże dla klasy [CActiveRecord] zwracane są wszystkie 
+kolumny z wyjątkiem klucza głównego. Możemy nadpisać tą metodę aby ograniczyć liczbę 
+bezpiecznych argumentów w zależności od scenariusza. Na przykład, model użytkownika
+może zawierać wiele atrybutów, ale dla scenariusza logowania `login`, powinniśmy 
+używać tylko atrybutów: nazwy użytkownika `username` oraz hasła `password`. Ograniczenie
+te możemy zdefiniować następująco:
 
 ~~~
 [php]
@@ -241,35 +241,36 @@ public function safeAttributes()
 }
 ~~~
 
-More accurately, the return value of the `safeAttributes` method should be
-of the following structure:
+Ściślej rzecz ujmując, wartości zwracane przez metodę `safeAttributes` powinny posiadać 
+następującą strukturę:
 
 ~~~
 [php]
 array(
-   // these attributes can be massively assigned in any scenario
-   // that is not explicitly specified below
+   // atrybuty te mogą być grupowo przypisane w każdym scenariuszu,
+   // który nie jest bezpośrednio podany poniżej
    'attr1, attr2, ...',
 	 *
-   // these attributes can be massively assigned only in scenario 1
+   // atrybuty te mogą być grupowo przypisane tylko dla scenariusza scenario 1
    'scenario1' => 'attr2, attr3, ...',
 	 *
-   // these attributes can be massively assigned only in scenario 2
+   // atrybuty te mogą być grupowo przypisane tylko dla scenariusza scenario 2
    'scenario2' => 'attr1, attr3, ...',
 )
 ~~~
 
-If the model is not scenario-sensitive (i.e., it is only used
-in one scenario, or all scenarios share the same set of safe attributes),
-the return value can be simplified as a single string:
+Jeśli model nie zależy od scenariuszy (np. jest on używany tylko w jednym scenariuszu, 
+albo wszystkie scenariusze współdzielą ten sam zestaw bezpiecznych atrybutów),
+wartości zwracane mogą być uproszczone do pojedyńczego łańcucha znaków:
 
 ~~~
 [php]
 'attr1, attr2, ...'
 ~~~
 
-For data entries that are not safe, we need to assign them to the corresponding
-attributes using individual assign statements, like the following:
+Dla danych wejściowych, które nie są bezpieczne, musimy je przypisać do odpowiadających
+mu atrybutów przy użyciu undywidualnych wyrażeń przypisujących wartość, jak w kolejnym
+przykładzie:
 
 ~~~
 [php]
@@ -278,31 +279,32 @@ $model->id=1;
 ~~~
 
 
-Triggering Validation
+Wyzwalanie sprawdzania poprawności (ang. Triggering Validation)
 ---------------------
 
-Once a model is populated with user-submitted data, we can call [CModel::validate()]
-to trigger the data validation process. The method returns a value
-indicating whether the validation is successful or not. For [CActiveRecord] model,
-validation may also be automatically triggered when we call its [CActiveRecord::save()]
-method.
+Kiedy model jest wypełniony danymi pochodzącymi od użytkownika, możemy wywołać metodę 
+[CModel::validate()] w celu rozpoczęcia procesu sprawdzania poprawności danych. 
+Metoda ta zwraca wartość na podstawie której podejmowana jest decyzja, czy spradzanie 
+wartości zakończyło się sukcesem czy też nie. Dla modelu [CActiveRecord] sprawdzanie 
+poprawności może być również automatycznie wyzwolone, podczas wywołania metody [CActiveRecord::save()].
 
-When we call [CModel::validate()], we may specify a scenario parameter.
-Only the validation rules that apply to the specified scenario will be
-executed. A validation rule applies to a scenario if the `on` option
-of the rule is not set or contains the specified scenario name. If we do
-not specify the scenario when calling [CModel::validate()], only those
-rules whose `on` option is not set will be executed.
 
-For example, we execute the following statement to perform the validation
-when registering a user:
+Podczas wywoływania metody [CModel::validate()] możemy podać parametr opisujący scenariusz.
+Tylke te reguły sprawdzania porawności, które pasują do podanego scenariusza będą 
+wywołane. Reguła sprawdzania poprawności ma zastosowanie do scenariusza jeśli 
+opcja `on` reguły nie jest ustawiona lub zawiera one określoną nazwę scenariusza. 
+Jeśli nie określimy scenariusza podczas wywoływania [CModel::validate()] tylko te 
+reguły będą wywołane, które nie posiadają ustawionej opcji `on`.
+
+Na przykład, wywołujemy następujące wyrażenie, aby spradzić poprawność podczas 
+rejestracji użytkownika:
 
 ~~~
 [php]
 $model->validate('register');
 ~~~
 
-We may declare the validation rules in the form model class as follows,
+Możemy zdeklarować reguły walidacji w klasie modelu formularza następująco:
 
 ~~~
 [php]
@@ -316,33 +318,33 @@ public function rules()
 }
 ~~~
 
-As a result, the first rule will be applied in all scenarios, while the
-next two rules will only be applied in the `register` scenario.
+W rezultacie, pierwsza regułą będzie miała zastosowanie do wszystkich scenariuszy,
+zaś następne dwie będą używane dla scenariusza rejestracji `register`.
 
-> Note: scenario-based validation has been available since version 1.0.1.
+> Note|Przypis: sprawdzanie poprawności przy użyciu scenariuszy zostało udostępnione 
+wraz z wersją 1.0.1.
 
 
-Retrieving Validation Errors
+Zwracanie błędów sprawdzania popawności (ang. Retrieving Validation Errors)
 ----------------------------
 
-We can use [CModel::hasErrors()] to check if there is any validation
-error, and if yes, we can use [CModel::getErrors()] to obtain the error
-messages. Both methods can be used for all attributes or an individual
-attribute.
+Możemy używać metody [CModel::hasErrors()] aby sprawdzić jeśli wystąpił błąd podczas 
+sprawdzania poprawności, jeśli tak, możemy użyć metody [CModel::getErrors()] 
+aby otrzymać komunikaty błędów. Obie metody mogą być używane dla wszystkich atrybutów 
+lub też dla wybranych atrybutów.
 
-Attribute Labels
+Etykiety atrybutów (ang. Attribute Labels)
 ----------------
 
-When designing a form, we often need to display a label for each input
-field. The label tells a user what kind of information he is expected to
-enter into the field. Although we can hardcode a label in a view, it would
-offer more flexibility and convenience if we specify it in the
-corresponding model.
+Podczas projektowania formularza często potrzebujemy wyświetlić etykietę (tekst) dla
+każdego pola wejściowego. Etykieta mówi użytkownikowi jakiego rodzaju informacji 
+oczekujemy podczas wprowadzania danych do pola. Chociaż możemy zapisać na sztywno 
+etykietę w widoku, dostarczy nam to większej elastyczności i będzie bardziej wygodne, 
+jeśli zapiszemy je w odpowiednim modelu.
 
-By default, [CModel] will simply return the name of an attribute as its
-label. This can be customized by overriding the
-[attributeLabels()|CModel::attributeLabels] method. As we will see in the
-following subsections, specifying labels in the model allows us to create a
-form more quickly and powerful.
+Domyślnie [CModel] zwróci nazwę atrybutu jako etykietę. Można to dostosować do swoich 
+potrzeb poprzez nadpisanie metody [attributeLabels()|CModel::attributeLabels]. 
+Jak zobacztymy w następnych punktach, zdefiniowanie etykiet w modelu umożliwia nam tworzenie 
+formularzy szybciej i lepiej.
 
 <div class="revision">$Id: form.model.txt 598 2009-01-29 20:19:28Z qiang.xue $</div>

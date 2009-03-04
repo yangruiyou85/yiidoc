@@ -21,7 +21,7 @@
     - [Tworzenie modelu](form.model)
     - [Tworzenie akcji](form.action)
     - [Tworzenie formularza](form.view)
-    - [Odczytywanie danych tabelarycznych](form.table)
+    - [Odczytywanie tablicowych danych wejściowych](form.table)
 
 * Praca z bazami danych
     - [Przegląd](database.overview)
