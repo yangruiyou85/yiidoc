@@ -1,0 +1,140 @@
+Convenciones
+============
+
+Yii favorece convenciones sobre configuraciones. Siga las convencions y uno podrá
+crear aplicaciones Yii sofisticadas sin escribir y administrar configuraciones 
+complejas. Obviamente Yii necesitara ser personalizado en casi cada aspecto con
+las configuraciones que son necesarias para su aplicación.
+
+Abajo describimos las convenciones que recomendamos para programar en Yii.
+Por conveniencia asumimos que `WebRoot` es el directorio en el que se encuentra
+instalada la aplicación Yii.
+
+URL
+---
+
+Por predeterminado Yii reconoce URLs con el siguiente formato:
+
+~~~
+http://hostname/index.php?r=ControllerID/ActionID
+~~~
+
+La variable GET `r` refiere a la [ruta](/doc/guide/basics.controller#route) 
+que puede ser resuelta por Yii en controlador y acción. Si `ActionID` es omitido
+el controlador ejecutará la acción predeterminada (definida via [CController::defaultAction]); 
+y si `ControllerID` es omitida (o  la variable `r` ausente), la aplicación usará el controlador
+predeterminado (definido via [CWebApplication::defaultController]).
+
+Con la ayuda de [CUrlManager[ es posible crear y reconocer URLs mas amigables SEO como
+`http://hostname/ControllerID/ActionID.html`. Esta característica se cubre en detalle
+en [Administración URL](/doc/guide/topics.url).
+
+Codigo
+------
+
+Yii recominedo nombrar variables, funciones y clases en camel Case lo que significa
+poner mayúscula en la primer letra de cada palabra y juntarlas sin espacios. Las variables
+y funciones deben tener su primer letra en minúscula y para diferenciarla de los nombres de
+las clases (ejemplo: `$basePath`, `runController()`, `LinkPager`). Para miembros de clase
+privado es recomendado ponerles de prefijo a sus nombres un guión bajo (underscore `_`)
+(ejemplo: `$_actionsList`).
+
+Como los namespace no estan soportados por PHP anteriores a 5.3.0
+es recomendado que las clases se llamen de forma única para evitar conflicto
+de nombres con clases de terceros. Por esta razón todas las clases de Yii framework
+tienen como prefijo la letra "C".
+
+Una regla especial para las clases Controller es que deben finalizar con la palabra
+`Controller`. El ID del controlador será definido por el nombre de la clase con su primer
+letra en minúscula y la palabra `Controller` truncada del mismo. Por ejemplo la clase 
+`PageController` tendra el ID `page`. Esta regla se aplica para hacer más segura la aplicación.
+Esta regla también hace que las URLs relacionada con los controladores sean más claras
+(ejemplo `/index.php?r=page/index` en vez de `/index.php?r=PageController/index`).
+
+Configuration
+-------------
+
+A configuration is an array of key-value pairs. Each key represents the
+name of a property of the object to be configured, and each value the
+corresponding property's initial value. For example, `array('name'=>'My
+application', 'basePath'=>'./protected')` initializes the `name` and
+`basePath` properties to their corresponding array values.
+
+Any writable properties of an object can be configured. If not configured,
+the properties will take their default values. When configuring a property,
+it is worthwhile to read the corresponding documentation so that the
+initial value can be given properly.
+
+File
+----
+
+Conventions for naming and using files depend on their types.
+
+Class files should be named after the public class they contain. For
+example, the [CController] class is in the `CController.php` file.  A
+public class is a class that may be used by any other classes. Each class
+file should contain at most one public class. Private classes (classes that
+are only used by a single public class) may reside in the same file with
+the public class.
+
+View files should be named after the view name. For example, the `index`
+view is in the `index.php` file. A view file is a PHP script file that
+contains HTML and PHP code mainly for presentational purpose.
+
+Configuration files can be named arbitrarily. A configuration file is a
+PHP script whose sole purpose is to return an associative array
+representing the configuration.
+
+Directory
+---------
+
+Yii assumes a default set of directories used for various purposes. Each
+of them can be customized if needed.
+
+   - `WebRoot/protected`: this is the [application base
+directory](/doc/guide/basics.application#application-base-directory) holding all
+security-sensitive PHP scripts and data files. Yii has a default alias
+named `application` associated with this path. This directory and
+everything under should be protected from being accessed by Web users. It
+can be customized via [CWebApplication::basePath].
+
+   - `WebRoot/protected/runtime`: this directory holds private temporary
+files generated during runtime of the application. This directory must be
+writable by Web server process. It can be customized via
+[CApplication::runtimePath].
+
+   - `WebRoot/protected/extensions`: this directory holds all third-party
+extensions. It can be customized via [CApplication::extensionPath].
+
+   - `WebRoot/protected/modules`: this directory holds all application
+[modules](/doc/guide/basics.module), each represented as a subdirectory.
+
+   - `WebRoot/protected/controllers`: this directory holds all controller
+class files. It can be customized via [CWebApplication::controllerPath].
+
+   - `WebRoot/protected/views`: this directory holds all view files,
+including controller views, layout views and system views. It can be
+customized via [CWebApplication::viewPath].
+
+   - `WebRoot/protected/views/ControllerID`: this directory holds view
+files for a single controller class. Here `ControllerID` stands for the ID
+of the controller. It can be customized via [CController::getViewPath].
+
+   - `WebRoot/protected/views/layouts`: this directory holds all layout
+view files. It can be customized via [CWebApplication::layoutPath].
+
+   - `WebRoot/protected/views/system`: this directory holds all system
+view files. System views are templates used in displaying exceptions and
+errors. It can be customized via [CWebApplication::systemViewPath].
+
+   - `WebRoot/assets`: this directory holds published asset files. An
+asset file is a private file that may be published to become accessible to
+Web users. This directory must be writable by Web server process. It can be
+customized via [CAssetManager::basePath].
+
+   - `WebRoot/themes`: this directory holds various themes that can be
+applied to the application. Each subdirectory represents a single theme
+whose name is the subdirectory name. It can be customized via
+[CThemeManager::basePath].
+
+<div class="revision">$Id: basics.convention.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
