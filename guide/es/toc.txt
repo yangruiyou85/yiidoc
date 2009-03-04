@@ -44,7 +44,7 @@
     - [Usando librerias de terceros](extension.integration)
 
 * Special Topics
-    - [Administracion URL](topics.url)
+    - [Administración URL](topics.url)
     - [Autenticación y Autorización](topics.auth)
     - [Theming](topics.theming)
     - [Logueo](topics.logging)
