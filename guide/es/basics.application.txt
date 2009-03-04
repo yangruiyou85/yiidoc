@@ -204,7 +204,7 @@ Cuando se maneja un un pedido de usuario, la aplicación realizará el siguiente
 
    5. Ejecuta el evento [onBeginRequest|CApplication::onBeginRequest];
 
-   6. Procesa el pedido de usuario:
+   6. Procesa el pedido de usuario:;
 	   - Resuelve el pedido de usuario;
 	   - Crea el controlador
 	   - Ejecuta el controlador;
