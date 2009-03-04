@@ -32,7 +32,7 @@ en [Administración URL](/doc/guide/topics.url).
 Codigo
 ------
 
-Yii recominedo nombrar variables, funciones y clases en camel Case lo que significa
+Yii recomienda nombrar variables, funciones y clases en camel Case lo que significa
 poner mayúscula en la primer letra de cada palabra y juntarlas sin espacios. Las variables
 y funciones deben tener su primer letra en minúscula y para diferenciarla de los nombres de
 las clases (ejemplo: `$basePath`, `runController()`, `LinkPager`). Para miembros de clase
@@ -51,90 +51,90 @@ letra en minúscula y la palabra `Controller` truncada del mismo. Por ejemplo la
 Esta regla también hace que las URLs relacionada con los controladores sean más claras
 (ejemplo `/index.php?r=page/index` en vez de `/index.php?r=PageController/index`).
 
-Configuration
+Configuración
 -------------
 
-A configuration is an array of key-value pairs. Each key represents the
-name of a property of the object to be configured, and each value the
-corresponding property's initial value. For example, `array('name'=>'My
-application', 'basePath'=>'./protected')` initializes the `name` and
-`basePath` properties to their corresponding array values.
+La configuración es un arreglo de llave-valor (key-values). Cada llave (key)
+representa el nombre de una propiedod del objeto a configurar mientras que cada
+valor corresponde al valor inicial de sus propiedades. Por ejemplo: `array('name'=>'My
+application', 'basePath'=>'./protected')` incializa las propiedades `name` y `basePath` 
+a sis valores correspondientes del array.
 
-Any writable properties of an object can be configured. If not configured,
-the properties will take their default values. When configuring a property,
-it is worthwhile to read the corresponding documentation so that the
-initial value can be given properly.
+Cualquier propiedad con permisos de escritura de un objeto puede ser configurada.
+Si no se configura las propiedades estarán inicializadas en su valor predeterminado.
+Cuando configuramos una propiedades recomendable leer la documentación correspondiente
+para darle los valores iniciales apropiadamente.
 
-File
-----
+Archivo
+--------
 
-Conventions for naming and using files depend on their types.
+Convenciones para el nombramineto y el uso de archivo dependiendo de su tipo.
 
-Class files should be named after the public class they contain. For
-example, the [CController] class is in the `CController.php` file.  A
-public class is a class that may be used by any other classes. Each class
-file should contain at most one public class. Private classes (classes that
-are only used by a single public class) may reside in the same file with
-the public class.
+Archivos de clase deben ser llamados como la clase que contienen. Por ejemplo,
+la clase [CController] se encuentra en el archivo `CController.php`. Una clase pública
+es una clase que puede ser utilizada por otras clases. Cada archivo de clase debe contener 
+al menos una clase pública. Las clases privadas (clases que solo son utilizadas
+por una única clase pública) deben residir en el mismo archivo que la clase pública.
 
-View files should be named after the view name. For example, the `index`
-view is in the `index.php` file. A view file is a PHP script file that
-contains HTML and PHP code mainly for presentational purpose.
+Los archivos de vistas deben ser llamados con el nombre de la vista. Por ejemplo, 
+la vista `index` debe encontrase en el archivo `index.php`. Un archivo de vista es un 
+archivo script PHP que contiene HTML y codigo PHP  principalmente con propositos de
+presentación.
 
-Configuration files can be named arbitrarily. A configuration file is a
-PHP script whose sole purpose is to return an associative array
-representing the configuration.
+Los archivos de configuración puede ser nombrados arbitrariamente. Un archivo de 
+configuración es un script PHP con el solo proposito de devolver un arreglo representando
+la configuración.
 
-Directory
----------
+Directorios
+-----------
 
-Yii assumes a default set of directories used for various purposes. Each
-of them can be customized if needed.
+Yii asume un juego default de directorios que es utilizado para cumplir varios propositos.
+Cada uno de estos puede ser customizado en caso de necesitarse.
 
-   - `WebRoot/protected`: this is the [application base
-directory](/doc/guide/basics.application#application-base-directory) holding all
-security-sensitive PHP scripts and data files. Yii has a default alias
-named `application` associated with this path. This directory and
-everything under should be protected from being accessed by Web users. It
-can be customized via [CWebApplication::basePath].
+   - `WebRoot/protected`: Este es el [directorio base de 
+   aplicación](/doc/guide/basics.application#application-base-directory) el cual contiene
+   todos los archivos de scripts PHP y de datos sensibles a la seguridad. Yii crea un alias
+   predeterminado llamado `application` asociado con esta ruta. Este directorio y todo lo 
+   que se encuentra dentro de el debe ser protejido de poder ser accedido por los usuarios
+   Web. Puede ser personalizado via [CWebApplication::basePath].
 
-   - `WebRoot/protected/runtime`: this directory holds private temporary
-files generated during runtime of the application. This directory must be
-writable by Web server process. It can be customized via
-[CApplication::runtimePath].
+   - `WebRoot/protected/runtime`: Este direcotiro contiene archivos privados y temporarios
+   generados durante el tiempo de ejecución de la aplicación. El proceso de servidor Web
+   debe tener acceso de escritura en el mismo. Puede ser personalizado via
+   [CApplication::runtimePath].
 
-   - `WebRoot/protected/extensions`: this directory holds all third-party
-extensions. It can be customized via [CApplication::extensionPath].
+   - `WebRoot/protected/extensions`: Este directorio contiene todas las extensiones de 
+   terceros. Puede ser personalizado via [CApplication::extensionPath].
 
-   - `WebRoot/protected/modules`: this directory holds all application
-[modules](/doc/guide/basics.module), each represented as a subdirectory.
+   - `WebRoot/protected/modules`: Este directorio contiene todos los [módulos](/doc/guide/basics.module)
+   de la aplicación cada uno representado por un subdirectorio.
 
-   - `WebRoot/protected/controllers`: this directory holds all controller
-class files. It can be customized via [CWebApplication::controllerPath].
 
-   - `WebRoot/protected/views`: this directory holds all view files,
-including controller views, layout views and system views. It can be
-customized via [CWebApplication::viewPath].
+   - `WebRoot/protected/controllers`: este directorio contiene todos los archivos de clase
+   controlador. Puede ser personalizado via [CWebApplication::controllerPath].
 
-   - `WebRoot/protected/views/ControllerID`: this directory holds view
-files for a single controller class. Here `ControllerID` stands for the ID
-of the controller. It can be customized via [CController::getViewPath].
+   - `WebRoot/protected/views`: Este directorio contiene todos los archivos de vista de controladores,
+   archivos de vista de esquema (layout) y de sistema (system). Puede ser personalizado 
+   via [CWebApplication::viewPath].
 
-   - `WebRoot/protected/views/layouts`: this directory holds all layout
-view files. It can be customized via [CWebApplication::layoutPath].
+   - `WebRoot/protected/views/ControllerID`: Este directorio contiene los archivos de vista
+   de un solo controlador. Aquí `ControllerID` se modificará por el ID del controlador
+   Puede ser personalizado via [CController::getViewPath].
 
-   - `WebRoot/protected/views/system`: this directory holds all system
-view files. System views are templates used in displaying exceptions and
-errors. It can be customized via [CWebApplication::systemViewPath].
+   - `WebRoot/protected/views/layouts`: Este directorio contiene todos los archivos de vista
+   del esquema (layout). Puede ser personalizado via [CWebApplication::layoutPath].
 
-   - `WebRoot/assets`: this directory holds published asset files. An
-asset file is a private file that may be published to become accessible to
-Web users. This directory must be writable by Web server process. It can be
-customized via [CAssetManager::basePath].
+   - `WebRoot/protected/views/system`: Este directorio contiene todos los archivos de vista
+   de sistema (system). Los archivos de vista de sistema son templates utilizados para mostrar
+   excepciones y errores. Puede ser personalizado via [CWebApplication::systemViewPath].
 
-   - `WebRoot/themes`: this directory holds various themes that can be
-applied to the application. Each subdirectory represents a single theme
-whose name is the subdirectory name. It can be customized via
-[CThemeManager::basePath].
+   - `WebRoot/assets`: este directorio contiene los archivos asset publicados. Un archivo asset es un 
+   archivo privado que puede ser publicado para convertirse en accesible para los usuarios Web. Este
+   directorio debe tener permisos de escritura habilitados para el proceso de servidor Web. Puede ser
+   modificado via [CAssetManager::basePath].
+
+   - `WebRoot/themes`: este directorio contiene varios temas (themes) que pueden ser aplicados a la 
+   aplicación. Cada subdirectorio representa a un solo tema (theme) cuyo nombre es el snombre de ese
+   subdirectorio. Puede ser customizado via [CThemeManager::basePath].
 
 <div class="revision">$Id: basics.convention.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
