@@ -1,15 +1,13 @@
-��ͼ
+视图
 ====
 
-��ͼ��һ����������Ҫ���û�����Ԫ�ص�PHP�ű�.�����԰���PHP���,�������ǽ�����Щ��䲻Ҫȥ�ı�����ģ��,������ܹ������䵥����(������Ϊ��ͼ)!Ϊ��ʵ���߼��ͽ������,�󲿷ֵ��߼�Ӧ�ñ������ڿ�������ģ����,��������ͼ��.
+视图是一个包含了主要的用户交互元素的PHP脚本.他可以包含PHP语句,但是我们建议这些语句不要去改变数据模型,且最好能够保持其单纯性(单纯作为视图)!为了实现逻辑和界面分离,大部分的逻辑应该被放置于控制器或模型里,而不是视图里.
 
-��ͼ��һ�����䱻��Ⱦ(render)ʱ��������У�������.��ͼ����������ű�������һ����.����:��ͼ  `edit`  �����Ƴ���һ����Ϊ `edit.php` �Ľű��ļ�.ͨ��  [CController::render()]  ������ͼ�����ƿ�����Ⱦһ����ͼ.����������� `protected/views/ControllerID` Ŀ¼��Ѱ�Ҷ�Ӧ����ͼ�ļ�.
+视图有一个当其被渲染(render)时用于用于校验的名称.视图的名称与其脚本名称是一样的.例如:视图  `edit`  的名称出自一个名为 `edit.php` 的脚本文件.通过  [CController::render()]  调用视图的名称可以渲染一个视图.这个方法将在 `protected/views/ControllerID` 目录下寻找对应的视图文件.
 
-Inside the view script, we can access the controller instance using
-`$this`. We can thus `pull` in any property of the controller by
-evaluating `$this->propertyName` in the view.
+在视图脚本内部,我们可以通过 `$this` 访问控制器实例.我们可以在视图里以 `$this->propertyName` 的方式 `pull` 控制器的任何属性.
 
-We can also use the following `push` approach to pass data to the view:
+我们也可以用以下 `push` 的方式传递数据到视图里:
 
 ~~~
 [php]
@@ -19,17 +17,12 @@ $this->render('edit', array(
 ));
 ~~~
 
-In the above, the [render()|CController::render] method will extract the second array
-parameter into variables. As a result, in the view script we can access
-local variables `$var1` and `$var2`.
+在以上的方式中, [render()|CController::render] 方法将提取数组的第二个参数到变量里.其产生的结果是,在视图脚本里,我们可以直接访问变量 `$var1` 和 `$var2`.
 
-����
+布局
 ------
 
-Layout is a special view that is used to decorate views. It usually
-contains portions of user interface that are common among several views.
-For example, a layout may contain header and footer portions and embed
-the content view in between,
+布局上一种特殊的视图文件用来修饰视图.它通常包含了用户交互过程中常用到的一部分视图.例如:视图可以包含header和footer的部分,然后把内容嵌入其间.
 
 ~~~
 [php]
@@ -38,24 +31,16 @@ the content view in between,
 ......footer here......
 ~~~
 
-where `$content` stores the rendering result of the content view.
+而 `$content` 则储存了内容视图的渲染结果.
 
-Layout is implicitly applied when calling [render()|CController::render].
-By default, the view script `protected/views/layouts/main.php` is used as
-the layout. This can be customized by changing either [CWebApplication::layout]
-or [CController::layout]. To render a view without applying any layout,
-call [renderPartial()|CController::renderPartial] instead.
+当使用 [render()|CController::render] 时,布局是固定的被提供的.视图脚本 `protected/views/layouts/main.php` 是默认的布局文件.它可以通过改变 [CWebApplication::layout] 或者  [CWebApplication::layout] 来定制 . 通过调用 [renderPartial()|CController::renderPartial] 可以不依赖布局而渲染视图.
 
-���
+组件
 ------
 
-A widget is an instance of [CWidget] or its child class. It is a component
-mainly for presentational purpose. Widgets are usually embedded in a view
-script to generate some complex yet self-contained user interface. For
-example, a calendar widget can be used to render a complex calendar user
-interface. Widgets enable better reusability in user interface.
+组件是 [CWidget] 或其子类都实例.它是一个主要用于描述意图的组成部分.组件通常内嵌于一个视图来产生一些复杂却独立的用户界面.例如,一个日历组件可以用于渲染一个复杂的日历界面.组件可以在用户界面上更好的实现重用.
 
-To use a widget, do as follows in a view script:
+我们可以按如下视图脚本来使用一个组件:
 
 ~~~
 [php]
@@ -64,23 +49,16 @@ To use a widget, do as follows in a view script:
 <?php $this->endWidget(); ?>
 ~~~
 
-or
+或者
 
 ~~~
 [php]
 <?php $this->widget('path.to.WidgetClass'); ?>
 ~~~
 
-The latter is used when the widget does not need any body content.
+后者用于不需要任何 body 内容的组件.
 
-Widgets can be configured to customize its behaviors. This is done by
-settings their initial property values when calling
-[CBaseController::beginWidget] or [CBaseController::widget]. For example,
-when using [CMaskedTextField] widget, we would like to specify the mask
-being used. We can do so by passing an array of those property initial
-values as follows, where the array keys are property names and array values
-the initial values of the corresponding widget properties:
-
+组件可以通过配置来定制它的表现.这些是通过调用 [CBaseController::beginWidget] 或者 [CBaseController::widget] 设置他们(组件)的初始化属性值来完成的.例如,当使用 [CMaskedTextField] 组件时,我们想指定被使用的 mask .我们通过传递一个携带这些属性初始化值的数组来实现.这里的数组的键是属性的名称,而数组的值则是组件属性所对应的值.正如以下所示 :
 ~~~
 [php]
 <?php
@@ -90,8 +68,7 @@ $this->widget('CMaskedTextField',array(
 ?>
 ~~~
 
-To define a new widget, extend [CWidget] and override its
-[init()|CWidget::init] and [run()|CWidget::run] methods:
+继承 [CWidget] 以及重载它的[init()|CWidget::init] 和 [run()|CWidget::run] 方法,可以定义一个新的组件:
 
 ~~~
 [php]
@@ -109,27 +86,15 @@ class MyWidget extends CWidget
 }
 ~~~
 
-Like a controller, a widget can also have its own view. By default, widget
-view files are located under the `views` subdirectory of the directory
-containing the widget class file. These views can be rendered by calling
-[CWidget::render()], similar to that in controller. The only difference is
-that no layout will be applied to a widget view.
+组件可以像一个控制器一样拥有它自己都视图.默认的,组件的视图文件位于包含了组件文件的 `views` 子目录之下.这些视图可以通过调用 [CWidget::render()] 渲染,这一点和控制器很相似.唯一不同的是,组件的视图没有布局文件支持.
 
-System View
+系统视图
 -----------
 
-System views refer to the views used by Yii to display error and logging
-information. For example, when a user requests for a non-existing controller
-or action, Yii will throw an exception explaining the error. Yii displays the
-exception using a specific system view.
+系统视图通的渲染通常用于展示 Yii 的错误和日志信息.例如,当用户请求来一个不存在的控制器或行为,Yii 会抛出一个异常来解释这个错误. 这时,Yii 就会使用一个特殊的系统视图来展示这个错误.
 
-The naming of system views follows some rules. Names like `errorXXX` refer
-to views for displaying [CHttpException] with error code `XXX`. For
-example, if [CHttpException] is raised with error code 404, the `error404`
-view will be displayed.
+系统视图的明明遵从了一些规则.比如像 `errorXXX` 这样的名称就是用于渲染展示错误号 `XXX` 的 [CHttpException] 的视图.例如,如果 [CHttpException] 抛出来一个 404错误,那么 `error404` 就会被展示出来.
 
-Yii provides a set of default system views located under
-`framework/views`. They can be customized by creating the same-named view
-files under `protected/views/system`.
+位于 `framework/views` 下, Yii 提供了一系列的默认系统视图. 他们可以通过在 `protected/views/system` 下创建同名视图文件来定制. 
 
 <div class="revision">$Id: basics.view.txt 416 2009-03-04 20:33:11Z thaiki $</div>
