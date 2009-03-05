@@ -85,97 +85,73 @@ class LoginForm extends CFormModel
 array('AttributeList', 'Validator', 'on'=>'ScenarioList', ...附加选项)
 ~~~
 
-where `AttributeList` is a string of comma-separated attribute names which
-need to be validated according to the rule; `Validator` specifies what kind of
-validation should be performed; the `on` parameter is optional which specifies
-a list of scenarios where the rule should be applied; and additional options
-are name-value pairs which are used to initialize the corresponding validator's
-property values.
+`AttributeList` 是需要根据规则验证的以逗号分隔的特性名称集的字符串; `Validator` 指定了
+使用哪种验证方式; `on` 参数是规则在何种情况下生效的列表;附加选项是用来初始化相应验证属
+性值的"名称-值"的配对.
 
-There are three ways to specify `Validator` in a validation rule. First,
-`Validator` can be the name of a method in the model class, like
-`authenticate` in the above example. The validator method must be of the
-following signature:
+在一个验证规则中有三种方法可以指定 `Validator` . 
+第一, `Validator` 可以是模型类中的一个方法的一个名称,就像以上例子中的 `authenticate` .
+验证方法必须是以下结构 :
 
 ~~~
 [php]
 /**
- * @param string the name of the attribute to be validated
- * @param array options specified in the validation rule
+ * @param string 用于验证特性
+ * @param array  指定了验证规则
  */
 public function ValidatorName($attribute,$params) { ... }
 ~~~
 
-Second, `Validator` can be the name of a validator class. When the rule is
-applied, an instance of the validator class will be created to perform the
-actual validation. The additional options in the rule are used to
-initialize the instance's attribute values. A validator class must extend
-from [CValidator].
+第二, `Validator` 可以是一个验证类的名称.当规则生效时,验证类的实例将被创建用于执行实际
+的验证. 规则里的附加选项用于初始化实例中属性的初始值.验证类必须继承自 [CValidator].
 
-> Note: When specifying rules for an active record model, we can use a
-special option named `on`. The option can be either `'insert'` or
-`'update'` so that the rule is applied only when inserting or updating the
-record, respectively. If not set, the rule would be applied in both cases
-when `save()` is called.
+> 注意: 当为一个active record指定规则时,我们可以使用名称为 `on` 的特别选项.这个选项可以
+是`'insert'` 或者 `'update'` 以便只有当插入或者更新记录时,规则才会生效.如果没有设置,规则
+将在任何 `save()` 被调用的时候生效.
 
-Third, `Validator` can be a predefined alias to a validator class. In the
-above example, the name `required` is the alias to [CRequiredValidator]
-which ensures the attribute value being validated is not empty. Below is
-the complete list of predefined validator aliases:
+第三 , `Validator` 可以是一个指向一个预定义的验证类的别名.在以上的例子中, `required` 指向了
+ [CRequiredValidator] ,它确保了特性的有效值不能为空.以下是预定义验证别名的一份完整的列表:
 
-   - `captcha`: alias of [CCaptchaValidator], ensuring the attribute is
-equal to the verification code displayed in a
-[CAPTCHA](http://en.wikipedia.org/wiki/Captcha).
+   - `captcha`: [CCaptchaValidator] 的别名,确保了特性的值等于
+[CAPTCHA](http://en.wikipedia.org/wiki/Captcha) 显示出来的验证码.
 
-   - `compare`: alias of [CCompareValidator], ensuring the attribute is
-equal to another attribute or constant.
+   - `compare`: [CCompareValidator] 的别名, 确保了特性的值等于另一个特性或常量.
 
-   - `email`: alias of [CEmailValidator], ensuring the attribute is a
-valid email address.
+   - `email`:  [CEmailValidator] 的别名,确保了特性的值是一个有效的电邮地址.
 
-   - `default`: alias of [CDefaultValueValidator], assigning a default value
-to the specified attributes.
+   - `default`: [CDefaultValueValidator] 的别名, 为特性指派了一个默认值.
 
-   - `file`: alias of [CFileValidator], ensuring the attribute contains
-the name of an uploaded file.
+   - `file`: [CFileValidator] 的别名, 确保了特性包含了一个上传文件的名称.
 
-   - `filter`: alias of [CFilterValidator], transforming the attribute
-with a filter.
+   - `filter`: [CFilterValidator] 的别名, 使用一个过滤器转换特性的形式.
 
-   - `in`: alias of [CRangeValidator], ensuring the data is among a
-pre-specified list of values.
+   - `in`: [CRangeValidator] 的别名, 确保了特性出现在一个预订的值列表里.
 
-   - `length`: alias of [CStringValidator], ensuring the length of the
-data is within certain range.
+   - `length`: [CStringValidator] 的别名, 确保了特性的长度在指定的范围内.
 
-   - `match`: alias of [CRegularExpressionValidator], ensuring the data
-matches a regular expression.
+   - `match`: [CRegularExpressionValidator] 的别名, 确保了特性匹配一个正则表达式.
 
-   - `numerical`: alias of [CNumberValidator], ensuring the data is a
-valid number.
+   - `numerical`: [CNumberValidator] 的别名, 确保了特性是一个有效的数字.
 
-   - `required`: alias of [CRequiredValidator], ensuring the attribute is
-not empty.
+   - `required`: [CRequiredValidator] 的别名, 确保了特性不为空.
 
-   - `type`: alias of [CTypeValidator], ensuring the attribute is of
-specific data type.
+   - `type`: [CTypeValidator] 的别名, 确保了特性为指定的数据类型.
 
-   - `unique`: alias of [CUniqueValidator], ensuring the data is unique in
-a database table column.
+   - `unique`: [CUniqueValidator] 的别名, 确保了特性在数据表字段中是唯一的.
 
-   - `url`: alias of [CUrlValidator], ensuring the data is a valid URL.
+   - `url`: [CUrlValidator] 的别名, 确保了特性是一个有效的路径.
 
-Below we list some examples of using the predefined validators:
+以下我们列出了使用预定义验证器的例子:
 
 ~~~
 [php]
-// username is required
+// username 不为空
 array('username', 'required'),
-// username must be between 3 and 12 characters
+// username 必须大于 3 小于 12 字节
 array('username', 'length', 'min'=>3, 'max'=>12),
-// when in register scenario, password must match password2
+// 在注册场景中, password 必须和 password2 一样
 array('password', 'compare', 'compareAttribute'=>'password2', 'on'=>'register'),
-// when in login scenario, password must be authenticated
+// 在登录场景中, password 必须被验证
 array('password', 'authenticate', 'on'=>'login'),
 ~~~
 
