@@ -45,7 +45,7 @@ Następny diagram pokazuje typowe sterowanie kolejnością zadań w aplikacji Yi
    7. Akcja generuje [widok](/doc/guide/basics.view) nazwany `show` woraz z modelem `Post`.
    8. Widok czyta i wyświetla atrybuty modelu `Post`.
    9. Widok wywołuje pewne [widżety](/doc/guide/basics.view#widget).
-   10. Wynik generowania jest osadzany w [layoucie](/doc/guide/basics.view#layout).
+   10. Wynik generowania jest osadzany w [widoku](/doc/guide/basics.view#layout).
    11. Akcja kończy generowanie widoku i wyświetla rezultat użytkownikowi.
 
 
