@@ -156,10 +156,10 @@ array('password', 'authenticate', 'on'=>'login'),
 ~~~
 
 
-Securing Attribute Assignments
+固定特性分配
 ------------------------------
 
-> Note: scenario-based attribute assignment has been available since version 1.0.2.
+> 注意: 自 1.0.2 版起,场景为本的特性分配开始生效.
 
 After a model instance is created, we often need to populate its
 attributes with the data submitted by end-users. This can be done
@@ -244,7 +244,7 @@ $model->id=1;
 ~~~
 
 
-Triggering Validation
+触发验证
 ---------------------
 
 Once a model is populated with user-submitted data, we can call [CModel::validate()]
@@ -288,7 +288,7 @@ next two rules will only be applied in the `register` scenario.
 > Note: scenario-based validation has been available since version 1.0.1.
 
 
-Retrieving Validation Errors
+取回验证错误
 ----------------------------
 
 We can use [CModel::hasErrors()] to check if there is any validation
@@ -296,7 +296,7 @@ error, and if yes, we can use [CModel::getErrors()] to obtain the error
 messages. Both methods can be used for all attributes or an individual
 attribute.
 
-Attribute Labels
+特性标签
 ----------------
 
 When designing a form, we often need to display a label for each input
