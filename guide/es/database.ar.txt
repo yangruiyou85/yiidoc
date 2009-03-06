@@ -1,31 +1,33 @@
-Active Record
-=============
+﻿Registro Activo
+===============
 
-Although Yii DAO can handle virtually any database-related task, chances
-are that we would spend 90% of our time in writing some SQL statements
-which perform the common CRUD (create, read, update and delete) operations.
-It is also difficult to maintain our code when they are mixed with SQL
-statements. To solve these problems, we can use Active Record.
+Aunque la DAO de Yii puede manejar virtualmente cualquier tarea relacionada
+con la base de datos, lo más probable es que gastemos el 90% de nuestro tiempo
+escribiendo algunas sentencias SQL relacionadas con la ejecución de las operaciones
+CRUD comunes. Es tambien dificil mantener nuestro código cuando éste está mezclado
+con sentencias SQL. Para solucionar estos problemas, podemos usar los Registros Activos
+(Active Record).
 
-Active Record (AR) is a popular Object-Relational Mapping (ORM) technique.
-Each AR class represents a database table (or view) whose attributes are
-represented as the AR class properties, and an AR instance represents a row
-in that table. Common CRUD operations are implemented as AR methods. As a
-result, we can access our data in a more object-oriented way. For example,
-we can use the following code to insert a new row to the `Post` table:
+Registro Activo (AR) es una técnica popular de Mapeo Objeto-Relacional (ORM).
+Cada clase AR representa una tabla de la base de datos (o vista) cuyos atributos
+son representados como las propiedades de la clase AR, y una instancia AR representa
+una fila en esa tabla. La operaciones CRUD comunes son implementadas como metodos de
+la clase AR. Como resultado, podemos acceder a nuestros datos de una manera más
+orientada a objetos. Por ejemplo, podemos usar el siguiente código para insertar
+una nueva fila a la tabla `Post`:
 
 ~~~
 [php]
 $post=new Post;
-$post->title='sample post';
-$post->content='post body content';
+$post->title='post ejemplo';
+$post->content='contenido del cuerpor del post';
 $post->save();
 ~~~
 
-In the following we describe how to set up AR and use it to perform CRUD
-operations. We will show how to use AR to deal with database relationships
-in the next section. For simplicity, we use the following database table
-for our examples in this section.
+A continuación describiremos como configurar un AR y usarlo para ejecutar
+las operaciones CRUD. Mostraremos como usar un AR para tratar con relaciones
+en la base de datos en la siguiente sección. Por sencillez, usamos la
+siguiente tabla de la base de datos para nuestros ejemplo en esta sección.
 
 ~~~
 [sql]
@@ -37,18 +39,18 @@ CREATE TABLE Post (
 );
 ~~~
 
-> Note: AR is not meant to solve all database-related tasks. It is best
-used for modeling database tables in PHP constructs and performing queries
-that do not involve complex SQLs. Yii DAO should be used for those complex
-scenarios.
+> Note|Nota: AR no pretende resolver todas las tareas relacionadas con la
+base de datos. Lo mejor es usarlo para modelar tablas de bases de datos en
+construcciones PHP y ejecutar consultas que no involucren SQLs complejas.
+Para esos escenarios complejos debe usarse el DAO de Yii.
 
-Establishing DB Connection
---------------------------
+Estableciendo la Conexión con la BD
+-----------------------------------
 
-AR relies on a DB connection to perform DB-related operations. By default,
-it assumes that the `db` application component gives the needed
-[CDbConnection] instance which serves as the DB connection. The following
-application configuration shows an example:
+Los AR dependen de una conexión con una BD para ejecutar operaciones relacionadas
+con la BD. Por defecto, asumimos que el componente de aplicación `db` nos da la
+instancia [CDbConnection] necesaria que nos sirve como la conexión de la BD. La
+siguiente configuración de aplicación muestra un ejemplo:
 
 ~~~
 [php]
@@ -57,46 +59,45 @@ return array(
 		'db'=>array(
 			'class'=>'system.db.CDbConnection',
 			'connectionString'=>'sqlite:path/to/dbfile',
-			// turn on schema caching to improve performance
+			// activar el cacheo de esquema para mejorar el rendimiento
 			// 'schemaCachingDuration'=>3600,
 		),
 	),
 );
 ~~~
 
-> Tip: Because Active Record relies on the metadata about tables to
-determine the column information, it takes time to read the metadata and
-analyze it. If the schema of your database is less likely to be changed,
-you should turn on schema caching by configuring the
-[CDbConnection::schemaCachingDuration] property to be a value greater than
-0.
+> Tip|Consejo: Puesto que AR depende los metadatos de las tablas para
+determinar la información de la columna, toma tiempo leer los metadatos
+y analizarlos. Si el esquema de tu base de datos es menos probable que
+sea cambiado, deberías activar el caché de esquema configurando la
+propiedad [CDbConnection::schemaCachingDuration] a un valor mayor que 0.
 
-Support for AR is limited by DBMS. Currently, only the following DBMS are
-supported:
+El soporte para AR está limitado por el DBMS. Actualmente, solo los siguientes
+DBMS están soportados:
 
-   - [MySQL 4.1 or later](http://www.mysql.com)
-   - [PostgreSQL 7.3 or later](http://www.postgres.com)
-   - [SQLite 2 and 3](http://www.sqlite.org)
+   - [MySQL 4.1 o superior](http://www.mysql.com)
+   - [PostgreSQL 7.3 o superior](http://www.postgres.com)
+   - [SQLite 2 y 3](http://www.sqlite.org)
 
-If you want to use an application component other than `db`, or if you
-want to work with multiple databases using AR, you should override
-[CActiveRecord::getDbConnection()]. The [CActiveRecord] class is the base
-class for all AR classes.
+Si querés usar un componente de aplicación diferente de `db`, o si querés
+trabajar con múltiples bases de datos usando AR, deberías sobreescribir
+[CActiveRecord::getDbConnection()]. La clase [CActiveRecord] es la clase
+base para todas las clases AR.
 
-> Tip: There are two ways to work with multiple databases in AR. If the
-schemas of the databases are different, you may create different base AR
-classes with different implementation of
-[getDbConnection()|CActiveRecord::getDbConnection]. Otherwise, dynamically
-changing the static variable [CActiveRecord::db] is a better idea.
+> Tip|Consejo: Existen dos maneras de trabajar con multiples bases de datos
+con AR. Si los esquemas de las bases de datos son diferentes, puedes crear
+diferentes clases base AR con diferentes implementaciones de [getDbConnection()|CActiveRecord::getDbConnection].
+De otra manera, cambiar dinámicamente la variable estática [CActiveRecord::db]
+es una mejor idea.
 
-Defining AR Class
------------------
+Definiendo la Clase AR
+----------------------
 
-To access a database table, we first need to define an AR class by
-extending [CActiveRecord]. Each AR class represents a single database
-table, and an AR instance represents a row in that table. The following
-example shows the minimal code needed for the AR class representing the
-`Post` table.
+Para acceder a una tabla de la base de datos, primero necesitamos definir
+una clase AR extendiendo [CActiveRecord]. Cada clase AR representa una
+única tabla de la base de datos, y una instancia AR representa una fila en
+esa tabla. El siguiente ejemplo muestra el código mínimo necesario para la
+clase AR que representa la tabla `Post`.
 
 ~~~
 [php]
@@ -109,10 +110,11 @@ class Post extends CActiveRecord
 }
 ~~~
 
-> Tip: Because AR classes are often referenced in many places, we can
-> import the whole directory containing the AR class, instead of including
-> them one by one. For example, if all our AR class files are under
-> `protected/models`, we can configure the application as follows:
+> Tip|Consejo: Puesto que las clases AR son referencidas frecuentemente
+> en varios lugares, podemos importar todo el directorio que contiene las
+> clases AR, en vez de incluirlas una a una. Por ejemplo, si todos nuestros
+> archivos de clases AR estan bajo `protected/models`, podemos configurar la
+> aplicación como sigue:
 > ~~~
 > [php]
 > return array(
@@ -122,126 +124,133 @@ class Post extends CActiveRecord
 > );
 > ~~~
 
-By default, the name of the AR class is the same as the database table
-name. Override the [tableName()|CActiveRecord::tableName] method if they
-are different. The [model()|CActiveRecord::model] method is declared as
-such for every AR class (to be explained shortly).
+Por defecto, el nombre de la clase AR es el mismo que el nombre de la tabla de
+la base de datos. Sobreescribir el método [tableName()|CActiveRecord::tableName]
+si son diferentes. El método [model()|CActiveRecord::model] está declarado para
+cada clase AR (será explicado en breve).
 
-Column values of a table row can be accessed as properties of the
-corresponding AR class instance. For example, the following code sets the
-`title` column (attribute):
-
-~~~
-[php]
-$post=new Post;
-$post->title='a sample post';
-~~~
-
-Although we never explicitly declare the `title` property in the `Post`
-class, we can still access it in the above code. This is because `title` is
-a column in the `Post` table, and CActiveRecord makes it accessible as a
-property with the help of the PHP `__get()` magic method. An exception will
-be thrown if we attempt to access a non-existing column in the same way.
-
-> Info: For better readability, we suggest naming database tables and
-columns in camel case. In particular, table names are formed by
-capitalizing each word in the name and joining them without spaces; column
-names are similar to table names except their first letter is in lower
-case. For example, we use `Post` to name the table storing posts; and we
-use `createTime` to name the table's primary key column. This makes tables
-look more like class types and columns like variables. Note, however, using camel case may also bring you inconvenience for some DBMS, such as MySQL, as they may behave differently on different operation systems.
-
-
-Creating Record
----------------
-
-To insert a new row into a database table, we create a new instance of the
-corresponding AR class, set its properties associated with the table
-columns, and call the [save()|CActiveRecord::save] method to finish the
-insertion.
+Los valores de las columnas de una fila de la tabla pueden ser accedidos como
+propiedades de la correspondiente instancia de la clase AR. Por ejemplo, el
+siguiente código establece la columna (atributo) `title`:
 
 ~~~
 [php]
 $post=new Post;
-$post->title='sample post';
-$post->content='content for the sample post';
+$post->title='un post de ejemplo';
+~~~
+
+Aunque nunca declaramos explicitamente la propiedad `title` en la clase
+`Post`, podemos aún accederla en el código anterior. Esto es debido a que
+`title` es una columna en la tabla `Post`, y [CActiveRecord] la hace
+accesible como una propiedad con la ayuda del método mágico de PHP `__get()`.
+Será arrojada una excepción si intentamos acceder a una columna no existente
+de la misma manera.
+
+> Info|Información: Para una mejor legibilidad, sugerimos nombrar las tablas
+de la base de datos y las columnas con las primeras letras de cada palabra distinta
+en mayúsculas. En particular, los nombres de tablas estan formados poniendo en
+mayúsculas la primera letra de cada palabra y juntándolas sin espacios; los
+nombres de las columnas son similares a los de las tablas, excepto que la primer letra
+de la primer palabra debe permanecer en minúsculas. Por ejemplo, usamos `Post` como
+nombre de la tabla que almacena los posts; y usamos `createTime` para nombrar
+a la columna de la clave primaria. Esto hace que las tablas luzcan más como
+tipos de clases y las columnas más como variables. Notar, sin embargo, que
+usar esta convención puede traer inconvenientes para algunos DBMS como MySQL,
+que puede comportarse de forma diferente en diferentes sistemas operativos.
+
+Creando Registros
+-----------------
+
+Para insertar una nueva fila en una tabla de la base de datos, creamos una
+nueva instancia de la correspondiente clase AR, establecemos sus propiedades
+asociadeas con las columnas de la tabla, y llamamos al método
+[save()|CActiveRecord::save] para finalizar la inserción.
+
+~~~
+[php]
+$post=new Post;
+$post->title='post ejemplo';
+$post->content='contenido del post ejemplo';
 $post->createTime=time();
 $post->save();
 ~~~
 
-If the table's primary key is auto-incremental, after the insertion the AR
-instance will contain an updated primary key. In the above example, the
-`id` property will reflect the primary key value of the newly inserted
-post, even though we never change it explicitly.
+Si la clave primaria de la tabla se autoincrementa, luego de la inserción
+la instancia AR contendrá la clave primaria actualizada. En el ejemplo
+anterior, la propiedad `id` reflejará el valor de la clave primaria del
+post recien insertado, aún cuando nunca la cambiamos explicitamente.
 
-If a column is defined with some static default value (e.g. a string, a
-number) in the table schema, the corresponding property in the AR instance
-will automatically has such a value after the instance is created. One way
-to change this default value is by explicitly declaring the property in the
-AR class:
+Si una columna está definida con algún valor estático por defecto (ej.: una
+string, un número) en el esquema de la tabla, la propiedad correspondiente en la
+instancia AR tendrá automáticamente un valoar luego de crear la instancia.
+Una manera de cambiar este valor por defecto es declarando explicitametne la propiedad
+en la clase AR:
 
 ~~~
 [php]
 class Post extends CActiveRecord
 {
-	public $title='please enter a title';
+	public $title='por favor ingrese un título';
 	......
 }
 
 $post=new Post;
-echo $post->title;  // this would display: please enter a title
+echo $post->title;  // esto mostrará: por favor ingrese un título
 ~~~
 
-Starting from version 1.0.2, an attribute can be assigned a value of [CDbExpression]
-type before the record is saved (either insertion or updating) to the database.
-For example, in order to save a timestamp returned by the MySQL `NOW()` function,
-we can use the following code:
+Desde la versión 1.0.2, a un atributo se le puede asignar un valor de tipo
+[CDbExpression] antes de que el registro sea guardado (tante en la inserción
+como en la actualización) en la base de datos. Por ejemplo, para guardar
+el timestamp devuelto por la funcion `NOW()` de MySQL, podemos usar el
+siguiente código:
 
 ~~~
 [php]
 $post=new Post;
 $post->createTime=new CDbExpression('NOW()');
-// $post->createTime='NOW()'; will not work because
-// 'NOW()' will be treated as a string
+// $post->createTime='NOW()'; no funcionará porque
+// 'NOW()' será tratado como una string
 $post->save();
 ~~~
 
 
-Reading Record
---------------
+Leyendo Registros
+-----------------
 
-To read data in a database table, we call one of the `find` methods as
-follows.
+Para leer datos en una base de datos, podemos llamar a uno de los métodos
+`find` como sigue.
 
 ~~~
 [php]
-// find the first row satisfying the specified condition
+// encontrar el primer registro que cumpla la condición especificada
 $post=Post::model()->find($condition,$params);
-// find the row with the specified primary key
+// encontrar la fila con la clave primaria especificada
 $post=Post::model()->findByPk($postID,$condition,$params);
-// find the row with the specified attribute values
+// encontrar la fila con los valores de los atributos especificados
 $post=Post::model()->findByAttributes($attributes,$condition,$params);
-// find the first row using the specified SQL statement
+// encontrar la primer fila usando la sentencia SQL especificada
 $post=Post::model()->findBySql($sql,$params);
 ~~~
 
-In the above, we call the `find` method with `Post::model()`. Remember
-that the static method `model()` is required for every AR class. The method
-returns an AR instance that is used to access class-level methods
-(something similar to static class methods) in an object context.
+En lo anterior, llamamos al método `find` con `Post::model()`. Recordemos
+que el método estático `model()` es requerido por toda clase AR. El método
+devuelve una instancia que es usada para acceder a los métodos de nivel de
+clase (algo similar a los métodos de clase estáticos) en un contexto de objetos.
 
-If the `find` method finds a row satisfying the query conditions, it will
-return a `Post` instance whose properties contain the corresponding column
-values of the table row. We can then read the loaded values like we do with
-normal object properties, for example, `echo $post->title;`.
+Si el método `find` encuentra una fila que cumpla con las condiciones de la consulta,
+devolverá una instancia de `Post` cuyas propiedades contendran los correspondientes
+valores de las columnas en la fila de la tabla. Podemos entonces leer los valores
+cargados como lo hacemos con las propiedades de objetos normales, por ejemplo,
+`echo $post->title;`
 
-The `find` method will return null if nothing can be found in the database
-with the given query condition.
+El método `find` devolverá `null` si nada puede ser encontrado en la base de datos
+con las condiciones de la consulta dada.
 
-When calling `find`, we use `$condition` and `$params` to specify query
-conditions. Here `$condition` can be string representing the `WHERE` clause
-in a SQL statement, and `$params` is an array of parameters whose values
-should be bound to the placeholders in `$condition`. For example,
+Cuando llamammos a `find`, usamos `$condition` y `$params` para especificar
+las condiciones de la consulta. Aquí, `$condition` puede ser una string representando
+la cláusula `WHERE` en una sentencia SQL, y ``$params` es un arreglo de parámetros
+cuyos valores deben ser enlazados a los marcadores de posición en `$condition`.
+Por ejemplo,
 
 ~~~
 [php]
@@ -249,26 +258,27 @@ should be bound to the placeholders in `$condition`. For example,
 $post=Post::model()->find('postID=:postID', array(':postID'=>10));
 ~~~
 
-We can also use `$condition` to specify more complex query conditions.
-Instead of a string, we let `$condition` be a [CDbCriteria] instance, which
-allows us to specify conditions other than the `WHERE` clause. For example,
+Podemos tambien usar `$condition` para especificar condiciones de consultas más complejas.
+En vez de una strign, dejamos a `$condition` ser una instancia de [CDbCriteria],
+que nos permite especificar otras condiciones ademas de la cláusula `WHERE`.
+Por ejemplo,
 
 ~~~
 [php]
 $criteria=new CDbCriteria;
-$criteria->select='title';  // only select the 'title' column
+$criteria->select='title';  // seleccionar solo la columna 'title'
 $criteria->condition='postID=:postID';
 $criteria->params=array(':postID'=>10);
-$post=Post::model()->find($criteria); // $params is not needed
+$post=Post::model()->find($criteria); // $params no es necesario
 ~~~
 
-Note, when using [CDbCriteria] as query condition, the `$params` parameter
-is no longer needed since it can be specified in [CDbCriteria], as shown
-above.
+Notar que, cuando usamos [CDbCriteria] como condición de la consulta, el parámetro
+`$params` ya no es necesario, puesto que puede ser especificado en [CDbCriteria],
+como se muestra arriba.
 
-An alternative way to [CDbCriteria] is passing an array to the `find` method.
-The array keys and values correspond to the criteria's property name and value,
-respectively. The above example can be rewritten as follows,
+Una forma alternativa a [CDbCriteria] es pasar un arreglo al método `find`.
+Las claves y los valores del arreglo corresponden a las propiedades del criterio y sus
+valores respectivamente. El ejemplo anterior puede ser reescrito como sigue,
 
 ~~~
 [php]
