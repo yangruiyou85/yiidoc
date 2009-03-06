@@ -33,7 +33,7 @@
 * Buforowanie podręczne (ang. caching)
     - [Przegląd](caching.overview)
     - [Buforowanie danych](caching.data)
-    - [Częściowe buforowanie](caching.fragment)
+    - [Buforowanie fragmentaryczne](caching.fragment)
     - [Buforowanie stron](caching.page)
     - [Zawartość dynamiczna](caching.dynamic)
 
