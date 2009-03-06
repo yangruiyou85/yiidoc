@@ -289,50 +289,52 @@ $post=Post::model()->find(array(
 ));
 ~~~
 
-> Info: When a query condition is about matching some columns with the
-specified values, we can use
-[findByAttributes()|CActiveRecord::findByAttributes]. We let the
-`$attributes` parameters be an array of the values indexed by the column
-names. In some frameworks, this task can be achieved by calling methods
-like `findByNameAndTitle`. Although this approach looks attractive, it
-often causes confusion, conflict and issues like case-sensitivity of column
-names.
+> Info|Información: Cuando una condición de consulta es sobre
+que algunas columnas tengan valores específicos, podemos usar
+[findByAttributes()|CActiveRecord::findByAttributes]. Dejaremos
+al parámetro `$attributes` ser un arreglo de los valores indexados
+por los nombres de las columnas. En algunos frameworks, esta tarea
+puede ser lograda llamando métodos como `findByNameAndTitle`. Aunque
+este enfoque parece atractivo, frecuentemente causa confusión, conflictos
+y cuestiones como sensibilidad a mayúsculas/minúsculas de los nombres
+de columna.
 
-When multiple rows of data matching the specified query condition, we can
-bring them in all together using the following `findAll` methods, each of
-which has its counterpart `find` method, as we already described.
+Cuando múltiples filas de datos coinciden con una condidición de consulta
+especificada, podemos traerlas todas juntas usando los siguientes métodos
+`findAll`, cada uno de los cuales tiene su método contraparte `find`, que
+ya mencionamos anteriormente.
 
 ~~~
 [php]
-// find all rows satisfying the specified condition
+// encontrar todas las filas que cumplan la condición especificada
 $posts=Post::model()->findAll($condition,$params);
-// find all rows with the specified primary keys
+// encontrar todas las filas con la clave primaria especificada
 $posts=Post::model()->findAllByPk($postIDs,$condition,$params);
-// find all rows with the specified attribute values
+// encontrar todas las filas con los valores de atributos especificados
 $posts=Post::model()->findAllByAttributes($attributes,$condition,$params);
-// find all rows using the specified SQL statement
+// encontrar todas las filas usando la sentencia SQL especificada
 $posts=Post::model()->findAllBySql($sql,$params);
 ~~~
 
-If nothing matches the query condition, `findAll` would return an empty
-array. This is different from `find` who would return null if nothing is
-found.
+Si nada coincide con la condición de la consulta, `findAll` devolverá un
+arreglo vacío. Esto es diferente a `find`, quien devuelve `null` si no se
+encuentra cosa alguna.
 
-Besides the `find` and `findAll` methods described above, the following
-methods are also provided for convenience:
+Además de los métodos `find` y `findAll` descriptos anteriormente, por
+conveniencia también se proveen los siguientes métodos:
 
 ~~~
 [php]
-// get the number of rows satisfying the specified condition
+// obtener el número de filas que cumplan la condición especificada
 $n=Post::model()->count($condition,$params);
-// get the number of rows using the specified SQL statement
+// obtener el número de filas usando la sentencia SQL especificada
 $n=Post::model()->countBySql($sql,$params);
-// check if there is at least a row satisfying the specified condition
+// comprobar si existe al menos una fila que cumpla la condición especificada
 $exists=Post::model()->exists($condition,$params);
 ~~~
 
-Updating Record
----------------
+Actualizando Registros
+----------------------
 
 After an AR instance is populated with column values, we can change them
 and save them back to the database table.
