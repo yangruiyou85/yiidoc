@@ -1,4 +1,4 @@
-Relational Active Record
+﻿Relational Active Record
 ========================
 
 We have already seen how to use Active Record (AR) to select data from a
@@ -359,4 +359,4 @@ User::model()->with(array(
 ))->findAll();
 ~~~
 
-<div class="revision">$Id: database.arr.txt 683 2009-02-16 05:20:17Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 683 2009-02-16 05:20:17Z qiang.xue $</div> 
