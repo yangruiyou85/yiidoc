@@ -45,4 +45,4 @@ Yii::import('system.web.*');
 
 > Tip|小贴士:因为PHP 5.3.0以前的版本并不内置支持名命名空间,所以你并不能创建两个有着同样名称但是不同定义的类的实例.为此,所有 Yii 框架类都以字母 'C'(代表 'class') 为前缀,以便避免与用户自定义类产生冲突.在这里我们推荐为 Yii 框架保留'C'字母前缀的唯一使用权,用户自定义类则可以使用其他字母作为前缀.
 
-<div class="revision">$Id: basics.namespace.txt 723 2009-02-26 11:43:05Z thaiki $</div>
+<div class="revision">$Id: basics.namespace.txt 723 2009-02-26 11:43:05Z qiang.xue & 译 : thaiki $</div>

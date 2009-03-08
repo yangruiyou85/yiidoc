@@ -289,4 +289,4 @@ public function rules()
 方法,可以实现标签的定制.在接下来章节中我们将看到,在模型里指定标签将允许我们创建一个更快捷更强大
 的表单.
 
-<div class="revision">$Id: form.model.txt 598 2009-03-05 13:41:28Z thaiki $</div>
+<div class="revision">$Id: form.model.txt 598 2009-03-05 13:41:28Z qiang.xue & 译 : thaiki $</div>

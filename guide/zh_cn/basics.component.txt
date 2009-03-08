@@ -118,4 +118,4 @@ $component->test();
 
 当和 [events](#component-event) 一起使用时,行为会更加强大.当行为被绑定到部件时,行为里的一些方法就可以绑定到部件的一些事件上了.这样一来,行为就有机观察或者改变部件的常规执行流程.
 
-<div class="revision">$Id: basics.component.txt 683 2009-02-16 05:20:17Z thaiki $</div>
+<div class="revision">$Id: basics.component.txt 683 2009-02-16 05s:20:17Z qiang.xue & 译 : thaiki $</div>
