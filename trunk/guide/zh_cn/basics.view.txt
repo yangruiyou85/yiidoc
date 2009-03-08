@@ -97,4 +97,4 @@ class MyWidget extends CWidget
 
 在 `framework/views` 下, Yii 提供了一系列默认的系统视图. 他们可以通过在 `protected/views/system` 下创建同名视图文件来实现定制. 
 
-<div class="revision">$Id: basics.view.txt 416 2009-03-04 20:33:11Z thaiki $</div>
+<div class="revision">$Id: basics.view.txt 416 2009-03-04 20:33:11Z qiang.xue & 译 : thaiki $</div>

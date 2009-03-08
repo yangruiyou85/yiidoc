@@ -11,4 +11,4 @@
 
 在下一节,我们将详细介绍这些步骤的具体实现.
 
-<div class="revision">$Id: form.overview.txt 163 2009-03-04 22:57:32Z thaiki $</div>
+<div class="revision">$Id: form.overview.txt 163 2009-03-04 22:57:32Z qiang.xue & 译 : thaiki $</div>
