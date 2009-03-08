@@ -12,8 +12,7 @@ Yii 提供了一些辅助器(helper)类来简化视图组合.例如,创建一个
 > ~~~
 > 否则在任何需要的地方都要写上那笨拙的JavaScript了.
 
-In the following, we use [CHtml] to create the login form. We assume that
-the variable `$user` represents `LoginForm` instance.
+如下, 我们使用 [CHtml] 来创建登陆表单. 我们假设变量  `$user` 代表 `LoginForm` 的实例.
 
 ~~~
 [php]
@@ -35,24 +34,17 @@ the variable `$user` represents `LoginForm` instance.
 
 <div class="action">
 <?php echo CHtml::activeCheckBox($user,'rememberMe'); ?>
-Remember me next time<br/>
+记住我?<br/>
 <?php echo CHtml::submitButton('Login'); ?>
 </div>
 
 </form>
-</div><!-- yiiForm -->
+</div><!-- yii表单 -->
 ~~~
 
-The above code generates a more dynamic form. For example,
-[CHtml::activeLabel()] generates a label associated with the specified
-model attribute. If the attribute has an input error, the label's CSS class
-will be changed to `error`, which changes the appearance of the label with
-appropriate CSS styles. Similarly, [CHtml::activeTextField()] generates a
-text input field for the specified model attribute and changes its CSS
-class upon any input error.
+以上代码生成了一个更动态的表单. 例如 [CHtml::activeLabel()] 生成了一个关联到指定模型特性的标签.如果这个特性有一个输入错误,标签 CSS 的 class 将变成改变标签视觉表现到相应 CSS 样式的 `error`.类似的,[CHtml::activeTextField() 为指定的模型特性生成了一个文本输入框,其CSS 的 class 也会在发生任何错误时变成 `error`.
 
-If we use the CSS style file `form.css` provided by the `yiic` script, the
-generated form would be like the following:
+如果我们使用了 `yiic` 脚本提供的CSS样式文件 `form.css`,那么生成的表单和如下显示的差不多 :
 
 ![登陆页面](login1.png)
 
