@@ -1,22 +1,16 @@
 收集表格输入
 ========================
 
-有时候我们想按批收集用户输入.也就是,用户可以为多个模型实例输入信息然后一次性提交全部.
-我们之所以把这个称之为 *表格输入(tabular input)* 是因为输入的字段通常出现在一个HTML表格里.
+有时候我们想按批收集用户输入.也就是,用户可以为多个模型实例输入信息然后一次性提交全部.我们之所以把这个称之为 *表格输入(tabular input)* 是因为输入的字段通常出现在一个HTML表格里.
 
-To work with tabular input, we first need to create or populate an array
-of model instances, depending on whether we are inserting or updating the
-data. We then retrieve the user input data from the `$_POST` variable and
-assign it to each model. A slight difference from single model input is
-that we retrieve the input data using `$_POST['ModelClass'][$i]` instead of
-`$_POST['ModelClass']`.
+要使用表格输入,我们首先需要使用模型实例创建或者填充一个数组,这取决于我们是插入还是更新数据.然后我们从`$_POST` 变量里取出用户输入的数据,再将他们分配到各个模型中.这和从单模型输入中取出数据有一点微小的差异,那就是我们使用 `$_POST['ModelClass'][$i]` 取出数据而不是 `$_POST['ModelClass']`.
 
 ~~~
 [php]
 public function actionBatchUpdate()
 {
-	// retrieve items to be updated in a batch mode
-	// assuming each item is of model class 'Item'
+	// 批处理模式中,收集用于更新的项
+	// 假定每项都是模型类 'Item' 的
 	$items=$this->getItemsToUpdate();
 	if(isset($_POST['Item']))
 	{
@@ -27,23 +21,22 @@ public function actionBatchUpdate()
 				$item->attributes=$_POST['Item'][$i];
 			$valid=$valid && $item->validate();
 		}
-		if($valid)  // all items are valid
-			// ...do something here
+		if($valid)  // 所有的项都是有效的
+			// ...在这里干点什么
 	}
-	// displays the view to collect tabular input
+	// 显示视图收集表格输入
 	$this->render('batchUpdate',array('items'=>$items));
 }
 ~~~
 
-Having the action ready, we need to work on the `batchUpdate` view to
-display the input fields in an HTML table.
+准备好了行为,我们需要 `batchUpdate` 视图在一个 HTML 表中显示输入框.
 
 ~~~
 [php]
 <div class="yiiForm">
 <?php echo CHtml::form(); ?>
 <table>
-<tr><th>Name</th><th>Price</th><th>Count</th><th>Description</th></tr>
+<tr><th>名称</th><th>价格</th><th>数量</th><th>描述</th></tr>
 <?php foreach($items as $i=>$item): ?>
 <tr>
 <td><?php echo CHtml::activeTextField($item,"name[$i]"); ?></td>
@@ -56,14 +49,11 @@ display the input fields in an HTML table.
 
 <?php echo CHtml::submitButton('Save'); ?>
 </form>
-</div><!-- yiiForm -->
+</div><!-- yii表单 -->
 ~~~
 
-Note in the above that we use `"name[$i]"` instead of `"name"` as the
-second parameter when calling [CHtml::activeTextField].
+> Note|注意 : 在上述代码中,我们使用了 `"name[$i]"` 代替了 `"name"` 来作为 [CHtml::activeTextField] 的第二参数.
 
-If there is anything validation error, the corresponding input fields will
-be highlighted automatically, just like the single model input we described
-earlier on.
+如果有任何校验错误,那么对应的字段将会自动高亮,就像我们先前提到的单模型输入一样.
 
-<div class="revision">$Id: form.table.txt 468 2009-01-04 20:57:35Z qiang.xue $</div>
+<div class="revision">$Id: form.table.txt 468 2009-01-04 20:57:35Z qiang.xue & 译 : thaiki $</div>
