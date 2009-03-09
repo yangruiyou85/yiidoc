@@ -336,99 +336,99 @@ $exists=Post::model()->exists($condition,$params);
 Actualizando Registros
 ----------------------
 
-After an AR instance is populated with column values, we can change them
-and save them back to the database table.
+Luego de que una isntancia AR sea rellenada con valores, podemos cambiarlos
+y volver a guardarlos en la tabla de la base de datos.
 
 ~~~
 [php]
 $post=Post::model()->findByPk(10);
-$post->title='new post title';
-$post->save(); // save the change to database
+$post->title='nuevo titulo del post';
+$post->save(); // guardar cambios en la base de datos
 ~~~
 
-As we can see, we use the same [save()|CActiveRecord::save] method to
-perform insertion and updating operations. If an AR instance is created
-using the `new` operator, calling [save()|CActiveRecord::save] would insert
-a new row into the database table; if the AR instance is the result of some
-`find` or `findAll` method call, calling [save()|CActiveRecord::save] would
-update the existing row in the table. In fact, we can use
-[CActiveRecord::isNewRecord] to tell if an AR instance is new or not.
+Como podemos ver, usamos el mismo método [save()|CActiveRecord::save]
+para ejecutar las operaciones de inserción y actualización. Si una instancia
+AR es creada usando el operador `new`, llamar a [save()|CActiveRecord::save]
+insertará una nueva fila en la tabla de la base de datos; si la instancia AR
+es el resultado de la llamada a algún método `find` o `findAll`, llamar a
+[save()|CActiveRecord::save] actualizará la fila existente en la tabla. De
+hecho, podemos usar [CActiveRecord::isNewRecord] para decir si una instancia
+AR es nueva o no.
 
-It is also possible to update one or several rows in a database table
-without loading them first. AR provides the following convenient
-class-level methods for this purpose:
+También es posible actualizar una o varias filas en una tabla de la base de datos
+sin cargarlas primero. AR provee los siguientes convenientes métodos de nivel de
+clase para este propósito:
 
 ~~~
 [php]
-// update the rows matching the specified condition
+// actualizar las filas que coincidan con la condición especificada
 Post::model()->updateAll($attributes,$condition,$params);
-// update the rows matching the specified condition and primary key(s)
+// actualizar las filas que coincidan con la condición especificada y con la(s) clave(s) primaria(s)
 Post::model()->updateByPk($pk,$attributes,$condition,$params);
 // update counter columns in the rows satisfying the specified conditions
 Post::model()->updateCounters($counters,$condition,$params);
 ~~~
 
-In the above, `$attributes` is an array of column values indexed by column
-names; `$counters` is an array of incremental values indexed by column
-names; and `$condition` and `$params` are as described in the previous
-subsection.
+En lo anterior, `$attributes` es un arreglo de valores de columna indexado por nombres de columna;
+`$counters` es un arreglo de valores incrementales indexados por nombres de columna;
+y `$condition` y `$params` son como se describió en las subsecciones previas.
 
-Deleting Record
----------------
+Borrando Registros
+------------------
 
-We can also delete a row of data if an AR instance has been populated with
-this row.
-
-~~~
-[php]
-$post=Post::model()->findByPk(10); // assuming there is a post whose ID is 10
-$post->delete(); // delete the row from the database table
-~~~
-
-Note, after deletion, the AR instance remains unchanged, but the
-corresponding row in the database table is already gone.
-
-The following class-level methods are provided to delete rows without the
-need of loading them first:
+Podemos también borrar una fila de datos si una instancia AR ha sido rellenada
+con esa fila.
 
 ~~~
 [php]
-// delete the rows matching the specified condition
+$post=Post::model()->findByPk(10); // asumiendo que existe un post cuyo ID es 10
+$post->delete(); // borra la fila de la tabla de la base de datos
+~~~
+
+Nota, luego del borrado, la instancia AR permanece intacta, pero la correspondiente
+fila en la tabla de la base de datos ya no está.
+
+Los siguientes métodos de nivel de clase se proveen para borrar filas sin la necesidad
+de cargarlas primero:
+
+~~~
+[php]
+// borra todas las filas que coincidan con la condición especificada
 Post::model()->deleteAll($condition,$params);
-// delete the rows matching the specified condition and primary key(s)
+// borra todas las filas que coincidan con la condición especificada y con la(s) clave(s) primaria(s)
 Post::model()->deleteByPk($pk,$condition,$params);
 ~~~
 
-Data Validation
----------------
+Validación de Datos
+-------------------
 
-When inserting or updating a row, we often need to check if the column
-values comply to certain rules. This is especially important if the column
-values are provided by end users. In general, we should never trust
-anything coming from the client side.
+Cuando insertamos o actualizamos una fila, frecuentemente necesitamos comprobar
+que los valores de las columnas cumplen ciertas reglas. Esto es especialmente
+importante si los valores de la columna son provistos por usuarios finales. En
+general, nunca debemos confiar en nada que provenga del lado del cliente.
 
-AR performs data validation automatically when
-[save()|CActiveRecord::save] is being invoked. The validation is based on
-the rules specified by in the [rules()|CModel::rules] method of the AR class.
-For more details about how to specify validation rules, refer to
-the [Declaring Validation Rules](/doc/guide/form.model#declaring-validation-rules)
-section. Below is the typical workflow needed by saving a record:
+AR ejecuta la validación de datos automáticamente cuando se invoca a
+[save()|CActiveRecord::save]. La validación está basada en las reglas
+especificadas en el método [rules()|CModel::rules] de la clase AR.
+Para más detalles acerca de como especificar reglas de validación, ver la sección
+[Declarando Relgas de Validación](/doc/guide/form.model#declaring-validation-rules).
+A continuación está el flujo de trabajo típico necesario para guardar un registro:
 
 ~~~
 [php]
 if($post->save())
 {
-	// data is valid and is successfully inserted/updated
+	// los datos son válidos y están insertados/actualizados exitosamente
 }
 else
 {
-	// data is invalid. call getErrors() to retrieve error messages
+	// los datos no son válidos. Llamar a  getErrors() para obtener los mensajes de error
 }
 ~~~
 
-When the data for inserting or updating is submitted by end users in an
-HTML form, we need to assign them to the corresponding AR properties. We
-can do so like the following:
+Cuando los datos a insertar o actualizar son enviados por usarios finales en un
+formulario HTML, necesitamos asignarlos a las correspondientes propiedades AR.
+Podemos hacerlo como sigue:
 
 ~~~
 [php]
@@ -437,67 +437,66 @@ $post->content=$_POST['content'];
 $post->save();
 ~~~
 
-If there are many columns, we would see a long list of such assignments.
-This can be alleviated by making use of the
-[attributes|CActiveRecord::attributes] property as shown below. More
-details can be found in the [Securing Attribute Assignments](/doc/guide/form.model#securing-attribute-assignments)
-section and the [Creating Action](/doc/guide/form.action) section.
+Si existen muchas columnas, veremos una larga lista de dichas asignaciones.
+Esto se puede aliviar haciendo uso de la propiedad [attributes|CActiveRecord::attributes]
+como se muestra a continuación. Más detalles pueden ser encontrados en la sección
+[Asegurando las Asignaciones de Atributos](/doc/guide/form.model#securing-attribute-assignments)
+y en la sección [Creating Action](/doc/guide/form.action).
 
 ~~~
 [php]
-// assume $_POST['Post'] is an array of column values indexed by column names
+// asumimos que $_POST['Post'] es un arreglo de valores de columna indexados por nombres de columna
 $post->attributes=$_POST['Post'];
 $post->save();
 ~~~
 
 
-Comparing Records
------------------
+Comparando Registros
+--------------------
 
-Like table rows, AR instances are uniquely identified by their primary key
-values. Therefore, to compare two AR instances, we merely need to compare
-their primary key values, assuming they belong to the same AR class. A
-simpler way is to call [CActiveRecord::equals()], however.
+Como las filas de las tablas, las instancias AR están identificadas de manera única
+por los valores de su clave primaria. Por lo tanto, para comparar dos instancias AR,
+solo es necesario comparar los valores de sus claves primarias, asumiendo que pertenezcan
+a la misma clase AR. Sin embargo, una manera más simple es llamar a [CActiveRecord::equals()].
 
-> Info: Unlike AR implementation in other frameworks, Yii supports
-composite primary keys in its AR. A composite primary key consists of two
-or more columns. Correspondingly, the primary key value is represented as
-an array in Yii. The [primaryKey|CActiveRecord::primaryKey] property gives
-the primary key value of an AR instance.
+> Info:Información: A diferencia de la implementación de AR en otros frameworks, Yii
+soporta claves primaris compuestas en su AR. Una clave primaria consiste de dos o más
+columnas. Correspondientemente, en Yii el valor de la clave primaria está representado
+como un arreglo. La propiedad [primaryKey|CActiveRecord::primaryKey] nos da el valor de
+la clave primaria de una instancia AR.
 
-Customization
--------------
+Personalización
+---------------
 
-[CActiveRecord] provides a few placeholder methods that can be overridden
-in child classes to customize its workflow.
+[CActiveRecord] provee algunos métodos que pueden ser sobreescritos en las clases
+que la heredan para personalizar su flujo de trabajo.
 
-   - [beforeValidate|CModel::beforeValidate] and
-[afterValidate|CModel::afterValidate]: these are invoked before and
-after validation is performed.
+   - [beforeValidate|CModel::beforeValidate] y
+[afterValidate|CModel::afterValidate]: estos métodos son invocados antes y después
+de que la validación sea ejecutada.
 
-   - [beforeSave|CActiveRecord::beforeSave] and
-[afterSave|CActiveRecord::afterSave]: these are invoked before and after
-saving an AR instance.
+   - [beforeSave|CActiveRecord::beforeSave] y
+[afterSave|CActiveRecord::afterSave]: estos métodos son invocados antes y después
+de que la instancia AR sea guardada.
 
-   - [beforeDelete|CActiveRecord::beforeDelete] and
-[afterDelete|CActiveRecord::afterDelete]: these are invoked before and
-after an AR instance is deleted.
+   - [beforeDelete|CActiveRecord::beforeDelete] y
+[afterDelete|CActiveRecord::afterDelete]: estos métodos son invocados antes y después
+de que la instancia AR sea borrada.
 
-   - [afterConstruct|CActiveRecord::afterConstruct]: this is invoked for
-every AR instance created using the `new` operator.
+   - [afterConstruct|CActiveRecord::afterConstruct]: este método es invocado por cada
+instancia AR creada usando el operador `new`.
 
-   - [afterFind|CActiveRecord::afterFind]: this is invoked for every AR
-instance created as a result of query.
+   - [afterFind|CActiveRecord::afterFind]: este método es invocado por cada instancia AR
+creada como resultado de una búsqueda.
 
 
-Using Transaction with AR
--------------------------
+Usando Transacciones con AR
+---------------------------
 
-Every AR instance contains a property named
-[dbConnection|CActiveRecord::dbConnection] which is a [CDbConnection]
-instance. We thus can use the
-[transaction](/doc/guide/database.dao#using-transactions) feature provided by Yii
-DAO if it is desired when working with AR:
+Cada instancia AR contiene una propiedad llamada [dbConnection|CActiveRecord::dbConnection]
+que es una instancia de [CDbConnection]. Por lo tanto podemos utilizar la característica
+transaction](/doc/guide/database.dao#using-transactions) provista por el DAO de Yii
+si se desea cuando trabajamos con AR:
 
 ~~~
 [php]
@@ -505,10 +504,10 @@ $model=Post::model();
 $transaction=$model->dbConnection->beginTransaction();
 try
 {
-	// find and save are two steps which may be intervened by another request
-	// we therefore use a transaction to ensure consistency and integrity
+	// encontar y guardad son dos pasos que pueden ser intervenidos por otra solicitud
+	// por lo tanto usaremos una transacción para asegurar su consistencia e integridad
 	$post=$model->findByPk(10);
-	$post->title='new post title';
+	$post->title='nuevo título del post';
 	$post->save();
 	$transaction->commit();
 }
@@ -518,4 +517,4 @@ catch(Exception $e)
 }
 ~~~
 
-<div class="revision">$Id: database.ar.txt 687 2009-02-17 02:57:56Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 688 2009-02-17 02:57:56Z freakpol $</div>
