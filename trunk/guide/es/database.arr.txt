@@ -1,14 +1,17 @@
-﻿Relational Active Record
-========================
+﻿Registro Activo Relacional
+==========================
 
-We have already seen how to use Active Record (AR) to select data from a
-single database table. In this section, we describe how to use AR to join
-several related database tables and bring back the joint data set.
+Ya hemos visto como usar Registro Activo (AR) para seleccionar datos desde
+una tabla sencilla de la base de datos. En esta sección, describiremos como
+usar AR para unir varias tablas relacionadas de la base de datos y obtener
+de vuelta el conjunto de datos unidos.
 
-In order to use relational AR, it is required that primary-foreign key
-relationships are well defined between tables that need to be joined. AR
-relies on the metadata about these relationships to determine how to join
-the tables.
+Para usar AR relacional, se requiere que las relaciones claver primaria-foránea
+estén bien definidas entre las tablas que necesitan ser unidas. AR depende de
+los metadatos acerca de estas relaciones para determinar como unir las tablas.
+
+> Note|Nota: Comenzando desde la versión 1.0.1, podemos usar AR relacional aún
+> si no definimos ninguna clave foránea en nuestra base de datos.
 
 > Note: Starting from version 1.0.1, you can use relational AR even
 > if you do not define any foreign key constraints in your database.
@@ -17,7 +20,7 @@ For simplicity, we will use the database schema shown in the
 following entity-relationship (ER) diagram to illustrate examples in this
 section.
 
-![ER Diagram](er.png)
+![Diagrama ER](er.png)
 
 > Info: Support for foreign key contraints varies in different DBMS.
 >
