@@ -386,4 +386,4 @@ $bizRule='return Yii::app()->user->isGuest;';
 $auth->createRole('guest',$bizRule);
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 759 2009-02-26 21:23:53Z qiang.xue $</div>
+<div class="revision">$Id: topics.auth.txt 759 2009-02-26 21:23:53Z qiang.xue 译 : sharehua $</div>
