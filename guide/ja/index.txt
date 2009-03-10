@@ -9,4 +9,4 @@ All Rights Reserved.
 
 翻訳: mocapapa &lt;<mocapapa@pugpug.org>&gt;, iwasaki &lt;<iwasaki@cresc.com>&gt;, wjx &lt;<webjax@webjax.org>&gt;
 
-<div class="revision">$Id: index.txt 440 2009-01-01 04:14:09Z qiang.xue $</div>
+<div class="revision">$Id: index.txt 687 2009-01-01 04:14:09Z qiang.xue $</div>
