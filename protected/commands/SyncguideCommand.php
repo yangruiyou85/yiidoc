@@ -13,7 +13,7 @@ DESCRIPTION
   the specified language are out of date.
 
 PARAMETERS
- * language: required, the ID of the language (e.g. ge, zh_cn) that
+ * language: required, the ID of the language (e.g. de, zh_cn) that
    should be checked for synchronization.
 
 EOD;
