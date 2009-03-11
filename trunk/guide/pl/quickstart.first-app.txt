@@ -2,7 +2,7 @@
 =============================
 
 Aby nabyć podstawowych doświadczeń w pracy z Yii pokażemy w tym rozdziale
- jak utworzyć naszą pierwszą aplikację. Użyjemy potężnego narzędzia `yiic`,
+jak utworzyć naszą pierwszą aplikację. Użyjemy potężnego narzędzia `yiic`,
 które pozwala automatyzować generowanie kodu dla określonych zadań.
 Przyjmujemy tu konwencję w myśl której `YiiRoot` jest katalogiem,
 w którym zainstalowano Yii, a `WebRoot` to document root naszego web serwera.
