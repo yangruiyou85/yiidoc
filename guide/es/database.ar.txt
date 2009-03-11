@@ -495,7 +495,7 @@ Usando Transacciones con AR
 
 Cada instancia AR contiene una propiedad llamada [dbConnection|CActiveRecord::dbConnection]
 que es una instancia de [CDbConnection]. Por lo tanto podemos utilizar la característica
-transaction](/doc/guide/database.dao#using-transactions) provista por el DAO de Yii
+[transaction](/doc/guide/database.dao#using-transactions) provista por el DAO de Yii
 si se desea cuando trabajamos con AR:
 
 ~~~
