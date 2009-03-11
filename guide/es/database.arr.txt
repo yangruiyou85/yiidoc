@@ -13,25 +13,21 @@ los metadatos acerca de estas relaciones para determinar como unir las tablas.
 > Note|Nota: Comenzando desde la versión 1.0.1, podemos usar AR relacional aún
 > si no definimos ninguna clave foránea en nuestra base de datos.
 
-> Note: Starting from version 1.0.1, you can use relational AR even
-> if you do not define any foreign key constraints in your database.
-
-For simplicity, we will use the database schema shown in the
-following entity-relationship (ER) diagram to illustrate examples in this
-section.
+Por sencillez, usamos el esquema de la base de datos mostrado en el siguiente
+diagrama entidad-relacion (ER) para ilustrar ejemplos en esta sección.
 
 ![Diagrama ER](er.png)
 
-> Info: Support for foreign key contraints varies in different DBMS.
+> Info|Información: El soporte para la clave foránea varía en diferentes DBMS.
 >
-> SQLite does not support foreign key constraints, but you can still
-> declare the constraints when creating tables. AR can exploit these
-> declarations to correctly support relational queries.
+> SQLite no soporta claves foráneas, pero podemos todavía declararlas cuando
+> creamos las tablas. AR puede aprovechar estas declataciones para soportar
+> correctamente las consultas relacionales.
 >
-> MySQL supports foreign key constraints with InnoDB engine, but not with
-> MyISAM. It is thus recommended that you use InnoDB for your MySQL database.
-> When using MyISAM, you may exploit the following trick so that
-> you can perform relational queries using AR:
+> MySQL soporta claves foráneas con el motor InnoDB, pero no con MyISAM. Es
+> recomendable usar InnoDB para nuestra base de datos. Cuando usamos MyISAM,
+> podemos aprovechar el siguiente truco para que podamos ejecutar las consultas
+> relacionales usando AR:
 > ~~~
 > [sql]
 > CREATE TABLE Foo
@@ -45,61 +41,60 @@ section.
 >      COMMENT 'CONSTRAINT FOREIGN KEY (fooID) REFERENCES Foo(id)'
 > );
 > ~~~
-> In the above, we use `COMMENT` keyword to describe the foreign key constraint
-> which can be read by AR to recognize the described relationship.
+> En lo anterior, usamos la palabra clave `COMMENT` para describir la clave foránea
+> el cual puede ser leído por AR para reconocer la relación descripta.
 
 
 
-Declaring Relationship
-----------------------
+Declarando Relaciones
+---------------------
 
-Before we use AR to perform relational query, we need to let AR know how
-one AR class is related with another.
+Antes de usar AR para ejecutar consultas relacionales, necesitamos darle
+conocer a AR como una clase AR se relaciona con otra.
 
-Relationship between two AR classes is directly associated with the
-relationship between the database tables represented by the AR classes.
-From database point of view, a relationship between two tables A and B has
-three types: one-to-many (e.g. `User` and `Post`), one-to-one (e.g.
-`User` and `Profile`) and many-to-many (e.g. `Category` and `Post`). In AR,
-there are four types of relationships:
+La relación entre dos clases AR está directamente asociada con la relación
+entre las tablas de la base de datos representadas por esas clases.
+Desde el punto de vista de la base de datos, una relación entre dos tablas
+A y B tiene tres tipos: uno-a-muchos (ej.: `User` y `Post`), uno-a-uno (ej.: `User`
+y `Profile`) y muchos-a-muchos (ej.: `Category` y `Post`). En AR, hay cuatro
+tipo de relaciones:
 
-   - `BELONGS_TO`: if the relationship between table A and B is
-one-to-many, then B belongs to A (e.g. `Post` belongs to `User`);
+   - `BELONGS_TO`: si la relación entre la tabla A y B es uno-a-muchos,
+entonces B pertenece a A (ej.: `Post` pertenece a `User`);
 
-   - `HAS_MANY`: if the relationship between table A and B is one-to-many,
-then A has many B (e.g. `User` has many `Post`);
+   - `HAS_MANY`: si la relación entre la tabla A y B es uno-a-muchos,
+entonces A tiene muchos B (ej.: `User` tiene muchos `Post`);
 
-   - `HAS_ONE`: this is special case of `HAS_MANY` where A has at most one
-B (e.g. `User` has at most one `Profile`);
+   - `HAS_ONE`: este es un caso especial de `HAS_MANY` donde A tiene a lo sumo
+un B (ej.: `User` tiene a lo sumo un `Profile`);
 
-   - `MANY_MANY`: this corresponds to the many-to-many relationship in
-database. An associative table is needed to break a many-to-many
-relationship into one-to-many relationships, as most DBMS do not support
-many-to-many relationship directly. In our example database schema, the
-`PostCategory` serves for this purpose. In AR terminology, we can explain
-`MANY_MANY` as the combination of `BELONGS_TO` and `HAS_MANY`. For example,
-`Post` belongs to many `Category` and `Category` has many `Post`.
+   - `MANY_MANY`: corresponde a la relación muchos-a-muchos en la base de datos
+Una tabla asociativa es necesaria para romper una relación muchos-a-muchos en
+relaciones uno-a-muchos, ya que la mayoría de los DBMS no soportan directamente
+la relación muchos-a-muchos. En nuestro esquema de la base de datos de ejemplo,
+la tabla `PostCategory` sirve para este propósito. En terminología AR, podemos
+explicar `MANY_MANY` como la combinación de `BELONGS_TO` y `HAS_MANY`. Por
+ejemplo, `Post` pertenece a muchas `Category` y `Category` tiene muchos `Post`.
 
-Declaring relationship in AR involves overriding the
-[relations()|CActiveRecord::relations] method of [CActiveRecord]. The
-method returns an array of relationship configurations. Each array element
-represents a single relationship with the following format:
+Declarar relaciones en AR involucra sobreescribir el método
+[relations()|CActiveRecord::relations] de [CActiveRecord]. El método devuelve
+un arreglo de configuraciones de relaciones. Cada elemento del arreglo representa
+una sola relación con el siguiente formato:
 
 ~~~
 [php]
 'VarName'=>array('RelationType', 'ClassName', 'ForeignKey', ...additional options)
 ~~~
 
-where `VarName` is the name of the relationship; `RelationType` specifies
-the type of the relationship, which can be one of the four constants:
-`self::BELONGS_TO`, `self::HAS_ONE`, `self::HAS_MANY` and
-`self::MANY_MANY`; `ClassName` is the name of the AR class related to this
-AR class; and `ForeignKey` specifies the foreign key(s) involved in the
-relationship. Additional options can be specified at the end for each
-relationship (to be described later).
+donde `VarName` es el nombre de la relación; `RelationType` especifica el tipo de
+relación, que puede ser una de las cuatro constantes: `self::BELONGS_TO`,
+`self::HAS_ONE`, `self::HAS_MANY` y `self::MANY_MANY`; `ClassName` es el nombre de
+la clase relacionada a ésta clase AR; y `ForeignKey` especifica la(s) clave(s)
+foránea(s) involucrada(s) en la relación. Pueden ser especificadas opciones adicionales
+al finad de cada relación (será descripto luego).
 
-The following code shows how we declare the relationships for the `User`
-and `Post` classes.
+El siguiente código muestra como declarar las relaciones para las clases
+`User` y `Post`.
 
 ~~~
 [php]
@@ -126,80 +121,78 @@ class User extends CActiveRecord
 }
 ~~~
 
-> Info: A foreign key may be composite, consisting of two or more columns.
-In this case, we should concatenate the names of the foreign key columns
-and separate them with space or comma. For `MANY_MANY` relationship type,
-the associative table name must also be specified in the foreign key. For
-example, the `categories` relationship in `Post` is specified with the
-foreign key `PostCategory(postID, categoryID)`.
+> Info|Información: Una clave foránea puede ser conpuesta, cosistiendo de
+dos o más columnas. En este caso, debemos concatenar los nombres de la
+clave foránea y separarlos con un espacio o coma. Para las relaciones de
+tipo `MANY_MANY`, el nombre de la tabla asociativa también debe ser especificado
+en la clave foránea. Por ejemplo, la relación `categories` en `Post` está
+especificada con la clave foránea `PostCategory(postID, categoryID)`.
 
-The declaration of relationships in an AR class implicitly adds a property
-to the class for each relationship. After a relational query is performed,
-the corresponding property will be populated with the related AR
-instance(s). For example, if `$author` represents a `User` AR instance,
-we can use `$author->posts` to access its related `Post` instances.
+La declaración de relaciones en las clases AR implicitamente agrega una propiedad
+a la clase por cada relación. Luego de que una consulta relacional es ejecutada,
+la correspondiente propiedad será rellenada con la(s) instancia(s) AR relacionada(s).
+Por ejemplo, si `$author` representa una instancia AR `User`, podemos usar 
+`$author->posts` para acceder a sus instancias `Post` relacionadas.
 
-Performing Relational Query
----------------------------
+Ejecutando Consultas Relacionales
+---------------------------------
 
-The simplest way of performing relational query is by reading a relational
-property of an AR instance. If the property is not accessed previously, a
-relational query will be initiated, which joins the two related tables and
-filters with the primary key of the current AR instance. The query result
-will be saved to the property as instance(s) of the related AR class. This
-is known as the *lazy loading* approach, i.e., the relational query
-is performed only when the related objects are initially accessed. The
-example below shows how to use this approach:
+La manera más sencilla de ejecutar consultas relacionales es leer una propiedad
+relacional en una instancia AR. Si la propiedad no fue accedida previamente, será
+iniciada una consulta relacional, la cual unirá las dos tablas relacionadas y las
+filtrará con la clave primaria de la instancia AR actual. El resultado de la consulta
+será guardado en la propiedad como instancia(s) de la clase AR relacionada. Esto
+se conoce como enfoque *lazy loading*, es decir, la consulta relacional es ejecutada
+sólo cuando los objetos relacionados son accedidos por primera vez. El ejemplo
+siguiente muestra como usar este enfoque:
 
 ~~~
 [php]
-// retrieve the post whose ID is 10
+// recuperar el post cuyo ID es 10
 $post=Post::model()->findByPk(10);
-// retrieve the post's author: a relational query will be performed here
+// recuperar el autor del post: una consulta relacional se ejecutará aquí
 $author=$post->author;
 ~~~
 
-> Info: If there is no related instance for a relationship, the
-corresponding property could be either null or an empty array. For
-`BELONGS_TO` and `HAS_ONE` relationships, the result is null; for
-`HAS_MANY` and `MANY_MANY`, it is an empty array.
+> Info|Información: Si no hay una instancia relacionada para la relación, la
+correspondiente propiedad podría ser `null` o un arreglo vacío. Para las
+relaciones `BELONGS_TO` y `HAS_ONE`, el resultado es `null`; para las relaciones
+`HAS_MANY` y `MANY_MANY`, el resultado es un arreglo vacío.
 
-The lazy loading approach is very convenient to use, but it is not
-efficient in some scenarios. For example, if we want to access the author
-information for `N` posts, using the lazy approach would involve executing
-`N` join queries. We should resort to the so-called *eager loading*
-approach under this circumstance.
+El enfoque *lazy loading* es muy conveniente de usar, pero no es eficiente en
+algunos escenarios. Por ejemplo, si queremos acceder a la información del autor
+para `N` posts, usar el enfoque *lazy loading* podría involucrar ejecutar `N`
+consultas de unión. Bajo estas circunstancias debemos recurrir al enfoque
+llamado *eager loading*.
 
-The eager loading approach retrieves the related AR instances together
-with the main AR instance(s). This is accomplished by using the
-[with()|CActiveRecord::with] method together with one of the
-[find|CActiveRecord::find] or [findAll|CActiveRecord::findAll] methods in
-AR. For example,
+El enfoque *eager loading* recupera las instancias AR relacionadas junto con la(s)
+instancia(s) AR principal(es). Esto se logra mediante el uso del método
+[with()|CActiveRecord::with] junto con uno de los métodos
+[find|CActiveRecord::find] o [findAll|CActiveRecord::findAll] de AR. Por ejemplo,
 
 ~~~
 [php]
 $posts=Post::model()->with('author')->findAll();
 ~~~
 
-The above code will return an array of `Post` instances. Unlike the lazy
-approach, the `author` property in each `Post` instance is already
-populated with the related `User` instance before we access the property.
-Instead of executing a join query for each post, the eager loading approach
-brings back all posts together with their authors in a single join query!
+El código anterior devolverá un arreglo de instancias `Post`. A diferencia del
+enfoque *lazy loading*, la propiedad `author` en cada `Post` ya está rellenada
+con la instancia `User` relacionada antes de acceder a la propiedad. En vez de
+ejecutar una consulta de join por cada post, el enfoque *eager loading* traerá
+todos los posts juntos con sus autores en una sola consulta de union!
 
-We can specify multiple relationship names in the
-[with()|CActiveRecord::with] method and the eager loading approach will
-bring them back all in one shot. For example, the following code will bring
-back posts together with their authors and categories:
+Podemos especificar multiples nombres de relación en el método [with()|CActiveRecord::with]
+y el enfoque *eager loading* los traerá de una sola vez. Por ejemplo, el siguiente código
+traerá los posts juntos con sus autores y sus categorías:
 
 ~~~
 [php]
 $posts=Post::model()->with('author','categories')->findAll();
 ~~~
 
-We can also do nested eager loading. Instead of a list of relationship
-names, we pass in a hierarchical representation of relationship names to
-the [with()|CActiveRecord::with] method, like the following,
+Podemos también anidar los *eager loading*. En vez de una lista de nombres
+de relación, pasamos una representación jerárquica de nombres de relación al
+método [with()|CActiveRecord::with], como la siguiente,
 
 ~~~
 [php]
@@ -209,28 +202,26 @@ $posts=Post::model()->with(
 	'categories')->findAll();
 ~~~
 
-The above example will bring back all posts together with their author and
-categories. It will also bring back each author's profile and posts.
+Lo anterior nos traerá todos los posts con sus autores y categorías. También traerá
+cada perfil de autor y sus posts.
 
-> Note: The usage of the [with()|CActiveRecord::with] method has been changed
-> since version 1.0.2. Please read the corresponding API documentation carefully.
+> Note|Nota: El uso del método [with()|CActiveRecord::with] ha sido cambiado desde la
+> versión 1.0.2. Por favor lee la correspondiente documentación de la API cuidadosamente.
 
-The AR implementation in Yii is very efficient. When eager loading
-a hierarchy of related objects involving `N` `HAS_MANY` or `MANY_MANY`
-relationships, it will take `N+1` SQL queries to obtain the needed results.
-This means it needs to execute 3 SQL queries in the last example because of
-the `posts` and `categories` properties. Other frameworks take a more
-radical approach by using only one SQL query. At first look, the radical approach
-seems more efficient because fewer queries are being parsed and executed by
-DBMS. It is in fact impractical in reality for two reasons. First, there
-are many repetitive data columns in the result which takes extra time to
-transmit and process. Second, the number of rows in the result set grows
-exponentially with the number of tables involved, which makes it simply
-unmanageable as more relationships are involved.
+LA implementación de AR en Yii es muy eficiente. Cuando se usa *eager loading* en una
+jerarquía de objetos relacionados que involucran `N` relaciones `HAS_MANY` o `MANY_MANY`,
+tomará `N+1` consultas SQL para obtener el resultado necesario. Esto significa que en el
+ejemplo anterior necesita tres consultas SQL debido a las propiedades `posts` y `categories`.
+Otros frameworks toman un enfoque más radical usando solo una consulta SQL. A primera vista
+el enfoque radical parece ser más eficiente porque menos consultas son analizadas y ejecutadas
+por el DBMS. Esto es de hecho poco práctico en la realidad por dos razones: Primero, existen
+muchos datos repetitivos en el resultado que toman tiempo extra para transmitir y procesar;
+Segundo, el número de filas en el resultado crece exponencialmente con el número de tablas
+involucradas, lo que las hace simplemente inmanejable cuanto más relaciones estén involucradas.
 
-Since version 1.0.2, you can also enforce the relational query to be done with
-only one SQL query. Simply append a [together()|CActiveFinder::together] call
-after [with()|CActiveRecord::with]. For example,
+Desde la versión 1.0.2, podemos además obligar a la consulta relacional a ser hecha con sólo
+con una consulta SQL. Simplemente agregamos una llamada a [together()|CActiveFinder::together]
+luego de [with()|CActiveRecord::with]. Por ejemplo,
 
 ~~~
 [php]
@@ -240,78 +231,76 @@ $posts=Post::model()->with(
 	'categories')->together()->findAll();
 ~~~
 
-The above query will be done in one SQL query. Without calling [together|CActiveFinder::together],
-this will need two SQL queries: one joins `Post`, `User` and `Profile` tables,
-and the other joins `User` and `Post` tables.
+La consulta anterior será hecha en una sola consulta SQL. Sin llamar a 
+[together|CActiveFinder::together], serán necesarias dos consultas SQL:
+una junta las tablas `Post`, `User` y `Profile`, y la otra junta las
+tablas `User` y `Post`.
 
+Opciones de la Consulta Relacional
+----------------------------------
 
-Relational Query Options
-------------------------
+Mencionamos que las opciones adicionales pueden ser especificadas en la
+declaración de la relación. Estas opciones, especificadas como pares
+nombre-valor, son usadas para personalizar la consulta relacional. 
 
 We mentioned that additional options can be specified in relationship
 declaration. These options, specified as name-value pairs, are used to
-customize the relational query. They are summarized as below.
+customize the relational query. Se resumen a continuación:
 
-   - `select`: a list of columns to be selected for the related AR class.
-It defaults to '*', meaning all columns. Column names should be
-disambiguated using `aliasToken` if they appear in an expression (e.g.
-`COUNT(??.name) AS nameCount`).
+   - `select`: una lista de columnas a ser seleccionadad para la clase AR
+relacionada. Por defecto es `'*'`, lo que significa todas las columnas. Los
+nombres de las columnas deben ser desambiguados usando `aliasToken` si aparecen
+en una expresión (ej.: `COUNT(??.name) AS nameCount`).
 
-   - `condition`: the `WHERE` clause. It defaults to empty. Note, column
-references need to be disambiguated using `aliasToken` (e.g. `??.id=10`).
+   - `condition`: la cláusula `WHERE`. Por defecto vacía. Notar que las referencias
+a las columnas deber ser desambiguadas usando `aliasToken` (ej.: `??.id=10`).
 
-   - `params`: the parameters to be bound to the generated SQL statement.
-This should be given as an array of name-value pairs. This option has been
-available since version 1.0.3.
+   - `params`: los parámetros a ser enlazados en la sentencia SQL generada. Éstos
+deben ser dados como un arreglo de pares nombre-valor. Esta opción está disponible
+desde la versión 1.0.3.
 
-   - `on`: the `ON` clause. The condition specified here will be appended
-to the joining condition using the `AND` operator. This option has been
-available since version 1.0.2.
+   - `on`: la cláusula `ON`. La condición especificada aquí será agregada a la
+condición de union (del join) usando el operador `AND`. Esta opción está disponible
+desde la versión 1.0.2.
 
-   - `order`: the `ORDER BY` clause. It defaults to empty. Note, column
-references need to be disambiguated using `aliasToken` (e.g. `??.age
-DESC`).
+   - `order`: la cláusula `ORDER BY`. Por defecto vacía. Notar que las referencias
+a las columnas deber ser desambiguadas usando `aliasToken` (ej.: `??.age DESC`).
 
-   - `with`: a list of child related objects that should be loaded
-together with this object. Note, this is only honored by lazy loading, not
-eager loading.
+   - `with`: una lisata de objetos relacionados que deben ser cargados junto con
+este objeto. Note, this is only honored by lazy loading, not eager loading. 
 
-   - `joinType`: type of join for this relationship. It defaults to `LEFT
-OUTER JOIN`.
+   - `joinType`: tipo de union (join) para esta relación. Por defecto es
+`LEFT OUTER JOIN`.
 
-   - `aliasToken`: the column prefix placeholder. It will be replaced
-by the corresponding table alias to disambiguate column references.
-It defaults to `'??.'`.
+   - `aliasToken`: el marcador profijo de columna. Será reemplazado por el alias
+de la tabla para desambiguar las referencias a las columnas. Por defecto es `'??.'`.
 
-   - `alias`: the alias for the table associated with this relationship.
-This option has been available since version 1.0.1. It defaults to null,
-meaning the table alias is automatically generated. This is different
-from `aliasToken` in that the latter is just a placeholder and will be
-replaced by the actual table alias.
+   - `alias`: el alias de la tabla asociada con esta relación. Esta opcion está disponible
+desde la versión 1.0.1. Por defecto en `null`, lo que significa que el alias de la tabla
+es generado automáticamente. Difiere de `aliasToken` en que `aliasToken` es sólo un
+marcador de posición y será reemplazado por el alias real de la tabla.
 
-   - `together`: whether the table associated with this relationship should
-be forced to join together with the primary table. This option is only meaningful for HAS_MANY and MANY_MANY relations. If this option is not set or false, each HAS_MANY or MANY_MANY relation will have their own JOIN statement to improve performance. This option has been available since version 1.0.3.
+   - `together`: si la tabla asociada con esta relación debe ser forzada a unirse junto con la
+tabla primaria. Esta opcion sólo tiene sentido para relaciones `HAS_MANY` y `MANY_MANY`. Si
+esta opción no esta establecida en falso, cada relación `HAS_MANY` o `MANY_MANY` terndra su
+propia sentencia `JOIN` para mejorar el desempeño. Esta opción está disponible desde la versión
+1.0.3
 
-In addition, the following options are available for certain relationships
-during lazy loading:
+Además, las siguientes opciones están disponibles para ciertas relación durante el *lazy loading*:
 
-   - `group`: the `GROUP BY` clause. It defaults to empty. Note, column
-references need to be disambiguated using `aliasToken` (e.g. `??.age`).
-This option only applies to `HAS_MANY` and `MANY_MANY` relationships.
+   - `group`: la cláusula `GROUP BY`. Por defecto vacía. Notar que las referencias a las columnas
+deben ser desambiguadas usando `aliasToken` (ej.: `??.age`). Esta opción solo se aplica a relaciones
+`HAS_MANY` y `MANY_MANY`.
 
-   - `having`: the `HAVING` clause. It defaults to empty. Note, column
-references need to be disambiguated using `aliasToken` (e.g. `??.age`).
-This option only applies to `HAS_MANY` and `MANY_MANY` relationships. Note:
-option has been available since version 1.0.1.
+   - `having`: la cláusula `HAVING`. Por defecto vacía. Notar que las referencias a las columnas
+deben ser desambiguadas usando `aliasToken` (ej.: `??.age`). Esta opción solo se aplica a relaciones
+`HAS_MANY` y `MANY_MANY`. Nota: esta opción está disponible desde la versión 1.0.1.
 
-   - `limit`: limit of the rows to be selected. This option does NOT apply
-to `BELONGS_TO` relation.
+   - `limit`: el límite de las filas a ser seleccionadas. Esta opción NO se aplica a la relación `BELONGS_TO`.
 
-   - `offset`: offset of the rows to be selected. This option does NOT
-apply to `BELONGS_TO` relation.
+   - `offset`: desplazamiento de las filas a ser seleccionadas.  Esta opción NO se aplica a la relación `BELONGS_TO`.
 
-Below we modify the `posts` relationship declaration in the `User` by
-including some of the above options:
+A continuación modificamos la declaración de la relación `posts` en `User` incluyendo algunas de las opción anteriores:
 
 ~~~
 [php]
@@ -329,37 +318,38 @@ class User extends CActiveRecord
 }
 ~~~
 
-Now if we access `$author->posts`, we would obtain the author's posts
-sorted according to their creation time in descending order. Each post
-instance also has its categories loaded.
+Ahora si accedemos a `$author->posts`, obtendremos los posts del autor
+ordenados de acuerdo a su hora de creación en orden descendiente. Cada
+instancia post también tiene cargadas sus categorías.
 
-> Info: When a column name appears in two or more tables being joined
-together, it needs to be disambiguated. This is done by prefixing the
-column name with its table name. For example, `id` becomes `Team.id`. In AR
-relational queries, however, we do not have this freedom because the SQL
-statements are automatically generated by AR which systematically gives
-each table an alias. Therefore, in order to avoid column name conflict, we
-use a placeholder to indicate the existence of a column which needs to be
-disambiguated. AR will replace the placeholder with a suitable table alias
-and properly disambiguate the column.
+> Info|Información: Cuando un nombre de columna aparece en dos o más tablas
+a ser unidas, es necesario desambiguarlas. Esto se hace poniendo como prefijo
+el nombre de la tabla al nombre de la columa. Por ejemplo, `id` se vuelve
+`Team.id`. En las consultas relacionales de AR, sin embargo, no tenemos esta
+libertad puesto que las sentencias SQL son generadas automáticamente por AR,
+que, sistemáticamente, le da a cada tabla un alias. Por lo tanto, para evitar
+conflictos con los nombres de columnas, debemos usar un marcador de posición
+para indicar la existencia de una columna que necesita ser desambiguada. AR
+reemplazará el marcador con un alias de tabla adecuado y desambiguar la columna
+correctamente.
 
-Dynamic Relational Query Options
---------------------------------
+Opciones Dinámicas de Consultas Relacionales
+--------------------------------------------
 
-Starting from version 1.0.2, we can use dynamic relational query options
-in both [with()|CActiveRecord::with] and the `with` option. The dynamic
-options will overwrite existing options as specified in the [relations()|CActiveRecord::relations]
-method. For example, with the above `User` model, if we want to use eager
-loading approach to bring back posts belonging to an author in *ascending order*
-(the `order` option in the relation specification is descending order), we
-can do the following:
+Comenzando desde la versión 1.0.2, podemos usar opciones dinámicas de consultas
+relacionales tanto en [with()|CActiveRecord::with] como en la opcion `with`. Las
+opciónes dinámicas sobreescribirán las opciones existentes como se especifica
+en el método [relations()|CActiveRecord::relations]. Por ejemplo, con el anterior
+modelo `User`, si queremos usar el enfoque *eager loading* para traer de vuelta
+los posts pertenecientes al autor en órden ascendiente (la opción `order` en la
+especificación de la relación es órden descendiente), podemos hacer lo siguiente:
 
 ~~~
 [php]
 User::model()->with(array(
-	'posts'=>array('order'=>'??.createTime DESC'),
+	'posts'=>array('order'=>'??.createTime ASC'),
 	'profile',
 ))->findAll();
 ~~~
 
-<div class="revision">$Id: database.arr.txt 683 2009-02-16 05:20:17Z qiang.xue $</div> 
+<div class="revision">$Id: database.arr.txt 6834 2009-02-16 05:20:17Z freakpol $</div> 
