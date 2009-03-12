@@ -21,18 +21,11 @@ class SiteController extends CController
 路由(Route)
 -----
 
-控制器和actions都是通过ID标识的。
- Controller ID is in the
-format of `path/to/xyz` which corresponds to the controller class file
-`protected/controllers/path/to/XyzController.php`, where the token `xyz`
-should be replaced by actual names (e.g. `post` corresponds to
-`protected/controllers/PostController.php`). Action ID is the action method
-name without the `action` prefix. For example, if a controller class
-contains a method named `actionEdit`, the ID of the corresponding action
-would be `edit`.
+控制器和actions通过ID标识的。控制器ID的格式： `path/to/xyz`对应的类文件`protected/controllers/path/to/XyzController.php`, 
+相应的 `xyz`应该用实际的控制器名替换 (例如 `post` 对应 `protected/controllers/PostController.php`). 
+Action ID与  `action` 前辍构成 action method。例如，控制器类包含一个 `actionEdit` 方法, 对应的 action ID就是 `edit`。
 
-> Note: Before version 1.0.3, the controller ID format is `path.to.xyz`
-instead of `path/to/xyz`.
+> Note|注意: 在1.0.3版本之前, 控制器ID的格式是 `path.to.xyz` 而不是 `path/to/xyz`。
 
 Users request for a particular controller and action in terms of route. A
 route is formed by concatenating a controller ID and an action ID separated
@@ -41,7 +34,7 @@ and its `edit` action. And by default, the URL
 `http://hostname/index.php?r=post/edit` would request for this controller
 and action.
 
->Note: By default, routes are case-sensitive. Since version 1.0.1, it is
+> Note|注意: By default, routes are case-sensitive. Since version 1.0.1, it is
 >possible to make routes case-insensitive by setting [CUrlManager::caseSensitive]
 >to be false in the application configuration. When in case-insensitive mode,
 >make sure you follow the convention that directories containing controller
