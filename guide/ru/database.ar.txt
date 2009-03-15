@@ -71,6 +71,7 @@ return array(
    - [MySQL 4.1 и выше](http://www.mysql.com)
    - [PostgreSQL 7.3 и выше](http://www.postgres.com)
    - [SQLite 2 и 3](http://www.sqlite.org)
+   - [Microsoft SQL Server 2000 и выше](http://www.microsoft.com/sqlserver/)
 
 Если вы хотите использовать другой компонент нежели `db` или предполагаете, 
 используя AR, работать с несколькими БД, то следует переопределить метод 
@@ -457,4 +458,4 @@ catch(Exception $e)
 }
 ~~~
 
-<div class="revision">$Id: database.ar.txt 687 2009-02-17 02:57:56Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 827 2009-03-12 14:41:09Z qiang.xue $</div>
