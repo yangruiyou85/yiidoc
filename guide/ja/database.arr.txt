@@ -215,64 +215,56 @@ $posts=Post::model()->with(
 これらのオプションは、名前-値のペアとして指定されますが、リレーションの質問をカスタマイズするのに用いられます。
 それらは以下の通りまとめられます。
 
-   - `select`: a list of columns to be selected for the related AR class.
-It defaults to '*', meaning all columns. Column names should be
-disambiguated using `aliasToken` if they appear in an expression (e.g.
-`COUNT(??.name) AS nameCount`).
+   - `select`: リレーションのあるARクラスのために選ばれるコラムのリスト。
+デフォルトは'*'でありすべてのコラムを意味します。
+コラム名が式（例えば、`COUNT（??.name）AS nameCount`のような）に現れるならば、`aliasToken`を使って曖昧さをなくされなければなりません。
 
-   - `condition`: the `WHERE` clause. It defaults to empty. Note, column
-references need to be disambiguated using `aliasToken` (e.g. `??.id=10`).
+   - `condition`: `WHERE`句です。デフォルトは空で無条件を意味します。
+注意:コラム参照は`aliasToken`を用いてて曖昧さをなくされなければなりません(例えば`??.id=10`)。
 
-   - `params`: the parameters to be bound to the generated SQL statement.
-This should be given as an array of name-value pairs. This option has been
-available since version 1.0.3.
+   - `params`: 生成されたSQL文に縛らるパラメータ。
+これは名前-値のペアの配列として与えられなければなりません。
+このオプションはバージョン1.0.3から利用できるようになりました。
 
-   - `on`: the `ON` clause. The condition specified here will be appended
-to the joining condition using the `AND` operator. This option has been
-available since version 1.0.2.
+   - `on`: `ON`句です。ここで指定される条件は、`AND`オペレーターを使用しJOIN条件に追加されます。
+このオプションはバージョン1.0.2から利用できるようになりました。
 
-   - `order`: the `ORDER BY` clause. It defaults to empty. Note, column
-references need to be disambiguated using `aliasToken` (e.g. `??.age
-DESC`).
+   - `order`: `ORDER BY`句です。デフォルトでは空で無条件を意味します。
+注意:コラム参照は`aliasToken`を用いてて曖昧さをなくされなければなりません(例えば`??.age DESC`)。
 
-   - `with`: a list of child related objects that should be loaded
-together with this object. Note, this is only honored by lazy loading, not
-eager loading.
+   - `with`: 子供のリレーションを持つオブジェクトのリストであり、このオブジェクトと共にロードすべきオブジェクトです。
+注意：これがレイジーローディングによって守られるべきであり、イーガーローディングでは必要ありません。
 
-   - `joinType`: type of join for this relationship. It defaults to `LEFT
-OUTER JOIN`.
+   - `joinType`: このリレーションのジョインタイプで、デフォルトでは`LEFT OUTER JOIN`です。
 
-   - `aliasToken`: the column prefix placeholder. It will be replaced
-by the corresponding table alias to disambiguate column references.
-It defaults to `'??.'`.
+   - `aliasToken`: コラム接頭辞の場所取りです。コラム参照の曖昧さをなくすために対応するテーブル別名と置き換えられます。
+デフォルトでは`'??.'`です。
 
-   - `alias`: the alias for the table associated with this relationship.
-This option has been available since version 1.0.1. It defaults to null,
-meaning the table alias is automatically generated. This is different
-from `aliasToken` in that the latter is just a placeholder and will be
-replaced by the actual table alias.
+   - `alias`: このリレーションと結びついたテーブルの別名です。
+このオプションはバージョン1.0.1から利用できるようになりました。
+デフォルトはナルであり、テーブル別名が自動的に生成されることを意味します。
+これは以下の点から`aliasToken`と異なります。`aliasToken`は単なる場所取りであり、実際のテーブル別名と置き換えられるためです。
 
-   - `together`: whether the table associated with this relationship should
-+be forced to join together with the primary table. This option is only meaningful for HAS_MANY and MANY_MANY relations. If this option is not set or false, each HAS_MANY or MANY_MANY relation will have their own JOIN statement to improve performance. This option has been available since version 1.0.3.
+   - `together`: テーブルがこのリレーションと結びついたかどうかは、主テーブルと共にジョインとして強制されなければなりません。
+このオプションはHAS_MANYとMANY_MANY関係のときのみ意味があります。
+このオプションがセットされないか偽である場合、HAS_MANYまたはMANY_MANYリレーションはパフォーマンスを向上させるためにのJOIN文を持ちます。
+このオプションはバージョン1.0.3から利用できるようになりました。
 
-   - `group`: the `GROUP BY` clause. It defaults to empty. Note, column
-references need to be disambiguated using `aliasToken` (e.g. `??.age`).
+   - `group`: `GROUP BY`句です。デフォルトは空です。
+注意:コラム参照は`aliasToken`を用いてて曖昧さをなくされなければなりません(例えば`??.age`)。
 
-   - `having`: the `HAVING` clause. It defaults to empty. Note, column
-references need to be disambiguated using `aliasToken` (e.g. `??.age`).
-Note: option has been available since version 1.0.1.
+   - `having`: `HAVING`句です。デフォルトは空です。
+注意:コラム参照は`aliasToken`を用いてて曖昧さをなくされなければなりません(例えば`??.age`)。
+このオプションはバージョン1.0.1から利用できるようになりました。
 
-In addition, the following options are available for certain relationships
-during lazy loading:
+さらに、以下のオプションは、レイジーローディングの間、特定の関係のために利用できます：
 
-   - `limit`: limit of the rows to be selected. This option does NOT apply
-to `BELONGS_TO` relation.
+   - `limit`: 選択される列の制限。このオプションは`BELONGS_TO`リレーションには適用されません。
 
-   - `offset`: offset of the rows to be selected. This option does NOT
-apply to `BELONGS_TO` relation.
+   - `offset`: 選択される列のオフセット。このオプションは`BELONGS_TO`リレーションには適用されません。
 
-Below we modify the `posts` relationship declaration in the `User` by
-including some of the above options:
+
+以下に上記のオプションのいくつかを含むような`User`における`posts`リレーション宣言を修正します。
 
 ~~~
 [php]
@@ -289,31 +281,23 @@ class User extends CActiveRecord
 	}
 }
 ~~~
+さて今`$author->posts`のようにアクセスする場合、下降順に生成時間によってソートされる著者のポストを得るでしょう。
+それぞれのポストインスタンスも、その塔載されたカテゴリーを持ちます。
 
-Now if we access `$author->posts`, we would obtain the author's posts
-sorted according to their creation time in descending order. Each post
-instance also has its categories loaded.
+> Info|情報: 列名が結び付けられている2つ以上のテーブルに現れるとき、曖昧さが無い必要があります。
+テーブル名で列名に接頭辞を付けることによってこれは成されます。
+たとえば`id`は`Team.id`となります。
+しかしながらARリレーションのクエリにおいては、SQL文はシステム的に各々のテーブルに別名を与えるARによって自動的に発生するので、
+この自由がありません。
+したがって、列名の衝突を避けるために、曖昧さを無くす必要がある列の存在を示すために、場所取りを使います。
+ARは場所取りを適当なテーブル別名と入れ替えて列の曖昧さをなくします。
 
-> Info: When a column name appears in two or more tables being joined
-together, it needs to be disambiguated. This is done by prefixing the
-column name with its table name. For example, `id` becomes `Team.id`. In AR
-relational queries, however, we do not have this freedom because the SQL
-statements are automatically generated by AR which systematically gives
-each table an alias. Therefore, in order to avoid column name conflict, we
-use a placeholder to indicate the existence of a column which needs to be
-disambiguated. AR will replace the placeholder with a suitable table alias
-and properly disambiguate the column.
-
-Dynamic Relational Query Options
+動的なリレーショナルクエリのオプション
 --------------------------------
 
-Starting from version 1.0.2, we can use dynamic relational query options
-in both [with()|CActiveRecord::with] and the `with` option. The dynamic
-options will overwrite existing options as specified in the [relations()|CActiveRecord::relations]
-method. For example, with the above `User` model, if we want to use eager
-loading approach to bring back posts belonging to an author in *ascending order*
-(the `order` option in the relation specification is descending order), we
-can do the following:
+バージョン1.0.2からは[with()|CActiveRecord::with] と`with`オプションの両方の場合とも、動的なリレーションのクエリオプションを使用することができます。
+ダイナミックなオプションは、[relations()|CActiveRecord::relations]メソッド中で指定され、既存のオプションを上書きします。
+たとえば、上記の`User`モデルにおいて、*上昇順*（リレーション仕様に関する`order`オプションは下降順です）である著者に所属するポストを戻すためにイーガーローディングアプローチを使いたいならば、以下のように行います。
 
 ~~~
 [php]
