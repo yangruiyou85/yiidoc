@@ -9,7 +9,7 @@ Yii;当你编写一个新的组件时,你正在继承 [CWidget] 或者一个已�
  * [应用的部件](/doc/guide/basics.application#application-component)
  * [组件](/doc/guide/basics.view#widget)
  * [控制器](/doc/guide/basics.controller)
- * [行为](/doc/guide/basics.controller#action)
+ * [动作](/doc/guide/basics.controller#action)
  * [过滤器](/doc/guide/basics.controller#filter)
  * [控制台命令](/doc/guide/topics.console)
  * 校验器: 校验器是一个继承自 [CValidator] 类的部件.
@@ -18,4 +18,4 @@ Yii;当你编写一个新的组件时,你正在继承 [CWidget] 或者一个已�
 
 扩展也可以是不属于上述分类中的任何一个的部件.事实上,Yii 是设计的很谨慎,以至于几乎它的每段代码都可以被扩展和订制以适用于特定需求.
 
-<div class="revision">$Id: extension.overview.txt 235 2008-11-18 04:27:50Z qiang.xue & 译: thaiki $</div>
+<div class="revision">$Id: extension.overview.txt 235 2009-03-16 10:07:50Z qiang.xue & 译: thaiki $</div>
