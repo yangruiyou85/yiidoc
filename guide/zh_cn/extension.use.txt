@@ -66,10 +66,8 @@ return array(
 动作
 ------
 
-[动作](/doc/guide/basics.controller#action) are used by a [控制器](/doc/guide/basics.controller)
-to respond specific user requests. Given an action class `XyzClass` belonging to
-the `xyz` extension, we can use it by overriding the [CController::actions] method
-in our controller class:
+[动作](/doc/guide/basics.controller#action) 被 [控制器](/doc/guide/basics.controller) 用于响应指定的用户请求.鉴于
+动作的类 `XyzClass` 属于 `xyz` 扩展,我们可以在我们的控制器类里重写 [CController::actions] 方法来使用它:
 
 ~~~
 [php]
@@ -83,23 +81,19 @@ class TestController extends CController
 				'property1'=>'value1',
 				'property2'=>'value2',
 			),
-			// other actions
+			// 其他动作
 		);
 	}
 }
 ~~~
 
-Then, the action can be accessed via [route](/doc/guide/basics.controller#route)
-`test/xyz`.
+然后,我们可以通过 [路由](/doc/guide/basics.controller#route) `test/xyz` 来访问.
 
 过滤器
 ------
-[过滤器](/doc/guide/basics.controller#filter) are also used by a [控制器](/doc/guide/basics.controller).
-Their mainly pre- and post-process the user request when it is handled by an
-[动作](/doc/guide/basics.controller#action).
-Given a filter class `XyzClass` belonging to
-the `xyz` extension, we can use it by overriding the [CController::filters] method
-in our controller class:
+[过滤器](/doc/guide/basics.controller#filter) 也被 [控制器](/doc/guide/basics.controller) 使用.
+过滤器主要用于当其被 [动作](/doc/guide/basics.controller#action) 挂起时预处理,提交处理用户请求.
+鉴于过滤器的类 `XyzClass` 属于 `xyz` 扩展,我们可以在我们的控制器类里重写 [CController::filters] 方法来使用它:
 
 ~~~
 [php]
@@ -118,6 +112,8 @@ class TestController extends CController
 	}
 }
 ~~~
+
+
 
 In the above, we can use plus and minus operators in the first array element
 to apply the filter to limited actions only. For more details, please refer
