@@ -208,7 +208,6 @@ Teraz możemy wywołać `$this->createUrl('post/read',array('id'=>100))`, otrzym
 aplikację webową.
 
 ### Pozorowany sufiks adresu URL
-### Faking URL Suffix
 
 Możemy również dodawać pewne sufiksy do adresów URL. Na przykład możemy uzyskać
 `/post/100.html` zamiast `/post/100`. To sprawia, że wygląda on bardziej jak URL
