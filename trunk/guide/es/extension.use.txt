@@ -210,13 +210,14 @@ para la aplicación Web es `protected/config/main.php`.
 
 Modulo
 ------
+
 Por favor referirse a la sección acerca de [modulos](/doc/guide/basics.module#using-module)
 acerca de como usar un módulo.
 
 Componente Genérico
 -------------------
 
-Para usar un [componente](/doc/guide/basics.component), primero necesitamos
+Para usar un [componente](/doc/guide/basics.component) genérico, primero necesitamos
 incluir su clase usando
 
 ~~~
