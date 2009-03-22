@@ -16,7 +16,7 @@ Hungarian           ggyorfi             ggyorfi
 Hungarian           Endyl               slemmer.balazs
 Idonesian           rx_sa               santosa.eric
 Idonesian           Kabayan             ade999                      Yes
-Japanese            mocapapa            choco.moca.colon
+Japanese            mocapapa            mocapapa@g.pugpug.org       Yes
 Japanese            rogue_engineer      hideo.fukumori
 Japanese            wjx                 s01master@yahoo.co.jp
 Japanese            iwasaki             iwasaki@cresc.com
