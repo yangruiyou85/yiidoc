@@ -70,6 +70,7 @@
  * eager loading - метод жадной загрузки/жадная загрузка
  * extension - дополнение
  * field (of the table) -поле (или атрибут) таблицы
+ * front-controller - фронт-контроллер
  * getter - метод чтения
  * (event) handler - обработчик (события)
  * helper - помощник
