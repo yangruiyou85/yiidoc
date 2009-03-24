@@ -210,4 +210,4 @@ http://hostname/testdrive/index.php?r=user/admin
 
 ![Страница добавления нового пользователя](first-app7.png)
 
-<div class="revision">$Id: quickstart.first-app.txt 723 2009-02-21 18:14:05Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.first-app.txt 878 2009-03-23 15:31:21Z qiang.xue $</div>
