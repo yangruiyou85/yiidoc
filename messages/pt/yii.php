@@ -52,7 +52,7 @@ return array (
   'CGlobalStateCacheDependency.stateName cannot be empty.' => 'CGlobalStateCacheDependency.stateName não pode estar vazio.',
   'CHttpCookieCollection can only hold CHttpCookie objects.' => 'CHttpCookieCollection apenas suporta objetos CHttpCookie.',
   'CHttpRequest is unable to determine the entry script URL.' => 'CHttpRequest não consegue determinar a URL do script de entrada (entry script).',
-  'CHttpRequest is unable to determine the path info of the request.' => '',
+  'CHttpRequest is unable to determine the path info of the request.' => 'CHttpRequest é incapaz de determinar as informações do path da requisição.',
   'CHttpRequest is unable to determine the request URI.' => '',
   'CHttpSession.cookieMode can only be "none", "allow" or "only".' => '',
   'CHttpSession.gcProbability "{value}" is invalid. It must be an integer between 0 and 100.' => '',
