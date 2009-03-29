@@ -45,4 +45,4 @@
 > Yii::app()->theme->baseUrl . '/images/FileName.gif'
 > ~~~
 
-<div class="revision">$Id: topics.theming.txt 759 2009-02-26 21:23:53Z qiang.xue $</div>
+<div class="revision">$Id: topics.theming.txt 878 2009-03-23 15:31:21Z qiang.xue $</div>

@@ -126,6 +126,9 @@ CREATE TABLE User (
 );
 ~~~
 
+> Note|Примечание: Если вы используете БД MySQL, в выражении выше следует заменить `AUTOINCREMENT`
+> на `AUTO_INCREMENT`.
+
 Для простоты мы создадим в базе данных только таблицу `User`.
 
 Создание операций CRUD
@@ -210,4 +213,4 @@ http://hostname/testdrive/index.php?r=user/admin
 
 ![Страница добавления нового пользователя](first-app7.png)
 
-<div class="revision">$Id: quickstart.first-app.txt 878 2009-03-23 15:31:21Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.first-app.txt 891 2009-03-25 15:20:56Z qiang.xue $</div>
