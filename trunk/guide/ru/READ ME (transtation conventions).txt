@@ -1,5 +1,0 @@
-﻿Вся информация находится в Wiki проекта. 
-
-http://code.google.com/p/yiidoc/wiki/TransGuideRussian?ts=1236028934&updated=TransGuideRussian
-
-Данный файл необходимо удалить из репозитория в конце марта, иначе он попадает в официальный релиз.
