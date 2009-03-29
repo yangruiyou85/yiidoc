@@ -68,16 +68,16 @@
  * content - содержимое
  * controller - контроллер
  * debug (mode) - отладочный (режим) (см. production mode)
- * eager loading - метод жадной загрузки/жадная загрузка
+ * eager loading - метод жадной загрузки/жадная загрузка (см. lazy loading)
  * extension - дополнение
  * field (of the table) -поле (или атрибут) таблицы
  * framework - фреймворк
  * front-controller - фронт-контроллер
- * getter - метод чтения
+ * getter - метод чтения (см. setter)
  * (event) handler - обработчик (события)
  * helper - помощник
  * id - идентификатор
- * lazy loading - метод ленивой загрузки/ленивая загрузка
+ * lazy loading - метод ленивой загрузки/ленивая загрузка (см. eager loading)
  * method - метод (объекта) //Внимание! У объета/класса нет функций, есть только методы
  * model -	модель, модель данных
  * model form - модель формы
@@ -88,7 +88,7 @@
  * to render - рендерить
  * resolve request	- предварительная обработка запроса
  * row (of the table) - строка (таблицы)
- * setter - метод записи
+ * setter - метод записи (см. getter)
  * tabular input - табличный ввод
 
  * to validate - проверять
