@@ -82,11 +82,13 @@
  * model -	модель, модель данных
  * model form - модель формы
  * parameter - параметр (у метода или функции, никак не у класса)
+ * to parse - парсить
  * placeholder - маркер
  * production (mode) - производственный (режим) (см. debug mode)
  * property - свойство (объекта)
  * to render - рендерить
- * resolve request	- предварительная обработка запроса
+ * resolve request - предварительная обработка запроса
+ * route - маршрут
  * row (of the table) - строка (таблицы)
  * setter - метод записи (см. getter)
  * tabular input - табличный ввод
