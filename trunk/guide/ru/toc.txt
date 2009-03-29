@@ -44,7 +44,7 @@
     - [Использование сторонних библиотек](extension.integration)
 
 * Специальные темы
-    - [Красивые адреса (URL)](topics.url)
+    - [Красивые адреса URL](topics.url)
     - [Аутентификация и авторизация](topics.auth)
     - [Темы оформления](topics.theming)
     - [Логгирование](topics.logging)
