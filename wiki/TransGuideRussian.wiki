@@ -67,9 +67,11 @@
  * customization - тонкая настройка //Ранее встречался перевод "кастомизация", желательно этот вариант по возможности не использовать
  * content - содержимое
  * controller - контроллер
+ * debug (mode) - отладочный (режим) (см. production mode)
  * eager loading - метод жадной загрузки/жадная загрузка
  * extension - дополнение
  * field (of the table) -поле (или атрибут) таблицы
+ * framework - фреймворк
  * front-controller - фронт-контроллер
  * getter - метод чтения
  * (event) handler - обработчик (события)
@@ -81,7 +83,9 @@
  * model form - модель формы
  * parameter - параметр (у метода или функции, никак не у класса)
  * placeholder - маркер
+ * production (mode) - производственный (режим) (см. debug mode)
  * property - свойство (объекта)
+ * to render - рендерить
  * resolve request	- предварительная обработка запроса
  * row (of the table) - строка (таблицы)
  * setter - метод записи
