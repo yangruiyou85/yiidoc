@@ -16,7 +16,7 @@
  * @version $Id: $
  */
 return array (
-  '"{path}" is not a valid directory.' => '"{path} is geen valide map.',
+  '"{path}" is not a valid directory.' => '"{path} is geen geldige map.',
   'Active Record requires a "db" CDbConnection application component.' => 'Active Record heeft een "db" CDbConnection applicatie component nodig.',
   'Active record "{class}" has an invalid configuration for relation "{relation}". It must specify the relation type, the related active record class and the foreign key.' => '',
   'Active record "{class}" is trying to select an invalid column "{column}". Note, the column must exist in the table or be an expression with alias.' => '',
