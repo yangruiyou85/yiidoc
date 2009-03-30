@@ -1,0 +1,195 @@
+Web Service
+===========
+
+[Web service](http://en.wikipedia.org/wiki/Web_service) 是一个软件系统，设计来支持计算机之间跨网络相互访问。在Web应用程序，它通常用一套API，可以被互联网访问和执行在远端系统主机上的被请求服务。系统主机所要求的服务。例如，以[Flex](http://www.adobe.com/products/flex/)为基础的客户端可能会援引函数实现在服务器端运行PHP的Web应用程序。 Web service依赖[SOAP](http://en.wikipedia.org/wiki/SOAP)作为通信协议栈的基础层。
+
+Yii提供[CWebService]和[CWebServiceAction]简化了在Web应用程序实现Web service。这些API以类形式实现，被称为*service providers*. Yii将为每个类产生一个[WSDL](http://www.w3.org/TR/wsdl)，描述什么API有效和客户端怎么援引。当客户端援引API，Yii将实例化相应的service provider和调用被请求的API来完成请求。
+
+>注:[CWebService] 依靠[PHP SOAP extension](http://www.php.net/manual/en/ref.soap.php) 。请确定您是否在试用本节中的例子前允许此扩展。
+
+Defining Service Provider（定义Service Provider）
+-------------------------
+
+正如我们上文所述，service provider是一个类定义能被远程援引的方法。Yii依靠[doc
+comment](http://java.sun.com/j2se/javadoc/writingdoccomments/) and [class
+reflection](http://www.php.net/manual/en/language.oop5.reflection.php)识别
+哪些方法可以被远程调用和他们的参数还有返回值。
+
+让我们以一个简单的股票报价服务开始。这项服务允许客户端请求指定股票的报价。我们确定service provider如下。请注意，我们定义扩展[CController]的提供类`StockController`。这是不是必需的。马上我们将解释为什么这样做。
+
+~~~
+[php]
+class StockController extends CController
+{
+	/**
+	 * @param string the symbol of the stock
+	 * @return float the stock price
+	 * @soap
+	 */
+	public function getPrice($symbol)
+	{
+		$prices=array('IBM'=>100, 'GOOGLE'=>350);
+		return isset($prices[$symbol])?$prices[$symbol]:0;
+	    //...return stock price for $symbol
+	}
+}
+~~~
+
+在上面的，我们通过在文档注释中的`@soap`标签声明`getPrice`方法为一个Web service API。依靠文档注释指定输入的参数数据类型和返回值。其他的API可使用类似方式声明。
+
+Declaring Web Service Action（定义Web Service动作）
+----------------------------
+
+Having defined the service provider, we need to make it available to
+clients. In particular, we want to create a controller action to expose the
+service. This can be done easily by declaring a [CWebServiceAction] action
+in a controller class. For our example, we will just put it in
+`StockController`.
+
+~~~
+[php]
+class StockController extends CController
+{
+	public function actions()
+	{
+		return array(
+			'quote'=>array(
+				'class'=>'CWebServiceAction',
+			),
+		);
+	}
+
+	/**
+	 * @param string the symbol of the stock
+	 * @return float the stock price
+	 * @soap
+	 */
+	public function getPrice($symbol)
+	{
+	    //...return stock price for $symbol
+	}
+}
+~~~
+
+That is all we need to create a Web service! If we try to access the
+action by URL `http://hostname/path/to/index.php?r=stock/quote`, we will
+see a lot of XML content which is actually the WSDL for the Web service we
+defined.
+
+> Tip: By default, [CWebServiceAction] assumes the current controller is
+the service provider. That is why we define the `getPrice` method inside
+the `StockController` class.
+
+Consuming Web Service
+---------------------
+
+To complete the example, let's create a client to consume the Web service
+we just created. The example client is written in PHP, but it could be in
+other languages, such as `Java`, `C#`, `Flex`, etc.
+
+~~~
+[php]
+$client=new SoapClient('http://hostname/path/to/index.php?r=stock/quote');
+echo $client->getPrice('GOOGLE');
+~~~
+
+Run the above script in either Web or console mode, and we shall see `350`
+which is the price for `GOOGLE`.
+
+Data Types
+----------
+
+When declaring class methods and properties to be remotely accessible, we
+need to specify the data types of the input and output parameters. The
+following primitive data types can be used:
+
+   - str/string: maps to `xsd:string`;
+   - int/integer: maps to `xsd:int`;
+   - float/double: maps to `xsd:float`;
+   - bool/boolean: maps to `xsd:boolean`;
+   - date: maps to `xsd:date`;
+   - time: maps to `xsd:time`;
+   - datetime: maps to `xsd:dateTime`;
+   - array: maps to `xsd:string`;
+   - object: maps to `xsd:struct`;
+   - mixed: maps to `xsd:anyType`.
+
+If a type is not any of the above primitive types, it is considered as a
+composite type consisting of properties. A composite type is represented in
+terms of a class, and its properties are the class' public member variables
+marked with `@soap` in their doc comments.
+
+We can also use array type by appending `[]` to the end of a primitive or
+composite type. This would specify an array of the specified type.
+
+Below is an example defining the `getPosts` Web API which returns an array
+of `Post` objects.
+
+~~~
+[php]
+class PostController extends CController
+{
+	/**
+	 * @return Post[] a list of posts
+	 * @soap
+	 */
+	public function getPosts()
+	{
+		return Post::model()->findAll();
+	}
+}
+
+class Post extends CActiveRecord
+{
+	/**
+	 * @var integer post ID
+	 * @soap
+	 */
+	public $id;
+	/**
+	 * @var string post title
+	 * @soap
+	 */
+	public $title;
+}
+~~~
+
+Class Mapping
+-------------
+
+In order to receive parameters of composite type from client, an
+application needs to declare the mapping from WSDL types to the
+corresponding PHP classes. This is done by configuring the
+[classMap|CWebServiceAction::classMap] property of [CWebServiceAction].
+
+~~~
+[php]
+class PostController extends CController
+{
+	public function actions()
+	{
+		return array(
+			'service'=>array(
+				'class'=>'CWebServiceAction',
+				'classMap'=>array(
+					'Post'=>'Post',  // or simply 'Post'
+				),
+			),
+		);
+	}
+	......
+}
+~~~
+
+Intercepting Remote Method Invocation
+-------------------------------------
+
+By implementing the [IWebServiceProvider] interface, a sevice provider can
+intercept remote method invocations. In
+[IWebServiceProvider::beforeWebMethod], the provider may retrieve the
+current [CWebService] instance and obtain the the name of the method
+currently being requested via [CWebService::methodName]. It can return
+false if the remote method should not be invoked for some reason (e.g.
+unauthorized access).
+
+<div class="revision">$Id: topics.webservice.txt 265 2008-11-23 12:30:16Z weizhuo  译：sharehua $</div>
