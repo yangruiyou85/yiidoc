@@ -40,11 +40,7 @@ class StockController extends CController
 Declaring Web Service Action（定义Web Service动作）
 ----------------------------
 
-Having defined the service provider, we need to make it available to
-clients. In particular, we want to create a controller action to expose the
-service. This can be done easily by declaring a [CWebServiceAction] action
-in a controller class. For our example, we will just put it in
-`StockController`.
+已经定义了service provider，我们使他能够通过客户端访问。特别是，我们要创建一个控制器动作暴露这个服务。可以做到这一点很容易，在控制器类中定义一个[CWebServiceAction]动作。对于我们的例子中，我们把它放在`StockController`中。
 
 ~~~
 [php]
@@ -71,21 +67,17 @@ class StockController extends CController
 }
 ~~~
 
-That is all we need to create a Web service! If we try to access the
-action by URL `http://hostname/path/to/index.php?r=stock/quote`, we will
-see a lot of XML content which is actually the WSDL for the Web service we
-defined.
+这就是我们需要建立的Web service！如果我们尝试访问
+动作网址`http://hostname/path/to/index.php?r=stock/quote` ，我们将
+看到很多XML内容，这实际上是我们定义的Web service的WSDL描述。
 
-> Tip: By default, [CWebServiceAction] assumes the current controller is
-the service provider. That is why we define the `getPrice` method inside
-the `StockController` class.
+> 提示：在默认情况下， [CWebServiceAction] 假设当前的控制器
+是service provider。这就是因为我们定义 `getPrice`方法在`StockController`中。
 
-Consuming Web Service
+Consuming Web Service（消费Web Service）
 ---------------------
 
-To complete the example, let's create a client to consume the Web service
-we just created. The example client is written in PHP, but it could be in
-other languages, such as `Java`, `C#`, `Flex`, etc.
+要完成这个例子，让我们创建一个客户端来消费我们刚刚创建的Web service。例子中的客户端用php编写的，但可以用别的语言编写，例如`Java`, `C#`, `Flex`等等。
 
 ~~~
 [php]
@@ -93,37 +85,30 @@ $client=new SoapClient('http://hostname/path/to/index.php?r=stock/quote');
 echo $client->getPrice('GOOGLE');
 ~~~
 
-Run the above script in either Web or console mode, and we shall see `350`
-which is the price for `GOOGLE`.
+在网页中或控制台模式运行以上脚本，我们将看到`GOOGLE`的价格`350` 。
 
-Data Types
+Data Types（数据类型）
 ----------
 
-When declaring class methods and properties to be remotely accessible, we
-need to specify the data types of the input and output parameters. The
-following primitive data types can be used:
+当定义的方法和属性被远程访问，我们需要指定输入和输出参数的数据类型。以下的原始数据类型可以使用：
 
-   - str/string: maps to `xsd:string`;
-   - int/integer: maps to `xsd:int`;
-   - float/double: maps to `xsd:float`;
-   - bool/boolean: maps to `xsd:boolean`;
-   - date: maps to `xsd:date`;
-   - time: maps to `xsd:time`;
-   - datetime: maps to `xsd:dateTime`;
-   - array: maps to `xsd:string`;
-   - object: maps to `xsd:struct`;
-   - mixed: maps to `xsd:anyType`.
+   - str/string: 对应 `xsd:string`;
+   - int/integer: 对应 `xsd:int`;
+   - float/double: 对应 `xsd:float`;
+   - bool/boolean: 对应 `xsd:boolean`;
+   - date: 对应 `xsd:date`;
+   - time: 对应 `xsd:time`;
+   - datetime: 对应 `xsd:dateTime`;
+   - array: 对应 `xsd:string`;
+   - object: 对应 `xsd:struct`;
+   - mixed: 对应 `xsd:anyType`.
 
-If a type is not any of the above primitive types, it is considered as a
-composite type consisting of properties. A composite type is represented in
-terms of a class, and its properties are the class' public member variables
-marked with `@soap` in their doc comments.
+如果类型不属于上述任何原始类型，它被看作是复合型组成的属性。复合型类型被看做类，他的属性当做类的公有成员变量，在文档注释中被用`@soap`标记。
 
-We can also use array type by appending `[]` to the end of a primitive or
-composite type. This would specify an array of the specified type.
+我们还可以使用数组类型通过附加`[]`在原始或
+复合型类型的后面。这将定义指定类型的数组。
 
-Below is an example defining the `getPosts` Web API which returns an array
-of `Post` objects.
+下面就是一个例子定义`getPosts`网页API，返回一个`Post`对象的数组。
 
 ~~~
 [php]
@@ -154,13 +139,10 @@ class Post extends CActiveRecord
 }
 ~~~
 
-Class Mapping
+Class Mapping（类映射）
 -------------
 
-In order to receive parameters of composite type from client, an
-application needs to declare the mapping from WSDL types to the
-corresponding PHP classes. This is done by configuring the
-[classMap|CWebServiceAction::classMap] property of [CWebServiceAction].
+为了从客户端得到复合型参数，应用程序需要定义从WSDL类型到相应PHP类的映射。这是通过配置[CWebServiceAction]的属性[classMap|CWebServiceAction::classMap]。
 
 ~~~
 [php]
@@ -181,15 +163,9 @@ class PostController extends CController
 }
 ~~~
 
-Intercepting Remote Method Invocation
+Intercepting Remote Method Invocation（拦截远程方法调用）
 -------------------------------------
-
-By implementing the [IWebServiceProvider] interface, a sevice provider can
-intercept remote method invocations. In
-[IWebServiceProvider::beforeWebMethod], the provider may retrieve the
-current [CWebService] instance and obtain the the name of the method
-currently being requested via [CWebService::methodName]. It can return
-false if the remote method should not be invoked for some reason (e.g.
-unauthorized access).
+通过实现[IWebServiceProvider]接口，sevice provider可以拦截远程方法调用。在
+[IWebServiceProvider::beforeWebMethod] ，sevice provider可以获得当前[CWebService]实例和通过[CWebService::methodName]请求的方法的名字 。它可以返回假如果远程方法出于某种原因不应被援引（例如：未经授权的访问） 。
 
 <div class="revision">$Id: topics.webservice.txt 265 2008-11-23 12:30:16Z weizhuo  译：sharehua $</div>
