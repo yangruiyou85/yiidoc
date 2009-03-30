@@ -7,6 +7,7 @@ Bulgarian           penkomitev          pemitev
 Dutch               Maxximus            maxximus007
 Dutch               Sacha Telgenhof     stelgenhof
 Dutch               dalip               maartenvanvliet
+Dutch               letscode            janwiebedehaan
 French              tof                 christophe.boulain
 French              kiwisoft            pgaultier
 German              Ascomae             ckuetbach
