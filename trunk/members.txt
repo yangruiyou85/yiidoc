@@ -28,6 +28,7 @@ Portuguese          raragao             ricardoaragao
 Portuguese          Flavio              flavioleonelferreira
 Portuguese          Luiz                luiz.uo
 Portuguese          Wanderson           wanderson.wbc
+Portuguese          mnobre              marconobre
 Romanian            mishhh              if.mihai
 Russian             Bethrezen           b37hr3z3n
 Russian             Scott Tiger         krugloff.sergey
