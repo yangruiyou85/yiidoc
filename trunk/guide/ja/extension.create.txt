@@ -16,34 +16,26 @@
 BSD、MIT、その他のようなライセンスを考慮したほうが良いでしょう。GPLではありません。
 なぜならGPLはその派生コードに同様にオープンソースであることを要求するためです。
 
-In the following, we describe how to create a new extension, according to
-its categorization as described in [overview](/doc/guide/extension.overview).
-These descriptions also apply when you are creating a component mainly used
-in your own projects.
+以下に、[概要](/doc/guide/extension.overview)で解説される分類により、新しいエクステンションを作成する方法を解説します。
+主に自身のプロジェクトで使われるコンポーネントを作成するときも、これらの説明があてはまります。
 
-Application Component
+アプリケーションコンポーネント
 ---------------------
 
-An [application component](/doc/guide/basics.application#application-component)
-should implement the interface [IApplicationComponent] or extend
-from [CApplicationComponent]. The main method needed to be implemented is
-[IApplicationComponent::init] in which the component performs some initialization
-work. This method is invoked after the component is created and the initial property
-values (specified in [application configuration](/doc/guide/basics.application#application-configuration))
-are applied.
+[アプリケーションコンポーネント](/doc/guide/basics.application#application-component)
+は[IApplicationComponent]インタフェースを実装するかまたは[CApplicationComponent]の継承です。
+メインのメソッドでは[IApplicationComponent::init]を実装する必要があり、そこでコンポーネントの初期化処理を行います。
+このメソッドはコンポーネントが生成された後で起動され、[アプリケーション構成](/doc/guide/basics.application#application-configuration)
+で規定される初期値が適用されます。
 
-By default, an application component is created and initialized only when it
-is accessed for the first time during request handling. If an application component
-needs to be created right after the application instance is created, it should
-require the user to list its ID in the [CApplication::preload] property.
+デフォルトではリクエスト処理中に最初にアクセスされるときに生成され、初期化されます。
+もしアプリケーションインスタンスが生成された直後にアプリケーションコンポーネントが生成される必要があるならば、
+ユーザはそのIDを[CApplication::preload]プロパティに記述しておかなければなりません。
 
-
-Widget
+ウィジェット
 ------
 
-A [widget](/doc/guide/basics.view#widget) should extend from [CWidget] or its
-child classes.
-
+[ウィジェット](/doc/guide/basics.view#widget) should extend from [CWidget]またはその子クラス。
 The easiest way of creating a new widget is extending an existing widget and
 overriding its methods or changing its default property values. For example, if
 you want to use a nicer CSS style for [CTabView], you could configure its
