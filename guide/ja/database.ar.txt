@@ -22,6 +22,7 @@ $post->save();
 以下に、CRUDオペレーションを実行するために、ARを準備して使う方法を解説します。
 次のセクションでデータベースリレーションに対処するためにARを使う方法を示します。
 単純化するため、このセクションでは例として以下のデータベーステーブルを使います。
+もしMySQLをお使いの場合には以下のSQLにおいて、`AUTOINCREMENT`を`AUTO_INCREMENT`に修正することに注意してください。
 
 ~~~
 [sql]
@@ -426,4 +427,4 @@ catch(Exception $e)
 }
 ~~~
 
-<div class="revision">$Id: database.ar.txt 827 2009-01-19 15:00:39Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 891 2009-01-19 15:00:39Z qiang.xue $</div>
