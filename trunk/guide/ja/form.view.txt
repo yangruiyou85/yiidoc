@@ -31,7 +31,7 @@ Yiiはビューの作成を手助けするいくつかのヘルパークラス�
 ~~~
 [php]
 <div class="yiiForm">
-<?php echo CHtml::form(); ?>
+<?php echo CHtml::beginForm(); ?>
 
 <?php echo CHtml::errorSummary($user); ?>
 
@@ -52,7 +52,7 @@ Remember me next time<br/>
 <?php echo CHtml::submitButton('Login'); ?>
 </div>
 
-</form>
+<?php echo CHtml::endForm(); ?>
 </div><!-- yiiForm -->
 ~~~
 
@@ -71,4 +71,4 @@ Remember me next time<br/>
 
 ![The login with error page](login2.png)
 
-<div class="revision">$Id: form.view.txt 772 2008-11-30 23:01:07Z qiang.xue $</div>
+<div class="revision">$Id: form.view.txt 857 2008-11-30 23:01:07Z qiang.xue $</div>
