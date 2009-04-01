@@ -125,6 +125,8 @@ CREATE TABLE User (
 );
 ~~~
 
+> Note|注意: もしMySQLデータベースをお使いの場合は上記の`AUTOINCREMENT`を`AUTO_INCREMENT`に変更してください。
+
 単純化のために、データベース中にひとつだけ`User`テーブルを作成します。
 SQLiteデータベースファイルは`WebRoot/testdrive/protected/data/source.db`にストアされます。ファイルだけでなくディレクトリについても、ウェブサーバプロセスから書き込めるようにしておいてください。
 
@@ -213,4 +215,4 @@ http://hostname/testdrive/index.php?r=user/admin
 
 ![Create new user page](first-app7.png)
 
-<div class="revision">$Id: quickstart.first-app.txt 878 2009-01-02 04:42:53Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.first-app.txt 891 2009-01-02 04:42:53Z qiang.xue $</div>
