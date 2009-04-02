@@ -50,7 +50,7 @@ return array(
 
 [ウィジェット](/doc/guide/basics.view#widget) は主に
 [ビュー](/doc/guide/basics.view) 中で使用されます。
-'xyz' エクステンションに属するウィジットクラス `XyzClass` があるとすると、
+ウィジットクラス `XyzClass` が 'xyz' エクステンションに属している場合、
 ビュー中で下記のように使用できます。
 
 ~~~
@@ -71,13 +71,14 @@ return array(
 <?php $this->endWidget(); ?>
 ~~~
 
-Action
+アクション
 ------
 
-[Actions](/doc/guide/basics.controller#action) are used by a [controller](/doc/guide/basics.controller)
-to respond specific user requests. Given an action class `XyzClass` belonging to
-the `xyz` extension, we can use it by overriding the [CController::actions] method
-in our controller class:
+[アクション](/doc/guide/basics.controller#action) は、
+特定のユーザーリクエストに応答するために [コントローラ](/doc/guide/basics.controller) により使用されます。
+アクションクラス `XyzClass` が `xyz` エクステンションに属している場合、
+コントローラクラスで、[CController::actions] メソッドを上書き（オーバーライド）すれば
+それを使用できます:
 
 ~~~
 [php]
@@ -97,17 +98,18 @@ class TestController extends CController
 }
 ~~~
 
-Then, the action can be accessed via [route](/doc/guide/basics.controller#route)
-`test/xyz`.
+その後、 [ルート（道筋）](/doc/guide/basics.controller#route) `test/xyz`
+を用いて、アクションにアクセスできます。
 
-Filter
+フィルタ
 ------
-[Filters](/doc/guide/basics.controller#filter) are also used by a [controller](/doc/guide/basics.controller).
-Their mainly pre- and post-process the user request when it is handled by an
-[action](/doc/guide/basics.controller#action).
-Given a filter class `XyzClass` belonging to
-the `xyz` extension, we can use it by overriding the [CController::filters] method
-in our controller class:
+[フィルタ](/doc/guide/basics.controller#filter) もまた、
+[コントローラ](/doc/guide/basics.controller) により使用されます。
+それらは主に、[アクション](/doc/guide/basics.controller#action) により処理される
+ユーザーリクエストの前処理や後処理です。
+フィルタクラス `XyzClass` が `xyz` エクステンションに属している場合、
+コントローラクラスで、[CController::filters] メソッドを上書き（オーバーライド）すれば
+それを使用できます:
 
 ~~~
 [php]
@@ -121,22 +123,23 @@ class TestController extends CController
 				'property1'=>'value1',
 				'property2'=>'value2',
 			),
-			// other filters
+			// 他のフィルタ
 		);
 	}
 }
 ~~~
 
-In the above, we can use plus and minus operators in the first array element
-to apply the filter to limited actions only. For more details, please refer
-to the documentation of [CController].
+上記では、限られたアクションだけにフィルタに適用するために、
+最初の配列要素でプラスやマイナス演算子を使用できます。
+詳細については、[CController] ドキュメントを参照してください。
 
-Controller
+コントローラ
 ----------
-A [controller](/doc/guide/basics.controller) provides a set of actions that can
-be requested by users. In order to use a controller extension, we need to
-configure the [CWebApplication::controllerMap] property in the
-[application configuration](/doc/guide/basics.application#application-configuration):
+[コントローラ](/doc/guide/basics.controller) は、
+ユーザーが要求できるアクションのセットを提供します。
+コントローラエクステンションを使用するために、
+[アプリケーション初期構成](/doc/guide/basics.application#application-configuration) 中の
+[CWebApplication::controllerMap] プロパティへの初期構成が必要です:
 
 ~~~
 [php]
@@ -147,25 +150,25 @@ return array(
 			'property1'=>'value1',
 			'property2'=>'value2',
 		),
-		// other controllers
+		// 他のコントローラ
 	),
 );
 ~~~
 
-Then, an action `a` in the controller can be accessed via
-[route](/doc/guide/basics.controller#route) `xyz/a`.
+その後、[ルート（道筋）](/doc/guide/basics.controller#route) `xyz/a` を
+用いてコントローラのアクション `a` にアクセスできます。
 
-Validator
+バリデータ
 ---------
-A validator is mainly used in a [model](/doc/guide/basics.model) class
-(one that extends from either [CFormModel] or [CActiveRecord]).
-Given a validator class `XyzClass` belonging to
-the `xyz` extension, we can use it by overriding the [CModel::rules] method
-in our model class:
+バリデータは主に、 [モデル](/doc/guide/basics.model) クラス
+（[CFormModel] か [CActiveRecord] のどちらかから継承された）により使用されます。
+バリデータクラス `XyzClass` が `xyz` エクステンションに属している場合、
+モデルクラスで、[CModel::rules] メソッドを上書き（オーバーライド）すれば
+それを使用できます:
 
 ~~~
 [php]
-class MyModel extends CActiveRecord // or CFormModel
+class MyModel extends CActiveRecord // または CFormModel
 {
 	public function rules()
 	{
@@ -176,18 +179,19 @@ class MyModel extends CActiveRecord // or CFormModel
 				'property1'=>'value1',
 				'property2'=>'value2',
 			),
-			// other validation rules
+			// 他のバリデーションルール
 		);
 	}
 }
 ~~~
 
-Console Command
+コンソールコマンド
 ---------------
-A [console command](/doc/guide/topics.console) extension usually enhances
-the `yiic` tool with an additional command. Given a console command
-`XyzClass` belonging to the `xyz` extension, we can use it by configuring
-the configuration for the console application:
+[コンソールコマンド](/doc/guide/topics.console) エクステンションは、通常、
+追加コマンドにより `yiic` ツールを強化します。
+コンソールコマンド `XyzClass` が `xyz` エクステンションに属している場合、
+コンソールアプリケーション用の初期構成を設定することで
+それを使用できます:
 
 ~~~
 [php]
@@ -198,37 +202,36 @@ return array(
 			'property1'=>'value1',
 			'property2'=>'value2',
 		),
-		// other commands
+		// 他のコマンド
 	),
 );
 ~~~
 
-Then, we can use the `yiic` tool is equipped with an additional
-command `xyz`.
+その後、追加コマンド `xyz` を備えている `yiic` ツールを使用できます。
 
-> Note: A console application usually uses a configuration file
-that is different from the one used by a Web application. If an application
-is created using `yiic webapp` command, then the configuration file
-for the console application `protected/yiic` is `protected/config/console.php`,
-while the configuration file for the Web application is `protected/config/main.php`.
+> Note|注意: コンソールアプリケーションは、通常、ウェブアプリケーションで
+使用されるものとは異なる初期構成ファイルを使用します。
+もし、アプリケーションを `yiic webapp` コマンドを使用して作成した場合、
+コンソールアプリケーション `protected/yiic` 用の初期構成ファイルは、
+`protected/config/console.php`、また、ウェブアプリケーション用の
+初期構成ファイルは `protected/config/main.php` です。
 
-
-Module
+モジュール
 ------
-Please refer to the section about [modules](/doc/guide/basics.module#using-module) on how to use a module.
+モジュールの使用方法については、[モジュール](/doc/guide/basics.module#using-module)
+に関するセクションを参照してください。
 
 
-Generic Component
+一般的なコンポーネント
 -----------------
-To use a generic [component](/doc/guide/basics.component), we first
-need to include its class file by using
+一般的な [コンポーネント](/doc/guide/basics.component) を使用するには、
+はじめに、下記のようにそのクラスファイルをインクルードする必要があります。
 
 ~~~
 Yii::import('application.extensions.xyz.XyzClass');
 ~~~
 
-Then, we can either create an instance of the class, configure its properties,
-and call its methods. We may also extend it to create new child classes.
-
+その後、クラスのインスタンスの生成やプロパティの設定、メソッドのコールを
+行えます。それを継承して新しい子クラスを作成してもいいです。
 
 <div class="revision">$Id: extension.use.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
