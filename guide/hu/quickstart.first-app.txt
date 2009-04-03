@@ -10,7 +10,7 @@ telepítve lett, valamint `WebRoot` a webszerverünk 'document root'-ja.
 Futtassuk a `yiic`-t parancssorból a következők szerint:
 
 ~~~
-% YiiRoot/framework/yiic webapp WebRoot/proba
+% YiiRoot/framework/yiic webapp WebRoot/testdrive
 ~~~
 
 > Note|Figyelem: A `yiic` futtatásakor Mac OS, Linux vagy Unix rendszereken
@@ -18,11 +18,11 @@ Futtassuk a `yiic`-t parancssorból a következők szerint:
 > Alternatívaként az eszköz a következőképpen is futtatható:
 >
 > ~~~
-> % cd WebRoot/proba
-> % php YiiRoot/framework/yiic.php webapp WebRoot/proba
+> % cd WebRoot/testdrive
+> % php YiiRoot/framework/yiic.php webapp WebRoot/testdrive
 > ~~~
 
-Ezáltal létrehoztunk egy Yii alkalmazás-vázat a `WebRoot/proba` könyvtár alatt.
+Ezáltal létrehoztunk egy Yii alkalmazás-vázat a `WebRoot/testdrive` könyvtár alatt.
 Az alkamazásnak olyan könyvtárstruktúrája van, ami a legtöbb Yii alkalmazás
 számára szükésges.
 
@@ -30,7 +30,7 @@ Egyetlen sor kód megírása nélkül, már ki is próbálhatjuk első Yii alkal
 ha böngészőnkkel a következő URL-re navigálunk:
 
 ~~~
-http://hostname/proba/index.php
+http://hostname/testdrive/index.php
 ~~~
 
 Mint láthatjuk, az alkalmazás három lapból áll: a főoldal, egy kapcsolat lap, és
@@ -42,22 +42,22 @@ a felhasználók azonosítására, mielőtt engedélyeznénk a hozzáférést é
 tartalmakhoz.
 További részletekért következzék néhány 'screenshot':
 
-![Home page](first-app1.png)
+![Főoldal](first-app1.png)
 
-![Contact page](first-app2.png)
+![Kapcsolati lap](first-app2.png)
 
-![Contact page with input errors](first-app3.png)
+![Bejelentkezési lap, beviteli hibákkal](first-app3.png)
 
-![Contact page with success](first-app4.png)
+![Bejelentkezési lap sikeres belépés után](first-app4.png)
 
-![Login page](first-app5.png)
+![Bejelentkezési lap](first-app5.png)
 
 
 A következő ábra bemutatja az alkalmazás könyvtárstruktúráját. Részletes magyarázat
 a struktúra miértjéről a [Konvenciók](/doc/guide/basics.convention#directory) részben.
 
 ~~~
-proba/
+testdrive/
    index.php                 a webalkalmazás belépési szkriptje
    assets/                   közzétett forrásfájlokat tartalmaz
    css/                      CSS fájlokat tartalmaz
@@ -69,10 +69,10 @@ proba/
       commands/              egyéni 'yiic' parancsok tárolására
          shell/              egyéni 'yiic shell' parancsok tárolására
       components/            újrahasznosítható felhasználói komponensek
-         MainMenu.php        a 'MainMenu' kütyü osztály
+         MainMenu.php        a 'MainMenu' widget osztály
          Identity.php        az azonosításra használt 'Identity' osztály
-         views/              a kütyük nézet fájljainak tárolására
-            mainMenu.php     nézet fájl a 'MainMenu' kütyühöz
+         views/              a widget-ek nézet fájljainak tárolására
+            mainMenu.php     nézet fájl a 'MainMenu' widget-hez
       config/                konfigurációs fájlok tárolására
          console.php         a konzol alkalmazás beállításai
          main.php            a webalkalmazás beállításai
@@ -100,7 +100,7 @@ Kapcsolódás adatbázishoz
 A legtöbb webalkalmazás adatbázissal támogatott. A mi próbaalkalamzásunk sem
 kivétel ez alól. Egy adatbázis használatához mindenekelőtt tudatnunk kell az
 alkalmazással, hogy hogyan csatlakozzon hozzá. Ezt elérhetjük az alkalmazás
-beállításfájljának `WebRoot/proba/protected/config/main.php` módosításával,
+beállításfájljának `WebRoot/testdrive/protected/config/main.php` módosításával,
 az alábbiak szerint:
 
 ~~~
@@ -118,7 +118,7 @@ return array(
 ~~~
 
 A fentiekben hozzáadunk egy `db` elemet a `components` tömbhöz, ami utasítja az
-alklamazást, hogy szükség esetén csatlakozzon a `WebRoot/proba/protected/data/source.db`
+alklamazást, hogy szükség esetén csatlakozzon a `WebRoot/testdrive/protected/data/source.db`
 SQLite adatbázishoz.
 
 > Note|Figyelem: A Yii adatbázis-képessé tételéhez engedélyeznünk kell a PHP PDO
@@ -139,8 +139,11 @@ CREATE TABLE User (
 );
 ~~~
 
+> Note|Figyelem: Ha MySQL adatbázist használunk a fenti SQL-ben le kell cserélnünk
+> az `AUTOINCREMENT` kifejezést `AUTO_INCREMENT`-re. 
+
 Az egyszerűség kedvéért csak egy, `User` nevű táblát hozunk létre az adatbázisban.
-Az SQLite adatbázis a `WebRoot/proba/protected/data/source.db` helyen van elmentve.
+Az SQLite adatbázis a `WebRoot/testdrive/protected/data/source.db` helyen van elmentve.
 Megjegyzendő, hogy mind a fájlnak, mind pedig az azt tartalmazó könyvtárnak
 írhatónak kell lennie a webszerver folyamata által az SQLite követelményei szerint.
 
@@ -158,7 +161,7 @@ Ez a folymat *scaffolding*-ként is ismert. Indítsunk egy parancssori ablakot
 és hajtsuk végre a következőkben felsorolt parancsokat:
 
 ~~~
-% cd WebRoot/proba
+% cd WebRoot/testdrive
 % protected/yiic shell
 Yii Interactive Tool v1.0
 Please type 'help' for help. Type 'exit' to quit.
@@ -166,7 +169,7 @@ Please type 'help' for help. Type 'exit' to quit.
    generate User.php
 
 The 'User' class has been successfully created in the following file:
-    D:\wwwroot\proba\protected\models\User.php
+    D:\wwwroot\testdrive\protected\models\User.php
 
 If you have a 'db' database connection, you can test it now with:
     $model=User::model()->find();
@@ -175,7 +178,7 @@ If you have a 'db' database connection, you can test it now with:
 >> crud User
    generate UserController.php
    generate create.php
-      mkdir D:/wwwroot/proba/protected/views/user
+      mkdir D:/wwwroot/testdrive/protected/views/user
    generate update.php
    generate list.php
    generate show.php
@@ -203,7 +206,7 @@ a `User` modellt és létrehozza a CRUD műveletekhez szükséges kódokat.
 És most gyönyörködjünk az eddigi munkánkban, felkeresve a következő URL-t:
 
 ~~~
-http://hostname/proba/index.php?r=user
+http://hostname/testdrive/index.php?r=user
 ~~~
 
 Ez kilistázza a felhasználó bejegyzéseket a `User` táblában. Lévén a táblánk még
@@ -236,10 +239,10 @@ ha túl sok felhasználó jutna egy lapra.
 Ez a sok remek képesség mind anélkül jött létre, hogy egy sor kódot is
 írtunk volna!
 
-![User admin page](first-app6.png)
+![Felhasználó adminisztrálási oldal](first-app6.png)
 
-![Create new user page](first-app7.png)
+![Új felhasználó létrehozása](first-app7.png)
 
 
 
-<div class="revision">$Id: quickstart.first-app.txt 723 2009-02-21 18:14:05Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.first-app.txt 891 2009-03-25 15:20:56Z qiang.xue $</div>
