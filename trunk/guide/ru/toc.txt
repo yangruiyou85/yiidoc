@@ -39,8 +39,8 @@
 
 * Расширение Yii
     - [Обзор](extension.overview)
-    - [Использование дополнений](extension.use)
-    - [Создание дополнений](extension.create)
+    - [Использование расширений](extension.use)
+    - [Создание расширений](extension.create)
     - [Использование сторонних библиотек](extension.integration)
 
 * Специальные темы
