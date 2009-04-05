@@ -351,4 +351,4 @@ ledtext. Detta kan anpassas genom att åsidosätta metoden
 avsnitt, tillåter specificering av ledtexter i modellen, oss att skapa formulär 
 snabbare och mer kraftfullt.
 
-<div class="revision">$Id: form.model.txt 598 2009-01-29 20:19:28Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 857 2009-03-20 17:31:09Z qiang.xue $</div>
