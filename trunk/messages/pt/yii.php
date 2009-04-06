@@ -17,6 +17,8 @@
  */
 return array (
   '"{path}" is not a valid directory.' => '"{path}" não é um diretório válido',
+  '&lt; Previous' => '&lt; Anterior',
+  '&lt;&lt; First' => '&lt;&lt; Primeiro',
   'Active Record requires a "db" CDbConnection application component.' => 'Active Record requer um componente de aplicação "db" CDbConnection',
   'Active record "{class}" has an invalid configuration for relation "{relation}". It must specify the relation type, the related active record class and the foreign key.' => 'Active Record "{class}" tem uma configuração inválida no relacionamento "{relation}". Deve-se especificar o tipo de relacionamento, a classe de active record relacionada e a chave estrangeira',
   'Active record "{class}" is trying to select an invalid column "{column}". Note, the column must exist in the table or be an expression with alias.' => 'O active record "{class}" está tentando selecionar uma coluna inválida "{column}". Note, a coluna deve existir na tabela ou ser uma expressão de alias (apelido)',
@@ -84,6 +86,7 @@ return array (
   'File upload was stopped by extension.' => 'Upload de arquivo foi parado pela extensão.',
   'Filter "{filter}" is invalid. Controller "{class}" does have the filter method "filter{filter}".' => 'O filtro "{filter}" é inválido. O Controle "{class}" não possui o método de filtro "filter{filter}".',
   'Get a new code' => 'Gerar um novo código',
+  'Go to page: ' => 'Ir à página: ',
   'Invalid MO file revision: {revision}.' => 'Revisão do arquivo MO inválido: {revision}.',
   'Invalid MO file: {file} (magic: {magic}).' => 'Arquivo MO inválido: {file} (magic: {magic}).',
   'Invalid enumerable value "{value}". Please make sure it is among ({enum}).' => 'Valor enumerável "{value}" inválido. Por favor, verifique se ele está entre ({enum}).',
@@ -92,6 +95,7 @@ return array (
   'Login Required' => 'Login requerido',
   'Map data must be an array or an object implementing Traversable.' => 'Dados do mapa devem ser um array ou objetos que implemente a interface Trasversable.',
   'Missing the temporary folder to store the uploaded file "{file}".' => 'Faltando pasta temporária para armazenar o arquivo "{file}".',
+  'Next &gt;' => 'Próximo &gt;',
   'No columns are being updated for table "{table}".' => 'Nenhuma coluna foi atualizada na tabela "{table}".',
   'No counter columns are being updated for table "{table}".' => 'Nenhuma coluna foi atualizada na tabela "{table}".', //Revisar
   'Object configuration must be an array containing a "class" element.' => 'Configuração do objeto deve ser um array contendo um elemento da "classe".',
@@ -193,6 +197,7 @@ return array (
   '{className} does not support flush() functionality.' => '{className} não suporta a funcionalidade flush().',
   '{className} does not support get() functionality.' => '{className} não suporta a funcionalidade get().',
   '{className} does not support set() functionality.' => '{className} não suporta a funcionalidade set().',
+  '{class} does not have a method named "{name}".' => '{class} não possui um método chamado "{name}".',
   '{class} does not have attribute "{attribute}".' => '{class} não tem o atributo "{attribute}".',
   '{class} does not have attribute "{name}".' => '{class} não tem o atributo "{name}".',
   '{class} does not have relation "{name}".' => '{class} não tem a relação "{name}".',
