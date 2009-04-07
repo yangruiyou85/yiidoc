@@ -55,7 +55,7 @@ Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal
          (Necessário o framework do Yii, que contém a pasta e a o arquivo build.)
          *p *build message ../framework/messages/config.php*
          *p *build message ../requirements/messages/config.php*
-      OBS: Um arquivo    
+      OBS: Utilitario de merge para Windows http://sourceforge.net/project/downloading.php?groupname=winmerge&filename=WinMerge-2.12.2-Setup.exe&use_mirror=ufpr
 
   * Lembre-se sempre de salvar as traduções no formato UTF-8 (UTF-8 Plain).
   * Quem participar da tradução do Guide deve colocar seus créditos no arquivo /guide/pt/index.php.
