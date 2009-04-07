@@ -29,6 +29,7 @@ Portuguese          Flavio              flavioleonelferreira
 Portuguese          Luiz                luiz.uo
 Portuguese          Wanderson           wanderson.wbc
 Portuguese          mnobre              marconobre
+Portuguese          alexweber           alexweber15
 Romanian            mishhh              if.mihai
 Russian             Bethrezen           b37hr3z3n
 Russian             Scott Tiger         krugloff.sergey
@@ -49,6 +50,7 @@ Simplified Chinese  kran                isfrog
 Spanish             mercurial           geraldo.medrano
 Spanish             sebas               sebathi
 Spanish             PoL                 freakpol
+Spanish             ing.espitaleta      ing.espitaleta
 Swedish             tri                 triboe
 Swedish             krillzip            krillzip
 Traditional Chinese clementchen         clementchen
