@@ -48,6 +48,15 @@ Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal
 
 = Observações =
   * Lembre-se sempre de dar o _Update_ no svn antes de editar um arquivo.
+  * Para começar a traduzir e também sincronizar a tradução para a mais atual, vá no console de seu sistema operacional e na linha de comando digite:
+      *> Tradução do Guide:
+         *p *protected/yiic syncguide pt*
+      *> Tradução do Framework: 
+         (Necessário o framework do Yii, que contém a pasta e a o arquivo build.)
+         *p *build message ../framework/messages/config.php*
+         *p *build message ../requirements/messages/config.php*
+      OBS: Um arquivo    
+
   * Lembre-se sempre de salvar as traduções no formato UTF-8 (UTF-8 Plain).
   * Quem participar da tradução do Guide deve colocar seus créditos no arquivo /guide/pt/index.php.
   * As traduções estarão disponíveis no site do Yii Framework a cada lançamento do mesmo.
