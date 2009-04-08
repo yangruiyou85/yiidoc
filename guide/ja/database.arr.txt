@@ -227,6 +227,7 @@ $posts=Post::model()->with(
 このオプションはバージョン1.0.3から利用できるようになりました。
 
    - `on`: `ON`句です。ここで指定される条件は、`AND`オペレーターを使用しJOIN条件に追加されます。
+注意: コラム参照は`aliasToken`を使って曖昧さをなくす必要があることに注意すべきです(例えば`??.id=10`)。
 このオプションはバージョン1.0.2から利用できるようになりました。
 
    - `order`: `ORDER BY`句です。デフォルトでは空で無条件を意味します。
@@ -374,4 +375,4 @@ $posts=Post::model()->with('commentCount', 'categoryCount')->findAll();
 
    - `having`: `HAVING`句です。デフォルト値は空です。
 
-<div class="revision">$Id: database.arr.txt 857 2009-02-01 02:14:39Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 922 2009-02-01 02:14:39Z qiang.xue $</div>
