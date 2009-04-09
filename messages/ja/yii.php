@@ -16,15 +16,15 @@
  * @version $Id: $
  */
 return array (
-  '&lt; Previous' => '前',
-  '&lt;&lt; First' => '最初',
+  '&lt; Previous' => '&lt; 前',
+  '&lt;&lt; First' => '&lt;&lt; 最初',
   'Base path "{path}" is not a valid directory.' => 'ベースパス"{path}"は正しいディレクトリではありません。',
   'CEAcceleratorCache requires PHP eAccelerator extension to be loaded, enabled or compiled with the "--with-eaccelerator-shared-memory" option.' => 'CEAcceleratorCache はPHPの eAccelerator 拡張を必要とします。有効にするか、 "--with-eaccelerator-shared-memory" オプションをつけてコンパイルしてください。',
   'CZendDataCache requires PHP Zend Data Cache extension to be loaded.' => 'CZendDataCache は PHP Zend Data Cache 拡張を必要とします。',
   'Column name must be either a string or an array.' => 'カラム名は文字列または配列でなければいけません。',
   'Go to page: ' => 'ページ:',
-  'Last &gt;&gt;' => '最後',
-  'Next &gt;' => '次',
+  'Last &gt;&gt;' => '最後 &gt;&gt;',
+  'Next &gt;' => '次 &gt;',
   'Table "{table}" does not exist.' => 'テーブル"{table}"は存在しません。',
   'The STAT relation "{name}" cannot have child relations.' => 'STATリレーション"{name}"は子リレーションを持つことができません。',
   'The asset "{asset}" to be published does not exist.' => 'アセット"{asset}"は存在しません。',
