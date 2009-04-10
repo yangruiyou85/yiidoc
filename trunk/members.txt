@@ -22,6 +22,7 @@ Japanese            mocapapa            mocapapa@g.pugpug.org       Yes
 Japanese            rogue_engineer      hideo.fukumori
 Japanese            wjx                 s01master@yahoo.co.jp
 Japanese            iwasaki             iwasaki@cresc.com
+Japanese            shuwatto            shuwatto@gmail.com
 Polish              e_t_k               e.kniazycki
 Polish              aztech              tomasz.suchanek
 Portuguese          raragao             ricardoaragao
