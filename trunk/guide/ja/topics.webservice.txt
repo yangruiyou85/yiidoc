@@ -1,43 +1,43 @@
-�E�F�u�T�[�r�X
+ウェブサービス
 ===========
 
-[�E�F�u�T�[�r�X�Ƃ�](http://en.wikipedia.org/wiki/Web_service)
-�l�b�g���[�N�z���ɁA�}�V�����m�̑��݉^�p�����T�|�[�g����d�g�݂̂��Ƃł��B
-�E�F�u�A�v���P�[�V�����ɂ����ẮA�����̏ꍇ�C���^�[�l�b�g����āA
-�����[�g�z�X�g����Ăяo���ė��p�ł���API�Q���E�F�u�T�[�r�X�ƌĂт܂��B
+[ウェブサービスとは](http://en.wikipedia.org/wiki/Web_service)
+ネットワーク越しに、マシン同士の相互運用性をサポートする仕組みのことです。
+ウェブアプリケーションにおいては、多くの場合インターネットを介して、
+リモートホストから呼び出して利用できるAPI群をウェブサービスと呼びます。
 
-���Ƃ��΁A[Flex](http://www.adobe.com/products/flex/)-based�N���C�A���g�̓T�[�o�œ����Ă���APHP�̃E�F�u�A�v���P�[�V�����Ɏ������ꂽ�֐����Ăяo�����Ƃ�����܂��B
-�E�F�u�T�[�r�X�̓R�~���j�P�[�V�����v���g�R���X�^�b�N�̊�b������[SOAP](http://en.wikipedia.org/wiki/SOAP) �Ɉˑ����Ă��܂��B
+たとえば、[Flex](http://www.adobe.com/products/flex/)-basedクライアントはサーバで動いている、PHPのウェブアプリケーションに実装された関数を呼び出すことがあります。
+ウェブサービスはコミュニケーションプロトコルスタックの基礎部分を[SOAP](http://en.wikipedia.org/wiki/SOAP) に依存しています。
 
-Yii��[CWebService] �� [CWebServiceAction]��񋟂��邱�ƂŁA
-�E�F�u�A�v���P�[�V�����ŃE�F�u�T�[�r�X��񋟂����Ƃ��ȒP�ɂ��܂��B
-API��*�T�[�r�X�v���o�C�_*�ƌĂ΂��N���X�Q�ɂ܂Ƃ߂��܂��B
-Yii�͂��ꂼ��̃N���X�ɂ��āA[WSDL](http://www.w3.org/TR/wsdl)�X�y�b�N�t�@�C���𐶐����A
-�ǂ�API�����p�\�ŁA�ǂ̂悤�ɌĂяo�����Ƃ��ł���̂����L�q���܂��B
+Yiiは[CWebService] と [CWebServiceAction]を提供することで、
+ウェブアプリケーションでウェブサービスを提供する作業を簡単にします。
+APIは*サービスプロバイダ*と呼ばれるクラス群にまとめられます。
+Yiiはそれぞれのクラスについて、[WSDL](http://www.w3.org/TR/wsdl)スペックファイルを生成し、
+どのAPIが利用可能で、どのように呼び出すことができるのかを記述します。
 
-�N���C�A���g�ɂ����API���Ăяo�����ƁAYii���Ή�����T�[�r�X�v���o�C�_���C���X�^���X�����A
-�v�����ꂽAPI�����s���邱�ƂŁA���N�G�X�g���������܂��B
+クライアントによってAPIが呼び出されると、Yiiが対応するサービスプロバイダをインスタンス化し、
+要求されたAPIを実行することで、リクエストを完了します。
 
 
-> ����: [CWebService] �� [PHP SOAP
-extension](http://www.php.net/manual/en/ref.soap.php) �Ɉˑ����܂��B
-���̃Z�N�V�����̗�����s����O�Ɋg�����L���ɂȂ��Ă��邱�Ƃ��m�F���ĉ������B
+> 注意: [CWebService] は [PHP SOAP
+extension](http://www.php.net/manual/en/ref.soap.php) に依存します。
+このセクションの例を実行する前に拡張が有効になっていることを確認して下さい。
 
-�T�[�r�X�v���o�C�_�̒�`
+サービスプロバイダの定義
 -------------------------
 
-��ŏq�ׂ��悤�ɁA�T�[�r�X�v���o�C�_�Ƃ̓����[�g����Ăяo���\�ȃ��\�b�h���`����N���X�̂��Ƃł��B
+上で述べたように、サービスプロバイダとはリモートから呼び出し可能なメソッドを定義するクラスのことです。
 
-Yii��[doc
-comment](http://java.sun.com/j2se/javadoc/writingdoccomments/) �� [class
-reflection](http://www.php.net/manual/en/language.oop5.reflection.php) �Ɋ�Â��āA
-�ǂ̃��\�b�h�������[�g����Ăяo���\�ł���A�ǂ̂悤�Ȉ������Ƃ�A�����Ăǂ̂悤�ȕԂ�l��Ԃ��̂������肵�܂��B
+Yiiは[doc
+comment](http://java.sun.com/j2se/javadoc/writingdoccomments/) と [class
+reflection](http://www.php.net/manual/en/language.oop5.reflection.php) に基づいて、
+どのメソッドがリモートから呼び出し可能であり、どのような引数をとり、そしてどのような返り値を返すのかを決定します。
 
-�܂��P���Ȋ������T�[�r�X����͂��߂܂��傤�B
-���̃T�[�r�X�ł̓N���C�A���g����������v���ł��܂��B
-�T�[�r�X�v���o�C�_���ȉ��̂ق��ɒ�`���܂��B
-�v���o�C�_�N���X��`StockController`���A [CController]�̃T�u�N���X�Ƃ��Ē�`���Ă��邱�Ƃɒ��ӂ��Ă��������B
-����͕K�{�ł͂���܂��񂪁A��قǂȂ���������̂����R��������܂��B
+まず単純な株価情報サービスからはじめましょう。
+このサービスではクライアントが株価情報を要求できます。
+サービスプロバイダを以下のほうに定義します。
+プロバイダクラスの`StockController`を、 [CController]のサブクラスとして定義していることに注意してください。
+これは必須ではありませんが、後ほどなぜこうするのか理由を説明します。
 
 ~~~
 [php]
@@ -52,24 +52,23 @@ class StockController extends CController
 	{
 		$prices=array('IBM'=>100, 'GOOGLE'=>350);
 		return isset($prices[$symbol])?$prices[$symbol]:0;
-	    //... $symbol �ɑΉ����銔����Ԃ�
+	    //... $symbol の株価を返す
 	}
 }
 ~~~
 
-��L�̗�ł́A`getPrice`�Ƃ������\�b�h��錾���A�R�����g��`@soap`�^�O�����邱�ƂŁA
-�E�F�u�T�[�r�XAPI�ɂ��Ă��܂��B
-�R�����g�ɂ���Ĉ����̃f�[�^�^�C�v�ƕԂ�l�����܂�܂��B
-�ǉ���API���������@�Ő錾�ł��܂��B
+上記の例では、`getPrice`というメソッドを宣言し、コメントに`@soap`タグをつけることで、
+ウェブサービスAPIにしています。
+コメントによって引数のデータタイプと返り値も決まります。
+追加のAPIも同じ方法で宣言できます。
 
-�E�F�u�T�[�r�X�A�N�V�������`����
+ウェブサービスアクションを定義する
 ----------------------------
 
-Having defined the service provider, we need to make it available to
-clients. In particular, we want to create a controller action to expose the
-service. This can be done easily by declaring a [CWebServiceAction] action
-in a controller class. For our example, we will just put it in
-`StockController`.
+サービスプロバイダを定義したので、クライアントから呼び出し可能にする必要があります。
+今回の例では、コントローラのアクションをサービスとして公開したいと思います。
+これはコントローラで、[CWebServiceAction]アクションを宣言することで容易に実現可能です。
+サンプルコードでは`StockController`に追加します。
 
 ~~~
 [php]
@@ -91,26 +90,23 @@ class StockController extends CController
 	 */
 	public function getPrice($symbol)
 	{
-	    //...return stock price for $symbol
+	    //...$symbol の株価を返す
 	}
 }
 ~~~
 
-That is all we need to create a Web service! If we try to access the
-action by URL `http://hostname/path/to/index.php?r=stock/quote`, we will
-see a lot of XML content which is actually the WSDL for the Web service we
-defined.
+これがウェブサービスを作るのに必要なことすべてです！
+URL `http://hostname/path/to/index.php?r=stock/quote` にアクセスすれば、
+今定義したウェブサービスのWSDLを表すXMLが表示されます。
 
-> Tip: By default, [CWebServiceAction] assumes the current controller is
-the service provider. That is why we define the `getPrice` method inside
-the `StockController` class.
+> ヒント: デフォルトでは、 [CWebServiceAction] はそのメソッドを含むコントローラを
+サービスプロバイダとみなします。これが`getPrice`メソッドを`StockController`クラスに定義した理由です。
 
-Consuming Web Service
+ウェブサービスを利用する
 ---------------------
 
-To complete the example, let's create a client to consume the Web service
-we just created. The example client is written in PHP, but it could be in
-other languages, such as `Java`, `C#`, `Flex`, etc.
+この例を完成させるために、できたばかりのウェブサービスを利用するクライアントを作ってみましょう。
+例のクライアントはPHPで書かれていますが、`Java`, `C#`, `Flex`などのその他の言語で書くこともできます。
 
 ~~~
 [php]
@@ -118,37 +114,35 @@ $client=new SoapClient('http://hostname/path/to/index.php?r=stock/quote');
 echo $client->getPrice('GOOGLE');
 ~~~
 
-Run the above script in either Web or console mode, and we shall see `350`
-which is the price for `GOOGLE`.
+このスクリプトをブラウザか、コンソールで実行します。
+結果として、`GOOGLE`の株価`350`が表示されます。
 
-Data Types
+データ型
 ----------
 
-When declaring class methods and properties to be remotely accessible, we
-need to specify the data types of the input and output parameters. The
-following primitive data types can be used:
+リモートから呼び出し可能なクラスメソッドとプロパティを定義する際に、
+入出力パラメータのデータ型を決める必要があります。
+以下のような基本データ型が利用可能です。
 
-   - str/string: maps to `xsd:string`;
-   - int/integer: maps to `xsd:int`;
-   - float/double: maps to `xsd:float`;
-   - bool/boolean: maps to `xsd:boolean`;
-   - date: maps to `xsd:date`;
-   - time: maps to `xsd:time`;
-   - datetime: maps to `xsd:dateTime`;
-   - array: maps to `xsd:string`;
-   - object: maps to `xsd:struct`;
-   - mixed: maps to `xsd:anyType`.
+   - str/string: `xsd:string`に対応します;
+   - int/integer: `xsd:int`に対応します;
+   - float/double: `xsd:float`に対応します;
+   - bool/boolean: `xsd:boolean`に対応します;
+   - date: `xsd:date`に対応します;
+   - time: `xsd:time`に対応します;
+   - datetime: `xsd:dateTime`に対応します;
+   - array: `xsd:string`に対応します;
+   - object: `xsd:struct`に対応します;
+   - mixed: `xsd:anyType`に対応します.
 
-If a type is not any of the above primitive types, it is considered as a
-composite type consisting of properties. A composite type is represented in
-terms of a class, and its properties are the class' public member variables
-marked with `@soap` in their doc comments.
+上記の基本型に当てはまらない場合は、複数の属性からなる複合型とみなされます。
+複合型はクラスで表されます。各属性はクラスのパブリックプロパティのうち、
+コメントで`@soap`マークがついたものになります。
 
-We can also use array type by appending `[]` to the end of a primitive or
-composite type. This would specify an array of the specified type.
+また、基本型や複合型の末尾に `[]` をつけることで配列を使うこともできます。
+これは特定の型の配列を示します。
 
-Below is an example defining the `getPosts` Web API which returns an array
-of `Post` objects.
+以下は`Post`オブジェクトの配列を返す`getPosts`ウェブAPIの例です。
 
 ~~~
 [php]
@@ -179,13 +173,13 @@ class Post extends CActiveRecord
 }
 ~~~
 
-Class Mapping
+クラスの対応付け
 -------------
 
-In order to receive parameters of composite type from client, an
-application needs to declare the mapping from WSDL types to the
-corresponding PHP classes. This is done by configuring the
-[classMap|CWebServiceAction::classMap] property of [CWebServiceAction].
+複合型のデータをクライアントから受け取るためには、
+WSDL型からPHPクラスへの対応を宣言する必要があります。
+これは[CWebServiceAction]の[classMap|CWebServiceAction::classMap]プロパティをを設定することで
+実現されます。
 
 ~~~
 [php]
@@ -206,15 +200,14 @@ class PostController extends CController
 }
 ~~~
 
-Intercepting Remote Method Invocation
+リモート呼び出しを横取りする (Intercepting Remote Method Invocation)
 -------------------------------------
 
-By implementing the [IWebServiceProvider] interface, a sevice provider can
-intercept remote method invocations. In
-[IWebServiceProvider::beforeWebMethod], the provider may retrieve the
-current [CWebService] instance and obtain the the name of the method
-currently being requested via [CWebService::methodName]. It can return
-false if the remote method should not be invoked for some reason (e.g.
-unauthorized access).
+サービスプロバイダで [IWebServiceProvider] インターフェイスを実装することで、
+リモートからのメソッド呼び出しを、実行前に横取りすることができます。
+[IWebServiceProvider::beforeWebMethod]内でプロバイダは [CWebService] のインスタンスをうけとり、
+[CWebService::methodName]によって、リクエストされたメソッド名を得ることができます。
+何らかの理由でリモートからのメソッド呼び出しを許可したくない場合は、false を返すことで実行を中断できます。
+(例：認証が必要なアクセス)
 
 <div class="revision">$Id: topics.webservice.txt 265 2008-11-23 12:30:16Z weizhuo $</div>
