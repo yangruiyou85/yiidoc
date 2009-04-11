@@ -26,18 +26,18 @@ extension](http://www.php.net/manual/en/ref.soap.php) に依存します。
 サービスプロバイダの定義
 -------------------------
 
-As we mentioned above, a service provider is a class defining the methods
-that can be remotely invoked. Yii relies on [doc
-comment](http://java.sun.com/j2se/javadoc/writingdoccomments/) and [class
-reflection](http://www.php.net/manual/en/language.oop5.reflection.php) to
-identify which methods can be remotely invoked and what are their
-parameters and return value.
+上で述べたように、サービスプロバイダとはリモートから呼び出し可能なメソッドを定義するクラスのことです。
 
-Let's start with a simple stock quoting service. This service allows a
-client to request for the quote of the specified stock. We define the
-service provider as follows. Note that we define the provider class
-`StockController` by extending [CController]. This is not required. We will
-explain why we do so shortly.
+Yiiは[doc
+comment](http://java.sun.com/j2se/javadoc/writingdoccomments/) と [class
+reflection](http://www.php.net/manual/en/language.oop5.reflection.php) に基づいて、
+どのメソッドがリモートから呼び出し可能であり、どのような引数をとり、そしてどのような返り値を返すのかを決定します。
+
+まず単純な株価情報サービスからはじめましょう。
+このサービスではクライアントが株価情報を要求できます。
+サービスプロバイダを以下のほうに定義します。
+プロバイダクラスの`StockController`を、 [CController]のサブクラスとして定義していることに注意してください。
+これは必須ではありませんが、後ほどなぜこうするのか理由を説明します。
 
 ~~~
 [php]
@@ -52,17 +52,17 @@ class StockController extends CController
 	{
 		$prices=array('IBM'=>100, 'GOOGLE'=>350);
 		return isset($prices[$symbol])?$prices[$symbol]:0;
-	    //...return stock price for $symbol
+	    //... $symbol に対応する株価を返す
 	}
 }
 ~~~
 
-In the above, we declare the method `getPrice` to be a Web service API by
-marking it with the tag `@soap` in its doc comment. We rely on doc comment
-to specify the data type of the input parameters and return value.
-Additional APIs can be declared in the similar way.
+上記の例では、`getPrice`というメソッドを宣言し、コメントに`@soap`タグをつけることで、
+ウェブサービスAPIにしています。
+コメントによって引数のデータタイプと返り値も決まります。
+追加のAPIも同じ方法で宣言できます。
 
-Declaring Web Service Action
+ウェブサービスアクションを定義する
 ----------------------------
 
 Having defined the service provider, we need to make it available to
