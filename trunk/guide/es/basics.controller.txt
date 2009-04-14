@@ -236,4 +236,4 @@ debe ser aplicado a las acciones `edit` y `create`, mientras que el filtro
 Si los operadores mas y menos no aparecieran en la configuración del filtro el mismo
 se aplicaría a todas las acciones.
 
-<div class="revision">$Id: basics.controller.txt 745 2009-02-25 21:45:42Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 745 2009-02-25 21:45:42Z sebathi $</div>
