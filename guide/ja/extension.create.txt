@@ -88,20 +88,19 @@ class MyWidget extends CWidget
 ウィジェットは、それ自身のビューファイルも備えているかもしれません。
 もしそうならば、ウィジェットクラスファイルを含んでいるディレクトリの下に`views`という名のディレクトリをつくり、すべてのビューファイルをそこに置いてください。
 ウィジェットクラスでは、ウィジェットの表示を行うために`$this->render('ViewName')`を用いてください。
-そしてそれは我々がコントローラで行う類似の方法です。
+そしてそれはコントローラで行う方法と似ています。
 
 アクション
 ------
 
-An [アクション](/doc/guide/basics.controller#action)は[CAction]または子クラスから継承されるべきです。
+[アクション](/doc/guide/basics.controller#action)は[CAction]またはその子クラスから継承されるべきです。
 アクションとして主に実装されるべきメソッドは[IAction::run]です。
 
 フィルタ
 ------
-A [filter](/doc/guide/basics.controller#filter) should extend from [CFilter]
-or its child classes. The main methods that need to be implemented for a filter
-are [CFilter::preFilter] and [CFilter::postFilter]. The former is invoked before
-the action is executed while the latter after.
+[フィルタ](/doc/guide/basics.controller#filter)は[CFilter]またはその子クラスから継承されるべきです。
+フィルタとして主に実装されるべきメソッドは[CFilter::preFilter]と[CFilter::postFilter]です。
+前者はアクションが実行される前に呼び出され、後者はアクションの実行後に呼び出されます。
 
 ~~~
 [php]
@@ -109,31 +108,26 @@ class MyFilter extends CFilter
 {
 	protected function preFilter($filterChain)
 	{
-		// logic being applied before the action is executed
-		return true; // false if the action should not be executed
+		// アクションが実行される前に行われるロジック
+		return true; // アクションが実行されるべきでない場合は偽
 	}
 
 	protected function postFilter($filterChain)
 	{
-		// logic being applied after the action is executed
+		// アクションが実行された後に行われるロジック
 	}
 }
 ~~~
 
-The parameter `$filterChain` is of type [CFilterChain] which contains information
-about the action that is currently filtered.
+`$filterChain`パラメータは[CFilterChain]タイプで、現在フィルタされているアクションの情報を含みます。
 
 
 コントローラ
 ----------
-A [controller](/doc/guide/basics.controller) distributed as an extension
-should extend from [CExtController], instead of [CController]. The main reason
-is because [CController] assumes the controller view files are located under
-`application.views.ControllerID`, while [CExtController] assumes the view
-files are located under the `views` directory which is a subdirectory of
-the directory containing the controller class file. Therefore, it is easier
-to redistribute the controller since its view files are staying together
-with the controller class file.
+イクステンションとして配布される[コントローラ](/doc/guide/basics.controller)は
+ [CController]の継承ではなく[CExtController]を継承するべきです。
+主な理由は、[CController]はビューファイルが`application.views.ControllerID`の下に存在するのに対し、[CExtController]はビューファイルが、コントローラクラスファイルを含むディレクトリのサブディレクトリである`views`ディレクトリに存在すると仮定するからです。
+したがって、そのビューファイルがコントローラクラスファイルと共に存在するため、コントローラを再配布することはより簡単です。
 
 
 バリデータ
