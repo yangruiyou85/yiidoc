@@ -1,28 +1,25 @@
+他のテンプレートシステムを使う
 Using Alternative Template Syntax
 =================================
 
-Yii allows developers to use their own favorite template syntax (e.g.
-Prado, Smarty) to write controller or widget views. This is achieved by
-writing and installing a [viewRenderer|CWebApplication::viewRenderer]
-application component. The view renderer intercepts the invocations of
-[CBaseController::renderFile], compiles the view file with customized
-template syntax, and renders the compiling results.
+Yiiでは開発者が好みのテンプレートを使ってビューを書くことができます。(例：PradoやSmartyなど)
+これは[viewRenderer|CWebApplication::viewRenderer]を作成して、コンポーネントに追加することで可能になります。
+ビューレンダラは[CBaseController::renderFile]の呼び出しを横取りして、
+ビューファイルをカスタマイズされたテンプレート文法でコンパイルし、結果を表示します。
 
-> Info: It is recommended to use customized template syntax only when
-writing views that are less likely to be reused. Otherwise, people who are
-reusing the views would be forced to use the same customized template
-syntax in their applications.
+> 情報: カスタマイズされたテンプレート文法を利用するのは、
+ビューが再利用されないような場合に限ることをおすすめします。
+そうしないと、他の開発者がビューを利用する際にカスタマイズされたテンプレート文法を、
+必ず利用しなければならなくなるからです。
 
-In the following, we introduce how to use [CPradoViewRenderer], a view
-renderer that allows developers to use the template syntax similar to that
-in [Prado framework](http://www.pradosoft.com/). For people who want to
-develop their own view renderers, [CPradoViewRenderer] is a good reference.
+以下に[CPradoViewRenderer]を使う方法を示します。
+ビューを[Prado framework](http://www.pradosoft.com/)と似た文法で書くことができます。
+独自のレンダラを開発したい場合は、 [CPradoViewRenderer]は良い参考になるでしょう。
 
-Using `CPradoViewRenderer`
+`CPradoViewRenderer`を使う
 --------------------------
 
-To use [CPradoViewRenderer], we just need to configure the application as
-follows:
+[CPradoViewRenderer]を使うには、以下のようにアプリケーション設定を変更する必要があります。
 
 ~~~
 [php]
@@ -36,26 +33,22 @@ return array(
 );
 ~~~
 
-By default, [CPradoViewRenderer] will compile source view files and save
-the resulting PHP files under the
-[runtime](/doc/guide/basics.convention#directory) directory. Only when the
-source view files are changed, will the PHP files be re-generated.
-Therefore, using [CPradoViewRenderer] incurs very little performance
-degradation.
+デフォルトでは、[CPradoViewRenderer]はビューファイルをコンパイルした結果を
+[runtime](/doc/guide/basics.convention#directory)ディレクトリ以下に保存します。
+ビューテンプレートが変更された場合のみ、コンパイルされたファイルが再生成されるので、
+[CPradoViewRenderer]を使ってもパフォーマンスの低下はほんの少しです。
 
-> Tip: While [CPradoViewRenderer] mainly introduces some new template tags
-to make writing views easier and faster, you can still write PHP code as
-usual in the source views.
+> ヒント: [CPradoViewRenderer] では、主にビューの記述を簡単かつすばやくできる新しいタグを
+導入しますが、それらを使わずにPHPコードをそのまま書くことも可能です。
 
-In the following, we introduce the template tags that are supported by
-[CPradoViewRenderer].
+以下では[CPradoViewRenderer]で利用可能なテンプレートタグを紹介します。
 
-### Short PHP Tags
+### ショートPHPタグ
 
-Short PHP tags are shortcuts to writing PHP expressions and statements in
-a view. The expression tag `<%= expression %>` is translated into
-`<?php echo expression ?>`; while the statement tag `<% statement
-%>` to `<?php statement ?>`. For example,
+ショートPHPタグは、ビューでPHPコードを書く際のショートカットです。
+`<%= expression %>`という出力タグは、`<?php echo expression ?>`と同じ意味です。
+`<% statement %>`という宣言タグは、`<?php statement ?>`と同じ意味です。
+たとえば、
 
 ~~~
 [php]
@@ -63,41 +56,40 @@ a view. The expression tag `<%= expression %>` is translated into
 <% foreach($models as $model): %>
 ~~~
 
-is translated into
+というタグは、
 
 ~~~
 [php]
 <?php echo CHtml::textField($name,'value'); ?>
 <?php foreach($models as $model): ?>
 ~~~
+と同じです。
 
-### Component Tags
+### コンポーネントタグ
 
-Component tags are used to insert a
-[widget](/doc/guide/basics.view#widget) in a view. It uses the following
-syntax:
+コンポーネントタグは[widget](/doc/guide/basics.view#widget)をビューに挿入する際に利用されます。
+以下のような文法で利用します。
 
 ~~~
 [php]
 <com:WidgetClass property1=value1 property2=value2 ...>
-	// body content for the widget
+	// ウィジェットのbody content
 </com:WidgetClass>
 
-// a widget without body content
+// body contentなしのウィジェット
 <com:WidgetClass property1=value1 property2=value2 .../>
 ~~~
 
-where `WidgetClass` specifies the widget class name or class [path
-alias](/doc/guide/basics.namespace), and property initial values can be
-either quoted strings or PHP expressions enclosed within a pair of curly
-brackets. For example,
+`WidgetClass`がウィジェットクラスの名前かクラスを指定する一方で、
+初期プロパティ値は文字列か、中括弧で囲まれたPHPコードで指定可能です。
+例えば、
 
 ~~~
 [php]
 <com:CCaptcha captchaAction="captcha" showRefreshButton={false} />
 ~~~
 
-would be translated as
+この内容は、
 
 ~~~
 [php]
@@ -106,75 +98,78 @@ would be translated as
 	'showRefreshButton'=>false)); ?>
 ~~~
 
-> Note: The value for `showRefreshButton` is specified as `{false}`
-instead of `"false"` because the latter means a string instead of a
-boolean.
+このように翻訳されます。
 
-### Cache Tags
+> 注意: `showRefreshButton`の値が、`"false"`ではなく、`{false}`と指定されていることに注意してください。
+なぜなら、後者の書き方では単なる文字列を意味し、ブール値ではなくなってしまうからです。
 
-Cache tags are shortcuts to using [fragment
-caching](/doc/guide/caching.fragment). Its syntax is as follows,
+### キャッシュタグ
+
+キャッシュタグは[fragment
+caching](/doc/guide/caching.fragment)を利用するためのショートカットです。
+以下のように書きます。
 
 ~~~
 [php]
 <cache:fragmentID property1=value1 property2=value2 ...>
-	// content being cached
+	// キャッシュされる内容
 </cache:fragmentID >
 ~~~
 
-where `fragmentID` should be an identifier that uniquely identifies the
-content being cached, and the property-value pairs are used to configure
-the fragment cache. For example,
+`fragmentID`がキャッシュされる内容を一意に決定する識別子です。
+プロパティと値のペアでキャッシュの設定を指定します。
+例えば、
 
 ~~~
 [php]
 <cache:profile duration={3600}>
-	// user profile information here
+	// ユーザプロファイル情報
 </cache:profile >
 ~~~
 
-would be translated as
+この記述は、
 
 ~~~
 [php]
 <?php if($this->cache('profile', array('duration'=>3600))): ?>
-	// user profile information here
+	// ユーザプロファイル情報
 <?php $this->endCache(); endif; ?>
 ~~~
 
-### Clip Tags
+このように翻訳されます。
 
-Like cache tags, clip tags are shortcuts to calling
-[CBaseController::beginClip] and [CBaseController::endClip] in a view. The
-syntax is as follows,
+### クリップタグ
+
+キャッシュタグと同じように、クリップタグはビューファイルで
+[CBaseController::beginClip] と [CBaseController::endClip] を呼ぶためのショートカットです。
+以下のように記述します。
 
 ~~~
 [php]
 <clip:clipID>
-	// content for this clip
+	// クリップされる内容
 </clip:clipID >
 ~~~
 
-where `clipID` is an identifier that uniquely identifies the clip content.
-The clip tags will be translated as
+`clipID`がクリップされる内容を一意に決定する識別子です。
 
 ~~~
 [php]
 <?php $this->beginClip('clipID'); ?>
-	// content for this clip
+	// クリップされる内容
 <?php $this->endClip(); ?>
 ~~~
 
-### Comment Tags
+### コメントタグ
 
-Comment tags are used to write view comments that should only be visible
-to developers. Comment tags will be stripped off when the view is displayed
-to end users. The syntax for comment tags is as follows,
+コメントタグはビューで開発者のみが読めるコメントを書くために使われます。
+コメントタグはビューがユーザに表示されたときにはなくなっています。
+以下のように記述します。
 
 ~~~
 [php]
 <!---
-view comments that will be stripped off
+ビューコメントは取り除かれます
 --->
 ~~~
 
