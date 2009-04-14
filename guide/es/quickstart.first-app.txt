@@ -246,4 +246,4 @@ escribir ni una sola linea de código!
 
 
 
-<div class="revision">$Id: quickstart.first-app.txt 723 2009-02-21 18:14:05Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.first-app.txt 723 2009-02-21 18:14:05Z sebathi $</div>
