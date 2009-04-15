@@ -1,17 +1,17 @@
-ログの記録
+ロギング
 =======
 
-Yii provides a flexible and extensible logging feature. Messages logged
-can be classified according to log levels and message categories. Using
-level and category filters, selected messages can be further routed to
-different destinations, such as files, emails, browser windows, etc.
+Yiiには柔軟で拡張可能なログ機能が備わっています。
+記録されたメッセージはログレベルとメッセージカテゴリによって分類可能です。
+レベルとカテゴリフィルターを使うことで、特定のメッセージをファイルやメール、
+ブラウザといった別の送り先に送信することも可能です。
 
-Message Logging
+メッセージをログに記録する
 ---------------
 
-Messages can be logged by calling either [Yii::log] or [Yii::trace]. The
-difference between these two methods is that the latter logs a message only
-when the application is in [debug mode](/doc/guide/basics.entry#debug-mode).
+メッセージは [Yii::log]か[Yii::trace]のどちらかを呼ぶことでログに記録可能です。
+この二つのメソッドの違いは、後者はアプリケーションが[debug mode](/doc/guide/basics.entry#debug-mode)
+で動いているときだけメッセージを記録するということです。
 
 ~~~
 [php]
@@ -19,42 +19,39 @@ Yii::log($message, $level, $category);
 Yii::trace($message, $category);
 ~~~
 
-When logging a message, we need to specify its category and level.
-Category is a string in the format of `xxx.yyy.zzz` which resembles to the
-[path alias](/doc/guide/basics.namespace). For example, if a message is
-logged in [CController], we may use the category `system.web.CController`.
-Message level should be one of the following values:
+メッセージをログに記録するとき、カテゴリとレベルを指定する必要があります。
+カテゴリは`xxx.yyy.zzz`というフォーマットの文字列です。
+これは[path alias](/doc/guide/basics.namespace)と似ています。
+例えば、[CController]でメッセージがログに記録されるとすると、
+ `system.web.CController`というカテゴリを使うことができるでしょう。
+メッセージレベルは以下の値のいずれかになります。
 
-   - `trace`: this is the level used by [Yii::trace]. It is for tracing
-the execution flow of the application during development.
+   - `trace`: [Yii::trace]によって利用されるレベル 開発の間アプリケーションの実行フローをトレースする
 
-   - `info`: this is for logging general information.
+   - `info`: 一般的な情報向け
 
-   - `profile`: this is for performance profile which is to be described
-shortly.
+   - `profile`: 後ほど述べるパフォーマンスプロファイルについて
 
-   - `warning`: this is for warning messages.
+   - `warning`: 警告メッセージ
 
-   - `error`: this is for fatal error messages.
+   - `error`: 致命的なエラーメッセージ
 
-Message Routing
+メッセージルーティング
 ---------------
 
-Messages logged using [Yii::log] or [Yii::trace] are kept in memory. We
-usually need to display them in browser windows, or save them in some
-persistent storage such as files, emails. This is called *message
-routing*, i.e., sending messages to different destinations.
+[Yii::log]か[Yii::trace]によって記録されたメッセージはメモリに一時的に保持されます。
+多くの場合、メッセージをブラウザに表示したり、ファイルやメールといった継続的ストレージに保存する必要があります。
+これを*メッセージルーティング*と呼びます。つまり、メッセージを異なった送り先に送信するという意味です。
 
-In Yii, message routing is managed by a [CLogRouter] application
-component. It manages a set of the so-called *log routes*. Each log
-route represents a single log destination. Messages sent along a log route
-can be filtered according to their levels and categories.
+Yiiにおけるメッセージルーティングは、[CLogRouter]アプリケーションコンポーネントによって制御されます。
+このコンポーネントは、いわゆる*ログルート*のセットを管理します。
+各ログルートは一つの送信先を表します。
+メッセージはログルートに沿って送信され、レベルとカテゴリによってフィルタすることが可能です。
 
-To use message routing, we need to install and preload a [CLogRouter]
-application component. We also need to configure its
-[routes|CLogRouter::routes] property with the log routes that we want. The
-following shows an example of the needed [application
-configuration](/doc/guide/basics.application#application-configuration):
+メッセージルーティングを使うには、[CLogRouter]アプリケーションコンポーネントをインストールし、
+プリロードする必要があります。
+また、コンポーネントの[routes|CLogRouter::routes]プロパティに必要なログルートを設定する必要があります。
+以下では[application configuration](/doc/guide/basics.application#application-configuration)の例を提示します。
 
 ~~~
 [php]
@@ -82,69 +79,61 @@ array(
 )
 ~~~
 
-In the above example, we have two log routes. The first route is
-[CFileLogRoute] which saves messages in a file under the application
-runtime directory. Only messages whose level is `trace` or `info` and whose
-category starts with `system.` are saved. The second route is
-[CEmailLogRoute] which sends messages to the specified email addresses.
-Only messages whose level is `error` or `warning` are sent.
+この例では二つのログルートを設定しています。
+最初のルートは[CFileLogRoute]で、これはメッセージをランタイムディレクトリ以下のファイルに保存します。
+このルートで保存されるのは、レベルが`trace` か `info`で、かつカテゴリが`system.`で始まるものだけです。
+二番目のルートは[CEmailLogRoute]で、指定されたメールアドレス宛にメッセージを送信します。
+このルートでは、レベルが`error` か `warning` のものだけが送信されます。
 
-The following log routes are available in Yii:
+Yiiでは以下のログルートが利用可能です。
 
-   - [CDbLogRoute]: saves messages in a database table.
-   - [CEmailLogRoute]: sends messages to specified email addresses.
-   - [CFileLogRoute]: saves messages in a file under the application runtime directory.
-   - [CWebLogRoute]: displays messages at the end of the current Web page.
-   - [CProfileLogRoute]: displays profiling messages at the end of the current Web page.
+   - [CDbLogRoute]: メッセージをデータベースに保存する
+   - [CEmailLogRoute]: メッセージを指定されたメールアドレスに送信する
+   - [CFileLogRoute]: メッセージをアプリケーションのラン多無ディレクトリ以下にファイルとして保存する
+   - [CWebLogRoute]: メッセージをウェブページの最後に表示する
+   - [CProfileLogRoute]: プロファイルメッセージをウェブページ最後に表示する
 
-> Info: Message routing occurs at the end of the current request cycle
-when the [onEndRequest|CApplication::onEndRequest] event is raised. To explicitly
-terminate the processing of the current request, call [CApplication::end()] instead
-of `die()` or `exit()`, because [CApplication::end()] will raise the
-[onEndRequest|CApplication::onEndRequest] event so that the messages can
-be properly logged.
+> 情報: メッセージルーティングはリクエストサイクルの最後で[onEndRequest|CApplication::onEndRequest] イベントが発生したときに
+実行されます。
+明示的に現在のリクエストの実行を終了するためには、`die()` や `exit()`ではなく、[CApplication::end()]を読んでください。
+なぜなら、[CApplication::end()]は[onEndRequest|CApplication::onEndRequest]を発生させ、メッセージが適切にログに記録されるからです。
 
-### Message Filtering
+### メッセージのフィルタリング
 
-As we mentioned, messages can be filtered according to their levels and
-categories before they are sent long a log route. This is done by setting
-the [levels|CLogRoute::levels] and [categories|CLogRoute::categories]
-properties of the corresponding log route. Multiple levels or categories
-should be concatenated by commas.
+先ほど述べたように、メッセージをログルートに送信する前に、レベルとカテゴリによってフィルタリング可能です。
+これはログルートの[levels|CLogRoute::levels]プロパティと、
+[categories|CLogRoute::categories]プロパティを設定することで実現されます。
+複数のレベルやカテゴリを記述する場合には、カンマで区切ります。
 
-Because message categories are in the format of `xxx.yyy.zzz`, we may
-treat them as a category hierarchy. In particular, we say `xxx` is the
-parent of `xxx.yyy` which is the parent of `xxx.yyy.zzz`. We can then use
-`xxx.*` to represent category `xxx` and all its child and grandchild
-categories.
+メッセージカテゴリは`xxx.yyy.zzz`という書式なので、これらをカテゴリ階層として取り扱えます。
+具体的に言うと、`xxx`は`xxx.yyy`の親であり、さらに`xxx.yyy`は`xxx.yyy.zzz`の親であるということです。
+したがって、`xxx.*`と書くことで、`xxx`カテゴリとそれ以下の階層すべてを指し示すことができます。
 
-Performance Profiling
+パフォーマンスプロファイリング
 ---------------------
 
-Performance profiling is a special type of message logging. Performance
-profiling can be used to measure the time needed for the specified code
-blocks and find out what the performance bottleneck is.
+パフォーマンスプロファイリングは特殊なメッセージログです。
+特定のコードブロックが必要とする実行時間を計測するために使われ、
+パフォーマンスのボトルネックがどこにあるかを見つけ出します。
 
-To use performance profiling, we need to identify which code blocks need
-to be profiled. We mark the beginning and the end of each code block by
-inserting the following methods:
+パフォーマンスプロファイリングを使うには、どのコードブロックが計測されるのかを指定する必要があります。
+以下のメソッドを、ブロックの最初と最後に挿入することで印をつけます。
 
 ~~~
 [php]
 Yii::beginProfile('blockID');
-...code block being profiled...
+...計測対象のコードブロック...
 Yii::endProfile('blockID');
 ~~~
 
-where `blockID` is an ID that uniquely identifies the code block.
+`blockID`はコードブロックの一意なIDです
 
-Note, code blocks need to be nested properly. That is, a code block cannot
-intersect with another. It must be either at a parallel level or be
-completely enclosed by the other code block.
+コードブロックは適切にネスとする必要があることに注意してください。
+すなわち、コードブロックを交差させることはできません。
+二つのコードブロックは並列になっているか、一方が片方を完全に含んでいなければなりません。
 
-To show profiling result, we need to install a [CLogRouter] application
-component with a [CProfileLogRoute] log route. This is the same as we do
-with normal message routing. The [CProfileLogRoute] route will display the
-performance results at the end of the current page.
+プロファイルの結果を表示するには、[CLogRouter]アプリケーションコンポーネントをインストールする必要があります。
+これは通常のメッセージルーティングのときと同じです。
+[CProfileLogRoute]ルートが計測結果を現在のページの末尾に表示します。
 
 <div class="revision">$Id: topics.logging.txt 922 2009-04-05 21:36:33Z qiang.xue $</div>
