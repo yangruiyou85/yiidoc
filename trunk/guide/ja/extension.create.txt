@@ -132,8 +132,7 @@ class MyFilter extends CFilter
 
 バリデータ
 ---------
-A validator should extend from [CValidator] and implement its
-[CValidator::validateAttribute] method.
+バリデータは[CValidator]を継承し、[CValidator::validateAttribute]メソッドを実装するべきです。
 
 ~~~
 [php]
@@ -150,10 +149,9 @@ class MyValidator extends CValidator
 
 コンソールコマンド
 ---------------
-A [console command](/doc/guide/topics.console) should extend from
-[CConsoleCommand] and implement its [CConsoleCommand::run] method.
-Optionally, we can override [CConsoleCommand::getHelp] to provide
-some nice help information about the command.
+[コンソールコマンド](/doc/guide/topics.console)は[CConsoleCommand]を継承し、
+[CConsoleCommand::run]メソッドを実装するべきです。
+付加的に、[CConsoleCommand::getHelp]をオーバライドし、コマンドの素敵なヘルプ情報を表示することも可能です。
 
 ~~~
 [php]
@@ -161,27 +159,27 @@ class MyCommand extends CConsoleCommand
 {
 	public function run($args)
 	{
-		// $args gives an array of the command-line arguments for this command
+		// $argsは、このコマンドに対するコマンドラインの引数の配列です
 	}
 
 	public function getHelp()
 	{
-		return 'Usage: how to use this command';
+		return '使用法: このコマンドの使いかた';
 	}
 }
 ~~~
 
 モジュール
 ------
-Please refer to the section about [modules](/doc/guide/basics.module#creating-module) on how to create a module.
+モジュールの作成する方法については[モジュール](/doc/guide/basics.module#creating-module)に関する章を参照してください。
 
-A general guideline for developing a module is that it should be self-contained. Resource files (such as CSS, JavaScript, images) that are used by a module should be distributed together with the module. And the module should publish them so that they can be Web-accessible.
-
+モジュール開発の一般的なガイドラインは、自分自身を含むことです。
+モジュールによって使用されるリソースファイル(例えばCSS, JavaScript, 画像)はモジュールと共に配布されるべきです。
+そしてモジュールはそれらのファイルがWebからアクセス可能なように公開されるべきです。
 
 生成コンポーネント
 -----------------
-Developing a generic component extension is like writing a class. Again, the component
-should also be self-contained so that it can be easily used by other developers.
-
+生成コンポーネントイクステンションの開発はクラスを書くことに似ています。
+再び、コンポーネントは自分自身を含むべきです。理由は他の開発者が容易に使用できるためです。
 
 <div class="revision">$Id: extension.create.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
