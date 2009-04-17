@@ -187,12 +187,81 @@ Eメールアドレスである事を確認します。
 
 ~~~
 [php]
-// 属性 password が、属性 password2 と同じである事を確認します。
-array('password', 'compare', 'compareAttribute'=>'password2')
+// username は必須です。
+array('username', 'required'),
 // username の長さが3から12の間である事を確認します。
 array('username', 'length', 'min'=>3, 'max'=>12)
-// age が負の整数では無い事を確認します。
-array('age', 'numeric', 'integerOnly'=>true, 'min'=>0)
+// 登録シナリオでは、パスワードとパスワード2は一致する必要があります。
+array('password', 'compare', 'compareAttribute'=>'password2', 'on'=>'register'),
+// ログインシナリオでは、パスワードは認証されなければなりません。
+array('password', 'authenticate', 'on'=>'login'),
+~~~
+
+属性への代入をセキュアにする
+--------------------------------
+
+> 注意：シナリオベースでの属性への代入は1.0.2から利用可能です。
+
+モデルインスタンスが作成した後、多くの場合は属性値にユーザからの入力値を代入する必要があります。
+これは以下のように一括代入を使うと容易に行えます。
+
+~~~
+[php]
+$model=new LoginForm;
+$model->scenario='login';
+if(isset($_POST['LoginForm']))
+	$model->attributes=$_POST['LoginForm'];
+~~~
+
+各属性が一括代入しても安全かどうかの判断は、、
+`safeAttributes`メソッドの戻り値と、指定されたシナリオによって決定されます。
+デフォルトでは、[CFormModel]のすべてのパブリックメンバプロパティが安全と返されます。
+一方で [CActiveRecord]では、プライマリキーを除いたテーブルのカラムすべてが安全と返されます。
+このメソッドをオーバーライドして、安全な属性をシナリオによって制限することができます。
+例えば、ユーザモデルはたくさんの属性を持ちますが、`login`シナリオでは`username`と`password`
+しか使わないので、以下のようにして制限を加えます。
+
+~~~
+[php]
+public function safeAttributes()
+{
+	return array(
+		parent::safeAttributes(),
+		'login' => 'username, password',
+	);
+}
+~~~
+
+より正確には、`safeAttributes`メソッドの戻り値は以下のような構造です。
+
+~~~
+[php]
+array(
+   // これらの属性は下で明示的に指定されたしなりの以外のすべてのケースで一括代入の対象になる
+   'attr1, attr2, ...',
+	 *
+   // これらの属性はシナリオ1でのみ一括代入される
+   'scenario1' => 'attr2, attr3, ...',
+	 *
+   // これらの属性はシナリオ2でのみ一括代入される
+   'scenario2' => 'attr1, attr3, ...',
+)
+~~~
+
+モデルでシナリオを必要としない場合(例：常にひとつのシナリオで使われる、
+すべてのシナリオで同じ安全な属性のセットを使う)、戻り値は単純な文字列でもかまいません。
+
+~~~
+[php]
+'attr1, attr2, ...'
+~~~
+
+安全でない属性にデータを代入するには、以下のように個々に代入式を書く必要があります。
+
+~~~
+[php]
+$model->permission='admin';
+$model->id=1;
 ~~~
 
 バリデーションの始動
