@@ -37,7 +37,7 @@ path](/doc/guide/basics.application#application-base-directory)
 の中でなければいけません。例えば、`PostController`の`create`ビューを`classic`テーマの中のビューで置き換えたい場合には、新しいファイルは、`WebRoot/themes/classic/views/post/create.php`に置きます。
 
 [モジュール](/doc/guide/basics.module)の中のコントローラに対応するビューは、
-対応するテーマのビューもやはり`views`ディレクトリに置きます。例えば、
+対応するテーマのビューもやはり`views`ディレクトリに置きます。
 例えば、前記の`PostController`が`フォーラム`と呼ばれるモジュールの中にあるならば、
 `WebRoot/themes/classic/views/forum/post/create.php`
 として`create`ビューファイルを配置する必要があります。
