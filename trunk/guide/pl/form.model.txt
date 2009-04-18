@@ -147,6 +147,8 @@ pełna lista predefiniowanych aliasów walidatorów:
 
    - `default`: alias dla klasy [CDefaultValueValidator], przypisuje domyślną wartość 
    do danego atrybutu.
+   
+   - `exist`: alias dla klasy [CExistValidator], sprawdza czy wartość atrybutu znajduje się w określonej kolumni tabeli.
 
    - `file`: alias dla klasy [CFileValidator], sprawdza czy atrybut zawiera nazwę
    wczytywanego pliku.
@@ -203,13 +205,23 @@ nastepującego grupowego przypisania:
 ~~~
 [php]
 $model=new LoginForm;
+$model->scenario='login';
 if(isset($_POST['LoginForm']))
-	$model->setAttributes($_POST['LoginForm'], 'login');
+  $model->attributes=$_POST['LoginForm'];
 ~~~
 
+> Note|Przypis: Właściwość [scenario|CModel::scenario] jest dostępna od wersji 1.0.4.
+> Grupowe przypisywanie będzie używać wartości tej właściwości w celu określenia które atrybuty
+> mogą być grupowo przypisane. W wersjach 1.0.2 oraz 1.0.3, musieliśmu uzywać następującego kodu
+> aby dokonać grupowego przypisania dla określonego scenariusza:
+>
+> ~~~
+> [php]
+> $model->setAttributes($_POST['LoginForm'], 'login');
+> ~~~
+
 Ostatnia linia jest grupowym przypisaniem, które przypisuje każdy wpis w `$_POST['LoginForm']` 
-do odpowiadającego mu atrybutu w modelu dla scenariusza logowania `login` (określonego za pomocą 
-drugiego parametru). Jest to równoznaczne z następującym przypisaniem:
+do odpowiadającego mu atrybutu w modelu dla scenariusza logowania `login`. Jest to równoznaczne z następującym przypisaniem:
 
 ~~~
 [php]
@@ -301,8 +313,19 @@ rejestracji użytkownika:
 
 ~~~
 [php]
-$model->validate('register');
+$model->scenario='register';
+$model->validate();
 ~~~
+
+> Note|Przypis: właściwość [scenario|CModel::scenario] została udostępniona wraz z wersją 1.0.4.
+> Metoda sprawdzania poprawności będzie używała wartości tej właściwości aby ustalić, które 
+> reguły powinne być używane dos sprawdzania. W wersjach 1.0.2 oraz 1.0.3, musieliśmy używać następującego   
+> sposobu aby przeprowadzić sprawdzanie poprawności w zależności od scenariusza:
+> ~~~
+> [php]
+> $model->validate('register');
+> ~~~
+
 
 Możemy zdeklarować reguły walidacji w klasie modelu formularza następująco:
 
@@ -347,4 +370,4 @@ potrzeb poprzez nadpisanie metody [attributeLabels()|CModel::attributeLabels].
 Jak zobacztymy w następnych punktach, zdefiniowanie etykiet w modelu umożliwia nam tworzenie 
 formularzy szybciej i lepiej.
 
-<div class="revision">$Id: form.model.txt 598 2009-01-29 20:19:28Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 922 2009-04-05 21:36:33Z qiang.xue $</div>
