@@ -17,8 +17,8 @@ Yii DAO składa się głównie z następujących czterech klas:
 
    - [CDbConnection]: reprezentuje połączenie z bazą danych,
    - [CDbCommand]: reprezentuje zapytanie SQL, wykonywane na bazie danych,
-   - [CDbDataReader]: represents a forward-only stream of rows from a query result set.
-   - [CDbTransaction]: reprezentuje transakcję DB.
+   - [CDbDataReader]: represents a forward-only stream of rows from a query result set,
+   - [CDbTransaction]: reprezentuje transakcję DB.   
 
 
 W dalszej części, przedstawimy użycie Yii DAO w różnych scenariuszach.
@@ -46,9 +46,10 @@ DNS składa się z nazwy sterownika PDO, po którym następuje przecinek a nast�
 zależna od sterownika składnia połączenia. Zobacz [dokumentację PDO](http://www.php.net/manual/en/pdo.construct.php) 
 aby uzyskać więcej informacji. Poniżej znajduje się lista najczęściej używanych formatów DNS:
 
-   - SQLite: `sqlite:/sciezka/do/pliku/bazy`
-   - MySQL: `mysql:host=localhost;dbname=testdb`
-   - PostgreSQL: `pgsql:host=localhost;port=5432;dbname=testdb`
+   - SQLite: `sqlite:/sciezka/do/pliku/bazy`,
+   - MySQL: `mysql:host=localhost;dbname=testdb`,
+   - PostgreSQL: `pgsql:host=localhost;port=5432;dbname=testdb`,
+   - SQL Server: `mssql:host=localhost;dbname=testdb`.   
 
 Ponieważ klasa [CDbConnection] rozszerza [CApplicationComponent], możemy użyć jej jako 
 [komponent aplikacji](/doc/guide/basics.application#application-component). 
@@ -227,4 +228,6 @@ while($dataReader->read()!==false)
 }
 ~~~
 
-<div class="revision">$Id: database.dao.txt 367 2008-12-16 20:18:30Z qiang.xue $</div>
+~~~
+
+<div class="revision">$Id: database.dao.txt 857 2009-03-20 17:31:09Z qiang.xue $</div>

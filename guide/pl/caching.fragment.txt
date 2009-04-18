@@ -107,6 +107,9 @@ Zamiast prosić developera do uzmiennienie ID odpowiednio do pewnego wzorca,
    GET o nazwie `id`, możemy określić jako [varyByParam|COutputCache::varyByParam] 
    tablicę `array('id')`, tak, że możemy zbuforować zawartość dla każdego posta.
    Bez takiej parametryzacji, będziemy mogli buforować pojedyncze posty.
+   
+   - [varyByExpression|COutputCache::varyByExpression]: ustawiając tą opcję jako wyrażenie PHP, możemy zbuforowaną
+   zawartość uzmiennić w zależności od wyniku wyrażenia PHP. Opcja ta jest dostępna od wersji 1.0.4.
 
 ### Typy żądań
 
@@ -155,4 +158,4 @@ Jednakże, nie jest to prawdą, jeśli systuacja się odwróci. Jeśli zewnętrz
 zawiera poprawne dane, będzie on zawsze dostarczał zbuforowaną kopię, nawet jeśli 
 zawartość w wewnętrznym buforze wygaśnie.
 
-<div class="revision">$Id: caching.fragment.txt 323 2008-12-04 01:40:16Z qiang.xue $</div>
+<div class="revision">$Id: caching.fragment.txt 891 2009-03-25 15:20:56Z qiang.xue $</div>

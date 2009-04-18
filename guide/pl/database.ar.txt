@@ -26,6 +26,9 @@ $post->save();
 W dalszej części opiszemy jak utworzyć AR i użyć go do wykonywania operacji CRUD. 
 W następnej sekcji pokażemy jak używać AR by radzić sobie z relacjami w bazach danych. 
 Dla uproszczeniami używamy w przykładach tej sekcji następującej tabeli bazy danych.
+Zauważ, że jeśli używasz bazy danych MySQL, powinieneś zamienić `AUTOINCREMENT` na `AUTO_INCREMENT` 
+w poniższym kodzie SQL. 
+
 
 ~~~
 [sql]
@@ -75,6 +78,7 @@ Wsparcie dla AR jest ograniczone przez DBMS. Aktualnie, tylko następujące DBMS
    - [MySQL 4.1 lub późniejsze](http://www.mysql.com)
    - [PostgreSQL 7.3 lub późniejsze](http://www.postgres.com)
    - [SQLite 2 oraz 3](http://www.sqlite.org)
+   - [Microsoft SQL Server 2000 lub nowsze](http://www.microsoft.com/sqlserver/)   
 
 
 Jeśli chesz używać komponentu aplikacji innego niż `db` lub jeśli chcesz pracować z wieloma 
@@ -488,4 +492,4 @@ catch(Exception $e)
 }
 ~~~
 
-<div class="revision">$Id: database.ar.txt 687 2009-02-17 02:57:56Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 891 2009-03-25 15:20:56Z qiang.xue $</div>

@@ -252,7 +252,8 @@ powinny zostać rozróżnione przy użyciu `aliasToken` (np. `??.id=10`).
    od wersji 1.0.3.
 
    - `on`: klauzula `ON`. Warunki określone tutaj będą dołączone do warunków złączenia 
-   przy użyciu operatora `AND`. Opcja ta jest dostępna od wersji 1.0.2.
+   przy użyciu operatora `AND`. Zauważ, ze referencje kolumn muszą zostać ujednoznacznione poprzez użycie   
+   `tokenu aliasu` (np. `??.id=10`). Opcja ta jest dostępna od wersji 1.0.2.
 
    - `order`: klauzula `ORDER BY`. Domyślnie pusta. Zauważ, że referencje do kolumn
    powinny zostać rozróżnione przy użyciu `aliasToken` (np. `??.age
@@ -279,17 +280,15 @@ DESC`).
    lub MANY_MANY będzie posiadała własne wyrażenie JOIN w celu zwiększenia wydajności.
    Opcja ta jest dostępna od wersji 1.0.3.
 
-Dodatkowo, następujące opcje są dostępne dla wybranych relacji podczas opóźnionego 
-ładowania:
-
    - `group`: klauzula `GROUP BY`. Domyślnie pusta. Zauważ, że referencje do kolumn
-   muszą zostać rozróżnione przy używiu `aliasToken` (np. `??.age`). Opcja ta ma tylko 
-   zastosowanie dla relacji `HAS_MANY` oraz `MANY_MANY`.
+   muszą zostać rozróżnione przy używiu `aliasToken` (np. `??.age`).
 
    - `having`: klauzula `HAVING`. Domyślnie pusta. Zauważ, że reference do kolumn
-   muszą zostać rozróżnione przy użyciu `aliasToken` (np. `??.age`). Opcja ta ma zastosowanie 
-   tylko dla relacji `HAS_MANY` oraz `MANY_MANY`. Uwaga, opcja ta jest dostępna 
+   muszą zostać rozróżnione przy użyciu `aliasToken` (np. `??.age`). Uwaga, opcja ta jest dostępna 
    od wersji 1.0.1.
+   
+Dodatkowo, następujące opcje są dostępne dla wybranych relacji podczas opóźnionego 
+ładowania:   
 
    - `limit`: ogranicza ilość zwracanych wierszy. Opcja ta nie ma zastosowania 
    dla relacji `BELONGS_TO`.
@@ -349,4 +348,68 @@ User::model()->with(array(
 ))->findAll();
 ~~~
 
-<div class="revision">$Id: database.arr.txt 683 2009-02-16 05:20:17Z qiang.xue $</div>
+Zapytania statystyczne (ang. Statistical Query)
+-----------------
+
+> Note|Przypis: Zapytania statystyczne są wspierane od wersji 1.0.4
+
+Poza zapytaniami relacyjnymi opisanymi powużej, Yii wspiera również tak zwane zapytania statystyczne (lub zapytania agregacyjne). Odnoszą się one do uzyskiwania agregowanych 
+informacji o powiązanych obiektach, takich jak liczba komentarzy dla każdego postu, średni ocena dla każdego produktu, itp. Zapytania statystyczne mogą być wykonywane dla obiektów   
+wskazywanych w relacji `HAS_MANY` (np. post ma wiele komentarzy) lub `MANY_MANY` (np. post należy do wielu kategorii a kategoria ma wiele postów).
+
+Wykonywania zapytań statystycznych jest bardzo podobne do wykonywania opisanych wcześniej zapytań relacyjnych. Najpier muslimy zdefiniować zapytanie statystyczne w metodzie 
+[relations()|CActiveRecord::relations] klasy [CActiveRecord] tak jak robimy to dla zapytań relacynych.
+
+
+~~~
+[php]
+class Post extends CActiveRecord
+{
+  public function relations()
+  {
+    return array(
+      'commentCount'=>array(self::STAT, 'Comment', 'postID'),
+      'categoryCount'=>array(self::STAT, 'Category', 'PostCategory(postID, categoryID)'),
+    );
+  }
+}
+~~~
+
+Powyżej zadeklarowaliśmy dwa zapytania statystyczne: `commentCount` oblicza ilość komentarzy należących do postu a `categoryCount` oblicza ilość kategorii do których należy post. 
+Zauważ, że relacja pomiędzy `Post` a `Comment` jest relacją `HAS_MANY`, podczas gdy relacja pomiędzy `Post` a `Category` jest relacją `MANY_MANY` 
+(wraz z łączącą je tabelą `PostCategory`). Jak możemy zuważyć, deklaracja jest bardzo podobna do tych z relacji opisywanych we wcześniejszych podpunktach.
+Jedyną różnicą jest to, że typem relacji jest tutaj `STAT`.
+
+Przy użyciu powyższej deklaracji możemy otrzymać ilość komentarzy dla postu przy użyciu wyrażenia `$post->commentCount`. Jeśli użyjemy tej właściwości po raz pierwszy,  
+wyrażenie SQL zostanie wywołane w ukryciu w celu uzyskania porządanego rezultatu. Jak już wiemy, jest to tak zwane *leniwe ładowanie*.
+Możemy również używać *gorliwego ładowania*  jeśli chcemy dowiedzieć uzyskać ilość komentarzy dla wielu postów.
+
+~~~
+[php]
+$posts=Post::model()->with('commentCount', 'categoryCount')->findAll();
+~~~
+
+Powyższe wyrażenie wykona trzy zapytania SQL aby zwrócić wszystkie posty razem z policzonymi komentarzami oraz policzonymi kategoriami. Używając podejścia leniwego ładowania 
+skończylibyśmy z `2*N+1` zapytaniami SQL, gdzie `N` to ilość postów.
+
+Domyślnie zapytanie statystyczne użyje wyrażenia `COUNT` do obliczeń (i w ten sposób policzny komentarze oraz kategorie w powyższych przykładach). Możemy je dostosować 
+do własnych potrzeb poprzez określenie dodatkowych opcji podczas deklarowania go w metodzie [relations()|CActiveRecord::relations]. Podsumowanie dostępnych opcji znajduje się poniżej.
+
+
+   - `select`: wyrażenie statystyczne. Domyślnie `COUNT(*)`, co oznacza liczenie obiektów potomnych.
+
+   - `defaultValue`: wartośc jaka będzie przypuisana do tych rekordów, dla których nie zostaną zwrócone rezultaty zapytania statystycznego. Na przykład, jeśli post nie posiada 
+   żadnych komentarzy, jego `commentCount` otrzyma tą wartość. Wartość domyślna dla tegj opcji to zero.
+
+   - `condition`: kaluzula `WHERE`. Domyślnie jest pusta.
+
+   - `params`: parametry, które mają zostać związane z wygenerowanym zapytaniem SQL. Powinny być one przekazane jako tablica par nazwa-wartość.  
+
+   - `order`: klauzula `ORDER BY`. Domyślnie jest pusta.
+
+   - `group`: klauzula `GROUP BY`. Domyślnie jest pusta.
+
+   - `having`: klauzula `HAVING`. Domyślnie jest pusta.
+
+
+<div class="revision">$Id: database.arr.txt 922 2009-04-05 21:36:33Z qiang.xue $</div>

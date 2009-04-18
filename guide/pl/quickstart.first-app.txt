@@ -62,7 +62,7 @@ testdrive/
    assets/                   zawiera opublikowane zasoby plików
    css/                      zawiera pliki CSS
    images/                   zawiera pliki obrazów
-   themes/                   Zawiera tematy aplikacji
+   themes/                   zawiera tematy aplikacji
    protected/                zawiera chronione pliki aplikacji
       yiic                   skrypt yiic
       yiic.bat               skrypt yiic dla systemu Windows
@@ -138,6 +138,9 @@ CREATE TABLE User (
 	email VARCHAR(128) NOT NULL
 );
 ~~~
+
+> Uwaga: Jeśli używasz bazy danych MySQL powinieneś zastąpić `AUTOINCREMENT`
+> poprzez `AUTO_INCREMENT` w powyższym kodzie SQL.
 
 Dla uproszczenia tworzymy w bazie danych tylko pojedynczą tabelę `User`.
 Plik bazy danych SQLite zostanie zapisany jako
@@ -243,4 +246,4 @@ pojedynczej linijki kodu!
 
 
 
-<div class="revision">$Id: quickstart.first-app.txt 723 2009-02-21 18:14:05Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.first-app.txt 891 2009-03-25 15:20:56Z qiang.xue $</div>

@@ -99,7 +99,10 @@ Poniżej znajduje się podsumowanie dostępnych zależności buforowania:
    globalnego stanu została zmieniona. Globalny stan to zmienna, która jest trwała 
    w aplikacji dla wielu żądań oraz wielu sesji. Jest zdefioniowana poprzez [CApplication::setGlobalState()].
 
-   - [CChainedCacheDependency]: zależność jest zmieniowa jeśli jakakolwiek z zależności 
+   - [CChainedCacheDependency]: zależność jest zmieniona jeśli jakakolwiek z zależności 
    w łańcuchu zmieniła się.
 
-<div class="revision">$Id: caching.data.txt 169 2008-11-06 19:43:44Z qiang.xue $</div>
+   - [CExpressionDependency]: zależność jest zmieniona jeśli zmieni się rezultat określonego wyrażenia PHP. Klasa ta jest dostępna od
+   wersji 1.0.4.
+
+<div class="revision">$Id: caching.data.txt 891 2009-03-25 15:20:56Z qiang.xue $</div>

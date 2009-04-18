@@ -191,6 +191,8 @@ Cykl życia aplikacji
 Podczas przetwarzania żądania użytkownika aplikacja podlega następującemu cyklowi 
 życia:
 
+   0. Inicjalizacja początkowa aplikacji za pomocą [CApplication::preinit()];
+
    1. Utworzenie klasy autoloader oraz klasy zarządania błędami;
 
    2. Zarejstronwanie rdzennych komponentów aplikacji;
@@ -198,6 +200,7 @@ Podczas przetwarzania żądania użytkownika aplikacja podlega następującemu c
    3. Wczytanie konfiguracji aplikacji;
 
    4. Zainicjalizowanie aplikacji przy użyciu metody [CApplication::init()]
+     - rejestruje zachowania aplikacji;   
 	   - załadowanie statyczych komponentów aplikacji;
 
    5. Zgłoszenie zdarzenia [onBeginRequest|CApplication::onBeginRequest];
@@ -209,4 +212,4 @@ Podczas przetwarzania żądania użytkownika aplikacja podlega następującemu c
 
    7.Zgłoszenie zdarzenia [onEndRequest|CApplication::onEndRequest];
 
-<div class="revision">$Id: basics.application.txt 626 2009-02-04 20:51:13Z qiang.xue $</div>
+<div class="revision">$Id: basics.application.txt 857 2009-03-20 17:31:09Z qiang.xue $</div>
