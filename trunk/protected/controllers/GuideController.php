@@ -11,6 +11,7 @@ class GuideController extends CController
 		'he'=>'Hebrew',
 		'it'=>'Italian',
 		'nl'=>'Dutch',
+		'no'=>'Norwegian',
 		'ja'=>'Japanese',
 		'pl'=>'Polish',
 		'pt'=>'Portuguese',
