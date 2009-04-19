@@ -18,7 +18,7 @@
     - [開発ワークフロー](basics.workflow)
 
 * フォームを使う
-    - [フォームを使うform.overview)
+    - [フォームを使う](form.overview)
     - [モデルの作成](form.model)
     - [アクションの作成](form.action)
     - [フォームの作成](form.view)
