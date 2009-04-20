@@ -1,33 +1,43 @@
-Аутентификация и авторизация
-=============================
+﻿Аутентификация и авторизация
+================================
 
-Аутентификация и авторизация нужны для тех веб страниц, которые должны быть 
-доступны только определеным пользователям. Аутентификация - это проверка того,
-что пользователья явлется именно тем, за кого себя выдает. Для этого обычно
-используется проверка о имени пользователя и паролю, но могут быть и другие 
-способы подтверждения личности - смарт карты, отмпечатки пальцев и т.п.
-Авторизация - это проверка, есть ли права у идентифицрованного пользователя
-взаимодействовать с определенными ресурсами. Для этого обычно используются 
-роли, которым назначаются соответсвующие права.
+Аутентификация и авторизация предназначены для ограничения доступа к веб-страницам.
+Смысл аутентификации состоит в проверке является ли пользователь тем, за кого себя выдает.
+Как правило, для этого используются имя пользователя и пароль. Также могут использоваться 
+иные способы идентификации, например, смарт-карты, отпечатки пальцев и пр. Авторизация же 
+направлена на определение прав доступа к тем или иным ресурсам уже аутентифицированного пользователя.
+Обычно, это определяется принадлежностью к той или иной группе пользователей (роли), 
+имеющей соответствующий доступ.
 
-В Yii встроена подсистема аутентификации/авторизации, которая является достаточно 
-простой и может быть легко адаптирована к соответствующим требованиям.
+В Yii имеется встроенный функционал аутентификации/авторизации (auth), который прост в использовании и
+может быть подогнан под любые нужды.
 
-Главная часть подсистемы аутентификации - это предопределенный *компонент приложения
-"пользователь"* (*user application component*). Фактически, это класс, реализующий 
-интерфейс [IWebUser]. Компонент "пользователь" представлет собой набор постоянных 
-данных о пользователе. Мы можем получить доступ к ним из любого места приложения,
-используя `Yii::app()->user`.
+Центральным звеном этого функционала является объявленный комопонент приложения пользователи, 
 
-Используя компонент "пользователь", мы можем проверять, вошел ли пользователь в
-систему, проверяя свойство [CWebUser::isGuest]; [начинать|CWebUser::login] и
-[завершать|CWebUser::logout] сессию пользователя; проверять, имеет ли право
-пользователь выполнять определенные операции вызывая [CWebUser::checkAccess]; можем
-получить [укникальный идентификатор|CWebUser::name] и другую постоянную информацию
-о пользователе.
+The central piece in the Yii auth framework is a pre-declared *user
+application component* which is an object implementing the [IWebUser]
+interface. The user component represents the persistent identity
+information for the current user. We can access it at any place using
+`Yii::app()->user`.
+
+Using the user component, we can check if a user is logged in or not via
+[CWebUser::isGuest]; we can [login|CWebUser::login] and
+[logout|CWebUser::logout] a user; we can check if the user can perform
+specific operations by calling [CWebUser::checkAccess]; and we can also
+obtain the [unique identifier|CWebUser::name] and other persistent identity
+information about the user.
 
 Определение класса идентификации
+-------------------------------
+
+Defining Identity Class
 -----------------------
+
+Для того, чтобы аутентифицировать пользователя, нужно мы описать класс идентификации, 
+где будет сожердаться необходимая логику аутентификации. Класс идентификации должен реализовывать интерфейс
+[IUserIdentity]. Можно реализовать несколько классов для различных способов аутентификации (например, с использованием 
+OpenID, LDAP и т.д.). Для начала можно расширить класс [CUserIdentity] - базовый класс аутентификации с использованием 
+имени пользователя и пароля.
 
 In order to authenticate a user, we define an identity class which
 contains the actual authentication logic. The identity class should
@@ -36,23 +46,33 @@ implemented for different authentication approaches (e.g. OpenID, LDAP). A
 good start is by extending [CUserIdentity] which is a base class for the
 authentication approach based on username and password.
 
+Основная часть работы при написании класса идентификации приходится на реализацию 
+метода [IUserIdentity::authenticate]. В классе идентификации также можно объявлять
+дополнительную идентификационную информацию, которая должна храниться в течение сессии пользователя.
+
 The main work in defining an identity class is the implementation of the
 [IUserIdentity::authenticate] method. An identity class may also declare
 additional identity information that needs to be persistent during the user
 session.
 
+В примере ниже, мы проверим имя введенные пользователя и пароль по таблице пользователей в базе данных, используя 
+[Active Record](/doc/guide/database.ar). Кроме того, переопределим метод `getId`, чтобы он возвращал
+переменную `_id`, значение которой устанавливается в процессе аутентификации (реализация по умолчанию возвращает 
+имя пользователя в качестве идентификатора). В ходе актентификации, мы сохраняем 
+
 In the following example, we validate the given username and password
 against the user table in a database using [Active
-Record](/doc/guide/database.ar). We also define the `title` property to be
-persistent using [CBaseUserIdentity::getState] and
-[CBaseUserIdentity::setState] methods. As a result, during the whole user
-session, we can obtain the user title information via
-`Yii::app()->user->getState('title')`.
+Record](/doc/guide/database.ar). We also override the `getId` method to
+return the `_id` variable which is set during authentication (the default
+implementation would return the username as the ID). During authentication,
+we store the retrieved `title` information in a state with the same name by
+calling [CBaseUserIdentity::setState].
 
 ~~~
 [php]
 class UserIdentity extends CUserIdentity
 {
+	private $_id;
 	public function authenticate()
 	{
 		$record=User::model()->findByAttributes(array('username'=>$this->username));
@@ -62,23 +82,26 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		else
 		{
-			$this->title=$record->title;
+			$this->_id=$record->id;
+			$this->setState('title', $record->title);
 			$this->errorCode=self::ERROR_NONE;
 		}
 		return !$this->errorCode;
     }
 
-	public function getTitle()
+	public function getId()
 	{
-		return $this->getState('title');
-	}
-
-	public function setTitle($value)
-	{
-		$this->setState('title',$value);
+		return $this->_id;
 	}
 }
 ~~~
+
+Information stored in a state (by calling [CBaseUserIdentity::setState]) will be passed
+to [CWebUser] which stores them in a persistent storage, such as session.
+These information can be accessed like properties of [CWebUser]. For example, we
+can obtain the `title` information of the current user by `Yii::app()->user->title`
+(This has been available since version 1.0.3. In prior versions, we should use
+`Yii::app()->user->getState('title')`, instead.)
 
 > Info: By default, [CWebUser] uses session as persistent storage for user
 identity information. If cookie-based login is enabled (by setting
@@ -216,11 +239,15 @@ be executed.
 An access rule can match the following context parameters:
 
    - [actions|CAccessRule::actions]: specifies which actions this rule
-matches.
+matches. This should be an array of action IDs. The comparison is case-insensitive.
+
+   - [controllers|CAccessRule::controllers]: specifies which controllers this rule
+matches. This should be an array of controller IDs. The comparison is case-insensitive.
+This option has been available since version 1.0.4.
 
    - [users|CAccessRule::users]: specifies which users this rule matches.
-The current user's [name|CWebUser::name] is used for matching. Three
-special characters can be used here:
+The current user's [name|CWebUser::name] is used for matching. The comparison
+is case-insensitive. Three special characters can be used here:
 
 	   - `*`: any user, including both anonymous and authenticated users.
 	   - `?`: anonymous users.
@@ -237,7 +264,11 @@ a role represents a permission to do something.
 matches.
 
    - [verbs|CAccessRule::verbs]: specifies which request types (e.g.
-`GET`, `POST`) this rule matches.
+`GET`, `POST`) this rule matches. The comparison is case-insensitive.
+
+   - [expression|CAccessRule::expression]: specifies a PHP expression whose value
+indicates whether this rule matches. In the expression, you can use variable `$user`
+which refers to `Yii::app()->user`. This option has been available since version 1.0.3.
 
 
 ### Handling Authorization Result
@@ -451,15 +482,16 @@ $auth->assign('editor','editorC');
 $auth->assign('admin','adminD');
 ~~~
 
-Note that we associate a business rule with the `updateOwnPost` task. In
-the business rule we simply check if the current user ID is the same as the
-specified post's author ID. The post information in the `$params` array is
-supplied by developers when performing access checking.
-
 > Info: While the above example looks long and tedious, it is mainly for
 demonstrative purpose. Developers usually need to develop some user
 interfaces so that end users can use to establish an authorization
 hierarchy more intuitively.
+
+
+### Using Business Rules
+
+When we are defining the authorization hierarchy, we can associate a role, a task or an operation with a so-called *business rule*. We may also associate a business rule when we assign a role to a user. A business rule is a piece of PHP code (PHP statements to be exactly) that is executed when we perform access checking. The returning value of the code is used to determine if the role or assignment applies to the current user. In the example above, we associated a business rule with the `updateOwnPost` task. In the business rule we simply check if the current user ID is the same as the specified post's author ID. The post information in the `$params` array is supplied by developers when performing access checking.
+
 
 ### Access Checking
 
@@ -490,4 +522,50 @@ if(Yii::app()->user->checkAccess('updateOwnPost',$params))
 }
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 564 2009-01-21 22:07:10Z qiang.xue $</div>
+
+### Using Default Roles
+
+> Note: The default role feature has been available since version 1.0.3
+
+Many Web applications need some very special roles that would be assigned to
+every or most of the system users. For example, we may want to assign some
+privileges to all authenticated users. It poses a lot of maintenance trouble
+if we explicitly specify and store these role assignments. We can exploit
+*default roles* to solve this problem.
+
+A default role is a role that is implicitly assigned to every user, including
+both authenticated and guest. We do not need to explicitly assign it to a user.
+When [CWebUser::checkAccess], default roles will be checked first as if they are
+assigned to the user.
+
+Default roles must be declared in the [CAuthManager::defaultRoles] property.
+For example, the following configuration declares two roles to be default roles: `authenticated` and `guest`.
+
+~~~
+[php]
+return array(
+	'components'=>array(
+		'authManager'=>array(
+			'class'=>'CDbAuthManager',
+			'defaultRoles'=>array('authenticated', 'guest'),
+		),
+	),
+);
+~~~
+
+Because a default role is assigned to every user, it usually needs to be
+associated with a business rule that determines whether the role
+really applies to the user. For example, the following code defines two
+roles, `authenticated` and `guest`, which effectively apply to authenticated
+users and guest users, respectively.
+
+~~~
+[php]
+$bizRule='return !Yii::app()->user->isGuest;';
+$auth->createRole('authenticated', 'authenticated user', $bizRule);
+
+$bizRule='return Yii::app()->user->isGuest;';
+$auth->createRole('guest', 'guest user', $bizRule);
+~~~
+
+<div class="revision">$Id: topics.auth.txt 878 2009-03-23 15:31:21Z qiang.xue $</div>
