@@ -194,7 +194,7 @@ Eメールアドレスである事を確認します。
 // username は必須です。
 array('username', 'required'),
 // username の長さが3から12の間である事を確認します。
-array('username', 'length', 'min'=>3, 'max'=>12)
+array('username', 'length', 'min'=>3, 'max'=>12),
 // 登録シナリオでは、パスワードとパスワード2は一致する必要があります。
 array('password', 'compare', 'compareAttribute'=>'password2', 'on'=>'register'),
 // ログインシナリオでは、パスワードは認証されなければなりません。
@@ -217,7 +217,31 @@ if(isset($_POST['LoginForm']))
 	$model->attributes=$_POST['LoginForm'];
 ~~~
 
-各属性が一括代入しても安全かどうかの判断は、、
+> Note|注意: [scenario|CModel::scenario] プロパティは、バージョン 1.0.4
+> 以降で利用可能です。一括代入では、どの属性を一括代入できるかを決定するために、
+> このプロパティ値が利用されます。
+> バージョン 1.0.2 と 1.0.3 では、特定のシナリオに一括代入を行うために、
+> 下記の方法を使用する必要があります。
+>
+> ~~~
+> [php]
+> $model->setAttributes($_POST['LoginForm'], 'login');
+> ~~~
+
+最後の文は、`login` シナリオの対応モデル属性に `$_POST['LoginForm']` の
+すべてのエントリを一括代入します。
+これは、下記の代入と同等です。
+
+~~~
+[php]
+foreach($_POST['LoginForm'] as $name=>$value)
+{
+	if($name is a safe attribute)
+		$model->$name=$value;
+}
+~~~
+
+各属性が一括代入しても安全かどうかの判断は、
 `safeAttributes`メソッドの戻り値と、指定されたシナリオによって決定されます。
 デフォルトでは、[CFormModel]のすべてのパブリックメンバプロパティが安全と返されます。
 一方で [CActiveRecord]では、プライマリキーを除いたテーブルのカラムすべてが安全と返されます。
@@ -344,4 +368,4 @@ public function rules()
 に見るように、モデルの中でのラベルの定義は、より早く、
 力強いフォームの作成を私達にもたらします。
 
-<div class="revision">$Id: form.model.txt 367 2008-12-16 20:18:30Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 922 2009-04-05 21:36:33Z qiang.xue $</div>
