@@ -140,44 +140,42 @@ PHP 翻訳ファイルを作成します。各ファイルは、単にメッセ�
 
    3. [CApplication::sourceLanguage] と [CApplication::language] の設定を行います。
 
-> Tip: The `yiic` tool in Yii can be used to manage message translations
-when [CPhpMessageSource] is used as the message source. Its `message` command
-can automatically extract messages to be translated from selected source files
-and merge them with existing translations if necessary.
+> Tip|ヒント: [CPhpMessageSource] をメッセージソースとして使用する場合、
+メッセージ翻訳を管理するために、Yii の `yiic` ツールを利用できます。
+`message` コマンドでは、自動的に選択されたソースファイルから
+翻訳されるべきメッセージを抽出し、必要なら、既存の翻訳にそれらをマージできます。
 
-Since version 1.0.2, Yii has added the support for [choice format|CChoiceFormat]. Choice format
-refers to choosing a translated according to a given number value. For example,
-in English the word 'book' may either take a singular form or a plural form
-depending on the number of books, while in other languages, the word may not have
-different form (such as Chinese) or may have more complex 	plural form rules
-(such as Russian). Choice format solves this problem in a simple yet effective way.
+バージョン 1.0.2 以降、Yii は [choice format|CChoiceFormat] のサポートが追加されました。
+choice format は、与えられた数値に従い翻訳を選択します。
+たとえば、'book' という単語は、英語では、本の数によって単数形か複数形のどちらかを取りますし、
+また、他の言語では、（中国語のような）異なる形を持たない場合、
+（ロシア語などのように）より複雑な複数形の規則がある場合があります。
+choice format はこの問題を簡単かつ効果的な方法で解決します。
 
-To use choice format, a translated message must consist of a sequence of
-expression-message pairs separated by `|`, as shown below:
+choice format を使用するには、翻訳メッセージが下記のように `|`
+によって分けられた、式-メッセージの組の列で構成されている必要があります:
 
 ~~~
 [php]
 'expr1#message1|expr2#message2|expr3#message3'
 ~~~
 
-where `exprN` refers to a valid PHP expression which evaluates to a boolean value
-indicating whether the corresponding message should be returned. Only the message
-corresponding to the first expression that evaluates to true will be returned.
-An expression can contain a special variable named `n` (note, it is not `$n`)
-which will take the number value passed as the first message parameter. For example,
-assuming a translated message is:
+`exprN` は、返されるべき対応したメッセージかどうかを表す boolean 値に評価される
+有効な PHP 式です。最初に true に評価された式に一致したメッセージのみが返されます。
+式には、最初のメッセージパラメータとして渡された数値を表す
+`n`（注意：`$n` ではありません）という名前の特別な変数を含められます。
+たとえば、翻訳されたメッセージを
 
 ~~~
 [php]
 'n==1#one book|n>1#many books'
 ~~~
 
-and we are passing a number value 2 in the message parameter array when
-calling [Yii::t()|YiiBase::t], we would obtain `many books` as the final
-translated message.
+と仮定し、[Yii::t()|YiiBase::t] を呼び出す際、メッセージのパラメータ配列に
+数値 2 を渡した場合、最終的に翻訳メッセージには `many books` が返されます。
 
-As a shortcut notation, if an expression is a number, it will be treated as
-`n==Number`. Therefore, the above translated message can be also be written as:
+略記法として、式が数値のみの場合、`n==数値` と解釈されます。
+そのため、上記の翻訳メッセージは下記のように記述することも可能です。
 
 ~~~
 [php]
@@ -185,82 +183,80 @@ As a shortcut notation, if an expression is a number, it will be treated as
 ~~~
 
 
-### File Translation
+### ファイル翻訳
 
-File translation is accomplished by calling
-[CApplication::findLocalizedFile()]. Given the path of a file to be
-translated, the method will look for a file with the same name under the
-`LocaleID` subdirectory. If found, the file path will be returned;
-otherwise, the original file path will be returned.
+ファイル翻訳は、[CApplication::findLocalizedFile()] を呼び出すことで行われます。
+翻訳を行うために、ファイルのパスを与えると、メソッドは `LocaleID` サブディレクトリ下にある
+同じ名前のファイルを探します。ファイルが見つかれば、ファイルパスを返します。
+見つからない場合、オリジナルのファイルパスを返します。
 
-File translation is mainly used when rendering a view. When calling one of
-the render methods in a controller or widget, the view files will be
-translated automatically. For example, if the [target
-language|CApplication::language] is `zh_cn` while the [source
-language|CApplication::sourceLanguage] is `en_us`, rendering a view named
-`edit` would resulting in searching for the view file
-`protected/views/ControllerID/zh_cn/edit.php`. If the file is found, this
-translated version will be used for rendering; otherwise, the file
-`protected/views/ControllerID/edit.php` will be rendered instead.
+ファイル翻訳は、主にビューの描画で使用されます。
+コントローラかウィジェット内でレンダーメソッドの一つを呼び出した際、
+ビューファイルは自動的に翻訳されます。
+たとえば、[ターゲット言語|CApplication::language] が `zh_cn` で、
+ [ソース言語|CApplication::sourceLanguage] が `en_us` の場合、
+`edit` という名前のビューの描画では、ビューファイル
+`protected/views/ControllerID/zh_cn/edit.php` を検索します。
+ファイルが見つかれば、この翻訳された版が描画に使用されます。
+見つからない場合、代わりに `protected/views/ControllerID/edit.php`
+によって描画されます。
 
-File translation may also be used for other purposes, for example,
-displaying a translated image or loading a locale-dependent data file.
+また、ファイル翻訳は、たとえば、翻訳された画像やロケール依存のデータファイルをロードし、
+表示するためなど、他の目的のために使用されるかもしれません。
 
-Date and Time Formatting
+日付と時刻フォーマット
 ------------------------
 
-Date and time are often in different formats in different countries or
-regions. The task of date and time formatting is thus to generate a date or
-time string that fits for the specified locale. Yii provides
-[CDateFormatter] for this purpose.
+日付と時刻は、国や地域によって異なる書式がしばしば利用されます。
+日付と時刻フォーマットの目的は、ロケールに基づき、そのロケールに適した
+日付や時刻の文字列を生成することです。
+Yii は、この問題のために、[CDateFormatter] を提供します
 
-Each [CDateFormatter] instance is associated with a target locale. To get
-the formatter associated with the target locale of the whole application,
-we can simply access the [dateFormatter|CApplication::dateFormatter]
-property of the application.
+各 [CDateFormatter] インスタンスは、ターゲットロケールと結びついています。
+アプリケーション全体のターゲットロケールに結びついたフォーマッタの取得は、
+アプリケーションの [dateFormatter|CApplication::dateFormatter] プロパティを使い、
+簡単にアクセスできます。
 
-The [CDateFormatter] class mainly provides two methods to format a UNIX
-timestamp.
+[CDateFormatter] クラスは主に UNIX タイムスタンプをフォーマットする
+2 つのメソッドを提供します。
 
-   - [format|CDateFormatter::format]: this method formats the given UNIX
-timestamp into a string according to a customized pattern (e.g.
-`$dateFormatter->format('yyyy-MM-dd',$timestamp)`).
+   - [format|CDateFormatter::format]: このメソッドは、カスタムパターンに基づき、
+UNIX タイムスタンプを文字列にフォーマットします。（たとえば、
+`$dateFormatter->format('yyyy-MM-dd',$timestamp)`）
 
-   - [formatDateTime|CDateFormatter::formatDateTime]: this method formats
-the given UNIX timestamp into a string according to a pattern predefined in
-the target locale data (e.g. `short` format of date, `long` format of
-time).
+   - [formatDateTime|CDateFormatter::formatDateTime]: このメソッドは、
+ターゲットロケールデータに定義されているパターンに基づき、
+UNIX タイムスタンプを文字列にフォーマットします。（たとえば、日付の
+`short` フォーマット、時刻の `long` フォーマット）
 
-Number Formatting
+数値フォーマット
 -----------------
 
-Like data and time, numbers may also be formatted differently in different
-countries or regions. Number formatting includes decimal formatting,
-currency formatting and percentage formatting. Yii provides
-[CNumberFormatter] for these tasks.
+日付と時刻のように、数値も国や地域によって異なる書式が利用されます。
+数値委フォーマットは、小数フォーマット、通貨フォーマット、パーセンテージフォーマットを
+含みます。Yii は、これらのために [CNumberFormatter] を提供します。
 
-To get the number formatter associated with the target locale of the whole
-application, we can access the
-[numberFormatter|CApplication::numberFormatter] property of the
-application.
+アプリケーション全体のターゲットロケールに結びついた数値フォーマッタの取得は、
+アプリケーションの [numberFormatter|CApplication::numberFormatter] プロパティを使い、
+アクセスできます。
 
-The following methods are provided by [CNumberFormatter] to format an
-integer or double value.
+下記メソッドが、integer、double 値のフォーマットのために、
+ [CNumberFormatter] によって提供されています。
 
-   - [format|CNumberFormatter::format]: this method formats the given
-number into a string according to a customized pattern (e.g.
-`$numberFormatter->format('#,##0.00',$number)`).
+   - [format|CNumberFormatter::format]: このメソッドは、
+カスタムパターンに基づき、数値を文字列にフォーマットします。（たとえば、
+`$numberFormatter->format('#,##0.00',$number)`）
 
-   - [formatDecimal|CNumberFormatter::formatDecimal]: this method formats
-the given number using the decimal pattern predefined in the target locale
-data.
+   - [formatDecimal|CNumberFormatter::formatDecimal]: このメソッドは、
+ターゲットロケールデータに定義されている小数パターンに基づき、
+数値を文字列にフォーマットします。
 
-   - [formatCurrency|CNumberFormatter::formatCurrency]: this method
-formats the given number and currency code using the currency pattern
-predefined in the target locale data.
+   - [formatCurrency|CNumberFormatter::formatCurrency]: このメソッドは、
+ターゲットロケールデータに定義されている通貨パターンに基づき、
+数値と通貨記号を文字列にフォーマットします。
 
-   - [formatPercentage|CNumberFormatter::formatPercentage]: this method
-formats the given number using the percentage pattern predefined in the
-target locale data.
+   - [formatPercentage|CNumberFormatter::formatPercentage]: このメソッドは、
+ターゲットロケールデータに定義されているパーセンテージパターンに基づき、
+数値を文字列にフォーマットします。
 
 <div class="revision">$Id: topics.i18n.txt 772 2009-02-28 18:23:17Z qiang.xue $</div>
