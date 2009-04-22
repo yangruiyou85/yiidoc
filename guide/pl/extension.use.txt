@@ -202,7 +202,7 @@ return array(
 
 Teraz możemy użyć narzędzia `yiic` wyposażonego w dodatkowe polecenie `xyz`.
 
-> Note|Przypis: Aplikacja konsoleowa zazwyczaj używa pliku konfiguracyjnego, 
+> Note|Uwaga: Aplikacja konsoleowa zazwyczaj używa pliku konfiguracyjnego, 
 który różni się od tego używanego w aplikacji sieciowej. Jeśli aplikacja została 
 utworzona przy użyciu polecenia `yiic webapp`, wtedy plikiem konfiguracji dla aplikacji
 konsolowej `protected/yiic` jest `protected/config/console.php`,

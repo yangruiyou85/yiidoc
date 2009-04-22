@@ -16,7 +16,7 @@ w zamian używać [rekordu aktywnego](/doc/guide/database.ar). Oba typy modeli
 dziedzicza tą samą klasę bazową [CModel], która definiuje wspólny interfejs 
 wymagany dla formularzy.
 
-> Note|Przypis: W tej sekcji używamy głównie modeli formularza jako przykładów.
+> Note|Uwaga: W tej sekcji używamy głównie modeli formularza jako przykładów.
 Jednakże ma to również zastosowanie do modeli [rekordu aktywnego](/doc/guide/database.ar).
 
 Definiowanie klasy modelu.
@@ -125,7 +125,7 @@ instancja walidatora zostanie stworzona w celu dokonania sprawdzenia danych. Dod
 opcje w regule są używane do zainicjalizowania wartości instancji atrybutu. 
 Klasa walidatora musi rozszerzać klasę [CValidator].
 
-> Note|Przypis: Kiedy określamy regułę dla modelu aktywnego rekordu, możemy używać we can use a
+> Note|Uwaga: Kiedy określamy regułę dla modelu aktywnego rekordu, możemy używać we can use a
 specjalnej opcji nazwanej `on`. Opcja ta może posiadać wartość `'insert'` (wstawianie) lub
 `'update'` (aktualizowanie), tak, że reguła ta ma zastosowanie podczas wstawiania lub 
 aktualizowania rekordu. Gdy nie jest ona ustawiona, reguła będzie miała zastosowanie 
@@ -195,7 +195,7 @@ array('password', 'authenticate', 'on'=>'login'),
 Ochrona przypisania atrybutów (ang. Securing Attribute Assignments)
 ------------------------------
 
-> Note|Przypis: przypisywanie atrybutów w zależności od scenariusza zostało udostępnione 
+> Note|Uwaga: przypisywanie atrybutów w zależności od scenariusza zostało udostępnione 
 > od wersji 1.0.2
 
 Po utworzeniu instancji modelu, często potrzebujemy wypełnić jej atrybuty danymi 
@@ -210,7 +210,7 @@ if(isset($_POST['LoginForm']))
   $model->attributes=$_POST['LoginForm'];
 ~~~
 
-> Note|Przypis: Właściwość [scenario|CModel::scenario] jest dostępna od wersji 1.0.4.
+> Note|Uwaga: Właściwość [scenario|CModel::scenario] jest dostępna od wersji 1.0.4.
 > Grupowe przypisywanie będzie używać wartości tej właściwości w celu określenia które atrybuty
 > mogą być grupowo przypisane. W wersjach 1.0.2 oraz 1.0.3, musieliśmu uzywać następującego kodu
 > aby dokonać grupowego przypisania dla określonego scenariusza:
@@ -317,7 +317,7 @@ $model->scenario='register';
 $model->validate();
 ~~~
 
-> Note|Przypis: właściwość [scenario|CModel::scenario] została udostępniona wraz z wersją 1.0.4.
+> Note|Uwaga: właściwość [scenario|CModel::scenario] została udostępniona wraz z wersją 1.0.4.
 > Metoda sprawdzania poprawności będzie używała wartości tej właściwości aby ustalić, które 
 > reguły powinne być używane dos sprawdzania. W wersjach 1.0.2 oraz 1.0.3, musieliśmy używać następującego   
 > sposobu aby przeprowadzić sprawdzanie poprawności w zależności od scenariusza:
@@ -344,7 +344,7 @@ public function rules()
 W rezultacie, pierwsza regułą będzie miała zastosowanie do wszystkich scenariuszy,
 zaś następne dwie będą używane dla scenariusza rejestracji `register`.
 
-> Note|Przypis: sprawdzanie poprawności przy użyciu scenariuszy zostało udostępnione 
+> Note|Uwaga: sprawdzanie poprawności przy użyciu scenariuszy zostało udostępnione 
 wraz z wersją 1.0.1.
 
 

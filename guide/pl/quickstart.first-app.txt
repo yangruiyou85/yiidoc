@@ -13,7 +13,7 @@ Uruchom `yiic` z wiersza poleceń w następujący sposób:
 % YiiRoot/framework/yiic webapp WebRoot/testdrive
 ~~~
 
-> Uwaga: uruchamiając `yiic` na Mac OS, Linuksie lub Uniksie będziesz może
+> Note|Uwaga: uruchamiając `yiic` na Mac OS, Linuksie lub Uniksie będziesz może
 > musiał zmienić uprawnienia pliku `yiic` tak, aby był on wykonywalny.
 > Alternatywnie możesz użyć tego narzędzia w sposób następujący:
 >
@@ -37,7 +37,7 @@ Jak widać aplikacja składa się z trzech stron: strony domowej, kontaktu
 i strony logowania. Strona domowa prezentuje pewne informacje na temat
 samej aplikacji oraz statusu logowania użytkownika. Strona kontaktowa
 zawiera formularz kontaktowy, poprzez który użytkownik może wysłać swoje
-zapytanie. Strona logowania pozwala użytkownikowi na autentykację,
+zapytanie. Strona logowania pozwala użytkownikowi na uwierzytelnienie,
 poprzedzającą dostęp do uprzywilejowanych zasobów.
 Poniższe zrzuty ekranów prezentują więcej szczegółów.
 
@@ -70,7 +70,7 @@ testdrive/
          shell/              zawiera spersonalizowane polecenia 'yiic shell'
       components/            zawiera komponenty wielokrotnego użytku
          MainMenu.php        klasa widżetu 'MainMenu'
-         Identity.php        klasa 'Identity', przeznaczona do celów autentykacji
+         Identity.php        klasa 'Identity', przeznaczona do celów uwierzytelnienia
          views/              zawiera pliki widoków widżetów
             mainMenu.php     plik widoku widżetu 'MainMenu'
       config/                zawiera pliki konfiguracyjne
