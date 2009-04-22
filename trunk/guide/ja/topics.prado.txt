@@ -1,5 +1,4 @@
 他のテンプレートシステムを使う
-Using Alternative Template Syntax
 =================================
 
 Yiiでは開発者が好みのテンプレートを使ってビューを書くことができます。(例：PradoやSmartyなど)
