@@ -198,7 +198,7 @@ wykonana; jeśli żadna z reguł nie pasuje do zawartości, akcja wciąż może 
 
 a matching-all deny rule at the end of rule set, like the following:
 
-> Tip|Porada: Aby upewnić się, że akcja nie zostanie wykonana dla określonego kontekstu,
+> Tip|Wskazówka: Aby upewnić się, że akcja nie zostanie wykonana dla określonego kontekstu,
 > najlepiej jest zawsze określić na końcu zbioru reguł, regułę, która będzie dotyczyła
 > wszystkich i która zabroni dostępu do tej akcji, jak następuje:
 > ~~~

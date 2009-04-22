@@ -53,7 +53,7 @@ aby usunąć całą wartość z bufora wołamy [flush()|CCache::flush]. Bądź b
 podczas wywoływania [flush()|CCache::flush] ponieważ usuwa ono dane, które zostały 
 zbuforowane dla innych aplikacji.
 
-> Tip|Porada: Ponieważ [CCache] implementuje dostęp przez tablice `ArrayAccess`
+> Tip|Wskazówka: Ponieważ [CCache] implementuje dostęp przez tablice `ArrayAccess`
 > komponent cache może być używany jak tablica. Poniżej znajduje się kilka przykładów:
 > ~~~
 > [php]

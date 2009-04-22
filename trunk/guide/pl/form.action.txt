@@ -32,7 +32,7 @@ na stronę, która poprzednio wymagała uwierzytelnienia. W przypadku gdy walida
 albo gdy akcja wywoływana jest po raz pierwszy generujemy widok `login`, którego 
 zawartość będzie opisana w następnej sekcji.
 
-> Tip|Porada: Podczas akcji `login` używamy `Yii::app()->user->returnUrl` aby otrzymać
+> Tip|Wskazówka: Podczas akcji `login` używamy `Yii::app()->user->returnUrl` aby otrzymać
 adres URL strony, która wymagała uwierzytelnienia. Komponent `Yii::app()->user` jest typu [CWebUser] 
 (lub jego klasy potomne)i reprezentuje dane sesyjne użytkownika (np. nazwę użytkownika, 
 status). Aby otrzymać więcej informacji zobacz [Uwierzytelnienie i autoryzację](/doc/guide/topics.auth).
@@ -60,7 +60,7 @@ $form->password=$_POST['LoginForm']['password'];
 $form->rememberMe=$_POST['LoginForm']['rememberMe'];
 ~~~
 
-> Note|Przypis: Aby umożliwić `$_POST['LoginForm']` zwracanie tablicy zamiast łańcucha znaków, 
+> Note|Uwaga: Aby umożliwić `$_POST['LoginForm']` zwracanie tablicy zamiast łańcucha znaków, 
 pozostajemy przy pewnej konwencji podczas nazywania pól wejściowych w widoku. 
 W szczególności, dla pól wejściowych odpowiadających atrybutowi `a` modelu klasy `C`
 nazywamy go `C[a]`. Na przykład, użyjemy `LoginForm[username]` aby nazwać pole wejściowe 
