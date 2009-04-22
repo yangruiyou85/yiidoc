@@ -49,7 +49,8 @@ aby uzyskać więcej informacji. Poniżej znajduje się lista najczęściej uży
    - SQLite: `sqlite:/sciezka/do/pliku/bazy`,
    - MySQL: `mysql:host=localhost;dbname=testdb`,
    - PostgreSQL: `pgsql:host=localhost;port=5432;dbname=testdb`,
-   - SQL Server: `mssql:host=localhost;dbname=testdb`.   
+   - SQL Server: `mssql:host=localhost;dbname=testdb`,
+   - Oracle: `oci:dbname=//localhost:1521/testdb`
 
 Ponieważ klasa [CDbConnection] rozszerza [CApplicationComponent], możemy użyć jej jako 
 [komponent aplikacji](/doc/guide/basics.application#application-component). 
@@ -230,4 +231,4 @@ while($dataReader->read()!==false)
 
 ~~~
 
-<div class="revision">$Id: database.dao.txt 857 2009-03-20 17:31:09Z qiang.xue $</div>
+<div class="revision">$Id: database.dao.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>

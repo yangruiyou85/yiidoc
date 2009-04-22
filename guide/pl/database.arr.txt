@@ -348,6 +348,19 @@ User::model()->with(array(
 ))->findAll();
 ~~~
 
+Poczynając od wersji 1.0.5, opcje dynamicznych zapytań mogą być również używane dla leniwego ładowania  
+w celu wykonywania zapytań relacyjnych. Aby to zrobić, powinniśmy wywołac metodę, której nazwa jest identyczna
+z nazwą relacji oraz przekazać opcje dynamicznego zapytania jako parametr metody. 
+Na przykład, nastepujący kod zwróci posty użytkownika, których `status` wynosi 1:
+
+~~~
+[php]
+$user=User::model()->findByPk(1);
+$posts=$user->posts(array('condition'=>'status=1'));
+~~~
+
+
+
 Zapytania statystyczne (ang. Statistical Query)
 -----------------
 
@@ -412,4 +425,35 @@ do własnych potrzeb poprzez określenie dodatkowych opcji podczas deklarowania 
    - `having`: klauzula `HAVING`. Domyślnie jest pusta.
 
 
-<div class="revision">$Id: database.arr.txt 922 2009-04-05 21:36:33Z qiang.xue $</div>
+Relacyjne zapytania z nazwanymi podzbiorami
+----------------------------------
+
+> Note|Przypis: Wsparcie dla nazwanych podzbiorów zostało wprowadzone wraz z wersją 1.0.5.
+
+Relacyjne zapytania mogą być wykonywane w połączeniu z [nazwanymi zbiorami](/doc/guide/database.ar#named-scopes).
+Rozróżniamy dwa przypadki. W pierwszym, nazwany podzbiór stosowany jest do głównego modelu. W drugim, nazwany podzbiór stosowany jest 
+do powiązanego modelu. 
+
+Następujący kod pokazuje, jak zastosować nazwane podzbiory do głównego modelu.
+
+~~~
+[php]
+$posts=Post::model()->published()->recently()->with('comments')->findAll();
+~~~
+
+Przypomina to bardzi nierelacyjne zapytanie. Jedyna różnica polega na tym, że mamy wywołanie metody `with()` 
+po łańcuchu wywołań nazwanych podzbiorów. Zapytanie zwróci ostatnio opublikowane posty wraz z ich komentarzami.
+
+Następujący kod pokazuje, jak zastosować nazwane podzbiory do modelu powiązanego.
+
+~~~
+[php]
+$posts=Post::model()->with('comments:recently:approved')->findAll();
+~~~
+
+Powyższe zapytanie zwróci wszystkie posty wraz z zatwierdzonymi komentarzami. Zauważ, że `comments` jest referencją 
+do nazwy relacji, a `recently` oraz `approved` referuje do dwóch nazwanych podzbiorów w klasie modelu `Comment`. 
+Nazwa relacji oraz nazwane podzbiory powinny być rozdzielone dwukropkiem.
+
+
+<div class="revision">$Id: database.arr.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
