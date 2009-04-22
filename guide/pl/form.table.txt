@@ -6,7 +6,7 @@ Inaczej mówiąc, użytkownik może wprowadzić informacje dla wielu instancji m
 oraz przesłać je wszystkie naraz. Nazywamy to *tablicowymi danymi wejściowymi* 
 (ang. tabular input, ponieważ pola wejściowe są często prezentowane w tabeli HTML.
 
-Aby pracować z tabliowymi danymi wejściowymi, musimy najpierw stworzyć lub też 
+Aby pracować z tablicowymi danymi wejściowymi, musimy najpierw stworzyć lub też 
 wypełnić tablice modeli instancji, w zależności od tego czy wstawiamy dane 
 czy też aktualizujemy je. Otrzymujemy wtedy dane wejściowe użytkownika ze zmiennej 
 `$_POST` oraz przypisujemy je do każdego modelu. Drobną różnicą pomiędzy w stosunku 
@@ -37,7 +37,7 @@ public function actionBatchUpdate()
 }
 ~~~
 
-Mając gotową akcję, musimy poprawcować nad widokiem `batchUpdate` aby wyświetlić 
+Mając gotową akcję, musimy popracować nad widokiem `batchUpdate` aby wyświetlić 
 pola wejściowe za pomocą tabeli HTML.
 
 ~~~

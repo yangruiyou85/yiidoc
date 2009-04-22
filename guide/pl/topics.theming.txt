@@ -17,9 +17,9 @@ innym. Po prostu skonfiguruj odpowiednio atrybuty
 komponentu aplikacji [themeManager|CWebApplication::themeManager].
 
 Aby aktywować jakiś temat ustaw atrybut [theme|CWebApplication::theme]
-aplikacji webowej na nazwę tematu, który chesz użyć. Czynność tą możesz
+aplikacji webowej na nazwę tematu, który chcesz użyć. Czynność tą możesz
 wykonać zarówno w [konfiguracji aplikacji](/doc/guide/basics.application#application-configuration),
-jak i w trakcie uruchamiania, poprzez akcję kotrolera.
+jak i w trakcie uruchamiania, poprzez akcję kontrolera.
 
 > Uwaga: Nazwa tematu jest wrażliwa na wielkość liter. Jeżeli próbujesz
 aktywować temat, który nie istnieje `Yii::app()->theme` zwróci `null`.

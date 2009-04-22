@@ -125,13 +125,13 @@ Filtr kontroli dostępu (ang. Access Control Filter)
 ---------------------
 
 
-Filtr kontroli dostępu jest wstępnym schmatem autoryzacji, który sprawdza, 
+Filtr kontroli dostępu jest wstępnym schematem autoryzacji, który sprawdza, 
 czy aktualny użytkownik może wywoływać żądaną przez kontroler akcję. Autoryzacja 
 bazuje na nazwie użytkownika, adresie IP klienta oraz type żądania. Jest ona dostarczona 
 jako filtr nazwany ["accessControl"|CController::filterAccessControl].
 
 > Tip| Porada: Filtr kontroli dostępu jest wystarczający dla prostych scenariuszy. 
-Dla skomplikowanej kotroli dostępu możesz użyć bazującej na rolach kontroli dostępu 
+Dla skomplikowanej kontroli dostępu możesz użyć bazującej na rolach kontroli dostępu 
 (RBAC - role-based access control), która zostanie przedstawiona w dalszej części.
 
 Aby kontrolować dostęp do akcji w kontrolerze instalujemy filtr kontroli akcji 
@@ -239,7 +239,7 @@ Reguła dostępu może pasować do następujących parametrów kontekstowych:
 
    - [verbs|CAccessRule::verbs]: określa typ żądania (np.`GET`, `POST`) pasującej reguły. Porównywanie nie uwzględnia wielkości liter.
 
-   - [expression|CAccessRule::expression]: określnia wyrażenie PHP, którego wartość
+   - [expression|CAccessRule::expression]: określenia wyrażenie PHP, którego wartość
    określa czy reguła jest pasującą. W wyrażeniach możesz używać zmiennej użytkownika `$user`,
    która referuje do `Yii::app()->user`. Opcja ta została udostępniona od wersji 1.0.3.
 
@@ -259,7 +259,7 @@ relatywny jak i absolutny URL. Można również przekazać tablicę, która będ
 używana do wygenerowania URL poprzez wywołanie [CWebApplication::createUrl]. 
 Pierwszy element tablicy powinien określać [ścieżkę](/doc/guide/basics.controller#route) 
 do akcji logowania kontrolera a pozostałe pary parametrów nazwa-wartość 
-są parametrami GET. Na przykad, 
+są parametrami GET. Na przykład, 
 
 ~~~
 [php]
@@ -267,7 +267,7 @@ array(
 	......
 	'components'=>array(
 		'user'=>array(
-		  // to jest aktualnei wartość domyślna
+		  // to jest aktualna wartość domyślna
 			'loginUrl'=>array('site/login'),
 		),
 	),
@@ -276,7 +276,7 @@ array(
 
 Jeśli przeglądarka zostanie przekierowana do strony logowania i logowanie zakończy
 się sukcesem, możemy chcieć aby przeglądarka została przekierowana z powrotem
-do strony, na której wystapił bład autoryzacji. Skąd znamy URL dla tej strony?
+do strony, na której wystąpił błąd autoryzacji. Skąd znamy URL dla tej strony?
 Możemy otrzymać tą informację z właściwości [returnUrl|CWebUser::returnUrl] komponentu
 użytkownika. Możemy zrobić co następuje aby wykonać przekierowanie:
 
@@ -293,8 +293,8 @@ scentralizowanej kontroli dostępu. Zobacz [artykuł wiki](http://en.wikipedia.o
 aby uzyskać więcej szczegółów dotyczących porównania RBAC z innymi, bardziej tradycyjnymi
 schematami kontroli dostępu.
 
-Yii implementuje hierarchiczny schmat RBAC przy użyciu komponentu aplikacji 
-[authManager|CWebApplication::authManager]. W dalszej cześci, przedstawimy
+Yii implementuje hierarchiczny schemat RBAC przy użyciu komponentu aplikacji 
+[authManager|CWebApplication::authManager]. W dalszej części, przedstawimy
 główne założenia używane w tym schemacie; później opiszemy jak zdefiniować 
 dane autoryzacji; na końcu pokażemy jak użyć te dane aby wykonać sprawdzenie dostępu.
 
@@ -308,19 +308,19 @@ oraz grupy docelowej, jednostka autoryzacji może zostać sklasyfikowana jako
 Rola zawiera zadania, zadanie zawiera operacje a operacja jest pozwoleniem, które jest
 atomowe. Na przykład, możemy posiadać system w którym rola administratora `administrator`
 posiada zadanie zarządzania postami `post management` oraz zarządzania użytkownikami `user management`.
-Zadanie zarządzania użytkownikami `user management` może zawierać operacje utworzeznia użytkownika `create user`,
-aktualizacji użytkownika `update user` oraz usuniecia użytkowika `delete user`.
+Zadanie zarządzania użytkownikami `user management` może zawierać operacje utworzenia użytkownika `create user`,
+aktualizacji użytkownika `update user` oraz usunięcia użytkownika `delete user`.
 Dla uzyskania większej elastyczności, Yii pozwala również roli na posiadanie 
 innych ról lub operacji, zadaniu na posiadanie innych zadań a operacji ma posiadanie innych
 operacji.
 
 Jednostka autoryzacji jest jednoznacznie identyfikowana przez swoją nazwę.
 
-Jednosta autoryzacji może być powiązana z *regułą biznesową* (ang. business rule).
+Jednostka autoryzacji może być powiązana z *regułą biznesową* (ang. business rule).
 Rola biznesowa jest kawałkiem kodu PHP, który będzie wywołany, podczas sprawdzania 
 dostępu na poziomie jednostki. Tylko wtedy gdy wywołanie zwróci true, użytkownikowi 
 zostanie nadane uprawnienie reprezentowane przez jednostkę. Na przykład, kiedy 
-definiujemy operację aktualizwania postu `updatePost`, chcielibyśmy dodać regułę biznesową, 
+definiujemy operację aktualizowania postu `updatePost`, chcielibyśmy dodać regułę biznesową, 
 która sprawdza czy ID użytkownika jest identyczne z ID autora postu, tak że tylko 
 autor sam będzie miał pozwolenie na aktualizację postu.
 
@@ -343,7 +343,7 @@ zarządzanie użytkownikami `user management` (oraz odpowiadające operacje, tak
 tworzenie użytkowników `create user`).
 
 Teraz rozpoczyna się najzabawniejsza część. W akcji kontrolera, możemy sprawdzić, 
-czy aktualny użytkownik może usunąc konkretny post. Używając hierarchii RBAC oraz 
+czy aktualny użytkownik może usunąć konkretny post. Używając hierarchii RBAC oraz 
 przyporządkowań, można to zrobić prosto w następujący sposób:
 
 ~~~
@@ -517,7 +517,7 @@ bezpośrednio przypisywać do użytkownika. Kiedy wywołujemy [CWebUser::checkAc
 domyślne role będą sprawdzone najpierw jeśli są one przypisane do użytkownika.
 
 Domyślne role muszą zostać zadeklarowane we właściwości [CAuthManager::defaultRoles].
-Na przykład, nastepująca konfiguracja deklaruje dwie role, które będą domyślnymi: 
+Na przykład, następująca konfiguracja deklaruje dwie role, które będą domyślnymi: 
 `authenticated` (uwierzytelniony) oraz `guest` (gość).
 
 ~~~

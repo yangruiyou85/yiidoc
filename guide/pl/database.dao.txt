@@ -41,12 +41,12 @@ $connection->active=true;
 $connection->active=false;  // zamknij połączenie
 ~~~
 
-Format adres DNS zależy od używanego sterownika PDO dla danej bazy danych. Uogólniając, 
+Format adresu DNS zależy od używanego sterownika PDO dla danej bazy danych. Uogólniając, 
 DNS składa się z nazwy sterownika PDO, po którym następuje przecinek a następnie 
 zależna od sterownika składnia połączenia. Zobacz [dokumentację PDO](http://www.php.net/manual/en/pdo.construct.php) 
 aby uzyskać więcej informacji. Poniżej znajduje się lista najczęściej używanych formatów DNS:
 
-   - SQLite: `sqlite:/sciezka/do/pliku/bazy`,
+   - SQLite: `sqlite:/scieżka/do/pliku/bazy`,
    - MySQL: `mysql:host=localhost;dbname=testdb`,
    - PostgreSQL: `pgsql:host=localhost;port=5432;dbname=testdb`,
    - SQL Server: `mssql:host=localhost;dbname=testdb`,
