@@ -158,4 +158,4 @@ Jednakże, nie jest to prawdą, jeśli systuacja się odwróci. Jeśli zewnętrz
 zawiera poprawne dane, będzie on zawsze dostarczał zbuforowaną kopię, nawet jeśli 
 zawartość w wewnętrznym buforze wygaśnie.
 
-<div class="revision">$Id: caching.fragment.txt 891 2009-03-25 15:20:56Z qiang.xue $</div>
+<div class="revision">$Id: caching.fragment.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>

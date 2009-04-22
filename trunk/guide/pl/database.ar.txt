@@ -78,8 +78,11 @@ Wsparcie dla AR jest ograniczone przez DBMS. Aktualnie, tylko następujące DBMS
    - [MySQL 4.1 lub późniejsze](http://www.mysql.com)
    - [PostgreSQL 7.3 lub późniejsze](http://www.postgres.com)
    - [SQLite 2 oraz 3](http://www.sqlite.org)
-   - [Microsoft SQL Server 2000 lub nowsze](http://www.microsoft.com/sqlserver/)   
-
+   - [Microsoft SQL Server 2000 lub nowsze](http://www.microsoft.com/sqlserver/)
+   - [Oracle](http://www.oracle.com)
+   
+> Note|Przypis: Wsparice dla Microsoft SQL Server jest dostępnce od wersji 1.0.4;
+> a wsparcie dla Oracle'a od wersji 1.0.5.   
 
 Jeśli chesz używać komponentu aplikacji innego niż `db` lub jeśli chcesz pracować z wieloma 
 bazami danych używając AR, powinieneś nadpisać metodę [CActiveRecord::getDbConnection()]. 
@@ -492,4 +495,77 @@ catch(Exception $e)
 }
 ~~~
 
-<div class="revision">$Id: database.ar.txt 891 2009-03-25 15:20:56Z qiang.xue $</div>
+Nazwane podzbiory (ang. Named Scopes)
+------------
+
+> Note|Przypis: Wsparcie dla nazwanych podzbiorów zostało udostępnione wraz z wersją 1.0.5.
+> Pierwotny pomysł na nazwane podzbiory pochodzi z Ruby on Rails.
+
+*Nazwany podzbiór* reprezentuje *nazwane* kryteria zapytania, które mogą być połączone z innymi nazwanymi podzbiorami  
+i zastosowane do zapytania generowanego przez rekord aktywny. 
+
+Nazwane podzbiory deklarowane są głównie w metodzie [CActiveRecord::scopes()] jako pary nazwa-kryterium.
+Następujący kod definiuje dwa nazwane podzbiory, `opublikowane` oraz `najnowsze` w klasie modelu `Post`:
+
+~~~
+[php]
+class Post extends CActiveRecord
+{
+  ......
+  public function scopes()
+  {
+    return array(
+      'opublikowane'=>array(
+        'condition'=>'status=1',
+      ),
+      'najnowsze'=>array(
+        'order'=>'createTime DESC',
+        'limit'=>5,
+      ),
+    );
+  }
+}
+~~~
+
+Każdy nazwany podzbiór jest definiowany jako tablica, która może zostać użyta do inicjalizacji instancji klasy [CDbCriteria].
+Na przykład, nazwany zbiór `najnowsze` określa właściwość `order` jako `createTime DESC` oraz nadaje właściwośi `limit` wartość 5,
+które przetłumaczone na kryteria zapytania, powinny zwrócić ostatnich 5 postów.
+
+Nazwane podzbiory używane są jako modyfikaotry dla wywołań metody `find`. Kilka nazwanych podzbiorów może zostać ze sobą połączonych 
+i w rezultacie tego zwrócić bardziej ograniczony zbiór wynikowy. Na przykład, aby znaleźć ostatnio opublikowane posty, możemy użyć następującego kodu:
+
+~~~
+[php]
+$posts=Post::model()->obubliowane()->najnowsze()->findAll();
+~~~
+
+Ogólnie rzecz biorąc, nazwane podzbiory musza pojawić się po lewej stronie od wywołania metody `find`. Każde z nich dostarcza kryteria zapytania ,
+które sa łączone z pozostałymi kryteriami, włączając w to te, które zostały prekazane do metody `find`. Efekt końcowy jest podobny do tego,  
+jakby do zapytania dodano listę filtrów.
+
+Nazwane podzbiory mogą by sparametryzowane. Na przykład, chcemy dostosować liczbę postów określoną w nazwanym podzbiorze `najnowsze`. 
+Aby to zrobić, zamiast deklarować nazwany podzbióde w metodzie [CActiveRecord::scopes], musimy zdefiniować nową metodę, 
+której nazwa jest taka sama jak jak nazwa podzbioru:
+
+~~~
+[php]
+public function najnowsze($limit=5)
+{
+  $this->getDbCriteria()->mergeWith(array(
+    'order'=>'createTime DESC',
+    'limit'=>$limit,
+  ));
+  return $this;
+}
+~~~
+
+Następnie, możemy używać następującego wyrażenia, aby uzyskać 3 ostatnie opublikowane posty:
+
+~~~
+[php]
+$posts=Post::model()->opublikowane()->najnowsze(3)->findAll();
+~~~
+
+Jeśli w powyższym kodzie nie przekazalibyśmy 3, otrzymalibyśmy domyslnie 5 ostatnio opubliowanyc postów.
+
+<div class="revision">$Id: database.ar.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
