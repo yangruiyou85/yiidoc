@@ -81,10 +81,10 @@ Wsparcie dla AR jest ograniczone przez DBMS. Aktualnie, tylko następujące DBMS
    - [Microsoft SQL Server 2000 lub nowsze](http://www.microsoft.com/sqlserver/)
    - [Oracle](http://www.oracle.com)
    
-> Note|Uwaga: Wsparice dla Microsoft SQL Server jest dostępnce od wersji 1.0.4;
+> Note|Uwaga: Wsparcie dla Microsoft SQL Server jest dostępne od wersji 1.0.4;
 > a wsparcie dla Oracle'a od wersji 1.0.5.   
 
-Jeśli chesz używać komponentu aplikacji innego niż `db` lub jeśli chcesz pracować z wieloma 
+Jeśli chcesz używać komponentu aplikacji innego niż `db` lub jeśli chcesz pracować z wieloma 
 bazami danych używając AR, powinieneś nadpisać metodę [CActiveRecord::getDbConnection()]. 
 Klasa [CActiveRecord] jest klasą bazową dla wszystkich klas AR.
 
@@ -212,7 +212,7 @@ $post->save();
 Odczytywanie rekordu
 --------------
 
-Abu odczytać dane z tabeli bazodanowej wołany jedną z następujących metod `find`:
+Aby odczytać dane z tabeli bazodanowej wołany jedną z następujących metod `find`:
 
 ~~~
 [php]
@@ -287,7 +287,7 @@ podobnych do `findByNameAndTitle`. Chociaż to podejście wygląda bardzo atrakc
 często powoduje zamieszanie, konflikty oraz problemy np. z czułością na wielkość liter 
 w nazwach kolumn.
 
-Kiedy więcej wierszy danych pasuje do wyspecyfikowanych warunków zapytania, możemy
+Kiedy więcej wierszy danych pasuje do określonych warunków zapytania, możemy
 dostarczyć je wszystkie razem używając następujących metod `findAll`, z których
 każda ma swój odpowiednik w metodzie `find`, tak jak było to wcześniej opisane.
 
@@ -315,7 +315,7 @@ Poza opisanymi powyżej metodami `find` and `findAll`, dla wygody dostarczono na
 $n=Post::model()->count($condition,$params);
 // zwraca ilość wierszy używanych w określonym wyrażeniu SQL
 $n=Post::model()->countBySql($sql,$params);
-// sprawdza czy istnieje przynajmniej jeden wierszs spełniający określone warunki
+// sprawdza czy istnieje przynajmniej jeden wiersz spełniający określone warunki
 $exists=Post::model()->exists($condition,$params);
 ~~~
 
@@ -329,7 +329,7 @@ i zapisać je z powrotem w tabeli bazodanowej.
 [php]
 $post=Post::model()->findByPk(10);
 $post->title='nowy tytuł postu';
-$post->save(); // sapisz zmiany do bazy danych
+$post->save(); // zapisz zmiany do bazy danych
 ~~~
 
 Jak widać, używamy tej samej metody [save()|CActiveRecord::save] do wykonania operacji 
@@ -528,23 +528,23 @@ class Post extends CActiveRecord
 ~~~
 
 Każdy nazwany podzbiór jest definiowany jako tablica, która może zostać użyta do inicjalizacji instancji klasy [CDbCriteria].
-Na przykład, nazwany zbiór `najnowsze` określa właściwość `order` jako `createTime DESC` oraz nadaje właściwośi `limit` wartość 5,
+Na przykład, nazwany zbiór `najnowsze` określa właściwość `order` jako `createTime DESC` oraz nadaje właściwości `limit` wartość 5,
 które przetłumaczone na kryteria zapytania, powinny zwrócić ostatnich 5 postów.
 
-Nazwane podzbiory używane są jako modyfikaotry dla wywołań metody `find`. Kilka nazwanych podzbiorów może zostać ze sobą połączonych 
+Nazwane podzbiory używane są jako modyfikatory dla wywołań metody `find`. Kilka nazwanych podzbiorów może zostać ze sobą połączonych 
 i w rezultacie tego zwrócić bardziej ograniczony zbiór wynikowy. Na przykład, aby znaleźć ostatnio opublikowane posty, możemy użyć następującego kodu:
 
 ~~~
 [php]
-$posts=Post::model()->obubliowane()->najnowsze()->findAll();
+$posts=Post::model()->obublikowane()->najnowsze()->findAll();
 ~~~
 
 Ogólnie rzecz biorąc, nazwane podzbiory musza pojawić się po lewej stronie od wywołania metody `find`. Każde z nich dostarcza kryteria zapytania ,
-które sa łączone z pozostałymi kryteriami, włączając w to te, które zostały prekazane do metody `find`. Efekt końcowy jest podobny do tego,  
+które sa łączone z pozostałymi kryteriami, włączając w to te, które zostały przekazane do metody `find`. Efekt końcowy jest podobny do tego,  
 jakby do zapytania dodano listę filtrów.
 
 Nazwane podzbiory mogą by sparametryzowane. Na przykład, chcemy dostosować liczbę postów określoną w nazwanym podzbiorze `najnowsze`. 
-Aby to zrobić, zamiast deklarować nazwany podzbióde w metodzie [CActiveRecord::scopes], musimy zdefiniować nową metodę, 
+Aby to zrobić, zamiast deklarować nazwany podzbiór w metodzie [CActiveRecord::scopes], musimy zdefiniować nową metodę, 
 której nazwa jest taka sama jak jak nazwa podzbioru:
 
 ~~~
@@ -566,6 +566,6 @@ Następnie, możemy używać następującego wyrażenia, aby uzyskać 3 ostatnie
 $posts=Post::model()->opublikowane()->najnowsze(3)->findAll();
 ~~~
 
-Jeśli w powyższym kodzie nie przekazalibyśmy 3, otrzymalibyśmy domyslnie 5 ostatnio opubliowanyc postów.
+Jeśli w powyższym kodzie nie przekazalibyśmy 3, otrzymalibyśmy domyślnie 5 ostatnio opublikowanych postów.
 
 <div class="revision">$Id: database.ar.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>

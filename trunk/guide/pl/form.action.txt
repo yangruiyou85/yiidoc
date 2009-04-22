@@ -1,7 +1,7 @@
 Tworzenie akcji
 ===============
 
-Kiedy mamy już model, możemy rozpocząc pisanie logiki, którą potrzebujemy aby 
+Kiedy mamy już model, możemy rozpocząć pisanie logiki, którą potrzebujemy aby 
 manipulować modelem. Umieszczamy tą logikę wewnątrz kontrolera akcji. Na przykład, 
 dla logowania, potrzebujemy następującego kodu:
 
@@ -14,7 +14,7 @@ public function actionLogin()
 	{
 		// zbierz dane wejściowe od użytkownika
 		$form->attributes=$_POST['LoginForm'];
-		// sprawdz poprawność danych wejściowych oraz przekieruj do poprzedniej strony jeśli 
+		// sprawdź poprawność danych wejściowych oraz przekieruj do poprzedniej strony jeśli 
 		// walidacja powiedzie się
 		if($form->validate())
 			$this->redirect(Yii::app()->user->returnUrl);
@@ -48,7 +48,7 @@ $form->attributes=$_POST['LoginForm'];
 Tak jak napisaliśmy w [ochronie przypisania atrybutów](/doc/guide/form.model#securing-attribute-assignments),
 ta linia kodu wypełnia model danymi przesłanymi przez użytkownika. Właściwość 
 `attributes` jest definiowana przez klasę [CModel] i oczekuje tablicy par nazwa-wartość, 
-które potem przupisuje do każdej wartości atrybutu odpowiedniego modelu. 
+które potem przypisuje do każdej wartości atrybutu odpowiedniego modelu. 
 Zatem, jeśli `$_POST['LoginForm']` zwróci nam taką tablicę, powyższy kod będzie 
 równoznaczny do następującego, długiego kodu (zakładając ze każdy wymagany atrybut 
 jest obecny w tablicy):

@@ -184,8 +184,8 @@ Na przykład, następujący kod zwróci posty razem z ich autorami oraz kategori
 $posts=Post::model()->with('author','categories')->findAll();
 ~~~
 
-Możemy również korzystać z zagnieżdżonych gorliwyc ładowań. Zamiast listy nazw relacji, 
-przekazujemy w psotaci hierarchicznej nazwy relacji do metody [with()|CActiveRecord::with] 
+Możemy również korzystać z zagnieżdżonych gorliwych ładowań. Zamiast listy nazw relacji, 
+przekazujemy w postaci hierarchicznej nazwy relacji do metody [with()|CActiveRecord::with] 
 w następujący sposób:
 
 ~~~
@@ -209,7 +209,7 @@ potrzebujemy wykonać 3 zapytania SQL, ponieważ występują tam właściwości 
 oraz `categories`. Pozostałe frameworki mają bardziej radykalne podejście używając
 tylko jedno zapytanie SQL. Na pierwszy rzut oka, to radykalne podejście wygląda bardziej
 wydajnie, ponieważ parsowanych i wykonywanych przez DBMS jest mniej zapytań. 
-W rzeczywistości jest to niepraktyczne z dwóch powodów. Po pierwsze, występywanie 
+W rzeczywistości jest to niepraktyczne z dwóch powodów. Po pierwsze, występowanie 
 wielu powtarzających kolumn danych w rezultacie zapytania, co zajmuje dodatkowy czas 
 podczas przetwarzania oraz przesyłania. Po drugie, liczba wierszy w zwracanych wzrasta 
 wykładniczo wraz z zwiększającą się ilością tabel, co czyni je po prostu trudnymi 
@@ -244,7 +244,7 @@ Domyślną wartością jest '*', oznaczająca wszystkie kolumny. Nazwy kolumn po
 rozróżnione za pomocą `aliasToken` (tokenu aliasu) jeśli pojawiają się w wyrażeniu (np.
 `COUNT(??.name) AS nameCount`).
 
-   - `condition`: kluzula `WHERE`. Domyślnie pusta. Zauważ, że referencje do kolumn
+   - `condition`: klauzula `WHERE`. Domyślnie pusta. Zauważ, że referencje do kolumn
 powinny zostać rozróżnione przy użyciu `aliasToken` (np. `??.id=10`).
 
    - `params`: parametry, które zostaną przypięte do wygenerowanego wyrażenia SQL. 
@@ -281,7 +281,7 @@ DESC`).
    Opcja ta jest dostępna od wersji 1.0.3.
 
    - `group`: klauzula `GROUP BY`. Domyślnie pusta. Zauważ, że referencje do kolumn
-   muszą zostać rozróżnione przy używiu `aliasToken` (np. `??.age`).
+   muszą zostać rozróżnione przy użyciu `aliasToken` (np. `??.age`).
 
    - `having`: klauzula `HAVING`. Domyślnie pusta. Zauważ, że reference do kolumn
    muszą zostać rozróżnione przy użyciu `aliasToken` (np. `??.age`). Uwaga, opcja ta jest dostępna 
@@ -293,7 +293,7 @@ Dodatkowo, następujące opcje są dostępne dla wybranych relacji podczas opó�
    - `limit`: ogranicza ilość zwracanych wierszy. Opcja ta nie ma zastosowania 
    dla relacji `BELONGS_TO`.
 
-   - `offset`: ofset dla zwracanych wierszy. Opcja ta nie ma zastosowania 
+   - `offset`: offset dla zwracanych wierszy. Opcja ta nie ma zastosowania 
    dla relacji `BELONGS_TO`.
 
   Poniżej zmodyfikujemy deklarację relacji `posts` w klasie `User` poprzez 
@@ -317,10 +317,10 @@ class User extends CActiveRecord
 
 Teraz jeśli odczytamy `$author->posts`, powinniśmy otrzymać autorów postów 
 posortowanych malejąco wg czasu ich utworzenia. Każda instancja postu będzie 
-również posiadała wczytaną odpowiadającą jej katergorię.
+również posiadała wczytaną odpowiadającą jej kategorię.
 
 > Info|Info: Kiedy nazwa kolumny pojawia się w dwóch lub więcej tabelach, które są złączane, 
-należy je rozróżnić. Robi się ro za pomocą dodania prefiksu do nazwy kolumny zawierającego
+należy je rozróżnić. Robi się to za pomocą dodania prefiksu do nazwy kolumny zawierającego
 nazwę tabeli kolumny. Na przykład, `id` staje się `Team.id`. Jednakże w relacyjnych 
 zapytaniach AR nie mamy takiej możliwości ponieważ wyrażenia SQL są generowane automatycznie
 przez AR, które dodaje systematycznie do każdej tabeli alias. Dlatego też, 
@@ -334,7 +334,7 @@ Dynamiczne opcje pytań relacyjnych
 --------------------------------
 
 Wraz z wersją 1.0.2 możemy używać dynamicznych opcji zapytań relacyjnych zarówno w metodzie 
-[with()|CActiveRecord::with] jak i opcji `with`. Dynamiczne opcje nadpisza istniejące 
+[with()|CActiveRecord::with] jak i opcji `with`. Dynamiczne opcje nadpiszą istniejące 
 opcje tak jak zostało to określone w metodzie [relations()|CActiveRecord::relations].
 Na przykład, dla powyższego modelu `User`, jeśli chcemy używać techniki gorliwego ładowania
 aby zwrócić posty należące do autora sortujące jest rosnąco 
@@ -349,9 +349,9 @@ User::model()->with(array(
 ~~~
 
 Poczynając od wersji 1.0.5, opcje dynamicznych zapytań mogą być również używane dla leniwego ładowania  
-w celu wykonywania zapytań relacyjnych. Aby to zrobić, powinniśmy wywołac metodę, której nazwa jest identyczna
+w celu wykonywania zapytań relacyjnych. Aby to zrobić, powinniśmy wywołać metodę, której nazwa jest identyczna
 z nazwą relacji oraz przekazać opcje dynamicznego zapytania jako parametr metody. 
-Na przykład, nastepujący kod zwróci posty użytkownika, których `status` wynosi 1:
+Na przykład, następujący kod zwróci posty użytkownika, których `status` wynosi 1:
 
 ~~~
 [php]
@@ -366,12 +366,12 @@ Zapytania statystyczne (ang. Statistical Query)
 
 > Note|Uwaga: Zapytania statystyczne są wspierane od wersji 1.0.4
 
-Poza zapytaniami relacyjnymi opisanymi powużej, Yii wspiera również tak zwane zapytania statystyczne (lub zapytania agregacyjne). Odnoszą się one do uzyskiwania agregowanych 
+Poza zapytaniami relacyjnymi opisanymi powyżej, Yii wspiera również tak zwane zapytania statystyczne (lub zapytania agregacyjne). Odnoszą się one do uzyskiwania agregowanych 
 informacji o powiązanych obiektach, takich jak liczba komentarzy dla każdego postu, średni ocena dla każdego produktu, itp. Zapytania statystyczne mogą być wykonywane dla obiektów   
 wskazywanych w relacji `HAS_MANY` (np. post ma wiele komentarzy) lub `MANY_MANY` (np. post należy do wielu kategorii a kategoria ma wiele postów).
 
-Wykonywania zapytań statystycznych jest bardzo podobne do wykonywania opisanych wcześniej zapytań relacyjnych. Najpier muslimy zdefiniować zapytanie statystyczne w metodzie 
-[relations()|CActiveRecord::relations] klasy [CActiveRecord] tak jak robimy to dla zapytań relacynych.
+Wykonywania zapytań statystycznych jest bardzo podobne do wykonywania opisanych wcześniej zapytań relacyjnych. Najpierw musimy zdefiniować zapytanie statystyczne w metodzie 
+[relations()|CActiveRecord::relations] klasy [CActiveRecord] tak jak robimy to dla zapytań relacyjnych.
 
 
 ~~~
@@ -390,11 +390,11 @@ class Post extends CActiveRecord
 
 Powyżej zadeklarowaliśmy dwa zapytania statystyczne: `commentCount` oblicza ilość komentarzy należących do postu a `categoryCount` oblicza ilość kategorii do których należy post. 
 Zauważ, że relacja pomiędzy `Post` a `Comment` jest relacją `HAS_MANY`, podczas gdy relacja pomiędzy `Post` a `Category` jest relacją `MANY_MANY` 
-(wraz z łączącą je tabelą `PostCategory`). Jak możemy zuważyć, deklaracja jest bardzo podobna do tych z relacji opisywanych we wcześniejszych podpunktach.
+(wraz z łączącą je tabelą `PostCategory`). Jak możemy zauważyć, deklaracja jest bardzo podobna do tych z relacji opisywanych we wcześniejszych podpunktach.
 Jedyną różnicą jest to, że typem relacji jest tutaj `STAT`.
 
 Przy użyciu powyższej deklaracji możemy otrzymać ilość komentarzy dla postu przy użyciu wyrażenia `$post->commentCount`. Jeśli użyjemy tej właściwości po raz pierwszy,  
-wyrażenie SQL zostanie wywołane w ukryciu w celu uzyskania porządanego rezultatu. Jak już wiemy, jest to tak zwane *leniwe ładowanie*.
+wyrażenie SQL zostanie wywołane w ukryciu w celu uzyskania pożądanego rezultatu. Jak już wiemy, jest to tak zwane *leniwe ładowanie*.
 Możemy również używać *gorliwego ładowania*  jeśli chcemy dowiedzieć uzyskać ilość komentarzy dla wielu postów.
 
 ~~~
@@ -405,16 +405,16 @@ $posts=Post::model()->with('commentCount', 'categoryCount')->findAll();
 Powyższe wyrażenie wykona trzy zapytania SQL aby zwrócić wszystkie posty razem z policzonymi komentarzami oraz policzonymi kategoriami. Używając podejścia leniwego ładowania 
 skończylibyśmy z `2*N+1` zapytaniami SQL, gdzie `N` to ilość postów.
 
-Domyślnie zapytanie statystyczne użyje wyrażenia `COUNT` do obliczeń (i w ten sposób policzny komentarze oraz kategorie w powyższych przykładach). Możemy je dostosować 
+Domyślnie zapytanie statystyczne użyje wyrażenia `COUNT` do obliczeń (i w ten sposób policzymy komentarze oraz kategorie w powyższych przykładach). Możemy je dostosować 
 do własnych potrzeb poprzez określenie dodatkowych opcji podczas deklarowania go w metodzie [relations()|CActiveRecord::relations]. Podsumowanie dostępnych opcji znajduje się poniżej.
 
 
    - `select`: wyrażenie statystyczne. Domyślnie `COUNT(*)`, co oznacza liczenie obiektów potomnych.
 
-   - `defaultValue`: wartośc jaka będzie przypuisana do tych rekordów, dla których nie zostaną zwrócone rezultaty zapytania statystycznego. Na przykład, jeśli post nie posiada 
-   żadnych komentarzy, jego `commentCount` otrzyma tą wartość. Wartość domyślna dla tegj opcji to zero.
+   - `defaultValue`: wartość jaka będzie przypisana do tych rekordów, dla których nie zostaną zwrócone rezultaty zapytania statystycznego. Na przykład, jeśli post nie posiada 
+   żadnych komentarzy, jego `commentCount` otrzyma tą wartość. Wartość domyślna dla tej opcji to zero.
 
-   - `condition`: kaluzula `WHERE`. Domyślnie jest pusta.
+   - `condition`: klauzula `WHERE`. Domyślnie jest pusta.
 
    - `params`: parametry, które mają zostać związane z wygenerowanym zapytaniem SQL. Powinny być one przekazane jako tablica par nazwa-wartość.  
 
@@ -441,7 +441,7 @@ Następujący kod pokazuje, jak zastosować nazwane podzbiory do głównego mode
 $posts=Post::model()->published()->recently()->with('comments')->findAll();
 ~~~
 
-Przypomina to bardzi nierelacyjne zapytanie. Jedyna różnica polega na tym, że mamy wywołanie metody `with()` 
+Przypomina to bardziej nierelacyjne zapytanie. Jedyna różnica polega na tym, że mamy wywołanie metody `with()` 
 po łańcuchu wywołań nazwanych podzbiorów. Zapytanie zwróci ostatnio opublikowane posty wraz z ich komentarzami.
 
 Następujący kod pokazuje, jak zastosować nazwane podzbiory do modelu powiązanego.
