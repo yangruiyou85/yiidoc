@@ -1,5 +1,6 @@
 * 初めに
     - [Yiiの公式ガイド](index)
+    - [新機能](changes)
     - [Yiiとは何でしょうか](quickstart.what-is-yii)
     - [インストール](quickstart.installation)
     - [初めてのYiiアプリケーションの作成](quickstart.first-app)
