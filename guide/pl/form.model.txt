@@ -125,7 +125,7 @@ instancja walidatora zostanie stworzona w celu dokonania sprawdzenia danych. Dod
 opcje w regule są używane do zainicjalizowania wartości instancji atrybutu. 
 Klasa walidatora musi rozszerzać klasę [CValidator].
 
-> Note|Uwaga: Kiedy określamy regułę dla modelu aktywnego rekordu, możemy używać we can use a
+> Note|Uwaga: Kiedy określamy regułę dla modelu aktywnego rekordu, możemy używać 
 specjalnej opcji nazwanej `on`. Opcja ta może posiadać wartość `'insert'` (wstawianie) lub
 `'update'` (aktualizowanie), tak, że reguła ta ma zastosowanie podczas wstawiania lub 
 aktualizowania rekordu. Gdy nie jest ona ustawiona, reguła będzie miała zastosowanie 
