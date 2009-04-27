@@ -431,15 +431,18 @@ catch(Exception $e)
 }
 ~~~
 
-Named Scopes
+
+Named Scope
 ------------
 
-> Note: The support for named scopes has been available since version 1.0.5.
-> The original idea of named scopes came from Ruby on Rails.
+> Note|注意: Named Scope のサポートは、バージョン 1.0.5 以降で有効です。
+> Named Scope の発想元は、Ruby on Rails から来ました。
 
-A *named scope* represents a *named* query criteria that can be combined with other named scopes and applied to an active record query.
+*Named Scope* は、他の Named Scope に結合して、アクティブレコードクエリーに適用できる、
+*Named（名前の付けられた）*クエリー基準（クライテリア）のことです。
 
-Named scopes are mainly declared in the [CActiveRecord::scopes()] method as name-criteria pairs. The following code declares three named scopes, `published` and `recently`, in the `Post` model class:
+Named Scope は主に、名前 - 基準の対として、[CActiveRecord::scopes()] メソッドで宣言されます。
+下記コードでは、`Post` モデルクラスで `published` と `recently` の 2 つの Named Scope を宣言しています:
 
 ~~~
 [php]
@@ -461,18 +464,29 @@ class Post extends CActiveRecord
 }
 ~~~
 
-Each named scope is declared as an array which can be used to initialize a [CDbCriteria] instance. For example, the `recently` named scope specifies that the `order` property to be `createTime DESC` and the `limit` property to be 5, which translates to a query criteria that should bring back the most recent 5 posts.
+各 Named Scope は、[CDbCriteria] インスタンスを初期化するのに使用できる
+配列として宣言されます。
+例えば、`recently` Named Scope は、`order` プロパティを `createTime DESC` に、
+`limit` プロパティを 5 に（最新の 5 件を返すはずであるクエリー基準として解釈される）
+指定します。
 
-Named scopes are used as modifiers to the `find` method calls. Several named scopes may be chained together and result in a more restrictive query result set. For example, to find the recently published posts, we can use the following code:
+Named Scope は、`find` メソッド呼び出しの修飾句としてとして使用されます。
+いくつかの Named Scope が、連結されて使用されると、より絞り込まれたクエリ結果のセットが返ります。
+例えば、最近公開された（published）投稿を見つけるために、下記コードを利用できます:
 
 ~~~
 [php]
 $posts=Post::model()->published()->recently()->findAll();
 ~~~
 
-In general, named scopes must appear to the left of a `find` method call. Each of them provides a query criteria, which is combined with other criterias, including the one passed to the `find` method call. The net effect is like adding a list of filters to a query.
+一般的に、Named Scope は `find` メソッド呼び出しの左側に現れなくてはなりません。
+それらは `find` メソッド呼び出しへ渡されたものを含むクエリー基準（他の基準と結合されて）を提供します。
+実際は、クエリーにフィルタのリストを加えるのとほぼ同じです。
 
-Named scopes can be parameterized. For example, we may want to customize the number of posts specified by the `recently` named scope. To do so, instead of declaring the named scope in the [CActiveRecord::scopes] method, we need to define a new method whose name is the same as the scope name:
+Named Scope はパラメータ化することが可能です。
+例えば、`recently` Named Scope によって指定された投稿数をカスタマイズ出来るようにしたいとします。
+その場合、[CActiveRecord::scopes] で Named Scope を宣言する代わりに、
+その Named Scope と同じ名前で、新しいメソッドを定義します:
 
 ~~~
 [php]
@@ -486,14 +500,13 @@ public function recently($limit=5)
 }
 ~~~
 
-Then, we can use the following statement to retrieve the 3 recently published posts:
+その後、最近公開された 3 つの投稿を検索するには、下記のように使用できます:
 
 ~~~
 [php]
 $posts=Post::model()->published()->recently(3)->findAll();
 ~~~
 
-If we do not supply the parameter 3 in the above, we would retrieve the 5 recently published posts by default.
-
+もし、上記でパラメータ 3 を渡さなければ、デフォルトで最近公開された 5 つの投稿が検索されます。
 
 <div class="revision">$Id: database.ar.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
