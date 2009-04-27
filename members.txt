@@ -4,6 +4,7 @@ Member List of Yiidoc Project
 Language            Forum ID            Google Account              Lead
 --------------------------------------------------------------------------
 Bulgarian           penkomitev          pemitev
+Danish              DNRN                dnrnmail
 Dutch               Maxximus            maxximus007
 Dutch               Sacha Telgenhof     stelgenhof
 Dutch               dalip               maartenvanvliet
@@ -13,6 +14,7 @@ French              kiwisoft            pgaultier
 German              Ascomae             ckuetbach
 German              Mike                haertl.mike                 Yes
 German              pmatulla            peter.matulla
+Greek               GoofyX              yii@lourdas.name
 Hebrew              Vince               vadimg88
 Hungarian           ggyorfi             ggyorfi
 Hungarian           Endyl               slemmer.balazs
@@ -50,6 +52,7 @@ Simplified Chinese  dofy                dofyyu
 Simplified Chinese  thaiki              thaiki@126.com
 Simplified Chinese  dreaminto           dreaminto
 Simplified Chinese  kran                isfrog
+Simplified Chinese  moho                goldendegree
 Spanish             mercurial           geraldo.medrano
 Spanish             sebas               sebathi
 Spanish             PoL                 freakpol
