@@ -478,7 +478,7 @@ if(Yii::app()->user->checkAccess('updateOwnPost',$params))
 
 デフォルトロールは、認証済みのユーザとゲストユーザを含むすべてのユーザに、黙示的に割り当てられるロールです。
 明示的にユーザに割り当てる必要はありません。
- [CWebUser::checkAccess]が実行されると、デフォルトロールはまるでユーザに割り当てられているかのようにまずチェックされます。
+ [CWebUser::checkAccess]が呼び出されると、デフォルトロールはまるでユーザに割り当てられているかのようにまずチェックされます。
 
 デフォルトロールは[CAuthManager::defaultRoles] プロパティで宣言されなければなりません。
 例えば、以下の設定では`authenticated`と`guest`という二つのロールをデフォルトロールとして宣言しています。
@@ -509,4 +509,4 @@ $bizRule='return Yii::app()->user->isGuest;';
 $auth->createRole('guest', 'guest user', $bizRule);
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 878 2009-03-23 15:31:21Z qiang.xue $</div>
+<div class="revision">$Id: topics.auth.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
