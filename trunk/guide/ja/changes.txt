@@ -8,7 +8,7 @@ Version 1.0.5
 
  * Named Scope をサポートするアクティブレコードの機能拡張です。以下を参照してください。
      - [Named Scope](/doc/guide/database.ar#named-scopes)
-     - [Nemed Scope を使用したリレーショナルクエリ](/doc/guide/database.arr#relational-query-with-named-scopes)
+     - [Named Scope を使用したリレーショナルクエリ](/doc/guide/database.arr#relational-query-with-named-scopes)
 
 
  * 動的クエリオプションを伴うレイジーローディングをサポートするアクティブレコードの機能拡張。以下を参照してください。
