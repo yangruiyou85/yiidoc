@@ -79,7 +79,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * method - Methode
  * message routing - Nachrichtenrouting
  * message filtering - Nachrichtenfilterung
- * named scope - Benannte Abgrenzung
+ * named scope - Benannter Bereich
  * object - Objekt (OOP)
  * operation (RBAC) - Operation
  * path alias - Pfad-Alias
