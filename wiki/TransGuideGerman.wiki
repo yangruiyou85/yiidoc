@@ -86,6 +86,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * performance profiling - Leistungsmessung
  * property (member, attribute, ..) - Eigenschaft (gilt jedoch nicht für Instanzvariable, Member, Attribut eines Models)
  * relational query - Relationale Abfrage (!= Verbundabfrage)
+ * relational activerecord - Relationale ActiveRecords
  * role - Rolle
  * role-based access control - Rollenbasierte Zugriffskontrolle
  * task (RBAC) - Tätigkeit
