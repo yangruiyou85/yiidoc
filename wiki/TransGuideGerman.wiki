@@ -79,11 +79,13 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * method - Methode
  * message routing - Nachrichtenrouting
  * message filtering - Nachrichtenfilterung
+ * named scope - Benannte Abgrenzung
  * object - Objekt (OOP)
  * operation (RBAC) - Operation
  * path alias - Pfad-Alias
  * performance profiling - Leistungsmessung
  * property (member, attribute, ..) - Eigenschaft (gilt jedoch nicht für Instanzvariable, Member, Attribut eines Models)
+ * relational query - Relationale Abfrage (!= Verbundabfrage)
  * role - Rolle
  * role-based access control - Rollenbasierte Zugriffskontrolle
  * task (RBAC) - Tätigkeit
