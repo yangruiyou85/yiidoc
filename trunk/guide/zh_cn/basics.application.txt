@@ -92,21 +92,15 @@ array(
 在上述例子中，我们将`(缓存)cache`元素(element)加在 `元件` 数组里. 这个
 `缓存（cache）` 告诉我们这个元件的类是`CMemCache` 其服务 `服务器(servers)` 属性应该这样初始化。
 
-To access an application component, use `Yii::app()->ComponentID`, where
-`ComponentID` refers to the ID of the component (e.g. `Yii::app()->cache`).
+要调用这个元件，用这个命令：`Yii::app()->ComponentID`，其中`ComponentID`是指这个元件的ID。 (比如 `Yii::app()->cache`).
 
-An application component may be disabled by setting `enabled` to be false
-in its configuration. Null is returned when we access a disabled component.
+我们可以在应用配置里，将`enabled`改为false来关闭一个元件。当我们访问一个被禁止的元件时，系统会返回一个NULL值。
 
-> Tip|提示: By default, application components are created on demand. This means
-an application component may not be created at all if it is not accessed
-during a user request. As a result, the overall performance may not be
-degraded even if an application is configured with many components. Some
-application components (e.g. [CLogRouter]) may need to be created no matter
-they are accessed or not. To do so, list their IDs in the [preload|CApplication::preload]
-property of the application.
+> Tip|提示: 默认情况下，应用元件是根据需要而创建的。这意味着一个元件只有在被访问的情况下才会创建。
+因此，系统的整体性能不会因为配置了很多元件而下降。有些应用元件，(比如[CLogRouter]) 是不管用不用都要创建的。在这种情况下，
+我们在应用的配置文件里将这些元件的ID列上：[preload|CApplication::preload]。
 
-应用的核心部件
+应用的核心元件
 --------------
 
 Yii predefines a set of core application components to provide features
