@@ -134,6 +134,9 @@ $author=$post->author;
 対応するプロパティはナルまたは空の配列となります。
 `BELONGS_TO`と`HAS_ONE`リレーションの場合結果はナルです。
 `HAS_MANY`と`MANY_MANY`では空の配列です。
+`HAS_MANY` と `MANY_MANY` リレーションは、オブジェクトの配列を返すため、
+どんなプロパティにアクセスする前にも、結果を通してループする必要があることに注意してください。
+そうでなければ、「Trying to get property of non-object（非オブジェクトのプロパティを取得しようとしている）」エラーが発生します。
 
 レイジーローディングアプローチは使うのに非常に便利ですが、それはいくつかの場合に効率的ではありません。
 例えば`N`個の著者情報にアクセスする場合、レイジーローディングアプローチを使うと`N`個のジョインクエリを発行しなければなりません。
@@ -274,7 +277,7 @@ class User extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'posts'=>array(self::HAS_MANY, 'Post', 'authorID'
+			'posts'=>array(self::HAS_MANY, 'Post', 'authorID',
 							'order'=>'??.createTime DESC',
 							'with'=>'categories'),
 			'profile'=>array(self::HAS_ONE, 'Profile', 'ownerID'),
@@ -418,4 +421,4 @@ $posts=Post::model()->with('comments:recently:approved')->findAll();
 `comments` はリレーション名を、`recently` と `approved` は `Comment` モデルクラスで宣言された 2 つの Nemed Scope を示している事に注意してください。
 リレーション名と Nemed Scope はコロン区切りで指定します。
 
-<div class="revision">$Id: database.arr.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
+<div class="revision">$Id: database.arr.txt 978 2009-05-06 03:36:09Z qiang.xue $</div>

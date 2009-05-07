@@ -509,4 +509,4 @@ $posts=Post::model()->published()->recently(3)->findAll();
 
 もし、上記でパラメータ 3 を渡さなければ、デフォルトで最近公開された 5 つの投稿が検索されます。
 
-<div class="revision">$Id: database.ar.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
+<div class="revision">$Id: database.ar.txt 978 2009-05-06 03:36:09Z qiang.xue $</div>
