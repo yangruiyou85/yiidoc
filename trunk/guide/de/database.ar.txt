@@ -620,11 +620,12 @@ veröffentlichten Beiträge erhalten.
 
 ###Standardmäßiger benannter Bereich
 
-Für eine Modelklasse kann ein benannter Bereich als Standard festgelegt
-werden, so dass er auf alle Abfragen (inkl. relationale) angewendet wird. So
-könnte zum Beispiel eine mehrsprachige Website Inhalte nur in der Sprache des
-aktuellen Besuchers anzeigen wollen. Da für diese Inhalten evtl. viele
-Abfragen nötig sind, können wir einen benannten Bereich als Standard
+Ein benannter Bereich kann auch als Standardbereich für eine Modelklasse
+festgelegt werden, so dass er bei allen Abfragen (inkl. relationalen)
+verwendet wird. So könnte zum Beispiel eine mehrsprachige Website ihre 
+Inhalte immer nur in der Sprache des aktuellen Besuchers anzeigen wollen. 
+Da bei den Abfragen für diese Inhalten immer die selben Sprachkriterien
+verwendet werden sollen, können wir einen benannten Bereich als Standard
 festlegen, um dieses Problem zu lösen. Dazu überschreiben wir die Methode
 [CActiveRecord::defaultScope] wie folgt:
 
