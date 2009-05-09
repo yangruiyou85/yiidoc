@@ -321,7 +321,7 @@ $post->delete(); // その記事をテーブルから削除します
 
 削除後でもARインスタンスは変更されていないことに注意してください。その一方で対応するデータベーステーブルの行は無くなっています。
 
-以下のクロスレベルのメソッドが、前もってロードすることなしに行を削除するために提供されています。
+以下のクラスレベルのメソッドが、前もってロードすることなしに行を削除するために提供されています。
 
 ~~~
 [php]
@@ -509,4 +509,31 @@ $posts=Post::model()->published()->recently(3)->findAll();
 
 もし、上記でパラメータ 3 を渡さなければ、デフォルトで最近公開された 5 つの投稿が検索されます。
 
-<div class="revision">$Id: database.ar.txt 978 2009-05-06 03:36:09Z qiang.xue $</div>
+=== デフォルト Named Scope
+モデルクラスにはデフォルトのNamed Scopeを設定し、
+(リレーションを含めた)すべてのクエリに適用するようにすることができます。
+例えば、複数の言語で利用できるウェブサイトでは、利用中のユーザが指定した言語のコンテンツだけを表示したいということがありうるでしょう。
+サイトコンテンツを取り出すクエリはたくさんあるでしょうから、デフォルト Named Scope を定義して、この問題を解決することができます。
+そのために[CActiveRecord::defaultScope]メソッドを以下のようにオーバーライドします。
+
+~~~
+[php]
+class Content extends CActiveRecord
+{
+	public function defaultScope()
+	{
+		return array(
+			'condition'=>"language='".Yii::app()->language."'",
+		);
+	}
+}
+~~~
+
+これで、次のようにメソッドを呼ぶことで、自動的に上記で定義されたクエリクライテリアが利用つかわれます。
+
+~~~
+[php]
+$contents=Content::model()->findAll();
+~~~
+
+<div class="revision">$Id: database.ar.txt 993 2009-05-06 03:36:09Z qiang.xue $</div>
