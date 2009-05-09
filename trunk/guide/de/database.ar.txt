@@ -531,7 +531,7 @@ catch(Exception $e)
 
 
 Benannte Bereiche
----------------
+-----------------
 
 > Note|Hinweis: Benannte Bereiche werden seit Version 1.0.5 unterstützt.
 > Die usprüngliche Idee für benannte Bereiche stammt von Ruby on Rails.
@@ -588,6 +588,8 @@ mit anderen Kriterien kombiniert wird, inklusive demjenigen, das als
 Parameter and die `find`-Methode übergeben wurde. Letztendlich fügt man 
 einer Abfrage also eine Liste von Filtern hinzu.
 
+###Parametriesierte benannte Bereiche
+
 Benannte Bereiche können parametrisiert werden. Wir könnten zum Beispiel
 die Anzahl der Beiträge des benannten Bereichs `kuerzlich` anpassen wollen.
 Statt den Bereich in der [CActiveRecord::scopes]-Methode anzugeben,  müssen wir
@@ -616,4 +618,34 @@ $beitraege=Beitrag::model()->veroeffentlicht()->kuerzlich(3)->findAll();
 Wenn wir den Parameter 3 hier nicht angeben, würden wir standardmäßig die letzten 5
 veröffentlichten Beiträge erhalten.
 
-<div class="revision">$Id: database.ar.txt 978 2009-05-06 03:36:09Z qiang.xue $</div>
+###Standardmäßiger benannter Bereich
+
+Für eine Modelklasse kann ein benannter Bereich als Standard festgelegt
+werden, so dass er auf alle Abfragen (inkl. relationale) angewendet wird. So
+könnte zum Beispiel eine mehrsprachige Website Inhalte nur in der Sprache des
+aktuellen Besuchers anzeigen wollen. Da für diese Inhalten evtl. viele
+Abfragen nötig sind, können wir einen benannten Bereich als Standard
+festlegen, um dieses Problem zu lösen. Dazu überschreiben wir die Methode
+[CActiveRecord::defaultScope] wie folgt:
+
+~~~
+[php]
+class Content extends CActiveRecord
+{
+	public function defaultScope()
+	{
+		return array(
+			'condition'=>"sprache='".Yii::app()->language."'",
+		);
+	}
+}
+~~~
+
+Dadurch verwendet der folgene Aufruf automatisch das eben festgelegte
+Abfragekriterium.
+
+~~~
+[php]
+$contents=Content::model()->findAll();
+~~~
+<div class="revision">$Id: database.ar.txt 993 2009-05-07 21:43:44Z qiang.xue $</div>
