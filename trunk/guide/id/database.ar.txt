@@ -554,6 +554,8 @@ $posts=Post::model()->published()->recently()->findAll();
 
 Secara umum, lingkup bernama harus berada di sebelah kiri pemanggilan metode `find`. Masing-masing menyediakan kriteria queri, yang merupakan gabungan dengan kriteria lain, termasuk yang dioper ke pemanggilan metode `find`. Hal ini mirip dengan menambahkan sebuah daftar filter ke sebuah queri.
 
+### Parameterisasi Lingkup Bernama
+
 Named scopes dapat diparameterkan. Sebagai contoh, kita mungkin ingin mengkustomisasi sejumlah tulisan dengan lingkup bernama `recently`. Untuk melakukannya, daripada mendeklarasikan lingkup bernama dalam metode [CActiveRecord::scopes], kita perlu mendefinisikan sebuah metode baru yang namanya sama seperti nama lingkup tadi:
 
 ~~~
@@ -578,4 +580,28 @@ $posts=Post::model()->published()->recently(3)->findAll();
 Jika kita tidak melengkapi parameter 3 di atas, secara standar kita akan mengambil 5 tulisan terbaru yang diterbitkan.
 
 
-<div class="revision">$Id: database.ar.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
+### Standar Lingkup Bernama
+
+Kelas model dapat memiliki standar lingkup bernama yang akan diterapkan untuk semua queri (termasuk yang relasional) berkenaan dengan model. Sebagai contoh, website yang mendukung multi bahasa mungkin hanya ingin menampilkan konten yang ditetapkan oleh pengguna saat ini. Karena di sana ada banyak queri atas konten situs, kita dapat mendefinisikan standar lingkup bernama guna memecahkan masalah ini. Untuk melakukannya, kita menimpa metode [CActiveRecord::defaultScope] seperti berikut,
+
+~~~
+[php]
+class Content extends CActiveRecord
+{
+	public function defaultScope()
+	{
+		return array(
+			'condition'=>"language='".Yii::app()->language."'",
+		);
+	}
+}
+~~~
+
+Sekarang, jika metode di bawah ini dipanggil, ia akan secara otomatis menggunakan kriteria queri seperti didefinisikan di atas:
+
+~~~
+[php]
+$contents=Content::model()->findAll();
+~~~
+
+<div class="revision">$Id: database.ar.txt 1014 2009-05-10 12:25:55Z qiang.xue $</div>

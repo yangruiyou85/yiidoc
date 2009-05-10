@@ -49,6 +49,14 @@ Catatan, ini sudah tersedia sejak versi 1.0.1.
 ia akan membuat dan menggunakan database SQLite3 di bawah direktori runtime. Anda dapat menetapkan secara eksplisit database yang dipilih dengan menyetel properti
 [connectionID|CDbCache::connectionID].
 
+   - [CDummyCache]: menyajikan cache dummy yang tidak melakukan cache sama sekali. Maksud
+komponen ini adalah untuk menyederhanakan kode yang harus memeriksa ketersediaan cache.
+Sebagai contoh, selama pengembangan atau jika server tidak memiliki dukungan cache sebenarnya, kita
+dapat menggunakan komponen cache ini. Seandainya dukungan cache sebenarnya dihidupkan, kita dapat beralih
+untuk menggunakan komponen cache terkait. Dalam kedua kasus tersebut, kita dapat menggunakan kode yang sama
+`Yii::app()->cache->get($key)` untuk mencoba mengambil bagian data tanpa mencemaskan
+apakah `Yii::app()->cache` mungkin berisi `null`. Komponen ini sudah tersedia sejak versi 1.0.5.
+
 > Tip: Karena semua komponen cache ini diperluas dari basis kelas yang sama
 [CCache], Anda bisa beralih untuk menggunakan jenis cache tanpa mengubah kode yang menggunakan cache.
 
@@ -65,4 +73,4 @@ memastikan keberadaan data yang di-cache meskipun belum berakhir.
 Oleh karena itu, jangan gunakan cache sebagai penyimpanan persisten (contoh, jangan gunakan cache
 untuk menyimpan data sesi).
 
-<div class="revision">$Id: caching.overview.txt 814 2009-03-10 18:00:11Z qiang.xue $</div>
+<div class="revision">$Id: caching.overview.txt 1014 2009-05-10 12:25:55Z qiang.xue $</div>
