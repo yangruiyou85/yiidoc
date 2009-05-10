@@ -14,4 +14,8 @@ Version 1.0.5
  * ActiveRecord unterstützt nun lazy loading mit dynamischen Abfrageoptionen. Siehe:
      - [Dynamische Optionen für relationale Abfragen](/doc/guide/database.arr#dynamic-relational-query-options)
 
-<div class="revision">$Id: changes.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
+ * [CUrlManager] unterstützt nun das Parametrisieren des Route-Bestandteils
+einer URL. Siehe:
+     - [Parametrisierte Routen in URL-Regeln](/doc/guide/topics.url#parameterizing-routes)
+
+<div class="revision">$Id: changes.txt 1014 2009-05-10 12:25:55Z qiang.xue $</div>
