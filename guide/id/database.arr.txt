@@ -160,6 +160,9 @@ $author=$post->author;
 bersangkutan dapat berupa null atau array kosong. Untuk hubungan
 `BELONGS_TO` dan `HAS_ONE`, hasilnya adalah null; untuk hubungan
 `HAS_MANY` dan `MANY_MANY`, hasilnya adalah array kosong.
+Catatan bahwa hubungan `HAS_MANY` dan `MANY_MANY` mengembalikan array obyek, 
+Anda harus mengulang melalui hasilnya sebelum mencoba untuk mengakses setiap propertinya. 
+Jika sebaliknya, Anda akan menerima kesalahan "Mencoba untuk mendapatkan properti non-obyek".
 
 Pendekatan lazy loading sangat nyaman untuk dipakai, tetapi tidak efisien
 dalam beberapa skenario. Sebagai contoh, jika kita ingin mengakses informasi
@@ -448,4 +451,4 @@ $posts=Post::model()->with('comments:recently:approved')->findAll();
 Queri di atas akan membawa kembali semua tulisan bersama dengan komentarnya yang sudah disetujui. Catatan bahwa `comments` merujuk ke nama relasi, sementara `recently` dan `approved` merujuk ke dua lingkup bernama yang dideklarasikan dalam kelas model `Comment`. Nama relasi dan lingkup bernama harus dipisahkan dengan titik dua.
 
 
-<div class="revision">$Id: database.arr.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
+<div class="revision">$Id: database.arr.txt 978 2009-05-06 03:36:09Z qiang.xue $</div>
