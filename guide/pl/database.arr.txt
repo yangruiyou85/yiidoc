@@ -154,6 +154,11 @@ odpowiednie właściwości mogą być pustą tablicą bądź wartością null.
 Dla relacji `BELONGS_TO` oraz `HAS_ONE` wynikiem jest wartość null; dla 
 `HAS_MANY` oraz `MANY_MANY` jest to pusta tablica.
 
+Zauważ, że relacje `HAS_MANY` oraz `MANY_MANY` zwracają tablicę obiektów, dlatego 
+będziesz musiał przejść w pętli przez zwrócony wynik, zanim spróbujesz uzyskać dostęp 
+do jakiejkolwiej właściwości. W przeciwnym przypadku, możesz uzysać błąd: "Próbujesz   
+skorzystać z właściwości elementu nie będącego obiektem" (ang. "Trying to get property of non-object" errors).
+
 Technika opóźnionego ładowania jest bardzo poręczne w użyciu, ale nie zawsze jest wydajne 
 we wszystkich scenariuszach. Dla przykładu, jeśli chcemy uzyskać dostęp do informacje o autorze dla 
 `N` postów, używając techniki opóźnionego ładowania wykonamy `N` zapytań z użyciem join. 
@@ -456,4 +461,4 @@ do nazwy relacji, a `recently` oraz `approved` referuje do dwóch nazwanych podz
 Nazwa relacji oraz nazwane podzbiory powinny być rozdzielone dwukropkiem.
 
 
-<div class="revision">$Id: database.arr.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
+<div class="revision">$Id: database.arr.txt 978 2009-05-06 03:36:09Z qiang.xue $</div>

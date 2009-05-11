@@ -45,6 +45,7 @@ Najlepiej używać go do modelowania tabel baz danych w konstrukcjach PHP oraz w
 zapytań, które nie zawierają skomplikowanego kodu SQL. Dla tych skomplikowanych 
 scenariuszy powinno używać się Yii DAO.
 
+
 Ustanawianie połączeń DB
 --------------------------
 
@@ -145,15 +146,15 @@ magicznej metody PHP `__get()`. Jeśli w ten sam sposób spróbujemy uzyskać do
 do nieistniejącej kolumny wyjątek zostanie rzucony.
 
 > Info|Info: Celem uzyskania lepszej przejrzystości, sugerujemy aby nazywać tabele bazy danych 
-oraz kolumny stosując notację wielbłąda (ang. camel case). W szczególności, nazwy tabel 
-formatowane są poprzez używanie dużej litery dla każdego słowa w nazwie oraz połączenie ich (słów)
-bez spacji; nazwy kolumn są podobne do nazw tabel z tą różnicą, że ich pierwsza 
-litera w nazwie jest mała. Na przykład używamy nazwy `Post` by nazwać tabelę przechowującą 
-posty; używamy nazwy `createTime` by nazwać kolumnę będącą kluczem głównym. 
-To powoduje, że tabele wyglądają bardziej jak typy klas a kolumny jak zmienne.
+oraz kolumny stosując notację wielbłąda (ang. camel case). W szczególności nazwy kolumn są 
+sformatowane poprzez używanie dużej litery w każdym słowie, oprócz pierwszego, występującym
+w jej nazwie a ich połączenie (słów) występuję bez spacji. 
+Na przykład możemy używać `createTime` by nazwać kolumnę przechowującą czas utworzenia wiersza danych.
+Nazwy tabel zależą zaś od twoich przyzwyczajeń. W tym poradniku, stosujemy również
+notację wielbłąda dla nazw tabel, z tą różnicą, że pierwsza litera jest dużą literą.
+Na przykład, używamy `Post` by nazwać tabelę, przechowująca dane postów.
 Pamiętaj jednak, że używanie notacji wielbłąda może powodować również kłopoty dla niektórych
 DBMS, takich jak MySQL, ponieważ zachowują się one różnie na różnych systemach operacyjnych.
-
 
 Tworzenie rekordu
 ---------------
@@ -208,6 +209,14 @@ $post->createTime=new CDbExpression('NOW()');
 $post->save();
 ~~~
 
+> Tip|Wskazówka: Chociaż AR umożliwia wykonywanie operacji na bazie danych pez potrzeby
+pisania uciążliwych zapytań SQL, często chcemy wiedzieć jakie zapytanie SQL jest 
+wykonywane w tle przez AR. Możemy uzyskać tą informację poprzez włączenie w Yii 
+[funkcjonalności logowania](/doc/guide/topics.logging). Na przykład, możemy włączyć
+[CWebLogRoute] w konfiguracji aplikacji, dzięki czemu bedziemy widzieć wykonywane zapytania 
+SQL na końcu każdej strony. Od wersji 1.0.5, możemy ustawić właściwość 
+[CDbConnection::enableParamLogging] jako true w konfiguracji aplikacji, tak, że wartości 
+parametrów powiązanych z instrukcją SQL będą również logowane.
 
 Odczytywanie rekordu
 --------------
@@ -543,6 +552,8 @@ Ogólnie rzecz biorąc, nazwane podzbiory musza pojawić się po lewej stronie o
 które sa łączone z pozostałymi kryteriami, włączając w to te, które zostały przekazane do metody `find`. Efekt końcowy jest podobny do tego,  
 jakby do zapytania dodano listę filtrów.
 
+### Parametryzowane nazwane podzbiory (ang. Parameterized Named Scopes)
+
 Nazwane podzbiory mogą by sparametryzowane. Na przykład, chcemy dostosować liczbę postów określoną w nazwanym podzbiorze `najnowsze`. 
 Aby to zrobić, zamiast deklarować nazwany podzbiór w metodzie [CActiveRecord::scopes], musimy zdefiniować nową metodę, 
 której nazwa jest taka sama jak jak nazwa podzbioru:
@@ -568,4 +579,35 @@ $posts=Post::model()->opublikowane()->najnowsze(3)->findAll();
 
 Jeśli w powyższym kodzie nie przekazalibyśmy 3, otrzymalibyśmy domyślnie 5 ostatnio opublikowanych postów.
 
-<div class="revision">$Id: database.ar.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
+### Domyślne nazwane podzbiory
+
+Klasa modelu może posiadać domyślne nazwane podzbiory, które będą stosowane dla wszystkich zapytań
+(włączająć w to zapytania relacyjne) dla modelu. Na przykład, strona wspierająca wielojęzyczność| 
+może chcież wyświetlać zawartość w aktualnie wybranym języku. Ponieważ, możemy mieć wiele 
+zapytań związanych z zawartością strony, możemy zdecydować się na zdefiniowanie
+domyśnie nazwanych podzbiorów, aby rozwiązać ten problem. Aby to zrobić, nadpisujemy 
+metodę [CActiveRecord::defaultScope] w następujący sposób:
+
+
+~~~
+[php]
+class Content extends CActiveRecord
+{
+  public function defaultScope()
+  {
+    return array(
+      'condition'=>"language='".Yii::app()->language."'",
+    );
+  }
+}
+~~~
+
+Od teraz, nastepujące wywołanie metody będzie automatycznie używało powyżej zdefiniowanych 
+kreteriów zapytania:
+
+~~~
+[php]
+$contents=Content::model()->findAll();
+~~~
+
+<div class="revision">$Id: database.ar.txt 1014 2009-05-10 12:25:55Z qiang.xue $</div>
