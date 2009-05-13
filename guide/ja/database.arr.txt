@@ -237,7 +237,7 @@ $posts=Post::model()->with(
 注意:コラム参照は`aliasToken`を用いてて曖昧さをなくされなければなりません(例えば`??.age DESC`)。
 
    - `with`: 子供のリレーションを持つオブジェクトのリストであり、このオブジェクトと共にロードすべきオブジェクトです。
-注意：これがレイジーローディングによって守られるべきであり、イーガーローディングでは必要ありません。
+このオプションを不適切に使用すると、無限リレーションループが形成される可能性がありますので、注意してください。
 
    - `joinType`: このリレーションのジョインタイプで、デフォルトでは`LEFT OUTER JOIN`です。
 
@@ -410,7 +410,7 @@ $posts=Post::model()->published()->recently()->with('comments')->findAll();
 唯一の違いは、Named Scope チェーンの後で `with()` をコールする点です。
 このクエリは、最近公開された投稿とそれらのコメントを返します。
 
-下記のコードは、リレーションモデルに Named Scope を適用する方法を示します。
+また、下記のコードは、リレーションモデルに Named Scope を適用する方法を示します。
 
 ~~~
 [php]
@@ -421,4 +421,24 @@ $posts=Post::model()->with('comments:recently:approved')->findAll();
 `comments` はリレーション名を、`recently` と `approved` は `Comment` モデルクラスで宣言された 2 つの Named Scope を示している事に注意してください。
 リレーション名と Named Scope はコロン区切りで指定します。
 
-<div class="revision">$Id: database.arr.txt 978 2009-05-06 03:36:09Z qiang.xue $</div>
+また、Named Scope は [CActiveRecord::relations()] で宣言されたリレーションルールの `with` オプション中で指定することもできます。
+以下の例で、`$user->posts` にアクセスすると、その投稿の全ての *approved*（承認）されたコメントを返します。
+
+~~~
+[php]
+class User extends CActiveRecord
+{
+	public function relations()
+	{
+		return array(
+			'posts'=>array(self::HAS_MANY, 'Post', 'authorID',
+				'with'=>'comments:approved'),
+		);
+	}
+}
+~~~
+
+> Note|注意: 関連したモデルに適用される Named Scope は、[CActiveRecord::scopes] で定義しなければなりません。結果的に、それらをパラメータ化することはできません。
+
+
+<div class="revision">$Id: database.arr.txt 1027 2009-05-12 17:59:03Z qiang.xue $</div>
