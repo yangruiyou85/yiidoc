@@ -6,10 +6,10 @@
 Version 1.0.6
 -------------
 
- * Named Scope での `update` と `delete` メソッドサポートの追加:
+ * Named Scope を使用しての `update` と `delete` メソッドサポートの追加:
      - [Named Scope](/doc/guide/database.ar#named-scopes)
 
- * Named Scope でのリレーションルールの `with` オプションサポートの追加:
+ * Named Scope のリレーションルールの `with` オプション内でのサポートの追加:
      - [Named Scope を使用したリレーショナルクエリ](/doc/guide/database.arr#relational-query-with-named-scopes)
 
 

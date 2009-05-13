@@ -479,7 +479,7 @@ class Post extends CActiveRecord
 `limit` プロパティを 5 に（最新の 5 件を返すはずであるクエリー基準として解釈される）
 指定します。
 
-Named Scope は、`find` メソッド呼び出しの修飾句としてとして使用されます。
+Named Scope は、`find` メソッド呼び出しの修飾句としてとして主に使用されます。
 いくつかの Named Scope が、連結されて使用されると、より絞り込まれたクエリ結果のセットが返ります。
 例えば、最近公開された（published）投稿を見つけるために、下記コードを利用できます:
 
@@ -491,6 +491,16 @@ $posts=Post::model()->published()->recently()->findAll();
 一般的に、Named Scope は `find` メソッド呼び出しの左側に現れなくてはなりません。
 それらは `find` メソッド呼び出しへ渡されたものを含むクエリー基準（他の基準と結合されて）を提供します。
 実際は、クエリーにフィルタのリストを加えるのとほぼ同じです。
+
+バージョン 1.0.6 移行、Named Scope は `update` と `delete` メソッドと共に使用することもできます。
+たとえば、下記コードは全ての最近公開された投稿を削除します:
+
+~~~
+[php]
+Post::model()->published()->recently()->delete();
+~~~
+
+> Note|注意: Named Scope はクラスレベルのメソッドと共にのみ使用できます。すなわち、メソッドは `ClassName::model()` を使用してコールしなければなりません。
 
 
 ### パラメータ化された Named Scopes
@@ -548,4 +558,4 @@ class Content extends CActiveRecord
 $contents=Content::model()->findAll();
 ~~~
 
-<div class="revision">$Id: database.ar.txt 1014 2009-05-10 12:25:55Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 1027 2009-05-12 17:59:03Z qiang.xue $</div>
