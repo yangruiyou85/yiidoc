@@ -9,6 +9,8 @@ class GuideController extends CController
 		'es'=>'Spanish',
 		'fr'=>'French',
 		'he'=>'Hebrew',
+		'hu'=>'Hungarian',
+		'id'=>'Indonesian',
 		'it'=>'Italian',
 		'nl'=>'Dutch',
 		'no'=>'Norwegian',
@@ -17,6 +19,7 @@ class GuideController extends CController
 		'pt'=>'Portuguese',
 		'ru'=>'Russian',
 		'sv'=>'Swedish',
+		'vi'=>'Vietnam',
 		'zh_cn'=>'Simplified Chinese',
 		'zh_tw'=>'Traditional Chinese',
 	);
