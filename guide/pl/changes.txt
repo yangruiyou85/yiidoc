@@ -3,18 +3,29 @@ Nowe funkcjonalności
 
 Ta strona zawiera streszczenie najważniejszych nowych funkcji wprowadzonych w każdym wydaniu Yii. 
 
+Wersja 1.0.6
+-------------
+
+ * Dodano wsparcie dla użycia nazwanych zakresów wraz z metodami `update` oraz `delete`:
+     - [Nazwane podzbiory](/doc/guide/database.ar#named-scopes)
+
+ * Dodano wsparcie dla użycia nazwanych zakresów dla opcji `with` reguł relacyjnych:
+     - [Relacyjne zapytania z nazwanymi zakresami](/doc/guide/database.arr#relational-query-with-named-scopes)
+
+
+
 Wersja 1.0.5
 -------------
 
  * Rozszerzono rekord aktywny o wsparcie dla nazwanych podzbiorów. Zobacz:
      - [nazwane podzbiory](/doc/guide/database.ar#named-scopes)
-     - {domyślne nazwane podzbiory](/doc/guide/database.ar#default-named-scope)     
+     - [domyślne nazwane podzbiory](/doc/guide/database.ar#default-named-scope)     
      - [relacyjne zapytania z nazwanymi podzbiorami](/doc/guide/database.arr#relational-query-with-named-scopes)
 
  * Rozszerzono record aktywny o wsparcie opcji dynamicznych zapytań dla leniwego ładowania. Zobacz:
      - [dynamiczne opcje zapytań relacyjnych](/doc/guide/database.arr#dynamic-relational-query-options)
 
  * Rozszerzono[CUrlManager] o wsparcie dla parametryzacji reguł dla części URL zawierającą ścieżkę. Zobacz:
-     - [Parametryzacja ścieżki w regułąch URL](/doc/guide/topics.url#parameterizing-routes)
+     - [Parametryzacja ścieżki w regułach URL](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 1014 2009-05-10 12:25:55Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 1027 2009-05-12 17:59:03Z qiang.xue $</div>
