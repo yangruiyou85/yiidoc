@@ -65,7 +65,7 @@ class BlogController extends CController
 	public function getTopic()
 	{
 		if(!isset($_GET['page']) || empty($_GET['page']))
-			return 'index';
+			return 'start.overview';
 		else
 			return str_replace(array('/','\\'),'',trim($_GET['page']));
 	}
