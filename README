@@ -24,8 +24,9 @@ the same language, checking in frequently may help reduce
 duplicated work. It also gives other people chance to review
 your translation ealier.
 
-If you participated in translating the Guide, you may leave your
-name in the "index.txt" page, saying "translated by Your Name".
+If you participated in translating the Guide or the Blog tutorial,
+you may leave your name in the "index.txt" page,
+saying "translated by Your Name".
 
 We will include the latest translations into every release of Yii,
 and also display them online.
@@ -42,23 +43,28 @@ under a Web-accessible folder. And you can then access the Guide via:
 
 http://hostname/path/to/yiidoc/index.php?r=guide
 
+or the Blog tutorial via:
 
-Translate Blockquote in the Guide
----------------------------------
+http://hostname/path/to/yiidoc/index.php?r=blog
 
-The Guide contains blockquotes that start with tokens like "> Note:",
-"> Tip: ", and so on. Do not translate these tokens. Instead, append
-the translation of the token word and use "|" as the separator. For example,
+
+Translate Blockquote in the Guide and the Blog Tutorial
+-------------------------------------------------------
+
+The Guide and the Blog contains blockquotes that start with tokens
+like "> Note:", "> Tip: ", and so on. Do not translate these tokens.
+Instead, append the translation of the token word and use "|" as
+the separator. For example,
 
 > Note|translation for 'note': ....
 
 > Tip|translation for 'tip': ......
 
 
-How to Synchronize the Guide
-----------------------------
+How to Synchronize the Guide and the Blog
+-----------------------------------------
 
-In order to keep track of the changes made to the source guide pages,
+In order to keep track of the changes made to the source guide and blog pages,
 for every translated page, we should append the source revision number
 by copying the following line from the source page:
 
@@ -77,6 +83,8 @@ We have developed a command line tool to simplify the above task.
 Under the yiidoc directory and in a command window, run the following command:
 
 protected/yiic syncguide de
+
+protected/yiic syncblog de
 
 The command will check if translations in German are up-to-date.
 
@@ -104,6 +112,10 @@ build message ../requirements/messages/config.php
 
 Directory Structure
 -------------------
+
+blog/            the blog tutorial
+	source/      the original blog text (read-only)
+	<lang>/      translation of the blog in a language
 
 guide/           the definitive guide
 	source/      the original guide text (read-only)
