@@ -53,6 +53,7 @@ Simplified Chinese  thaiki              thaiki@126.com
 Simplified Chinese  dreaminto           dreaminto
 Simplified Chinese  kran                isfrog
 Simplified Chinese  moho                goldendegree
+Simplified Chinese  cr0909              cr0909
 Spanish             mercurial           geraldo.medrano
 Spanish             sebas               sebathi
 Spanish             PoL                 freakpol
