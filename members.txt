@@ -15,6 +15,7 @@ German              Ascomae             ckuetbach
 German              Mike                haertl.mike                 Yes
 German              pmatulla            peter.matulla
 Greek               GoofyX              yii@lourdas.name
+Greek               dotoree             anavatis
 Hebrew              Vince               vadimg88
 Hungarian           ggyorfi             ggyorfi
 Hungarian           Endyl               slemmer.balazs
