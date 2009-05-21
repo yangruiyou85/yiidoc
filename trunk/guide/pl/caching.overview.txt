@@ -48,6 +48,9 @@ Uwaga, rozszerzenie to zostało udostępnione w wersji 1.0.1.
    określić bazę danych, którą będzie to rozszerzenie używało poprzez ustawienie 
    właściwości [connectionID|CDbCache::connectionID],
    
+   - [CZendDataCache]: używa Zend Data Cache jako medium buforowania. Uwaga, rozszerzenie to 
+   jest dostępne od wersji 1.0.4.   
+   
    - [CDummyCache]: reprezentuje imitację buforowania (ang. dummy cache), która w praktyce nie buforuje. 
    Celem tego komponentu jest uproszczenie kodu, który sprawdzić dostępność bufora. 
    Na przykład, podczas tworzenia lub gdy serwer nie posiada aktualnie wsparcia dla buforowania, 
@@ -74,4 +77,4 @@ W następnych dwóch podpunktach opowiemy jak używać buforowania na tych pozio
 buforowanych danych nawet jeśli nie wygasa. Dlatego też, nie używaj buforu jako 
 miejsca stałego składowania (np. nie używaj buforu do przechowywania danych sesji).
 
-<div class="revision">$Id: caching.overview.txt 1014 2009-05-10 12:25:55Z qiang.xue $</div>
+<div class="revision">$Id: caching.overview.txt 1034 2009-05-19 21:33:55Z qiang.xue $</div>
