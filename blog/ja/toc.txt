@@ -7,8 +7,8 @@
 * 最初のプロトタイピング
     - [データベースのセットアップ](prototype.database)
     - [スキャフォールディング](prototype.scaffold)
-    - [Authenticating User](prototype.auth)
-    - [Summary](prototype.summary)
+    - [ユーザ認証](prototype.auth)
+    - [まとめ](prototype.summary)
 
 * 記事の管理
     - [Customizing Post Model](post.model)
