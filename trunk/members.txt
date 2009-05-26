@@ -11,6 +11,7 @@ Dutch               dalip               maartenvanvliet
 Dutch               letscode            janwiebedehaan
 French              tof                 christophe.boulain
 French              kiwisoft            pgaultier
+French              ilzale              francesco.salerno@mac.com
 German              Ascomae             ckuetbach
 German              Mike                haertl.mike                 Yes
 German              pmatulla            peter.matulla
