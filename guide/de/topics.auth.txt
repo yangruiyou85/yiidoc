@@ -287,7 +287,7 @@ Situationen vor:
 [loginUrl|CWebUser::loginUrl] der Userkomponente auf die URL der Anmeldeseite
 gesetzt wurde, wird der Browser auf diese Seite umgeleitet.
 
-   - Andernfalls wird eine HTTP-Exception mit dem Fehlercode 401 angezeigt.
+   - Andernfalls wird eine HTTP-Exception mit dem Fehlercode 403 angezeigt.
 
 Beim Konfigurieren der [loginUrl|CWebUser::loginUrl] kann eine relative oder
 absolute URL angegeben werden. Man kann auch ein Array angeben, das an
@@ -603,4 +603,4 @@ $bizRule='return Yii::app()->user->isGuest;';
 $auth->createRole('gast','Gast-Benutzer', $bizRule);
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
+<div class="revision">$Id: topics.auth.txt 1049 2009-05-22 20:00:35Z qiang.xue $</div>
