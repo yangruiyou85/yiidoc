@@ -587,7 +587,7 @@ einer [CDbCriteria]-Instanz verwendet werden kann. Der benannte Bereich
 wird in ein Abfragekriterium übersetzt, das die letzten 5 Beiträge
 zurückliefern sollte.
 
-Benannte Bereiche werden als Modifikatoren beim Aufruf von `find`-Methoden
+Benannte Bereiche werden meist als Modifikatoren beim Aufruf von `find`-Methoden
 verwendet. Mehrere benannte Bereiche können miteinander verkettet werden
 und resultieren so in einem immer weiter eingeschränkten Abfrageergebnis.
 Um zum Beispiel die letzten veröffentlichten Beiträge zu finden, können wir
@@ -602,6 +602,19 @@ Benannte Bereiche müssen grundsätzlich links vom Aufruf einer
 mit anderen Kriterien kombiniert wird, inklusive demjenigen, das als
 Parameter and die `find`-Methode übergeben wurde. Letztendlich fügt man 
 einer Abfrage also eine Liste von Filtern hinzu.
+
+Seit Version 1.0.6 können benannte Bereiche auch mit `update`- und
+`delete`-Methoden verwendet werden. Der folgende Code würde zum Beispiel alle
+kürzlich veröffentlichten Beiträge löschen:
+
+~~~
+[php]
+Beitrag::model()->veroeffentlicht()->kuerzlich()->delete();
+~~~
+
+> Note|Hinweis: Benannte Bereiche können nur mit Methoden auf Klassenebene
+verwendet werden. Das bedeutet, dass die Methode über `KlassenName::model()`
+aufgerufen werden muss.
 
 ###Parametriesierte benannte Bereiche
 
@@ -664,4 +677,4 @@ Abfragekriterium.
 [php]
 $contents=Content::model()->findAll();
 ~~~
-<div class="revision">$Id: database.ar.txt 1014 2009-05-10 12:25:55Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 1025 2009-05-12 17:47:04Z qiang.xue $</div>
