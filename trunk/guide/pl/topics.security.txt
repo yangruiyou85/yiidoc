@@ -26,14 +26,14 @@ który zawiera [HTMLPurifier](http://htmlpurifier.org/). Komponent ten jest w st
 usunąć cały złośliwy kod przy użyciu dokładnie zbadanej, bezpiecznej białej listy 
 i upewnić się, że filtrowana zawartość zgodna jest ze standardami.
 
-The [CHtmlPurifier] component can be used as either a [widget](/doc/guide/basics.view#widget)
-or a [filter](/doc/guide/basics.controller#filter). When used as a widget,
-[CHtmlPurifier] will purify contents displayed in its body in a view. For example,
+Komponent [CHtmlPurifier] może być używany zarówno jako [widżet](/doc/guide/basics.view#widget)
+jak i [filtr](/doc/guide/basics.controller#filter). Gdy [CHtmlPurifier] jest używany jako widżet, 
+ będzie on oczyszczał zwartość wyświetlaną w jego ciele w widoku. Na przykład:
 
 ~~~
 [php]
 <?php $this->beginWidget('CHtmlPurifier'); ?>
-...display user-entered content here...
+...wyświetla tutaj zawartość wprowadzoną przez użytkownika...
 <?php $this->endWidget(); ?>
 ~~~
 
@@ -41,32 +41,34 @@ or a [filter](/doc/guide/basics.controller#filter). When used as a widget,
 Cross-site Request Forgery Prevention
 -------------------------------------
 
-Cross-Site Request Forgery (CSRF) attacks occur when a
-malicious web site causes a user's web browser to perform
-an unwanted action on a trusted site. For example, a malicious
-web site has a page that contains an image tag whose `src` points
-to a banking site: `http://bank.example/withdraw?transfer=10000&to=someone`.
-If a user who has a login cookie for the banking site happens to
-visit this malicous page, the action of transferring 10000 dollars
-to someone will be executed. Contrary to cross-site,
+Ataki Cross-Site Request Forgery (CSRF) występują kiedy złośliwa strona internetowa 
+powoduje, iż przeglądarka internetowa użytkownika wykonuje niechcianą akcję na zaufanej stronie.
+Na przykład złośliwa strona internetowa posiada stronę zawierającą obrazek, którego tag 
+`src` wskazuje nas stronę banku: `http://bank.example/withdraw?transfer=10000&to=someone`.
+Jeśli użytkownik, który posiada ciasteczko z danymi z logowania do strony bankowej
+odwiedzi tą złośliwą stronę, akcja przetransferowania 1000 dolarów to kogoś innego będzie
+wywołana. 
+ W przeciwieństwie do ataku XSS, ???TODO???
 which exploits the trust a user has for a particular site,
 CSRF exploits the trust that a site has for a particular user.
 
-To prevent CSRF attacks, it is important to abide to the rule
+Aby uchronić się przed atakami CSRF, ważnym jest 
+
+, it is important to abide to the rule
 that `GET` requests should only be allowed to retrieve data rather
 than modify any data on the server. And for `POST` requests, they
 should include some random value which can be recognized by the server
 to ensure the form is submitted from and the result is sent back to
 the same origin.
 
-Yii implements a CSRF prevention scheme to help defeat `POST`-based attacks.
-It is based on storing a random value in a cookie and comparing this value
-with the value submitted via the `POST` request.
 
-By default, the CSRF prevention is disabled. To enable it, configure the
-[CHttpRequest] application component in the
-[application configuration](/doc/guide/basics.application#application-configuration)
-as follows,
+Yii implementuje system ochrony przed atakami CSRF w celu pokonania ataków opartych 
+na żądaniach `POST`. Jest on oparty na przechowywaniu losowej wartości w ciasteczku
+i porównywaniu jej z wartością przekazywaną w żądaniu `POST`.
+
+Domyślnie, ochrona przed atakami CSRF jest niedostępna. Aby ją udostępnić, skonfiguruj
+komponent aplikacji [CHttpRequest] w [konfiguracji aplikacji](/doc/guide/basics.application#application-configuration)
+w następujący sposób:
 
 ~~~
 [php]
@@ -79,36 +81,35 @@ return array(
 );
 ~~~
 
-And to display a form, call [CHtml::form] instead of writing the HTML form
-tag directly. The [CHtml::form] method will embed the necessary random
-value in a hidden field so that it can be submitted for CSRF validation.
+Aby wyświetlić formularz, wywołaj metodę [CHtml::form] zamiast pisania tagów formularza 
+HTML bezpośrednio w kodzie. Metoda [CHtml::form] osadzi wymaganą, losową wartość 
+w ukrytym polu, tak, że będzie ona przekazana celem sprawdzenia, czy nie nastąpił atak CSRF.
 
 
-Cookie Attack Prevention
+Ochrona przed atakami wykorzystującymi ciasteczka (ang. Cookie Attack Prevention)
 ------------------------
-Protecting cookies from being attacked is of extreme importance, as session
-IDs are commonly stored in cookies. If one gets hold of a session ID,
-he essentially owns all relevant session information.
+Ochrona ciasteczek przed atakami jest szczególnie ważna, ponieważ ID sesji jest 
+zazwyczaj przechowywane w ciasteczkach. Jeśli ktoś może posiąść ID sesji, 
+może właściwie posiąść wszystkie odpowiadające sesji informacje.
 
-There are several countermeasures to prevent cookies from being attacked.
+???TODO??There are several countermeasures to prevent cookies from being attacked.
 
-* An application can use SSL to create a secure communication channel and
-  only pass the authentication cookie over an HTTPS connection. Attackers
-  are thus unable to decipher the contents in the transferred cookies.
+* Aplikacja może używać SSL do utworzenia bezpiecznego kanału komunikacji i jedynie 
+  przekazywać ciasteczko identyfikujące przez połączenie HTTPS. Dlatego atakujący
+  nie mogą odszyfrować zawartości przekazywanej w ciasteczku. 
 * Expire sessions appropriately, including all cookies and session tokens,
   to reduce the likelihood of being attacked.
 * Prevent cross-site scripting which causes arbitrary code to run in a
   user's browser and expose his cookies.
-* Validate cookie data and detect if they are altered.
+* Sprawdzaj zawartość ciasteczek i sprawdzaj czy ich zawartość nie została zmieniona.
 
-Yii implements a cookie validation scheme that prevents cookies from being
-modified. In particular, it does HMAC check for the cookie values if cookie
-validation is enable.
+Yii implementuje system sprawdzania poprawności ciasteczek, który chronik ciasteczka przed
+modyfikacjami. W szczególności wykonuje on sprawdzenie HMAC dla zawartości ciasteczek, 
+jeśli sprawdzanie poprawności ciasteczek jest włączone.
 
-Cookie validation is disabled by default. To enable it, configure the
-[CHttpRequest] application component in the
-[application configuration](/doc/guide/basics.application#application-configuration)
-as follows,
+Domyślnie sprawdzanie poprawności ciasteczek jest wyłączone. Aby je włączyć, skonfiguruj 
+komponent aplikacji [CHttpRequest] w [konfiguracji aplikacji](/doc/guide/basics.application#application-configuration)
+w następujący sposób:
 
 ~~~
 [php]
@@ -121,17 +122,17 @@ return array(
 );
 ~~~
 
-To make use of the cookie validation scheme provided by Yii, we also need to
-access cookies through the [cookies|CHttpRequest::cookies] collection, instead
-of directly trhough `$_COOKIES`:
+Aby używać systemu sprawdzania poprawności ciasteczek dostarczonego wraz z Yii,
+należy odczytywać zawartość ciasteczek poprzez kolekcję [cookies|CHttpRequest::cookies] 
+zamiast bezpośrednio przez `$_COOKIES`:
 
 ~~~
 [php]
-// retrieve the cookie with the specified name
+// zwraca ciasteczko o określonej nazwie
 $cookie=Yii::app()->request->cookies[$name];
 $value=$cookie->value;
 ......
-// send a cookie
+// wysyła ciasteczko
 $cookie=new CHttpCookie($name,$value);
 Yii::app()->request->cookies[$name]=$cookie;
 ~~~

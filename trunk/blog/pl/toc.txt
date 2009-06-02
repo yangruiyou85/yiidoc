@@ -1,11 +1,11 @@
 * Początek
 	- [Przegląd](start.overview)
     - [Jazda próbna z Yii](start.testdrive)
-    - [Requirements Analysis](start.requirements)
-    - [Overall Design](start.design)
+    - [Analiza wymagań](start.requirements)
+    - [Ogólna koncepcja](start.design)
 
 * Initial Prototyping
-    - [Setting Up Database](prototype.database)
+    - [Ustawienia bazy danych](prototype.database)
     - [Scaffolding](prototype.scaffold)
     - [Authenticating User](prototype.auth)
     - [Summary](prototype.summary)
