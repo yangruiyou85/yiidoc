@@ -84,6 +84,55 @@ możemy po prostu utworzyć plik widoku w folderze systemowym aplikacji lub tema
 Każdy plik widoku jest zwykłym skryptem PHP zawierającym głównie kod HTML.
 Aby uzyskać więcej szczegółów, zobacz domyślne pliki widoków w folderze `view` frameworku.
 
+### Obsługa błędów przy użyciu akcj
+
+Poczynając od wersji 1.0.3, Yii umożliwia używanie [akcji kontrolera](/doc/guide/basics.controller#action)
+do obsługi wyświetlania błędu. Aby to uzyskać, powinniśmy skonfigurować obsługę błędu 
+w konfiguracji aplikacji w następujący sposób:
+
+~~~
+[php]
+return array(
+  ......
+  'components'=>array(
+    'errorHandler'=>array(
+      'errorAction'=>'site/error',
+    ),
+  ),
+);
+~~~
+
+Powyżej, skonfigurowaliśmy właściwość [CErrorHandler::errorAction] tak aby wskazywała na `site/error`,
+referując  do akcji `error` w kontrolerze `SiteController`. Możemy użyć innej ścieżki jeśli mamy taką potrzebę.
+
+Możemy napisać akcję `error` w następujący sposób:
+
+~~~
+[php]
+public function actionError()
+{
+  if($error=Yii::app()->errorHandler->error)
+    $this->render('error', $error);
+}
+~~~
+
+W akcji tej, najpierw otrzymujemy szczegółową informację o błędzie w [CErrorHandler::error].
+Jeśli nie jest ona pusta, generujemy widok `error` wraz z informacją o błędzie. 
+Informacje o błędzie zwrócone w [CErrorHandler::error] są tablicą zawierającą następujące pola:
+
+ * `code`: kod statusu HTTP(np. 403, 500);
+ * `type`: typ błędu (np. [CHttpException], `PHP Error`);
+ * `message`: wiadomość z opisem błędu;
+ * `file`: nazwa pliku skryptu PHP, w której wystąpił błąd;
+ * `line`: numer linie w kodzie, w której wystąpił błąd;
+ * `trace`: stos wywołań błędu;
+ * `source`: kontekst źródła kodu w którym wystąpił błąd.
+
+> Tip|Wskazówka: Powodem dla którego sprawdzamy czy [CErrorHandler::error] czy jest pusty czy też nie jest 
+fakt iż akcja `error` może być bezpośrednio wywołana przez użytkownika końcowego w przypadku gdy nie ma błędu. 
+Ponieważ przekazujemy tablicę `$error` do widoku, będzie ona automatycznie rozwinięta w indywidualne zmienne.
+W rezultacie, w widoku możemy bezpośrednio odwołać się do zmiennych takich jak `$code`, `$type`.
+
 Logowanie komunikatów
 ---------------
 
@@ -96,4 +145,4 @@ Można więc wykorzystać tą funkcjonalność [logowania](/doc/guide/topics.log
 do monitorowania błędów powstałych podczas działania aplikacji.
 feature to monitor errors happened during application execution.
 
-<div class="revision">$Id: topics.error.txt 772 2009-02-28 18:23:17Z qiang.xue $</div>
+<div class="revision">$Id: topics.error.txt 1064 2009-05-26 00:15:33Z qiang.xue $</div>
