@@ -104,6 +104,16 @@ wzorzec-trasa, każda z takich par odpowiada jednej regule. Wzorzec reguły jest
 używanym w celu dopasowania części informacyjnej adresu URL do wzorca. 
 [Trasa](/doc/guide/basics.controller#route) powinna odnosić się do poprawnej trasy kontrolera.
 
+> Info|Info: Rozpoczynając od wersji 1.0.6, reguła może zostać jeszcze bardziej dostosowana
+> poprzez ustawienie jej opcji `urlSuffix` oraz `caseSensitive`. Aby to uczynić, powinniśmy
+> zdefiniować część trasy reguły jako tablicę, jak pokazano dalej:
+>
+> ~~~
+> [php]
+> 'pattern1'=>array('route1', 'urlSuffix'=>'.xml', 'caseSensitive'=>false)
+> ~~~
+>
+
 
 ### Używanie nazwanych parametrów
 
@@ -176,13 +186,13 @@ Z tego względu w mocno obciążanych aplikacjach webowych należy minimalizowa�
 
 ### Parametryzowane trasy
 
-Poczynając od wersji 1.0.5, możemy odnosić się do nazwanych parametrów w cześci reguły 
+Poczynając od wersji 1.0.5, możemy odnosić się do nazwanych parametrów w części reguły 
 związanej z trasą. Pozwala to zastosować regułę do wielu tras w oparciu o spełniane kryterium.
 Może to pomóc zredukować ilość reguł potrzebnych dla aplikacji i przez to zwiększyć
 ogólną wydajność. 
 
 Będziemy używać następujących przykładowych reguły aby zilustrować jak parametryzować
-trasę za pomocą nazwanych paramtrów:
+trasę za pomocą nazwanych parametrów:
 
 ~~~
 [php]
@@ -246,4 +256,4 @@ do strony statycznej. Aby to zrobić po prostu skonfiguruj komponent
 [urlManager|CWebApplication::urlManager] ustawiając jego właściwość
 [urlSuffix|CUrlManager::urlSuffix] na taki sufiks, jaki ci odpowiada.
 
-<div class="revision">$Id: topics.url.txt 1014 2009-05-10 12:25:55Z qiang.xue $</div>
+<div class="revision">$Id: topics.url.txt 1045 2009-05-21 22:13:50Z qiang.xue $</div>

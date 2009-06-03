@@ -12,6 +12,14 @@ Wersja 1.0.6
  * Dodano wsparcie dla użycia nazwanych zakresów dla opcji `with` reguł relacyjnych:
      - [Relacyjne zapytania z nazwanymi zakresami](/doc/guide/database.arr#relational-query-with-named-scopes)
 
+ * Dodano wsparcie do profilowania wywołań SQL
+     - [Profilowanie wywołań SQL](/doc/guide/topics.logging#profiling-sql-executions)
+
+ * Dodano wsparcie dla personalizacji pojedynczej reguły URL poprzez możliwość ustawiania jej opcji its urlFormat oraz caseSensitive:
+     - [Przyjazne użytkownikowi adresy URL](/doc/guide/topics.url#user-friendly-urls)
+
+ * Dodano wsparcie dla używania akcji kontrolera do wyświetlania błędów aplikacji:
+     - [Obsługa błędów przy użyciu akcji](/doc/guide/topics.error#handling-errors-using-an-action)
 
 
 Wersja 1.0.5
@@ -25,7 +33,7 @@ Wersja 1.0.5
  * Rozszerzono record aktywny o wsparcie opcji dynamicznych zapytań dla leniwego ładowania. Zobacz:
      - [dynamiczne opcje zapytań relacyjnych](/doc/guide/database.arr#dynamic-relational-query-options)
 
- * Rozszerzono[CUrlManager] o wsparcie dla parametryzacji reguł dla części URL zawierającą ścieżkę. Zobacz:
-     - [Parametryzacja ścieżki w regułach URL](/doc/guide/topics.url#parameterizing-routes)
+ * Rozszerzono[CUrlManager] o wsparcie dla parametryzacji reguł dla części URL zawierającej trasę. Zobacz:
+     - [Parametryzacja trasy w regułach URL](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 1027 2009-05-12 17:59:03Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 1053 2009-05-23 02:34:03Z qiang.xue $</div>
