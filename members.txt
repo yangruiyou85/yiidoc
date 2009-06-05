@@ -60,6 +60,7 @@ Spanish             mercurial           geraldo.medrano
 Spanish             sebas               sebathi
 Spanish             PoL                 freakpol
 Spanish             ing.espitaleta      ing.espitaleta
+Spanish             buritica            buritica
 Swedish             tri                 triboe
 Swedish             krillzip            krillzip
 Traditional Chinese clementchen         clementchen
