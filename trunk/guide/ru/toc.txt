@@ -2,7 +2,7 @@
 	- [Обзор](index)
     - [Что такое Yii](quickstart.what-is-yii)
     - [Установка](quickstart.installation)
-    - [Создание первого Yii-приложения](quickstart.first-app)
+    - [Создание первого приложения](quickstart.first-app)
 
 * Основы
     - [Модель - Представление - Контроллер (MVC)](basics.mvc)
@@ -47,7 +47,7 @@
     - [Красивые адреса URL](topics.url)
     - [Аутентификация и авторизация](topics.auth)
     - [Темы оформления](topics.theming)
-    - [Протоколирование](topics.logging)
+    - [Журналирование](topics.logging)
     - [Обработка ошибок](topics.error)
     - [Веб-сервисы](topics.webservice)
     - [Интернационализация (I18N)](topics.i18n)
