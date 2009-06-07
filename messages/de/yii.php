@@ -161,7 +161,7 @@ return array (
   'The relation "{relation}" in active record class "{class}" is specified with an incomplete foreign key. The foreign key must consist of columns referencing both joining tables.' => 'Zur Relation "{relation} in der ActiveRecord-Klasse "{class}" wurde ein unvollständiger Fremdschlüssel angegeben. Der Fremdschlüssel muss aus Feldern bestehen, die sich auf beide zu joinende Tabellen beziehen.',
   'The relation "{relation}" in active record class "{class}" is specified with an invalid foreign key "{key}". The foreign key does not point to either joining table.' => 'Zur Relation "{relation} in der ActiveRecord-Klasse "{class}" wurde der ungültige Fremdschlüssel "{key}" angegeben. Der Fremdschlüssel verweist auf keine JOIN-Tabelle.',
   'The relation "{relation}" in active record class "{class}" is specified with an invalid foreign key. The format of the foreign key must be "joinTable(fk1,fk2,...)".' => 'Zur Relation "{relation} in der ActiveRecord-Klasse "{class}" wurde ein ungültiger Fremdschlüssel angegeben. Der Fremdschlüssel muss dem Format "joinTabelle(fs1,fs2,..)" entsprechen.',
-  'The requested view "{name}" is not found.' => 'Der angeforderte View "{view}" wurde nicht gefunden.',
+  'The requested view "{name}" is not found.' => 'Der angeforderte View "{name}" wurde nicht gefunden.',
   'The stack is empty.' => 'Der Stack ist leer.',
   'The system is unable to find the requested action "{action}".' => 'Das System konnte die angeforderte Action "{action}" nicht finden.',
   'The system view path "{path}" is not a valid directory.' => 'Der System-View-Pfad "{path}" ist kein gültiges Verzeichnis.',
