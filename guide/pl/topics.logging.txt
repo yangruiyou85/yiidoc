@@ -116,6 +116,47 @@ hierarchię kategorii. W szczególności mówimy, że `xxx` jest rodzicem `xxx.y
 rodzicem `xxx.yyy.zzz`. Możemy zatem użyć `xxx.*` w celu reprezentowania kategorii `xxx`
 oraz jej wszystkich kategorii potomnych i ich kategorii potomnych. 
 
+
+### Logowanie informacji kontekstowych
+
+Poczynając od wersji 1.0.6 możemy zadeklarować logowanie dodatkowych informacji zależnych  
+od kontekstu, takich jak predefiniowane zmienne PHP (np. `$_GET`, `$_SERVER`), ID sesji,  
+nazwa użytkownika, itp. Osiągamy to poprzez ustawienie właściwości [CLogRoute::filter] 
+trasy logowania jako odpowiedni filtr logowania.
+
+Framework dostarcza wygodnego filtru [CLogFilter], który może zostać użyty, w większości przypadków,
+jako wymagany filtr logu. Domyślnie [CLogFilter] będzie logował komunikaty zawierające zmienne  
+takie jak `$_GET`, `$_SERVER`, które zazwyczaj posiadają cenne systemowe informacje kontekstowe.
+[CLogFilter] może zostać skonfigurowany do dodawania prefiksu do każdego logowanego komunikatu 
+w postaci ID sesji, użytkownika, itp. co może bardzo uprościć globalne przeszukiwanie
+podczas przeszukiwania ogromnej ilości zarejestrowanych komunikatów. 
+
+Nastepująca konfiguracja pokazuje jak udostępnić logowanie informacji kontekstowych. 
+Zauważ, że każda trasa logowania może posiadać swój własny filtr logu. Domyślnie
+trasa logowania nie posiada zdefiniowanych żadnych filtrów.
+
+~~~
+[php]
+array(
+  ......
+  'preload'=>array('log'),
+  'components'=>array(
+    ......
+    'log'=>array(
+      'class'=>'CLogRouter',
+      'routes'=>array(
+        array(
+          'class'=>'CFileLogRoute',
+          'levels'=>'error',
+          'filter'=>'CLogFilter',
+        ),
+        ...pozostałe trasy logowania...
+      ),
+    ),
+  ),
+)
+~~~
+
 Profilowanie wydajności
 ---------------------
 
@@ -160,4 +201,4 @@ czasu zostało spędzone na wykonywaniu danego zapytania SQL. Możemy również 
 [CDbConnection::getStats()] aby otrzymać całkowitą ilość wywołań zapytań SQL oraz ich całkowity czas wykonania.
 
 
-<div class="revision">$Id: topics.logging.txt 1042 2009-05-21 19:53:47Z qiang.xue $</div>
+<div class="revision">$Id: topics.logging.txt 1091 2009-06-05 00:39:02Z qiang.xue $</div>
