@@ -14,6 +14,9 @@ Wersja 1.0.6
 
  * Dodano wsparcie do profilowania wywołań SQL
      - [Profilowanie wywołań SQL](/doc/guide/topics.logging#profiling-sql-executions)
+     
+ * Dodano wsparcie dla logowania dodatkowych informacji kontekstowych
+     - [Logowanie informacji kontekstowych](/doc/guide/topics.logging#logging-context-information)
 
  * Dodano wsparcie dla personalizacji pojedynczej reguły URL poprzez możliwość ustawiania jej opcji its urlFormat oraz caseSensitive:
      - [Przyjazne użytkownikowi adresy URL](/doc/guide/topics.url#user-friendly-urls)
@@ -36,4 +39,4 @@ Wersja 1.0.5
  * Rozszerzono[CUrlManager] o wsparcie dla parametryzacji reguł dla części URL zawierającej trasę. Zobacz:
      - [Parametryzacja trasy w regułach URL](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 1053 2009-05-23 02:34:03Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 1091 2009-06-05 00:39:02Z qiang.xue $</div>
