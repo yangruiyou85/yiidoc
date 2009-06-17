@@ -128,6 +128,49 @@ ist die Elternkategorie von `xxx.yyy`, welche wiederum die Elternkategorie von
 `xxx.yyy.zzz` bildet.  Wir können `xxx.*` verwenden, um die Kategorie 
 `xxx` und all ihre Kind- und Enkelkategorien darzustellen.
 
+### Loggen von Kontextinformationen
+
+Seit Version 1.0.6 können wir angeben, dass zusätzliche Kontextinformationen
+wie vordefinierte PHP-Variablen (z.B. `$_GET`, `$_SERVER`), die Session-ID
+oder der Benutzername mit geloggt werden. Dies erreicht man, indem man
+[CLogRoute::filter] auf einen passenden Logfilter weisen lässt.
+
+Im Framework ist bereits der nützliche [CLogFilter] enthalten, der in den
+meisten Fällen als ein solcher Logfilter verwendet werden kann. Standardmäßig
+logt [CLogFilter] eine Nachricht mit Variablen wie `$_GET`, `$_SERVER`, die
+oft wertvolle Informationen zum Systemzustand enthalten. [CLogFilter] kann
+auch so konfiguriert werden, dass allen zu loggenden Nachrichten die
+Session-ID, der Benutzername, etc. vorangestellt wird. Dadurch kann die Suche
+nach bestimmten Nachrichten bei einer globalen Suche beträchtlich vereinfacht
+werden.
+
+Die folgende Konfiguration zeigt, wie man das Loggen von Kontextinformationen
+aktiviert. Beachten Sie, dass jede Logroute ihren eigenen Filter haben kann.
+Standardmäßig verwendet eine Logroute keinen Filter.
+
+~~~
+[php]
+array(
+	......
+	'preload'=>array('log'),
+	'components'=>array(
+		......
+		'log'=>array(
+			'class'=>'CLogRouter',
+			'routes'=>array(
+				array(
+					'class'=>'CFileLogRoute',
+					'levels'=>'error',
+					'filter'=>'CLogFilter',
+				),
+				...andere Logrouten...
+			),
+		),
+	),
+)
+~~~
+
+
 
 Leistungsmessung
 ----------------
@@ -179,4 +222,4 @@ und den dafür benötigten Zeiten angezeigt werden. Durch Aufruf von
 [CDbConnection::getStats()] können wir auch die Gesamtzahl aller
 SQL-Anweisungen sowie deren gesamte Ausführungszeit abfragen.
 
-<div class="revision">$Id: topics.logging.txt 1042 2009-05-21 19:53:47Z qiang.xue $</div>
+<div class="revision">$Id: topics.logging.txt 1091 2009-06-05 00:39:02Z qiang.xue $</div>

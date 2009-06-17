@@ -15,6 +15,9 @@ Version 1.0.6
  * SQL-Anweisungen können nun ebenfalls einer Leistungsmessung unterzogen werden
      - [Leistungsmessung von SQL-Anweisungen](/doc/guide/topics.logging#profiling-sql-executions)
 
+ * Nachrichten können nun auch mit zusätzlichen Kontextinformationen geloggt werden 
+     - [Loggen von Kontextinformationen](/doc/guide/topics.logging#logging-context-information)
+
  * URL-Regeln können nun mit den Optionen urlFormat und caseSensitive weiter angepasst werden:
      - [Benutzerfreundliche URLs](/doc/guide/topics.url#user-friendly-urls)
 
@@ -36,4 +39,4 @@ Version 1.0.5
 einer URL. Siehe:
      - [Parametrisierte Routen in URL-Regeln](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 1053 2009-05-23 02:34:03Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 1091 2009-06-05 00:39:02Z qiang.xue $</div>
