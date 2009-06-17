@@ -10,7 +10,7 @@
 - Александр Макаров, Sam Dark ([rmcreative.ru](http://rmcreative.ru/))
 - Константин Мирин, Konstantin Mirin ([programmersnotes.info](http://programmersnotes.info/))
 - xenon
-- Caveman
+- Алексей Лукьяненко, Caveman ([caveman.ru](http://caveman.ru/))
 - multif
 - cr0t
 
