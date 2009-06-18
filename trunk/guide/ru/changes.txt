@@ -1,0 +1,48 @@
+Новые особенности
+============
+
+На этой странице кратко излагаются основные новые особенности внесенные в каждом релизе Yii.
+
+Версия 1.0.7
+-------------
+
+ * Добавлена поддержка для отображения информации стека вызовов в трассирующих сообщениях (trace)
+     - [Сохранение контекста сообщений](/doc/guide/ru/topics.logging#logging-context-information)
+
+Версия 1.0.6
+-------------
+
+ * Добавлена поддержка использования именованной группы условий с методами `update` и `delete`:
+     - [Именованные группы условий](/doc/guide/ru/database.ar#named-scopes)
+
+ * Добавлена поддержка использования именованной группы условий в параметре `with` правил отношения:
+     - [Реляционные запросы с именованными группами условий](/doc/guide/ru/database.arr#relational-query-with-named-scopes)
+
+ * Добавлена поддержка профилирования SQL-запросов:
+     - [Профилирование SQL-запросов](/doc/guide/ru/topics.logging#profiling-sql-executions)
+
+ * Добавлена поддержка журналирования дополнительной информации контекста сообщений:
+     - [Сохранение контекста сообщений](/doc/guide/ru/topics.logging#logging-context-information)
+
+ * Добавлена поддержка настройки одиночного URL-правила установкой его параметров `urlFormat` и `caseSensitive`:
+     - [Человекопонятные URL](/doc/guide/ru/topics.url#user-friendly-urls)
+
+ * Добавлена поддержка отображения ошибок приложения в действии контроллера:
+     - [Управление отображением ошибок в действии контроллера](/doc/guide/ru/topics.error#handling-errors-using-an-action)
+
+Версия 1.0.5
+-------------
+
+ * Расширена Active Record поддержкой именованных групп условий:
+     - [Именованные группы условий](/doc/guide/ru/database.ar#named-scopes)
+     - [Именованная группа условий по умолчанию](/doc/guide/ru/database.ar#default-named-scope)
+     - [Реляционные запросы с именованными группами условий](/doc/guide/ru/database.arr#relational-query-with-named-scopes)
+
+
+ * Расширена Active Record поддержкой  "ленивой" загрузки с динамическими параметрами реляционного запроса:
+     - [Динамические параметры реляционного запроса](/doc/guide/ru/database.arr#dynamic-relational-query-options)
+
+ * Расширен класс [CUrlManager] поодержкой параметризованных маршрутов в URL-правилах:
+     - [Параметризация маршрутов](/doc/guide/ru/topics.url#parameterizing-routes)
+
+<div class="revision">$Id: changes.txt 1142 2009-06-17 21:42:08Z qiang.xue $</div>
