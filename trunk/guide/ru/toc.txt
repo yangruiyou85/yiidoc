@@ -1,7 +1,7 @@
 * Начало
 	- [Обзор](index)
     - [Что такое Yii](quickstart.what-is-yii)
-    - [История изменений](changes)
+    - [Новые возможности](changes)
     - [Установка](quickstart.installation)
     - [Создание первого приложения](quickstart.first-app)
 
@@ -28,8 +28,8 @@
 * Работа с БД
     - [Обзор](database.overview)
     - [Объекты доступа к данным (DAO)](database.dao)
-    - [Активная запись](database.ar)
-    - [Реляционная активная запись](database.arr)
+    - [Active Record](database.ar)
+    - [Реляционная Active Record](database.arr)
 
 * Кэширование
     - [Обзор](caching.overview)
