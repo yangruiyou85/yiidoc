@@ -1,6 +1,7 @@
 * Начало
 	- [Обзор](index)
     - [Что такое Yii](quickstart.what-is-yii)
+    - [История изменений](changes)
     - [Установка](quickstart.installation)
     - [Создание первого приложения](quickstart.first-app)
 
