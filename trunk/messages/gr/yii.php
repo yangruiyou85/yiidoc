@@ -13,7 +13,7 @@
  *
  * NOTE, this file must be saved in UTF-8 encoding.
  *
- * @version $Id:$
+ * @version $Id: $
  */
 return array (
   '"{path}" is not a valid directory.' => 'Η διαδρομή "{path}" δεν είναι έγκυρος κατάλογος.',
