@@ -157,6 +157,16 @@ array(
 )
 ~~~
 
+Poczynając od wersji 1.0.7 Yii wspiera logowanie informacji ze stosu wywołani w komunikatach logowanych poprzez
+wywołanie `Yii::trace`. Domyślnie funkcjonalnośc ta jest wyłączona ze względu na zmniejszanie wydajności. Aby móc  
+używac tej funkcjonalności, po prostu zdefiniuj stałą nazwaną `YII_TRACE_LEVEL` na początku skryptu wejściowego 
+(zanim załączysz `yii.php`) jako wartość całkowita większa niż 0. Yii dołaczy wtedy do każdego śledzonego komunikatu 
+informację o nazwie pliku oraz numerze linii dla stosu wywołań należącego do danego fragmentu kodu aplikacji.
+Liczba przypisana do `YII_TRACE_LEVEL` określa ile wartstw każdego stosu wywołań powinno zostać zarejestrowanych. 
+Opcja ta jest szczególnie przydatna podczas fazy dewelopmentu, ponieważ może pomóc nam zidentyfikować miejsce, które 
+wywołuje śledzenie wiadomości. 
+
+
 Profilowanie wydajności
 ---------------------
 
@@ -201,4 +211,4 @@ czasu zostało spędzone na wykonywaniu danego zapytania SQL. Możemy również 
 [CDbConnection::getStats()] aby otrzymać całkowitą ilość wywołań zapytań SQL oraz ich całkowity czas wykonania.
 
 
-<div class="revision">$Id: topics.logging.txt 1091 2009-06-05 00:39:02Z qiang.xue $</div>
+<div class="revision">$Id: topics.logging.txt 1142 2009-06-17 21:42:08Z qiang.xue $</div>
