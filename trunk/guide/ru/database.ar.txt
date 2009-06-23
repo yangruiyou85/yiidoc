@@ -607,4 +607,7 @@ class Content extends CActiveRecord
 $contents=Content::model()->findAll();
 ~~~
 
+Заметим, что именованная группа условий по умолчанию применяется только к
+`SELECT` запросам. Она игнорируется в `INSERT`, `UPDATE` и `DELETE` запросах.
+
 <div class="revision">$Id: database.ar.txt 1167 2009-06-23 02:56:45Z qiang.xue $</div>
