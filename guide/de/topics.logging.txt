@@ -170,6 +170,17 @@ array(
 )
 ~~~
 
+Seit Version 1.0.7 können mit `Yii::trace` auch der Informationen aus dem
+Aufrufstapel geloggt werden. Dieses Feature ist standardmäßig deaktiviert, da
+es die Leistung negativ beeinflusst. Um dieses Feature zu verwenden,
+definieren Sie am Anfang Ihres Eingangsscripts einfach die Konstante
+`YII_TRACE_LEVEL` mit einem Wert größer als 0 (und zwar bevor Sie `yii.php`
+einbinden). Yii hängt dann an jede Trace-Nachricht den Dateinamen und die
+Zeilennummer des Anwendungscode an. Die Zahl in `YII_TRACE_LEVEL` gibt an, wie
+viele Ebenen des Aufrufstapels aufgezeichnet werden sollen. Diese Information kann speziell
+in der Entwicklungsphase sehr nützlich sein, da es uns hilft, den genauen Ort,
+an dem die Nachricht geloggt wurde, ausfindig zu machen.
+
 
 
 Leistungsmessung
@@ -222,4 +233,4 @@ und den dafür benötigten Zeiten angezeigt werden. Durch Aufruf von
 [CDbConnection::getStats()] können wir auch die Gesamtzahl aller
 SQL-Anweisungen sowie deren gesamte Ausführungszeit abfragen.
 
-<div class="revision">$Id: topics.logging.txt 1091 2009-06-05 00:39:02Z qiang.xue $</div>
+<div class="revision">$Id: topics.logging.txt 1142 2009-06-17 21:42:08Z qiang.xue $</div>
