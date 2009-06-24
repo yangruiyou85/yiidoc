@@ -9,6 +9,10 @@
  * Добавлена поддержка отображения информации стека вызовов в трассирующих сообщениях
      - [Сохранение контекста сообщений](/doc/guide/topics.logging#logging-context-information)
 
+ * Добавлен параметр `index` для AR отношений для того, чтобы связанные объекты
+могли быть проиндексированы с использованием значений определенного столбца
+     - [Параметры реляционного запроса](/doc/guide/database.arr#relational-query-options)
+
 Версия 1.0.6
 -------------
 
@@ -45,4 +49,4 @@
  * Расширен класс [CUrlManager] поодержкой параметризованных маршрутов в URL-правилах:
      - [Параметризация маршрутов](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 1142 2009-06-17 21:42:08Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 1168 2009-06-23 14:52:48Z qiang.xue $</div>
