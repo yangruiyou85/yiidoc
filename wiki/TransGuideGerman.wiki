@@ -59,6 +59,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * base class - Basisklasse (OOP)
  * bootstrap file - Startdatei
  * business rule - Geschäftsregel
+ * call stack - Aufrufstapel
  * choice format - Auswahlformat
  * command - Befehl, Kommando
  * component - Komponente
