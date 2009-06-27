@@ -4,11 +4,11 @@
     - [Analiza wymagań](start.requirements)
     - [Ogólna koncepcja](start.design)
 
-* Initial Prototyping
+* Początkowe prototypowanie
     - [Ustawienia bazy danych](prototype.database)
     - [Scaffolding](prototype.scaffold)
-    - [Authenticating User](prototype.auth)
-    - [Summary](prototype.summary)
+    - [Uwierzytelnianie użytkownika](prototype.auth)
+    - [Podsumowanie](prototype.summary)
 
 * Post Management
     - [Customizing Post Model](post.model)
