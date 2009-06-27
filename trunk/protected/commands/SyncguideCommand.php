@@ -2,6 +2,8 @@
 
 class SyncguideCommand extends CConsoleCommand
 {
+	public $type='guide';
+
 	public function getHelp()
 	{
 		return <<<EOD
@@ -27,10 +29,10 @@ EOD;
 	{
 		if(!isset($args[0]))
 			$this->usageError('the language ID is not specified.');
-		$path=Yii::getPathOfAlias('application').'/../guide/'.$args[0];
+		$path=Yii::getPathOfAlias('application').'/../'.$this->type.'/'.$args[0];
 		if(!is_dir($path))
 			$this->usageError("no translation available for language '{$args[0]}'.");
-		$srcPath=Yii::getPathOfAlias('application').'/../guide/source';
+		$srcPath=Yii::getPathOfAlias('application').'/../'.$this->type.'/source';
 
 		$files=CFileHelper::findFiles($srcPath,array('fileTypes'=>array('txt'),'level'=>0));
 		$results=array();
