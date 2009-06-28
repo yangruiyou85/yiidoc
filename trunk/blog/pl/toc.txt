@@ -4,17 +4,17 @@
     - [Analiza wymagań](start.requirements)
     - [Ogólna koncepcja](start.design)
 
-* Początkowe prototypowanie
+* Wstępne prototypowanie 
     - [Ustawienia bazy danych](prototype.database)
     - [Scaffolding](prototype.scaffold)
     - [Uwierzytelnianie użytkownika](prototype.auth)
     - [Podsumowanie](prototype.summary)
 
-* Post Management
-    - [Customizing Post Model](post.model)
-    - [Creating and Updating Posts](post.create)
-    - [Displaying Posts](post.display)
-    - [Managing Posts](post.admin)
+* Zarządzanie wiadomościami
+    - [Dostosowywanie modelu wiadomości](post.model)
+    - [Tworzenie i aktualizowanie wiadomości](post.create)
+    - [Wyświetlanie wiadomości](post.display)
+    - [Zarządzanie wiadomościami](post.admin)
 
 * Comment Management
 	- [Customizing Comment Model](comment.model)
