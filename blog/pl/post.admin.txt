@@ -1,7 +1,7 @@
-Zarządzanie wiadomościami
+Administrowanie wiadomościami
 ==============
 
-Zarządzanie wiadomościami przede wszystkim odnosi się do wylistowania wiadomości
+Administrowanie wiadomościami przede wszystkim odnosi się do wylistowania wiadomości
 w widoku administratora oraz usuwania wiadomości. Są one wykonywane odpowiednio przez operację
 `admin` oraz operację usuwania `delete`. Kod wygenerowany przez narzędzie `yiic` nie  
 wymaga zbytniej modyfikacji. Poniżej wyjaśniamy przede wszystkim jak te dwie operacje 
