@@ -14,12 +14,12 @@
     - [Dostosowywanie modelu wiadomości](post.model)
     - [Tworzenie i aktualizowanie wiadomości](post.create)
     - [Wyświetlanie wiadomości](post.display)
-    - [Zarządzanie wiadomościami](post.admin)
+    - [Administrowanie wiadomościami](post.admin)
 
-* Comment Management
-	- [Customizing Comment Model](comment.model)
-    - [Creating and Displaying Comments](comment.create)
-    - [Managing Comments](comment.admin)
+* Zarządzanie komentarzami
+	  - [Dostosowywanie modelu komentarza](comment.model)
+    - [Tworzenie i wyświetlanie komentarzy](comment.create)
+    - [Administrowanie komentarzami komentarzami](comment.admin)
 
 * Portlets
 	- [Establishing Portlet Architecture](portlet.base)
