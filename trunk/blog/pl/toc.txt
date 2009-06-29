@@ -19,14 +19,14 @@
 * Zarządzanie komentarzami
 	  - [Dostosowywanie modelu komentarza](comment.model)
     - [Tworzenie i wyświetlanie komentarzy](comment.create)
-    - [Administrowanie komentarzami komentarzami](comment.admin)
+    - [Administrowanie komentarzami](comment.admin)
 
-* Portlets
-	- [Establishing Portlet Architecture](portlet.base)
+* Portlety
+	- [Ustalanie architektury portletu](portlet.base)
 	- [Creating User Menu Portlet](portlet.menu)
 	- [Creating Login Portlet](portlet.login)
-	- [Creating Tag Cloud Portlet](portlet.tags)
-	- [Creating Recent Comments Portlet](portlet.comments)
+	- [Tworzenie portletu chmurki tagów](portlet.tags)
+	- [Tworzenie portletu ostatnich komentarzy](portlet.comments)
 
 * Final Work
 	- [Beautifying URLs](final.url)
