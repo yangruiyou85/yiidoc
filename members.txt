@@ -62,7 +62,6 @@ Spanish             PoL                 freakpol
 Spanish             ing.espitaleta      ing.espitaleta
 Spanish             buritica            buritica
 Swedish             tri                 triboe
-Swedish             krillzip            krillzip
 Traditional Chinese clementchen         clementchen
 Vietnamese          hnhuan              hn.huan
 Vietnamese          hung5s              hung5s
