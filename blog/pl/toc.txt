@@ -23,7 +23,7 @@
 
 * Portlety
 	- [Ustalanie architektury portletu](portlet.base)
-	- [Creating User Menu Portlet](portlet.menu)
+	- [Tworzenie portletu menu użytkownika](portlet.menu)
 	- [Creating Login Portlet](portlet.login)
 	- [Tworzenie portletu chmurki tagów](portlet.tags)
 	- [Tworzenie portletu ostatnich komentarzy](portlet.comments)
@@ -31,6 +31,6 @@
 * Final Work
 	- [Beautifying URLs](final.url)
 	- [Logging Errors](final.logging)
-    - [Customizing Error Display](final.error)
+    - [Dostosowywanie wyświetlania błędów](final.error)
     - [Final Tune-up and Deployment](final.deployment)
     - [Future Enhancements](final.future)
