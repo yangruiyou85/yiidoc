@@ -29,8 +29,8 @@
 	- [Tworzenie portletu ostatnich komentarzy](portlet.comments)
 
 * Final Work
-	- [Beautifying URLs](final.url)
-	- [Logging Errors](final.logging)
+	- [Upiększanie URLs](final.url)
+	- [Logowanie błędów](final.logging)
     - [Dostosowywanie wyświetlania błędów](final.error)
     - [Final Tune-up and Deployment](final.deployment)
     - [Future Enhancements](final.future)
