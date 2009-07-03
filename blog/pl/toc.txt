@@ -24,7 +24,7 @@
 * Portlety
 	- [Ustalanie architektury portletu](portlet.base)
 	- [Tworzenie portletu menu użytkownika](portlet.menu)
-	- [Creating Login Portlet](portlet.login)
+	- [Tworzenie portletu logowania](portlet.login)
 	- [Tworzenie portletu chmurki tagów](portlet.tags)
 	- [Tworzenie portletu ostatnich komentarzy](portlet.comments)
 
@@ -32,5 +32,5 @@
 	- [Upiększanie URLs](final.url)
 	- [Logowanie błędów](final.logging)
     - [Dostosowywanie wyświetlania błędów](final.error)
-    - [Final Tune-up and Deployment](final.deployment)
-    - [Future Enhancements](final.future)
+    - [Końcowe dopieszczanie oraz wdrażanie](final.deployment)
+    - [Dalsze rozszerzanie](final.future)
