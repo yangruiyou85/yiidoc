@@ -579,7 +579,7 @@ inklusive det som lämnas med i anropet `find`-metoden. Nettoeffekten blir som a
 en lista av filter till en fråga.
 
 Med start fr o m version 1.0.6 kan namngivna omfång även användas med metoderna `update` och 
-`delete`. till exempel, följande kod skulle ta bort alla nyligen publicerade postningar:
+`delete`. Till exempel följande kod skulle ta bort alla nyligen publicerade postningar:
 
 ~~~
 [php]
@@ -643,7 +643,7 @@ class Content extends CActiveRecord
 }
 ~~~
 
-Nu kommer följane metodanrop att automatiskt använda frågekriteriet som definierades ovan:
+Nu kommer följande metodanrop att automatiskt använda frågekriteriet som definierades ovan:
 
 ~~~
 [php]
