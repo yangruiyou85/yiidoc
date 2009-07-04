@@ -481,8 +481,8 @@ Följande kod visar hur namngivna omfång appliceras på huvudmodellen.
 $posts=Post::model()->published()->recently()->with('comments')->findAll();
 ~~~
 
-Detta är mycket snarlikt icke-relatioella frågor. Den enda skillnaden är 
-anropet av `with()` efter kedjan av namngivna omfång. Denna fråga skulle 
+Detta är mycket snarlikt icke-relationella frågor. Den enda skillnaden är 
+anropet av `with()` efter kedjan av namngivna omfång. Ovanstående fråga skulle 
 hämta nyligen publicerade postningar tillsammans med dess kommentarer.
 
 Fäljande kod visar hur namngivna omfång appliceras på relaterade modeller.
@@ -497,9 +497,9 @@ godkända kommentarer. Märk att `comments` refererar till sambandsnamnet,
 medan `recently` och `approved` refererar till två namngivna omfång som deklarerats 
 i modellklassen `Comment`. Sambandsnamnet och de namngivna omfången skall separeras med kolon.
 
-Namngivna omfång kan även specificeras i alternativet `with` i sambandsdeklarationen i 
-[CActiveRecord::relations()]. I följande exempel, om vi accessar `$user->posts`, 
-kommer alla postningarnas (för publicering) *godkända* kommentarer att hämtas.
+Namngivna omfång kan även specificeras med alternativet `with` i sambandsdeklarationen i 
+[CActiveRecord::relations()]. I följande exempel kommer - om vi accessar `$user->posts` - 
+alla postningarnas  *godkända* (för publicering) kommentarer att hämtas.
 
 ~~~
 [php]
