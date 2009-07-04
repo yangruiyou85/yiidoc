@@ -158,7 +158,9 @@ $author=$post->author;
 > Info: Om det saknas en relaterad instans i ett samband kan den motsvarande 
 propertyn anta värdet null eller en tom array. För sambanden `BELONGS_TO` och 
 `HAS_ONE` , är resultatet null; för `HAS_MANY` och `MANY_MANY`, är det en tom 
-array.
+array. Märk att relationstyperna `HAS_MANY` och `MANY_MANY` returnerar arrayer 
+av objekt, därför behöver man iterera över resultatet för att komma åt propertyn.
+Om man inte gör detta erhålls felet "Trying to get property of non-object".
 
 Tillvägagångssättet med lazy loading är mycket bekvämt att använda, men har 
 lägre prestanda i vissa scenarier. Till exempel, om vi vill få tillgång till 
