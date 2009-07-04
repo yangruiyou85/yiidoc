@@ -627,7 +627,7 @@ En modellklass kan ha ett förbestämt namngivet omfång som kommer att åsätta
 alla frågor (inklusive relationella sådana) avseende modellen. Till exempel kan  
 en webbplats som stöder flera språk vilja begränsa innehåll som visas till 
 det språk den aktuella användaren valt. Eftersom det kan bli många frågor 
-gällande webbplatens innehåll, kan ett förbestämt namngivet omfång lindra 
+gällande webbplatsens innehåll, kan ett förbestämt namngivet omfång lindra 
 detta problem. För att göra detta, åsidosätt metoden [CActiveRecord::defaultScope] enligt följande,
 
 ~~~
