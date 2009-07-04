@@ -137,7 +137,7 @@ Informationen som returneras från [CErrorHandler::error] utgörs av en array me
  * `trace`: anropsstacken;
  * `source`: källkodskontext där felet uppträdde.
 
-> Tips: Anledningen till att vi testar om något returneras från [CErrorHandler::error] 
+> Tip|Tips: Anledningen till att vi testar om något returneras från [CErrorHandler::error] 
 är att åtgärden `error` skulle kunna anropas direkt av en användare, i vilket fall det 
 inte finns någon felinformation.
 Eftersom vyn erhåller arrayen `$error`, kommer den senare att automatiskt expanderas 
