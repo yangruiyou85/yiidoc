@@ -6,6 +6,10 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/main.css" />
 <title><?php echo $this->pageTitle; ?></title>
 
+<?php if($this->language == 'he' || $this->language == 'ar'): ?>
+<!-- Load another CSS file to display the document in an RTL form -->
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/rtl.css" />
+<?php endif; ?>
 </head>
 
 <body class="page">
