@@ -37,6 +37,7 @@ Portuguese          Wanderson           wanderson.wbc
 Portuguese          mnobre              marconobre
 Portuguese          alexweber           alexweber15
 Portuguese          jjmf                joaomarq
+Portuguese          davi_alexandre      bastardgoblin
 Romanian            mishhh              if.mihai
 Russian             Bethrezen           b37hr3z3n
 Russian             Scott Tiger         krugloff.sergey
