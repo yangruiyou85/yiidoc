@@ -20,6 +20,8 @@ Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal
   * /guide/pt/basics.mvc.txt (Luiz)
   * /guide/pt/basics.entry.txt (Luiz)
   * /guide/pt/basics.application.txt (Luiz)
+  * /guide/pt/basics.model.txt (Davi Alexandre)
+  * /guide/pt/basics.view.txt (Davi Alexandre)
   * /guide/pt/form.overview.txt (Wanderson)
   * /guide/pt/database.overview.txt (Wanderson)
 
