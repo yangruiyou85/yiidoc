@@ -24,7 +24,7 @@
 
 * Trabalhando com Banco de Dados
     - [Visão Geral](database.overview)
-    - [Database Access Objects (DAO)](database.dao)
+    - [Data Access Objects (DAO)](database.dao)
     - [Active Record](database.ar)
     - [Active Record Relacional](database.arr)
 
