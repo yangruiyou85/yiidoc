@@ -24,7 +24,7 @@ $post->content='conteúdo do post';
 $post->save();
 ~~~
 
-A seguir, descreveremos como configurar AR e como utiliza-la para executar operações 
+A seguir, descreveremos como configurar AR e como utiliza-lo para executar operações 
 de CRUD. Na próxima seção, iremos mostrar como utilizar AR para trabalhar com 
 relacionamentos. Para simplificar, utilizaremos a seguinte tabela para os exemplos 
 desta seção. Note que, se você estiver utilizando um banco de dados MySQL, você deve 
@@ -40,15 +40,15 @@ CREATE TABLE Post (
 );
 ~~~
 
-> Note|Nota: A AR não tem intenção de resolver todas tarefas relacionadas a banco 
-de dados. Ela é melhor utilizada para modelar tabelas do banco para estruturas no 
+> Note|Nota: A intenção do AR não é resolver todas tarefas relacionadas a banco 
+de dados. Ele é melhor utilizado para modelar tabelas do banco para estruturas no 
 PHP e executar consultas que não envolvem instruções SQL complexas. O DAO do Yii 
 é o recomendado para esses cenários mais complexos.
 
 Estabelecendo uma Conexão com o Bando de Dados
 ----------------------------------------------
 
-AR precisa de uma conexão com o banco para executar suas operações. Por padrão, 
+O AR precisa de uma conexão com o banco para executar suas operações. Por padrão, 
 assume-se que o componente de aplicação `db` possui uma instância da classe 
 [CDbConnection] que irá servir esta conexão. Abaixo temos um exemplo da 
 configuração de uma aplicação:
@@ -78,7 +78,7 @@ Atualmente, somente os seguintes SGBDs são suportados:
 
    - [MySQL 4.1 ou maior](http://www.mysql.com)
    - [PostgreSQL 7.3 ou maior](http://www.postgres.com)
-   - [SQLite 2 and 3](http://www.sqlite.org)
+   - [SQLite 2 e 3](http://www.sqlite.org)
    - [Microsoft SQL Server 2000 ou maior](http://www.microsoft.com/sqlserver/)
    - [Oracle](http://www.oracle.com)
 
@@ -100,7 +100,7 @@ Definindo Classes AR
 --------------------
 
 Para acessar uma tabela do banco de dados, precisamos primeiro definir uma classe 
-AR estendo [CActiveRecord]. Cada classe Active Record representa uma única tabela 
+AR estendendo [CActiveRecord]. Cada classe Active Record representa uma única tabela 
 do banco, e uma instância dessa classe representa um registro dessa tabela. O 
 exemplo abaixo mostra o código mínimo necessário para uma classe AR que representa 
 a tabela `Post`: 
@@ -116,7 +116,7 @@ class Post extends CActiveRecord
 }
 ~~~
 
-> Tip|Dica: Como as classes Ar geralmente são utilizadas em diversos lugaras, 
+> Tip|Dica: Como as classes Ar geralmente são utilizadas em diversos lugares, 
 > podemos importar todo o diretório onde elas estão localizadas, em vez de fazer 
 > a importação uma a uma. Por exemplo, se todos os arquivos de nossas classes estão 
 > em `protected/models`, podemos configurar a aplicação da seguinte maneira:
@@ -131,8 +131,8 @@ class Post extends CActiveRecord
 > ~~~
 
 Por padrão, o nome de uma classe AR é o mesmo que o da tabela do banco de dados. 
-sobrescreve o método [tableName()|CActiveRecord::tableName] caso eles sejam 
-diferentes. O método [model()|CActiveRecord::model] é declarado dessa maneira 
+Sobrescreva o método [tableName()|CActiveRecord::tableName] caso eles sejam 
+diferentes. O método [model()|CActiveRecord::model] deve ser declarado dessa maneira 
 para todos as classes AR (a ser explicado em breve).
 
 Os valores do registro de um tabela podem ser acessados pelas propriedades da 
@@ -159,7 +159,7 @@ ele adiciona um problema relacionado aos bancos de dados que diferenciam letras
 maiúsculas de minúsculas. Por exemplo, o PostgreSQL, por padrão, não faz essa 
 diferenciação nos nomes das colunas, e devemos colocar o nome da coluna entre aspas, 
 em uma consulta, se seu nome conter letras maiúsculas e minúsculas. Por isso, 
-é uma boa idéia nome as colunas (e as tabelas também) somente com letras minúsculas 
+é uma boa idéia nomear as colunas (e as tabelas também) somente com letras minúsculas 
 (por exemplo, `create_time`) para evitar esse tipo de problema.
 
 Criando um Registro
@@ -180,11 +180,11 @@ $post->save();
 ~~~
 
 Se a chave primário da tabela é auto-numérica, após a inserção, a instância da 
-classe Ar irá conter o valor atualizado da chave primária. No exemplo acima, a 
+classe AR irá conter o valor atualizado da chave primária. No exemplo acima, a 
 propriedade `id` irá refletir o valor da chave primária no novo post inserido, 
-mesmo que não o tenhamos alterado explicitamente.
+mesmo que não a tenhamos alterado explicitamente.
 
-Se alguma coluna é definida com alguma valor padrão estático (por exemplo, uma 
+Se alguma coluna é definida com um valor padrão estático (por exemplo, uma 
 string ou um número) no schema da tabela, a propriedade correspondente na 
 instância AR terá, automaticamente, este valor, assim que criada. Uma maneira 
 de alterar esse valor padrão é declarar explicitamente a propriedade na classe AR:
@@ -248,16 +248,16 @@ Esse método retorna uma instância AR que é utilizada para acessar métodos a 
 de classe (algo parecido com métodos estáticos de classe) em um contexto de objeto.
 
 Se o método `find` encontra um registro que satisfaça as condições da consulta, 
-ele irá retornar uma instância cujo as propriedades irão conter os valores do 
+ele irá retornar uma instância cujas propriedades irão conter os valores do 
 registro específico. Podemos então ler os valores carregados normalmente como 
-fazemos com as propriedades de um objeto. Por exemplo, `echo $post-title;`.
+fazemos com as propriedades de um objeto. Por exemplo, `echo $post->title;`.
 
 O método `find` irá retornar null se nenhum registro for encontrado.
 
 Ao executar o método `find`, utilizamos os parâmetros `$condition` e `$params` 
 para especificar as condições desejadas. Nesse caso, `$condition` pode ser uma 
 string representando uma cláusula `WHERE`, do SQL, e `$params` é um vetor 
-com parâmetros cujo os valores devem ser vinculados a marcadores na `$condition`. 
+com parâmetros cujos valores devem ser vinculados a marcadores na `$condition`. 
 Por exemplo:
 
 ~~~
@@ -286,11 +286,11 @@ $post=Post::model()->find($criteria); // $params não é necessario
 ~~~
 
 Note que, ao utilizar [CDbCriteria] como condição para a pesquisa, o parâmetro 
-`$params` nãp é mais necessário, uma vez que ele pode ser especificado diretamente 
+`$params` não é mais necessário, uma vez que ele pode ser especificado diretamente 
 na instância de [CDbCriteria], como no exemplo acima.
 
 Uma maneira alternativa de utilizar [CDbCriteria] é passar um vetor para o método 
-`find`. As chaves e valores do vetor correspondem as propriedades e valor da condição, 
+`find`. As chaves e valores do vetor correspondem as propriedades e valores da condição, 
 respectivamente. O exemplo acima pode ser reescrito da seguinte maneira:
 
 ~~~
@@ -346,7 +346,7 @@ Atualizando Registros
 ---------------------
 
 Depois que uma instância AR tenha sido preenchida com os valores dos campos 
-da tabela, pode atualiza-los e salva-los de volta para o banco de dados.
+da tabela, podemos atualiza-los e salva-los de volta para o banco de dados.
 
 ~~~
 [php]
@@ -363,7 +363,7 @@ novo registro no banco de dados; se a instância é o resultado de um `find` ou
 existente na tabela. Podemos utilizar a propriedade [CActiveRecord::isNewRecord] 
 para verificar se uma instância AR é nova ou não.
 
-Também é possível um ou vários registros em uma tabela do banco, sem ter que 
+Também é possível atualizar um ou vários registros em uma tabela do banco, sem ter que 
 carrega-lo primeiro. Existem os seguinte métodos para efetuar essas operações 
 de uma maneira mais conveniente:
 
@@ -411,16 +411,16 @@ Validação de Dados
 ------------------
 
 Ao inserir ou atualizar um registro, geralmente precisamos verificar ser o valor 
-está de acordo com certas regras. Isso é especialmente importante, nos casos em 
+está de acordo com certas regras. Isso é especialmente importante nos casos em 
 que os valores das colunas são informados pelos usuários. No geral, é bom nunca 
-confiar em nada vindo do lado do cliente (usuário).
+confiar em nenhum dado vindo do lado do cliente (usuário).
 
-O AR efetua a validação automaticamente quando é método [save()|CActiveRecord::save] 
-é executado. A validação é baseada em regras especificadas pelo métodos 
+O AR efetua a validação automaticamente quando o método [save()|CActiveRecord::save] 
+é executado. A validação é baseada em regras especificadas pelo método 
 [rules()|CActiveRecord::rules] da classe AR. Para mais detalhes sobre como 
-especificar regras de validações consulte 
+especificar regras de validação consulte 
 [Declarando Regras de Validação](/doc/guide/form.model#declaring-validation-rules). 
-Abaixo temo um fluxo típico necessário para salvar um registro:
+Abaixo temos o fluxo típico necessário para salvar um registro:
 
 ~~~
 [php]
@@ -446,10 +446,10 @@ $post->save();
 ~~~
 
 Se existirem muitos campos, teríamos uma longa lista dessas atribuições. 
-Esse trabalho pode ser aliviado, por meio da propriedade [attributes|CActiveRecord::attributes] 
+Esse trabalho pode ser aliviado, por meio da propriedade [attributes|CActiveRecord::attributes], 
 como feito no exemplo abaixo. Mais detalhes podem ser consultados em 
 [Atribuição de Atributos Seguros](/doc/guide/form.model#securing-attribute-assignments)
-e em [Criando uma Ação](/doc/guide/form.action).
+e [Criando uma Ação](/doc/guide/form.action).
 
 ~~~
 [php]
@@ -461,16 +461,16 @@ $post->save();
 Comparando Registros
 --------------------
 
-Assim como registros de uma tabela, as instâncias AR também são identificadas 
-pelos valores se duas chaves primárias. Portanto, para comparar duas instâncias 
+Assim como registros de uma tabela, as instâncias AR também são unicamente identificadas 
+pelos valores de suas chaves primárias. Portanto, para comparar duas instâncias 
 AR, precisamos apenas comparar os valores de suas chaves, assumindo que ambas 
 pertencem a mesma classe. Entretanto, existe uma maneira mais simples de compara-las,
 que é utilizar o método [CActiveRecord::equals()].
 
 > Info|Informação: Diferente das implementações de Active Record em outros 
-frameworks, o Yii suporta chaves primárias compostas em seu AR. Um chave primária 
+frameworks, o Yii suporta chaves primárias compostas em seu AR. Uma chave primária 
 composta é formada por duas ou mais colunas. De forma correspondente, a chave 
-primária é representado por um vetor no Yii. A propriedade [primaryKey|CActiveRecord::primaryKey] 
+primária é representada por um vetor no Yii. A propriedade [primaryKey|CActiveRecord::primaryKey] 
 retorna a chave uma instância AR.
 
 Personalização
@@ -495,7 +495,7 @@ depois que uma instância AR é excluída.
 para toda instância AR criada por meio do operador `new`.
 
    - [afterFind|CActiveRecord::afterFind]: esse método é utilizado para toda 
-instância AR criada como resultada de um consulta.
+instância AR criada como resultado de um consulta.
 
 Utilizando Transações com AR
 ----------------------------
@@ -512,7 +512,7 @@ $transaction=$model->dbConnection->beginTransaction();
 try
 {
 	// find e save são dois passos que podem ser interrompidos por outra requisição
-	// portanto utilizamos uma transação para garantir a consistência a integridade dos dados
+	// portanto utilizamos uma transação para garantir e a consistência a integridade dos dados
 	$post=$model->findByPk(10);
 	$post->title='novo título para o post';
 	$post->save();
@@ -576,7 +576,7 @@ $posts=Post::model()->published()->recently()->findAll();
 
 Geralmente, os named scopes aparecem a esquerda da chamada ao método `find`. 
 Então, cada um deles fornece um critério de pesquisa que é combinado com outros 
-critários, incluindo o que é passado para o método `find`. Esse encadeamento é 
+critérios, incluindo o que é passado para o método `find`. Esse encadeamento é 
 como adicionar uma lista de filtros em um consulta.
 
 A partir da versão 1.0.6, named scopes também podem ser utilizados com os métodos 
@@ -594,9 +594,9 @@ classe. Por esse motivo, o método deve ser executando utilizando `NomeDaClasse:
 ### Named Scopes Parametrizados
 
 Named scopes podem ser parametrizados. Por exemplo, podemos querer personalizar 
-o número de post especificados no named scope `recently`, Para isso, em vez de 
+o número de posts retornados no named scope `recently`, Para isso, em vez de 
 declarar o named scope dentro do método [CActiveRecord::scopes], precisamos definir 
-um novo método cujo nome seja o mesmo do named scope:
+um novo método cujo nome seja o mesmo do escopo:
 
 ~~~
 [php]
@@ -623,9 +623,9 @@ posts, que é a quantidade padrão definida no método.
 ### Named Scope Padrão
 
 A classe de um modelo pode ter um named scope padrão, que é aplicado para todas 
-as consultas (incluindo as relacionais) do modelo. Por exemplo, um website que 
+as suas consultas (incluindo as relacionais). Por exemplo, um website que 
 suporte vários idiomas, pode querer exibir seu conteúdo somente no idioma que o 
-usuário especificar. Como podem existir muitas consultas para recuperar esse 
+usuário especificar. Como devem existir muitas consultas para recuperar esse 
 conteúdo, podemos definir um named scope para resolver esse problema. Para isso 
 sobrescrevemos o método [CActiveRecord::defaultScope], como no código a seguir:
 
@@ -649,7 +649,7 @@ Assim, a chamada de método a seguir irá utilizar automaticamente o critério d
 $contents=Content::model()->findAll();
 ~~~
 
-Note que o named scope padrão é aplicado somente as consultas utilizando `SQL`. 
+Note que o named scope padrão é aplicado somente as consultas utilizando `SELECT`. 
 Ele é ignorado nas consultas com `INSERT`, `UPDATE` e `DELETE`.
 
 <div class="revision">$Id: database.ar.txt 1167 2009-06-23 02:56:45Z qiang.xue $</div>
