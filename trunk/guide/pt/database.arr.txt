@@ -240,8 +240,9 @@ $posts=Post::model()->with(
 ~~~
 
 A consulta acima será executada em um único comando SQL. Sem o método [together|CActiveFinder::together],
-serão necessárias duas consultas: uma irá fazer a junção das tabelas `Post`, `User` 
-e `Profile` a outra irá fazer a junção de `User` e `Post`
+serão necessárias três consultas: uma irá fazer a junção das tabelas `Post`, `User` 
+e `Profile`, outra irá fazer a junção de `User` e `Post` e a última irá fazer a junção de 
+`Post`, `PostCategory` e `Category`.
 
 Opções de Consultas Relacionais
 -------------------------------

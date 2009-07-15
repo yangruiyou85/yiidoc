@@ -139,6 +139,9 @@ CREATE TABLE User (
 );
 ~~~
 
+> Note|Nota: Se estiver utilizando um banco de dados MySQL, você deve substituir o 
+`AUTOINCREMENT`, utilizado no código acima, por `AUTO_INCREMENT`.
+
 Por simplicidade, criamos somente uma única tabela: `User` no nosso banco de dados.
 O arquivo do banco de dados SQLite foi salvo em `WebRoot/testdrive/protected/data/source.db`.
 Observe que tanto o arquivo quanto o diretório devem ter permissão de leitura do servidor Web,
@@ -174,11 +177,13 @@ If you have a 'db' database connection, you can test it now with:
 
 >> crud User
    generate UserController.php
+   mkdir D:/wwwroot/testdrive/protected/views/user
    generate create.php
-      mkdir D:/wwwroot/testdrive/protected/views/user
    generate update.php
    generate list.php
    generate show.php
+   generate admin.php
+   generate _form.php
 
 Crud 'user' has been successfully created. You may access it via:
 http://hostname/path/to/index.php?r=user
