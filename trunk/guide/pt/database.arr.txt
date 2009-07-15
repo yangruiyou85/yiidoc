@@ -517,4 +517,4 @@ class User extends CActiveRecord
 > Note|Nota: Named scopes aplicados a modelos relacionados devem ser declarados no 
 método [CActiveRecord::scopes]. Como resultado, eles não podem ser parametrizados.
 
-<div class="revision">$Id: database.arr.txt 1168 2009-06-23 14:52:48Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 1248 2009-07-15 19:40:44Z qiang.xue $</div>
