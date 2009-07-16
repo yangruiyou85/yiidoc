@@ -62,7 +62,7 @@ URL-адресу `http://www.example.com/blog/index.php`. Мы должны ув
 ###Входной скрипт
 
 У нас есть файл
-[входного скрипта](http://www.yiiframework.com/doc/guide/ru/basics.entry) -
+[входного скрипта](/doc/guide/ru/basics.entry) -
 `/wwwroot/blog/index.php` с таким содержимым:
 
 ~~~
@@ -80,14 +80,14 @@ Yii::createWebApplication($config)->run();
 
 Это единственный скрипт, к которому пользователи имеют прямой доступ. Сначала
 скрипт подключает файл начальной загрузки `yii.php`. Затем создает экземпляр
-[приложения](http://www.yiiframework.com/doc/guide/ru/basics.application) с
+[приложения](/doc/guide/ru/basics.application) с
 определенными настройками и выполняет приложение.
 
 
 ###Базовая директория приложения
 
 Также, у нас есть
-[базовая директория приложения](http://www.yiiframework.com/doc/guide/ru/basics.application#application-base-directory)
+[базовая директория приложения](/doc/guide/ru/basics.application#application-base-directory)
 `/wwwroot/blog/protected`. Большая часть нашего кода и данных будет храниться
 в этой директории и должна быть защищена от прямого доступа веб-пользователей.
 Для [веб-сервера Apache](http://httpd.apache.org/) мы помещаем в эту директорию
@@ -107,25 +107,25 @@ deny from all
 Чтобы помочь понять работу Yii, мы опишем основную последовательность работы в
 нашей основе приложения, когда пользователь обращается к странице `Контакты`:
 
- 1. [Входной скрипт](http://www.yiiframework.com/doc/guide/ru/basics.entry)
+ 1. [Входной скрипт](/doc/guide/ru/basics.entry)
 выполняется веб-сервером для обработки запроса;
  2. Экземпляр
-[приложения](http://www.yiiframework.com/doc/guide/ru/basics.application)
+[приложения](/doc/guide/ru/basics.application)
 создается и конфигурируется с определенными в файле конфигурации
 `/wwwroot/blog/protected/config/main.php` начальными значениями;
  3. Приложение разрешает (обрабатывает) запрос в
-[контроллер](http://www.yiiframework.com/doc/guide/ru/basics.controller) и
-[действие контроллера](http://www.yiiframework.com/doc/guide/ru/basics.controller#action).
+[контроллер](/doc/guide/ru/basics.controller) и
+[действие контроллера](/doc/guide/ru/basics.controller#action).
 Запрос страницы `Контакты` разрешается в контроллер `site` и действие `contact`;
  4. Приложение создает контроллер `site` в виде экземпляра класса
 `SiteController` и выполняет его;
  5. Экземпляр класса `SiteController` выполняет действие `contact` вызовом его
 метода `actionContact()`;
  6. Метод `actionContact()` генерирует (и показывает)
-[представление](http://www.yiiframework.com/doc/guide/ru/basics.view) `contact`
+[представление](/doc/guide/ru/basics.view) `contact`
 веб-пользователю. Внутренне, это достигается подключением файла представления
 `/wwwroot/blog/protected/views/site/contact.php` и включения результата в файл
-[макета](http://www.yiiframework.com/doc/guide/ru/basics.view#layout)
+[макета](/doc/guide/ru/basics.view#layout)
 `/wwwroot/blog/protected/views/layouts/main.php`.
 
 
