@@ -33,6 +33,13 @@ Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal
   * /guide/pt/form.table.txt (Davi)
   * /guide/pt/database.overview.txt (Wanderson)
   * /guide/pt/database.dao.txt (Davi)
+  * /guide/pt/database.ar.txt (Davi)
+  * /guide/pt/database.arr.txt (Davi)
+  * /guide/pt/caching.overview.txt (Davi)
+  * /guide/pt/caching.data.txt (Davi)
+  * /guide/pt/caching.fragment.txt (Davi)
+  * /guide/pt/caching.page.txt (Davi)
+  * /guide/pt/caching.dynamic.txt (Davi)
 
 *Mensagens do Framework Yii*:
   * /views/pt/error400.php (Luiz)
