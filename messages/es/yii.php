@@ -21,7 +21,7 @@ return array (
   'CEAcceleratorCache requires PHP eAccelerator extension to be loaded, enabled or compiled with the "--with-eaccelerator-shared-memory" option.' => 'CEAcceleratorCache requiere la extensión eAccelerator de PHP para ser cargada, activada o cargada con la opción "--with-eaccelerator-shared-memory".',
   'CZendDataCache requires PHP Zend Data Cache extension to be loaded.' => 'CZendDataCache requiere la extensión PHP Zend Data Cache para poder ser cargada.',
   'Column "{column} does not exist in table "{table}".' => 'La columna "{column}" no existe en la tabla "{table}".',
-  'Column name must be either a string or an array.' => 'El nombre del a columna debe ser una cadena o un array.',
+  'Column name must be either a string or an array.' => 'El nombre de la columna debe ser una cadena o un array.',
   'Table "{table}" does not exist.' => 'La tabla "{table}" no existe.',
   'The STAT relation "{name}" cannot have child relations.' => 'La relación STAT "{name}" no puede tener relaciones hijas.',
   'The module path "{path}" is not a valid directory.' => 'La ruta del módulo "{path}" no es un directorio válido.',
