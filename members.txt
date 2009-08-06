@@ -11,7 +11,6 @@ Dutch               dalip               maartenvanvliet
 Dutch               letscode            janwiebedehaan
 French              tof                 christophe.boulain
 French              kiwisoft            pgaultier
-French              ilzale              francesco.salerno@mac.com
 German              Ascomae             ckuetbach
 German              Mike                haertl.mike                 Yes
 German              pmatulla            peter.matulla
@@ -22,6 +21,7 @@ Hungarian           ggyorfi             ggyorfi
 Hungarian           Endyl               slemmer.balazs
 Idonesian           rx_sa               santosa.eric
 Idonesian           Kabayan             ade999                      Yes
+Italian             ilzale              francesco.salerno@mac.com
 Japanese            mocapapa            mocapapa@g.pugpug.org       Yes
 Japanese            rogue_engineer      hideo.fukumori
 Japanese            wjx                 s01master@yahoo.co.jp
