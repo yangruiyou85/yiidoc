@@ -15,6 +15,8 @@ podemos definir novos apelidos para caminhos. Por conveniência, o Yii já possu
 - `system`: refere-se ao diretório do Yii framework;
 - `application`: refere-se ao [diretório base](/doc/guide/basics.application#application-base-directory) da aplicação;
 - `webroot`: refere-se ao diretório que contém o arquivo do [script de entrada](/doc/guide/basics.entry). Esse apelido está disponível desde a versão 1.0.3.
+- `ext`: refere-se ao diretório que contém todas as [extensões](/doc/guide/extension.overview) de terceiros. Esse apelido está 
+disponível desde a versão 1.0.8.
 
 Além disso, se a aplicação utiliza [módulos](/doc/guide/basics.module), um apelido de diretório raiz (root alias) é predefinido para cada módulo, apontando para o diretório base do módulo correspondente. Esta funcionalidade está disponível desde a versão 1.0.3.
 
@@ -68,4 +70,4 @@ ser diferenciadas das classes definidas pelo usuário. Recomenda-se que o
 prefixo "C" seja reservado somente para utilização do Yii framework, e que classes criadas pelos usuário 
 sejam prefixadas com outras letras.
 
-<div class="revision">$Id: basics.namespace.txt 764 2009-02-27 17:17:27Z qiang.xue $</div>
+<div class="revision">$Id: basics.namespace.txt 1299 2009-08-07 00:25:55Z qiang.xue $</div>
