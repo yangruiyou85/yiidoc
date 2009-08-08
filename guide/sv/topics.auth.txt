@@ -469,7 +469,7 @@ någon form av användargränssnitt som slutanvändare sedan kan använda för a
 ett mer intuitivt sätt, åstadkomma en auktoriseringshierarki.
 
 
-### Using Business Rules
+### Använda affärsregler
 
 När vi definierar en auktoriseringshierarki kan vi associera en roll, en uppgift 
 eller en operation med en så kallad *affärsregel*. Vi kan även associera en affärsregel 

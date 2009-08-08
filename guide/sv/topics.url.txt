@@ -109,10 +109,10 @@ motsvarande en enstaka regel. Mönstret i en regel utgörs av en sträng som
 används till att matcha pathinfo-delen av URL:erna. Routedelen av en regel 
 skall referera till en giltig [kontrollerroute](/doc/guide/basics.controller#route).
 
-> Info: med start fr o m version 1.0.6, kan en regel anpassas ytterligare med  
-> hjälp av dess `urlSuffix`- och `caseSensitive`-alternativ. Med start från
+> Info: med start fr o m version 1.0.6, kan en regel anpassas ytterligare med 
+> hjälp av dess `urlSuffix`- och `caseSensitive`-alternativ. Med start från 
 > version 1.0.8, kan en regel också ha `defaultParams` som representerar en 
-> lista med namn-värdepar att sammanfogas med `$_GET`. För att anpassa en regel
+> lista med namn-värdepar att sammanfogas med `$_GET`. För att anpassa en regel 
 > med dessa alternativ, specificera routedelen av regeln i form av en array, 
 > i stil med följande:
 >

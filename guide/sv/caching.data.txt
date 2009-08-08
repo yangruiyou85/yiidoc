@@ -50,7 +50,7 @@ Vissa cachelagringar, så som MemCache, APC, stöder återhämtning av multipla
 cachelagrade värden genom ett satsvis arbetssätt, vilket kan reducera
 onödig resursanvändning vid återhämtning av cachelagrad data. Med start fr o m 
 version 1.0.8, tillhandahålls en ny metod, [mget()|CCache::mget], för att dra 
-nytta av finess. I händelse av att den underliggande cachelagringen inte stöder
+nytta av finessen. I händelse av att den underliggande cachelagringen inte stöder
 nämnda finess, simuleras den av [mget()|CCache::mget].
 
 För att ta bort ett cachat värde, anropa [delete()|CCache::delete]; för att ta 
