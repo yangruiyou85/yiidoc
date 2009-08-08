@@ -84,4 +84,4 @@ garante a existência dos dados em cache, mesmo que eles não expirem. Portanto,
 não utilize cache como um meio de armazenamento persistente (por exemplo, não o 
 utilize para armazenar dados da sessão.
 
-<div class="revision">$Id: caching.overview.txt 1084 2009-06-02 17:35:38Z qiang.xue $</div>
+<div class="revision">$Id: caching.overview.txt 1309 2009-08-08 12:37:23Z qiang.xue $</div>
