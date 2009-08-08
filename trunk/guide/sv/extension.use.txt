@@ -19,7 +19,7 @@ alla filer som tillhör `xyz`.
 
 > Note|Märk: Rotsökvägsalias `ext` har varit tillgängligt sedan version 1.0.8.
 Tidigare behövde man använda `application.extensions` för att referera till
-katalogen med alla utvidgningar. I följande beskrivning förutsätts att 
+katalogen med alla utvidgningar. Exemplen i nedanstående stycken förutsätter att 
 `ext` är definierad. För version 1.0.7 eller lägre måste 
 `application.extensions` användas istället.
 
