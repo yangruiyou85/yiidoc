@@ -12,12 +12,14 @@ Używanie rozszerzeń zwykle obejmuje następujące trzy kroki:
 
 Każde rozszerzenie posiada nazwę, która jednoznacznie identyfikuje ją spośród 
 wszystkich rozszerzeń. Biorąc pod uwagę rozszerzenie nazwane `xyz`, możemy zawsze 
-użyć aliasu ścieżki `application.extensions.xyz` by zlokalizować jego główny katalog, 
+użyć aliasu ścieżki `ext.xyz` by zlokalizować jego główny katalog, 
 który zawiera wszystkie pliki z `xyz`.
+
 
 Różne rozszerzenia posiadają różne wymagania dotyczące importowania, konfiguracji
 oraz użycia. W dalszej części, podsumujemy najczęściej używane scenariusze dotyczące
 rozszerzeń, zgodnie z kategoriami opisanymi w [przeglądzie](/doc/guide/extension.overview).
+
 
 Komponent aplikacji
 ---------------------
@@ -32,7 +34,7 @@ return array(
     // 'preload'=>array('xyz',...),
     'components'=>array(
         'xyz'=>array(
-            'class'=>'application.extensions.xyz.XyzClass',
+            'class'=>'ext.xyz.XyzClass',
             'property1'=>'value1',
             'property2'=>'value2',
         ),
@@ -56,12 +58,12 @@ w następujący sposób,
 ~~~
 [php]
 // widżet który nie potrzebuje zawartości 
-<?php $this->widget('application.extensions.xyz.XyzClass', array(
+<?php $this->widget('ext.xyz.XyzClass', array(
     'property1'=>'value1',
     'property2'=>'value2')); ?>
 
 // widżet, który posiada zawartość 
-<?php $this->beginWidget('application.extensions.xyz.XyzClass', array(
+<?php $this->beginWidget('ext.xyz.XyzClass', array(
     'property1'=>'value1',
     'property2'=>'value2')); ?>
 
@@ -86,7 +88,7 @@ class TestController extends CController
 	{
 		return array(
 			'xyz'=>array(
-				'class'=>'application.extensions.xyz.XyzClass',
+				'class'=>'ext.xyz.XyzClass',
 				'property1'=>'value1',
 				'property2'=>'value2',
 			),
@@ -115,7 +117,7 @@ class TestController extends CController
 	{
 		return array(
 			array(
-				'application.extensions.xyz.XyzClass',
+				'ext.xyz.XyzClass',
 				'property1'=>'value1',
 				'property2'=>'value2',
 			),
@@ -141,7 +143,7 @@ aplikacji](/doc/guide/basics.application#application-configuration):
 return array(
 	'controllerMap'=>array(
 		'xyz'=>array(
-			'class'=>'application.extensions.xyz.XyzClass',
+			'class'=>'ext.xyz.XyzClass',
 			'property1'=>'value1',
 			'property2'=>'value2',
 		),
@@ -169,7 +171,7 @@ class MyModel extends CActiveRecord // lub CFormModel
 		return array(
 			array(
 				'attr1, attr2',
-				'application.extensions.xyz.XyzClass',
+				'ext.xyz.XyzClass',
 				'property1'=>'value1',
 				'property2'=>'value2',
 			),
@@ -191,7 +193,7 @@ dla aplikacji konsolowej:
 return array(
 	'commandMap'=>array(
 		'xyz'=>array(
-			'class'=>'application.extensions.xyz.XyzClass',
+			'class'=>'ext.xyz.XyzClass',
 			'property1'=>'value1',
 			'property2'=>'value2',
 		),
@@ -221,11 +223,11 @@ Aby używać generycznych [komponentów](/doc/guide/basics.component), najpierw 
 dołączyć ich plik klasy używając
 
 ~~~
-Yii::import('application.extensions.xyz.XyzClass');
+Yii::import('ext.xyz.XyzClass');
 ~~~
 
 Następnie, możemy utworzyć instancję tej klasy, skonfigurować jej właściwości
 oraz zawołać jej metody. Możemy również rozszerzyć go do tworzenia nowych
 klas potomnych.
 
-<div class="revision">$Id: extension.use.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
+<div class="revision">$Id: extension.use.txt 1299 2009-08-07 00:25:55Z qiang.xue $</div>
