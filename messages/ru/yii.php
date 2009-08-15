@@ -180,7 +180,7 @@ return array (
   'Unrecognized locale "{locale}".' => 'Неизвестная локаль "{locale}".',
   'View file "{file}" does not exist.' => 'Файл представления "{file}" не существует.',
   'Yii application can only be created once.' => 'Приложение Yii может быть создано только один раз.',
-  'You are not authorized to perform this action.' => 'Вам неразрешено выполнять данное действие.',
+  'You are not authorized to perform this action.' => 'Вам не разрешено выполнять данное действие.',
   'Your request is not valid.' => 'Ваш запрос неправильный.',
   '{attribute} "{value}" has already been taken.' => '{attribute} "{value}" уже занят.',
   '{attribute} cannot be blank.' => '{attribute} не должен быть пустым.',
