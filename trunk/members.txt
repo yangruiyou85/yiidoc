@@ -4,6 +4,7 @@ Member List of Yiidoc Project
 Language            Forum ID            Google Account              Lead
 --------------------------------------------------------------------------
 Bulgarian           penkomitev          pemitev
+Czech				skippy				sklokocka
 Danish              DNRN                dnrnmail
 Dutch               Maxximus            maxximus007
 Dutch               Sacha Telgenhof     stelgenhof
