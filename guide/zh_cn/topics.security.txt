@@ -13,7 +13,7 @@
 比如，你可以对内容中的HTML进行转义处理。但是在某些情况下这种方法就不可取了，因为这种方法禁用了所有的HTML标签。
 
 Yii集成了[HTMLPurifier](http://htmlpurifier.org/)并且为开发者提供了一个很有用的组件[CHtmlPurifier]，
-这个组件封装了[HTMLPurifier](http://htmlpurifier.org/)类。这个组件可以将通过有效的审查、安全和白名单功能来把所审核的内容中的所有的恶意代码清除掉，并且确保过滤之后的内容过滤符合标准。
+这个组件封装了[HTMLPurifier](http://htmlpurifier.org/)类。它可以将通过有效的审查、安全和白名单功能来把所审核的内容中的所有的恶意代码清除掉，并且确保过滤之后的内容过滤符合标准。
 
 [CHtmlPurifier]组件可以作为一个[widget](/doc/guide/basics.view#widget)或者[filter](/doc/guide/basics.controller#filter)来使用。
 当作为一个widget来使用的时候，[CHtmlPurifier]可以对在视图中显示的内容进行安全过滤。
@@ -22,7 +22,7 @@ Yii集成了[HTMLPurifier](http://htmlpurifier.org/)并且为开发者提供了�
 ~~~
 [php]
 <?php $this->beginWidget('CHtmlPurifier'); ?>
-...display user-entered content here...
+//...这里显示用户输入的内容...
 <?php $this->endWidget(); ?>
 ~~~
 
@@ -37,7 +37,7 @@ Yii集成了[HTMLPurifier](http://htmlpurifier.org/)并且为开发者提供了�
 跨站攻击方式利用用户信任的某个特定网站，而CSRF攻击正相反，它利用用户在某个网站中的特定用户身份。
 
 要防范CSRF攻击，必须谨记一条：`GET`请求只允许检索数据而不能修改服务器上的任何数据。
-而`POST`请求，应当含有一些可以被服务器识别的随机数值，用来保证表单数据的来源和运行结果发送的去向是相同的。
+而`POST`请求应当含有一些可以被服务器识别的随机数值，用来保证表单数据的来源和运行结果发送的去向是相同的。
 
 Yii实现了一个CSRF防范机制，用来帮助防范基于`POST`的攻击。
 这个机制的核心就是在cookie中设定一个随机数据，然后把它同表单提交的`POST`数据中的相应值进行比较。
@@ -58,13 +58,13 @@ return array(
 );
 ~~~
 
-要显示一个表单，请使用[CHtml::form]而不要自己写HTML代码。[CHtml::form]可以自动地在表单中嵌入所需的随机数据。这些隐藏数据即可在表单提交的时候发送到服务器进行验证。
+要显示一个表单，请使用[CHtml::form]而不要自己写HTML代码。因为[CHtml::form]可以自动地在表单中嵌入一个隐藏项，这个隐藏项储存着验证所需的随机数据，这些数据可在表单提交的时候发送到服务器进行验证。
 
 
 Cookie攻击的防范
 ------------------------
 保护cookie免受攻击是非常重要的。因为session ID通常存储在Cookie中。
-如果一个人有了一个有效的session ID，他就可以使用这个session ID对应的session信息。
+如果攻击者窃取到了一个有效的session ID，他就可以使用这个session ID对应的session信息。
 
 这里有几条防范对策：
 
