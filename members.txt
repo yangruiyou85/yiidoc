@@ -58,6 +58,7 @@ Simplified Chinese  dreaminto           dreaminto
 Simplified Chinese  kran                isfrog
 Simplified Chinese  moho                goldendegree
 Simplified Chinese  cr0909              cr0909
+Simplified Chinese  imdong              i@imdong.net
 Spanish             mercurial           geraldo.medrano
 Spanish             sebas               sebathi
 Spanish             PoL                 freakpol
