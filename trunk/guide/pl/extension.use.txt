@@ -47,6 +47,68 @@ Następnie możemy uzyskać dostęp do komponentu w każdym miejscu używając `
 Komponent zostanie leniwie stworzony (to znaczy, będzie utworzony wtedy gdy zażądamy
 dostępu do niego po raz pierwszy) chyba, że wpiszemy go do właściwości `preload`.
 
+Zachowanie (ang. Behavior)
+--------
+
+[Zachowanie](/doc/guide/basics.component#component-behavior) może być używane w różnego
+rodzaju komponentach. Jego użycie obejmuje dwa kroki. W Pierwszym kroku zachowanie jest 
+dołączane do komponentu docelowego. W drugim kroku metoda zachowania wywoływana jest 
+poprzez komponent docelowy. Na przykład:
+
+~~~
+[php]
+// $name jednoznacznie identyfikuje zachowanie w komponencie
+$component->attachBehavior($name,$behavior);
+// test() jest metodą zachowanie $behavior
+$component->test();
+~~~
+
+Częściej zachowanie jest dołączane do komponentu w sposób configurowalny zamiast wywoływania
+metody `attachBehavior`. Na przykład aby dołączyć zachowanie do 
+[komponentu aplikacji](/doc/guide/basics.application#application-component), powinniśmy
+użyć następującej [konfiguracji aplikacji](/doc/guide/basics.application#application-configuration):
+
+~~~
+[php]
+return array(
+  'components'=>array(
+    'db'=>array(
+      'class'=>'CDbConnection',
+      'behaviors'=>array(
+        'xyz'=>array(
+          'class'=>'ext.xyz.XyzBehavior',
+          'property1'=>'value1',
+          'property2'=>'value2',
+        ),
+      ),
+    ),
+    //....
+  ),
+);
+~~~
+
+Powyższy kod załącza zachowanie `xyz` do komponentu aplikacji `db`. Możemy tak 
+zrobić ze wzdlędu na to, że [CApplicationComponent] definiuje właściwość o nazwie `behaviors`.
+Poprzez przypisanie tej właściwości listy zawierającej konfigurację zachowań, komponent 
+dołączy odpowiednie zachowanie w momencie inicjalizacji komponentu.
+
+Dla klas [CController], [CFormModel] oraz [CActiveModel], które zazwyczaj są rozszerzane 
+dołączanie zachowań odbywa się poprzez nadpisanie ich metody `behaviors()`. Na przykład:
+
+~~~
+[php]
+public function behaviors()
+{
+  return array(
+    'xyz'=>array(
+      'class'=>'ext.xyz.XyzBehavior',
+      'property1'=>'value1',
+      'property2'=>'value2',
+    ),
+  );
+}
+~~~
+
 
 Widżet
 ------
@@ -230,4 +292,4 @@ Następnie, możemy utworzyć instancję tej klasy, skonfigurować jej właściw
 oraz zawołać jej metody. Możemy również rozszerzyć go do tworzenia nowych
 klas potomnych.
 
-<div class="revision">$Id: extension.use.txt 1299 2009-08-07 00:25:55Z qiang.xue $</div>
+<div class="revision">$Id: extension.use.txt 1392 2009-09-04 20:39:11Z qiang.xue $</div>
