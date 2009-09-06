@@ -1,70 +1,70 @@
 Member List of Yiidoc Project
 =============================
 
-Language            Forum ID            Google Account              Lead
---------------------------------------------------------------------------
-Bulgarian           penkomitev          pemitev
-Czech				skippy				sklokocka
-Danish              DNRN                dnrnmail
-Dutch               Maxximus            maxximus007
-Dutch               Sacha Telgenhof     stelgenhof
-Dutch               dalip               maartenvanvliet
-Dutch               letscode            janwiebedehaan
-French              tof                 christophe.boulain
-French              kiwisoft            pgaultier
-German              Ascomae             ckuetbach
-German              Mike                haertl.mike                 Yes
-German              pmatulla            peter.matulla
-Greek               GoofyX              yii@lourdas.name
-Greek               dotoree             anavatis
-Hebrew              Vince               vadimg88
-Hungarian           ggyorfi             ggyorfi
-Hungarian           Endyl               slemmer.balazs
-Idonesian           rx_sa               santosa.eric
-Idonesian           Kabayan             ade999                      Yes
-Italian             ilzale              francesco.salerno@mac.com
-Japanese            mocapapa            mocapapa@g.pugpug.org       Yes
-Japanese            rogue_engineer      hideo.fukumori
-Japanese            wjx                 s01master@yahoo.co.jp
-Japanese            iwasaki             iwasaki@cresc.com
-Japanese            shuwatto            shuwatto
-Norwegian           knut                knut.urdalen
-Polish              e_t_k               e.kniazycki
-Polish              aztech              tomasz.suchanek
-Portuguese          raragao             ricardoaragao
-Portuguese          Flavio              flavioleonelferreira
-Portuguese          Luiz                luiz.uo
-Portuguese          Wanderson           wanderson.wbc
-Portuguese          mnobre              marconobre
-Portuguese          alexweber           alexweber15
-Portuguese          jjmf                joaomarq
-Portuguese          davi_alexandre      bastardgoblin
-Romanian            mishhh              if.mihai
-Russian             Bethrezen           b37hr3z3n
-Russian             Scott Tiger         krugloff.sergey
-Russian             samdark             alexander.makarow
-Russian             Konstantin Mirin    konstantin.mirin            Yes
-Russian             xenon               xzenon
-Russian             Caveman             alex.lukjanenko
-Russian             multif              ru.multif
-Russian             cr0t                kuznecov.sg
-Simplified Chinese  tangniyuqi          tangniyuqi
-Simplified Chinese  Leric               leric.zhang
-Simplified Chinese  nowgoo              nowgoo
-Simplified Chinese  sharehua            8080268@qq.com
-Simplified Chinese  dofy                dofyyu
-Simplified Chinese  thaiki              thaiki@126.com
-Simplified Chinese  dreaminto           dreaminto
-Simplified Chinese  kran                isfrog
-Simplified Chinese  moho                goldendegree
-Simplified Chinese  cr0909              cr0909
-Simplified Chinese  imdong              i@imdong.net
-Spanish             mercurial           geraldo.medrano
-Spanish             sebas               sebathi
-Spanish             PoL                 freakpol
-Spanish             ing.espitaleta      ing.espitaleta
-Spanish             buritica            buritica
-Swedish             tri                 triboe
-Traditional Chinese clementchen         clementchen
-Vietnamese          hnhuan              hn.huan
-Vietnamese          hung5s              hung5s
+  Status  Language            Forum ID            Google Account              Lead
+------------------------------------------------------------------------------------
+  active  German              Mike                haertl.mike                 Yes
+  active  Greek               dotoree             anavatis
+  active  Greek               GoofyX              yii@lourdas.name
+  active  Hebrew              Vince               vadimg88
+  active  Idonesian           Kabayan             ade999                      Yes
+  active  Italian             ilzale              francesco.salerno@mac.com
+  active  Japanese            iwasaki             iwasaki@cresc.com
+  active  Japanese            mocapapa            mocapapa@g.pugpug.org       Yes
+  active  Japanese            shuwatto            shuwatto
+  active  Polish              aztech              tomasz.suchanek
+  active  Portuguese          davi_alexandre      bastardgoblin
+  active  Russian             Caveman             alex.lukjanenko
+  active  Russian             samdark             alexander.makarow
+  active  Simplified Chinese  imdong              i@imdong.net
+  active  Simplified Chinese  moho                goldendegree
+  active  Simplified Chinese  sharehua            8080268@qq.com
+  active  Spanish             buritica            buritica
+  active  Spanish             sebas               sebathi
+  active  Swedish             tri                 triboe
+inactive  Bulgarian           penkomitev          pemitev
+inactive  Czech               skippy              sklokocka
+inactive  Danish              DNRN                dnrnmail
+inactive  Dutch               dalip               maartenvanvliet
+inactive  Dutch               letscode            janwiebedehaan
+inactive  Dutch               Maxximus            maxximus007
+inactive  Dutch               Sacha Telgenhof     stelgenhof
+inactive  French              kiwisoft            pgaultier
+inactive  French              tof                 christophe.boulain
+inactive  German              Ascomae             ckuetbach
+inactive  German              pmatulla            peter.matulla
+inactive  Hungarian           Endyl               slemmer.balazs
+inactive  Hungarian           ggyorfi             ggyorfi
+inactive  Idonesian           rx_sa               santosa.eric
+inactive  Japanese            rogue_engineer      hideo.fukumori
+inactive  Japanese            wjx                 s01master@yahoo.co.jp
+inactive  Norwegian           knut                knut.urdalen
+inactive  Polish              e_t_k               e.kniazycki
+inactive  Portuguese          alexweber           alexweber15
+inactive  Portuguese          Flavio              flavioleonelferreira
+inactive  Portuguese          jjmf                joaomarq
+inactive  Portuguese          Luiz                luiz.uo
+inactive  Portuguese          mnobre              marconobre
+inactive  Portuguese          raragao             ricardoaragao
+inactive  Portuguese          Wanderson           wanderson.wbc
+inactive  Romanian            mishhh              if.mihai
+inactive  Russian             Bethrezen           b37hr3z3n
+inactive  Russian             cr0t                kuznecov.sg
+inactive  Russian             Konstantin Mirin    konstantin.mirin
+inactive  Russian             multif              ru.multif
+inactive  Russian             Scott Tiger         krugloff.sergey
+inactive  Russian             xenon               xzenon
+inactive  Simplified Chinese  cr0909              cr0909
+inactive  Simplified Chinese  dofy                dofyyu
+inactive  Simplified Chinese  dreaminto           dreaminto
+inactive  Simplified Chinese  kran                isfrog
+inactive  Simplified Chinese  Leric               leric.zhang
+inactive  Simplified Chinese  nowgoo              nowgoo
+inactive  Simplified Chinese  tangniyuqi          tangniyuqi
+inactive  Simplified Chinese  thaiki              thaiki@126.com
+inactive  Spanish             ing.espitaleta      ing.espitaleta
+inactive  Spanish             mercurial           geraldo.medrano
+inactive  Spanish             PoL                 freakpol
+inactive  Traditional Chinese clementchen         clementchen
+inactive  Vietnamese          hnhuan              hn.huan
+inactive  Vietnamese          hung5s              hung5s
