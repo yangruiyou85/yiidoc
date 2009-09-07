@@ -49,7 +49,8 @@
 назначено объекту AR и вызван метод `save()`, атрибутам `create_time` и
 `update_time` будет автоматически выставлено текущее время.
 
-[code]
+~~~
+[php]
 class TimestampBehavior extends CActiveRecordBehavior
 {
 	public function beforeSave($event)
@@ -60,7 +61,7 @@ class TimestampBehavior extends CActiveRecordBehavior
 			$this->owner->update_time=time();
 	}
 }
-[/code]
+~~~
 
 Виджет
 ------
