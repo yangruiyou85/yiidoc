@@ -22,6 +22,7 @@ Member List of Yiidoc Project
   active  Spanish             buritica            buritica
   active  Spanish             sebas               sebathi
   active  Swedish             tri                 triboe
+  active  Ukrainian           yugene              yugenekr
 inactive  Bulgarian           penkomitev          pemitev
 inactive  Czech               skippy              sklokocka
 inactive  Danish              DNRN                dnrnmail
