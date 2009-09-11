@@ -129,6 +129,9 @@ public function ValidatorName($attribute,$params) { ... }
 проверяемое значение атрибута не было пустым. Ниже приведен полный список предопределенных псевдонимов валидаторов, 
 включенных в состав Yii:
 
+   - `boolean`: псевдоним класса [CBooleanValidator], который проверяет, чтобы 
+атрибут имел значение либо [CBooleanValidator::trueValue] либо [CBooleanValidator::falseValue].
+
    - `captcha`: псевдоним класса [CCaptchaValidator], который проверяет, чтобы 
 значение атрибута было равно коду верификации на [капче](http://ru.wikipedia.org/wiki/Captcha);
 
