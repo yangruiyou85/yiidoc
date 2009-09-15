@@ -55,7 +55,7 @@ Behavior
 För att skapa en behavior, måste man implementera ett [IBehavior] interface.
 För bekvämlighets skull innehåller Yii en basklass [CBehavior] som redan 
 implementerar detta interface och dessutom tillhandahåller fler passande 
-metoder. Ärvda klasser behöver i huvudsak implementera de extra metoder som  
+metoder. Ärvda klasser behöver i huvudsak implementera de extra metoder som 
 de avser att göra tillgängliga för komponenterna de skall kopplas till.
 
 Vid utveckling av behavior för [CModel] och [CActiveRecord] kan man även utöka 
@@ -71,7 +71,8 @@ kopplats till ett AR-objekt och AR-objektet sparas genom anrop till `save()`,
 förser den automatiskt `create_time`- och `update_time`-attributen med en aktuell 
 tidstämpel.
 
-[code]
+~~~
+[php]
 class TimestampBehavior extends CActiveRecordBehavior
 {
 	public function beforeSave($event)
@@ -82,7 +83,8 @@ class TimestampBehavior extends CActiveRecordBehavior
 			$this->owner->update_time=time();
 	}
 }
-[/code]
+~~~
+
 
 
 Widget
@@ -268,4 +270,4 @@ Utveckling av en generell utvidgningskomponent är som att skriva en klass.
 lätthet kan användas av andra utvecklare.
 
 
-<div class="revision">$Id: extension.create.txt 1392 2009-09-04 20:39:11Z qiang.xue $</div>
+<div class="revision">$Id: extension.create.txt 1411 2009-09-13 23:15:05Z qiang.xue $</div>
