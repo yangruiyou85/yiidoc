@@ -220,4 +220,4 @@ class MyCommand extends CConsoleCommand
 
 
 
-<div class="revision">$Id: extension.create.txt 1392 2009-09-04 20:39:11Z qiang.xue $</div>
+<div class="revision">$Id: extension.create.txt 1411 2009-09-13 23:15:05Z qiang.xue $</div>
