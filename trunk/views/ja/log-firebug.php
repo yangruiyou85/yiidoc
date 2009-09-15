@@ -2,7 +2,7 @@
 /*<![CDATA[*/
 if(typeof(console)=='object')
 {
-	console.group("¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¥í¥°");
+	console.group("ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ­ã‚°");
 <?php
 foreach($data as $index=>$log)
 {

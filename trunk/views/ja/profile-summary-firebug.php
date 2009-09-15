@@ -2,7 +2,7 @@
 /*<![CDATA[*/
 if(typeof(console)=='object')
 {
-	console.group("¥×¥í¥Õ¥¡¥¤¥ê¥ó¥°³µÍ×¥ì¥İ¡¼¥È");
+	console.group("ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒªãƒ³ã‚°æ¦‚è¦ãƒ¬ãƒãƒ¼ãƒˆ");
 	console.log(" count   total   average    min      max   ");
 <?php
 foreach($data as $index=>$entry)
