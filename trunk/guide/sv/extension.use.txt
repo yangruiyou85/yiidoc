@@ -262,7 +262,7 @@ class MyModel extends CActiveRecord // or CFormModel
 }
 ~~~
 
-Konsolkommande
+Konsolkommando
 --------------
 
 En [konsolkommando](/doc/guide/topics.console)-utvidgning berikar vanligtvis 
