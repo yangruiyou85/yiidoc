@@ -134,4 +134,4 @@ class UserLogin extends Portlet
 координирования модели и представления.
 
 
-<div class="revision">$Id: portlet.login.txt 884 2009-03-24 11:08:27Z qiang.xue $</div>
+<div class="revision">$Id: portlet.login.txt 891 2009-03-25 15:20:56Z qiang.xue $</div>
