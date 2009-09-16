@@ -145,4 +145,4 @@ public function init()
 представления и логики. Хотя мы и не указывали на это в предыдущих разделах,
 такая практика используется почти всюду в типичном приложении Yii.
 
-<div class="revision">$Id: portlet.menu.txt 671 2009-02-13 21:55:24Z qiang.xue $</div>
+<div class="revision">$Id: portlet.menu.txt 677 2009-02-14 04:27:48Z qiang.xue $</div>

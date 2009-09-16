@@ -66,4 +66,4 @@ class TagCloud extends Portlet
 ......
 ~~~
 
-<div class="revision">$Id: portlet.tags.txt 671 2009-02-13 21:55:24Z qiang.xue $</div>
+<div class="revision">$Id: portlet.tags.txt 677 2009-02-14 04:27:48Z qiang.xue $</div>
