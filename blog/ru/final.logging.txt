@@ -42,4 +42,4 @@ return array(
 руководства.
 
 
-<div class="revision">$Id: final.logging.txt 868 2009-03-21 17:35:21Z qiang.xue $</div>
+<div class="revision">$Id: final.logging.txt 878 2009-03-23 15:31:21Z qiang.xue $</div>
