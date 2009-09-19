@@ -58,4 +58,4 @@ GET-параметр `tag` со значением `yii`. С другой сто
 [красивые адреса URL](/doc/guide/ru/topics.url) руководства.
 
 
-<div class="revision">$Id: final.url.txt 693 2009-02-17 19:16:49Z qiang.xue $</div>
+<div class="revision">$Id: final.url.txt 702 2009-02-18 19:29:48Z qiang.xue $</div>

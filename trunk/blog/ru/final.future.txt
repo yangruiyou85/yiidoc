@@ -85,4 +85,4 @@ return array(
 категории записей, портлет архивных записей и так далее. Мы оставим
 возможность реализовать эти особенности заинтересовавшимся читателям.
 
-<div class="revision">$Id: final.future.txt 712 2009-02-19 15:11:15Z qiang.xue $</div>
+<div class="revision">$Id: final.future.txt 715 2009-02-20 02:08:24Z qiang.xue $</div>
