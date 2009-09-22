@@ -15,7 +15,7 @@ Member List of Yiidoc Project
   active  Polish              aztech              tomasz.suchanek
   active  Portuguese          davi_alexandre      bastardgoblin
   active  Russian             Caveman             alex.lukjanenko
-  active  Russian             samdark             alexander.makarow
+  active  Russian             samdark             alexander.makarow           Yes
   active  Simplified Chinese  imdong              i@imdong.net
   active  Simplified Chinese  moho                goldendegree
   active  Simplified Chinese  sharehua            8080268@qq.com
