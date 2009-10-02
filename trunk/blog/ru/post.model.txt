@@ -117,11 +117,11 @@ public function relations()
 	return array(
 		'author'=>array(self::BELONGS_TO, 'User', 'authorId'),
 		'comments'=>array(self::HAS_MANY, 'Comment', 'postId',
-			'order'=>'??.createTime'),
+			'order'=>'comments.createTime'),
 		'tagFilter'=>array(self::MANY_MANY, 'Tag', 'PostTag(postId, tagId)',
 			'together'=>true,
 			'joinType'=>'INNER JOIN',
-			'condition'=>'??.name=:tag'),
+			'condition'=>'tagFilter.name=:tag'),
 	);
 }
 ~~~
@@ -197,4 +197,4 @@ class Post extends CActiveRecord
 метод `getStatusText()`, который возвращает текстовое представление статуса
 текущей записи.
 
-<div class="revision">$Id: post.model.txt 814 2009-03-10 18:00:11Z qiang.xue $</div>
+<div class="revision">$Id: post.model.txt 1127 2009-06-13 20:26:35Z qiang.xue $</div>

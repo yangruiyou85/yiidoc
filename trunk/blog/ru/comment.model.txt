@@ -120,7 +120,7 @@ public function attributeLabels()
 
 ~~~
 [php]
-protected function beforeValidate($on)
+protected function beforeValidate()
 {
 	$parser=new CMarkdownParser;
 	$this->contentDisplay=$parser->safeTransform($this->content);
@@ -143,4 +143,4 @@ protected function afterDelete()
 ~~~
 
 
-<div class="revision">$Id: comment.model.txt 814 2009-03-10 18:00:11Z qiang.xue $</div>
+<div class="revision">$Id: comment.model.txt 1065 2009-05-26 14:47:59Z qiang.xue $</div>
