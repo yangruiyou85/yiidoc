@@ -1,7 +1,7 @@
 * Начало
 	- [Обзор](index)
     - [Новые возможности](changes)
-	- [Обновление с версии 1.0 на версию 1.1](upgrade)
+	- [Обновление с версии 1.0 до версии 1.1](upgrade)
     - [Что такое Yii](quickstart.what-is-yii)
     - [Установка](quickstart.installation)
     - [Создание первого приложения](quickstart.first-app)
