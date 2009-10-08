@@ -77,8 +77,8 @@ testdrive/
 
 ~~~
 % cd testdrive/protected/tests
-% phpunit functional/PostTest.php <-- запускает отдельный тест
-% phpunit --verbose functional    <-- запускает все тесты в директории 'functional'
+% phpunit functional/PostTest.php // запускает отдельный тест
+% phpunit --verbose functional    // запускает все тесты в директории 'functional'
 % phpunit --coverage-html ./report unit
 ~~~
 
@@ -139,4 +139,4 @@ return CMap::mergeArray(
 фикстур и используется тестовая БД.
 
 
-<div class="revision">$Id: test.overview.txt 1149 2009-06-19 02:16:47Z qiang.xue $</div>
+<div class="revision">$Id: test.overview.txt 1440 2009-10-08 00:08:00Z qiang.xue $</div>
