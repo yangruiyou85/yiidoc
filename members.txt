@@ -19,6 +19,7 @@ Member List of Yiidoc Project
   active  Simplified Chinese  imdong              donzir
   active  Simplified Chinese  moho                goldendegree
   active  Simplified Chinese  sharehua            8080268@qq.com
+  active  Simplified Chinese  Qiang Wu            wgq91here
   active  Spanish             buritica            buritica
   active  Spanish             sebas               sebathi                     Yes
   active  Swedish             tri                 triboe
