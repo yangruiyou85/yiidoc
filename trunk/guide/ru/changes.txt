@@ -17,6 +17,12 @@
 
  * Изменён псевдоним таблицы по умолчанию на имя отношений AR.
 
+Версия 1.0.10
+-------------
+
+ * Улучшен CPhpMessageSource. Теперь можно использовать для перевода сообщений модулей
+     - [Перевод сообщений](/doc/guide/topics.i18n#message-translation)
+
 Версия 1.0.8
 -------------
 
@@ -72,4 +78,4 @@
  * Расширен класс [CUrlManager] поодержкой параметризованных маршрутов в URL-правилах:
      - [Параметризация маршрутов](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 1425 2009-09-28 03:28:17Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 1463 2009-10-17 01:49:02Z qiang.xue $</div>
