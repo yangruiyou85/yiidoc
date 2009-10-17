@@ -1,4 +1,4 @@
-﻿Темы оформления
+Темы оформления
 =====
 
 Темы оформления являются традиционным способом настроить внешний вид страниц веб-приложения. Применив новую тему, 
@@ -44,6 +44,54 @@
 > [php]
 > Yii::app()->theme->baseUrl . '/images/FileName.gif'
 > ~~~
+
+Ниже приведён пример организации директорий приложения с двумя темами `basic` и `fancy`:
+
+~~~
+WebRoot/
+	assets
+	protected/
+		.htaccess
+		components/
+		controllers/
+		models/
+		views/
+			layouts/
+				main.php
+			site/
+				index.php
+	themes/
+		basic/
+			views/
+				.htaccess
+				layouts/
+					main.php
+				site/
+					index.php
+		fancy/
+			views/
+				.htaccess
+				layouts/
+					main.php
+				site/
+					index.php
+~~~
+
+В настройках приложения, если мы будем использовать:
+
+~~~
+[php]
+return array(
+	'theme'=>'basic',
+	......
+);
+~~~
+
+то будет примяться тема `basic`. То есть главный макет (layout) будет браться из
+`themes/basic/views/layouts`, а представление index — из `themes/basic/views/site`.
+Если файл представления не найден в теме, будет использован файл из
+`protected/views`.
+
 
 Скины
 -----
@@ -135,4 +183,4 @@ return array(
 
 > Info|Информация: Использование скина может привести к снижению производительности, поскольку Yii должен найти файл скина, когда виджет создается впервые.
 
-<div class="revision">$Id: topics.theming.txt 1410 2009-09-13 19:34:39Z qiang.xue $</div>
+<div class="revision">$Id: topics.theming.txt 1463 2009-10-17 01:49:02Z qiang.xue $</div>
