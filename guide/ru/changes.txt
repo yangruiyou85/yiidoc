@@ -23,6 +23,9 @@
  * Улучшен CPhpMessageSource. Теперь можно использовать для перевода сообщений модулей
      - [Перевод сообщений](/doc/guide/topics.i18n#message-translation)
 
+ * Добавлена поддержка анонимных функций в качестве обработчиков событий.
+     - [События компонента](/doc/guide/basics.component#component-event)
+
 Версия 1.0.8
 -------------
 
@@ -78,4 +81,4 @@
  * Расширен класс [CUrlManager] поодержкой параметризованных маршрутов в URL-правилах:
      - [Параметризация маршрутов](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 1463 2009-10-17 01:49:02Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 1474 2009-10-18 21:13:52Z qiang.xue $</div>
