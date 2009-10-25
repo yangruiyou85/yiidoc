@@ -125,6 +125,19 @@ class Post extends CActiveRecord
 Если они различаются, потребуется переопределить метод [tableName()|CActiveRecord::tableName]. 
 Метод [model()|CActiveRecord::model] объявляется для каждого AR-класса.
 
+> Info|Информация: Для использования [функции префикса таблиц](/doc/guide/database.dao#using-table-prefix),
+> появившейся в версии 1.1.0, метод [tableName()|CActiveRecord::tableName] AR-класса
+> может быть переопределен как показано ниже:
+> ~~~
+> [php]
+> public function tableName()
+> {
+>     return '{{post}}';
+> }
+> ~~~
+> Вместо того, чтобы возвращать полное имя таблицы, мы возвращаем
+> имя таблицы без префикса и заключаем его в двойные фигурные скобки.
+
 Значения полей в строке таблицы доступны как атрибуты соответствующего экземпляра AR-класса.
 Например, код ниже устанавливает значение для атрибута `title`:
 
@@ -615,4 +628,4 @@ $contents=Content::model()->findAll();
 Заметим, что именованная группа условий по умолчанию применяется только к
 `SELECT` запросам. Она игнорируется в `INSERT`, `UPDATE` и `DELETE` запросах.
 
-<div class="revision">$Id: database.ar.txt 1391 2009-09-04 19:46:04Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 1479 2009-10-23 13:24:20Z qiang.xue $</div>

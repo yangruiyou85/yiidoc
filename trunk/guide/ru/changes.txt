@@ -17,6 +17,8 @@
 
  * Изменён псевдоним таблицы по умолчанию на имя отношений AR.
 
+ * [Добавлена поддержка использования префикса таблиц](/doc/guide/database.dao#using-table-prefix).
+
 Версия 1.0.10
 -------------
 
@@ -81,4 +83,4 @@
  * Расширен класс [CUrlManager] поодержкой параметризованных маршрутов в URL-правилах:
      - [Параметризация маршрутов](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 1474 2009-10-18 21:13:52Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 1479 2009-10-23 13:24:20Z qiang.xue $</div>
