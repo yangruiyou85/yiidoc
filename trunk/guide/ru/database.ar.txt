@@ -125,8 +125,8 @@ class Post extends CActiveRecord
 Если они различаются, потребуется переопределить метод [tableName()|CActiveRecord::tableName]. 
 Метод [model()|CActiveRecord::model] объявляется для каждого AR-класса.
 
-> Info|Информация: Для использования [функции префикса таблиц](/doc/guide/database.dao#using-table-prefix),
-> появившейся в версии 1.1.0, метод [tableName()|CActiveRecord::tableName] AR-класса
+> Info|Информация: Для использования [префиксов таблиц](/doc/guide/database.dao#using-table-prefix),
+> появившихся в версии 1.1.0, метод [tableName()|CActiveRecord::tableName] AR-класса
 > может быть переопределен как показано ниже:
 > ~~~
 > [php]
