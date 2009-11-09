@@ -54,7 +54,7 @@ return array(
 Поведение
 ---------
 
-[Поведение](/doc/guide/ru/basics.component#component-behavior) может быть
+[Поведение](/doc/guide/basics.component#component-behavior) может быть
 использовано в любом компоненте. Делается это в два шага: присоединение
 к компоненту и вызов метода поведения из компонента. К примеру:
 
@@ -68,9 +68,9 @@ $component->test();
 
 Чаще всего поведение присоединяется к компоненту с использованием конфигурации, а
 не вызовом метода `attachBehavior`. К примеру, чтобы присоединить поведение к
-[компоненту приложения](/doc/guide/ru/basics.application#application-component),
+[компоненту приложения](/doc/guide/basics.application#application-component),
 мы можем использовать следующую
-[конфигурацию](/doc/guide/ru/basics.application#application-configuration):
+[конфигурацию](/doc/guide/basics.application#application-configuration):
 
 ~~~
 [php]
