@@ -18,6 +18,7 @@ Version 1.1.0
 
  * Der verwendete Tabellen-Alias entspricht nun dem Namen der Beziehung im AR.
 
+ * [Unterstützung von Tabellenpräfixen](/doc/guide/database.dao#using-table-prefix).
 
 Version 1.0.10
 --------------
@@ -85,4 +86,4 @@ Version 1.0.5
 einer URL. Siehe:
      - [Parametrisierte Routen in URL-Regeln](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 1474 2009-10-18 21:13:52Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 1479 2009-10-23 13:24:20Z qiang.xue $</div>
