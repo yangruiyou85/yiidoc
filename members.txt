@@ -3,6 +3,7 @@ Member List of Yiidoc Project
 
   Status  Language            Forum ID            Google Account              Lead
 ------------------------------------------------------------------------------------
+  active  French              kiwisoft            pgaultier
   active  German              Mike                haertl.mike                 Yes
   active  Greek               dotoree             anavatis
   active  Greek               GoofyX              yii@lourdas.name
@@ -32,7 +33,6 @@ inactive  Dutch               dalip               maartenvanvliet
 inactive  Dutch               letscode            janwiebedehaan
 inactive  Dutch               Maxximus            maxximus007
 inactive  Dutch               Sacha Telgenhof     stelgenhof
-inactive  French              kiwisoft            pgaultier
 inactive  French              tof                 christophe.boulain
 inactive  German              Ascomae             ckuetbach
 inactive  German              pmatulla            peter.matulla
