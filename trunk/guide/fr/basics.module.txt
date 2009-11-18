@@ -3,17 +3,17 @@ Module
 
 > Note: Le support des modules est disponible depuis la version 1.0.3.
 
-Un module est un bout de logiciel autonome qui comporte des 
-[modèles](/doc/guide/basics.model), des [vues](/doc/guide/basics.view), 
-des [contrôleurs](/doc/guide/basics.controller) et autres composants. 
-Sous plusieurs aspects, un module est assez similaire à une [application](/doc/guide/basics.application). 
+Un module est un bout de logiciel autonome qui comporte des
+[modèles](/doc/guide/basics.model), des [vues](/doc/guide/basics.view),
+des [contrôleurs](/doc/guide/basics.controller) et autres composants.
+Sous plusieurs aspects, un module est assez similaire à une [application](/doc/guide/basics.application).
 La principale différence est qu'un module ne peut être déployé seul et doit
 absolument être inclus dans une application. Les utilisateurs peuvent
-accéder aux contrôleurs d'un module comme ils le font avec les contrôleurs de 
+accéder aux contrôleurs d'un module comme ils le font avec les contrôleurs de
 l'application.
 
-Les modules sont utiles dans divers cas. 
-Pour une application conséquente, il est possible de la diviser en 
+Les modules sont utiles dans divers cas.
+Pour une application conséquente, il est possible de la diviser en
 plusieurs modules, chacun étant développé et maintenu indépendament.
 Des fonctionnalités génériques telles que la gestion des utilisateurs, des commentaires
 peuvent être déployées sous la forme de modules et ainsi être réutilisées simplement
@@ -23,15 +23,15 @@ dans d'autres projets.
 Créer Un Module
 ---------------
 
-Un module est conçu à l'intérieur d'un dossier. Ce dossier défini sont [ID|CWebModule::id] unique.
-La structure d'un module est similaire à celle du 
-[dossier de base de l'application](/doc/guide/basics.application#application-base-directory). 
+Un module est conçu à l'intérieur d'un dossier. Ce dossier défini son [ID|CWebModule::id] unique.
+La structure d'un module est similaire à celle du
+[dossier de base de l'application](/doc/guide/basics.application#application-base-directory).
 Ci-dessous, la structure du module `forum`:
 
 ~~~
 forum/
    ForumModule.php            La classe du module
-   components/                Composants réutilisables 
+   components/                Composants réutilisables
       views/                  Vues widget
    controllers/               Contrôleurs
       DefaultController.php   Contrôleur par défaut
@@ -43,13 +43,13 @@ forum/
          index.php            La vue index
 ~~~
 
-Un module doit avoir une classe qui étends [CWebModule]. 
-Le nom de cette classe est défini par l'expression `ucfirst($id).'Module'`, 
-ou `$id` aorrespond à l'ID du module (ou au nom du dossier du module). 
+Un module doit avoir une classe qui étends [CWebModule].
+Le nom de cette classe est défini par l'expression `ucfirst($id).'Module'`,
+ou `$id` aorrespond à l'ID du module (ou au nom du dossier du module).
 La classes du module est le noyau central qui permet de gérer et sauvegarder
-toutes les informations nécessaires au bon foncitonnement du code. 
+toutes les informations nécessaires au bon foncitonnement du code.
 Par exemple, il est possible d'utiliser [CWebModule::params] pour sauvegarder
-les paramètres, et d'utiliser [CWebModule::components] pour partager les 
+les paramètres, et d'utiliser [CWebModule::components] pour partager les
 [composants applicatifs](/doc/guide/basics.application#application-component) au niveau du module.
 
 > Astuce|Tip: Il est possible d'utiliser l'outil `yiic` pour créer le squelette d'un module. Par exemple, pour créer le module `forum`, il faut exécuter la commande CLI suivante:
@@ -67,7 +67,7 @@ Utilisation d'un Module
 -----------------------
 
 Pour utiliser un module, il faut le déployer dans le dossier `modules` du
-[dossier de base de l'application](/doc/guide/basics.application#application-base-directory). 
+[dossier de base de l'application](/doc/guide/basics.application#application-base-directory).
 Il faut ensuite déclarer l'ID du module au niveau de la propriété [modules|CWebApplication::modules]
 de l'application.
 Par exemple, pour pouvoir utiliser le module `forum`, il est possible d'utiliser
@@ -83,9 +83,9 @@ return array(
 ~~~
 
 Un module peut aussi être configuré. L'usage est très similaire à
-la configuration des [composants d'application](/doc/guide/basics.application#application-component). 
-Par exemple, le module `forum` pourrait avoir une propriété nommée 
-`postPerPage` au sein de sa class qui pourrait être configurée dans la 
+la configuration des [composants d'application](/doc/guide/basics.application#application-component).
+Par exemple, le module `forum` pourrait avoir une propriété nommée
+`postPerPage` au sein de sa class qui pourrait être configurée dans la
 [configuration de l'application](/doc/guide/basics.application#application-configuration) comme suit:
 
 ~~~
@@ -118,10 +118,10 @@ L'action d'un contrôleur d'un module peut être accédé en utilisant la [route](/d
 > Astuce|Tip: Si un contrôleur et dans un sous-dossier de `controllers`, il est possible d'utiliser le format de [route](/doc/guide/basics.controller#route) ci-dessus. Par exemple, si `PostController` est sous `forum/controllers/admin`, il est possible de référence l'action `create` en utilisant `forum/admin/post/create`.
 
 
-Nested Module
--------------
+Modules Imbriqués (nested)
+--------------------------
 
-Modules can be nested. That is, a module can contain another module. We call the former *parent module* while the latter *child module*. Child modules must be placed under the `modules` directory of the parent module. To access a controller action in a child module, we should use the route `parentModuleID/childModuleID/controllerID/actionID`.
+Les modules peuvent être imbriqués. Le premier est appelé *module père* et le second *module fils*. Les modules fils doivent être placés dans le dossier `modules` du module père. Pour accéder à l'action d'un contrôleur d'un module enfant, il faut utiliser la rout `parentModuleID/childModuleID/controllerID/actionID`.
 
 
-<div class="revision">$Id: basics.module.txt 745 2009-02-25 21:45:42Z qiang.xue $</div>
+<div class="revision">$Id: basics.module.txt 745 $</div>
