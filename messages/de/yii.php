@@ -17,7 +17,7 @@
  */
 return array (
   0 => '',
-  'Virtual attribute {name} must specify "asc" and "desc" options.' => 'Virtuelles Attribut {name} muss "asc"- und "desc"-Optionen angeben.',
+  'Virtual attribute {name} must specify "asc" and "desc" options.' => 'Virtuelles Attribut {name} muss "asc"- und "desc"-Optionen spezifizieren.',
   '"{path}" is not a valid directory.' => '"{path}" ist kein gültiges Verzeichnis.',
   '&lt; Previous' => '&lt; Vorherige',
   '&lt;&lt; First' => '&lt;&lt; Erste',
