@@ -101,7 +101,7 @@ class UserLogin extends Portlet
 
 ~~~
 [php]
-......
+…
 <div id="sidebar">
 
 <?php $this->widget('UserLogin',array('visible'=>Yii::app()->user->isGuest)); ?>
@@ -109,10 +109,10 @@ class UserLogin extends Portlet
 <?php $this->widget('UserMenu',array('visible'=>!Yii::app()->user->isGuest)); ?>
 
 </div>
-......
+…
 ~~~
 
-Заметим, что портлет `UserLogin` видим только тогда, когда текущий пользователь - гость, что противоположно поведению портлета `UserMenu`.
+Заметим, что портлет `UserLogin` видим только тогда, когда текущий пользователь — гость, что противоположно поведению портлета `UserMenu`.
 
 Тестирование портлета `UserLogin`
 ---------------------------
