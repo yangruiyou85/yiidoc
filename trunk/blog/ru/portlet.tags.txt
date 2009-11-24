@@ -54,7 +54,7 @@ class TagCloud extends Portlet
 
 ~~~
 [php]
-......
+…
 <div id="sidebar">
 
 <?php $this->widget('UserLogin',array('visible'=>Yii::app()->user->isGuest)); ?>
@@ -64,7 +64,7 @@ class TagCloud extends Portlet
 <?php $this->widget('TagCloud'); ?>
 
 </div>
-......
+…
 ~~~
 
 <div class="revision">$Id: portlet.tags.txt 677 2009-02-14 04:27:48Z qiang.xue $</div>
