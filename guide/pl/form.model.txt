@@ -195,7 +195,7 @@ array('password', 'authenticate', 'on'=>'login'),
 ~~~
 
 
-Ochrona przypisania atrybutów (ang. Securing Attribute Assignments)
+Zabezpieczanie przypisywania atrybutów (ang. Securing Attribute Assignments)
 ------------------------------
 
 Po utworzeniu instancji modelu, często potrzebujemy wypełnić jej atrybuty danymi 
