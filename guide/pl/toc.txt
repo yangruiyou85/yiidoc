@@ -46,7 +46,7 @@
     
 * Testowanie
   - [Przegląd](test.overview)
-  - [Definiowanie stałych składników](test.fixture)
+  - [Definiowanie konfiguracji testu](test.fixture)
   - [Testy jednostkowe](test.unit)
   - [Testy funkcjonalne](test.functional)    
 
