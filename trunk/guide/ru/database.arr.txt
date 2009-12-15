@@ -176,8 +176,32 @@ $posts=Post::model()->with(
 
 Пример выше вернет нам все посты с их авторами и категориями, а также профиль каждого автора и все его посты.
 
-> Note|Примечание: Порядок использования метода [with()|CActiveRecord::with] изменился, начиная с версии 1.0.2.
-> Пожалуйста, читайте внимательно соответствующую документацию API.
+Начиная с версии 1.1.0, жадная загрузка может быть выполнена путём указания
+свойства [CDbCriteria::with]:
+
+~~~
+[php]
+$criteria=new CDbCriteria;
+$criteria->with=array(
+	'author.profile',
+	'author.posts',
+	'categories',
+);
+$posts=Post::model()->findAll($criteria);
+~~~
+
+или
+
+~~~
+[php]
+$posts=Post::model()->findAll(array(
+	'with'=>array(
+		'author.profile',
+		'author.posts',
+		'categories',
+	)
+);
+~~~
 
 Реализация AR в Yii очень эффективна: для жадной загрузки иерархии связанных объектов с `N` отношениями типов 
 `HAS_MANY` или `MANY_MANY`, потребуется только `N+1` SQL-запрос для получения требуемого результата. Это значит, что 
@@ -442,4 +466,4 @@ class User extends CActiveRecord
  должны описываться в методе [CActiveRecord::scopes], поэтому они не могут быть
 параметризованы.
 
-<div class="revision">$Id: database.arr.txt 1248 2009-07-15 19:40:44Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 1576 2009-12-12 03:58:24Z qiang.xue $</div>
