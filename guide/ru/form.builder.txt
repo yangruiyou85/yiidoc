@@ -137,16 +137,16 @@ return array(
 ),
 ~~~
 
-It states that the model attribute is named as `username`, and the input field type is `text` whose
-`maxlength` attribute is 32. We can specify other options in the above array as long as they are writable
-properties of [CFormInputElement]. For example, we may specify the [hint|CFormInputElement::hint] option
-in order to display a hint text, or we may specify the [items|CFormInputElement::items] option if
-the input field is a list box, a drop-down list, a check-box list or a radio-button list.
+Здесь указано, что атрибут модели называется `username`, тип поля — `text` и его атрибут
+`maxlength` равен 32. Мы можем задать и другие доступные для записи свойства [CFormInputElement].
+К примеру, можно задать свойство [hint|CFormInputElement::hint] для того, чтобы
+показывать подсказку или свойство [items|CFormInputElement::items], если
+поле является выпадающим списком или группой элеметнов checkbox или radio.
 
-The [type|CFormInputElement::type] option deserves additional attention. It specifies the type of the input
-field to be rendered. For example, the `text` type means a normal text input field should be rendered;
-the `password` type means a password input field should be rendered. [CFormInputElement] recognizes the following
-built-in types:
+Следует отдельно остановиться на свойстве [type|CFormInputElement::type].
+Оно определяет тип поля ввода. К примеру, тип `text` означает, что будет использован
+элемет формы `input`, а `password` — поле для ввода пароля. В [CFormInputElement]
+реализованы следующие типы полей ввода:
 
  - text
  - hidden
@@ -160,19 +160,20 @@ built-in types:
  - checkboxlist
  - radiolist
 
-Besides these built-in types, the [type|CFormInputElement::type] option can also take a widget class name
-or the path alias to it. The widget class must extend from [CInputWidget]. When rendering the input element,
-an instance of the specified widget class will be created and rendered. The widget will be configured using
-the specification as given for the input element.
+Кроме данных типов полей, в свойстве [type|CFormInputElement::type] можно указать
+класс или псевдоним пути виджета. Класс виджета должен наследовать [CInputWidget].
+При генерации элемента формы, будет создан и выполнен экземпляр класса виджета.
+Виджет будет использовать конфигурацию, переданную через настройки элемента формы.
 
 
-### Specifying Static Text
+### Описание статического текста
 
-In many cases, a form may contain some decorational HTML code besides the input fields. For example, a horizontal
-line may be needed to separate different portions of the form; an image may be needed at certain places to
-enhance the visual appearance of the form. We may specify these HTML code as static text in the [CForm::elements]
-collection. To do so, we simply specify a static text string as an array element in the appropriate position in
-[CForm::elements]. For example,
+Довольно часто в форме, помимо полей ввода, содержится некоторая декоративная
+HTML разметка. К примеру, горизонтальный разделитель для выделения определённых
+частей формы или изображение, улучшающее внешний вид формы. Подобный HTML код
+можно описать в коллекции [CForm::elements] как статический текст. Для этого
+в [CForm::elements] в нужном нам месте вместо массива необходимо использовать строку.
+К примеру:
 
 ~~~
 [php]
@@ -194,25 +195,27 @@ return array(
 );
 ~~~
 
-In the above, we insert a horizontal line between the `password` input and the `rememberMe` input.
+В приведённом коде мы вставили горизонтальный разделитель меджу полями `password` и `rememberMe`.
 
-Static text is best used when the text content and their position are irregular. If each input element
-in a form needs to be decorated similarly, we should customize the form rendering approach, as to be explained
-shortly in this section.
+Статический текст лучше всего использовать в том случае, когда разметка и её расположение
+достаточно уникальны. Если некоторую разметку должен содержать каждый элемент формы,
+лучше всего переопределить непосредственно построение разметки формы, как будет описано далее.
 
 
-### Specifying Sub-form
+### Описание вложенных форм
 
-Sub-forms are used to divide a lengthy form into several logically connected portions. For example,
-we may divide user registration form into two sub-forms: login information and profile information.
-Each sub-form may or may not be associated with a data model. In the user registration form example,
-if we store user login information and profile information in two separate database tables (and thus
-two data models), then each sub-form would be associated with a corresponding data model. If we store
-everything in a single database table, then neither sub-form has a data model because they share the
-same model with the root form.
+Вложенные формы используются для разделения сложных форм на несколько связанных простых. К примеру,
+мы можем разделить форму регистрации пользователя на две вложенные формы: данные для входа и
+данные профиля. Каждая вложенная форма может, хотя и не обязана, быть связана с моделью данных.
+В примере с формой регистрации, если мы храним данные для входа и данные профиля в
+двух разных таблицах (и соответственно в двух моделях), то каждая вложенная форма
+будет сопоставлена соответствующей модели данных. Если же все данные хранятся в 
+одной таблице, ни одна из вложенных форм не будет привязана к модели и обе будут
+использовать модель главной формы.
 
-A sub-form is also represented as a [CForm] object. In order to specify a sub-form, we should configure
-the [CForm::elements] property with an element whose type is `form`:
+Вложенная форма, как и главная, описывается объектом [CForm]. Для того, чтобы
+описать вложенную форму, необходимо определить элемент типа `form` в
+свойстве [CForm::elements]:
 
 ~~~
 [php]
@@ -221,7 +224,7 @@ return array(
 		......
         'user'=>array(
             'type'=>'form',
-            'title'=>'Login Credential',
+            'title'=>'Данные для входа',
             'elements'=>array(
             	'username'=>array(
             		'type'=>'text',
@@ -245,18 +248,19 @@ return array(
 );
 ~~~
 
-Like configuring a root form, we mainly need to specify the [CForm::elements] property for a sub-form.
-If a sub-form needs to be associated with a data model, we can configure its [CForm::model] property as well.
+Также, как и у главной формы, у вложенной формы необходимо задать свойство [CForm::elements].
+Если вложенной форме необходимо сопоставить модель данных, можно сделать это задав свойство [CForm::model].
 
-Sometimes, we may want to represent a form using a class other than the default [CForm]. For example,
-as will show shortly in this section, we may extend [CForm] to customize the form rendering logic.
-By specifying the input element type to be `form`, a sub-form will automatically be represented as an object
-whose class is the same as its parent form. If we specify the input element type to be something like
-`XyzForm` (a string terminated with `Form`), then the sub-form will be represented as a `XyzForm` object.
+В некоторых случаях бывает полезно определить форму в объекте класса, отличного от [CForm].
+К примеру, как будет показано ниже, можно расширить [CForm] для реализации своего
+алгоритма построения разметки. При указании типа элемента `form`, вложенная форма
+будет автоматически использовать объект того же класса, что и у главной формы.
+Если указать тип элемента как, например, `XyzForm` (строка, оканчивающаяся на `Form`),
+то вложенная форма будет использовать объект класса `XyzForm`.
 
 
-Accessing Form Elements
------------------------
+Доступ к элементам формы
+------------------------
 
 Accessing form elements is as simple as accessing array elements. The [CForm::elements] property returns
 a [CFormElementCollection] object, which extends from [CMap] and allows accessing its elements like a normal
