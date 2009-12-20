@@ -1,7 +1,7 @@
 * Komma igång
 	- [Översikt](index)
 	- [Nyheter och ändringar (eng)](changes)
-	- [Upgradera från 1.0 till 1.1](upgrade)
+	- [Upgradera från 1.0 till 1.1 (eng)](upgrade)
     - [Vad är Yii](quickstart.what-is-yii)
     - [Installation](quickstart.installation)
     - [Skapa en första Yii-applikation](quickstart.first-app)

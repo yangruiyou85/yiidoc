@@ -123,7 +123,7 @@ skall referera till en giltig [kontrollerroute](/doc/guide/basics.controller#rou
 >
 
 
-### Using Named Parameters
+### Användning av namngivna parametrar
 
 En regel kan associeras med några GET-parametrar. Dessa GET-parametrar uppträder 
 i regelns mönster som speciella symboler på följande format:
@@ -223,6 +223,32 @@ Och givet routen `comment/list` och GET-parametern `page=2`, kan vi generera
 URL:en `/index.php/comments?page=2`.
 
 
+### Parametrisering av värdnamn
+
+Med start från version 1.0.11 är det nu möjligt att inkludera värdnamn i regler för tolkning
+och generering av URL:er. Man kan extrahera delar av ett värdnamn till att bilda en GET-parameter.
+Till exempel URL:en `http://admin.example.com/en/profile` kan tolkas om till GET-parametrarna
+`user=admin` och `lang=en`. Å andra sidan kan regler med väednamn även användas till att
+bilda URL:er med parametriserade värdnamn.
+
+För att använda parametriserade värdnamn, deklarera kort och gott URL-regler med värdinformation, 
+till exempel:
+
+~~~
+[php]
+array(
+	'http://<user:\w+>.example.com/<lang:\w+>/profile' => 'user/profile',
+)
+~~~
+
+Ovanstående exempel innebär att det första segmentet i värdnamnet skall bilda `user`-parametern 
+medan det första segmentet i path-delen skall bilda `lang`-parametern. Regeln motsvarar routen 
+`user/profile`.
+
+Märk att [CUrlManager::showScriptName] ignoreras när en en URL skapas med användning av en 
+regel innehållande parametriserat värdnamn.
+
+
 ### Gömma `index.php`
 
 Det finns en sak till att göra för att ytterligare rensa upp URL:er, att 
@@ -266,4 +292,4 @@ statisk webbsida. För att göra så, konfigurera komponenten
 [urlManager|CWebApplication::urlManager] genom att sätta dess property 
 [urlSuffix|CUrlManager::urlSuffix] till önskad suffixsträng.
 
-<div class="revision">$Id: topics.url.txt 1354 2009-08-20 18:15:14Z qiang.xue $</div>
+<div class="revision">$Id: topics.url.txt 1533 2009-11-20 14:10:46Z qiang.xue $</div>
