@@ -211,40 +211,32 @@ Ovanstående exempel hämtar in alla postningar tillsammans med deras respektive
 författare och kategorier. Det hämtar även in varje författares profil samt 
 postningar.
 
-> Note|Märk: Sättet att använda metoden [with()|CActiveRecord::with] har ändrats 
-från och med version 1.0.2. Den tillhörande API-dokumentationen bör läsas 
-omsorgsfullt.
-
-AR-implementeringen i Yii är mycket effektiv. Vid eager loading av en hierarki 
-av relaterade objekt omfattande `N` `HAS_MANY`- eller `MANY_MANY`-samband, 
-behövs `N+1` SQL-frågor för att uppnå önskat resultat. Detta innebär att den 
-behöver exekvera 3 SQL-frågor i det förra exemplet, på grund av propertyna 
-`posts` och `categories`. Andra ramverk tar ett mer radikalt grepp genom att 
-använda en enda SQL-fråga. Vid en första anblick, verkar det radikala angreppssättet 
-mer effektivt, på grund av att färre frågor behöver avkodas och exekveras av 
-databashanteraren. Men det är i verkligheten opraktiskt av två skäl. För det 
-första, finns det många repetitiva datakolumner i resultatet, vilka kräver mer 
-tid att överföra och bearbeta. För det andra, växer antalet rader i 
-resultatmängden exponentiellt med antalet involverade tabeller, vilket gör saken 
-ohanterlig i takt med att fler samband omfattas.
-
-Sedan version 1.0.2, går det även att tvinga fram att en relationell fråga 
-utförs med hjälp av endast en SQL-fråga. Detta sker helt enkelt genom att ett 
-anrop till [together()|CActiveFinder::together] läggs till efter 
-[with()|CActiveRecord::with]. Till exempel,
+Från och med version 1.1.0, kan eager loading även exekveras genom att man
+specificerar propertyn [CDbCriteria::with], som i följande exempel:
 
 ~~~
 [php]
-$posts=Post::model()->with(
+$criteria=new CDbCriteria;
+$criteria->with=array(
 	'author.profile',
 	'author.posts',
-	'categories')->together()->findAll();
+	'categories',
+);
+$posts=Post::model()->findAll($criteria);
 ~~~
 
-Ovanstående fråga kommer att utföras i en enda SQL-fråga. Utan anropet till 
-[together|CActiveFinder::together], skulle det behövas tre SQL-frågor: en slår 
-samman tabellerna `Post`, `User` och `Profile`, en slår samman tabellerna 
-`User` och `Post` och en slår samman `Post`, `PostCategory` och `Category`.
+or
+
+~~~
+[php]
+$posts=Post::model()->findAll(array(
+	'with'=>array(
+		'author.profile',
+		'author.posts',
+		'categories',
+	)
+);
+~~~
 
 
 Alternativ för relationella frågor
@@ -519,4 +511,4 @@ class User extends CActiveRecord
 [CActiveRecord::scopes]. Detta innebär också att de inte kan parametriseras.
 
 
-<div class="revision">$Id: database.arr.txt 1248 2009-07-15 19:40:44Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 1576 2009-12-12 03:58:24Z qiang.xue $</div>
