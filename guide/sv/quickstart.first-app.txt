@@ -40,7 +40,7 @@ användare kan fylla i för att skicka sina förfrågningar och inloggningssidan
 användare möjlighet att bli autentiserade för åtkomst till priviligierat 
 innehåll. Se nedanstående skärmdumpar för närmare detaljer.
 
-![Starsida](first-app1.png)
+![Startsida](first-app1.png)
 
 ![Kontaktsida](first-app2.png)
 

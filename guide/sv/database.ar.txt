@@ -133,6 +133,19 @@ Som standard är namnet på AR-klassen samma som namnet på databastabellen.
 Metoden [model()|CActiveRecord::model] finns deklarerad per se i varje AR-klass 
 (förklaring följer längre ned).
 
+> Info: För att använda [tabellprefix-finessen](/doc/guide/database.dao#using-table-prefix)
+> som introducerades i version 1.1.0, kan [tableName()|CActiveRecord::tableName]-metoden
+> i en AR-klass behöva åsidosättas på följande sätt,
+> ~~~
+> [php]
+> public function tableName()
+> {
+>     return '{{post}}';
+> }
+> ~~~
+> Det innebär att, istället för att returnera det fullständiga tabellnamnet, returnerar vi
+> tabellnamnet utan prefix, omgivet av dubbla krumparenteser.
+
 Kolumnvärden för en rad i en tabell kan åtkommas som propertyn i den 
 motsvarande AR-klassinstansen. Till exempel, följande kod sätter kolumnen (attributet) `title`:
 
@@ -657,4 +670,4 @@ $contents=Content::model()->findAll();
 Märk att ett förbestämt namngivet omfång endast gäller för `SELECT`-frågor. 
 Det ignoreras för `INSERT`-, `UPDATE`- och `DELETE`-frågor.
 
-<div class="revision">$Id: database.ar.txt 1398 2009-09-06 01:15:01Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 1479 2009-10-23 13:24:20Z qiang.xue $</div>
