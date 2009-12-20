@@ -51,7 +51,7 @@ public function actionLogin()
 
 Вкратце, здесь мы создали объект [CForm], используя конфигурацию, найденную
 по пути, который задан псевдонимом `application.views.site.loginForm`.
-Объект [CForm], как описано в разеделе «[Создание модели](/doc/guide/form.model)»,
+Объект [CForm], как описано в разделе «[Создание модели](/doc/guide/form.model)»,
 использует модель `LoginForm`.
 
 Если форма отправлена и все входные данные прошли проверку без ошибок,
@@ -90,13 +90,13 @@ return array(
 );
 ~~~
 
-Настроки, приведённые выше являются ассоциативным массивом, состоящем из пар имя-значение,
+Настройки, приведённые выше являются ассоциативным массивом, состоящем из пар имя-значение,
 используемых для инициализации соответствующих свойств [CForm]. Самыми важными
 свойствами, как мы уже упомянули, являются [CForm::elements] и [CForm::buttons].
 Каждое из них содержит массив, определяющий элементы формы. Более детальное описание
-элеметов формы будет приведено в следующем подразделе.
+элементов формы будет приведено в следующем подразделе.
 
-Опишем шаблон отображеня `login`:
+Опишем шаблон отображения `login`:
 
 ~~~
 [php]
@@ -141,11 +141,11 @@ return array(
 `maxlength` равен 32. Мы можем задать и другие доступные для записи свойства [CFormInputElement].
 К примеру, можно задать свойство [hint|CFormInputElement::hint] для того, чтобы
 показывать подсказку или свойство [items|CFormInputElement::items], если
-поле является выпадающим списком или группой элеметнов checkbox или radio.
+поле является выпадающим списком или группой элементов checkbox или radio.
 
 Следует отдельно остановиться на свойстве [type|CFormInputElement::type].
 Оно определяет тип поля ввода. К примеру, тип `text` означает, что будет использован
-элемет формы `input`, а `password` — поле для ввода пароля. В [CFormInputElement]
+элемент формы `input`, а `password` — поле для ввода пароля. В [CFormInputElement]
 реализованы следующие типы полей ввода:
 
  - text
@@ -195,7 +195,7 @@ return array(
 );
 ~~~
 
-В приведённом коде мы вставили горизонтальный разделитель меджу полями `password` и `rememberMe`.
+В приведённом коде мы вставили горизонтальный разделитель между полями `password` и `rememberMe`.
 
 Статический текст лучше всего использовать в том случае, когда разметка и её расположение
 достаточно уникальны. Если некоторую разметку должен содержать каждый элемент формы,
@@ -262,25 +262,25 @@ return array(
 Доступ к элементам формы
 ------------------------
 
-Accessing form elements is as simple as accessing array elements. The [CForm::elements] property returns
-a [CFormElementCollection] object, which extends from [CMap] and allows accessing its elements like a normal
-array. For example, in order to access the `username` element in the login form example, we can use the following
-code:
+Обращаться к элементам формы так же просто, как и к элементам массива. Свойство [CForm::elements] возвращает
+объект [CFormElementCollection], наследуемый от [CMap] и позволяет получить доступ к своим элементам как к
+элементам массива. К примеру, для того, чтобы обратиться к элементу `username` формы `login` из примера,
+можно использовать следующий код:
 
 ~~~
 [php]
 $username = $form->elements['username'];
 ~~~
 
-And to access the `email` element in the user registration form example, we can use
-
+Для доступа к элементу `email` формы регистрации пользователя из примера,
+можно использовать:
 ~~~
 [php]
 $email = $form->elements['user']->elements['email'];
 ~~~
 
-Because [CForm] implements array access for its [CForm::elements] property, the above code can be further
-simplified as:
+Так как [CForm] реализует доступ к элементам [CForm::elements] как к массиву, можно упростить
+код до:
 
 ~~~
 [php]
@@ -289,15 +289,15 @@ $email = $form['user']['email'];
 ~~~
 
 
-Creating a Nested Form
-----------------------
+Создание вложенной формы
+------------------------
 
-We already described sub-forms. We call a form with sub-forms a nested form. In this section,
-we use the user registration form as an example to show how to create a nested form associated
-with multiple data models. We assume the user credential information is stored as a `User` model,
-while the user profile information is stored as a `Profile` model.
+Ранее мы уже описывали вложенные формы. Форма в которой имеются вложенные формы называется главной.
+В данном разделе мы будем использовать форму регистрации пользователя в качестве примера
+создания вложенных форм, соответствующих нескольким моделям данных. Далее данные для входа
+пользователя хранятся в модели `User`, а данные профиля — в модели `Profile`.
 
-We first create the `register` action as follows:
+Реализуем действие `register` следующим образом:
 
 ~~~
 [php]
@@ -320,20 +320,21 @@ public function actionRegister()
 }
 ~~~
 
-In the above, we create the form using the configuration specified by `application.views.user.registerForm`.
-After the form is submitted and validated successfully, we attempt to save the user and profile models.
-We retrieve the user and profile models by accessing the `model` property of the corresponding sub-form objects.
-Because the input validation is already done, we call `$user->save(false)` to skip the validation. We do
-this similarly for the profile model.
+Выше мы создаём форму, используя настройки из `application.views.user.registerForm`.
+После отправки данных формы и их успешной валидации, мы пытаемся сохранить модели
+пользовательских данных и профиля. Мы получаем модели через свойство `model` соответствующего
+объекта вложенной формы. Так как валидация уже пройдена, вызываем `$user->save(false)`
+с параметром `false`, позволяющим её не проводить повторно. Точно так же поступаем с
+моделью профиля.
 
-Next, we write the form configuration file `protected/views/user/registerForm.php`:
+Далее описываем настройки формы в файле `protected/views/user/registerForm.php`:
 
 ~~~
 [php]
 return array(
 	'user'=>array(
 		'type'=>'form',
-		'title'=>'Login information',
+		'title'=>'Данные для входа',
 		'elements'=>array(
 	        'username'=>array(
 	            'type'=>'text',
@@ -349,7 +350,7 @@ return array(
 
 	'profile'=>array(
 		'type'=>'form',
-		'title'=>'Profile information',
+		'title'=>'Профиль',
 		'elements'=>array(
 	        'firstName'=>array(
 	            'type'=>'text',
@@ -363,36 +364,37 @@ return array(
     'buttons'=>array(
         'register'=>array(
             'type'=>'submit',
-            'label'=>'Register',
+            'label'=>'Зарегистрироваться',
         ),
     ),
 );
 ~~~
 
-In the above, when specifying each sub-form, we also specify its [CForm::title] property.
-The default form rendering logic will enclose each sub-form in a field-set which uses this property
-as its title.
+При задании каждой вложенной формы, мы указываем свойство [CForm::title].
+По умолчанию, при построении HTML-формы каждая вложенная форма будет выведена в
+`fieldset` с заданным нами заголовком.
 
-Finally, we write the simple `register` view script:
+Описываем очень простой код шаблона отображения `register`:
 
 ~~~
 [php]
-<h1>Register</h1>
+<h1>Регистрация</h1>
 
 <?php echo $form; ?>
 ~~~
 
 
-Customizing Form Display
-------------------------
+Свой рендеринг формы
+--------------------
 
-The main benefit of using form builder is the separation of logic (form configuration stored in a separate file)
-and presentation ([CForm::render] method). As a result, we can customize the form display by either overriding
-[CForm::render] or providing a partial view to render the form. Both approaches can keep the form configuration
-intact and can be reused easily.
+Главное преимущество при использовании построителя форм — разделение логики
+(конфигурация формы хранится в отдельном файле) и отображения (метод [CForm::render]).
+В результате, мы можем настроить рендеринг формы либо переопределением метода
+[CForm::render], либо своим отображением. Оба варианта позволяют не менять конфигурацию
+и позволяют использовать её повторно.
 
-When overriding [CForm::render], one mainly needs to traverse through the [CForm::elements] and [CForm::buttons]
-collections and call the [CFormElement::render] method of each form element. For example,
+При переопределении [CForm::render], необходимо, главным образом, обойти коллекции [CForm::elements]
+и [CForm::buttons] и вызвать метод [CFormElement::render] для каждого элемента. К примеру:
 
 ~~~
 [php]
@@ -412,7 +414,7 @@ class MyForm extends CForm
 }
 ~~~
 
-We may also write a view script `_form` to render a form:
+Также можно использовать отображение `_form`:
 
 ~~~
 [php]
@@ -425,32 +427,32 @@ foreach($form->getElements() as $element)
 echo $this->renderEnd();
 ~~~
 
-To use this view script, we can simply call:
+Для этого достаточно:
 
 ~~~
 [php]
 $this->renderPartial('_form', array('form'=>$form));
 ~~~
 
-If a generic form rendering does not work for a particular form (for example, the form needs some
-irregular decorations for certain elements), we can do like the following in a view script:
+Если стандартный рендеринг формы не подходит (к примеру, в форме
+нужны уникальные декоративные элементы для определённых полей),
+в отображении можно поступить следующим образом:
 
 ~~~
 [php]
-some complex UI elements here
+какие-нибудь сложные элементы интерфейса
 
 <?php echo $form['username']; ?>
 
-some complex UI elements here
+какие-нибудь сложные элементы интерфейса
 
 <?php echo $form['password']; ?>
 
-some complex UI elements here
+какие-нибудь сложные элементы интерфейса
 ~~~
 
-In the last approach, the form builder seems not to bring us much benefit, as we still need to write
-similar amount of form code. It is still beneficial, however, that the form is specified using
-a separate configuration file as it helps developers to better focus on the logic.
-
+В этом случае построитель форм не очень эффективен так как нам приходится описывать
+те же объёмы кода формы. Тем не менее, преимущество есть. Оно в том, что форма,
+описанная в отдельном файле конфигурации, позволяет разработчику сфокусироваться на логике.
 
 <div class="revision">$Id: form.builder.txt 1605 2009-12-18 21:22:43Z qiang.xue $</div>
