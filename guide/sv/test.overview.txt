@@ -4,7 +4,7 @@
 > Note|Märk: Stödet för testning, som beskrivs i detta kapitel kräver Yii 
 version 1.1 eller senare. Detta innebär dock inte något hinder för att testa 
 applikationer utvecklade för användning med Yii 1.0.x. Det finns många 
-fantastiska ramverk för testning tillgängliga för ändamålet, så som 
+fantastiska testningsramverk tillgängliga för ändamålet, så som 
 [PHPUnit](http://www.phpunit.de/), [SimpleTest](http://www.simpletest.org/).
 
 Testning är en nödvändig process vid mjukvaruutveckling. Vare sig vi är medvetna 
@@ -38,13 +38,13 @@ kvalitetssäkringsingenjörer).
 Testdriven utveckling
 =====================
 
-Nedan visas utvecklingscykeln inm så kallad [testdriven utveckling (TDD)](http://en.wikipedia.org/wiki/Test-driven_development):
+Nedan visas utvecklingscykeln inom så kallad [testdriven utveckling (TDD)](http://en.wikipedia.org/wiki/Test-driven_development):
 
  1. Skapa ett nytt test som täcker en finess som skall impementeras. Testet förväntas gå fel vid dess första körning eftersom finessen ännu inte implementerats.
  2. Kör alla test och kontrollera att det nytillkomna testet går fel.
  3. Skriv kod som skall få det nya testet att passera felfritt.
  4. Kör alla test och kontrollera att alla passerar.
- 5. Refaktorisera den ntskrivna koden och kontrollera att testerna fortfarande passerar.
+ 5. Refaktorisera den nyskrivna koden och kontrollera att testerna fortfarande passerar.
 
 Upprepa steg 1 till 5 för att driva implementeringen av funktionalitet framåt.
 
@@ -89,9 +89,8 @@ kommandon i ett konsolfönster:
 ~~~
 
 I ovanstående exempel kör det sista kommandot alla tester under katalogen `unit` 
-och skapar en kodtäckningsrapport i katalogen `report`. Märk att  
-[xdebug-tillägget](http://www.xdebug.org/) måste vara installerat och aktiverat 
-för att kodtäckningsrapport skall kunna genereras.
+och skapar en kodtäckningsrapport i katalogen `report`. Märk att [xdebug-tillägget](http://www.xdebug.org/) 
+måste vara installerat och aktiverat för att kodtäckningsrapport skall kunna genereras.
 
 
 Bootstrap-skript för test
@@ -145,7 +144,7 @@ kommentaren kring `db`-konfigurationen ovan och fylla i propertyn
 
 Med ett sådant här bootstrap-skript förfogar vi vid körning av enhetstester över 
 en applikationsinstans som är nästan likadan som den som servar request från 
-webbanvändare. Den huvudsakliga skillnaden är att den har fixturhanteraren samt 
+webbanvändare. Den huvudsakliga skillnaden är att den innehåller fixturhanteraren samt 
 använder testdatabasen.
 
 
