@@ -1,43 +1,43 @@
-Använda Form Builder
+AnvÃ¤nda Form Builder
 ====================
 
-När vi skapar HTML-formulär, finner vi ofta att vi skriver mängder av repetitiv vykod 
-som är svår att återanvända i ett annat projekt. Till exempel, för varje inmatningsfält
-behöver vi associera fältet med dess textetikett samt presentera eventuella valideringsfel.
-För att göra sådan kod mer återanvändningsbar, kan vi använda formulärbyggaren, en finess som  
-har varit  tillgänglig sedan version 1.1.0.
+NÃ¤r vi skapar HTML-formulÃ¤r, finner vi ofta att vi skriver mÃ¤ngder av repetitiv vykod 
+som Ã¤r svÃ¥r att Ã¥teranvÃ¤nda i ett annat projekt. Till exempel, fÃ¶r varje inmatningsfÃ¤lt
+behÃ¶ver vi associera fÃ¤ltet med dess textetikett samt presentera eventuella valideringsfel.
+FÃ¶r att gÃ¶ra sÃ¥dan kod mer Ã¥teranvÃ¤ndningsbar, kan vi anvÃ¤nda formulÃ¤rbyggaren, en finess som  
+har varit  tillgÃ¤nglig sedan version 1.1.0.
 
 
 Grundkoncept
 ------------
 
-Yii:s formulärbyggare använder ett [CForm]-objekt till att representera de specifikationer som 
-behövs för att beskriva ett HTML-formulär, inklusive de datamodeller som är associerade med formuläret,
-vilka slags inmatningsfält formuläret består av, samt hur hela formuläret skall renderas. Det utvecklare 
-huvudsakligen behöver göra är att skapa och konfigurera detta [CForm]-objekt, därefter anropa dess 
-renderingsmetod för att presentera formuläret.
+Yii:s formulÃ¤rbyggare anvÃ¤nder ett [CForm]-objekt till att representera de specifikationer som 
+behÃ¶vs fÃ¶r att beskriva ett HTML-formulÃ¤r, inklusive de datamodeller som Ã¤r associerade med formulÃ¤ret,
+vilka slags inmatningsfÃ¤lt formulÃ¤ret bestÃ¥r av, samt hur hela formulÃ¤ret skall renderas. Det utvecklare 
+huvudsakligen behÃ¶ver gÃ¶ra Ã¤r att skapa och konfigurera detta [CForm]-objekt, dÃ¤refter anropa dess 
+renderingsmetod fÃ¶r att presentera formulÃ¤ret.
 
-Specifikationer för formulärinmatning organiseras som en hierarki av formulärelement.
-Hierarkins rot härbärgerar [CForm]-objektet. Rotformuläret upprätthåller sina 
-underordnade objekt i två samlingsobjekt (collection): [CForm::buttons] och [CForm::elements]. 
-Den förra innehåller knappelement (så som submit, reset), medan den senare innehåller 
-inmatningselement, textsträngar och underformulär. Ett underformulär är ett [CForm]-objekt som
-ingår i [CForm::elements]-samlingen i ett annat formulär. Det kan ha en egen datamodell samt
+Specifikationer fÃ¶r formulÃ¤rinmatning organiseras som en hierarki av formulÃ¤relement.
+Hierarkins rot hÃ¤rbÃ¤rgerar [CForm]-objektet. RotformulÃ¤ret upprÃ¤tthÃ¥ller sina 
+underordnade objekt i tvÃ¥ samlingsobjekt (collection): [CForm::buttons] och [CForm::elements]. 
+Den fÃ¶rra innehÃ¥ller knappelement (sÃ¥ som submit, reset), medan den senare innehÃ¥ller 
+inmatningselement, textstrÃ¤ngar och underformulÃ¤r. Ett underformulÃ¤r Ã¤r ett [CForm]-objekt som
+ingÃ¥r i [CForm::elements]-samlingen i ett annat formulÃ¤r. Det kan ha en egen datamodell samt
 [CForm::buttons]- och [CForm::elements]-samlingar.
 
-När användare skickar ett formulär, medför detta att all data skickas som matats in i inmatningsfält i 
-hela formulärhierarkin, inklusive de inmatningsfält som hör till underformulären. [CForm] erbjuder 
-ändamålsenliga metoder som automatiskt kan tilldela inmatat data till motsvarande modellattribut samt 
-genomföra datavalidering.
+NÃ¤r anvÃ¤ndare skickar ett formulÃ¤r, medfÃ¶r detta att all data skickas som matats in i inmatningsfÃ¤lt i 
+hela formulÃ¤rhierarkin, inklusive de inmatningsfÃ¤lt som hÃ¶r till underformulÃ¤ren. [CForm] erbjuder 
+Ã¤ndamÃ¥lsenliga metoder som automatiskt kan tilldela inmatat data till motsvarande modellattribut samt 
+genomfÃ¶ra datavalidering.
 
 
-Skapa ett enkelt formulär
+Skapa ett enkelt formulÃ¤r
 -------------------------
 
-I det följande visas hur formulärbyggaren kan användas till att skapa ett 
-inloggningsformulär.
+I det fÃ¶ljande visas hur formulÃ¤rbyggaren kan anvÃ¤ndas till att skapa ett 
+inloggningsformulÃ¤r.
 
-Först skriver vi kod för login-åtgärden:
+FÃ¶rst skriver vi kod fÃ¶r login-Ã¥tgÃ¤rden:
 
 ~~~
 [php]
@@ -52,17 +52,17 @@ public function actionLogin()
 }
 ~~~
 
-I ovanstående kod skapas ett [CForm]-objekt som använder specifikationerna adresserade 
-av sökvägsalias `application.views.site.loginForm` (förklaras nedan). [CForm]-objektet 
-är associerat till `LoginForm`-modellen så som beskrivs i [Skapa Model](/doc/guide/form.model).
+I ovanstÃ¥ende kod skapas ett [CForm]-objekt som anvÃ¤nder specifikationerna adresserade 
+av sÃ¶kvÃ¤gsalias `application.views.site.loginForm` (fÃ¶rklaras nedan). [CForm]-objektet 
+Ã¤r associerat till `LoginForm`-modellen sÃ¥ som beskrivs i [Skapa Model](/doc/guide/form.model).
 
-Som koden är utformad kommer webbläsaren, efter att formuläret skickats och all inmatning 
-validerats utan fel, att styras om till sidan `site/index`. I övriga fall renderas 
-`login`-vyn med formulärets innehåll.
+Som koden Ã¤r utformad kommer webblÃ¤saren, efter att formulÃ¤ret skickats och all inmatning 
+validerats utan fel, att styras om till sidan `site/index`. I Ã¶vriga fall renderas 
+`login`-vyn med formulÃ¤rets innehÃ¥ll.
 
-Sökvägsalias `application.views.site.loginForm` refererar närmare bestämt till PHP-filen 
+SÃ¶kvÃ¤gsalias `application.views.site.loginForm` refererar nÃ¤rmare bestÃ¤mt till PHP-filen 
 `protected/views/site/loginForm.php`. Denna fil skall returnera en PHP-array som 
-representerar den konfiguration [CForm] fordrar, så som visas nedan:
+representerar den konfiguration [CForm] fordrar, sÃ¥ som visas nedan:
 
 ~~~
 [php]
@@ -92,13 +92,13 @@ return array(
 );
 ~~~
 
-Konfigurationen är en associativ array bestående av namn-värdepar som används för 
+Konfigurationen Ã¤r en associativ array bestÃ¥ende av namn-vÃ¤rdepar som anvÃ¤nds fÃ¶r 
 att initialisera motsvarande propertyn hos [CForm]. De viktigaste propertyna att 
-konfigurera är som tidigare nämnts, [CForm::elements] och [CForm::buttons]. Var och en
-av dem fordrar en array som specificerar en lista med formulärelement. Fler detaljer om 
-hur formulärelement konfigureras följer i nästa underavsnitt.
+konfigurera Ã¤r som tidigare nÃ¤mnts, [CForm::elements] och [CForm::buttons]. Var och en
+av dem fordrar en array som specificerar en lista med formulÃ¤relement. Fler detaljer om 
+hur formulÃ¤relement konfigureras fÃ¶ljer i nÃ¤sta underavsnitt.
 
-Slutligen skriver vi ett vyskript `login`, som kan vara lika enkelt som följande,
+Slutligen skriver vi ett vyskript `login`, som kan vara lika enkelt som fÃ¶ljande,
 
 ~~~
 [php]
@@ -107,27 +107,27 @@ Slutligen skriver vi ett vyskript `login`, som kan vara lika enkelt som följande
 <?php echo $form; ?>
 ~~~
 
-> Tip|Tips: Ovanstående kod `echo $form;` är ekvivalent med `echo $form->render();`.
-> Detta beror på att  [CForm] implementerar den magiska metoden `__toString` som 
-> anropar `render()` och returnerar en strängrepresentation av formulärobjektet.
+> Tip|Tips: OvanstÃ¥ende kod `echo $form;` Ã¤r ekvivalent med `echo $form->render();`.
+> Detta beror pÃ¥ att  [CForm] implementerar den magiska metoden `__toString` som 
+> anropar `render()` och returnerar en strÃ¤ngrepresentation av formulÃ¤robjektet.
 
 
-Specificera formulärelement
+Specificera formulÃ¤relement
 ---------------------------
 
-När formulärbyggaren används skiftar huvuddelen av våra ansträngningar från att skriva kod för vyskript
-till att specificera formulärelement. I detta underavsnitt beskrivs hur man specificerar propertyn 
-[CForm::elements]. [CForm::buttons] kommer inte att beskrivas eftersom dess konfiguration är nästan
-samma som för [CForm::elements].
+NÃ¤r formulÃ¤rbyggaren anvÃ¤nds skiftar huvuddelen av vÃ¥ra anstrÃ¤ngningar frÃ¥n att skriva kod fÃ¶r vyskript
+till att specificera formulÃ¤relement. I detta underavsnitt beskrivs hur man specificerar propertyn 
+[CForm::elements]. [CForm::buttons] kommer inte att beskrivas eftersom dess konfiguration Ã¤r nÃ¤stan
+samma som fÃ¶r [CForm::elements].
 
-Propertyn [CForm::elements] accepterar en array som sitt värde. Varje arrayelement specificerar ett enstaka
-formulärelement som kan vara ett inmatningselement, en strängkonstant eller ett underformulär.
+Propertyn [CForm::elements] accepterar en array som sitt vÃ¤rde. Varje arrayelement specificerar ett enstaka
+formulÃ¤relement som kan vara ett inmatningselement, en strÃ¤ngkonstant eller ett underformulÃ¤r.
 
 ### Specificera inmatningselement
 
-Ett inmatningselement består i huvudsak av en etikett, ett inmatningsfält, en ledtrådstext samt felpresentation.
-Det måste associeras med ett modellattribut. Specifikationen för ett inmatningselement representeras som  
-en instans av [CFormInputElement]. Följande kod i en [CForm::elements]-array specificerar ett enskilt
+Ett inmatningselement bestÃ¥r i huvudsak av en etikett, ett inmatningsfÃ¤lt, en ledtrÃ¥dstext samt felpresentation.
+Det mÃ¥ste associeras med ett modellattribut. Specifikationen fÃ¶r ett inmatningselement representeras som  
+en instans av [CFormInputElement]. FÃ¶ljande kod i en [CForm::elements]-array specificerar ett enskilt
 inmatningselement:
 
 ~~~
@@ -138,15 +138,15 @@ inmatningselement:
 ),
 ~~~
 
-Det fastställer att modelattributet har namnet `username`, att inmatningsfältets typ är `text` och att 
-attributet `maxlength` har värdet 32. Andra alternativ kan specificeras i ovanstående array, så länge de 
-är skrivbara propertyn hos [CFormInputElement]. Vi kan till exempel specificera alternativet [hint|CFormInputElement::hint] 
-för att presentera en ledtrådstext, eller alternativet [items|CFormInputElement::items] om inmatningsfältet 
-är en listbox, en dropdown-lista, en checkbox-lista eller en radiobutton-lista.
+Det faststÃ¤ller att modelattributet har namnet `username`, att inmatningsfÃ¤ltets typ Ã¤r `text` och att 
+attributet `maxlength` har vÃ¤rdet 32. Andra alternativ kan specificeras i ovanstÃ¥ende array, sÃ¥ lÃ¤nge de 
+Ã¤r skrivbara propertyn hos [CFormInputElement]. Vi kan till exempel specificera alternativet [hint|CFormInputElement::hint] 
+fÃ¶r att presentera en ledtrÃ¥dstext, eller alternativet [items|CFormInputElement::items] om inmatningsfÃ¤ltet 
+Ã¤r en listbox, en dropdown-lista, en checkbox-lista eller en radiobutton-lista.
 
-Alternativet [type|CFormInputElement::type] förtjänar ytterligare uppmärksamhet. Det specificerar vilken typ av 
-inmatningselement som skall renderas. Typen `text` innebär till exempel att ett normalt textinmatningsfält renderas;
-`password` att ett inmatningsfält för lösen renderas. [CFormInputElement] känner till följande inbyggda elementtyper:
+Alternativet [type|CFormInputElement::type] fÃ¶rtjÃ¤nar ytterligare uppmÃ¤rksamhet. Det specificerar vilken typ av 
+inmatningselement som skall renderas. Typen `text` innebÃ¤r till exempel att ett normalt textinmatningsfÃ¤lt renderas;
+`password` att ett inmatningsfÃ¤lt fÃ¶r lÃ¶sen renderas. [CFormInputElement] kÃ¤nner till fÃ¶ljande inbyggda elementtyper:
 
  - text
  - hidden
@@ -160,18 +160,18 @@ inmatningselement som skall renderas. Typen `text` innebär till exempel att ett 
  - checkboxlist
  - radiolist
 
-Förutom dessa inbyggda typer, kan alternativet [type|CFormInputElement::type] också ges namnet på en widgetklass 
-eller sökvägsalias till densamma. Widgetklassen måste ärva från [CInputWidget]. När inmatningselementet renderas,
+FÃ¶rutom dessa inbyggda typer, kan alternativet [type|CFormInputElement::type] ocksÃ¥ ges namnet pÃ¥ en widgetklass 
+eller sÃ¶kvÃ¤gsalias till densamma. Widgetklassen mÃ¥ste Ã¤rva frÃ¥n [CInputWidget]. NÃ¤r inmatningselementet renderas,
 kommer en instans av den specificerade widgetklassen att skapas och renderas. Widgeten kommer att konfigureras
-från specifikationen som givits för inmatningselementet.
+frÃ¥n specifikationen som givits fÃ¶r inmatningselementet.
 
 
 ### Specificera textkonstant
 
-Många gånger innehåller ett formulär en del dekorativ HTML-kod förutom inmatningsfälten. Exempelvis kan en horisontell
-linje behövsas för att separera olika delar av formuläret; en bild kan behöva läggas in på vissa ställen för att
-förbättra den visuella framtoningen hos formuläret. Sådan HTML-kod kan specificeras i form av textkonstanter i samlingen 
-[CForm::elements]. För att göra detta, specificera helt enkelt en textsträng som ett arrayelement på lämplig plats i
+MÃ¥nga gÃ¥nger innehÃ¥ller ett formulÃ¤r en del dekorativ HTML-kod fÃ¶rutom inmatningsfÃ¤lten. Exempelvis kan en horisontell
+linje behÃ¶vsas fÃ¶r att separera olika delar av formulÃ¤ret; en bild kan behÃ¶va lÃ¤ggas in pÃ¥ vissa stÃ¤llen fÃ¶r att
+fÃ¶rbÃ¤ttra den visuella framtoningen hos formulÃ¤ret. SÃ¥dan HTML-kod kan specificeras i form av textkonstanter i samlingen 
+[CForm::elements]. FÃ¶r att gÃ¶ra detta, specificera helt enkelt en textstrÃ¤ng som ett arrayelement pÃ¥ lÃ¤mplig plats i
 [CForm::elements]. Till exempel,
 
 ~~~
@@ -194,25 +194,25 @@ return array(
 );
 ~~~
 
-Ovan, sätts en horisontell linje in mellan inmatningsfälten `password` och `rememberMe`t.
+Ovan, sÃ¤tts en horisontell linje in mellan inmatningsfÃ¤lten `password` och `rememberMe`t.
 
-Textkonstanter kommer bäst till användning vid oregelbundet textinnehåll och position. Om varje inmatningselement 
-i ett formulär behöver dekoreras likformigt, kan vi stället anpassa sättet på vilket ett formulär renderas, 
-vilket kommer att förklaras längre fram i detta avsnitt.
+Textkonstanter kommer bÃ¤st till anvÃ¤ndning vid oregelbundet textinnehÃ¥ll och position. Om varje inmatningselement 
+i ett formulÃ¤r behÃ¶ver dekoreras likformigt, kan vi stÃ¤llet anpassa sÃ¤ttet pÃ¥ vilket ett formulÃ¤r renderas, 
+vilket kommer att fÃ¶rklaras lÃ¤ngre fram i detta avsnitt.
 
 
-### Specificera underformulär
+### Specificera underformulÃ¤r
 
-Underformulär används för att dela upp ett omfattande formulär i flera logiskt sammanhängande stycken. 
-Vi kan till exempel dela upp ett formulär för användarregistrering i två underformulär: inloggningsinformation 
-och profilinformation. Varje underformulär kan vara, men behöver inte vara, associerat med en datamodell. 
-I exemplet med formulär för användarregistrering, om inloggningsinformation respektive profilinformation lagras 
-i två separata databastabeller (och därmed i två datamodeller), kommer vardera underformuläret att vara  knutet 
-till en motsvarande datamodell. Om vi lagrar allting i en enda databastabell kommer inget av underformulären att ha 
-en datamodelleftersom de delar samma modell som rotformuläret.
+UnderformulÃ¤r anvÃ¤nds fÃ¶r att dela upp ett omfattande formulÃ¤r i flera logiskt sammanhÃ¤ngande stycken. 
+Vi kan till exempel dela upp ett formulÃ¤r fÃ¶r anvÃ¤ndarregistrering i tvÃ¥ underformulÃ¤r: inloggningsinformation 
+och profilinformation. Varje underformulÃ¤r kan vara, men behÃ¶ver inte vara, associerat med en datamodell. 
+I exemplet med formulÃ¤r fÃ¶r anvÃ¤ndarregistrering, om inloggningsinformation respektive profilinformation lagras 
+i tvÃ¥ separata databastabeller (och dÃ¤rmed i tvÃ¥ datamodeller), kommer vardera underformulÃ¤ret att vara  knutet 
+till en motsvarande datamodell. Om vi lagrar allting i en enda databastabell kommer inget av underformulÃ¤ren att ha 
+en datamodelleftersom de delar samma modell som rotformulÃ¤ret.
 
-Även ett underformulär representeras av ett [CForm] object. För att specificera ett underformulär konfigurerar vi 
-propertyn [CForm::elements] med ett element vars typ är `form`:
+Ã„ven ett underformulÃ¤r representeras av ett [CForm] object. FÃ¶r att specificera ett underformulÃ¤r konfigurerar vi 
+propertyn [CForm::elements] med ett element vars typ Ã¤r `form`:
 
 ~~~
 [php]
@@ -245,39 +245,39 @@ return array(
 );
 ~~~
 
-Liksom vid konfigurering av ett rotformulär behöver vi för ett underformulär i huvudsak konfigurera propertyn 
-[CForm::elements]. Om ett underformulär behöver associeras med en datamodell kan vi dessutom konfigurera dess
+Liksom vid konfigurering av ett rotformulÃ¤r behÃ¶ver vi fÃ¶r ett underformulÃ¤r i huvudsak konfigurera propertyn 
+[CForm::elements]. Om ett underformulÃ¤r behÃ¶ver associeras med en datamodell kan vi dessutom konfigurera dess
 property [CForm::model].
 
-Ibland kan vi behöva representera ett formulär med en annan klass än den underförstådda [CForm]. Till exempel,
-vilket kommer att framgå senare i detta avsnitt, kan vi ärva och utöka [CForm] för att anpassa logiken för rendering.
-Genom att specificera inmatningselementets typ till `form` kommer ett underformulär automatiskt att representeras av 
-ett objekt av samma klass som dess förälder. Om vi specificerar inmatningselementets typ till något i stil med 
-`XyzForm` (en sträng avslutad med `Form`), kommer underformuläret att representeras av ett `XyzForm`-objekt.
+Ibland kan vi behÃ¶va representera ett formulÃ¤r med en annan klass Ã¤n den underfÃ¶rstÃ¥dda [CForm]. Till exempel,
+vilket kommer att framgÃ¥ senare i detta avsnitt, kan vi Ã¤rva och utÃ¶ka [CForm] fÃ¶r att anpassa logiken fÃ¶r rendering.
+Genom att specificera inmatningselementets typ till `form` kommer ett underformulÃ¤r automatiskt att representeras av 
+ett objekt av samma klass som dess fÃ¶rÃ¤lder. Om vi specificerar inmatningselementets typ till nÃ¥got i stil med 
+`XyzForm` (en strÃ¤ng avslutad med `Form`), kommer underformulÃ¤ret att representeras av ett `XyzForm`-objekt.
 
 
-Tillgång till formulärelement
+TillgÃ¥ng till formulÃ¤relement
 -----------------------------
 
-Access till formulärelement är lika enkelt som till arrayelement. Propertyn [CForm::elements] returnerar 
-ett [CFormElementCollection]-objekt, vilket ärver från [CMap] och därmed tillåter access till dess element som 
-för en vanlig array. Till exempel, för att accessa elementet `username` i exemplet med inloggningsformuläret, 
-kan följande kod användas:
+Access till formulÃ¤relement Ã¤r lika enkelt som till arrayelement. Propertyn [CForm::elements] returnerar 
+ett [CFormElementCollection]-objekt, vilket Ã¤rver frÃ¥n [CMap] och dÃ¤rmed tillÃ¥ter access till dess element som 
+fÃ¶r en vanlig array. Till exempel, fÃ¶r att accessa elementet `username` i exemplet med inloggningsformulÃ¤ret, 
+kan fÃ¶ljande kod anvÃ¤ndas:
 
 ~~~
 [php]
 $username = $form->elements['username'];
 ~~~
 
-Och för att accessa elementet `email` i exemplet formulär för användarregistrering, kan vi använda
+Och fÃ¶r att accessa elementet `email` i exemplet formulÃ¤r fÃ¶r anvÃ¤ndarregistrering, kan vi anvÃ¤nda
 
 ~~~
 [php]
 $email = $form->elements['user']->elements['email'];
 ~~~
 
-Eftersom [CForm] implementerar arrayaccess till dess property [CForm::elements], kan ovanstående kod 
-förenklas ytterligare till:
+Eftersom [CForm] implementerar arrayaccess till dess property [CForm::elements], kan ovanstÃ¥ende kod 
+fÃ¶renklas ytterligare till:
 
 ~~~
 [php]
@@ -286,15 +286,15 @@ $email = $form['user']['email'];
 ~~~
 
 
-Skapa ett nästlat formulär
+Skapa ett nÃ¤stlat formulÃ¤r
 --------------------------
 
-Underformulär har redan beskrivits. Vi kallar ett formulär med underformulär för ett nästlat formulär. 
-I detta avsnitt kommer formuläret för användarregistrering att användas som exempel för att visa hur man 
-kan skapa ett nästlat formulär associerat med flera datamodeller . Antag att användarens inloggningskoder 
-lagras som en modell `User`, medan användarens profilinformation lagras som en modell `Profile`.
+UnderformulÃ¤r har redan beskrivits. Vi kallar ett formulÃ¤r med underformulÃ¤r fÃ¶r ett nÃ¤stlat formulÃ¤r. 
+I detta avsnitt kommer formulÃ¤ret fÃ¶r anvÃ¤ndarregistrering att anvÃ¤ndas som exempel fÃ¶r att visa hur man 
+kan skapa ett nÃ¤stlat formulÃ¤r associerat med flera datamodeller . Antag att anvÃ¤ndarens inloggningskoder 
+lagras som en modell `User`, medan anvÃ¤ndarens profilinformation lagras som en modell `Profile`.
 
-Först skapar vi `register`-åtgärden som följer:
+FÃ¶rst skapar vi `register`-Ã¥tgÃ¤rden som fÃ¶ljer:
 
 ~~~
 [php]
@@ -317,13 +317,13 @@ public function actionRegister()
 }
 ~~~
 
-I det ovanstående skapar vi formuläret med hjälp av konfigurationen specificerad i `application.views.user.registerForm`.
-När formuläret skickats och validerats utan fel försöker vi spara modellerna user och profile.
-Vi hämtar modellerna user och profile genom att accessa propertyn `model` i det motsvarande underformulärobjektet.
-Efetrsom validering av inmatningen redan skett anropar vi `$user->save(false)` för att hoppa över valideringen. 
-Förfarandet upprepas för modellen profile.
+I det ovanstÃ¥ende skapar vi formulÃ¤ret med hjÃ¤lp av konfigurationen specificerad i `application.views.user.registerForm`.
+NÃ¤r formulÃ¤ret skickats och validerats utan fel fÃ¶rsÃ¶ker vi spara modellerna user och profile.
+Vi hÃ¤mtar modellerna user och profile genom att accessa propertyn `model` i det motsvarande underformulÃ¤robjektet.
+Efetrsom validering av inmatningen redan skett anropar vi `$user->save(false)` fÃ¶r att hoppa Ã¶ver valideringen. 
+FÃ¶rfarandet upprepas fÃ¶r modellen profile.
 
-Därefter skriver vi formulärets konfigureringsfil `protected/views/user/registerForm.php`:
+DÃ¤refter skriver vi formulÃ¤rets konfigureringsfil `protected/views/user/registerForm.php`:
 
 ~~~
 [php]
@@ -366,9 +366,9 @@ return array(
 );
 ~~~
 
-När varje underformulär specificras ovan, specificerar vi också dess property [CForm::title].
-Den underförstådda logiken för rendering av formulär kommer att omfatta varje underformulär med ett 
-field-set som använder denna property som sin titel.
+NÃ¤r varje underformulÃ¤r specificras ovan, specificerar vi ocksÃ¥ dess property [CForm::title].
+Den underfÃ¶rstÃ¥dda logiken fÃ¶r rendering av formulÃ¤r kommer att omfatta varje underformulÃ¤r med ett 
+field-set som anvÃ¤nder denna property som sin titel.
 
 Till slut skriver vi det enkla vyskriptet `register`:
 
@@ -380,17 +380,17 @@ Till slut skriver vi det enkla vyskriptet `register`:
 ~~~
 
 
-Anpassa presentation av formulär
+Anpassa presentation av formulÃ¤r
 --------------------------------
 
-Den främsta fördelen med att använda formulärbyggaren är separationen av logik (dvs formulärkonfigurationen 
-lagrad i en separat fil) och presentation (metoden [CForm::render]). Det får till resultat att vi kan anpassa 
-presentationen av formulär genom att antingen ärva från och utöka [CForm::render] eller tillhandahålla en partiell 
-vy för rendering av formuläret. Båda tillvägagångssätten kan behålla formulärkonfigurationen oförändrad och kan lätt 
-återanvändas.
+Den frÃ¤msta fÃ¶rdelen med att anvÃ¤nda formulÃ¤rbyggaren Ã¤r separationen av logik (dvs formulÃ¤rkonfigurationen 
+lagrad i en separat fil) och presentation (metoden [CForm::render]). Det fÃ¥r till resultat att vi kan anpassa 
+presentationen av formulÃ¤r genom att antingen Ã¤rva frÃ¥n och utÃ¶ka [CForm::render] eller tillhandahÃ¥lla en partiell 
+vy fÃ¶r rendering av formulÃ¤ret. BÃ¥da tillvÃ¤gagÃ¥ngssÃ¤tten kan behÃ¥lla formulÃ¤rkonfigurationen ofÃ¶rÃ¤ndrad och kan lÃ¤tt 
+Ã¥teranvÃ¤ndas.
 
-Vid utökning av [CForm::render], behöver man huvudsakligen gå igenom samlingarna [CForm::elements] och [CForm::buttons] 
-och anropa varje formulärelements metod [CFormElement::render]. Till exempel,
+Vid utÃ¶kning av [CForm::render], behÃ¶ver man huvudsakligen gÃ¥ igenom samlingarna [CForm::elements] och [CForm::buttons] 
+och anropa varje formulÃ¤relements metod [CFormElement::render]. Till exempel,
 
 ~~~
 [php]
@@ -410,7 +410,7 @@ class MyForm extends CForm
 }
 ~~~
 
-Vi kan även skriva ett vyskript `_form` som renderar formuläret:
+Vi kan Ã¤ven skriva ett vyskript `_form` som renderar formulÃ¤ret:
 
 ~~~
 [php]
@@ -423,15 +423,15 @@ foreach($form->getElements() as $element)
 echo $this->renderEnd();
 ~~~
 
-För att använda detta vyskript kan vi göra följande metodanrop:
+FÃ¶r att anvÃ¤nda detta vyskript kan vi gÃ¶ra fÃ¶ljande metodanrop:
 
 ~~~
 [php]
 $this->renderPartial('_form', array('form'=>$form));
 ~~~
 
-Om generisk formulärrendering inte räcker för ett specifikt formulär (till exempel om formuläret 
-behöver några oregelbundna dekorationer av vissa element), kan vi göra som följer i ett vyskript:
+Om generisk formulÃ¤rrendering inte rÃ¤cker fÃ¶r ett specifikt formulÃ¤r (till exempel om formulÃ¤ret 
+behÃ¶ver nÃ¥gra oregelbundna dekorationer av vissa element), kan vi gÃ¶ra som fÃ¶ljer i ett vyskript:
 
 ~~~
 [php]
@@ -446,10 +446,10 @@ some complex UI elements here
 some complex UI elements here
 ~~~
 
-Med det senare tillvägagångssättet verkar inte formulärbyggaren tillföra någon speciell nytta, 
-eftersom vi fortfarande behöver skriva liknande kvantiteter av formulärkod. Det är fortfarande till 
-nytta, dock, att formuläret specificeras genom användning av en separat konfigurationsfil, då det 
-hjälper utvecklare att bättre fokusera på logiken.
+Med det senare tillvÃ¤gagÃ¥ngssÃ¤ttet verkar inte formulÃ¤rbyggaren tillfÃ¶ra nÃ¥gon speciell nytta, 
+eftersom vi fortfarande behÃ¶ver skriva liknande kvantiteter av formulÃ¤rkod. Det Ã¤r fortfarande till 
+nytta, dock, att formulÃ¤ret specificeras genom anvÃ¤ndning av en separat konfigurationsfil, dÃ¥ det 
+hjÃ¤lper utvecklare att bÃ¤ttre fokusera pÃ¥ logiken.
 
 
 <div class="revision">$Id: form.builder.txt 1605 2009-12-18 21:22:43Z qiang.xue $</div>
