@@ -328,32 +328,34 @@ Därefter skriver vi formulärets konfigureringsfil `protected/views/user/regist
 ~~~
 [php]
 return array(
-	'user'=>array(
-		'type'=>'form',
-		'title'=>'Login information',
-		'elements'=>array(
-	        'username'=>array(
-	            'type'=>'text',
-	        ),
-	        'password'=>array(
-	            'type'=>'password',
-	        ),
-	        'email'=>array(
-	            'type'=>'text',
-	        )
+	'elements'=>array(
+		'user'=>array(
+			'type'=>'form',
+			'title'=>'Login information',
+			'elements'=>array(
+		        'username'=>array(
+		            'type'=>'text',
+		        ),
+		        'password'=>array(
+		            'type'=>'password',
+		        ),
+		        'email'=>array(
+		            'type'=>'text',
+		        )
+			),
 		),
-	),
 
-	'profile'=>array(
-		'type'=>'form',
-		'title'=>'Profile information',
-		'elements'=>array(
-	        'firstName'=>array(
-	            'type'=>'text',
-	        ),
-	        'lastName'=>array(
-	            'type'=>'text',
-	        ),
+		'profile'=>array(
+			'type'=>'form',
+			'title'=>'Profile information',
+			'elements'=>array(
+		        'firstName'=>array(
+		            'type'=>'text',
+		        ),
+		        'lastName'=>array(
+		            'type'=>'text',
+		        ),
+			),
 		),
 	),
 
@@ -452,4 +454,4 @@ nytta, dock, att formuläret specificeras genom användning av en separat konfig
 hjälper utvecklare att bättre fokusera på logiken.
 
 
-<div class="revision">$Id: form.builder.txt 1605 2009-12-18 21:22:43Z qiang.xue $</div>
+<div class="revision">$Id: form.builder.txt 1613 2009-12-23 14:09:42Z qiang.xue $</div>
