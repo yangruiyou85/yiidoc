@@ -93,7 +93,9 @@ return array(
 [php]
 <h1>Login</h1>
 
+<div class="form">
 <?php echo $form; ?>
+</div>
 ~~~
 
 > Tip|ヒント: 上記の`echo $form;`コードは`echo $form->render();`と等価です。
@@ -349,7 +351,9 @@ return array(
 [php]
 <h1>Register</h1>
 
+<div class="form">
 <?php echo $form; ?>
+</div>
 ~~~
 
 
@@ -397,7 +401,9 @@ echo $this->renderEnd();
 
 ~~~
 [php]
+<div class="form">
 $this->renderPartial('_form', array('form'=>$form));
+</div>
 ~~~
 
 もし標準的なフォーム表示では特殊なフォーム(例えばフォームがある要素に特別な飾りを必要とする場合)について対応できない場合には、
@@ -420,4 +426,4 @@ $this->renderPartial('_form', array('form'=>$form));
 しかしながら、フォームは別の構成ファイルにより指定されるため、開発者はロジックに集中できるという利点があります。
 
 
-<div class="revision">$Id: form.builder.txt 1605 2009-12-18 21:22:43Z qiang.xue $</div>
+<div class="revision">$Id: form.builder.txt 1616 2009-12-18 21:22:43Z qiang.xue $</div>
