@@ -102,7 +102,9 @@ return array(
 [php]
 <h1>Вход</h1>
 
+<div class="form">
 <?php echo $form; ?>
+</div>
 ~~~
 
 > Tip|Подсказка: Приведённый выше код `echo $form;` эквивалентен `echo $form->render();`.
@@ -382,7 +384,9 @@ return array(
 [php]
 <h1>Регистрация</h1>
 
+<div class="form">
 <?php echo $form; ?>
+</div>
 ~~~
 
 
@@ -433,7 +437,9 @@ echo $this->renderEnd();
 
 ~~~
 [php]
+<div class="form">
 $this->renderPartial('_form', array('form'=>$form));
+</div>
 ~~~
 
 Если стандартный рендеринг формы не подходит (к примеру, в форме
@@ -457,4 +463,4 @@ $this->renderPartial('_form', array('form'=>$form));
 те же объёмы кода формы. Тем не менее, преимущество есть. Оно в том, что форма,
 описанная в отдельном файле конфигурации, позволяет разработчику сфокусироваться на логике.
 
-<div class="revision">$Id: form.builder.txt 1613 2009-12-23 14:09:42Z qiang.xue $</div>
+<div class="revision">$Id: form.builder.txt 1616 2009-12-25 20:45:50Z qiang.xue $</div>

@@ -257,4 +257,4 @@ RewriteRule . index.php
 Для этого нужно просто настроить компонент [urlManager|CWebApplication::urlManager] путем назначения свойству 
 [urlSuffix|CUrlManager::urlSuffix] любого желаемого окончания.
 
-<div class="revision">$Id: changes.txt 1533 2009-11-20 14:10:46Z qiang.xue $</div>
+<div class="revision">$Id: topics.url.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
