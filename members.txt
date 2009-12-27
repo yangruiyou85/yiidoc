@@ -27,6 +27,7 @@ Member List of Yiidoc Project
   active  Swedish             tri                 triboe
   active  Tamil               sapauljoseph        sapauljoseph
   active  Ukrainian           yugene              yugenekr
+  active  Vietnamese          Harry Tang          admin@giaduy.info
 inactive  Bulgarian           penkomitev          pemitev
 inactive  Czech               skippy              sklokocka
 inactive  Danish              DNRN                dnrnmail
