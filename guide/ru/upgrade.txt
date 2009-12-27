@@ -16,9 +16,9 @@
 'scenario' удален. Вы должны получать и устанавливать сценарий модели через
 свойство [CModel::scenario].
 
-- Изменены методы [getValidators()|CModel::getValidators] и
+- Изменён метод [getValidators()|CModel::getValidators] и удалён
 [getValidatorsForAttribute()|CModel::getValidatorsForAttribute].
-Теперь они возвращают только валидаторы, применяемые к сценарию, определенному
+CModel::getValidators() теперь возвращает только валидаторы, применяемые к сценарию, определенному
 свойством сценария модели ([CModel::scenario]).
 
 - Изменены методы [isAttributeRequired()|CModel::isAttributeRequired] и
@@ -58,4 +58,4 @@
 должны выглядеть так — `[$i]поле`, чтобы была возможность поддержки
 множественного ввода однотипных полей (например, `[$i]поле[$index]`).
 
-<div class="revision">$Id: upgrade.txt 1442 2009-10-10 21:55:19Z qiang.xue $</div>
+<div class="revision">$Id: upgrade.txt 1624 2009-12-27 20:05:18Z qiang.xue $</div>

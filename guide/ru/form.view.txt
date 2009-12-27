@@ -66,4 +66,4 @@
 
 ![Страница авторизации с сообщением об ошибке](login2.png)
 
-<div class="revision">$Id: form.view.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
+<div class="revision">$Id: form.view.txt 1623 2009-12-27 20:02:43Z qiang.xue $</div>
