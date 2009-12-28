@@ -112,7 +112,7 @@ return array(
 ~~~
 
 В приведённом выше коде указано, что приложение должно подключиться к базе данных SQLite
-`WebRoot/testdrive/protected/data/source.db` как только это понадобится. Отметим, что
+`WebRoot/testdrive/protected/data/testdrive.db` как только это понадобится. Отметим, что
 база данных SQLite уже включена в сгенерированное приложение. В этой базе имеется только
 одна таблица `tbl_user`:
 
@@ -224,4 +224,4 @@ http://hostname/testdrive/index.php?r=user/admin
 
 ![Страница добавления нового пользователя](first-app7.png)
 
-<div class="revision">$Id: quickstart.first-app.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.first-app.txt 1626 2009-12-28 01:37:19Z qiang.xue $</div>

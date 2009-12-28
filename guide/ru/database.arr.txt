@@ -525,4 +525,4 @@ class User extends CActiveRecord
  должны описываться в методе [CActiveRecord::scopes], поэтому они не могут быть
 параметризованы.
 
-<div class="revision">$Id: database.arr.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 1625 2009-12-27 22:16:43Z qiang.xue $</div>
