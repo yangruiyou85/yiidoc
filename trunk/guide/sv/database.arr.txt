@@ -383,6 +383,67 @@ $posts=$user->posts(array('condition'=>'status=1'));
 ~~~
 
 
+Prestanda för relationell fråga
+-------------------------------
+
+Som beskrivits ovan används tillvägagångssättet eager loading huvudsakligen i ett scenario 
+där vi behöver accessa många relaterade objekt. Det genererar en stor komplex SQL-sats
+genom att utföra join med alla tabeller som behövs. En stor SQL-sats är att föredra i många fall 
+eftersom den förenklar filtrering baserad på en kolumn i en relaterad tabell.
+Dock kan den vara mindre effektiv i vissa fall.
+
+Tänk ett exempel där vi behöver hitta de senaste postningarna tillsammans med tillhörande kommentarer.
+Med antagandet att varje postning har 10 kommentarer och en enda stor SQL-sats, kommer en stor mängd 
+redundant data om postningar att returneras eftersom varje postning kommer att repeteras för varje tillhörande kommentar.
+Tänk ett annat tillvägagångssätt: först en fråga om senaste postningarna, därefter en fråga om tillhörande kommentarer.
+Vid detta nya tillvägagångssätt, behöver två SQL-satser exekveras. Vinsten är att det inte kommer med reduntant data 
+i frågeresultatet.
+
+Så vilket tillvägagångssätt är mer effektivt? Det finns inget absolut svar. Att exekvera en enstaka stor SQL-sats 
+kan vara mer effektivt eftersom det leder till mindre overhead i DBMS:en för parsning och exekvering av 
+SQL-satser. Å andra sidan, vid användning av en enstaka SQL-sats, kommer det att gå åt mer tid till att läsa
+och bearbeta den större mängden redundant data.
+
+Av detta skäl, tillhandahåller Yii frågealternativet `together` så att vi kan välja mellan de två tillvägagångssätten.
+Som standard använder sig Yii av det första tillvägagångssättet, dvs, att skapa en enda stor SQL-sats för att
+utföra eager loading. Genom att sätta alternativet `together` till false i sambandsdeklarationen sker join mellan  
+vissa tabellern i separata SQL-satser. Till exempel, för att använda det andra tillvägagångssättet i samband med  
+en fråga om de senaste postningarna med tillhörande kommentarer, kan vi deklarera sambandet `comments` i `Post`-klassen 
+på följande sätt,
+
+~~~
+[php]
+public function relations()
+{
+	return array(
+		'comments' => array(self::HAS_MANY, 'Comment', 'postID', 'together'=>false),
+	);
+}
+~~~
+
+Vi kan även sätta detta alternativ dynamiskt när vi genomför eager loading:
+
+~~~
+[php]
+$posts = Post::model()->with(array('comments'=>array('together'=>false)))->findAll();
+~~~
+
+> Note|Märk: I version 1.0.x, var det underförstådda beteendet att Yii genererade och
+> exekverade `N+1` SQL-satser om det fanns `N` `HAS_MANY`- eller `MANY_MANY`-samband.
+> Varje `HAS_MANY`- eller `MANY_MANY`-samband hade sin egen SQL-sats. Genom att anropa
+> metoden `together()` efter `with()` kunde generering och exekvering av endast en SQL-sats 
+> tvingas fram. Till exempel,
+>
+> ~~~
+> [php]
+> $posts=Post::model()->with(
+> 	'author.profile',
+> 	'author.posts',
+> 	'categories')->together()->findAll();
+> ~~~
+>
+
+
 Statistikfråga
 --------------
 

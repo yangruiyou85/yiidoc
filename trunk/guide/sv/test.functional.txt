@@ -18,8 +18,8 @@ av de grundläggande principerna för hur man skriver ett funktionellt test i Yi
  funktionen logga in användare, kan vi ha en testmetod med namnet `testLogin`.
 
  * En testmetod innehåller vanligen en sekvens av satser som ger ut kommandon till Selenium RC 
- för interaktion med webbapplikationen som testas. Den innehåller också assertion-satser för att 
- verifiera att webbapplikationen svarar som förväntat.
+ för interaktion med webbapplikationen som testas. Testmetoden innehåller också assertion-satser 
+ för att verifiera att webbapplikationen svarar som förväntat.
 
 Låt oss, innan vi beskriver hur man skriver ett funktionellt test, titta närmare 
 på filen `WebTestCase.php` skapad av `yiic webapp`-kommandot. Denna fil 
@@ -47,7 +47,7 @@ class WebTestCase extends CWebTestCase
 ~~~
 
 Klassen `WebTestCase` sätter i huvudsak upp en bas-URL till sidorna som skall testas. 
-Senare i testmetoderna, kan relativa URL:er användas för att specificera vilka sidor 
+Senare, i testmetoderna, kan relativa URL:er användas för att specificera vilka sidor 
 som skall testas.
 
 Det är värt att notera är att i bas-URL:en för testning används `index-test.php` 
