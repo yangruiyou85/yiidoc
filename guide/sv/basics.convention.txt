@@ -115,4 +115,4 @@ av dem kan anpassas om så önskas.
 
    - `WebRoot/themes`: denna katalog innehåller olika teman att applicera på applikationen. Varje underkatalog representerar ett specifikt tema med samma namn som underkatalogen. Anpassning kan ske via [CThemeManager::basePath].
 
-<div class="revision">$Id: basics.convention.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
+<div class="revision">$Id: basics.convention.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>

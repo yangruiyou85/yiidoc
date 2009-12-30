@@ -407,7 +407,7 @@ och bearbeta den större mängden redundant data.
 Av detta skäl, tillhandahåller Yii frågealternativet `together` så att vi kan välja mellan de två tillvägagångssätten.
 Som standard använder sig Yii av det första tillvägagångssättet, dvs, att skapa en enda stor SQL-sats för att
 utföra eager loading. Genom att sätta alternativet `together` till false i sambandsdeklarationen sker join mellan  
-vissa tabellern i separata SQL-satser. Till exempel, för att använda det andra tillvägagångssättet i samband med  
+vissa tabeller i separata SQL-satser. Till exempel, för att använda det andra tillvägagångssättet i samband med  
 en fråga om de senaste postningarna med tillhörande kommentarer, kan vi deklarera sambandet `comments` i `Post`-klassen 
 på följande sätt,
 
@@ -442,6 +442,7 @@ $posts = Post::model()->with(array('comments'=>array('together'=>false)))->findA
 > 	'categories')->together()->findAll();
 > ~~~
 >
+
 
 
 Statistikfråga

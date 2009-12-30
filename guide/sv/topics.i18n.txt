@@ -275,4 +275,4 @@ eller flyttal (double).
    formaterar det givna talet genom användning av det fördefinierade 
    procentmönstret i mål-localens data.
 
-<div class="revision">$Id: topics.i18n.txt 1489 2009-10-27 21:13:26Z qiang.xue $</div>
+<div class="revision">$Id: topics.i18n.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
