@@ -104,7 +104,10 @@ Slutligen skriver vi ett vyskript `login`, som kan vara lika enkelt som följand
 [php]
 <h1>Login</h1>
 
+<div class="form">
 <?php echo $form; ?>
+</div>
+
 ~~~
 
 > Tip|Tips: Ovanstående kod `echo $form;` är ekvivalent med `echo $form->render();`.
@@ -378,7 +381,9 @@ Till slut skriver vi det enkla vyskriptet `register`:
 [php]
 <h1>Register</h1>
 
+<div class="form">
 <?php echo $form; ?>
+</div>
 ~~~
 
 
@@ -429,7 +434,9 @@ För att använda detta vyskript kan vi göra följande metodanrop:
 
 ~~~
 [php]
+<div class="form">
 $this->renderPartial('_form', array('form'=>$form));
+</div>
 ~~~
 
 Om generisk formulärrendering inte räcker för ett specifikt formulär (till exempel om formuläret 
@@ -454,4 +461,4 @@ nytta, dock, att formuläret specificeras genom användning av en separat konfig
 hjälper utvecklare att bättre fokusera på logiken.
 
 
-<div class="revision">$Id: form.builder.txt 1613 2009-12-23 14:09:42Z qiang.xue $</div>
+<div class="revision">$Id: form.builder.txt 1616 2009-12-25 20:45:50Z qiang.xue $</div>
