@@ -109,18 +109,33 @@ motsvarande en enstaka regel. Mönstret i en regel utgörs av en sträng som
 används till att matcha pathinfo-delen av URL:erna. Routedelen av en regel 
 skall referera till en giltig [kontrollerroute](/doc/guide/basics.controller#route).
 
-> Info: med start fr o m version 1.0.6, kan en regel anpassas ytterligare med 
-> hjälp av dess `urlSuffix`- och `caseSensitive`-alternativ. Med start från 
-> version 1.0.8, kan en regel också ha `defaultParams` som representerar en 
-> lista med namn-värdepar att sammanfogas med `$_GET`. För att anpassa en regel 
-> med dessa alternativ, specificera routedelen av regeln i form av en array, 
-> i stil med följande:
->
-> ~~~
-> [php]
-> 'pattern1'=>array('route1', 'urlSuffix'=>'.xml', 'caseSensitive'=>false)
-> ~~~
->
+Utöver ovanstående mönster-routeformat, kan en regel även specificeras med 
+anpassade alternativ, enligt följande:
+
+~~~
+[php]
+'pattern1'=>array('route1', 'urlSuffix'=>'.xml', 'caseSensitive'=>false)
+~~~
+
+I ovanstående exempel innehåller arrayen en lista med anpassade alternativ. Per version 1.1.0,
+finns följande alternativ tilllgängliga:
+
+   - [urlSuffix|CUrlRule::urlSuffix]: URL suffix som skall användas specifikt för denna regel.
+   Standardvärde är null, vilket innebär värdet av [CUrlManager::urlSuffix].
+
+   - [caseSensitive|CUrlRule::caseSensitive]: huruvida denna regel är skiftlägeskänslig.
+   Standardvärde är null, vilket innebär värdet av [CUrlManager::caseSensitive].
+
+   - [defaultParams|CUrlRule::defaultParams]: underförstådda GET-parametrar (namn=>värde) som 
+   denna regel tillhandahåller. När denna regel används för att behandla en inkommen request, 
+   läggs värdena som deklareras i denna property till i $_GET.
+
+   - [matchValue|CUrlRule::matchValue]: huruvida GET-parametervärdena skall matcha motsvarande 
+   delmönster i regeln när en URL skapas. Standardvärde är null, vilket innebär värdet
+   av [CUrlManager::matchValue]. Om denna property är false, innebär det att en regel kommer att
+   användas när en URL skapas, om dess route och parameternamn matchar de som givits. Om denna property
+   är satt till true, måste de givna parametervärdena även matcha motsvarande (parameter-)delmönster.
+   Lägg märke till att prestanda påverkas negativt om detta alternativ är satt till true.
 
 
 ### Användning av namngivna parametrar
@@ -292,4 +307,4 @@ statisk webbsida. För att göra så, konfigurera komponenten
 [urlManager|CWebApplication::urlManager] genom att sätta dess property 
 [urlSuffix|CUrlManager::urlSuffix] till önskad suffixsträng.
 
-<div class="revision">$Id: topics.url.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
+<div class="revision">$Id: topics.url.txt 1633 2009-12-29 21:12:11Z qiang.xue $</div>
