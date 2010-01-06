@@ -337,7 +337,7 @@ postningar sorterade i fallande ordning efter tid de skapats. Varje instans av
 postning har också fått sina kategorier laddade.
 
 > Info: När ett kolumnnamn uppträder i två eller fler tabeller som slås samman 
-(join), behöver det göras otvetydigt. Detta åstadkoms genom att föregå 
+(join), behöver det göras otvetydigt. Detta åstadkommes genom att föregå 
 kolumnnamnet med dess tabellnamn. Till exempel, `id` blir `Team.id`. I AR:s 
 relationella frågor däremot, saknas denna frihet eftersom SQL-satserna 
 genereras automatiskt av AR, vilket systematiskt ger varje tabell ett alias. Av 
