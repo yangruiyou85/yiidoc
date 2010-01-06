@@ -33,9 +33,9 @@ genom att mata in följande URL i webbläsarens adressfält:
 http://hostname/testdrive/index.php
 ~~~
 
-Som nu framgår består applikationen av tre sidor: startsidan, kontaktsidan och 
-inloggningssidan. där kontaktsidan presenterar ett kontaktformulär som 
-användare kan fylla i för att skicka sina förfrågningar till webbadministratören 
+Som nu framgår består applikationen av fyra sidor: startsidan, "om"-sidan, 
+kontaktsidan och inloggningssidan. Kontaktsidan presenterar ett kontaktformulär 
+som användare kan fylla i för att skicka sina förfrågningar till webbadministratören 
 och inloggningssidan ger användare möjlighet att bli autentiserade för åtkomst till 
 priviligierat innehåll. Se nedanstående skärmdumpar för närmare detaljer.
 
@@ -69,10 +69,8 @@ testdrive/
       commands/              innehåller egna/anpassade 'yiic'-kommandon
          shell/              innehåller egna/anpassade 'yiic shell'-kommandon
       components/            innehåller (egna) återanvändningsbara komponenter
-         MainMenu.php        widgetklassen 'MainMenu'
+         Controller.php      basklass för alla kontrollerklasser
          Identity.php        klassen 'Identity' som används för autenticering
-         views/              innehåller vyfiler som tillhör widgetklasser
-            mainMenu.php     vyfil som tillhör widgetklassen 'MainMenu'
       config/                innehåller konfigurationsfiler
          console.php         konfiguration för konsolapplikationer
          main.php            konfiguration för webbapplikationer
@@ -80,6 +78,9 @@ testdrive/
       controllers/           innehåller filer med kontrollerklasser
          SiteController.php  standardkontrollerklassen
       data/                  innehåller SQLite-databas för exempel
+         schema.mysql.sql    DB-schema för MySQL-exempeldatabas
+         schema.sqlite.sql   DB-schema för SQLite-exempeldatabas
+         testdrive.db        SQLite-databasfil, exempeldatabas
       extensions/            innehåller tredjepartstillägg
       messages/              innehåller översatta systemmeddelanden
       models/                innehåller modellklassfiler
@@ -91,6 +92,8 @@ testdrive/
          layouts/            innehåller layoutfiler
             main.php         standardlayout för alla vyer
          site/               innehåller vyfiler för 'site'-kontrollern
+         	pages/           innehåller "statiska" sidor
+         	   about.php     vyn för "about"-sidan
             contact.php      vyn för 'contact'-åtgärden
             error.php        vyn för 'error'-åtgärden (presenterar externa felmeddelanden)
             index.php        vyn för 'index'-åtgärden
@@ -238,4 +241,4 @@ Allt detta uppnåddes utan att skriva en enda rad kod!
 
 
 
-<div class="revision">$Id: quickstart.first-app.txt 1626 2009-12-28 01:37:19Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.first-app.txt 1653 2010-01-02 23:05:07Z qiang.xue $</div>

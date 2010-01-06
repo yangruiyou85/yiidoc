@@ -90,5 +90,8 @@ Därefter verifierar vi att det går att hitta titeln för postningen `sample1` 
 för tillfället visade webbsidan. Vi kontrollerar även att sidan innehåller texten 
 `Leave a Comment`.
 
+> Tip|Tips: Innan funktionella test kan köras måste Selenium-RC-servern startas. 
+Detta kan göras genom exekvering av kommandot `java -jar selenium-server.jar` från 
+Selenium-serverns installationskatalog.
 
-<div class="revision">$Id: test.functional.txt 1152 2009-06-19 04:42:21Z qiang.xue $</div>
+<div class="revision">$Id: test.functional.txt 1662 2010-01-04 19:15:10Z qiang.xue $</div>
