@@ -90,6 +90,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * role - Rolle
  * role-based access control - Rollenbasierte Zugriffskontrolle
  * task (RBAC) - Tätigkeit
+ * text message (i18n) - Textmeldung
  * user - Benutzer, Anwender, evtl. Besucher
  * web application - Webanwendung, Webapplikation
 
