@@ -80,7 +80,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * method - Methode
  * message routing - Routing von Logmeldungen
  * message filtering - Filtern der Logmeldungen
- * named scope - beannter Scope
+ * named scope - benannter Scope
  * object - Objekt (OOP)
  * operation (RBAC) - Operation
  * path alias - Pfad-Alias
