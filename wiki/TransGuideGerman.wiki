@@ -80,6 +80,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * method - Methode
  * message routing - Routing von Logmeldungen
  * message filtering - Filtern der Logmeldungen
+ * named scope - beannter Scope
  * object - Objekt (OOP)
  * operation (RBAC) - Operation
  * path alias - Pfad-Alias
@@ -117,12 +118,12 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * Layout, _das_
  * Lazy Loading, _das_
  * Model, _das_
- * Named Scope, _der_
  * Namespace, _der_
  * Performance, _die_
  * Request, _der_
  * Route, _die_
  * Screenshot, _der_
+ * Scope, _der_
  * Script, _das_
  * Session, _die_
  * String, _der_
