@@ -78,8 +78,8 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * login - anmelden, Anmeldung (Anmeldeseite, ...)
  * logout - abmelden, Abmeldung
  * method - Methode
- * message routing - Routing der Lognachrichten
- * message filtering - Filtern der Lognachrichten
+ * message routing - Routing von Logmeldungen
+ * message filtering - Filtern der Logmeldungen
  * object - Objekt (OOP)
  * operation (RBAC) - Operation
  * path alias - Pfad-Alias
