@@ -68,31 +68,30 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * entry script - Eingangsscript, Ladescript
  * extension (PHP) - Erweiterung
  * form - Formular
- * fragment (bei caching) - Seitenabschnitt
+ * fragment (bei caching) - Fragment, Seitenabschnitt
  * global state - globaler Status
- * home - Start (Startseite, ...)
+ * home - Start, Startseite, Home
  * loader (yii loader, etc.) - Ladescript
  * log (to) - loggen, protokollieren
  * log level - Logstufe, Protokollierungsstufe, Stufe
- * log route - Nachrichtenroute
+ * log route - Logroute
  * login - anmelden, Anmeldung (Anmeldeseite, ...)
  * logout - abmelden, Abmeldung
  * method - Methode
- * message routing - Nachrichtenrouting
- * message filtering - Nachrichtenfilterung
- * named scope - Benannter Bereich
+ * message routing - Routing der Lognachrichten
+ * message filtering - Filtern der Lognachrichten
  * object - Objekt (OOP)
  * operation (RBAC) - Operation
  * path alias - Pfad-Alias
- * performance profiling - Leistungsmessung
- * property (member, attribute, ..) - Eigenschaft (gilt jedoch nicht für Instanzvariable, Member, Attribut eines Models)
+ * performance profiling - Performance-Analyse
+ * property (member, attribute, ..) - Eigenschaft (gilt jedoch nicht für Attribute eines Models)
  * relational query - Relationale Abfrage (!= Verbundabfrage)
  * relational activerecord - Relationale ActiveRecords
  * role - Rolle
  * role-based access control - Rollenbasierte Zugriffskontrolle
  * task (RBAC) - Tätigkeit
- * user - Benutzer
- * web application - Webanwendung
+ * user - Benutzer, Anwender, evtl. Besucher
+ * web application - Webanwendung, Webapplikation
 
 ==== Nicht zu übersetzende Begriffe ====
 
@@ -107,14 +106,18 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * Constraints (Plural) _die_
  * Controller, _der_
  * Debug, _das_ debuggen, _der_ Debug-Modus
+ * Eager Loading, _das_
  * Event, _das_
  * Exception, _die_
  * `FormModel`, _das_
  * Framework, _das_
  * Label, _das_
  * Layout, _das_
+ * Lazy Loading, _das_
  * Model, _das_
+ * Named Scope, _der_
  * Namespace, _der_
+ * Performance, _die_
  * Request, _der_
  * Route, _die_
  * Screenshot, _der_
@@ -131,4 +134,4 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
 
  * Theme - Bleibt Theme, evtl. in Klammern "Motiv"
  * Asset - Bleibt Asset, aus Mangel einer vernünftigen Übersetzung
- * cache dependency - Cachen mit Abhängkeit. (Dependency bezieht sich im englischen auch auf das Objekt, von dem die Abhängikeit besteht. Im Deutschen kann "change of dependency" aber nicht mit "Änderung der Abhänigkeit" übersetzt werden, weil das vielmehr eine Änderung in der Abhängigkeitsbeziehung bedeuten würde)
+ * cache dependency - Cachen mit Abhängkeit. (Dependency bezieht sich im englischen auch auf das Objekt, von dem die Abhängikeit besteht. Im Deutschen kann "change of dependency" aber nicht mit "Änderung der Abhängigkeit" übersetzt werden, weil das vielmehr eine Änderung in der Abhängigkeitsbeziehung bedeuten würde)
