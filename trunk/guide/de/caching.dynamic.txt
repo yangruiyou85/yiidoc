@@ -1,7 +1,7 @@
 Dynamische Inhalte
 ==================
 
-Wir kommen beim Cachen eines [Seitenabschnitts](/doc/guide/caching.fragment) oder 
+Wir kommen beim Cachen eines [Fragments](/doc/guide/caching.fragment) oder 
 einer ganzen [Seite](/doc/guide/caching.page) oft in Situtationen, bei denen
 der Inhalt, abgesehen von einigen wenigen Stellen, relativ statisch bleibt.
 Eine Hilfeseite kann zum Beispiel statische Hilfetexte sowie oben den 
@@ -16,7 +16,7 @@ komplizierter und unseren Code komplexer machen. Einen besseren Ansatz verfolgt
 das CController-Feature der *dynamischen Inhalte*.
 
 Ein dynamischer Inhalt steht für einen Bereich in der Ausgabe, der nicht
-gecacht werden soll, selbst wenn er in einen gecachten Seitenabschnitt
+gecacht werden soll, selbst wenn er in einen gecachten Fragment
 eingebettet ist. Damit dieser Inhalt dynamisch bleibt, muss er jedesmal
 neu erzeugt werden, selbst wenn der umhüllende Inhalt aus dem Cache geliefert
 wird. Aus diesem Grund ist es erforderlich, dass dynamischer Inhalt von einer 
@@ -29,9 +29,9 @@ der gewünschten Stelle auf:
 [php]
 ...Anderer HTML-Inhalt...
 <?php if($this->beginCache($id)) { ?>
-...Zu cachender Seitenabschnitt...
+...Zu cachendes Fragment ...
 	<?php $this->renderDynamic($callback); ?>
-...Zu cachender Seitenabschnitt...
+...Zu cachendes Fragment ...
 <?php $this->endCache(); } ?>
 ...Anderer HTML-Inhalt...
 ~~~

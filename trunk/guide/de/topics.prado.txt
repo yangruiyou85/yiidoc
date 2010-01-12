@@ -43,7 +43,7 @@ speichert die resultierenden PHP-Dateien im
 [Runtime](/doc/guide/basics.convention#directory)-Verzeichnis der Anwendung.
 Diese PHP-Dateien werden nur dann neu generiert, wenn die Quelldatei sich
 geändert hat. So verringert der Einsatz von [CPradoViewRenderer] die
-Leistungsfähigkeit nur unwesentlich.
+Performance nur unwesentlich.
 
 > Tip|Tipp: Der [CPradoViewRenderer] führt hauptsächlich neue Template-Tags
 ein, um das Schreiben von Views zu vereinfachen und zu beschleunigen. Sie

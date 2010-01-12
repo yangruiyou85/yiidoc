@@ -9,7 +9,7 @@ Inhalt einer Seite im Cache speichern. In diesem Kapitel sehen wir uns
 letzeren Ansatz näher an.
 
 Das Cachen einer Seite kann als Spezialfall des [Cachens von
-Seitenabschnitten](/doc/guide/caching.fragment) betrachtet werden. Da der
+Fragmenten](/doc/guide/caching.fragment) betrachtet werden. Da der
 Inhalt einer Seite oft mittels Anwendung eines Layouts auf einen View 
 erzeugt wird, funktioniert es nicht, wenn wir einfach
 [beginCache()|CBaseController::beginCache] und

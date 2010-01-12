@@ -82,7 +82,7 @@ Code verändern zu müssen, der den Cache verwendet.
 Caching kann auf unterschiedlichen Ebenen eingesetzt werden. Auf unterster
 Ebene verwenden wir einen Cache zum Speichern von Daten, wie z.B. einer
 Variable. Man nennt dies auch *Datencaching* (engl.: data caching). 
-Eine Ebene höher speichern wir ganze Seitenabschnitte, die von einem View-Teil
+Eine Ebene höher speichern wir ganze Fragmente bzw. Seitenabschnitte, die von einem View-Teil
 generiert wurden, im Cache. Und auf der höchsten Ebene speichern wir eine
 ganze Seite im Cache und liefern sie bei Bedarf von dort aus.
 

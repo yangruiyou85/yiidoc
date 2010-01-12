@@ -8,7 +8,7 @@ Ein Model repräsentiert ein einzelnes Datenobjekt. Es kann sich um eine Zeile
 in einer Datenbanktabelle oder ein Formular mit Benutzereingaben handeln.
 Jedes Feld des Datenobjekts wird durch ein Attribut des Models repräsentiert.
 Das Attribut hat ein Label (Bezeichnung bzw. Beschriftung) und kann mit einer
-Reihe von Regeln auf Gültigkeit geprüft werden.
+Reihe von Regeln validiert, also auf Gültigkeit geprüft werden.
 
 Yii implementiert zwei Model-Arten: FormModel (Formularmodel) und ActiveRecord. Beide
 erweitern die selbe Basisklasse [CModel].

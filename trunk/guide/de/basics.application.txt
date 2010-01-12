@@ -126,7 +126,7 @@ Komponente zugreifen, wird `null` zurückgeliefert.
 > Tip|Tipp: Standardmäßig werden Applikationskomponenten erst bei Bedarf erzeugt.
 Das bedeutet, dass eine Komponente evtl. gar nicht erzeugt wird, wenn während
 eines Requests kein Zugriff auf sie stattfindet. Das führt dazu, dass die
-Gesamtleistung selbst dann nicht sinkt, wenn in einer Anwendung viele
+Gesamtperformance selbst dann nicht sinkt, wenn in einer Anwendung viele
 Applikationskomponenten konfiguriert wurden. Einige Komponenten (z.B.
 [CLogRouter]) könnten allerdings immer erstellt werden müssen, unabhängig davon, 
 ob auf sie zugegriffen wird, oder nicht. Um dies zu erreichen, führen Sie deren IDs

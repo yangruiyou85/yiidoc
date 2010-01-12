@@ -1,5 +1,5 @@
-Andere Bibliotheken verwenden
-=============================
+Verwenden von Fremdbibliotheken 
+===============================
 
 Um Yii’s Funktionalität leicht durch Bibliotheken von Drittanbietern erweitern
 zu können, wurde bei der Planung viel Sorgfalt auf diesen Punkt verwendet. 
