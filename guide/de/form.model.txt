@@ -6,7 +6,7 @@ welche Daten wir vom Endbenutzer erwarten und welche Regeln diese Daten
 erfüllen sollen. Eine Model-Klasse kann genutzt werden um diese Informationen
 aufzunehmen. Wie im Abschnitt [Model](/doc/guide/basics.model)
 definiert, ist ein Model ein zentraler Ort zur Aufbewahrung und
-Gültigkeitsprüfung von Benutzereingaben.
+Prüfung von Benutzereingaben.
 
 Je nachdem, wie wir die Benutzereingaben weiterverwenden, können wir zwischen
 zwei Model-Typen wählen. Wenn Benutzereingaben erfasst, verarbeitet und dann verworfen
@@ -50,12 +50,12 @@ den Begriff *Attribute*, um sie von normalen Eigenschaften zu unterscheiden. Ein
 Attribut ist eine Eigenschaft, die hauptsächlich dazu benutzt wird, Daten aus
 Benutzereingaben oder aus der Datenbank zu speichern.
 
-Angeben der Regeln zur Gültigkeitsprüfung
------------------------------------------
+Angeben der Validierungsregeln
+------------------------------
 
 Sobald der Benutzer seine Eingaben abschickt und das Model befüllt
 wird, müssen wir sicherstellen, dass die Daten gültig sind, bevor wir sie
-weiterverwenden. Das geschieht durch eine Gültigkeitsprüfung (engl.:
+weiterverwenden. Das geschieht bei der Validierung (engl.:
 validation) anhand eine Reihe von Regeln. Wir legen diese Regeln mit der Methode
 `rules()` fest, die ein Array von Regelkonfigurationen zurückgeben sollte.
 
@@ -105,7 +105,7 @@ array('AttributListe', 'Validator', 'on'=>'SzenarienListe', ...Zusätzliche Opti
 ~~~
 
 wobei `AttributListe` eine durch Kommas getrennte Reihe von zu Attributnamen ist, 
-die entsprechend der Regel auf Gültigkeit geprüft werden sollen. `Validator` (sinngem.:
+die entsprechend der Regel validiert werden sollen. `Validator` (sinngem.:
 Gültigkeitsprüfer) legt fest, welche Überprüfung durchgeführt werden soll. Der
 `on` (bei) Parameter ist optional und definiert eine Liste von Szenarien, in denen die Regel 
 angewendet werden soll.  `Zusätzliche Optionen` sind Namen-Werte-Paare, die dazu dienen, 
@@ -124,11 +124,11 @@ im obigen Beispiel. Diese Prüfmethode muss folgendem Muster entsprechen:
 public function ValidatorName($attribute,$params) { ... }
 ~~~
 
-Zweitens kann `Validator` der Name einer Klasse zur Gültigkeitsprüfung sein. Wenn die
+Zweitens kann `Validator` der Name einer Validatorklasse sein. Wenn die
 Regel angewendet wird, wird eine Instanz dieser Klasse erzeugt, um
-die jeweilige Gültigkeitsprüfung durchzuführen. Die zusätzlichen Optionen der Regel
+die jeweilige Prüfung durchzuführen. Die zusätzlichen Optionen der Regel
 werden dazu benutzt, die Eigenschaftswerte dieser Instanz zu initialisieren. 
-Eine Klasse zur Gültigkeitsprüfung muss von [CValidator] abgeleitet werden.
+Eine Validatorklasse muss von [CValidator] abgeleitet werden.
 
 > Note|Hinweis: Beim Festlegen der Regeln für einen ActiveRecord können
 wir eine spezielle Option `on` verwenden. Der Wert dafür kann entweder `'insert'`
@@ -203,8 +203,8 @@ array('password', 'compare', 'compareAttribute'=>'password2', 'on'=>'register'),
 array('password', 'authenticate', 'on'=>'login'),
 ~~~
 
-Absichern von Attributzuweisungen
----------------------------------
+Sichere Attributzuweisungen
+---------------------------
 
 Nachdem ein Model instanziiert wurde, müssen wir seine Attributwerte oft mit
 Daten befüllen, die von Endbenutzern geliefert werden. Das kann bequem über 
@@ -364,13 +364,13 @@ $model->permission='admin';
 $model->id=1;
 ~~~
 
-Auslösen der Gültigkeitsprüfung
--------------------------------
+Auslösen der Validierung
+------------------------
 
 Sobald ein Model mit den vom Benutzer übermittelten Daten befüllt ist, können
-wir [CModel::validate()] aufrufen, um die Gültigkeitsprüfung durchzuführen.
+wir [CModel::validate()] aufrufen, um die Validierung durchzuführen.
 Der Rückgabewert dieser Methode zeigt an, ob die Prüfung erfolgreich war
-oder nicht. Für das [CActiveRecord]-Model wird die Gültigkeitsprüfung automatisch 
+oder nicht. Für das [CActiveRecord]-Model wird die Validierung automatisch 
 ausgelöst, wenn wir dessen Methode [CActiveRecord::save()] aufrufen.
 
 Beim Aufruf von [CModel::validate()], können wir einen Szenario-Parameter
@@ -380,7 +380,7 @@ oder den Namen dieses Szenarios enthält.
 Wenn wir kein Szenario beim Aufruf von [CModel::validate()] angeben,
 werden nur die Regeln, bei denen die `on` Option nicht gesetzt ist ausgeführt.
 
-Zur Gültigkeitsprüfung der Anmeldung eines Benutzers führen wir beispielsweise folgende
+Zur Validierung der Anmeldung eines Benutzers führen wir beispielsweise folgende
 Anweisung aus:
 
 ~~~
@@ -392,7 +392,7 @@ $model->validate();
 > Note|Hinweis: Die Eigenschaft [scenario|CModel::scenario] ist seit Version
 > 1.0.4 verfügbar. Die Prüfmethode verwendet diese Eigenschaft, um
 > festzustellen, gegen welche Regeln geprüft werden muss. In den Versionen
-> 1.0.2 und 1.0.3 mussten wir die szenarienbasierte Prüfung wie folgt
+> 1.0.2 und 1.0.3 mussten wir die szenarienbasierte Validierung wie folgt
 > durchführen:
 >
 > ~~~
@@ -417,13 +417,13 @@ public function rules()
 Demzufolge wird die erste Regel in allen Szenarien angewendet, während
 die beiden nächsten Regeln nur im Szenario `register` zum Einsatz kommen.
 
-> Note|Hinweis: Die szenarienbasierte Gültigkeitsprüfung ist seit Version 1.0.1
+> Note|Hinweis: Die szenarienbasierte Validierung ist seit Version 1.0.1
 verfügbar.
 
-Abfragen von Fehlern bei der Gültigkeitsprüfung
------------------------------------------------
+Abfragen von Validierungsfehlern
+--------------------------------
 
-Um zu ermitteln, ob bei der Gültigkeitsprüfung ein Fehler aufgetreten ist,
+Um zu ermitteln, ob bei der Validierung ein Fehler aufgetreten ist,
 können wir [CModel::hasErrors()] verwenden. Falls ja, erhalten wir mit
 [CModel::getErrors()] die Fehlermeldung. Beide Methoden können für alle oder
 ein einzelnes Attribut verwendet werden.

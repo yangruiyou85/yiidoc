@@ -36,7 +36,8 @@ Webbrowser aufrufen:
 http://hostname/testdrive/index.php
 ~~~
 
-Wie wir sehen, besteht die Anwendung aus drei Seiten: Der Startseite, der
+Wie wir sehen, besteht die Anwendung aus vier Seiten: Der Startseite, der
+About-Seite, der
 Kontaktseite und der Anmeldeseite. Die Kontaktseite enthält ein
 Kontaktformular mit dem Besucher Anfragen an den Webmaster senden können. Über
 die Anmeldeseite können Benutzer sich einloggen um Zugriff auf geschützte
@@ -72,17 +73,18 @@ testdrive/
       commands/              enthält selbst erstellte 'yiic'-Kommandos
          shell/              enthält selbst erstellte 'yiic shell'-Kommandos
       components/            enthält wiederverwendbare Benutzerkomponenten
-         MainMenu.php        die 'MainMenu' (Hauptmenü) Widget-Klasse
+         Controller.php      die Basisklasse für alle Controller
          Identity.php        die Klasse 'Identity' (Identität) für die Authentifizierung
-         views/              enthält View-Dateien für Widgets
-            mainMenu.php     die View-Datei für das 'MainMenu'-Widget
       config/                enthält Konfigurationsdateien
          console.php         die Konfiguration für Konsolenanwendungen
          main.php            die Konfiguration für Webanwendungen
          test.php            die Konfiguration für Funktionstests
       controllers/           enthält Klassendateien für Controller
          SiteController.php  die Klasse des Standardcontrollers
-      data/                  enthält Beispieldatenbank für SQLite
+      data/                  enthält die Beispieldatenbank
+         schema.mysql.sql    das DB-Schema für MySQL
+         schema.sqlite.sql   das DB-Schema SQLite
+         testdrive.db        die Beispieldatenbank für SQLite
       extensions/            enthält Erweiterungen von Drittanbietern
       messages/              enthält übersetzte Meldungen
       models/                enthält Klassendateien für Models
@@ -94,10 +96,12 @@ testdrive/
          layouts/            enthält View-Dateien des Layouts
             main.php         das Standardlayout für alle Views
          site/               enthält View-Dateien für den Site-Controller
-            contact.php      der View für die 'contact'-Action
-            error.php        der View für die 'error'-Action (zur Anzeige externer Fehler)
-            index.php        der View für ide 'index'-Action
-            login.php        der View für die 'login'-Action
+         	pages/           enthält "statische" Seiten
+         	   about.php     View für die 'about'-Seite
+            contact.php      View für die 'contact'-Action
+            error.php        View für die 'error'-Action (zur Anzeige externer Fehler)
+            index.php        View für ide 'index'-Action
+            login.php        View für die 'login'-Action
 ~~~
 
 Verbindung zu einer Datenbank
@@ -262,4 +266,4 @@ schreiben müssen!
 
 
 
-<div class="revision">$Id: quickstart.first-app.txt 1626 2009-12-28 01:37:19Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.first-app.txt 1653 2010-01-02 23:05:07Z qiang.xue $</div>

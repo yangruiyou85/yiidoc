@@ -78,7 +78,7 @@ zu erstellen](/doc/guide/quickstart.first-app). Tatsächlich ist der `yiic`-Befe
 eine Konsolenanwendung mit dem Eingangsscript `framework/yiic.php`. Mit `yiic`
 können wir das Grundgerüst einer Webanwendung anlegen, Controller- und
 Modelklassen erstellen, Code für CRUD-Operationen erzeugen, zu übersetzende
-Textnachrichten extrahieren etc. 
+Textmeldungen extrahieren etc. 
 
 Wir können `yiic` um eigene Kommandos ergänzen. Dazu sollten wir zunächst
 das Gerüst für eine Webanwendung erstellen, wie im Kapitel [Erstellen der

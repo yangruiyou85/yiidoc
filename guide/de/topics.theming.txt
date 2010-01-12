@@ -208,7 +208,7 @@ Theme-Skin Vorrang.
 Falls ein Widget eine Skin verwendet, die es nicht gibt, erzeugt Yii das
 Widget wie gewohnt ohne Fehler.
 
-> Info|Info: Die Verwendung von Skins kann die Leistung negativ beeinflussen,
+> Info|Info: Die Verwendung von Skins kann die Performance negativ beeinflussen,
 > da Yii beim ersten Einsatz eines Widgets nach Skindateien suchen muss.
 
 <div class="revision">$Id: topics.theming.txt 1463 2009-10-17 01:49:02Z qiang.xue $</div>

@@ -128,7 +128,7 @@ inklusive Controller-, Layout- und System-Views. Sein Ort kann über
 
    - `WebRoot/protected/views/ControllerID`: Dieses Verzeichnis enthält die
 View-Dateien für eine einzelne Controller-Klasse. `ControllerID` steht hier für die
-ID des Controllers. Sein Ort kann über [CController::getViewPath] angepasst
+ID des Controllers. Sein Ort kann über [CController::viewPath] angepasst
 werden.
 
    - `WebRoot/protected/views/layouts`: Dieses Verzeichnis enthält alle 
@@ -150,4 +150,4 @@ Sein Ort kann über [CAssetManager::basePath] angepasst werden.
 die auf eine Applikation angewendet werden können. Sein Ort kann
 über [CThemeManager::basePath] angepasst werden.
 
-<div class="revision">$Id: basics.convention.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
+<div class="revision">$Id: basics.convention.txt 1650 2010-01-02 13:34:38Z qiang.xue $</div>

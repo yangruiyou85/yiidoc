@@ -14,7 +14,7 @@ public function actionLogin()
 	{
 		// Erfasst die vom Benutzer eingegeben Daten
 		$form->attributes=$_POST['LoginForm'];
-        // Prüfe die Benuzereingaben auf Gültigkeit und kehre zur 
+        // Validiere (prüfe) die Benuzereingaben und kehre zur 
 		// vorherigen Seite zurück, wenn die Prüfung erfolgreich war.
 	    if($form->validate())
 			$this->redirect(Yii::app()->user->returnUrl);
@@ -26,10 +26,10 @@ public function actionLogin()
 
 Oben erzeugen wir zuerst eine Instanz von `LoginForm`. Wenn die Anfrage ein 
 POST-Request ist (d.h. das Anmeldeformular abgeschickt wurde), befüllen wir `$form`
-mit den übermittelten Daten von `$_POST['LoginForm']`. Dann prüfen wir die
-Eingaben auf Gültigkeit. Falls dies erfolgreich war, leiten wir den Browser des 
+mit den übermittelten Daten von `$_POST['LoginForm']`. Dann validieren wir die
+Eingaben. Falls dies erfolgreich war, leiten wir den Browser des 
 Benutzers auf die Seite um, die vorher eine Authentifizierung erfordert hat.
-Falls die Gültigkeitsprüfung scheitert
+Falls die Validierung scheitert
 oder die Action zum ersten mal aufgerufen wurde, rendern wir den `login`-View.
 Dessen Inhalt wird im nächsten Kapitel beschrieben.
 
@@ -46,7 +46,7 @@ Beachten wir insbesondere die folgende PHP-Anweisung in der `login`-Action:
 $form->attributes=$_POST['LoginForm'];
 ~~~
 
-Wie wir im Abschnitt [Absichern von Attributzuweisungen](/doc/guide/form.model#securing-attribute-assignments)
+Wie wir im Abschnitt [Sichere Attributzuweisungen](/doc/guide/form.model#securing-attribute-assignments)
 beschrieben haben, befüllt diese Codezeile das Model mit den vom Benutzer übermittelten Daten.
 Die `attributes`-Eigenschaft ist in [CModel] definiert, erwartet ein Array von Namen-Werte-Paaren
 und weist jedem Model-Attribut den entsprechenden Wert zu. Wenn uns also `$_POST['LoginForm']` 

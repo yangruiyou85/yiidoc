@@ -1,5 +1,5 @@
-Erweiterungen verwenden
-=======================
+Verwenden von Erweiterungen
+===========================
 
 Zum Einsatz einer Erweiterung (engl.: Extension) sind in der Regel folgende 
 drei Schritte erforderlich:

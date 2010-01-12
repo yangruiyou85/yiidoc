@@ -156,7 +156,7 @@ Filter
 Ein Filter ist ein Codeteil, der je nach Konfiguration vor und/oder nach
 einer Action ausgeführt wird. So könnte z.B. ein Filter für die Zugriffskontrolle 
 aufgerufen werden, um sicherzustellen, dass der Benutzer authentifiziert
-wurde, bevor dir angeforderte Action ausgeführt wird. Ein Leistungsfilter
+wurde, bevor dir angeforderte Action ausgeführt wird. Ein Performancefilter 
 könnte die Zeit, die eine Action zur Ausführung braucht, messen.
 
 Eine Action kann mehrere Filter haben. Die Filter werden in der Reihenfolge

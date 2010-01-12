@@ -44,6 +44,13 @@ zugehörigen Beziehung. In Version 1.0.x hat Yii die Namen der Verbundtabellen
 standardmäßig automatisch erzeugt und wir mussten die Präfix `??` verwenden,
 wenn wir uns auf diesen Alias beziehen wollten.
 
+- Der Alias für die Haupttabelle lautet jetzt `t`. In 1.0.x Versionen wurde
+stattdessen der Name der Haupttabelle verwendet. Dadurch ist bestehender Code
+evtl. nicht mehr lauffähig, wenn Spaltennamen explizit mit vorangestelltem Tabellennamen
+angesprochen wurden. Dies kann gelöst werden, indem stattdessen 't.'
+vorangestellt wird.
+
+
 Änderungen bei tabellarischen Eingaben
 --------------------------------------
 
@@ -51,4 +58,4 @@ wenn wir uns auf diesen Alias beziehen wollten.
 sollten jetzt `[$i]Feld` heißen, um auch Array-Felder verwenden zu können
 (z.B. `[$i]Feld[$index]`).
 
-<div class="revision">$Id: upgrade.txt 1634 2009-12-30 16:46:13Z qiang.xue $</div>
+<div class="revision">$Id: upgrade.txt 1699 2010-01-10 16:32:09Z qiang.xue $</div>

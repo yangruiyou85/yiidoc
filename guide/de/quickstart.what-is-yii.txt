@@ -1,8 +1,8 @@
 Was ist Yii
 ===========
 
-Yii ist ein Hochleistungsframework für die
-[RAD](http://de.wikipedia.org/wiki/Rapid_Application_Development)-gestützte Entwicklung 
+Yii ist ein leistungsfähiges Framework für die
+[RAD](http://de.wikipedia.org/wiki/Rapid_Application_Development)-basierte Entwicklung 
 umfangreicher Webanwendungen, das auf Komponenten basiert. Es erlaubt maximale
 Wiederverwendbarkeit im Bereich Web-Programmierung und kann den 
 Entwicklunsprozess beträchtlich beschleunigen. Der Name Yii 
