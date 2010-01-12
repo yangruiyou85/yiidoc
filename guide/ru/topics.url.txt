@@ -233,6 +233,10 @@ array(
 Помните, что [CUrlManager::showScriptName] не работает при создании URL
 адреса с использованием правил с параметризованным именем хоста.
 
+Также стоит отметить, что в случае, когда приложение находтся в подпапке
+относительно веб-директории, подпапка должна быть исключена из правила.
+К примеру, если приложение находится в `http://www.example.com/sandbox/blog`,
+то используется правило, указанное выше, но без подпапки `sandbox/blog`.
 
 ### Скрываем `index.php`
 
@@ -272,4 +276,4 @@ RewriteRule . index.php
 Для этого нужно просто настроить компонент [urlManager|CWebApplication::urlManager] путем назначения свойству 
 [urlSuffix|CUrlManager::urlSuffix] любого желаемого окончания.
 
-<div class="revision">$Id: topics.url.txt 1633 2009-12-29 21:12:11Z qiang.xue $</div>
+<div class="revision">$Id: topics.url.txt 1696 2010-01-10 13:16:22Z qiang.xue $</div>

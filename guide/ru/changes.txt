@@ -23,6 +23,8 @@
 
  * Добавлен набор новых расширений — [библиотека Zii](http://code.google.com/p/zii/).
 
+ * Псевдоним для главной таблицы в AR запросе теперь всегда равен 't'.
+
 
 Версия 1.0.11
 -------------
@@ -95,4 +97,4 @@
  * Расширен класс [CUrlManager] поодержкой параметризованных маршрутов в URL-правилах:
      - [Параметризация маршрутов](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 1602 2009-12-18 19:33:34Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 1699 2010-01-10 16:32:09Z qiang.xue $</div>
