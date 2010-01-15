@@ -61,7 +61,7 @@ testdrive/
       commands/ 				содержит команды 'yiic'
          shell/ 				содержит команды 'yiic shell'
       components/ 				содержит компоненты для повторного использования
-         Controller.php         класс базового контроллераthe base class for all controller classes
+         Controller.php         класс базового контроллера
          Identity.php 			класс 'Identity' для аутентификации
          config/ 				содержит конфигурационные файлы
             console.php 		файл конфигурации консоли
@@ -71,7 +71,7 @@ testdrive/
             SiteController.php	класс контроллера по умолчанию
          data/                  сожержит пример базы данных
             schema.mysql.sql    схема БД для MySQL
-            schema.sqlite.sql   схма БД для SQLite
+            schema.sqlite.sql   схема БД для SQLite
             testdrive.db        файл БД для SQLite
          extensions/ 			содержит сторонние расширения
          messages/ 				содержит переведенные сообщения
