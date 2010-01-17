@@ -94,7 +94,7 @@ protected function newComment($post)
 …
 <div id="comments">
 	…
-	<h3>Оставть комментарий</h3>
+	<h3>Оставить комментарий</h3>
 
 	<?php if(Yii::app()->user->hasFlash('commentSubmitted')): ?>
 		<div class="success">
