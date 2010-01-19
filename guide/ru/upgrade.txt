@@ -10,10 +10,10 @@
 
 - Изменены методы [validate()|CModel::validate],
 [beforeValidate()|CModel::beforeValidate],
-[afterValidate()|CModel::afterValidate],
-[setAttributes()|CModel::setAttributes] и
-[getSafeAttributeNames()|CModel::getSafeAttributeNames]: параметр
-'scenario' удален. Вы должны получать и устанавливать сценарий модели через
+[afterValidate()|CModel::afterValidate].
+[setAttributes()|CModel::setAttributes],
+[getSafeAttributeNames()|CModel::getSafeAttributeNames] и
+параметр 'scenario' удалены. Вы должны получать и устанавливать сценарий модели через
 свойство [CModel::scenario].
 
 - Изменён метод [getValidators()|CModel::getValidators] и удалён
