@@ -3,6 +3,9 @@
 
 В данном разделе мы реализуем функции отображения и создания комментариев.
 
+Для большей интерактивности будем проводить валидацию на стороне клиента.
+При помощи Yii сделать это довольно легко. Отметим, что для этого потребуется
+Yii версии 1.1.1 и старше.
 
 Отображение комментариев
 ------------------------
@@ -64,6 +67,11 @@ public function actionView()
 protected function newComment($post)
 {
 	$comment=new Comment;
+	if(isset($_POST['ajax']) && $_POST['ajax']==='comment-form')
+	{
+		echo CActiveForm::validate($comment);
+		Yii::app()->end();
+	}
 	if(isset($_POST['Comment']))
 	{
 		$comment->attributes=$_POST['Comment'];
@@ -79,6 +87,14 @@ protected function newComment($post)
 ~~~
 
 Выше мы вызываем метод `newComment()` перед показом представления `view`.
+Этот метод показывает форму комментариев, собирает то, что ввёл пользователь и
+сохраняет в БД.
+
+Код очень похож на тот, что используется при создании записи. Главное отличие
+в первой части кода, отвечающей за клиентскую валидацию, описанную в самом
+начале. Код проверяет, передан ли `POST` параметр `ajax`. Если передан —
+отображает результаты валидации при помощи [CActiveForm::validate].
+
 В методе `newComment()` мы создаем экземпляр класса `Comment` и проверяем,
 отправлена ли форма комментария. Если отправлена — пробуем добавить комментарий
 к записи, вызывая `$post->addComment($comment)`. Если получилось — обновляем
@@ -97,7 +113,7 @@ protected function newComment($post)
 	<h3>Оставить комментарий</h3>
 
 	<?php if(Yii::app()->user->hasFlash('commentSubmitted')): ?>
-		<div class="success">
+		<div class="flash-success">
 			<?php echo Yii::app()->user->getFlash('commentSubmitted'); ?>
 		</div>
 	<?php else: ?>
@@ -113,4 +129,53 @@ protected function newComment($post)
 В обратном случае — показываем форму ввода комменария из файла
 `/wwwroot/blog/protected/views/comment/_form.php`.
 
-<div class="revision">$Id: comment.create.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
+Так как мы собираемся проводить валидацию на стороне клиента, необходимо изменить
+файл `_form.php`. Обновлённый код приведён ниже. Обратите внимание
+на используемый в коде [CActiveForm]. Мы просто меняем [CHtml::error] на [CActiveForm::error].
+
+При использовании [CActiveForm], каждый раз, когда пользователь завершает ввод в
+поле, происходит AJAX-запрос для проверки поля. Если проверка не проходит,
+показывается соответствующее сообщение.
+
+~~~
+[php]
+<div class="form">
+
+<?php $form=$this->beginWidget('CActiveForm', array('id'=>'comment-form')); ?>
+
+	<p class="note">Поля, отмеченные <span class="required">*</span> обязательны для заполнения.</p>
+
+	<div class="row">
+		<?php echo CHtml::activeLabelEx($model,'author'); ?>
+		<?php echo CHtml::activeTextField($model,'author',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'author'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo CHtml::activeLabelEx($model,'email'); ?>
+		<?php echo CHtml::activeTextField($model,'email',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'email'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo CHtml::activeLabelEx($model,'url'); ?>
+		<?php echo CHtml::activeTextField($model,'url',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'url'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo CHtml::activeLabelEx($model,'content'); ?>
+		<?php echo CHtml::activeTextArea($model,'content',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'content'); ?>
+	</div>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Отправить' : 'Сохранить'); ?>
+	</div>
+
+<?php $this->endWidget(); ?>
+
+</div><!-- form -->
+~~~
+
+<div class="revision">$Id: comment.create.txt 1721 2010-01-19 13:58:32Z qiang.xue $</div>
