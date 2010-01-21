@@ -1,6 +1,10 @@
 Tworzenie portletu menu użytkownika
 ==========================
 
+Na podstawie analizy wymagań, będziemy potrzebowali trzech portletów:  
+portletu "menu użytkownika", "chmury tagów" oraz portletu "ostatnich komentarzy".
+Utworzymy te portlety poprzez rozszerzenie widżetu [[CPortlet]] dostarczonego przez Yii.
+
 W części tej, utworzymy nasz pierwszy, konkretny portlet - portlet menu użytkownika,
 który wyświetla listę pozycji w menu, które są dostępne tylko dla uwierzytelnionych  
 użytkowników. Menu zawiera cztery pozycje:
@@ -20,8 +24,9 @@ który posiada następującą zawartość:
 
 ~~~
 [php]
-<?php
-class UserMenu extends Portlet
+Yii::import('zii.widgets.CPortlet');
+
+class UserMenu extends CPortlet
 {
 	public function init()
 	{
@@ -36,14 +41,16 @@ class UserMenu extends Portlet
 }
 ~~~
 
-Klasa `UserMenu` dziedziczy z klasy `Portlet`, którą wcześniej utworzyliśmy. 
-Nadpisuje zarówno metodę `init()` jak i metodę `renderContent()` z klasy `Portlet`. 
+Klasa `UserMenu` dziedziczy z klasy `CPortlet`, z biblioteki zii. 
+Nadpisuje zarówno metodę `init()` jak i metodę `renderContent()` z klasy `CPortlet`. 
 Pierwsza metoda ustawia tytuł jako nazwę aktualnego użytkownika; druga generuje
 zawartość ciała portletu poprzez wygenerowanie widoku o nazwie `userMenu`.
 
-> Tip|Wskazówka: Zauważ, że nie dołączamy jawnie klasy portletu `Portlet`,
-nawet jeśli odnosimy się do niej w kodzie. W poprzednich częściach opisaliśmy już 
-przyczynę tego, dlaczego tak się dzieje.
+> Tip|Wskazówka: Zauważ, że dołączamy jawnie klasę `CPortlet` poprez wywołanie 
+metody `Yii::import()` zanim odwołamy się do niej po raz pierwszy. Dzieje się tak, 
+ponieważ `CPortlet` jest częścią projektu `zii` -- oficjalnej biblioteki rozszerzeń  
+dla Yii. Ze względu na wydajność, klasy w tym projekcie nie są wymieniane jako klasy
+podstrawowe (ang. core classes). Dlatego też, musimy je zaimportować zanim ich użyjemy po raz pierwszy. 
 
 
 Tworzenie widoku `userMenu`
@@ -53,16 +60,13 @@ Następnie, tworzymy widok `userMenu`, który jest zapisany w pliku
 `/wwwroot/blog/protected/components/views/userMenu.php`:
 
 ~~~
-[php]
+[html]
 <ul>
-<li><?php echo CHtml::link('Approve Comments', array('comment/list'))
-	. ' (' . Comment::model()->pendingCommentCount . ')'; ?></li>
-<li><?php echo CHtml::link('Create New Post',array('post/create')); ?></li>
-<li><?php echo CHtml::link('Manage Posts',array('post/admin')); ?></li>
-<li><?php echo CHtml::linkButton('Logout',array(
-	'submit'=>'',
-	'params'=>array('command'=>'logout'),
-)); ?></li>
+	<li><?php echo CHtml::link('Create New Post',array('post/create')); ?></li>
+	<li><?php echo CHtml::link('Manage Posts',array('post/admin')); ?></li>
+	<li><?php echo CHtml::link('Approve Comments',array('comment/index'))
+		. ' (' . Comment::model()->pendingCommentCount . ')'; ?></li>
+	<li><?php echo CHtml::link('Logout',array('site/logout')); ?></li>
 </ul>
 ~~~
 
@@ -70,58 +74,25 @@ Następnie, tworzymy widok `userMenu`, który jest zapisany w pliku
 `views` katalogu zawierającego klasę widżetu. Nazwa pliku powinna być taka sam jak  
 nazwa widoku. 
 
-W widoku wywołujemy metodę [CHtml::link] aby utworzyć potrzebne hiperłącza;  
-wołamy również metodę [CHtml::linkButton] aby utworzyć łącze będące przyciskiem, 
-które zadziała tak jak zwykły przycisk. Gdy przycisk jest klikany, przesyła on  
-niejawnie formularz do aktualnej strony wraz z parametrem `command` o wartości `logout`.
-
-W celu odpowiedzi na kliknięcie hiperłącza `logout`, potrzebujemy zmodyfikować 
-metodę `init()` dla UserMenu` w następujący sposób:
-
-~~~
-[php]
-public function init()
-{
-	if(isset($_POST['command']) && $_POST['command']==='logout')
-	{
-		Yii::app()->user->logout();
-		$this->controller->redirect(Yii::app()->homeUrl);
-	}
-
-	$this->title=CHtml::encode(Yii::app()->user->name);
-	parent::init();
-}
-~~~
-
-W metodzie `init()`, sprawdzamy czy istnieje zmienna `command` w POST, której wartością  
-jest `logout`. Jeśli tak, wylogowujemy aktualnego użytkownika i przekierowujemy jego 
-przeglądarkę na stronę główną aplikacji. Zauważ, że metoda `redirect()` pośrednio zakończy 
-działanie aktualnej aplikacji.
-
-
 Używanie portletu `UserMenu`
 ------------------------
 
 Nadszedł już czas, aby użyć nasz nowo ukończony portlet `UserMenu`. Zmienimy 
-plik widoku układu `/wwwroot/blog/protected/views/layouts/main.php` następująco:
+plik widoku układu `/wwwroot/blog/protected/views/layouts/column2.php` następująco:
 
 ~~~
-[php]
+[html]
 ......
-
 <div id="sidebar">
-
-<?php $this->widget('UserMenu',array('visible'=>!Yii::app()->user->isGuest)); ?>
-
+	<?php if(!Yii::app()->user->isGuest) $this->widget('UserMenu'); ?>
 </div>
-
 ......
 ~~~
 
 W powyższym kodzie wołamy metodę `widget()` w celu wygenerowania i wywołania instancji 
 klasy `UserMenu`. Ponieważ portlet powinien być wyświetlany tylko dla uwierzytelnionych 
-użytkowników, ustawimy jej właściwość `visible` odpowiednio do wartości właściwości `isGuest` 
-dla aktualnego użytkownika.
+użytkowników, wywołujemy metodę `widget()` jeśli wartość właściwości `isGuest` 
+dla aktualnego użytkownika to fals (co oznacza, że użytkownik został uwierzytelniony).
 
 Testowanie portletu `UserMenu`
 --------------------------
@@ -147,4 +118,4 @@ mówiącą, że warstwa logiczna i prezentacyjna powinny być rozdzielone. Choci
 nie zwróciliśmy na to uwagi w poprzednich częsciach, praktyka taka ma miejsce  
 niemal wszędzie w typowych aplikacjach opartych na Yii.
 
-<div class="revision">$Id: portlet.menu.txt 671 2009-02-13 21:55:24Z qiang.xue $</div>
+<div class="revision">$Id: portlet.menu.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
