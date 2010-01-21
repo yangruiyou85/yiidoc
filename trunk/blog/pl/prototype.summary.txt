@@ -9,7 +9,7 @@ Osiągnęliśmy pierwszy kamień milowy. Podsumujmy zatem co już zrobiliśmy:
  4. Zaprojektowaliśmy i utworzyliśmy bazę danych dla naszego bloga;
  5. Zmodyfikowaliśmy konfigurację aplikacji poprzez dodanie połączenia z bazą danych;
  6. Wygenerowaliśmy kod, który implementuje podstawowe operacje CRUD zarówno dla wiadomości jak i komentarzy;
- 7. Zmodyfikowaliśmy metodę uwierzytelniania tak aby korzystała z tabeli `User`.
+ 7. Zmodyfikowaliśmy metodę uwierzytelniania tak aby korzystała z tabeli `tbl_user`.
 
 Dla większości nowych projektów najwięcej czasu zostanie poświęconego dla kroku 1 oraz 2 dla tego kamienia milowego.
 
@@ -27,4 +27,4 @@ oraz kod [widoku](http://www.yiiframework.com/doc/guide/basics.view) dla każdej
 operacji CRUD.
 
 
-<div class="revision">$Id: prototype.summary.txt 681 2009-02-16 04:57:01Z qiang.xue $</div>
+<div class="revision">$Id: prototype.summary.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>

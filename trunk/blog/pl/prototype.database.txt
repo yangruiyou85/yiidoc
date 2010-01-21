@@ -28,13 +28,13 @@ Ustanawianie połączenia z bazą danych
 
 Aby używać bazę danych blogu w utworzonym szkielecie aplikacji, musimy zmodyfikować jego 
 [konfigurację aplikacji](http://www.yiiframework.com/doc/guide/basics.application#application-configuration)
-która przechowywana jest jako skrypt PHP `/wwwroot/blog/protected/config/main.php`.
+która przechowywana jest w skrypcie PHP `/wwwroot/blog/protected/config/main.php`.
 Skrypt zwraca asocjacyjną tablicę zawierającą pary nazwa-wartość, z których każda
-używana jest do zainicjalizowania właściwości [instancji aplikacji](http://www.yiiframework.com/doc/guide/basics.application).
+używana jest do zainicjalizowania zapisywalnej właściwości 
+[instancji aplikacji](http://www.yiiframework.com/doc/guide/basics.application).
 
-Skonfigurujemy właściwość `components` aplikacji poprzez dodanie do niej nowego wpisu nazwanego
-`db` w następujący sposób,
 
+Skonfigurujemy komponent `db` w następujący sposób,
 
 ~~~
 [php]
@@ -43,8 +43,8 @@ return array(
 	'components'=>array(
 		......
 		'db'=>array(
-			'class'=>'CDbConnection',
 			'connectionString'=>'sqlite:/wwwroot/blog/protected/data/blog.db',
+			'tablePrefix'=>'tbl_',
 		),
 	),
 	......
@@ -52,7 +52,9 @@ return array(
 ~~~
 
 Powyższa konfiguracja mówi nam, że posiadamy [komponent aplikacji](http://www.yiiframework.com/doc/guide/basics.application#application-component) `db`, 
-którego klasą jest [CDbConnection] i którego właściwość `connectionString` powinna zostać zainicjalizowana wartością `sqlite:/wwwroot/blog/protected/data/blog.db`.
+którego właściwość `connectionString` powinna zostać zainicjalizowana wartością `sqlite:/wwwroot/blog/protected/data/blog.db` 
+oraz którego właściwość `tablePrefix` powinna mieć wartość `tbl_`.
+
 
 Przy użyciu tej konfiguracji, możemy uzyskać dostęp do obiektu połączenia z bazą danych przy użyciu wyrażenia `Yii::app()->db` 
 w dowolnym miejscu naszego kodu. Zauważ, że `Yii::app()` zwraca instancję aplikacji, którą utworzyliśmy w skrypcie wejściowym. 
@@ -62,4 +64,39 @@ będziemy używali tego połączenia z bazą danych wprost. W zamian, będziemy 
 tak zwanego [rekordu aktywnego](http://www.yiiframework.com/doc/guide/database.ar) 
 w celu uzyskania dostępu do bazy danych. 
 
-<div class="revision">$Id: prototype.database.txt 683 2009-02-16 05:20:17Z qiang.xue $</div>
+Będziemy chcieli wyjaśnić po trosze własciwość `tablePrefix`, którą ustawiliśmy w konfiguracji.
+Mówi ona połączeniu `db`, iż powinno ono uwzględniać fakt używania przez nas prefiksu `tbl_` 
+jako prefiksu do nazw naszych tabel bazodanowych. W szczególności, jeśli w zapytaniu SQL 
+znajduje się token, zamknięty w podwójnych nawiasach klamrowych (np. `{{post}}`}, 
+wtedy połączenie `db` powinno przetłumaczyć je na nazwę tabeli zawierającą ten prefiks 
+(np. `tbl_post`) zanim prześle go do wywołania do DBMS. Funkcjonalność ta jest szczególnie 
+użyteczna, jeśli w przyszłości będziemy mieli potrzebę zmiany prefiksu bazy dancyh, bez 
+konieczności dotykania kodu źródłowego. Na przykład, jeśli tworzymy ogólny system zarządzania treścią (CMS),  
+możemy wykorzystać tę funkcję, tak, że jeśli będziemy instalować go w nowym środowisku, damy
+użytkownikom możliwość wyboru prefiksu tabeli jakiego chcą.
+
+> Tip|Wskazówka: Jeśli chesz używać MYSQL zamiast SQLite do przechowywania danych, 
+> możesz utworzyć bazę danych nazwaną `blog` używając wyrażenia SQL  
+> z pliku `/wwwroot/yii/demos/blog/protected/data/schema.mysql.sql`. 
+> Następnie, zmodyfikuj konfigurację w następujący sposób
+>
+> ~~~
+> [php]
+> return array(
+>     ......
+>     'components'=>array(
+>         ......
+>         'db'=>array(
+>             'connectionString' => 'mysql:host=localhost;dbname=blog',
+>             'emulatePrepare' => true,
+>             'username' => 'root',
+>             'password' => '',
+>             'charset' => 'utf8',
+>             'tablePrefix' => 'tbl_',
+>         ),
+>     ),
+> 	......
+> );
+> ~~~
+
+<div class="revision">$Id: prototype.database.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
