@@ -65,7 +65,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * component - Komponente
  * contact - Kontakt (Kontaktseite, ...)
  * class - Klasse (OOP)
- * entry script - Eingangsscript, Ladescript
+ * entry script - Startscript, Eingangsscript, Ladescript
  * extension (PHP) - Erweiterung
  * form - Formular
  * fragment (bei caching) - Fragment, Seitenabschnitt
