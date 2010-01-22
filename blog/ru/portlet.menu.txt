@@ -42,7 +42,7 @@ class UserMenu extends CPortlet
 }
 ~~~
 
-Класс `UserMenu` наследует от класса `CPortlet`, созданного нами ранее. Он
+Класс `UserMenu` наследует от класса `CPortlet` из библиотеки `zii`. Он
 переопределяет методы `init()` и `renderContent()` класса `CPortlet`. Первый
 устанавливает имя текущего пользователя в качестве заголовка портлета, а второй
 генерирует содержимое портлета, рендерингом представления `userMenu`.
@@ -119,4 +119,4 @@ class UserMenu extends CPortlet
 представления и логики. Хотя мы и не указывали на это в предыдущих разделах,
 такая практика используется почти всюду в типичном приложении Yii.
 
-<div class="revision">$Id: portlet.menu.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
+<div class="revision">$Id: portlet.menu.txt 1733 2010-01-21 16:54:29Z qiang.xue $</div>

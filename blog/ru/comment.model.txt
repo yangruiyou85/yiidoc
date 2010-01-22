@@ -55,8 +55,8 @@ public function attributeLabels()
 
 > Tip|Подсказка: Если подпись атрибута не задана в `attributeLabels()`,
 для её генерации используется специальный алгоритм. К примеру, для
-атрибутов `verify_code` и `verifyCode` подпись будет выглядеть как
-`Verify Code`.
+атрибутов `create_time` и `createTime` подпись будет выглядеть как
+`Create Time`.
 
 
 Изменение процесса сохранения
@@ -81,4 +81,4 @@ protected function beforeSave()
 ~~~
 
 
-<div class="revision">$Id: comment.model.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
+<div class="revision">$Id: comment.model.txt 1733 2010-01-21 16:54:29Z qiang.xue $</div>

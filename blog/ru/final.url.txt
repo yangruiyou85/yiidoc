@@ -59,4 +59,4 @@ GET-параметр `tag` со значением `yii`. С другой сто
 конфигурации приложения. За деталями обратитесь к разделу
 [красивые адреса URL](/doc/guide/ru/topics.url) руководства.
 
-<div class="revision">$Id: final.url.txt 1722 2010-01-20 02:30:14Z qiang.xue $</div>
+<div class="revision">$Id: final.url.txt 1733 2010-01-21 16:54:29Z qiang.xue $</div>

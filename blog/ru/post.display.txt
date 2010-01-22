@@ -19,12 +19,10 @@
 [php]
 public function actionView()
 {
-	$this->render('view',array(
-		$post=$this->loadModel();
-		$this->render('view',array(
-			'model'=>$post,
-		));
-	));
+    $post=$this->loadModel();
+    $this->render('view',array(
+        'model'=>$post,
+    ));	
 }
 
 private $_model;
@@ -140,4 +138,4 @@ public function actionIndex()
 `/wwwroot/blog/protected/views/post/_view.php`, в котором мы можем
 обращаться к записи через переменную `$data`.
 
-<div class="revision">$Id: post.display.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
+<div class="revision">$Id: post.display.txt 1733 2010-01-21 16:54:29Z qiang.xue $</div>

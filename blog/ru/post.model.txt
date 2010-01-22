@@ -33,6 +33,8 @@ public function rules()
 		array('tags', 'match', 'pattern'=>'/^[\w\s,]+$/',
 			'message'=>'В тегах можно использовать только буквы.'),
 		array('tags', 'normalizeTags'),
+
+		array('title, status', 'safe', 'on'=>'search'),
 	);
 }			
 ~~~
@@ -42,7 +44,8 @@ public function rules()
 Значение `status` может быть 1 (черновик), 2 (опубликовано) или 3 (в архиве).
 В `tags` могут содержаться только буквы, запятые и пробелы. Вводимые пользователем
 теги дополнительно нормализуюся при помощи `normalizeTags`. Это делается для того,
-чтобы теги были уникальными и правильно разделялись запятыми.
+чтобы теги были уникальными и правильно разделялись запятыми. Последнее правило
+используется поиском и будет описано позже.
 
 Валидаторы, такие как `required`, `length`, `in` и `match` являются стандартными
 валидаторами Yii. Валидатор `normalizeTags` использует определённый в классе `Post`
@@ -193,4 +196,4 @@ class Post extends CActiveRecord
 `Lookup::items('PostStatus')`. А для получения конкретной строки — кодом
 `Lookup::item('PostStatus', Post::STATUS_PUBLISHED)`.
 
-<div class="revision">$Id: post.model.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
+<div class="revision">$Id: post.model.txt 1734 2010-01-21 18:41:17Z qiang.xue $</div>

@@ -107,6 +107,8 @@ http://www.example.com/blog/index.php?r=comment
      HTML-форму для сбора информации о записи.
   * `views/post/_view.php` — частичный файл представления, используемый в
     `views/post/index.php`. Он отображает краткий вид отдельной записи.
+  * `views/post/_search.php`— файл представления, используемый в `views/post/admin.php`.
+     Используется для формы поиска.
   * Подобный набор файлов представлений также сгенерирован для комментариев.
 
 Чтобы лучше понять, как используются файлы выше, рассмотрим, что происходит
@@ -123,4 +125,4 @@ http://www.example.com/blog/index.php?r=comment
  5. Метод `actionIndex()` генерирует представление `index` с данными записей.
 
 
-<div class="revision">$Id: prototype.scaffold.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
+<div class="revision">$Id: prototype.scaffold.txt 1734 2010-01-21 18:41:17Z qiang.xue $</div>
