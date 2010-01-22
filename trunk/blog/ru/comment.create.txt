@@ -16,7 +16,7 @@ Yii версии 1.1.1 и старше.
 комментариев, принадлежащих ей и форму создания комментария.
 
 Чтобы отобразить комментарии на странице записи, мы изменяем отображение
-`/wwwroot/blog/protected/views/post/view.php` следующим образом:
+`/wwwroot/blog/protected/views/comment/view.php` следующим образом:
 
 ~~~
 [php]
@@ -178,4 +178,4 @@ protected function newComment($post)
 </div><!-- form -->
 ~~~
 
-<div class="revision">$Id: comment.create.txt 1721 2010-01-19 13:58:32Z qiang.xue $</div>
+<div class="revision">$Id: comment.create.txt 1733 2010-01-21 16:54:29Z qiang.xue $</div>
