@@ -172,7 +172,7 @@ array(
 Seit Version 1.0.7 können mit `Yii::trace` auch der Informationen aus dem
 Aufrufstapel geloggt werden. Dieses Feature ist standardmäßig deaktiviert, da
 es die Performance negativ beeinflusst. Um dieses Feature zu verwenden,
-definieren Sie am Anfang Ihres Eingangsscripts einfach die Konstante
+definieren Sie am Anfang Ihres Startscripts einfach die Konstante
 `YII_TRACE_LEVEL` mit einem Wert größer als 0 (und zwar bevor Sie `yii.php`
 einbinden). Yii hängt dann an jede Tracen-Eintrag den Dateinamen und die
 Zeilennummer des Anwendungscode an. Die Zahl in `YII_TRACE_LEVEL` gibt an, wie

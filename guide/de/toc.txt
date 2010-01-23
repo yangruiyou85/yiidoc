@@ -8,7 +8,7 @@
 
 * Grundlagen
     - [Model-View-Controller (MVC)](basics.mvc)
-    - [Eingangsscript](basics.entry)
+    - [Startscript](basics.entry)
     - [Applikation](basics.application)
     - [Controller](basics.controller)
     - [Model](basics.model)
