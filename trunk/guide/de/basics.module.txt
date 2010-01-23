@@ -56,7 +56,7 @@ auf Modulebene bereitzustellen.
 >Moduls anzulegen. Um zum Beispiel das obenstehende `forum`-Modul zu erstellen,
 >können wir folgende Befehle an der Eingabeaufforderung ausführen:
 > ~~~
-> % cd WebRoot/testdrive
+> % cd WebVerzeichnis/testdrive
 > % protected/yiic shell
 > Yii Interactive Tool v1.0
 > Please type 'help' for help. Type 'exit' to quit.

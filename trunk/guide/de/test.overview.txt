@@ -109,7 +109,7 @@ Test Bootstrap-Script
 ====================
 
 Werfen wir einen Blick auf die Datei `bootstrap.php`. Diese Datei ist ebenso
-besonders wie das [Eingangsscript](/doc/guide/basics.entry) unserer Anwendung. 
+besonders wie das [Startscript](/doc/guide/basics.entry) unserer Anwendung. 
 Sie stellt den Startpunkt bei der Ausführung aller Tests dar.
 
 ~~~

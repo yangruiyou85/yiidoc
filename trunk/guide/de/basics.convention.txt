@@ -8,7 +8,7 @@ Verwalten komplexer Konfigurationen befassen zu müssen. Natürlich kann Yii,
 falls nötig, in praktisch allen Belangen per Konfiguration angepasst werden.
 
 Nachfolgend beschreiben wir die Konventionen, die für das Programmieren mit
-Yii empfohlen werden. Der Einfachheit halber nehmen wir an, dass `WebRoot` für
+Yii empfohlen werden. Der Einfachheit halber nehmen wir an, dass `WebVerzeichnis` für
 das Verzeichnis steht, in dem eine Yii-Anwendung installiert wurde.
 
 URL
@@ -99,54 +99,54 @@ Verzeichnisse
 Yii geht von einigen vorgegebenen Verzeichnissen für verschiedene Zwecke aus.
 Jedes davon kann bei Bedarf angepasst werden.
 
-   - `WebRoot/protected`: Dies ist das [Stammverzeichnis der Anwendung
+   - `WebVerzeichnis/protected`: Dies ist das [Stammverzeichnis der Anwendung
 ](/doc/guide/basics.application#application-base-directory) das alle
 sicherheitsrelevanten PHP-Scripts und Datendateien enthält. Yii hat einen
 Standardalias namens `application`, der mit diesem Pfad verknüpft ist.
 Dieses Verzeichnis sollte, genau wie alle darunterliegenden, vor Zugriff über das Web
 geschützt werden. Sein Ort kann über [CWebApplication::basePath] angepasst werden.
 
-   - `WebRoot/protected/runtime`: Dieses Verzeichnis enthält private temporäre
+   - `WebVerzeichnis/protected/runtime`: Dieses Verzeichnis enthält private temporäre
 Dateien, die während der Laufzeit der Anwendung erzeugt werden. Der
 Webserver-Prozess muss in dieses Verzeichnis schreiben können. Sein Ort kann
 über [CApplication::runtimePath] angepasst werden.
 
-   - `WebRoot/protected/extensions`: Dieses Verzeichnis enthält alle
+   - `WebVerzeichnis/protected/extensions`: Dieses Verzeichnis enthält alle
 Erweiterungen von Drittanbietern. Sein Ort kann über
 [CApplication::extensionPath] angepasst werden.
 
-   - `WebRoot/protected/modules`: Dieses Verzeichnis enthält alle
+   - `WebVerzeichnis/protected/modules`: Dieses Verzeichnis enthält alle
 [Module](/doc/guide/basics.module) der Anwendung, jedes davon in einem Unterverzeichnis
 
-   - `WebRoot/protected/controllers`: Dieses Verzeichnis enthält alle
+   - `WebVerzeichnis/protected/controllers`: Dieses Verzeichnis enthält alle
 Klassendateien für Controller. Sein Ort kann über
 [CWebApplication::controllerPath] angepasst werden.
 
-   - `WebRoot/protected/views`: Dieses Verzeichnis enhält alle View-Dateien,
+   - `WebVerzeichnis/protected/views`: Dieses Verzeichnis enhält alle View-Dateien,
 inklusive Controller-, Layout- und System-Views. Sein Ort kann über 
 [CWebApplication::viewPath] angepasst werden.
 
-   - `WebRoot/protected/views/ControllerID`: Dieses Verzeichnis enthält die
+   - `WebVerzeichnis/protected/views/ControllerID`: Dieses Verzeichnis enthält die
 View-Dateien für eine einzelne Controller-Klasse. `ControllerID` steht hier für die
 ID des Controllers. Sein Ort kann über [CController::viewPath] angepasst
 werden.
 
-   - `WebRoot/protected/views/layouts`: Dieses Verzeichnis enthält alle 
+   - `WebVerzeichnis/protected/views/layouts`: Dieses Verzeichnis enthält alle 
 Layout-View-Dateien. Sein Ort kann über [CWebApplication::layoutPath]
 angepasst werden.
 
-   - `WebRoot/protected/views/system`: Dieses Verzeichnis enthält alle
+   - `WebVerzeichnis/protected/views/system`: Dieses Verzeichnis enthält alle
 System-View-Dateien. System-Views sind Vorlagen, die zur Anzeige von Exceptions
 und Fehlern verwendet werden. Sein Ort kann über
 [CWebApplication::systemViewPath] angepasst werden.
 
-   - `WebRoot/assets`: Dieses Verzeichnis enthält veröffentlichte
+   - `WebVerzeichnis/assets`: Dieses Verzeichnis enthält veröffentlichte
 Asset-Dateien. Eine Asset-Datei ist eine private Datei die 
 veröffentlicht werden kann, um sie einem Web-Besucher zugänglich zu machen.
 Der Webserver-Prozess muss in dieses Verzeichnis schreiben können.
 Sein Ort kann über [CAssetManager::basePath] angepasst werden.
 
-   - `WebRoot/themes`: Dieses Verzeichnis enthält verschiedene Themes, 
+   - `WebVerzeichnis/themes`: Dieses Verzeichnis enthält verschiedene Themes, 
 die auf eine Applikation angewendet werden können. Sein Ort kann
 über [CThemeManager::basePath] angepasst werden.
 

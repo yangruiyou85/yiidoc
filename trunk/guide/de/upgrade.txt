@@ -41,8 +41,8 @@ weiteren SQL-Abfrage, die alle verbundenen Objekte zurückliefert. In Version
 
 - Der Standardalias für relationale Tabellen entspricht jetzt dem Namen der
 zugehörigen Beziehung. In Version 1.0.x hat Yii die Namen der Verbundtabellen
-standardmäßig automatisch erzeugt und wir mussten die Präfix `??` verwenden,
-wenn wir uns auf diesen Alias beziehen wollten.
+standardmäßig automatisch erzeugt und man musste die Präfix `??` verwenden,
+um sich auf diesen Alias zu beziehen.
 
 - Der Alias für die Haupttabelle lautet jetzt `t`. In 1.0.x Versionen wurde
 stattdessen der Name der Haupttabelle verwendet. Dadurch ist bestehender Code

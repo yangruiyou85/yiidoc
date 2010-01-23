@@ -285,12 +285,12 @@ oben ohne den Unterordner `sandbox/blog` verwendet werden.
 ### Verbergen von `index.php`
 
 Wir können eine weitere Maßnahme zum Bereinigen unserer URLs durchführen: das
-Verbergen des Eingangsscripts `index.php` in der URL. Dazu müssen wir sowohl
+Verbergen des Startscripts `index.php` in der URL. Dazu müssen wir sowohl
 den Webserver als auch die [urlManager|CWebApplication::urlManager]-Komponente
 konfigurieren.
 
-Zunächst richten wir den Webserver so ein, dass eine URL, bei der das
-Eingangsscript fehlt, immer noch vom Eingangsscript bearbeitet wird. Im Falle
+Zunächst richten wir den Webserver so ein, dass auch URLs ohne Startscript von
+diesem bearbeitet werden.  Im Falle
 des [Apache HTTP-Servers](http://httpd.apache.org/) erreichen wir das, indem
 wir die Rewrite-Engine (sinngem.: Umschreibemaschine) einschalten und einige
 Rewrite-Rules (sinngem.: Umschreiberegeln) definieren. Wir können dazu die

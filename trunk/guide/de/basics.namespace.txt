@@ -20,7 +20,7 @@ vordefiniert:
  - `application`: Verweist auf das
 [Stammverzeichnis](/doc/guide/basics.application#application-base-directory) der Anwendung
  - `webroot`: Verweist auf das Verzeichnis, das das
-[Eingangsscript](/doc/guide/basics.entry) enthält. Dieser Alias ist seit
+[Startscript](/doc/guide/basics.entry) enthält. Dieser Alias ist seit
 Version 1.0.3 verfügbar.
  - `ext`: Verweist auf das Verzeichnis, das alle
 [Erweiterungen](/doc/guide/extension.overview) enthält. Dieser Alias steht

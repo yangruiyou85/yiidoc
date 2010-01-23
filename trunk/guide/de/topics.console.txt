@@ -9,7 +9,7 @@ systematischen objektorientierten Erstellung von Konsolenanwendungen.
 Jeder Konsolenbefehl wird in Yii durch ein [Kommando|CConsoleCommand]
 repräsentiert. Eine [Konsolenanwendung|CConsoleApplication] wird wiederum
 verwendet, um einen Aufruf von der Kommandozeile an das entsprechende Kommando
-weiterzuleiten. In einem Eingangsscript wird eine Instanz der Applikation
+weiterzuleiten. In einem Startscript wird eine Instanz der Applikation
 erstellt. Um einen Konsolenbefehl aufzurufen, führen wir an der Kommandozeile
 einfach folgenden Befehl aus:
 
@@ -21,7 +21,7 @@ php eingangsScript.php KommandoName Param0 Param1 ...
 Groß-/Kleinschreibung nicht berücksichtigt wird.  `Param0`, `Param1` usw.
 sind Parameter, die an die Instanz des Kommandos übergeben werden.
 
-Das Eingangsscript einer Konsolenanwendung sieht ähnlich wie das einer
+Das Startscript einer Konsolenanwendung sieht ähnlich wie das einer
 Webanwendung aus:
 
 ~~~
@@ -67,7 +67,7 @@ Anwendungsinstanz zugreifen. Eine Konsolenanwendung kann genauso wie eine
 Webanwendung konfiguriert werden. Wir können zum Beispiel eine
 Anwendungskomponente `db` konfigurieren, um auf eine Datenbank zuzugreifen.
 Die Konfiguration liegt in der Regel als PHP-Datei vor, deren Pfad an den
-Konstruktor der Konsolenanwendung übergeben wird (bzw. im Eingangsscript an
+Konstruktor der Konsolenanwendung übergeben wird (bzw. im Startscript an
 [createConsoleApplication|YiiBase::createConsoleApplication]).
 
 Verwendung des `yiic`-Befehls
@@ -75,7 +75,7 @@ Verwendung des `yiic`-Befehls
 
 Wir haben den `yiic`-Befehl bereits verwendet, um unsere [erste Yii-Anwendung
 zu erstellen](/doc/guide/quickstart.first-app). Tatsächlich ist der `yiic`-Befehl 
-eine Konsolenanwendung mit dem Eingangsscript `framework/yiic.php`. Mit `yiic`
+eine Konsolenanwendung mit dem Startscript `framework/yiic.php`. Mit `yiic`
 können wir das Grundgerüst einer Webanwendung anlegen, Controller- und
 Modelklassen erstellen, Code für CRUD-Operationen erzeugen, zu übersetzende
 Textmeldungen extrahieren etc. 
