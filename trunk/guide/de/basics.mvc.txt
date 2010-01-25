@@ -24,7 +24,7 @@ Das folgende Diagramm zeigt die statische Struktur einer Yii-Applikation:
 Ein typischer Ablauf
 --------------------
 
-Hier sehen wir dyn typischen Ablauf einer Yii-Anwendung beim
+Hier sehen wir den typischen Ablauf einer Yii-Anwendung beim
 Bearbeiten eines einzelnen Requests:
 
 ![Ein typischer Ablauf einer Yii-Applikation](flow.png)

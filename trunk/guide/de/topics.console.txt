@@ -39,8 +39,8 @@ erstellen. Jede Kommandoklasse sollte wie das entsprechende Kommando heißen,
 ergänzt um `Command`. So würde z.B. eine Klasse `EmailCommand` ein Kommando 
 `email` zu definieren. Alle Kommandoklassen sollten
 in einem  Unterverzeichnis `commands` im
-[Stammverzeichnis](/doc/guide/basics.application#application-base-directory)
-der Anwendung abgelegt werden.
+[Anwendungsverzeichnis](/doc/guide/basics.application#application-base-directory)
+abgelegt werden.
 
 > Tip|Tipp: Verwendet man [CConsoleApplication::commandMap], können
 Kommandoklassen auch anderen Namenskonventionen folgen und an anderen Orten

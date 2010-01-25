@@ -54,7 +54,7 @@ Beachten Sie, dass diese Komponente seit Version 1.0.1 zur Verfügung steht.
 [EAccelerator-Erweiterung](http://eaccelerator.net/) für PHP.
 
    - [CDbCache]: Verwendet eine Datenbanktabelle zum Speichern gecachter
-Daten. Standardmäßig wird eine SQLite3-Datenbank im runtime-Verzeichnisus
+Daten. Standardmäßig wird eine SQLite3-Datenbank im runtime-Verzeichnis
 angelegt und verwendet. Sie können auch explizit eine Datenbank angeben, indem
 Sie die [connectionID|CDbCache::connectionID]-Eigenschaft konfigurieren.
 

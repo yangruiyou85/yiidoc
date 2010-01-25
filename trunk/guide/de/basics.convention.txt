@@ -99,8 +99,8 @@ Verzeichnisse
 Yii geht von einigen vorgegebenen Verzeichnissen für verschiedene Zwecke aus.
 Jedes davon kann bei Bedarf angepasst werden.
 
-   - `WebVerzeichnis/protected`: Dies ist das [Stammverzeichnis der Anwendung
-](/doc/guide/basics.application#application-base-directory) das alle
+   - `WebVerzeichnis/protected`: Dies ist das 
+[Anwendungsverzeichnis](/doc/guide/basics.application#application-base-directory) das alle
 sicherheitsrelevanten PHP-Scripts und Datendateien enthält. Yii hat einen
 Standardalias namens `application`, der mit diesem Pfad verknüpft ist.
 Dieses Verzeichnis sollte, genau wie alle darunterliegenden, vor Zugriff über das Web
