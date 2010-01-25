@@ -650,7 +650,7 @@ Beitrag::model()->veroeffentlicht()->kuerzlich()->delete();
 verwendet werden. Das bedeutet, dass die Methode über `KlassenName::model()`
 aufgerufen werden muss.
 
-###Parametriesierte Scopes
+###Parametrisierte Scopes
 
 Scopes können parametrisiert werden. Wir könnten zum Beispiel
 die Anzahl der Beiträge des Scopes `kuerzlich` anpassen wollen.

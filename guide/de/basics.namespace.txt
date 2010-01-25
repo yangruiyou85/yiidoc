@@ -18,7 +18,7 @@ vordefiniert:
  - `zii`: Verweist auf das Verzeichnis der
 [Zii-Bibliothek](/doc/guide/extension.use#zii-extensions).
  - `application`: Verweist auf das
-[Stammverzeichnis](/doc/guide/basics.application#application-base-directory) der Anwendung
+[Anwendungsvererzeichnis](/doc/guide/basics.application#application-base-directory) 
  - `webroot`: Verweist auf das Verzeichnis, das das
 [Startscript](/doc/guide/basics.entry) enthält. Dieser Alias ist seit
 Version 1.0.3 verfügbar.

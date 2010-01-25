@@ -28,8 +28,8 @@ oder während der Laufzeit in einer Controller-Action geschehen.
 > Rolle. Wenn Sie versuchen, ein Theme anzuwenden, das es gar nicht gibt,
 > liefert `Yii::app()->theme` den Wert `null` zurück. 
 
-Die Inhalte eines Themeverzeichnisses sollten genau wie im [Stammverzeichnis
-der Anwendung](/doc/guide/basics.application#application-base-directory)
+Die Inhalte eines Themeverzeichnisses sollten genau wie im 
+[Anwendungsverzeichnis](/doc/guide/basics.application#application-base-directory)
 abgelegt werden. Alle View-Dateien müssen sich zum Beispiel in `views`,
 Layout-Dateien in `views/layout` und System-View-Dateien unter `views/system`
 befinden. Wenn wir z.B. den View `create` für `PostController` durch einen
