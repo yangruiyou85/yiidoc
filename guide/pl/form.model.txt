@@ -69,8 +69,9 @@ class LoginForm extends CFormModel
 	{
 		return array(
 			array('username, password', 'required'),
+			array('rememberMe', 'boolean'),
 			array('password', 'authenticate'),
-	);
+		);
 	}
 
 	public function authenticate($attribute,$params)
@@ -91,7 +92,8 @@ class LoginForm extends CFormModel
 ~~~
 
 Powyższy kod mówi, iż zarówno użytkownik `username` jak i hasło `password` są wymagane, 
-hasło `password` powinno zostać uwierzytelnione.
+hasło `password` powinno zostać uwierzytelnione a zapamiętaj mnie `rememberMe` powinno
+przyjąc wartośc typu boolean.
 
 Każda regułą zwrócona przez metodę `rules()` musi posiadać następujący format:
 
@@ -432,4 +434,4 @@ potrzeb poprzez nadpisanie metody [attributeLabels()|CModel::attributeLabels].
 Jak zobaczymy w następnych punktach, zdefiniowanie etykiet w modelu umożliwia nam tworzenie 
 formularzy szybciej i lepiej.
 
-<div class="revision">$Id: form.model.txt 1425 2009-09-28 03:28:17Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 1602 2009-12-18 19:33:34Z qiang.xue $</div>
