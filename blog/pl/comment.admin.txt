@@ -9,33 +9,7 @@ Aktualizowanie i usuwanie komentarzami
 ------------------------------
 
 Kod wygenerowany przez narzędzie `yiic` do aktualizowania oraz usuwania komentarzy 
-pozostaje w większej części niezmieniony. Ponieważ wspieramy podgląd komentarza 
-podczas aktualizacji komentarza, musimy tylko zmienić metodę `actionUpdate()` 
-kontrolera `CommentController` w następujący sposób:
-
-~~~
-[php]
-public function actionUpdate()
-{
-	$comment=$this->loadComment();
-
-	if(isset($_POST['Comment']))
-	{
-		$comment->attributes=$_POST['Comment'];
-		if(isset($_POST['previewComment']))
-			$comment->validate('update');
-		else if(isset($_POST['submitComment']) && $comment->save())
-			$this->redirect(array('post/show',
-				'id'=>$comment->postId,
-				'#'=>'c'.$comment->id));
-	}
-
-	$this->render('update',array('comment'=>$comment));
-}
-~~~
-
-Kod ten jest bardzo podobny do tego z PostController`.
-
+pozostaje w większej części niezmieniony.
 
 Zatwierdzanie komentarzy
 ------------------
@@ -52,11 +26,9 @@ public function actionApprove()
 {
 	if(Yii::app()->request->isPostRequest)
 	{
-		$comment=$this->loadComment();
+		$comment=$this->loadModel();
 		$comment->approve();
-		$this->redirect(array('post/show',
-			'id'=>$comment->postId,
-			'#'=>'c'.$comment->id));
+		$this->redirect(array('index'));
 	}
 	else
 		throw new CHttpException(400,'Invalid request...');
@@ -68,25 +40,22 @@ POST, wywołujemy metodę `approve()` zdefiniowaną w modelu komentarza `Comment
 status. Następnie przekierowujemy przeglądarkę użytkownika do strony wyświetlającej wiadomość, 
 do której należy ten komentarz.
 
-Modyfikujemy również metodę `actionList()` modelu komentarza `Comment` aby 
-wyświetlała listę komentarzy, które czekają na zatwierdzenie.
+Modyfikujemy również metodę `actionIndex()` modelu komentarza `Comment` aby 
+wyświetlała listę wszystkich komentarzy. Chcemy zobaczyć najpierw komentarze, które nie zostały zatwierdzone.
 
 ~~~
 [php]
-public function actionList()
+public function actionIndex()
 {
-	$criteria=new CDbCriteria;
-	$criteria->condition='Comment.status='.Comment::STATUS_PENDING;
+	$dataProvider=new CActiveDataProvider('Comment', array(
+		'criteria'=>array(
+			'with'=>'post',
+			'order'=>'t.status, t.create_time DESC',
+		),
+	));
 
-	$pages=new CPagination(Comment::model()->count($criteria));
-	$pages->pageSize=self::PAGE_SIZE;
-	$pages->applyLimit($criteria);
-
-	$comments=Comment::model()->with('post')->findAll($criteria);
-
-	$this->render('list',array(
-		'comments'=>$comments,
-		'pages'=>$pages,
+	$this->render('index',array(
+		'dataProvider'=>$dataProvider,
 	));
 }
 ~~~
@@ -104,10 +73,17 @@ W szczególności, pokazujemy link do zatwierdzenia  `approve` w następujący s
 <?php endif; ?>
 ~~~
 
-Używamy [CHtml::linkButton()] zamiast [CHtml::link()] ponieważ pierwsza powoduje wywołanie 
-żądania POST, w odróżnieniu od drugiej, wywołującej żądanie GET.
-Zaleca się aby żądania GET nie modyfikowały danych na serwerze. W przeciwnym przypadku
-możemy mieć do czynienia z niebezpieczeństwem, że użytkownik nieumyślnie może zmienić   
-dane po stronie serwera parokrotnie jeśli będzie odświeżał stronę kilka razy.
+Zauważ, że w powyższym kodzie, ze względu na to, że obie tabele `tbl_post` oraz `tbl_comment`
+posiadają kolumnę statusu `status` i czasu utworzenia `create_time`, potrzebujemy rozróżnić odpowiednie 
+referencje do kolumny poprzez dodanie im prefiksu z aliasem nazwy tablicy. Tak jak to opisano w 
+[poradniku](http://www.yiiframework.com/doc/guide/database.arr#disambiguating-column-names),
+alias dla głównego klucza tabeli w tabeli relacyjnej zawsze ma wartość `t`. 
+Dlatego też dodaliśmy w powyższym kodzie prefiks `t` do kolumn statusu `status` oraz czasu utworzenia `create_time`.
 
-<div class="revision">$Id: comment.admin.txt 1335 2009-08-15 20:34:36Z qiang.xue $</div>
+Tak jak widoku index postu, widok `index` dla `CommentController` używa klasy [[CListView]] 
+aby wyświetlić listę komentarzy, która to skolei używa częściowego widoku 
+`/wwwroot/blog/protected/views/comment/_view.php` aby wyświetlić szczegóły poszczególnych
+komentarzy. Nie będziemy tutaj wchodzić w szczegóły. Zainteresowani czytelnicy mogą zajrzeć do  
+odpowiednich plików w demo blogu `/wwwroot/yii/demos/blog/protected/views/comment/_view.php`.
+
+<div class="revision">$Id: comment.admin.txt 1683 2010-01-08 05:08:29Z qiang.xue $</div>

@@ -90,7 +90,8 @@ pliki [widoku](http://www.yiiframework.com/doc/guide/basics.view):
 	 * `views/post/admin.php` jest plikiem widoku, który wyświetla wiadomości w tabelce wraz z poleceniami administracyjnymi;
 	 * `views/post/_form.php` jest plikiem częściowym widoku osadzonym w plku `views/post/create.php` oraz `views/post/update.php`. 
 	 Wyświetla on formularz HTML służący zbieraniu informacji o poście.
-	 * `views/post/_view.php` jest plkiem częściowym widoku używanym w `views/post/index.php`. Wyświetla on skrócony widok pojedynczego postu. 
+	 * `views/post/_view.php` jest plkiem częściowym widoku używanym w `views/post/index.php`. Wyświetla on skrócony widok pojedynczego postu.
+	 * `views/post/_search.php` jest plikiem widoku częściowego używanym przez `views/post/admin.php`. Wyświetla on formularz wyszukiwania.
 	 * podobny zestaw plików widoków został również wygenerowany dla komentarza.
 
 W celu lepszego zrozumienia jak powyższe pliki są używane, pokażemy przepływ zadań w aplikacji, które występują w naszej aplikacji podczas wyświetlani listy wiadomości:
@@ -106,4 +107,4 @@ W celu lepszego zrozumienia jak powyższe pliki są używane, pokażemy przepły
  5. Metoda `actionIndex()` wyświetla widok `index` wypełniony danymi wiadomości.
 
 
-<div class="revision">$Id: prototype.scaffold.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
+<div class="revision">$Id: prototype.scaffold.txt 1734 2010-01-21 18:41:17Z qiang.xue $</div>

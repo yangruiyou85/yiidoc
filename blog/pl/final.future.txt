@@ -62,7 +62,9 @@ zamknąć portlet chmurki tagów w [COutputCache]:
 [php]
 <?php if($this->beginCache('tagCloud', array('duration'=>3600))) { ?>
 
-<?php $this->widget('TagCloud'); ?>
+	<?php $this->widget('TagCloud', array(
+		'maxTags'=>Yii::app()->params['tagCloudCount'],
+	)); ?>
 
 <?php $this->endCache(); } ?>
 ~~~
@@ -80,4 +82,4 @@ kompletnym systemem blogowym potrzebne są nowe funkcje, na przykład, portlet k
 powiadomienia przez email, kategoryzowanie wiadomości, portlet wiadomości zarchiwizowanych, itp.
 Pozostawimy implementację tych funkcji zainteresowanym czytelnikom
 
-<div class="revision">$Id: final.future.txt 712 2009-02-19 15:11:15Z qiang.xue $</div>
+<div class="revision">$Id: final.future.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>

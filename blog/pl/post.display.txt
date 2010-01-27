@@ -20,11 +20,9 @@ w kontrolerze `PostController`:
 [php]
 public function actionView()
 {
+	$post=$this->loadModel();
 	$this->render('view',array(
-		$post=$this->loadModel();
-		$this->render('view',array(
-			'model'=>$post,
-		));
+		'model'=>$post,
 	));
 }
 
@@ -143,4 +141,4 @@ Tutaj określiliśmy ten częściowy widok jako `_view`, co wskazuje na plik
 `/wwwroot/blog/protected/views/post/_view.php`. W tym pliku widoku, mamy dostęp do isntancji 
 postu, która jest wyświetlana poprzez lokalną zmienną o nazwie `$data`.
 
-<div class="revision">$Id: post.display.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
+<div class="revision">$Id: post.display.txt 1733 2010-01-21 16:54:29Z qiang.xue $</div>

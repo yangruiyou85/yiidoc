@@ -22,7 +22,6 @@
     - [Administrowanie komentarzami](comment.admin)
 
 * Portlety
-	- [Dostosowywanie układy strony](portlet.base)
 	- [Tworzenie portletu menu użytkownika](portlet.menu)
 	- [Tworzenie portletu chmurki tagów](portlet.tags)
 	- [Tworzenie portletu ostatnich komentarzy](portlet.comments)
@@ -33,4 +32,4 @@
     - [Końcowe dopieszczanie oraz wdrażanie](final.deployment)
     - [Dalsze rozszerzanie](final.future)
 
-<div class="revision">$Id: toc.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
+<div class="revision">$Id: toc.txt 1734 2010-01-21 18:41:17Z qiang.xue $</div>
