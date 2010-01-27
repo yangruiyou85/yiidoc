@@ -28,7 +28,7 @@ W powyższym kodzie, określamy, że atrybuty: autor `author`, e-mail `email` or
 Dostosowywanie metody `attributeLabels()`
 --------------------------------------
 
-Następnie dostosowujemy metodę `attributeLabels()` aby zdefiniwać etykiety wyświetlane dla każdego z atrybutów modelu. Metoda ta zwraca tablicę par nazwa-etykieta. 
+Następnie dostosowujemy metodę `attributeLabels()` aby zdefiniować etykiety wyświetlane dla każdego z atrybutów modelu. Metoda ta zwraca tablicę par nazwa-etykieta. 
 
 ~~~
 [php]
@@ -47,7 +47,7 @@ public function attributeLabels()
 }
 ~~~
 
-> Tip|Wskazówka: Jeśli etykieta dla atrybutu nie jest zadeklarowana w metodzie `attributeLabels()` do wygenerowania odpowiedniej etykiety zosttanie użyty algorytm. Na przykład, etykieta `Create Time` będzie wygenerowana dla atrybutu `create_time` bądź też `createTime`.
+> Tip|Wskazówka: Jeśli etykieta dla atrybutu nie jest zadeklarowana w metodzie `attributeLabels()` do wygenerowania odpowiedniej etykiety zostanie użyty algorytm. Na przykład, etykieta `Create Time` będzie wygenerowana dla atrybutu `create_time` bądź też `createTime`.
 
 
 Dostosowywanie procesu zapisywania
