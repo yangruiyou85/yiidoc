@@ -77,8 +77,8 @@ takie jak miejsce, gdzie skrypt się znajduje, oraz zawartość jego pliku, itp.
 Wdrażanie aplikacji
 -------------------------
 
-Końcowy proces wdrażania aplikacji składa się głównie z kopiowania katalogu `/wwwroot/blog` 
-do katalogu docelowego. Następujący wykaz czynności kontrolnych pokazuje 
+Końcowy proces wdrażana polega głównie na kopiowaniu katalogu `/wwwroot/blog` 
+do docelowego katalogu. Następujący wykaz czynności kontrolnych pokazuje 
 wszystkie potrzebne kroki:
 
  1. Zainstaluj Yii w docelowym miejscu jeśli nie jest ono jeszcze tam dostępne; 
@@ -90,4 +90,4 @@ wszystkie potrzebne kroki:
  zapisywalne przez proces Web serwera.
 
 
-<div class="revision">$Id: final.deployment.txt 681 2009-02-16 04:57:01Z qiang.xue $</div>
+<div class="revision">$Id: final.deployment.txt 683 2009-02-16 05:20:17Z qiang.xue $</div>

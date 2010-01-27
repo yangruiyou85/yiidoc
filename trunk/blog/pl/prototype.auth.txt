@@ -18,7 +18,7 @@ w pliku `/wwwroot/blog/protected/components/UserIdentity.php`.
 mu nazwa klasy i zakończona rozszerzeniem `.php`. Używając tej konwencji, można  
 odnosić się do klasy używając [aliasów ścieżek](http://www.yiiframework.com/doc/guide/basics.namespace).
 Na przykład, możemy odnosić się do klasy `UserIdentity` przy użyciu aliasu 
-`application.components.UserIdentity`. Wiele API w Yii jest w stanie rozpoznawać   
+`application.components.UserIdentity`. Wiele API w Yii jest w stanie rozpoznawać
 aliasy ścieżek (np. [Yii::createComponent()|YiiBase::createComponent]), 
 dodatkowo używanie aliasów, pozwala uniknąć konieczności umieszczania absolutnych ścieżek do plików w kodzie.
 Występowanie tych ostatnich często powoduje problemy podczas wdrażania aplikacji.
@@ -38,7 +38,7 @@ class UserIdentity extends CUserIdentity
 		$user=User::model()->find('LOWER(username)=?',array($username));
 		if($user===null)
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		else if(md5($this->password)!==$user->password)
+		else if(!$user->validatePassword($this->password))
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		else
 		{
@@ -46,7 +46,7 @@ class UserIdentity extends CUserIdentity
 			$this->username=$user->username;
 			$this->errorCode=self::ERROR_NONE;
 		}
-		return !$this->errorCode;
+		return $this->errorCode==self::ERROR_NONE;
 	}
 
 	public function getId()
@@ -60,8 +60,31 @@ W metodzie `authenticate(), używamy klasy `User` do wyszukiwania wiersza danych
 `User`, którego kolumna `username` posiada tą samą wartość co nazwa użytkownika, bez uwzględnienia
 wielkości liter. Przypominamy, że klasa `User` została utworzona za pomocą narzędzia  
 `yiic` w poprzedniej części. Ponieważ klasa `User` dziedziczy z  [CActiveRecord],
- możemy wykorzystać [funkcjonalność rekordu aktywnego](http://www.yiiframework.com/doc/guide/database.ar) 
- i uzyskać dostęp do tabeli `User` w obiektowy (OOP) sposób.
+możemy wykorzystać [funkcjonalność rekordu aktywnego](http://www.yiiframework.com/doc/guide/database.ar) 
+i uzyskać dostęp do tabeli `User` w obiektowy (OOP) sposób.
+ 
+W celu sprawdzenia czy użytkownik wprowadził prawidłowe hasło, wywołujemy metodę `validatePassword` 
+klasy użytkownika `User`. Musimy zmodyfikować plik `/wwwroot/blog/protected/models/User.php` w następujący sposób.
+Zauważ, że zamiast przechowywać hasło tekstowo w bazie danych, przechowujemy rezultat haszowania
+hasła oraz losowo wygeneroway klucz soli. Podczas sprawdzania poprawności hasła wprowadzonego 
+przez użytkownika powinniśmy użyć do porównywania rezultatu haszowania hasła zamiast samego hasła.
+
+~~~
+[php]
+class User extends CActiveRecord
+{
+	......
+	public function validatePassword($password)
+	{
+		return $this->hashPassword($password,$this->salt)===$this->password;
+	}
+
+	public function hashPassword($password,$salt)
+	{
+		return md5($salt.$password);
+	}
+}
+~~~ 
 
 W klasie `UserIdentity` nadpisujemy również metodę `getId()`, która zwraca wartość `id` 
 dla znalezionego w tabeli `User` użytkownika. Poprzednia implementacja zwracała nazwę użytkownika (username). 
@@ -73,11 +96,12 @@ oraz będzie można do nich uzyskać dostęp poprzez `Yii::app()->user` z dowoln
 bezpośredniego włączania odpowiadającego jej pliku klasy. Dzieje się tak, gdyż 
 klasa [CUserIdentity] jest rdzenną klasą dostarczaną przez framework Yii.
 Yii automatycznie załączy plik klasy dla każdej z rdzennych klas, podczas pierwszego 
-odniesienia się do niej. Dokładnie to samo zrobimy z klasą `User`. Dzieje się tak     
+odniesienia się do niej.
+>
+>Dokładnie to samo zrobimy z klasą `User`. Dzieje się tak     
 ponieważ plik klasy `User` znajduje się w katalogu `/wwwroot/blog/protected/models`,  
 który został dodany do `include_path` PH zgodnie z następującymi liniami znajdującymi 
 się w konfiguracji aplikacji:
-
 >
 > ~~~
 > [php]
@@ -130,4 +154,4 @@ dostarcza funkcjonalności zarządania użytkownikami. W rezultacie użytkownik 
 swojego konta czy też stworzyć nowe poprzez interfejs sieciowy. Funkcjonalność zarządzania użytkownikami  
 może zostać rozważona jako przyszłe rozszerzenie dla naszej aplikacji.
 
-<div class="revision">$Id: prototype.auth.txt 689 2009-02-17 11:39:10Z weizhuo $</div>
+<div class="revision">$Id: prototype.auth.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>

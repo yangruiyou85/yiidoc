@@ -3,7 +3,7 @@ Tworzenie portletu menu użytkownika
 
 Na podstawie analizy wymagań, będziemy potrzebowali trzech portletów:  
 portletu "menu użytkownika", "chmury tagów" oraz portletu "ostatnich komentarzy".
-Utworzymy te portlety poprzez rozszerzenie widżetu [[CPortlet]] dostarczonego przez Yii.
+Utworzymy te portlety poprzez rozszerzenie widżetu [CPortlet] dostarczonego przez Yii.
 
 W części tej, utworzymy nasz pierwszy, konkretny portlet - portlet menu użytkownika,
 który wyświetla listę pozycji w menu, które są dostępne tylko dla uwierzytelnionych  
@@ -41,7 +41,7 @@ class UserMenu extends CPortlet
 }
 ~~~
 
-Klasa `UserMenu` dziedziczy z klasy `CPortlet`, z biblioteki zii. 
+Klasa `UserMenu` dziedziczy z klasy `CPortlet`, z biblioteki `zii`. 
 Nadpisuje zarówno metodę `init()` jak i metodę `renderContent()` z klasy `CPortlet`. 
 Pierwsza metoda ustawia tytuł jako nazwę aktualnego użytkownika; druga generuje
 zawartość ciała portletu poprzez wygenerowanie widoku o nazwie `userMenu`.
@@ -60,7 +60,7 @@ Następnie, tworzymy widok `userMenu`, który jest zapisany w pliku
 `/wwwroot/blog/protected/components/views/userMenu.php`:
 
 ~~~
-[html]
+[php]
 <ul>
 	<li><?php echo CHtml::link('Create New Post',array('post/create')); ?></li>
 	<li><?php echo CHtml::link('Manage Posts',array('post/admin')); ?></li>
@@ -81,7 +81,7 @@ Nadszedł już czas, aby użyć nasz nowo ukończony portlet `UserMenu`. Zmienim
 plik widoku układu `/wwwroot/blog/protected/views/layouts/column2.php` następująco:
 
 ~~~
-[html]
+[php]
 ......
 <div id="sidebar">
 	<?php if(!Yii::app()->user->isGuest) $this->widget('UserMenu'); ?>
@@ -118,4 +118,4 @@ mówiącą, że warstwa logiczna i prezentacyjna powinny być rozdzielone. Choci
 nie zwróciliśmy na to uwagi w poprzednich częsciach, praktyka taka ma miejsce  
 niemal wszędzie w typowych aplikacjach opartych na Yii.
 
-<div class="revision">$Id: portlet.menu.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
+<div class="revision">$Id: portlet.menu.txt 1739 2010-01-22 15:20:03Z qiang.xue $</div>
