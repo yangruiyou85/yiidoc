@@ -1,15 +1,13 @@
 Tworzenie portletu ostatnich komentarzy
 ================================
 
-W części tej utworzymy portlet, który wyświetli listę komentarzy, które zostały ostatnie 
-opublikowane. 
+W części tej utworzymy portlet, który wyświetli listę komentarzy, które zostały ostatnie opublikowane. 
 
 
 Tworzenie klasy `RecentComments`
 -------------------------------
 
-Tworzymy klasę `RecentComments` w pliku `/wwwroot/blog/protected/components/RecentComments.php`. 
-Plik ten ma następującą zawartość:
+Tworzymy klasę `RecentComments` w pliku `/wwwroot/blog/protected/components/RecentComments.php`. Plik ten ma następującą zawartość:
 
 ~~~
 [php]
@@ -32,9 +30,7 @@ class RecentComments extends CPortlet
 }
 ~~~
 
-W powyższym kodzie wywołaliśmy metodę `findRecentComments`, która jest zdefiniowana 
-w klasie `Comment` w następujący sposób:
-
+W powyższym kodzie wywołaliśmy metodę `findRecentComments`, która jest zdefiniowana w klasie `Comment` w następujący sposób:
 
 ~~~
 [php]
@@ -56,15 +52,13 @@ class Comment extends CActiveRecord
 Tworzenie widoku `recentComments`
 -------------------------
 
-Widok `recentComments` jest zapisany w pliku `/wwwroot/blog/protected/components/views/recentComments.php`. 
-Widok po prostu wyświetla każdy komentarz zwrócony przez metodę `RecentComments::getRecentComments()`.
+Widok `recentComments` jest zapisany w pliku `/wwwroot/blog/protected/components/views/recentComments.php`. Widok po prostu wyświetla każdy komentarz zwrócony przez metodę `RecentComments::getRecentComments()`.
 
 
 Używanie portletu `RecentComments`
 ------------------------------
 
-Zmodyfikujemy plik układu `/wwwroot/blog/protected/views/layouts/main.php` by osadzić 
-w nim ten ostatni portlet.
+Zmodyfikujemy plik układu `/wwwroot/blog/protected/views/layouts/main.php` by osadzić w nim ten ostatni portlet.
 
 ~~~
 [php]
@@ -82,6 +76,7 @@ w nim ten ostatni portlet.
 	)); ?>
 
 </div>
-....
+......
+~~~
 
 <div class="revision">$Id: portlet.comments.txt 1683 2010-01-08 05:08:29Z qiang.xue $</div>

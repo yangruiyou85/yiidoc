@@ -6,20 +6,13 @@ Klasa postu `Post`, wygenerowana przez narzędzie `yiic` musi zostać zmodyfikow
  - w metodzie `rules()`: określającej reguły sprawdzania poprawności dla atrybutów modelu;
  - w metodzie `relations()`: definiującej obiekty pokrewne;
 
-> Info|Info: [Model](http://www.yiiframework.com/doc/guide/basics.model) zawiera listę 
-atrybutów, każdy z nich jest powiązany z odpowiadającą mu kolumną w bazie danych. 
-Atrybuty mogą być zadeklarowane bezpośrednio jako jako zmienne klasy lub też pośrednio bez żadnej deklaracji. 
+> Info|Info: [Model](http://www.yiiframework.com/doc/guide/basics.model) zawiera listę atrybutów, każdy z nich jest powiązany z odpowiadającą mu kolumną w bazie danych. Atrybuty mogą być zadeklarowane bezpośrednio jako jako zmienne klasy lub też pośrednio bez żadnej deklaracji. 
 
 
 Dostosowywanie metody `rules()`
 ----------------------------
 
-Najpierw określamy zasady sprawdzania poprawności, które pozwalają nam upewnić się, 
-że wartości atrybutów wprowadzonych przez użytkowika są poprawne,
-zanim zostaną zapisane do bazy danych. Na przykład, atrybut `status` dla postu `Post` 
-powinien posiadać wartość 1, 2 lub 3. Narzędzie `yiic` również generuje zasady sprawdzania 
-poprawności dla każdego modelu. Jednakże, reguły te bazują na infomracjach o kolumnie 
-tabeli i mogą być nieodpowiednie.
+Najpierw określamy zasady sprawdzania poprawności, które pozwalają nam upewnić się, że wartości atrybutów wprowadzonych przez użytkowika są poprawne, zanim zostaną zapisane do bazy danych. Na przykład, atrybut `status` dla postu `Post` powinien posiadać wartość 1, 2 lub 3. Narzędzie `yiic` również generuje zasady sprawdzania poprawności dla każdego modelu. Jednakże, reguły te bazują na infomracjach o kolumnie tabeli i mogą być nieodpowiednie.
 
 W oparciu o analizę potrzeb, modyfikujemy metodę `rules()` w następujący sposób:
 
@@ -40,46 +33,29 @@ public function rules()
 }
 ~~~
 
-W powyższym kodzie określiliśmy, że atrybuty tytułu `title`, zawartości `content` i statusu `status` są 
-atrybutami wymaganymi (muszą być wypełnione); długość tytułu `title` nie powinna 
-przekraczać 128 (znaków); wartość atrybutu statusu `status` powinna być 1 (wersja robocza, ang. draft), 
-2 (opublikowana, ang. published) lub 3 (zarchiwizowana, ang. archived); a atrybut otagowania `tags`
-powinien zawierać wyłącznie znaki słów oraz przecinki. Dodatkowo używamy metody `normalizeTags` 
-do unormowania wprowadzonych przez użytkowniak tagów, w taki sposób, że tagi będą unikalne i poprawnie
-rozdzielone za pomocą przecinków. OStatnia reguła jest używana przez funkcjonalność wyszukiwania, 
-co zostanie opisane później.
+W powyższym kodzie określiliśmy, że atrybuty tytułu `title`, zawartości `content` i statusu `status` są atrybutami wymaganymi (muszą być wypełnione); długość tytułu `title` nie powinna przekraczać 128 (znaków); wartość atrybutu statusu `status` powinna być 1 (wersja robocza, ang. draft), 2 (opublikowana, ang. published) lub 3 (zarchiwizowana, ang. archived); a atrybut otagowania `tags` powinien zawierać wyłącznie znaki słów oraz przecinki. Dodatkowo używamy metody `normalizeTags` do unormowania wprowadzonych przez użytkowniak tagów, w taki sposób, że tagi będą unikalne i poprawnie rozdzielone za pomocą przecinków. OStatnia reguła jest używana przez funkcjonalność wyszukiwania, co zostanie opisane później.
 
-Po wprowadzeniu tych zmian, możemy odwiedzić ponownie stronę tworzenia postów 
-w celu weryfikacji czy nowe zasady sprawdzania poprawności mają miejsce.
+Walidatory takie jak `required`, `length`, `in` oraz `match` są wbudowanymi walidatorami dostarczanymi przez Yii. Natomiast walidator `normalizeTags` jest walidatorem opartym na metodzie, która musimy zdefiniować w klasie postu `Post`. Aby uzyskać więcej informacji o tym jak określić reguły sprawdzania poprawności, zajrzyj do [poradnika](http://www.yiiframework.com/doc/guide/form.model#declaring-validation-rules).
 
-Walidatory takie jak `required`, `length`, `in` oraz `match` są wbudowanymi walidatorami 
-dostarczanymi przez Yii. Natomiast walidator `normalizeTags` jest walidatorem opartym na metodzie,
-która musimy zdefiniować w klasie postu `Post`. Aby uzyskać więcej informacji o tym jak określić  
-retuły sprawdzania poprawności, zajrzyj do [poradnika](http://www.yiiframework.com/doc/guide/form.model#declaring-validation-rules).
+~~~
+[php]
+public function normalizeTags($attribute,$params)
+{
+	$this->tags=Tag::array2string(array_unique(Tag::string2array($this->tags)));
+}
+~~~
 
-Reguły zadeklarowane w tej metodzie są wywoływane jedna po drugiej podczas wywoływania
-metody [validate()|CModel::validate] lub [save()|CActiveRecord::save] dla instancji modelu.
+Reguły zadeklarowane w tej metodzie są wywoływane jedna po drugiej podczas wywoływania metody [validate()|CModel::validate] lub [save()|CActiveRecord::save] dla instancji modelu.
 
-> Note|Uwaga: Niezmiernie ważnym jest aby zapamiętać, że atrybuty które pojawiły się 
-w metodzie `rules()` były tymi, które są wprowadzane przez użytkownika. Pozostałe atrybuty 
-takie jak `id` oraz czas utworzenia `create_time` w modelu postu `Post`, które są ustawiane przez
-nasz kod lub też bazę danych, nie powinny się znajdować w metodzie `rules()`.
-Aby usyskać więcej informacji o tym, proszę zajrzeć do 
-[zabezpieczanie przypisywania atrybutów](http://www.yiiframework.com/doc/guide/form.model#securing-attribute-assignments).
+> Note|Uwaga: Niezmiernie ważnym jest aby zapamiętać, że atrybuty które pojawiły się w metodzie `rules()` były tymi, które są wprowadzane przez użytkownika. Pozostałe atrybuty takie jak `id` oraz czas utworzenia `create_time` w modelu postu `Post`, które są ustawiane przez nasz kod lub też bazę danych, nie powinny się znajdować w metodzie `rules()`. Aby usyskać więcej informacji o tym, proszę zajrzeć do [zabezpieczanie przypisywania atrybutów](http://www.yiiframework.com/doc/guide/form.model#securing-attribute-assignments).
 
-Po dokonaniu tych zmian, możemy odwiedzić stronę tworzenia postu i ponownie sprawdzić czy nowe reguły
-sprawdzania poprawności danych dziłają.
+Po wprowadzeniu tych zmian, możemy odwiedzić ponownie stronę tworzenia postów w celu weryfikacji czy nowe zasady sprawdzania poprawności mają miejsce.
 
 
 Dostosowywanie metody `relations()`
 --------------------------------
 
-Na samym końcu dostosowujemy metodę `relations()` w celu zdefiniowania obiektów powiązanych 
-przez do wiadomości. Poprzez zadeklarowanie tych powiązanych obiektów w metodzie 
-`relations()`, możemy wykorzystać potęgę funkcji 
-[relacyjnego aktywnego rekordu (RAR)](http://www.yiiframework.com/doc/guide/database.arr) 
-w celu uzyskanie dostępu do informacji z powiązanych z wiadomością obiektów, takich jak
-jej autor oraz komentarze, bez potrzeby pisanie złożonych wyrażeń SQL z JOIN.
+Na samym końcu dostosowujemy metodę `relations()` w celu zdefiniowania obiektów powiązanych przez do wiadomości. Poprzez zadeklarowanie tych powiązanych obiektów w metodzie `relations()`, możemy wykorzystać potęgę funkcji [relacyjnego aktywnego rekordu (RAR)](http://www.yiiframework.com/doc/guide/database.arr) w celu uzyskanie dostępu do informacji z powiązanych z wiadomością obiektów, takich jak jej autor oraz komentarze, bez potrzeby pisanie złożonych wyrażeń SQL z JOIN.
 
 Dostosowujemy metodę `relations()` w następujący sposób:
 
@@ -100,16 +76,12 @@ public function relations()
 
 Powyższe relacje stwierdzają, że:
 
- * Wiadomość należy do autora, którego reprezentuje klasa `User` a relacja pomiędzy nimi zostaje określona 
- w oparciu o wartość atrybutu `author_id` wiadomości;
- * Wiadomość posiada wiele komentarzy, które reprezentuje klasa `Comment` a relacja 
- pomiędzy nimi zostaje określona w oparciu o wartość atrybutu `post_id` tych komentarzy.
- Komentarze te powinny zostać posortowane odpowiednio do czasu ich utworzenia.
- * Relacja `commentCount` trochę innego typu, gdyż zwraca nam zagregowany wynik, który
- mówi nam ile komentarzy posiada post.
+ * Wiadomość należy do autora, którego reprezentuje klasa `User` a relacja pomiędzy nimi zostaje określona w oparciu o wartość atrybutu `author_id` wiadomości;
+ * Wiadomość posiada wiele komentarzy, które reprezentuje klasa `Comment` a relacja pomiędzy nimi zostaje określona w oparciu o wartość atrybutu `post_id` tych komentarzy. Komentarze te powinny zostać posortowane odpowiednio do czasu ich utworzenia.
+ * Relacja `commentCount` trochę innego typu, gdyż zwraca nam zagregowany wynik, który mówi nam ile komentarzy posiada post.
 
-Przy użyciu powyższej deklaracji relacji, możemy w łatwy sposób uzyskać dostęp do 
-autora oraz komentarzy wiadomości w następujący sposób:
+
+Przy użyciu powyższej deklaracji relacji, możemy w łatwy sposób uzyskać dostęp do autora oraz komentarzy wiadomości w następujący sposób:
 
 ~~~
 [php]
@@ -124,16 +96,12 @@ foreach($comments as $comment)
 Aby uzyskać więcej informacji o tym jak deklarować i używać relacji, sprawdź [Poradnik](http://www.yiiframework.com/doc/guide/database.arr).
 
 
-Reprezentacja statusu pod postacią tekstu
+Reprezentacja statusu w postaci tekstowej
 ---------------------------
 
-Ponieważ status wiadomości jest przechowywany jako wartość całkowita (integer) w bazie danych
-potrzebujemy dostarczyć jego reprezentację tekstową, po to aby wyświetlić ją w bardziej 
-przystępnym formacie użytkownikowi końcowemu. Podobne wymagania występują bardzo często w dużych systemach. 
+Ponieważ status wiadomości jest przechowywany jako wartość całkowita (integer) w bazie danych potrzebujemy dostarczyć jego reprezentację tekstową, po to aby wyświetlić ją w bardziej przystępnym formacie użytkownikowi końcowemu. Podobne wymagania występują bardzo często w dużych systemach. 
 
-Jako ogólne rozwiązanie dla ww problemu sotsujemy tabelę `tbl_lookup` przechowującą mapowania pomiędzy 
-wartościami całkowitymi a tekstową reprezentacją potrzebną innym obiektom danych. Modyfikujemy 
-klasę modelu `Lookup` w następujący sposób aby ułatwić dostęp do danych testkowych w tabeli: 
+Jako ogólne rozwiązanie dla ww problemu sotsujemy tabelę `tbl_lookup` przechowującą mapowania pomiędzy wartościami całkowitymi a tekstową reprezentacją potrzebną innym obiektom danych. Modyfikujemy klasę modelu `Lookup` w następujący sposób aby ułatwić dostęp do danych testkowych w tabeli: 
 
 ~~~
 [php]
@@ -169,17 +137,11 @@ class Lookup extends CActiveRecord
 }
 ~~~
 
-Nasz kod głównie dostarcza dwóch metod statycznych: `Lookup::items()` oraz `Lookup::item()`. 
-Pierwsza zwraca listę łańcuchów należących do określonego typu danych, gdy druga zwraca 
-poszczególny łańcuch dla danego typu danych i wartości 
+Nasz kod głównie dostarcza dwóch metod statycznych: `Lookup::items()` oraz `Lookup::item()`. Pierwsza zwraca listę łańcuchów należących do określonego typu danych, gdy druga zwraca poszczególny łańcuch dla danego typu danych i wartości 
 
-Nasza baza danych blogu jest wstępnie wypełniona przez dwa typy: status postu `PostStatus` 
-oraz status komentarza `CommentStatus`. Pierwszy odpowiada możliwym statusom postów, 
-drugi zaś komentarzy.
+Nasza baza danych blogu jest wstępnie wypełniona przez dwa typy: status postu `PostStatus` oraz status komentarza `CommentStatus`. Pierwszy odpowiada możliwym statusom postów, drugi zaś komentarzy.
 
-Aby ułatwić czytanie naszego kodu, zadeklarowaliśmy również zestaw stałych, do reprezentowania 
-wartości cąłkowitych statusów. Powinniśmy używać tych stałych w naszym kodzie kiedy odnosimy się 
-do odpowiedniej wartości statusu.
+Aby ułatwić czytanie naszego kodu, zadeklarowaliśmy również zestaw stałych, do reprezentowania wartości cąłkowitych statusów. Powinniśmy używać tych stałych w naszym kodzie kiedy odnosimy się do odpowiedniej wartości statusu.
 
 ~~~
 [php]
@@ -192,9 +154,7 @@ class Post extends CActiveRecord
 }
 ~~~
 
-Dlatego też możemy wywołać metodę `Lookup::items('PostStatus')` aby uzyskać listę możliwych statusów 
-postu (łańcuchy tekstowe indeksowane przez odpowiadające im wartości całkowite) jak również 
-wywoływać metodę `Lookup::item('PostStatus', Post::STATUS_PUBLISHED)` aby otrzymać łańcuch
-reprezentujący status "opublikowany".
+Dlatego też możemy wywołać metodę `Lookup::items('PostStatus')` aby uzyskać listę możliwych statusów postu (łańcuchy tekstowe indeksowane przez odpowiadające im wartości całkowite) jak również wywoływać metodę `Lookup::item('PostStatus', Post::STATUS_PUBLISHED)` aby otrzymać łańcuch reprezentujący status "opublikowany".
+
 
 <div class="revision">$Id: post.model.txt 1736 2010-01-22 12:34:07Z qiang.xue $</div>
