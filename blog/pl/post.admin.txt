@@ -1,19 +1,13 @@
 Administrowanie wiadomościami
 ==============
 
-Administrowanie wiadomościami przede wszystkim odnosi się do wylistowania wiadomości
-w widoku administratora co pozwala nam widzieć wiadomości o wszyzstkich statusach, 
-aktualizować je oraz usuwać je. Są one wykonywane odpowiednio przez operację
-`admin` oraz operację usuwania `delete`. Kod wygenerowany przez narzędzie `yiic` nie  
-wymaga zbytniej modyfikacji. Poniżej wyjaśniamy przede wszystkim jak te dwie operacje 
-zostały zaimplementowane.
+Administrowanie wiadomościami przede wszystkim odnosi się do wylistowania wiadomości w widoku administratora co pozwala nam widzieć wiadomości o wszyzstkich statusach, aktualizować je oraz usuwać je. Są one wykonywane odpowiednio przez operację `admin` oraz operację usuwania `delete`. Kod wygenerowany przez narzędzie `yiic` nie wymaga zbytniej modyfikacji. Poniżej wyjaśniamy przede wszystkim jak te dwie operacje zostały zaimplementowane.
+
 
 Wyświetlenie listy wiadomości w widoku tabelarycznym
 -----------------------------
 
-Operacja `admin` wyświetla wszystkie wiadomości o wszystkich statusach
-w widoku tabelarycznym. Widok wspiera sortowanie oraz stronicowanie. Poniżej
-znajduje się metoda `actionAdmin()` kontrolera `PostController`:
+Operacja `admin` wyświetla wszystkie wiadomości o wszystkich statusach w widoku tabelarycznym. Widok wspiera sortowanie oraz stronicowanie. Poniżej znajduje się metoda `actionAdmin()` kontrolera `PostController`:
 
 ~~~
 [php]
@@ -28,14 +22,11 @@ public function actionAdmin()
 }
 ~~~
 
-Powyższy kod jest został wygenerowany przez narzędzie `yiic` i nie został zmodyfikowany. 
-Najpierw tworzy on model `Post` dla [scenariusza](/doc/guide/form.model) wyszukiwania `search`. 
-Będziemy używac tego modelu do gromadzenia warunków wyszukiwania, które wyspecyfikuje użytkownik.
-Jeżeli istnieją dane dostarczone przez użytkownika, przypisujemy je do modelu. 
-Na koniec generujemy widok `admin` wraz z modelem.
+Powyższy kod jest został wygenerowany przez narzędzie `yiic` i nie został zmodyfikowany. Najpierw tworzy on model `Post` dla [scenariusza](/doc/guide/form.model) wyszukiwania `search`. Będziemy używac tego modelu do gromadzenia warunków wyszukiwania, które wyspecyfikuje użytkownik. Jeżeli istnieją dane dostarczone przez użytkownika, przypisujemy je do modelu. Na koniec generujemy widok `admin` wraz z modelem.
 
 Poniżej znajduje się kod widoku `admin`:
 
+~~~
 [php]
 <?php
 $this->breadcrumbs=array(
@@ -70,24 +61,15 @@ $this->breadcrumbs=array(
 )); ?>
 ~~~
 
-Do wyświetlania postów używamy klasy [[CGridView]]. Umożliwia ona nam sortowanie kolumn  
-oraz stronicowanie postów jeśli jest ich zbyt wiele by wyświetlić je na pojedynczej stronie. 
-Nasza zmiana dotyczy sposobu wyświetlania każdej kolumny. Na przykład dla kolumny tytułu `title`,
-określamy iż powinna ona być wyświetlona jako hiperlink, który wskazuje na widok szczegółow postu.
+Do wyświetlania postów używamy klasy [[CGridView]]. Umożliwia ona nam sortowanie kolumn oraz stronicowanie postów jeśli jest ich zbyt wiele by wyświetlić je na pojedynczej stronie. Nasza zmiana dotyczy sposobu wyświetlania każdej kolumny. Na przykład dla kolumny tytułu `title`, określamy iż powinna ona być wyświetlona jako hiperlink, który wskazuje na widok szczegółow postu.
 
-> Tip|Wskazówka: Podczas wyświetlania tekstu wołamy metodę [CHtml::encode()] do zakodowania 
-znajdujących się w nim wpisów HTML. Chroni to przed [atakami XSS](http://www.yiiframework.com/doc/guide/topics.security).
+> Tip|Wskazówka: Podczas wyświetlania tekstu wołamy metodę [CHtml::encode()] do zakodowania znajdujących się w nim wpisów HTML. Chroni to przed [atakami XSS](http://www.yiiframework.com/doc/guide/topics.security).
 
 
 Usuwanie wiadomości
 --------------
 
-Deleting Posts
---------------
-
-W każdym wierszu siatki danych administratora `admin` znajduje się przycisk usuwania.  
-Kliknięcie w ten przycisk powinno usunąć odpowiedni post. W aplikacji wywołuje to wywołanie 
-akcji `delete` zaimplementowanej w następujący sposób:
+W każdym wierszu siatki danych administratora `admin` znajduje się przycisk usuwania. Kliknięcie w ten przycisk powinno usunąć odpowiedni post. W aplikacji wywołuje to wywołanie akcji `delete` zaimplementowanej w następujący sposób:
 
 ~~~
 [php]
@@ -106,20 +88,9 @@ public function actionDelete()
 }
 ~~~
 
-Powyższy kod został wygenerowany przez narzędzie `yiic` i nie został zmieniony.
-Będziemy chcieli wyjaśnić nieco więcej na temat sprawdzania `$_POST['ajax']`. 
-Widżet [[CGridView]] posiada bardzo fajną funkcję, która domyślnie wykonuje operacje sortowania, 
-stronicowania, usuwania przy użyciu trybu AJAX. Oznacza to, że cała strona nie jest przeładowywana
-jeśli jakakolwiek z ww. operacji jest wykonywana. Jednakże, istnieje również możliwość  
-uruchamiania widżetu bez trybu AJAX (poprzez ustawienie właściwości `ajaxUpdate` na false 
-albo poprzez wyłączenie obsługi JavaScript po stronie klienta). Dla akcji `delete` zachodzi
-konieczność rozróżnienia tych dwóch scenariuszy: jeśli żądanie usuwanie pochodzi z AJAX-a
-nie powinniśmy przekierowywać przegląrki użytkownika, w przeciwnym przypadku powinniśmy.
+Powyższy kod został wygenerowany przez narzędzie `yiic` i nie został zmieniony. Będziemy chcieli wyjaśnić nieco więcej na temat sprawdzania `$_POST['ajax']`. Widżet [[CGridView]] posiada bardzo fajną funkcję, która domyślnie wykonuje operacje sortowania, stronicowania, usuwania przy użyciu trybu AJAX. Oznacza to, że cała strona nie jest przeładowywana jeśli jakakolwiek z ww. operacji jest wykonywana. Jednakże, istnieje również możliwość uruchamiania widżetu bez trybu AJAX (poprzez ustawienie właściwości `ajaxUpdate` na false albo poprzez wyłączenie obsługi JavaScript po stronie klienta). Dla akcji `delete` zachodzi konieczność rozróżnienia tych dwóch scenariuszy: jeśli żądanie usuwanie pochodzi z AJAX-a nie powinniśmy przekierowywać przegląrki użytkownika, w przeciwnym przypadku powinniśmy.
 
-Usuwanie postów powinno również powodować usuwanie wszystkic komentarzy dla tego postu.
-Dodatkowo powinniśmy również zaktualizować tabelę `tbl_tag` uwzględniając tagi z usuniętego 
-postu. Oba powyższe zadania powinny zostać osiągnięte poprzez napisanie metody `afterDelete` 
-w modelu klasy postu `Post` w następujący sposób:
+Usuwanie postów powinno również powodować usuwanie wszystkic komentarzy dla tego postu. Dodatkowo powinniśmy również zaktualizować tabelę `tbl_tag` uwzględniając tagi z usuniętego postu. Oba powyższe zadania powinny zostać osiągnięte poprzez napisanie metody `afterDelete` w modelu klasy postu `Post` w następujący sposób:
 
 ~~~
 [php]
@@ -131,15 +102,8 @@ protected function afterDelete()
 }
 ~~~
 
-Powyższy kod jest bardzo prosty. Najpierw usuwane są wszystkie komentarze, których `post_id` 
-jest takie same jak ID usuniętego postu. Następnie aktualizowana jest tabela `tbl_tag` 
-dla wartości tagów `tags` z usuniętego postu.
+Powyższy kod jest bardzo prosty. Najpierw usuwane są wszystkie komentarze, których `post_id` jest takie same jak ID usuniętego postu. Następnie aktualizowana jest tabela `tbl_tag` dla wartości tagów `tags` z usuniętego postu.
 
-> Tip|Wskazówka: Musimy jawnie usunąć wszystkie komentarze dla usuniętego postu, ponieważ 
-SQLite nie wspiera ograniczeń klucza obcego. W silnikach bazy danych, które wpierają 
-ograniczanie (takich jak MySQL, PostgreSQL), ograniczenie klucza obcego możę zostać 
-tak zdefiniowane, że silnik bazy danych automatycznie usunie powiązane komentarze
-w momencie usuwania postu. W takim przypadku nie będziemy potrzebowali w naszym kodzie   
-jawnego usuwania.
+> Tip|Wskazówka: Musimy jawnie usunąć wszystkie komentarze dla usuniętego postu, ponieważ SQLite nie wspiera ograniczeń klucza obcego. W silnikach bazy danych, które wpierają ograniczanie (takich jak MySQL, PostgreSQL), ograniczenie klucza obcego możę zostać tak zdefiniowane, że silnik bazy danych automatycznie usunie powiązane komentarze w momencie usuwania postu. W takim przypadku nie będziemy potrzebowali w naszym kodzie jawnego usuwania.
 
 <div class="revision">$Id: post.admin.txt 1734 2010-01-21 18:41:17Z qiang.xue $</div>

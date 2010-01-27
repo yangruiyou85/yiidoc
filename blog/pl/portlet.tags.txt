@@ -1,16 +1,13 @@
 Tworzenie portletu chmurki tagów
 ==========================
 
-[Chmurka tagów](http://en.wikipedia.org/wiki/Tag_cloud) wyświetla listę tagów 
-wiadomości wraz z wizualnymi ozdobnikami, podpowiadającymi jak bardzo popularny 
-jest każdy z tagów. 
+[Chmurka tagów](http://en.wikipedia.org/wiki/Tag_cloud) wyświetla listę tagów wiadomości wraz z wizualnymi ozdobnikami, podpowiadającymi jak bardzo popularny jest każdy z tagów. 
 
 
 Tworzenie klasy `TagCloud`
 -------------------------
 
-Tworzymy klasę `TagCloud` w pliku `/wwwroot/blog/protected/components/TagCloud.php`. 
-Plik ten ma następującą zawartość:
+Tworzymy klasę `TagCloud` w pliku `/wwwroot/blog/protected/components/TagCloud.php`. Plik ten ma następującą zawartość:
 
 ~~~
 [php]
@@ -37,20 +34,15 @@ class TagCloud extends CPortlet
 }
 ~~~
 
-W odróżnieniu od portletu `UserMenu`, portlet chmury tagów `TagCloud` nie używa widoku.  
-W zamian, jego wyświetlana zawartość jest tworzona w metodzie `renderContent()`. To dlatego, 
-że warstwa prezetnacji nie zawiera zbyt wiele tagów HTML.
+W odróżnieniu od portletu `UserMenu`, portlet chmury tagów `TagCloud` nie używa widoku. W zamian, jego wyświetlana zawartość jest tworzona w metodzie `renderContent()`. To dlatego, że warstwa prezetnacji nie zawiera zbyt wiele tagów HTML.
 
-Wyświetlamy każdy tag jako hiperłącze do strony z listą postów wraz z odpowiadającym mu 
-parametrem tagu. Rozmiar czcionki dla każdego linku jest dostosowywany odpowiednio do  
-wagi względem pozostałych tagów. Jeśli tag posiada większą częstotliwość wystąpień niż inny,
-będzie on posiadał większy rozmiar czcionki. 
+Wyświetlamy każdy tag jako hiperłącze do strony z listą postów wraz z odpowiadającym mu parametrem tagu. Rozmiar czcionki dla każdego linku jest dostosowywany odpowiednio do wagi względem pozostałych tagów. Jeśli tag posiada większą częstotliwość wystąpień niż inny, będzie on posiadał większy rozmiar czcionki. 
+
 
 Używanie portletu `TagCloud`
 -------------------------
 
-Używanie portletu chmurki tagów `TagCloud` jest bardzo proste. Modyfikujemy wplik układu
-`/wwwroot/blog/protected/views/layouts/main.php` w następujący sposób:
+Używanie portletu chmurki tagów `TagCloud` jest bardzo proste. Modyfikujemy wplik układu `/wwwroot/blog/protected/views/layouts/main.php` w następujący sposób:
 
 ~~~
 [php]
