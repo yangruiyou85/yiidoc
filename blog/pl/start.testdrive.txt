@@ -11,7 +11,7 @@ Na samym początku zainstalujemy framework Yii. W tym celu pobierz plik z wydani
 
 > Tip|Wskazówka: framework Yii może zostać zainstalowany w dowolnym miejscu systemu plików, niekoniecznie w folderze sieci Web. Jego katalog `framework` zawiera cały kod frameworku i jest jedynym wymaganym folderem frameworku podczas wdrażania aplikacji napisanej w Yii. Pojedyncza instalacja Yii może być używana przez wiele aplikacji.
 
-Po zainstalowaniu Yii, otwórz okno przeglądarki i wpisz adres URL `http://www.example.com/yii/requirements/index.php`. Pokaże on dostarczoną wraz z Yii stronę pozwalającą sprawdzić wymagania. Dla naszego blogu, poza minimalnymi wymaganiami strawianymi Yii, potrzebujemy włączyć rozszerzenia PHP `pdo` oraz `pdo_sqlite` by móc używać bazy danych SQLite.
+Po zainstalowaniu Yii, otwórz okno przeglądarki i wpisz adres URL `http://www.example.com/yii/requirements/index.php`. Pokaże on dostarczoną wraz z Yii stronę pozwalającą sprawdzić wymagania. Dla naszego blogu, poza minimalnymi wymaganiami stawianymi Yii, potrzebujemy włączyć rozszerzenia PHP `pdo` oraz `pdo_sqlite` by móc używać bazy danych SQLite.
 
 
 Tworzenie szkieletu aplikacji
@@ -68,7 +68,7 @@ deny from all
 Dla pozostałych serwerów informacje o tym jak ochronić katalog przed dostępem z zewnątrz przez internautów można znaleźć w odpowiadającym im podręcznikach.
 
 
-Działanie aplikacji (ang. Aplication Workflow)
+Działanie aplikacji (ang. Application Workflow)
 --------------------
 
 Aby pomóc zrozumieć w jaki sposób Yii działa, opiszemy ogólnie przebieg działania aplikacji w naszym szkielecie aplikacji podczas gdy użytkownik żąda dostęp do strony kontaktowej:
@@ -77,9 +77,9 @@ Aby pomóc zrozumieć w jaki sposób Yii działa, opiszemy ogólnie przebieg dzi
  1. [Skrypt wejściowy](http://www.yiiframework.com/doc/guide/basics.entry) jest wykonywany przez serwer sieciowy aby przetworzyć żądanie.
  2. Instancja [aplikacji](http://www.yiiframework.com/doc/guide/basics.application) jest tworzona i konfigurowana początkowymi wartościami określonymi w pliku konfiguracyjnym aplikacji `/wwwroot/blog/protected/config/main.php`;
  3. Aplikacja dzieli żądanie na [kontroler](http://www.yiiframework.com/doc/guide/basics.controller) oraz [akcję kontrolera](http://www.yiiframework.com/doc/guide/basics.controller#action). Dla żądania strony kontaktowej, aplikacja dzieli żądanie na kontroler `site` oraz akcję `contact` (metoda `actionContact` w `/wwwroot/blog/protected/controllers/SiteController.php`);
- 4. Aplikacja tworz kontroler `site` pod postacią instancji `SiteController` a następnie uruchamia go;
+ 4. Aplikacja twórz kontroler `site` pod postacią instancji `SiteController` a następnie uruchamia go;
  5. Instancja kontrolera `SiteController` wykonuje akcję `contact` poprzez wywołanie metody kontrolera `actionContact()`;
- 6. Metoda `actionContact` generuje internaucie [widok](http://www.yiiframework.com/doc/guide/basics.view) o nazwie `contact`. Wewnętrznie dzieje się to poprzez załączenie pliku widoku `/wwwroot/blog/protected/views/site/contact.php` i osadzeniu wyniku w plku [układu](http://www.yiiframework.com/doc/guide/basics.view#layout) `/wwwroot/blog/protected/views/layouts/column1.php`.
+ 6. Metoda `actionContact` generuje internaucie [widok](http://www.yiiframework.com/doc/guide/basics.view) o nazwie `contact`. Wewnętrznie dzieje się to poprzez załączenie pliku widoku `/wwwroot/blog/protected/views/site/contact.php` i osadzeniu wyniku w pliku [układu](http://www.yiiframework.com/doc/guide/basics.view#layout) `/wwwroot/blog/protected/views/layouts/column1.php`.
 
 
 <div class="revision">$Id: start.testdrive.txt 1734 2010-01-21 18:41:17Z qiang.xue $</div>

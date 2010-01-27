@@ -24,7 +24,7 @@ return array(
 Włączenie buforowania schematu bazy
 -----------------------
 
-Ponieważ rekord aktywny wykorzystuje metadane pochodzące z tabel w celu określenia informacji o kolumnach, zajmuje mu trochę czasu ich odczytanie oraz przeanalizowanie. Może to nie być problemem podczas fazy tworzenia aplikacji ale dla aplikacji działającek w trybie produkcyjnym, jest to totalne marnotrawstwo czasu, jeśli schemat bazy danych nie zmienia się. Dlatego też, włączymy buforowanie schematu poprzez zmodyfikowanie konfiguracji aplikacji w następujący sposób,
+Ponieważ rekord aktywny wykorzystuje metadane pochodzące z tabel w celu określenia informacji o kolumnach, zajmuje mu trochę czasu ich odczytanie oraz przeanalizowanie. Może to nie być problemem podczas fazy tworzenia aplikacji ale dla aplikacji działającej w trybie produkcyjnym, jest to totalne marnotrawstwo czasu, jeśli schemat bazy danych nie zmienia się. Dlatego też, włączymy buforowanie schematu poprzez zmodyfikowanie konfiguracji aplikacji w następujący sposób,
 
 ~~~
 [php]
@@ -50,7 +50,7 @@ W powyższym kodzie, najpierw dodaliśmy komponent buforowania `cache`, który u
 Wyłączanie trybu debugowania
 ------------------------
 
-Zmodyfikujemy plik wejściowy `/wwwroot/blog/index.php` poprzez usunięcie linii definiującej stałą `YII_DEBUG`. Stała ta jest użyteczna podczas fazy tworzenia, gdyż pozwala ona Yii wyświetlać więcej informacji użytecznych dla debuggowania w przypadku wystąpienia błędu. Jednakże, jeśli aplikacja działa w trybie produkcyjnym, wyświetlanie takich informacji nie jest najlepszym pomysłem ponieważ mogą one zawierać wrażliwe informacje takie jak miejsce, gdzie skrypt się znajduje, oraz zawartość jego pliku, itp.
+Zmodyfikujemy plik wejściowy `/wwwroot/blog/index.php` poprzez usunięcie linii definiującej stałą `YII_DEBUG`. Stała ta jest użyteczna podczas fazy tworzenia, gdyż pozwala ona Yii wyświetlać więcej informacji użytecznych dla debugowania w przypadku wystąpienia błędu. Jednakże, jeśli aplikacja działa w trybie produkcyjnym, wyświetlanie takich informacji nie jest najlepszym pomysłem ponieważ mogą one zawierać wrażliwe informacje takie jak miejsce, gdzie skrypt się znajduje, oraz zawartość jego pliku, itp.
 
 
 Wdrażanie aplikacji
@@ -60,7 +60,7 @@ Końcowy proces wdrażana polega głównie na kopiowaniu katalogu `/wwwroot/blog
 
  1. Zainstaluj Yii w docelowym miejscu jeśli nie jest ono jeszcze tam dostępne; 
  2. Skopiuj całą zawartość katalogu `/wwwroot/blog` do miejsca docelowego;
- 3. Wyedytuj plik skrytu wejściowego `index.php` poprze wskazanie zmiennej `$yii` na nowy plik rozruchowy (ang. bootstrap file);
+ 3. Zmień plik skrytu wejściowego `index.php` poprzez wskazanie zmiennej `$yii` na nowy plik rozruchowy (ang. bootstrap file);
  4. Wyedytuj plik `protected/yiic.php` poprzez ustawienie zmiennej `$yiic` wskazujące  
  na nowy plik `yiic.php`;
  5. Zmień uprawnienia do katalogów `assets` oraz `protected/runtime` tak aby były one 

@@ -26,7 +26,7 @@
 	- [Tworzenie portletu chmurki tagów](portlet.tags)
 	- [Tworzenie portletu ostatnich komentarzy](portlet.comments)
 
-* Final Work
+* Wykańczanie
 	- [Upiększanie URLs](final.url)
 	- [Logowanie błędów](final.logging)
     - [Końcowe dopieszczanie oraz wdrażanie](final.deployment)

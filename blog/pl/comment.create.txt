@@ -71,7 +71,7 @@ protected function newComment($post)
 }
 ~~~
 
-W powyższym kodzie, wołamy metodę `newComment()` zanim wygenerujemy widok `view`. W metodzie `newComment()` generujemy instancję komentarza `Comment` i sprawdzamy czy formularz komentarza został przesłany. Jeśli tak, spróbujemy dodać komentarz do postu poprzez wywołanie `$post->addComment($comment)`. Jeżeli się to uda, odświeżymy stronę ze sczegółami postu. W przypadku gdy komentarz wymaga zatwierdzenia, pokażemy wiadomość typu flash aby to zakomunikować. Wiadomośc typu flash jest zazwyczaj wiadomością potwierdzającą coś, wyświetlaną użytkownikowi końcowemu. Jeśli użytkownik kliknie na przycisku odświeżenia w swojej przeglądarce wiadomość ta zniknie.
+W powyższym kodzie, wołamy metodę `newComment()` zanim wygenerujemy widok `view`. W metodzie `newComment()` generujemy instancję komentarza `Comment` i sprawdzamy czy formularz komentarza został przesłany. Jeśli tak, spróbujemy dodać komentarz do postu poprzez wywołanie `$post->addComment($comment)`. Jeżeli się to uda, odświeżymy stronę ze szczegółami postu. W przypadku gdy komentarz wymaga zatwierdzenia, pokażemy wiadomość typu flash aby to zakomunikować. Wiadomość typu flash jest zazwyczaj wiadomością potwierdzającą coś, wyświetlaną użytkownikowi końcowemu. Jeśli użytkownik kliknie na przycisku odświeżenia w swojej przeglądarce wiadomość ta zniknie.
 
 Musimy ponadto zmodyfikować również `/wwwroot/blog/protected/views/post/view.php`:
 
@@ -98,7 +98,7 @@ Musimy ponadto zmodyfikować również `/wwwroot/blog/protected/views/post/view.
 W powyższym kodzie wyświetlamy wiadomość typu flash jeśli jest dostępna. W przeciwnym przypadku, wyświetlamy formularz komentarza poprzez wygenerowanie widoku częściowego `/wwwroot/blog/protected/views/comment/_form.php`.
 
 
-Sprawdzanie porpawności danych po stronie klienta
+Sprawdzanie poprawności danych po stronie klienta
 ----------------------
 
 W celu wspierania sprawdzania poprawności po stronie klienta w formularzu komentarza, potrzebujemy dokonać niewielkich zmian zarówno w widoku formularza `/wwwroot/blog/protected/views/comment/_form.php` jak i w metodzie `newComment()`.
@@ -119,7 +119,7 @@ W pliku `_form.php` musimy przede wszystkim ustawić [CActiveForm::enableAjaxVal
 </div><!-- form -->
 ~~~
 
-Natomiast w metodzie `newComment()` wstawiamy część kodu aby odpowiedzieć na żądanie AJAX-a dotyczące sprawdzania poprawności. Kod sprawdza, czy w `POST` występuje zmienna `ajax`. Jeśli tak, wyświetlany jest rezultat sprawdzania poprawności poprzez wywołąnie [CActiveForm::validate].
+Natomiast w metodzie `newComment()` wstawiamy część kodu aby odpowiedzieć na żądanie AJAX-a dotyczące sprawdzania poprawności. Kod sprawdza, czy w `POST` występuje zmienna `ajax`. Jeśli tak, wyświetlany jest rezultat sprawdzania poprawności poprzez wywołanie [CActiveForm::validate].
 
 ~~~
 [php]

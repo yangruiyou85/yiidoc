@@ -12,7 +12,7 @@ Klasa postu `Post`, wygenerowana przez narzędzie `yiic` musi zostać zmodyfikow
 Dostosowywanie metody `rules()`
 ----------------------------
 
-Najpierw określamy zasady sprawdzania poprawności, które pozwalają nam upewnić się, że wartości atrybutów wprowadzonych przez użytkowika są poprawne, zanim zostaną zapisane do bazy danych. Na przykład, atrybut `status` dla postu `Post` powinien posiadać wartość 1, 2 lub 3. Narzędzie `yiic` również generuje zasady sprawdzania poprawności dla każdego modelu. Jednakże, reguły te bazują na infomracjach o kolumnie tabeli i mogą być nieodpowiednie.
+Najpierw określamy zasady sprawdzania poprawności, które pozwalają nam upewnić się, że wartości atrybutów wprowadzonych przez użytkownika są poprawne, zanim zostaną zapisane do bazy danych. Na przykład, atrybut `status` dla postu `Post` powinien posiadać wartość 1, 2 lub 3. Narzędzie `yiic` również generuje zasady sprawdzania poprawności dla każdego modelu. Jednakże, reguły te bazują na informacjach o kolumnie tabeli i mogą być nieodpowiednie.
 
 W oparciu o analizę potrzeb, modyfikujemy metodę `rules()` w następujący sposób:
 
@@ -33,7 +33,7 @@ public function rules()
 }
 ~~~
 
-W powyższym kodzie określiliśmy, że atrybuty tytułu `title`, zawartości `content` i statusu `status` są atrybutami wymaganymi (muszą być wypełnione); długość tytułu `title` nie powinna przekraczać 128 (znaków); wartość atrybutu statusu `status` powinna być 1 (wersja robocza, ang. draft), 2 (opublikowana, ang. published) lub 3 (zarchiwizowana, ang. archived); a atrybut otagowania `tags` powinien zawierać wyłącznie znaki słów oraz przecinki. Dodatkowo używamy metody `normalizeTags` do unormowania wprowadzonych przez użytkowniak tagów, w taki sposób, że tagi będą unikalne i poprawnie rozdzielone za pomocą przecinków. OStatnia reguła jest używana przez funkcjonalność wyszukiwania, co zostanie opisane później.
+W powyższym kodzie określiliśmy, że atrybuty tytułu `title`, zawartości `content` i statusu `status` są atrybutami wymaganymi (muszą być wypełnione); długość tytułu `title` nie powinna przekraczać 128 (znaków); wartość atrybutu statusu `status` powinna być 1 (wersja robocza, ang. draft), 2 (opublikowana, ang. published) lub 3 (zarchiwizowana, ang. archived); a atrybut otagowania `tags` powinien zawierać wyłącznie znaki słów oraz przecinki. Dodatkowo używamy metody `normalizeTags` do unormowania wprowadzonych przez użytkownika tagów, w taki sposób, że tagi będą unikalne i poprawnie rozdzielone za pomocą przecinków. Ostatnia reguła jest używana przez funkcjonalność wyszukiwania, co zostanie opisane później.
 
 Walidatory takie jak `required`, `length`, `in` oraz `match` są wbudowanymi walidatorami dostarczanymi przez Yii. Natomiast walidator `normalizeTags` jest walidatorem opartym na metodzie, która musimy zdefiniować w klasie postu `Post`. Aby uzyskać więcej informacji o tym jak określić reguły sprawdzania poprawności, zajrzyj do [poradnika](http://www.yiiframework.com/doc/guide/form.model#declaring-validation-rules).
 
@@ -47,7 +47,7 @@ public function normalizeTags($attribute,$params)
 
 Reguły zadeklarowane w tej metodzie są wywoływane jedna po drugiej podczas wywoływania metody [validate()|CModel::validate] lub [save()|CActiveRecord::save] dla instancji modelu.
 
-> Note|Uwaga: Niezmiernie ważnym jest aby zapamiętać, że atrybuty które pojawiły się w metodzie `rules()` były tymi, które są wprowadzane przez użytkownika. Pozostałe atrybuty takie jak `id` oraz czas utworzenia `create_time` w modelu postu `Post`, które są ustawiane przez nasz kod lub też bazę danych, nie powinny się znajdować w metodzie `rules()`. Aby usyskać więcej informacji o tym, proszę zajrzeć do [zabezpieczanie przypisywania atrybutów](http://www.yiiframework.com/doc/guide/form.model#securing-attribute-assignments).
+> Note|Uwaga: Niezmiernie ważnym jest aby zapamiętać, że atrybuty które pojawiły się w metodzie `rules()` były tymi, które są wprowadzane przez użytkownika. Pozostałe atrybuty takie jak `id` oraz czas utworzenia `create_time` w modelu postu `Post`, które są ustawiane przez nasz kod lub też bazę danych, nie powinny się znajdować w metodzie `rules()`. Aby uzyskać więcej informacji o tym, proszę zajrzeć do [zabezpieczanie przypisywania atrybutów](http://www.yiiframework.com/doc/guide/form.model#securing-attribute-assignments).
 
 Po wprowadzeniu tych zmian, możemy odwiedzić ponownie stronę tworzenia postów w celu weryfikacji czy nowe zasady sprawdzania poprawności mają miejsce.
 
@@ -101,7 +101,7 @@ Reprezentacja statusu w postaci tekstowej
 
 Ponieważ status wiadomości jest przechowywany jako wartość całkowita (integer) w bazie danych potrzebujemy dostarczyć jego reprezentację tekstową, po to aby wyświetlić ją w bardziej przystępnym formacie użytkownikowi końcowemu. Podobne wymagania występują bardzo często w dużych systemach. 
 
-Jako ogólne rozwiązanie dla ww problemu sotsujemy tabelę `tbl_lookup` przechowującą mapowania pomiędzy wartościami całkowitymi a tekstową reprezentacją potrzebną innym obiektom danych. Modyfikujemy klasę modelu `Lookup` w następujący sposób aby ułatwić dostęp do danych testkowych w tabeli: 
+Jako ogólne rozwiązanie dla ww problemu stosujemy tabelę `tbl_lookup` przechowującą mapowania pomiędzy wartościami całkowitymi a tekstową reprezentacją potrzebną innym obiektom danych. Modyfikujemy klasę modelu `Lookup` w następujący sposób aby ułatwić dostęp do danych testowych w tabeli: 
 
 ~~~
 [php]
@@ -141,7 +141,7 @@ Nasz kod głównie dostarcza dwóch metod statycznych: `Lookup::items()` oraz `L
 
 Nasza baza danych blogu jest wstępnie wypełniona przez dwa typy: status postu `PostStatus` oraz status komentarza `CommentStatus`. Pierwszy odpowiada możliwym statusom postów, drugi zaś komentarzy.
 
-Aby ułatwić czytanie naszego kodu, zadeklarowaliśmy również zestaw stałych, do reprezentowania wartości cąłkowitych statusów. Powinniśmy używać tych stałych w naszym kodzie kiedy odnosimy się do odpowiedniej wartości statusu.
+Aby ułatwić czytanie naszego kodu, zadeklarowaliśmy również zestaw stałych, do reprezentowania wartości całkowitych statusów. Powinniśmy używać tych stałych w naszym kodzie kiedy odnosimy się do odpowiedniej wartości statusu.
 
 ~~~
 [php]
