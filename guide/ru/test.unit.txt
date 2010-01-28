@@ -71,7 +71,7 @@ $comments = $this->comments;
 // возвращает строку с псевдонимом 'sample1' в таблице фикстур `Post`
 $post = $this->posts['sample1'];
 // возвращает экземпляр класса AR, представляющего строку данных фикстуры 'sample1'
-$post = $this->post('sample1');
+$post = $this->posts('sample1');
 ~~~
 
 > Note|Примечание: Если фикстура объявлена с использованием имени её таблицы
@@ -115,4 +115,4 @@ public function testApprove()
 ~~~
 
 
-<div class="revision">$Id: test.unit.txt 1648 2010-01-02 13:24:54Z qiang.xue $</div>
+<div class="revision">$Id: test.unit.txt 1745 2010-01-24 14:23:36Z qiang.xue $</div>
