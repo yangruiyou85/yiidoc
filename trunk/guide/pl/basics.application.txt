@@ -107,7 +107,7 @@ array(
 )
 ~~~
 
-W powyższym przykładzie, dodaliśmy element cache` do tablicy komponentów `components`.
+W powyższym przykładzie, dodaliśmy element `cache` do tablicy komponentów `components`.
 Element `cache` mówi, iż klasą komponentu jest `CMemCache` a jej właściwość `servers` 
 powinna być w taki i taki sposób zainicjalizowana.
 
