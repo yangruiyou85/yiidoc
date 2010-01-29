@@ -232,7 +232,7 @@ do których nie jest on upoważniony.
 Polityka decydowania, które atrybuty są bezpieczne różnic się w wersjach 1.0 
 oraz 1.1. W następnych akapitach opiszemy ją osobno dla każdej z wersji.
 
-***Bezpieczne atrybuty w wersji 1.1
+###Bezpieczne atrybuty w wersji 1.1
 
 W wersji 1.1, atrybut rozważany jest jako bezpieczny jeśli pojawia się on w regule 
 sprawdzania poprawności, która ma zastosowanie w danym scenariuszu. Na przykład,
@@ -294,7 +294,7 @@ Atrybut `unsafe` jest używany rzadko i jest wyjątkiem do naszego wcześniej zd
 atrybutu `safe`.
 
 
-***Bezpieczne atrybuty w wersji 1.0
+###Bezpieczne atrybuty w wersji 1.0
 
 W wersji 1.0, decyzja o tym, czy dane wejściowe są bezpieczne czy też nie jest podejmowana
 na podstawie wartości zwracanej przez metodę `safeAttributes` dla wybranego scenariusza. 
@@ -434,4 +434,4 @@ potrzeb poprzez nadpisanie metody [attributeLabels()|CModel::attributeLabels].
 Jak zobaczymy w następnych punktach, zdefiniowanie etykiet w modelu umożliwia nam tworzenie 
 formularzy szybciej i lepiej.
 
-<div class="revision">$Id: form.model.txt 1602 2009-12-18 19:33:34Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 1756 2010-01-27 19:56:16Z qiang.xue $</div>
