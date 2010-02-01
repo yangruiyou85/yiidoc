@@ -1,14 +1,14 @@
 View
 ====
 
-Ein View ist ein Script, das im Wesentlichen die Elemente der Bedienoberfläche
-enthält. Auch PHP-Befehle können vorkommen, aber es wird dringend empfohlen,
-dass solche Anweisungen relativ einfach gehalten werden und z.B. keine
-Datenmodels verändern. Im Sinne einer Trennung von Logik und
+Ein View ist ein Script, das zum größten Teil aus Elementen der Bedienoberfläche
+besteht. Er kann auch PHP-Befehle enthalten, aber es wird dringend empfohlen,
+solche Anweisungen einfach zu halten werden und z.B. keine
+Datenmodels zu verändern. Im Sinne einer Trennung von Logik und
 Präsentation, sollten größere Logikblöcke besser im
 Controller oder im Model untergebracht werden.
 
-Ein View hat einen Namen, der dem Namen der Viewdatei entspricht.
+Der Name eines Views entspricht seinem Dateinamen.
 Der View `edit` bezieht sich somit auf die Datei `edit.php`. Um
 einen View zu rendern, rufen Sie [CController::render()] mit dem Namen des
 Views auf. Die Methode sucht dann im Verzeichnis
@@ -38,9 +38,9 @@ Layout
 ------
 
 Ein Layout ist ein spezieller View, der zum "Dekorieren" anderer Views verwendet
-wird. In der Regel enthält es jene Bereiche der Bedienoberfläche, die mehrere
-Views gemeinsam haben. Ein Layout kann zum Beispiel Header- und
-Footer-Abschnitt enthalten, und den View-Inhalt zwischen den beiden einbinden,
+wird. Normalerweise enthält er jene Teile, die mehrere Views gemeinsam haben.
+Ein Layout kann zum Beispiel Header- und
+Footerabschnitt enthalten, und den Viewinhalt zwischen den beiden einbinden,
 
 ~~~
 [php]
@@ -49,7 +49,7 @@ Footer-Abschnitt enthalten, und den View-Inhalt zwischen den beiden einbinden,
 ......footer hier......
 ~~~
 
-wobei `$content` das gerenderte Ergebnis des eigentlichen Inhalt-Views enthält.
+wobei `$content` das Renderergebnis des eigentlichen Inhalt-Views enthält.
 
 Ein Layout wird immer "übergestülpt", wenn ein View mit [render()|CController::render]
 erstellt wird. Per Vorgabe wird dazu die Datei `protected/views/layouts/main.php` als Layout verwendet. 
@@ -61,10 +61,10 @@ Widget
 ------
 
 Ein Widget (sinngem.: Dings) ist eine Instanz von [CWidget] oder
-einer davon abgeleiteten Klasse. Bei Widgets handelt es sich um Komponenten,
-die hauptsächlich für Anzeigezwecke dienen. Für gewöhnlich werden sie in
-Views verwendet, um komplexe, jedoch in sich geschlossene Teile der
-Anwenderoberfläche zu erzeugen. Ein Kalenderwidget könnte z.B. ein
+einer davon abgeleiteten Klasse. Widgets sind Komponenten, die praktisch 
+ausschließlich zur Anzeige dienen. Für gewöhnlich werden sie in
+Views verwendet, um komplexe, in sich geschlossene Bedienelemente
+zu erzeugen. Ein Kalenderwidget könnte z.B. ein
 ausgefeiltes Kalender-Bedienelement rendern. Widgets tragen so wesentlich zur
 Wiederverwendbarkeit von Seitenkomponenten bei.
 
@@ -122,11 +122,11 @@ class MyWidget extends CWidget
 }
 ~~~
 
-Auch ein Widget kann ähnlich einem Controller eine eigene Viewdatei
+Auch ein Widget kann, ähnlich einem Controller, eine eigene Viewdatei
 verwenden. Standardmäig werden Widgetviews im Unterordner `views` des
 Verzeichnisses gesucht, in dem die Widgetklasse abgelegt wurde. Wie im
 Controller können diese Views mit [CWidget::render()] gerendert werden.
-Der einzige Unterschied besteht darin, dass kein Layout auf einen Widget-View
+Der einzige Unterschied besteht darin, dass kein Layout auf einen Widgetview
 angewendet wird.
 
 Systemview
@@ -142,7 +142,7 @@ Die Bezeichnung von Systemviews folgt einem Schema. Namen wie
 HTTP-Fehlercode `XXX` verwendet. Eine [CHttpException] mit dem
 Fehlercode 404, wird z.B. mit dem View `error404` angezeigt. 
 
-Yii stellt eine Reihe von Standard-Systemviews bereit, die unter
+Yii stellt eine Reihe von Vorgabe-Systemviews bereit, die unter
 `framework/views` zu finden sind. Man kann sie leicht anpassen, indem
 man gleichnamige Viewdateien in `protected/views/system` anlegt.
 
