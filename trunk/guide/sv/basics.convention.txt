@@ -129,6 +129,11 @@ krav från Yii:s sida.
    - För tabellnamn, kan antingen singularis eller pluralis användas, men inte både och. 
    För enkelhets skull rekommenderas namn i singularisform.
 
+   - Tabellnamn kan föregås av ett gemensamt prefix så som `tbl_`. Detta är speciellt användbart 
+   när tabellerna som hör till en applikation samexisterar, i samma databas, med tabeller 
+   som hör till en annan applikation. De två uppsättningarna tabeller kan särskiljas genom 
+   användning av olika tabellnamnprefix.
 
 
-<div class="revision">$Id: basics.convention.txt 1765 2010-02-01 00:22:07Z qiang.xue $</div>
+
+<div class="revision">$Id: basics.convention.txt 1768 2010-02-01 01:34:15Z qiang.xue $</div>
