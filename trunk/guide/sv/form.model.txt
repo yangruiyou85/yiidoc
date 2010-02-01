@@ -239,7 +239,7 @@ göra ändringar i data han saknar auktorisation att ändra.
 Policyn för att avgöra vilka attribut som är säkra skiljer sig åt i version 1.0
 och 1.1. I följande stycken beskrivs de var för sig.
 
-***Säkra attribut i 1.1
+###Säkra attribut i 1.1
 
 I version 1.1, betraktas ett attribut som säkert om det förekommer i en 
 valideringsregel som är applicerbar på det givna scenariet. Till exempel,
@@ -300,7 +300,7 @@ array('permission', 'unsafe')
 säkra attribut.
 
 
-***Säkra attribut i 1.0
+###Säkra attribut i 1.0
 
 I version 1.0 baseras uppgiften att avgöra huruvida en datainmatning är säker 
 eller inte på returvärdet från en metod med namnet `safeAttributes` samt det 
@@ -440,4 +440,4 @@ ledtext. Detta kan anpassas genom att åsidosätta metoden
 avsnitt, tillåter specificering av ledtexter i modellen, oss att skapa formulär 
 snabbare och mer kraftfullt.
 
-<div class="revision">$Id: form.model.txt 1602 2009-12-18 19:33:34Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 1756 2010-01-27 19:56:16Z qiang.xue $</div>
