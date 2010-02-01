@@ -605,7 +605,7 @@ Post::model()->published()->recently()->delete();
 ~~~
 
 > Note|Märk: Namngivna omfång kan endast användas för metoder på klassnivå. 
-Det innebär att metoden måste anropas på formatet `Klassnamn::modell()`.
+Det innebär att metoden måste anropas på formatet `Klassnamn::model()`.
 
 
 ### Parametriserade namngivna omfång
