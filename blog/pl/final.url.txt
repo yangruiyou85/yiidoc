@@ -4,16 +4,16 @@ Upiększanie URLi
 Adresy URL łączące różne strony naszego blogu wyglądają obecnie brzydko. Na przykład, URL dla strony wyświetlającej wiadomości wygląda następująco:
 
 ~~~
-/index.php?r=post/show&id=1
+/index.php?r=post/show&id=1&title=A+Test+Post
 ~~~
 
 W części tej opiszemy jak upiększyć te adresy URL i uczynić je przyjaznymi dla SEO. Naszym celem jest używanie następujących adresów URL w aplikacji:
 
- 1. `/index.php/posts/yii`: prowadzi do strony pokazującej listę postów z tagiem `yii`;
+ 1. `/index.php/posts/yii`: prowadzi do strony pokazującej listę wiadomości z tagiem `yii`;
  2. `/index.php/post/12/A+Test+Post`: prowadzi do strony pokazującej szczegóły wiadomości o ID równym 2, którego tytułem jest `A Test Post`;
  3. `/index.php/post/update/1`: prowadzi do strony, która pozwala aktualizować wiadomość o ID 1;
 
-Zauważ, że w drugim formacie adresu URL dodajemy tytuł postu do adresu URL. Czynimy to aby uczynić adres URL przyjaznym SEO. Mówi się, że wyszukiwarki mogą również uwzględniać słowa znalezione w adresach URL podczas ich indeksowania.
+Zauważ, że w drugim formacie adresu URL dodajemy tytuł wiadomości do adresu URL. Czynimy to aby uczynić adres URL przyjaznym SEO. Mówi się, że wyszukiwarki mogą również uwzględniać słowa znalezione w adresach URL podczas ich indeksowania.
 
 Aby osiągnąć nasz cel, zmodyfikujemy [konfigurację aplikacji](http://www.yiiframework.com/doc/guide/basics.application#application-configuration) w następujący sposób:
 
@@ -42,4 +42,4 @@ Reguły używane są przez `urlManager` do analizowanie i tworzenia URLi w zapro
 Komponent `urlManager` może później upiększyć nasze URLe, np. poprzez ukrycie `index.php` w URLach, dodanie sufiksu takiego jak `.html` do URLi. Możemy uzyskać te funkcje w prosty sposób poprzez konfigurowanie różnych właściwości `urlManager` w konfiguracji aplikacji. Aby uzyskać więcej szczegółów, zajrzyj do [przewodnika](http://www.yiiframework.com/doc/guide/topics.url).
 
 
-<div class="revision">$Id: final.url.txt 1733 2010-01-21 16:54:29Z qiang.xue $</div>
+<div class="revision">$Id: final.url.txt 1768 2010-02-01 01:34:15Z qiang.xue $</div>

@@ -69,7 +69,7 @@ protected function beforeSave()
 }
 ~~~
 
-Podczas zapisywania postu, chcemy zaktualizować tabelę `tbl_tag` aby odzwierciedlić zmiany w częstotliwości występowań tagów. Możemy to uczynić w metodzie `afterSave()`, która jest automatycznie wołana przez Yii po tym jak post został poprawnie zapisany do bazy danych.  
+Podczas zapisywania wiadomości, chcemy zaktualizować tabelę `tbl_tag` aby odzwierciedlić zmiany w częstotliwości występowań tagów. Możemy to uczynić w metodzie `afterSave()`, która jest automatycznie wołana przez Yii po tym jak wiadomość została poprawnie zapisana do bazy danych.  
 
 ~~~
 [php]
@@ -88,7 +88,7 @@ protected function afterFind()
 }
 ~~~
 
-W trakcie implementacji potrzebujemy wiedzieć jakie są stare tagi dlatego, że chcemy wykryć czy użytkownik zmienił tagi podczas aktualizacji istniejącego posta. Z tego powodu napisaliśmy metodę `afterFind()` aby przechowywała stare tagi w zmiennej `_oldTags`. Metoda `afterFind()` jest wywoływana automatycznie przez Yii jeśli AR jest wypełniany danymi z bazy danych. 
+W trakcie implementacji potrzebujemy wiedzieć jakie są stare tagi dlatego, że chcemy wykryć czy użytkownik zmienił tagi podczas aktualizacji istniejącej wiadomości. Z tego powodu napisaliśmy metodę `afterFind()` aby przechowywała stare tagi w zmiennej `_oldTags`. Metoda `afterFind()` jest wywoływana automatycznie przez Yii jeśli AR jest wypełniany danymi z bazy danych. 
 
 Nie będziemy tutaj wchodzić w szczegóły metod `Tag::updateFrequency()`. Zainteresowani tym czytelnicy mogą zajrzeć do pliku `/wwwroot/yii/demos/blog/protected/models/Tag.php`.
 
