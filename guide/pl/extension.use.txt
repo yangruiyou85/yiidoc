@@ -113,8 +113,7 @@ zrobić ze wzdlędu na to, że [CApplicationComponent] definiuje właściwość 
 Poprzez przypisanie tej właściwości listy zawierającej konfigurację zachowań, komponent 
 dołączy odpowiednie zachowanie w momencie inicjalizacji komponentu.
 
-Dla klas [CController], [CFormModel] oraz [CActiveModel], które zazwyczaj są rozszerzane 
-dołączanie zachowań odbywa się poprzez nadpisanie ich metody `behaviors()`. Na przykład:
+Dla klas [CController], [CFormModel] oraz [CActiveRecord], które zazwyczaj są rozszerzane dołączanie zachowań może odbywać się poprzez nadpisanie ich metody `behaviors()`. Klasy automatycznie dołączą każde zachowanie zadeklarowane w tej metodzie podczas inicjalizacji. Na przukład:
 
 ~~~
 [php]
@@ -313,4 +312,4 @@ Następnie, możemy utworzyć instancję tej klasy, skonfigurować jej właściw
 oraz zawołać jej metody. Możemy również rozszerzyć go do tworzenia nowych
 klas potomnych.
 
-<div class="revision">$Id: extension.use.txt 1602 2009-12-18 19:33:34Z qiang.xue $</div>
+<div class="revision">$Id: extension.use.txt 1780 2010-02-01 20:32:50Z qiang.xue $</div>
