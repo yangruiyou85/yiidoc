@@ -1,7 +1,7 @@
 Scaffolding
 ===========
 
-Tworzenie, czytanie, aktualizowanie oraz usuwanie (CRUD, od ang. create, read, update, delete) są czterema podstawowymi operacjami na obiektach danych  w aplikacji. Ponieważ zadanie implementacji operacji CRUD jest tak powszechne podczas tworzenia aplikacji sieciowych, Yii dostarcza narzędzia do zautomatyzowania tego procesu (znanego również jako *scaffolding*). W tej części opiszemy jak używać tego narzędzia do implementacji operacji CRUD dla postów oraz komentarzy.
+Tworzenie, czytanie, aktualizowanie oraz usuwanie (CRUD, od ang. create, read, update, delete) są czterema podstawowymi operacjami na obiektach danych  w aplikacji. Ponieważ zadanie implementacji operacji CRUD jest tak powszechne podczas tworzenia aplikacji sieciowych, Yii dostarcza narzędzia do zautomatyzowania tego procesu (znanego również jako *scaffolding*). W tej części opiszemy jak używać tego narzędzia do implementacji operacji CRUD dla wiadomości oraz komentarzy.
 
 Otwórz okno poleceń i wykonaj następujące polecenia:
 

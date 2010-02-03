@@ -58,7 +58,7 @@ Widok `recentComments` jest zapisany w pliku `/wwwroot/blog/protected/components
 Używanie portletu `RecentComments`
 ------------------------------
 
-Zmodyfikujemy plik układu `/wwwroot/blog/protected/views/layouts/main.php` by osadzić w nim ten ostatni portlet.
+Zmodyfikujemy plik układu `/wwwroot/blog/protected/views/layouts/column2.php` by osadzić w nim ten ostatni portlet.
 
 ~~~
 [php]
@@ -79,4 +79,4 @@ Zmodyfikujemy plik układu `/wwwroot/blog/protected/views/layouts/main.php` by o
 ......
 ~~~
 
-<div class="revision">$Id: portlet.comments.txt 1683 2010-01-08 05:08:29Z qiang.xue $</div>
+<div class="revision">$Id: portlet.comments.txt 1773 2010-02-01 18:39:49Z qiang.xue $</div>

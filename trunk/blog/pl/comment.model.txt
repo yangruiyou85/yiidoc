@@ -53,7 +53,7 @@ public function attributeLabels()
 Dostosowywanie procesu zapisywania
 --------------------------
 
-Ponieważ chcemy zapisać czas utworzenia komentarza, nadpisujemy metody `beforeSave()` komentarza `Comment` tak jak to zrobiliśmy dla modelu postu `Post`:
+Ponieważ chcemy zapisać czas utworzenia komentarza, nadpisujemy metody `beforeSave()` komentarza `Comment` tak jak to zrobiliśmy dla modelu wiadomości `Post`:
 
 ~~~
 [php]

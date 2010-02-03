@@ -12,7 +12,7 @@ W oparciu o analizę wymagań, zdecydowaliśmy się używać następujące bazy 
 		 * 2, oznacza iż wiadomość jest upubliczniona;
 		 * 3, oznacza iż wiadomość jest nieaktualna i nie jest widoczna na liście wiadomości (choć nadal dostępna)
 	 - `tags` (otagowanie): opcjonalne, lista rozdzielonych przecinkami słów, kategoryzujących wiadomość.
- * Tabela `tbl_comment` przechowuje informacje o komentarzach do wiadomości. Każdy komentarz jest powiązany z postem i przede wszystkim zawiera następujące kolumny:
+ * Tabela `tbl_comment` przechowuje informacje o komentarzach do wiadomości. Każdy komentarz jest powiązany z wiadomością i przede wszystkim zawiera następujące kolumny:
 	 - `name` (nazwa): wymagana, nazwa autora komentarza;
 	 - `email` (email): wymagany, e-mail autora komentarza;
 	 - `website` (strona WWW): opcjonalna, strona WWW autora komentarza;
@@ -20,8 +20,8 @@ W oparciu o analizę wymagań, zdecydowaliśmy się używać następujące bazy 
 	 - `status` (status): wymagany, status komentarza determinujący czy komentarz został zatwierdzony (wartość 2) lub nie (wartość 1).
  * Tabela `tbl_tag` zawiera informację o częstotliwości występowania tagów, która jest potrzebna do zaimplementowania chmury tagów. Tabela ta zawiera przede wszystkim następujące kolumny:
  	 - `name` (nazwa): wymagana, unikalna nazwa tagu;
- 	 - `frequency` (częstotliwość): wymagana, ilość występowań tagu w postach;
- * Tabela przeglądowa `tbl_lookup` zawiera ogólne, przeglądowe informacje. Jest to w istocie tabela pomiędzy wartościami liczbowymi a tekstami. Pierwsze są reprezentacją danych w naszym kodzie, drugie zaś odpowiadają tekstom prezentowanym użytkownikowi końcowemu. Na przykład, używamy wartości numerycznej 1 do reprezentowania wersji tymczasowej postu a łańcucha znaków `Draft` w celu wyświetlenia tego statusu użytkownikowi końcowemu. Tabela ta zawiera przede wszystkim następujące kolumny:
+ 	 - `frequency` (częstotliwość): wymagana, ilość występowań tagu w wiadomościach;
+ * Tabela przeglądowa `tbl_lookup` zawiera ogólne, przeglądowe informacje. Jest to w istocie tabela pomiędzy wartościami liczbowymi a tekstami. Pierwsze są reprezentacją danych w naszym kodzie, drugie zaś odpowiadają tekstom prezentowanym użytkownikowi końcowemu. Na przykład, używamy wartości numerycznej 1 do reprezentowania wersji tymczasowej wiadomości a łańcucha znaków `Draft` w celu wyświetlenia tego statusu użytkownikowi końcowemu. Tabela ta zawiera przede wszystkim następujące kolumny:
  	 - `name` (nazwa): tekstowa reprezentacja pozycji danych, która zostanie wyświetlona użytkownikowi końcowemu; 
  	 - `code` (kod): wartość numeryczna, reprezentująca pozycję danych;
  	 - `type`: typ pozycji danych;
