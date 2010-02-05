@@ -124,6 +124,40 @@ foreach($comments as $comment)
 Более подробно использование и определение отношений описано в
 [полном руководстве](/doc/guide/ru/database.arr).
 
+Добавляем свойство `url`
+------------------------
+
+Каждой записи соответствует уникальный URL. Вместо повсеместного
+вызова [CWebApplication::createUrl] для формирования этого URL, мы можем
+добавить свойство `url` модели `Post` и повтороно использовать код для генерации URL.
+Позже мы опишем, как получить красивые URL. Использование свойства модели позволит
+реализовать это максимально удобно.
+
+Для того, чтобы добавить свойство `url`, мы добавляем геттер в класс `Post`:
+
+~~~
+[php]
+class Post extends CActiveRecord
+{
+	public function getUrl()
+	{
+		return Yii::app()->createUrl('post/view', array(
+			'id'=>$this->id,
+			'title'=>$this->title,
+		));
+	}
+}
+~~~
+
+В дополнение к ID записи, в URL через GET-параметр мы выводим заголовок.
+Делается это главным образом для оптимизации под поисковые алгоритмы (SEO).
+Подробнее это будет описано в разделе [Человекопонятные URL](/doc/blog/ru/final.url).
+
+Так как [CComponent] является предком класса `Post`, геттер `getUrl()` позволяет
+нам писать код вроде `$post->url`. При обращении к `$post->url` будет вызван геттер
+и мы получим результат его выполнения. Более подробно это описано
+[в полном руководстве](/doc/guide/ru/basics.component).
+
 Текстовое представление для статуса
 -----------------------------------
 
@@ -184,9 +218,9 @@ class Lookup extends CActiveRecord
 [php]
 class Post extends CActiveRecord
 {
-	const STATUS_DRAFT=0;
-	const STATUS_PUBLISHED=1;
-	const STATUS_ARCHIVED=2;
+	const STATUS_DRAFT=1;
+	const STATUS_PUBLISHED=2;
+	const STATUS_ARCHIVED=3;
 	......
 }
 ~~~
@@ -196,4 +230,4 @@ class Post extends CActiveRecord
 `Lookup::items('PostStatus')`. А для получения конкретной строки — кодом
 `Lookup::item('PostStatus', Post::STATUS_PUBLISHED)`.
 
-<div class="revision">$Id: post.model.txt 1736 2010-01-22 12:34:07Z qiang.xue $</div>
+<div class="revision">$Id: post.model.txt 1774 2010-02-01 18:45:19Z qiang.xue $</div>

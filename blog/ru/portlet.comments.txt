@@ -64,7 +64,7 @@ class Comment extends CActiveRecord
 Использование портлета `RecentComments`
 --------------------------------------
 
-Мы изменяем файл макета `/wwwroot/blog/protected/views/layouts/main.php`
+Мы изменяем файл макета `/wwwroot/blog/protected/views/layouts/column2.php`
 для включения нашего последнего портлета:
 
 ~~~
@@ -86,4 +86,4 @@ class Comment extends CActiveRecord
 …
 ~~~
 
-<div class="revision">$Id: portlet.comments.txt 1683 2010-01-08 05:08:29Z qiang.xue $</div>
+<div class="revision">$Id: portlet.comments.txt 1773 2010-02-01 18:39:49Z qiang.xue $</div>
