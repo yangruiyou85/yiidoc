@@ -29,7 +29,7 @@ Wersja 1.1.0
  * Ulepszono sposób deklarowania bezpiecznych atrybutów modelu. Zobacz
  [zabezpieczanie przypisywania atrybutów](/doc/guide/form.model#securing-attribute-assignments).
 
- * Zmieniono domyślny algorytm gorliwego ładowania dla zapytań dla relacyjnych rekordów aktywnych, 
+ * Zmieniono domyślny algorytm zachłannego ładowania dla zapytań dla relacyjnych rekordów aktywnych, 
  tak że wszystkie tabele są łączone w jednym zapytaniu SQL.
 
  * Zmieniono domyślny alias tabeli, tak aby wskazywał na nazwę relacji rekordu aktywnego.

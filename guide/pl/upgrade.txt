@@ -22,15 +22,15 @@ używana w zamian.
 
 - usunięto CHtml::scenario. CHtml będzie używał właściwości scenariusza modelu w zamian.
 
-Zmiany związane z żwawym ładowaniem dla relacyjnego rekordy aktywnego (AR)
+Zmiany związane z zachłannym ładowaniem dla relacyjnego rekordy aktywnego (AR)
 ---------------------------------------------------------------
 
 - Domyślnie, pojedyncze wyrażenie JOIN będzie wygenerowane i użyte dla wszystkich  
-relacji zaangażowanych w żwawe ładowanie. Jeśli dla głównej tabeli ustawione są 
+relacji zaangażowanych w zachłanne ładowanie. Jeśli dla głównej tabeli ustawione są 
 opcje zapytania `LIMIT` oraz `OFFSET`, najpierw zostanie zadane zapytanie tylko dla niej 
 a następnie wywołane zostanie kolejne zapytanie SQL, które zwróci wszystkie powiązane
 obiekty. Poprzednio w wersji 1.0.x, domyślnym zachowaniem było wywołanie `N+1` 
-zapytań SQL jeśli żwawe ładowanie angażowało `N` relacji `HAS_MANY` lub `MANY_MANY`.
+zapytań SQL jeśli zachłanne ładowanie angażowało `N` relacji `HAS_MANY` lub `MANY_MANY`.
 
 - Alias nazwy dla tabeli głównej w zapytaniu AR ustalony jest jako `t`.
 Poprzednio w wersji 1.0.x, był on taki sam jak nazwa tabeli. Powodowało to, 

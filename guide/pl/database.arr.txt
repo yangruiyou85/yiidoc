@@ -167,10 +167,10 @@ skorzystać z właściwości elementu nie będącego obiektem" (ang. "Trying to 
 Technika opóźnionego ładowania jest bardzo poręczne w użyciu, ale nie zawsze jest wydajne 
 we wszystkich scenariuszach. Dla przykładu, jeśli chcemy uzyskać dostęp do informacje o autorze dla 
 `N` postów, używając techniki opóźnionego ładowania wykonamy `N` zapytań z użyciem join. 
-W tych warunkach powinniśmy uciec się do tak zwanej techniki *gorliwego ładowania* 
+W tych warunkach powinniśmy uciec się do tak zwanej techniki *zachłannego ładowania* 
 (ang. eager loading approach).
 
-Technika gorliwego ładowania zwraca powiązane instancje AR razem z główną(ymi) instancją(ami) AR. 
+Technika zachłannego ładowania zwraca powiązane instancje AR razem z główną(ymi) instancją(ami) AR. 
 Osiągamy to poprzez użycie metody [with()|CActiveRecord::with] razem z jedną z metod AR 
 [find|CActiveRecord::find] lub [findAll|CActiveRecord::findAll]. Na przykład, 
 
@@ -182,11 +182,11 @@ $posts=Post::model()->with('author')->findAll();
 Powyższy kod zwróci tablicę instancji `Post`. W odróżnieniu od techniki leniwego ładowania
 właściwość `author` w każdej instancji `Post` jest już wypełniona odpowiednią instancją 
 `User` przed jej pierwszym odczytaniem. Zamiast wywoływania zapytania z join dla 
-każdego posty, technika gorliwego ładowania zwraca wszystkie posty razem wraz z autorami 
+każdego posty, technika zachłannego ładowania zwraca wszystkie posty razem wraz z autorami 
 za pomocą jednego zapytania z join!
 
 Możemy używać jednocześnie wielu nazw relacji w metodzie [with()|CActiveRecord::with] 
-a technika gorliwego łączenia dostarczy nam je z powrotem za jednym razem. 
+a technika zachłannego łączenia dostarczy nam je z powrotem za jednym razem. 
 Na przykład, następujący kod zwróci posty razem z ich autorami oraz kategoriami:
 
 ~~~
@@ -194,7 +194,7 @@ Na przykład, następujący kod zwróci posty razem z ich autorami oraz kategori
 $posts=Post::model()->with('author','categories')->findAll();
 ~~~
 
-Możemy również korzystać z zagnieżdżonych gorliwych ładowań. Zamiast listy nazw relacji, 
+Możemy również korzystać z zagnieżdżonych zachłannych ładowań. Zamiast listy nazw relacji, 
 przekazujemy w postaci hierarchicznej nazwy relacji do metody [with()|CActiveRecord::with] 
 w następujący sposób:
 
@@ -209,7 +209,7 @@ $posts=Post::model()->with(
 Powyższy przykład zwróci wszystkie posty razem z ich autorami oraz kategoriami. 
 Zwróci również dla każdego autora profil oraz posty.
 
-Poczynając od wersji 1.1.0, gorliwe ładowanie może zostać również wywołane poprzez
+Poczynając od wersji 1.1.0, zachłanne ładowanie może zostać również wywołane poprzez
 określenie właściwości [CDbCriteria::with] w następujący sposób:
 
 ~~~
@@ -363,7 +363,7 @@ Dynamiczne opcje pytań relacyjnych
 Wraz z wersją 1.0.2 możemy używać dynamicznych opcji zapytań relacyjnych zarówno w metodzie 
 [with()|CActiveRecord::with] jak i opcji `with`. Dynamiczne opcje nadpiszą istniejące 
 opcje tak jak zostało to określone w metodzie [relations()|CActiveRecord::relations].
-Na przykład, dla powyższego modelu `User`, jeśli chcemy używać techniki gorliwego ładowania
+Na przykład, dla powyższego modelu `User`, jeśli chcemy używać techniki zachłannego ładowania
 aby zwrócić posty należące do autora sortujące jest rosnąco 
 (opcja `order` w specyfikacji relacji jest malejąca), możemy zrobić to następująco:
 
@@ -389,7 +389,7 @@ $posts=$user->posts(array('condition'=>'status=1'));
 Wydajność relacyjneych zapytań
 ----------------------------
 
-Jak opisaliśmy powyżej, gorliwe ładowanie jest używant w scenariuszu, gdy potrzebujemy otrzymać  
+Jak opisaliśmy powyżej, zachłanne ładowanie jest używant w scenariuszu, gdy potrzebujemy otrzymać  
 dostęp do wielu powiązanych obiektów. Generuje one duże, złożone zapytanie SQL 
 poprzed połączenie wszystkich potrzebnych tabel. Duże zapytanie SQL
 jest prefereoane w wielu przypadkach, ponieważ upraszcza filtrowanie
@@ -411,7 +411,7 @@ dancyh i w ten sposób potrzebujemy więcej czasu by je odczytać i przetworzyć
 
 Z tego powodu Yii dostarcza opcję zapytania `together`, tak by można było wybierać pomiędzy 
 oboma podejściami w zależności od potrzeb. Domyślnie przyjmuje pierwsze podejście, czyli 
-tworzy jedno zapytanie SQL aby wykonać gorliwe ładowanie. Możemy ustawić opcję `together` 
+tworzy jedno zapytanie SQL aby wykonać zachłanne ładowanie. Możemy ustawić opcję `together` 
 jako false w deklaracji zapytania, tak że część tabel będzie połączona w oddzielnym zapytaniu SQL.
 Na przykład odpytując o ostanie posty wraz z ich komentarzami, w celu użycia drugiego podejścia,   
 możemy zadeklarować relację `comments` w klasie `Post` następująco:
@@ -426,7 +426,7 @@ public function relations()
 }
 ~~~
 
-Możemy również dynamicznie ustawić tą opcję kiedy wykonujemy gorliwe ładowanie:
+Możemy również dynamicznie ustawić tą opcję kiedy wykonujemy zachłanne ładowanie:
 
 ~~~
 [php]
@@ -482,7 +482,7 @@ Jedyną różnicą jest to, że typem relacji jest tutaj `STAT`.
 
 Przy użyciu powyższej deklaracji możemy otrzymać ilość komentarzy dla postu przy użyciu wyrażenia `$post->commentCount`. Jeśli użyjemy tej właściwości po raz pierwszy,  
 wyrażenie SQL zostanie wywołane w ukryciu w celu uzyskania pożądanego rezultatu. Jak już wiemy, jest to tak zwane *leniwe ładowanie*.
-Możemy również używać *gorliwego ładowania*  jeśli chcemy dowiedzieć uzyskać ilość komentarzy dla wielu postów.
+Możemy również używać *zachłannego ładowania*  jeśli chcemy dowiedzieć uzyskać ilość komentarzy dla wielu postów.
 
 ~~~
 [php]
