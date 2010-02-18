@@ -5,7 +5,7 @@ Modul
 
 Ein Modul ist eine in sich geschlossene Einheit, die aus
 [Models](/doc/guide/basics.model), [Views](/doc/guide/basics.view),
-[Controllern](/doc/guide/basics.controller) und anderen tragenden Komponenten
+[Controllern](/doc/guide/basics.controller) und evtl. weiteren Komponenten 
 besteht. In vielerlei Hinsicht erinnert ein Modul an eine
 [Applikation](/doc/guide/basics.application). Der wesentliche Unterschied
 besteht darin, dass ein Modul nicht für sich allein betrieben werden kann und
@@ -43,7 +43,7 @@ forum/
 ~~~
 
 Ein Modul muss eine Modulklasse beinhalten, die von [CWebModule] abgeleitet
-wurde. Der Klassenname wird mit dem Ausdruck `ucfirst($id).'Module'` gebildet,
+wurde. Der Klassenname wird gemäß dem Ausdruck `ucfirst($id).'Module'` gebildet,
 wobei `$id` sich auf die Modul-ID (bzw. den Verzeichnisnamen des Moduls)
 bezieht. Die Modulklasse dient zum Ablegen von Informationen, die 
 im gesamten Modul benötigt werden. Man kann z.B.

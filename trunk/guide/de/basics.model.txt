@@ -6,7 +6,7 @@ werden verwendet, um Daten und ihre Geschäftslogik festzuhalten.
 
 Ein Model steht für ein einzelnes Datenobjekt. Dabei kann es sich um eine Zeile
 in einer Datenbanktabelle oder ein Formular mit Benutzereingaben handeln.
-Jedem Feld des Datenobjekts entspricht ein Attribut des Models.
+Jedes Attribut des Models entspricht einem Feld des Datenjobekts.
 Ein Attribut hat ein Label (Bezeichnung bzw. Beschriftung) und kann mit einer
 Reihe von Regeln validiert, also auf Gültigkeit geprüft werden.
 
