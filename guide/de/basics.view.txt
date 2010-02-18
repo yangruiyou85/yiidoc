@@ -2,7 +2,7 @@ View
 ====
 
 Ein View ist ein Script, das zum größten Teil aus Elementen der Bedienoberfläche
-besteht. Er kann PHP-Befehle enthalten, aber es wird dringend empfohlen,
+besteht. Es kann durchaus PHP-Befehle enthalten. Aber es wird dringend empfohlen,
 diese Anweisungen einfach zu halten und z.B. keine
 Datenmodels zu verändern. Im Sinne einer Trennung von Logik und
 Präsentation, sollten größere Logikblöcke besser im
