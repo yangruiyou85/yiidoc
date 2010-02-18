@@ -138,4 +138,4 @@ public function actionIndex()
 `/wwwroot/blog/protected/views/post/_view.php`, в котором мы можем
 обращаться к записи через переменную `$data`.
 
-<div class="revision">$Id: post.display.txt 1763 2010-02-01 00:07:59Z qiang.xue $</div>
+<div class="revision">$Id: post.display.txt 1810 2010-02-18 00:24:54Z qiang.xue $</div>

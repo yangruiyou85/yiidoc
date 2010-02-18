@@ -72,4 +72,4 @@ public function actionIndex()
 Заинтересованные читатели могут изучить соответствующий файл демонстрационного
 приложения: `/wwwroot/yii/demos/blog/protected/views/comment/_view.php`.
 
-<div class="revision">$Id: comment.admin.txt 1683 2010-01-08 05:08:29Z qiang.xue $</div>
+<div class="revision">$Id: comment.admin.txt 1810 2010-02-18 00:24:54Z qiang.xue $</div>
