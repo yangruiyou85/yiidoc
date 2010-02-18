@@ -15,9 +15,9 @@
     - [View](basics.view)
     - [Modul](basics.module)
     - [Komponente](basics.component)
-    - [Pfad-Aliase und Namespace](basics.namespace)
+    - [Pfadaliase und Namespace](basics.namespace)
     - [Konventionen](basics.convention)
-    - [Der Entwicklungsprozess mit Yii](basics.workflow)
+    - [Entwickeln mit Yii](basics.workflow)
 
 * Mit Formularen arbeiten
     - [Übersicht](form.overview)

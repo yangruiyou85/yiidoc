@@ -179,12 +179,11 @@ $component->enableBehavior($name);
 $component->test();
 ~~~
 
-Sollten zwei Behaviors an eine Komponente angehängt sein, die beide eine
-Methode mit dem selben Namen haben, wird die Methode des zuerst angehängten
-Behaviors aufgerufen.
+Sollte eine Methode aufgerufen werden, die in zwei angehängten Behaviors vorhanden ist, 
+wird die Methode des zuerst angehängten Behaviors aufgerufen.
 
 Im Zusammenhang mit [Events](#component-event) sind Behaviors noch wesentlich
-leistungsfähiger. Wenn ein Behavior an eine Komponente angehängt, kann
+leistungsfähiger. Wenn ein Behavior an eine Komponente gehängt wird, kann
 es eine oder mehrere seiner Methoden an Events dieser Komponente anhängen.
 Dadurch kann kann das Behavior den normalen Prozessablauf innerhalb
 einer Komponente überwachen oder verändern.
