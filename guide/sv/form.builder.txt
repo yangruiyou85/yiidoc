@@ -427,7 +427,7 @@ echo $form->renderBegin();
 foreach($form->getElements() as $element)
 	echo $element->render();
 
-echo $this->renderEnd();
+echo $form->renderEnd();
 ~~~
 
 För att använda detta vyskript kan vi göra följande metodanrop:
@@ -461,4 +461,4 @@ nytta, dock, att formuläret specificeras genom användning av en separat konfig
 hjälper utvecklare att bättre fokusera på logiken.
 
 
-<div class="revision">$Id: form.builder.txt 1616 2009-12-25 20:45:50Z qiang.xue $</div>
+<div class="revision">$Id: form.builder.txt 1808 2010-02-17 21:49:42Z qiang.xue $</div>
