@@ -103,6 +103,6 @@ Po zakończeniu prac z metodą `actionIndex()`, możemy przejść do modyfikacji
 )); ?>
 ~~~
 
-Zauważ, że w powyższym kodzie używamy [[CListView]] do wyświetlenia listy wiadomości. Widżet ten potrzebuje częściowego widoku do wyświetlenia szczegółów pojedynczych wiadomości. Tutaj określiliśmy ten częściowy widok jako `_view`, co wskazuje na plik `/wwwroot/blog/protected/views/post/_view.php`. W tym pliku widoku, mamy dostęp do instancji wiadomości, która jest wyświetlana poprzez lokalną zmienną o nazwie `$data`.
+Zauważ, że w powyższym kodzie używamy [CListView] do wyświetlenia listy wiadomości. Widżet ten potrzebuje częściowego widoku do wyświetlenia szczegółów pojedynczych wiadomości. Tutaj określiliśmy ten częściowy widok jako `_view`, co wskazuje na plik `/wwwroot/blog/protected/views/post/_view.php`. W tym pliku widoku, mamy dostęp do instancji wiadomości, która jest wyświetlana poprzez lokalną zmienną o nazwie `$data`.
 
-<div class="revision">$Id: post.display.txt 1763 2010-02-01 00:07:59Z qiang.xue $</div>
+<div class="revision">$Id: post.display.txt 1810 2010-02-18 00:24:54Z qiang.xue $</div>
