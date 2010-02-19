@@ -258,8 +258,9 @@ Reguła odpowiada trasie `user/profile`.
 Zauważ, że [CUrlManager::showScriptName] nie będzie działało, jeśli URL zostanie  
 utworzony za pomocę reguły z parametryzowaną nazwą hosta.
 
-Zauważ, że również w przypadku gdy aplikacja znajduje się w podkatalogu katalogu głównego www,  
-wtedy podkatalog powinien być usunięty z reguły. Na przykład, jeśli aplikacja znajduje się w 
+Zauważ, że reguła ze sparametryzowaną nazwą hosta NIE POWINNA zawierać podkatalogu
+jeśli aplikacja znajduje się w podkatalogu katalogu głównego www.
+Na przykład, jeśli aplikacja znajduje się w 
 `http://www.example.com/sandbox/blog`, wtedy wciąż powinniśmy używać tej samej reguły URL  
 jak opisana powyżej bez podkatalogu `sandbox/blog`.
 
@@ -305,4 +306,4 @@ do strony statycznej. Aby to zrobić po prostu skonfiguruj komponent
 [urlManager|CWebApplication::urlManager] ustawiając jego właściwość
 [urlSuffix|CUrlManager::urlSuffix] na taki sufiks, jaki ci odpowiada.
 
-<div class="revision">$Id: topics.url.txt 1696 2010-01-10 13:16:22Z qiang.xue $</div>
+<div class="revision">$Id: topics.url.txt 1809 2010-02-17 22:08:34Z qiang.xue $</div>
