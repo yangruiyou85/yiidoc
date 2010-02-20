@@ -226,6 +226,7 @@ return array(
 		......
         'user'=>array(
             'type'=>'form',
+            'model'=>$userModel,
             'title'=>'Данные для входа',
             'elements'=>array(
             	'username'=>array(
@@ -242,6 +243,7 @@ return array(
 
         'profile'=>array(
         	'type'=>'form',
+        	'model'=>$profileModel,
         	......
         ),
         ......
@@ -463,4 +465,4 @@ $this->renderPartial('_form', array('form'=>$form));
 те же объёмы кода формы. Тем не менее, преимущество есть. Оно в том, что форма,
 описанная в отдельном файле конфигурации, позволяет разработчику сфокусироваться на логике.
 
-<div class="revision">$Id: form.builder.txt 1808 2010-02-17 21:49:42Z qiang.xue $</div>
+<div class="revision">$Id: form.builder.txt 1824 2010-02-19 22:37:31Z qiang.xue $</div>
