@@ -226,6 +226,7 @@ return array(
 		......
         'user'=>array(
             'type'=>'form',
+            'model'=>$userModel,
             'title'=>'Login Credential',
             'elements'=>array(
             	'username'=>array(
@@ -242,6 +243,7 @@ return array(
 
         'profile'=>array(
         	'type'=>'form',
+        	'model'=>$profileModel,
         	......
         ),
         ......
@@ -467,4 +469,4 @@ gdyż nadal porzebujemy pisać podobną ilość kodu formularza. Mimo to, jest t
 korzyści, gdyż formularz jest opisywany za pomocą oddzielnego pliku konfiguracyjnego, co pomaga 
 programistom lepiej skupić się na logice.
 
-<div class="revision">$Id: form.builder.txt 1808 2010-02-17 21:49:42Z qiang.xue $</div>
+<div class="revision">$Id: form.builder.txt 1824 2010-02-19 22:37:31Z qiang.xue $</div>
