@@ -371,33 +371,33 @@ Validierung erfolgreich war.  Bei einem [CActiveRecord]-Model wird die
 Validierung zudem automatisch ausgelöst, sobald man die Modelmethode
 [CActiveRecord::save()] ausführt.
 
-Beim Aufruf von [CModel::validate()], kann man außerdem einen Szenarioparameter
-angeben, damit nur die Regeln für dieses Szenario verwendet werden.
-Eine Regel wird in einem Szenario verwendet, wenn deren `on`-Option 
-entweder den Namen des Szenarios enthält oder gar nicht gesetzt ist. Gibt man kein
-Szenario bei [CModel::validate()] an, werden nur jene Regeln ausgeführt, die
-keine `on`-Option gesetzt haben.
-
-Bei der Registrierung eines Benutzers würde man z.B. so vorgehen:
+Die Validierung erfolgt immer im Rahmen eines bestimmten Szenarios. Über 
+[scenario|CModel::scenario] wird das aktuelle Szenario gesetzt und somit
+bestimmt, welche Regeln angewendet werden sollen. Bei einem Benutzermodel sollen 
+z.B. im `login`-Szenario nur `username` und `password` überprüft werden. Im
+Szenario `register` hingegen sollen evtl. weitere Attribute validiert werden, z.B.
+`email`, `address`, etc. Die Validierung würde man dann wie folgt durchführen:
 
 ~~~
 [php]
-$model->scenario='register';
-$model->validate();
+// Erstellt ein neues Model User im register-Szenario. Enstpricht diesem Code:
+// $model=new User;
+// $model->scenario='register';
+$model=new User('register');
+
+// Befüllt das Model mit den gesendeten Daten
+$model->attributes=$_POST['User'];
+
+// Führt die Validierung durch
+if($model->validate())   // falls Eingabewerte in Ordung ...
+    ...
+else
+    ...
 ~~~
 
-> Note|Hinweis: Die Eigenschaft [scenario|CModel::scenario] ist seit Version
-> 1.0.4 verfügbar. Bei der Validierung wird darüber das zu verwendende 
-> Szenario bestimmt. In den Versionen
-> 1.0.2 und 1.0.3 musste man die szenarienbasierte Validierung wie folgt
-> durchführen:
->
-> ~~~
-> [php]
-> $model->validate('register');
-> ~~~
-
-Im Formularmodel kann man die Regeln so angeben:
+Um anzugeben, in welchem Szenario eine Regel verwendet werden soll, werden die
+Szenarien in der `on`-Option der Regel angegeben. Ist die `on`-Option nicht gesetzt, 
+gilt die Validierungsregel in allen Szenarien. Ein Beispiel:
 
 ~~~
 [php]
@@ -411,25 +411,24 @@ public function rules()
 }
 ~~~
 
-Die erste Regel wird dann in allen Szenariern verwendet, die anderen beiden
-nur um `register`-Szenario.
+Die erste Regel wird in allen Szenarien verwendet, die anderen beiden
+nur um Szenario `register`.
 
-> Note|Hinweis: Die szenarienbasierte Validierung ist seit Version 1.0.1
-verfügbar.
 
 Abfragen von Validierungsfehlern
 --------------------------------
 
-Mit der Modelmethode [CModel::hasErrors()] kann man prüfen, ob bei der 
-Validierung Fehler aufgetreten sind. Falls ja, liefert
-[CModel::getErrors()] die Fehlermeldungen. Beide Methoden können jeweils für alle oder
-nur ein einzelnes Attribut verwendet werden.
+Bei der Validierung werden die aufgetretenen Fehler im Model gespeichert. 
+Mit den Modelmethoden [CModel::getErrors()] und [CModel::getError()] können 
+diese Fehler hinterher abgerufen werden. Die erste Methode liefert *alle*
+Fehler für das angegebene Attribut zurück, die zweite nur den *ersten* Fehler.
+
 
 Attributlabel
 --------------
 
-Jedes Eingabefeld in einem Formular benötigt in der Regel ein Label
-(Beschriftung), um den Inhalt des Eingabefeldes zu beschreiben. Man kann ein
+Jedes Eingabefeld in einem Formular benötigt normalerweise ein Label(Beschriftung), 
+um den Inhalt des Eingabefeldes zu beschreiben. Man kann ein
 Label zwar fest in einem View hinterlegen, aber die Labels im Model zu
 definieren lässt mehr Flexibilität zu und ist am Ende meist komfortabler.
 
@@ -439,4 +438,4 @@ können die Labels angepasst werden. Wie wir in den nächsten Abschnitten sehen
 werden, ermöglicht die Labeldefinition innerhalb des Models, die 
 zugehörigen Formulare schnell und effektiv zu erzeugen.
 
-<div class="revision">$Id: form.model.txt 1756 2010-01-27 19:56:16Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 1835 2010-02-24 13:06:18Z qiang.xue $</div>
