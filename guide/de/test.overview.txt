@@ -159,4 +159,4 @@ einer Anwendungsinstanz, die fast genauso aussieht, wie jene die unsere
 Web-Requests beantwortet. Der wesentliche Unterschied liegt darin, dass ein
 Fixturemanager enthalten ist und sie die Testdatenbank verwendet.
 
-<div class="revision">$Id: test.overview.txt 1440 2009-10-08 00:08:00Z qiang.xue $</div>
+<div class="revision">$Id: test.overview.txt 1813 2010-02-18 21:33:16Z qiang.xue $</div>

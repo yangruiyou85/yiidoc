@@ -1,26 +1,28 @@
 ﻿Erstellen des Models
 ====================
 
-Bevor wir den HTML-Code für ein Formular schreiben, sollten wir entscheiden,
-welche Daten wir vom Endbenutzer erwarten und welche Regeln diese Daten
-erfüllen sollen. Eine Model-Klasse kann genutzt werden um diese Informationen
-aufzunehmen. Wie im Abschnitt [Model](/doc/guide/basics.model)
-definiert, ist ein Model ein zentraler Ort zur Aufbewahrung und
-Prüfung von Benutzereingaben.
+Bevor man sich an das HTML für ein Formular macht, sollte man sich überlegen,
+welche Daten überhaupt erfasst werden sollen und welchen Regeln diese Daten
+entsprechen müssen. Die nötigen Informationen dazu können in einer Modelklasse
+festgehalten werden. Wie im Kapitel [Model](/doc/guide/basics.model)
+beschrieben, ist ein Model ja der zentrale Ort zur Speicherung und Validierung
+von eingegebenen Daten.
 
-Je nachdem, wie wir die Benutzereingaben weiterverwenden, können wir zwischen
-zwei Model-Typen wählen. Wenn Benutzereingaben erfasst, verarbeitet und dann verworfen
-werden sollen, erstellen wir ein [Formular-Model](/doc/guide/basics.model).
-Wenn die Benutzereingaben erfasst und in einer Datenbank gespeichert werden,
-verwenden wir stattdessen einen [ActiveRecord](/doc/guide/database.ar).
-Beide Model-Typen benutzen die gleiche Basisklasse [CModel], in der die 
-gemeinsame Schnittstelle zu einem Formular definiert ist.
+Es stehen zwei Modeltypen zur Auswahl, je nachdem, wie die eingegebenen Daten
+weiterverwendet werden sollen. Geht es lediglich darum, Daten zu erfassen, zu
+verabeiten und dann wieder zu verwerfen, bietet sich ein
+[Formularmodel](/doc/guide/basics.model) an. Sollen die Daten hingegen in einer
+Datenbank gespeichert werden, ist ein [ActiveRecord](/doc/guide/database.ar)
+die bessere Wahl. Beide Modeltypen stammen von der selben Basisklasse [CModel]
+ab. In ihr sind die Teile der Schnittstelle definiert, die beide Typen
+gemeinsam haben.
 
-> Note|Hinweis: In den Beispielen dieses Abschnitts benutzen wir hauptsächlich
-Formular-Models. Genausogut könnte ein [ActiveRecord](/doc/guide/database.ar)
-verwendet werden. 
+> Note|Hinweis: Obwohl in den Beispielen dieses Abschnitts hauptsächlich
+Formularmodels vorkommen, kann man stattdessen genauso auch 
+[ActiveRecords](/doc/guide/database.ar) verwenden. Die Verfahren sind bei
+beiden die selben.
 
-Definieren der Model-Klasse
+Definieren der Modelklasse
 ---------------------------
 
 Unten erzeugen wir die Model-Klasse `LoginForm`, um die Benutzereingaben
@@ -240,7 +242,7 @@ Die Regeln anhand derer entschieden wird, ob ein Attribut sicher ist oder nicht,
 unterscheiden sich zwischen Version 1.0 und 1.1. Daher beschreiben wir
 im Folgenden beide Versionen.
 
-***Sichere Attribute in 1.1
+###Sichere Attribute in 1.1
 
 In Version 1.1 gilt ein Attribut als sicher, wenn es dafür eine
 Validierungsregel im gegebenen Szenario gibt. Zum Beispiel:
@@ -303,7 +305,7 @@ Diese Regel wird nur selten verwendet. Sie ist eine Ausnahme zu unserer
 vorhergehenden Definition sicherer Attribute.
 
 
-***Sichere Attribute in 1.0
+###Sichere Attribute in 1.0
 
 In Version 1.0 basierte die Entscheidung, ob ein Attribut sicher ist oder nicht, 
 auf dem Rückgabewert der Methode `safeAttributes` (sichere Attribute) und 
@@ -443,4 +445,4 @@ angepasst werden. Wie wir in den folgenden Kapiteln sehen werden, erlaubt
 uns die Angabe von Labels im Model, ein Formular schneller und wirkungsvoller zu
 erstellen.
 
-<div class="revision">$Id: form.model.txt 1602 2009-12-18 19:33:34Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 1756 2010-01-27 19:56:16Z qiang.xue $</div>
