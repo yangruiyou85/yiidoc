@@ -54,7 +54,7 @@
 
 * Spezialthemen
     - [URL-Management](topics.url)
-    - [Authentifizierung und Berechtigung](topics.auth)
+    - [Authentifizierung und Berechtigungen](topics.auth)
     - [Themes und Skins](topics.theming)
     - [Protokollierung (Logging)](topics.logging)
     - [Fehlerbehandlung](topics.error)

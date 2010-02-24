@@ -418,7 +418,7 @@ nur um Szenario `register`.
 Abfragen von Validierungsfehlern
 --------------------------------
 
-Bei der Validierung werden die aufgetretenen Fehler im Model gespeichert. 
+Bei der Validierung werden die auftretenden Fehler im Model gespeichert. 
 Mit den Modelmethoden [CModel::getErrors()] und [CModel::getError()] können 
 diese Fehler hinterher abgerufen werden. Die erste Methode liefert *alle*
 Fehler für das angegebene Attribut zurück, die zweite nur den *ersten* Fehler.
@@ -438,4 +438,4 @@ können die Labels angepasst werden. Wie wir in den nächsten Abschnitten sehen
 werden, ermöglicht die Labeldefinition innerhalb des Models, die 
 zugehörigen Formulare schnell und effektiv zu erzeugen.
 
-<div class="revision">$Id: form.model.txt 1835 2010-02-24 13:06:18Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 1836 2010-02-24 14:28:18Z qiang.xue $</div>
