@@ -69,6 +69,8 @@ class LoginForm extends CFormModel
 	public $password;
 	public $rememberMe=false;
 
+	private $_identity;
+
 	public function rules()
 	{
 		return array(
@@ -80,15 +82,10 @@ class LoginForm extends CFormModel
 
 	public function authenticate($attribute,$params)
 	{
-		if(!$this->hasErrors())  // wir wollen nur bei fehlerfreier Eingabe identifizieren
+		if(!$this->hasErrors())  // Nur authentifizieren, wenn keine Fehler
 		{
-			$identity=new UserIdentity($this->username,$this->password);
-			if($identity->authenticate())
-			{
-				$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 Tage
-				Yii::app()->user->login($identity,$duration);
-			}
-			else
+			$this->_identity=new UserIdentity($this->username,$this->password);
+			if(!$this->_identity->authenticate())
 				$this->addError('password','Falsches Passwort.');
 		}
 	}
@@ -438,4 +435,4 @@ können die Labels angepasst werden. Wie wir in den nächsten Abschnitten sehen
 werden, ermöglicht die Labeldefinition innerhalb des Models, die 
 zugehörigen Formulare schnell und effektiv zu erzeugen.
 
-<div class="revision">$Id: form.model.txt 1836 2010-02-24 14:28:18Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 1837 2010-02-24 22:49:51Z qiang.xue $</div>

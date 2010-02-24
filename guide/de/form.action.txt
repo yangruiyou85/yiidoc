@@ -9,24 +9,24 @@ Für unsere Anmeldeseite kann der Code so aussehen:
 [php]
 public function actionLogin()
 {
-	$form=new LoginForm;
+	$model=new LoginForm;
 	if(isset($_POST['LoginForm']))
 	{
 		// Erfasst die gesendeten Formulardaten
-		$form->attributes=$_POST['LoginForm'];
+		$model->attributes=$_POST['LoginForm'];
         // Validiert die Daten und kehrt zur vorherigen Seite zurück, 
 		// wenn die Prüfung erfolgreich war.
-	    if($form->validate())
+	    if($model->validate())
 			$this->redirect(Yii::app()->user->returnUrl);
 	}
 	// Zeigt das Anmeldeformular
-	$this->render('login',array('user'=>$form));
+	$this->render('login',array('model'=>$model));
 }
 ~~~
 
 Zunächst wird eine Instanz des `LoginForms` erstellt. Liegen Formulardaten im
 POST-Request vor (was heißt, dass das Formular abgeschickt wurde), wird
-`$form` mit den Daten aus `$_POST['LoginForm']` befüllt. Ist die folgende
+`$model` mit den Daten aus `$_POST['LoginForm']` befüllt. Ist die folgende
 Validierung des Models erfolgreich, wird der Browser auf die Seite umgeleitet,
 die der Besucher ohne die dafür nötige Anmeldung aufrufen wollte. Ergab die Prüfung
 Fehler oder wird die Action zum ersten mal ausgeführt, wird der View `login`
@@ -44,7 +44,7 @@ Sehen wir uns die folgende Anweisung aus obigem Code genauer an:
 
 ~~~
 [php]
-$form->attributes=$_POST['LoginForm'];
+$model->attributes=$_POST['LoginForm'];
 ~~~
 
 Wie im Abschnitt [Sichere Attributzuweisungen](/doc/guide/form.model#securing-attribute-assignments)
@@ -58,9 +58,9 @@ vorhanden ist):
 
 ~~~
 [php]
-$form->username=$_POST['LoginForm']['username'];
-$form->password=$_POST['LoginForm']['password'];
-$form->rememberMe=$_POST['LoginForm']['rememberMe'];
+$model->username=$_POST['LoginForm']['username'];
+$model->password=$_POST['LoginForm']['password'];
+$model->rememberMe=$_POST['LoginForm']['rememberMe'];
 ~~~
 
 > Note|Hinweis: Damit `$_POST['LoginForm']` ein Array statt eines String
@@ -72,4 +72,4 @@ aus obigem Beispiel würde daher `LoginForm[username]` heißen.
 Schließlich muss nun noch der `login`-View mit einem HTML-Formular erstell
 werden.
 
-<div class="revision">$Id: form.action.txt 626 2009-02-04 20:51:13Z qiang.xue $</div>
+<div class="revision">$Id: form.action.txt 1837 2010-02-24 22:49:51Z qiang.xue $</div>
