@@ -1,7 +1,7 @@
-Authentifizierung und Berechtigung
-==================================
+Authentifizierung und Berechtigungen
+====================================
 
-Authentifizierung und Berechtigung (engl.: authorization) spielen bei einer
+Authentifizierung und Berechtigungen (engl.: authorization) spielen bei einer
 Webseite dann eine Rolle, wenn diese für bestimmte Benutzer nur beschränkt 
 zugänglich sein soll. Bei der *Authentifizierung* wird geprüft, ob jemand auch 
 tatsächlich der ist, der er vorgibt zu sein. In der Regel kommen dazu
