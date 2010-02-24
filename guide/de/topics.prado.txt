@@ -1,5 +1,5 @@
-Verwenden der Alternativen Template-Syntax
-==========================================
+Alternative Templatesyntax
+==========================
 
 Yii erlaubt es dem Entwickler, seine eigene bevorzugte Template-Syntax 
 (z.B. von Prado oder Smarty) für Controller- und Widget-Views zu verwenden.

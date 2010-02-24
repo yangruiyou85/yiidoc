@@ -60,7 +60,7 @@
     - [Fehlerbehandlung](topics.error)
     - [Webservice](topics.webservice)
     - [Internationalisierung (I18N)](topics.i18n)
-    - [Alternative Template-Syntax](topics.prado)
+    - [Alternative Templatesyntax](topics.prado)
     - [Konsolenanwendungen](topics.console)
     - [Sicherheit](topics.security)
     - [Performance-Optimierung](topics.performance)
