@@ -17,9 +17,7 @@ Um die Übersetzungen auch gleich betrachten zu können, gibt es eine Yii-Anwend
 
 === Sprachstil ===
 
-Die Übersetzung sollte nicht Wort für Wort erfolgen, sondern vielmehr den Sinn des Textes in gutem Deutsch wiedergeben. Allzulange Sätze sind zu vermeiden. Im englischen getrennt geschriebene Worte werden i.d.R. im Deutschen zusammengeschrieben. So wird aus "web application" die "Webanwendung". Lediglich bei sperrigen langen Worten kann ein Bindestrich verwendet werden, wie z.B. bei Web-Programmierung.
-
-Zusammengesetzte Wörter, die im Deutschen weniger übliche Begriffe enthalten, werden mit Bindestrich getrennt: "View-Ordner", "Widget-Datei". Bei Worten mit Fugen-S wird meist kein Bindestrich verwendet ("Anwendungskomponente"), bei sehr langen Worten kann hier eine Ausnahme gemacht werden.
+Die Übersetzung sollte nicht Wort für Wort erfolgen, sondern vielmehr den Sinn des Textes in gutem Deutsch wiedergeben. Allzulange Sätze sind zu vermeiden. Im englischen getrennt geschriebene Worte werden i.d.R. im Deutschen zusammengeschrieben. So wird aus "web application" die "Webanwendung". Bei sehr langen Worten können diese mit Bindestrich getrennt werden.
 
 === Anrede ===
 
@@ -40,7 +38,7 @@ Beispiele:
 
 Auch sämtliche Dateinamen für Controller, Views, etc. werden nicht übersetzt. Auch viele spezifische Begriffe wie "Model", "View", "Controller" werden nicht übersetzt, um die Verzahnung mit Verzeichnisnamen (z.B. protected/views) zu erhalten.
 
-Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wird im Zweifelsfall die deutsche Dokumentation der entsprechenden Software-Projekte herangezogen.
+Bei projektspez. Begriffen (z.B. "PHP extension" oder "Apache DocumentRoot") wird im Zweifelsfall die deutsche Dokumentation der entsprechenden Softwareprojekte herangezogen.
 
 
 Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änderungen sollten dann aber konsistent in der gesamten Dokumentation angepasst werden.
@@ -78,16 +76,16 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * login - anmelden, Anmeldung (Anmeldeseite, ...)
  * logout - abmelden, Abmeldung
  * method - Methode
- * message routing - Routing von Logmeldungen
- * message filtering - Filtern der Logmeldungen
+ * message routing - Routing, Routing von Logmeldungen
+ * message filtering - Filterung, Filtern von Logmeldungen
  * message source (i18n) - Textquelle
  * (named) scope - Scope
  * object - Objekt (OOP)
  * operation (RBAC) - Operation
- * path alias - Pfad-Alias
- * performance profiling - Performance-Analyse
+ * path alias - Pfadalias
+ * performance profiling - Performanceanalyse
  * property (member, attribute, ..) - Eigenschaft (gilt jedoch nicht für Attribute eines Models)
- * relational query - Relationale Abfrage (!= Verbundabfrage)
+ * relational query - Relationale Abfrage (!= Verbundabfrage!!)
  * relational activerecord - Relationale ActiveRecords
  * role - Rolle
  * role-based access control - Rollenbasierte Zugriffskontrolle
@@ -99,16 +97,16 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
 ==== Nicht zu übersetzende Begriffe ====
 
  * Action, _die_
- * `ActiveRecord`, _der_
+ * `ActiveRecord`, _das_
  * Array, _das_
  * Behavior, _das_
  * Button, _der_
  * Cache (bzw. Caching), _der_
  * Callback, _der_
  * Client, _der_
- * Constraints (Plural) _die_
+ * Constraints (Plural), _die_
  * Controller, _der_
- * Debug, _das_ debuggen, _der_ Debug-Modus
+ * Debug, _das_ Debuggen, _der_ Debugmodus
  * Eager Loading, _das_
  * Event, _das_
  * Exception, _die_
@@ -130,7 +128,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * String, _der_
  * Traffic, _der_
  * Validator, _der_
- * View, _der_
+ * View, _der_ (evtl. auch _die_)
  * Widget, _das_
  * Wrapper, _der_
 
@@ -138,4 +136,4 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
 
  * Theme - Bleibt Theme, evtl. in Klammern "Motiv"
  * Asset - Bleibt Asset, aus Mangel einer vernünftigen Übersetzung
- * cache dependency - Cachen mit Abhängkeit. (Dependency bezieht sich im englischen auch auf das Objekt, von dem die Abhängikeit besteht. Im Deutschen kann "change of dependency" aber nicht mit "Änderung der Abhängigkeit" übersetzt werden, weil das vielmehr eine Änderung in der Abhängigkeitsbeziehung bedeuten würde)
+ * cache dependency - Cachen mit Abhängkeit. 
