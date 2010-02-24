@@ -19,7 +19,7 @@
     - [Konventionen](basics.convention)
     - [Entwickeln mit Yii](basics.workflow)
 
-* Mit Formularen arbeiten
+* Arbeiten mit Formularen
     - [Übersicht](form.overview)
     - [Erstellen des Models](form.model)
     - [Erstellen der Action](form.action)

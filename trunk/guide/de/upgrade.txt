@@ -58,4 +58,10 @@ vorangestellt wird.
 sollten jetzt `[$i]Feld` heißen, um auch Array-Felder verwenden zu können
 (z.B. `[$i]Feld[$index]`).
 
-<div class="revision">$Id: upgrade.txt 1699 2010-01-10 16:32:09Z qiang.xue $</div>
+Weitere Änderungen
+------------------
+
+- Die Signatur des Konstruktors in [CActiveRecord] hat sich geändert. Der
+erste Parameter (Liste mit Attributen) wurde entfernt.
+
+<div class="revision">$Id: upgrade.txt 1819 2010-02-18 22:56:55Z qiang.xue $</div>

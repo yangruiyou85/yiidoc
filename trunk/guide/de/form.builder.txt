@@ -457,7 +457,7 @@ class MyForm extends CForm
 }
 ~~~
 
-Wir können auch ein Viewscript `_form` zum Rendern des Formulars schreiben:
+Zum Rendern des Formular kann man auch ein Viewscript `_form` verwenden:
 
 ~~~
 [php]
@@ -467,7 +467,7 @@ echo $form->renderBegin();
 foreach($form->getElements() as $element)
 	echo $element->render();
 
-echo $this->renderEnd();
+echo $form->renderEnd();
 ~~~
 
 Um dieses Script zu verwenden, rufen wir es einfach so auf:
@@ -501,4 +501,4 @@ noch fast genausoviel Code wie bisher brauchen. Trotzdem kann sich der Einsatz
 lohnen, da das Formular in einer separaten Datei definiert wird und sich
 der Entwickler so besser auf die Logik konzentrieren kann.
 
-<div class="revision">$Id: form.builder.txt 1616 2009-12-25 20:45:50Z qiang.xue $</div>
+<div class="revision">$Id: form.builder.txt 1824 2010-02-19 22:37:31Z qiang.xue $</div>

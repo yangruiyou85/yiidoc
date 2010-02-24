@@ -73,4 +73,38 @@ nutzen, sieht das erzeugte Formular folgendermaßen aus:
 
 ![Die Anmeldeseite mit Fehlern](login2.png)
 
-<div class="revision">$Id: form.view.txt 1623 2009-12-27 20:02:43Z qiang.xue $</div>
+Seit Version 1.1.1 kann man Formulare auch mit dem neuen [CActiveForm]-Widget
+erstellen. Damit ist es möglich, die Validierung sowohl auf Client- als auch 
+auf Serverseite durchzuführen. Mit [CActiveForm] wird der obige Code dann zu:
+
+~~~
+[php]
+<div class="form">
+<?php $form=$this->beginWidget('CActiveForm'); ?>
+
+	<?php echo $form->errorSummary($model); ?>
+
+	<div class="row">
+		<?php echo $form->label($model,'username'); ?>
+		<?php echo $form->textField($model,'username') ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'password'); ?>
+		<?php echo $form->passwordField($model,'password') ?>
+	</div>
+
+	<div class="row rememberMe">
+		<?php echo $form->checkBox($model,'rememberMe'); ?>
+		<?php echo $form->label($model,'rememberMe'); ?>
+	</div>
+
+	<div class="row submit">
+		<?php echo CHtml::submitButton('Login'); ?>
+	</div>
+
+<?php $this->endWidget(); ?>
+</div><!-- form -->
+~~~
+
+<div class="revision">$Id: form.view.txt 1751 2010-01-25 17:21:31Z qiang.xue $</div>
