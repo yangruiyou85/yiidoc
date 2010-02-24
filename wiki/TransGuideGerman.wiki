@@ -75,6 +75,7 @@ Die folgenden Listen sind als Diskussionsgrundlage zu verstehen. Spätere Änder
  * log route - Logroute
  * login - anmelden, Anmeldung (Anmeldeseite, ...)
  * logout - abmelden, Abmeldung
+ * massive assignment - Massenzuweisung (Model)
  * method - Methode
  * message routing - Routing, Routing von Logmeldungen
  * message filtering - Filterung, Filtern von Logmeldungen
