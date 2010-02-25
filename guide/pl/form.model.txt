@@ -65,6 +65,8 @@ class LoginForm extends CFormModel
 	public $password;
 	public $rememberMe=false;
 
+	private $_identity;
+
 	public function rules()
 	{
 		return array(
@@ -76,15 +78,10 @@ class LoginForm extends CFormModel
 
 	public function authenticate($attribute,$params)
 	{
-		if(!$this->hasErrors())  // chcemy uwierzytelniać, tylko wtedy gdy nie ma błędów
+		if(!$this->hasErrors())  // we only want to authenticate when no input errors
 		{
-			$identity=new UserIdentity($this->username,$this->password);
-			if($identity->authenticate())
-			{
-				$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 dni
-				Yii::app()->user->login($identity,$duration);
-			}
-			else
+			$this->_identity=new UserIdentity($this->username,$this->password);
+			if(!$this->_identity->authenticate())
 				$this->addError('password','Incorrect password.');
 		}
 	}
@@ -361,37 +358,39 @@ Wyzwalanie sprawdzania poprawności (ang. Triggering Validation)
 Kiedy model jest wypełniony danymi pochodzącymi od użytkownika, możemy wywołać metodę 
 [CModel::validate()] w celu rozpoczęcia procesu sprawdzania poprawności danych. 
 Metoda ta zwraca wartość na podstawie której podejmowana jest decyzja, czy sprawdzanie 
-wartości zakończyło się sukcesem czy też nie. Dla modelu [CActiveRecord] sprawdzanie 
+wartości zakończyło się sukcesem czy też nie. Dla modeli [CActiveRecord] sprawdzanie 
 poprawności może być również automatycznie wyzwolone, podczas wywołania metody [CActiveRecord::save()].
 
+Scenariusz możemy ustawić za pomocą właściwości [scenario|CModel::scenario] i w ten sposób wskazać, który zestaw reguł sprawdzania poprawności powinien zostać zastosowany.
 
-Podczas wywoływania metody [CModel::validate()] możemy podać parametr opisujący scenariusz.
-Tylko te reguły sprawdzania poprawności, które pasują do podanego scenariusza będą 
-wywołane. Reguła sprawdzania poprawności ma zastosowanie do scenariusza jeśli 
-opcja `on` reguły nie jest ustawiona lub zawiera one określoną nazwę scenariusza. 
-Jeśli nie określimy scenariusza podczas wywoływania [CModel::validate()] tylko te 
-reguły będą wywołane, które nie posiadają ustawionej opcji `on`.
-
-Na przykład, wywołujemy następujące wyrażenie, aby sprawdzić poprawność podczas 
-rejestracji użytkownika:
+Sprawdzanie poprawności jest wykonywane na postawie scenariusza. Właściwość [scenario|CModel::scenario]
+określa, który scenariusz modelu jest wykorzystywany oraz który zestaw reguł sprawdzania
+poprawności powinien zostać użyty. Na przykład, w scenariuszu logowania `login` chcemy sprawdzić
+jedynie nazwę użytkownika `username` oraz hasło `password` dla modelu użytkownika. Natomiast
+w scenariuszu rejestracji `register` potrzebujemy sprawdzić większą ilość danych, takich jak
+email `email`, adres `address`, itp. Następujący przykład pokazuje jak wykonać sprawdzanie
+poprawności w scenariuszu rejestracji `register`:
 
 ~~~
 [php]
-$model->scenario='register';
-$model->validate();
+// tworzenie modelu użytkownika User w scenariuszu rejestracji. Równożnaczne z:
+// $model=new User;
+// $model->scenario='register';
+$model=new User('register');
+
+// wypełnianie model wartościami wejściowymi
+$model->attributes=$_POST['User'];
+
+// wykonanie sprawdzania poprawności
+if($model->validate())   // jeśli dane wejściowe są poprawne
+    ...
+else
+    ...
 ~~~
 
-> Note|Uwaga: właściwość [scenario|CModel::scenario] została udostępniona wraz z wersją 1.0.4.
-> Metoda sprawdzania poprawności będzie używała wartości tej właściwości aby ustalić, które 
-> reguły muszą być używane do sprawdzania. W wersjach 1.0.2 oraz 1.0.3, musieliśmy używać następującego   
-> sposobu aby przeprowadzić sprawdzanie poprawności w zależności od scenariusza:
-> ~~~
-> [php]
-> $model->validate('register');
-> ~~~
-
-
-Możemy zdeklarować reguły walidacji w klasie modelu formularza następująco:
+Odpowiedni scanariusz z którym powiązana jest reguła może zostać określony
+poprzez opcję `on` w regule. Jeśli opcja `on` nie została ustawiona, oznacza to
+że reguła będzie używana we wszystkich scenariuszach. Na przykład,
 
 ~~~
 [php]
@@ -405,20 +404,17 @@ public function rules()
 }
 ~~~
 
-W rezultacie, pierwsza regułą będzie miała zastosowanie do wszystkich scenariuszy,
+Pierwsza reguła będzie miała zastosowanie do wszystkich scenariuszy,
 zaś następne dwie będą używane dla scenariusza rejestracji `register`.
-
-> Note|Uwaga: sprawdzanie poprawności przy użyciu scenariuszy zostało udostępnione 
-wraz z wersją 1.0.1.
-
 
 Zwracanie błędów sprawdzania poprawności (ang. Retrieving Validation Errors)
 ----------------------------
 
-Możemy używać metody [CModel::hasErrors()] aby sprawdzić jeśli wystąpił błąd podczas 
-sprawdzania poprawności, jeśli tak, możemy użyć metody [CModel::getErrors()] 
-aby otrzymać komunikaty błędów. Obie metody mogą być używane dla wszystkich atrybutów 
-lub też dla wybranych atrybutów.
+Po sprawdzaniu poprawności, ewentualne błędy będą zachowane w obiekcie modelu.
+Możemy je zwrócić poprzez wywołanie metody [CModel::getErrors()]
+oraz [CModel::getError()]. Obie metody różnią od siebie się tym, iż pierwsza
+zwróci *wszystkie* błędy dla określonego atrybutu modelu, gdy druga
+zwróci jedynie *pierwszy* błąd.
 
 Etykiety atrybutów (ang. Attribute Labels)
 ----------------
@@ -434,4 +430,4 @@ potrzeb poprzez nadpisanie metody [attributeLabels()|CModel::attributeLabels].
 Jak zobaczymy w następnych punktach, zdefiniowanie etykiet w modelu umożliwia nam tworzenie 
 formularzy szybciej i lepiej.
 
-<div class="revision">$Id: form.model.txt 1756 2010-01-27 19:56:16Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 1837 2010-02-24 22:49:51Z qiang.xue $</div>
