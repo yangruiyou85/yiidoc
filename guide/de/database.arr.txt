@@ -235,7 +235,7 @@ eindeutig gekennzeichnet werden.
    sollten eindeutig gekennzeichnet werden.
 
    - `params`: Die Parameter, die an die erzeugte SQL Abfrage gebunden werden sollen.
-Diese sollten als ein Array von Namen-Werte Paaren angegeben werden. Diese Option ist
+Diese sollten als ein Array von Name-Wert-Paaren angegeben werden. Diese Option ist
 seit Version 1.0.3 verfügbar.
 
    - `on`: Die `ON` Klausel. Die hier angegebene Bedingung wird an die JOIN Abfrage
@@ -523,7 +523,7 @@ Kommentare, würde sein `commentCount` diesen Wert erhalten. Vorgabewert ist 0.
    - `condition`: Die `WHERE`-Bedingung. Standardmäßig leer.
 
    - `params`: Die Parameter, die an die erzeugte SQL-Anweisung gebunden
-werden sollen. Sie sollten als Array aus Namen-/Wert-Paare angegeben werden.
+werden sollen. Sie sollten als Array aus Name-Wert-Paare angegeben werden.
 
    - `order`: Die `ORDER BY`-Anweisung. Standardmäßig leer.
 
