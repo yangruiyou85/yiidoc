@@ -108,7 +108,7 @@ array('AttributListe', 'Validator', 'on'=>'SzenarienListe', ...Zusätzliche Opti
 die diese Regel gelten soll. `Validator` (sinngem.: Gültigkeitsprüfer) gibt an, 
 welche Art der Prüfung durchgeführt werden soll. Der `on` Parameter ist optional 
 und gibt die Szenarien an, in denen diese Regel überhaupt verwendet werden
-soll. `Zusätzliche Optionen` können als Name-/Wert-Paare angegeben werden um
+soll. `Zusätzliche Optionen` können als Name-Wert-Paare angegeben werden um
 weitere Validatoreigenschaften zu konfigurieren.
 
 Es gibt drei Varianten, wofür `Validator` stehen kann. Erstens kann es der

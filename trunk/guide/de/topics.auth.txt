@@ -205,7 +205,7 @@ class PostController extends CController
 
 Dieser Code legt drei Regeln über jeweils ein Array fest. Das erste Element
 eines solchen Arrays ist entweder `'allow'` (erlaube) oder `'deny'` (verbiete). Die
-restlichen Name-/Wert-Paare legen die Gültigkeit der Regel fest. Die Regeln
+restlichen Name-Wert-Paare legen die Gültigkeit der Regel fest. Die Regeln
 oben lesen sich wie folgt: Die Actions `create` und `edit` können nicht von
 anonymen Benutzern aufgerufen werden. Die `delete`-Action kann von Benutzern
 mit der Rolle `admin` ausgeführt werden. Und die `delete`-Action kann von
@@ -298,7 +298,7 @@ absolute URL angegeben werden. Man kann auch ein Array angeben, das an
 [CWebApplication::createUrl] übergeben wird, um damit eine URL zu erzeugen.
 Das erste Element dieses Arrays sollte die [Route](/doc/guide/basics.controller#route) 
 zur Anmelde-Action eines Controllers angeben. Der Rest kann aus 
-Name-/Wert-Paaren für GET-Parameter bestehen. Ein Beispiel:
+Name-Wert-Paaren für GET-Parameter bestehen. Ein Beispiel:
 
 ~~~
 [php]
