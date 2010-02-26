@@ -121,8 +121,8 @@ so aussehen kann:
 > aufgerufen und dessen Ausgabe, also das fertige HTML-Formular, zurückgeliefert. 
 
 
-Angabe der Formularelemente
----------------------------
+Angeben der Formularelemente
+----------------------------
 
 Verwendet man den Form-Builder, verlagert sich der Tätigkeitsschwerpunkt
 weg vom Erstellen des Views, hin zur Definition der Formularelemente.
@@ -134,7 +134,7 @@ wir darauf nicht weiter eingehen.
 Formularelement entspricht. Dabei kann es sich um ein Eingabelement,
 statischen Text oder ein Subformular handeln.
 
-### Angabe eines Eingabeelements
+### Definieren eines Eingabeelements
 
 Ein Eingabeelement besteht im wesentlichen aus einem Label, einem Eingabefeld,
 einem Hilfstext und einer Fehleranzeige. Es muss außerdem mit einem Modelattribut
