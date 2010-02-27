@@ -102,13 +102,13 @@ testdrive/
             login.php        the view for 'login' action
 ~~~
 
-Connecting to Database
-----------------------
+Kết nối cơ sở dữ liệu
+---------------------
 
-Most Web applications are backed by databases. Our test-drive application
-is not an exception. To use a database, we need to tell the
-application how to connect to it. This is done in the application
-configuration file `WebRoot/testdrive/protected/config/main.php`, highlighted as follows,
+Hầu hết các ứng dụng web đều có cơ sở dữ liệu đằng sau nó. Và ứng dụng của chúng
+tôi cũng không ngoại lệ. Để sử dụng cơ sở dữ liệu, chúng ta cần phải khai báo cho
+ứng dụng biết làm sao để kết nối. Việc này có thể được thực hiện trong file cấu hình
+của ứng dụng `WebRoot/testdrive/protected/config/main.php`, cụ thể như sau,
 
 ~~~
 [php]
