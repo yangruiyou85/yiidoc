@@ -23,7 +23,7 @@ Yii unterstützt *Unittests* und *Funktionstests*.
 
 Ein Unittest prüft, ob eine einzelne Einheit (engl.: Unit) eines Codes wie
 erwartet arbeitet. Beim objektorientierten Programmieren entspricht die
-einfachste Codeeinheit einer Klasse. Ein Unittest muss daher im wesentlichen
+einfachste Codeeinheit einer Klasse. Ein Unittest muss daher im Wesentlichen
 prüfen, dass jede Interfacemethode der Klasse ordentlich arbeitet. Das
 bedeutet, der Test überprüft ob die Klasse für verschiedene Eingabeparameter 
 die erwarteten Ergebnisse zurückliefert. Unittests werden in der Regel vom
