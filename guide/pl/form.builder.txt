@@ -226,7 +226,6 @@ return array(
 		......
         'user'=>array(
             'type'=>'form',
-            'model'=>$userModel,
             'title'=>'Login Credential',
             'elements'=>array(
             	'username'=>array(
@@ -243,7 +242,6 @@ return array(
 
         'profile'=>array(
         	'type'=>'form',
-        	'model'=>$profileModel,
         	......
         ),
         ......
@@ -311,6 +309,8 @@ najpier utworzymy akcję rejestracji `register` w następujący sposób:
 public function actionRegister()
 {
 	$form = new CForm('application.views.user.registerForm');
+	$form['user']->model = new User;
+	$form['profile']->model = new Profile;
 	if($form->submitted('register') && $form->validate())
 	{
 		$user = $form['user']->model;
@@ -469,4 +469,4 @@ gdyż nadal porzebujemy pisać podobną ilość kodu formularza. Mimo to, jest t
 korzyści, gdyż formularz jest opisywany za pomocą oddzielnego pliku konfiguracyjnego, co pomaga 
 programistom lepiej skupić się na logice.
 
-<div class="revision">$Id: form.builder.txt 1824 2010-02-19 22:37:31Z qiang.xue $</div>
+<div class="revision">$Id: form.builder.txt 1849 2010-03-01 15:54:34Z qiang.xue $</div>
