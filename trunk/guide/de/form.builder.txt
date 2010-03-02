@@ -334,6 +334,8 @@ Zunächst benötigen wir eine `register`-Action:
 public function actionRegister()
 {
 	$form = new CForm('application.views.user.registerForm');
+	$form['user']->model = new User;
+	$form['profile']->model = new Profile;
 	if($form->submitted('register') && $form->validate())
 	{
 		$user = $form['user']->model;
@@ -497,4 +499,4 @@ noch fast genauso viel Code wie bisher braucht. Trotzdem kann sich der Einsatz
 lohnen, da das Formular in einer separaten Datei definiert wird und sich
 der Entwickler so besser auf die Logik konzentrieren kann.
 
-<div class="revision">$Id: form.builder.txt 1824 2010-02-19 22:37:31Z qiang.xue $</div>
+<div class="revision">$Id: form.builder.txt 1849 2010-03-01 15:54:34Z qiang.xue $</div>
