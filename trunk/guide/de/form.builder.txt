@@ -16,7 +16,7 @@ Der Yii Form-Builder verwendet ein [CForm]-Objekt, in dem sämtliche Angaben
 über ein HTML-Formular abgelegt sind, also u.a., welche Datenmodels mit dem 
 Formular verknüpft sind, welche Art von Eingabefeldern verwendet werden und 
 wie das ganze Formular gerendert werden soll. Als Entwickler braucht man 
-somit im wesentlichen nur noch dieses [CForm]-Objekt konfigurieren und kann 
+somit im Wesentlichen nur noch dieses [CForm]-Objekt konfigurieren und kann 
 dann dessen Render-Methode aufrufen, um das Formular anzuzeigen.
 
 Die Angaben zu den Eingabefeldern sind als hierarchische Struktur von 
@@ -136,7 +136,7 @@ statischen Text oder ein Subformular handeln.
 
 ### Definieren eines Eingabeelements
 
-Ein Eingabeelement besteht im wesentlichen aus einem Label, einem Eingabefeld,
+Ein Eingabeelement besteht im Wesentlichen aus einem Label, einem Eingabefeld,
 einem Hilfstext und einer Fehleranzeige. Es muss außerdem mit einem Modelattribut
 verknüpft sein. Die Angaben für ein Element werden in Form einer
 [CFormInputElement]-Instanz festgelegt. Folgender Beispielcode aus einem
@@ -270,7 +270,7 @@ return array(
 );
 ~~~
 
-Auch das Subformular besteht im wesentlichen wieder aus Einträgen im
+Auch das Subformular besteht im Wesentlichen wieder aus Einträgen im
 [CForm::elements]-Array. Soll das Subformular mit einem
 eigenen Model verknüpft werden, kann dies über die [CForm::model] angegeben
 werden.
