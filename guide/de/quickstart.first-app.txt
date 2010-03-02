@@ -5,7 +5,8 @@ Um einen ersten Eindruck von Yii zu bekommen, demonstrieren wir zunächst, wie
 man mit dem `yiic`-Befehl eine Anwendung anlegt.
 `yiic` ist ein Hilfsprogramm, mit dem man u.a. automatisch
 verschiedene Codeteile generieren kann. Das Installationsverzeichnis von
-Yii nennen wir im folgenden `YiiVerzeichnis`.
+Yii nennen wir im folgenden `YiiVerzeichnis`, das Webverzeichnis entsprechend
+`WebVerzeichnis`.
 
 Starten Sie `yiic` von der Kommandozeile wie folgt:
 
@@ -59,7 +60,7 @@ Erläuterungen dazu finden Sie in den [Konventionen](/doc/guide/basics.conventio
 testdrive/
    index.php                 Startscript der Anwendung
    index-test.php            Startscript für die Funktionstests
-   assets/                   enthält veröffentlichte Quelldateien
+   assets/                   enthält veröffentlichte Zusatzdateien 
    css/                      enthält CSS-Dateien
    images/                   enthält Bilddateien
    themes/                   enthält Themes 
