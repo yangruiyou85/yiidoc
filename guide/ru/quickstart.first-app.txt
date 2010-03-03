@@ -69,7 +69,7 @@ testdrive/
             test.php             файл конфигурации функциональных тестов
         controllers/ 			 содержит файлы классов контроллеров
             SiteController.php	 класс контроллера по умолчанию
-        data/                    сожержит пример базы данных
+        data/                    содержит пример базы данных
             schema.mysql.sql     схема БД для MySQL
             schema.sqlite.sql    схема БД для SQLite
             testdrive.db         файл БД для SQLite
