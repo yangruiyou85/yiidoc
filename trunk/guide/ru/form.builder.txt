@@ -226,7 +226,6 @@ return array(
 		......
         'user'=>array(
             'type'=>'form',
-            'model'=>$userModel,
             'title'=>'Данные для входа',
             'elements'=>array(
             	'username'=>array(
@@ -242,8 +241,7 @@ return array(
         ),
 
         'profile'=>array(
-        	'type'=>'form',
-        	'model'=>$profileModel,
+        	'type'=>'form',        	
         	......
         ),
         ......
@@ -308,6 +306,8 @@ $email = $form['user']['email'];
 public function actionRegister()
 {
 	$form = new CForm('application.views.user.registerForm');
+	$form['user']->model = new User;
+	$form['profile']->model = new Profile;
 	if($form->submitted('register') && $form->validate())
 	{
 		$user = $form['user']->model;
@@ -465,4 +465,4 @@ $this->renderPartial('_form', array('form'=>$form));
 те же объёмы кода формы. Тем не менее, преимущество есть. Оно в том, что форма,
 описанная в отдельном файле конфигурации, позволяет разработчику сфокусироваться на логике.
 
-<div class="revision">$Id: form.builder.txt 1824 2010-02-19 22:37:31Z qiang.xue $</div>
+<div class="revision">$Id: form.builder.txt 1849 2010-03-01 15:54:34Z qiang.xue $</div>
