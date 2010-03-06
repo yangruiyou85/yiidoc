@@ -361,7 +361,8 @@ Metoda ta zwraca wartość na podstawie której podejmowana jest decyzja, czy sp
 wartości zakończyło się sukcesem czy też nie. Dla modeli [CActiveRecord] sprawdzanie 
 poprawności może być również automatycznie wyzwolone, podczas wywołania metody [CActiveRecord::save()].
 
-Scenariusz możemy ustawić za pomocą właściwości [scenario|CModel::scenario] i w ten sposób wskazać, który zestaw reguł sprawdzania poprawności powinien zostać zastosowany.
+Scenariusz możemy ustawić za pomocą właściwości [scenario|CModel::scenario] 
+i w ten sposób wskazać, który zestaw reguł sprawdzania poprawności powinien zostać zastosowany.
 
 Sprawdzanie poprawności jest wykonywane na postawie scenariusza. Właściwość [scenario|CModel::scenario]
 określa, który scenariusz modelu jest wykorzystywany oraz który zestaw reguł sprawdzania
@@ -430,4 +431,4 @@ potrzeb poprzez nadpisanie metody [attributeLabels()|CModel::attributeLabels].
 Jak zobaczymy w następnych punktach, zdefiniowanie etykiet w modelu umożliwia nam tworzenie 
 formularzy szybciej i lepiej.
 
-<div class="revision">$Id: form.model.txt 1837 2010-02-24 22:49:51Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 1855 2010-03-04 22:42:32Z qiang.xue $</div>
