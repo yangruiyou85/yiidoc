@@ -424,4 +424,4 @@ public function rules()
 
 Далее мы увидим, что возможность указания меток в модели данных позволяет быстро создавать сложные формы.
 
-<div class="revision">$Id: form.model.txt 1837 2010-02-24 22:49:51Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 1855 2010-03-04 22:42:32Z qiang.xue $</div>

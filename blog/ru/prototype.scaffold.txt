@@ -30,7 +30,7 @@ Please type 'help' for help. Type 'exit' to quit.
 > выполнив следующую команду:
 >
 > ~~~
-> php -r "phpinfo();"
+> php -i
 > ~~~
 >
 > Результат команды покажет, какой файл `php.ini` используется и какие
@@ -125,4 +125,4 @@ http://www.example.com/blog/index.php?r=comment
  5. Метод `actionIndex()` генерирует представление `index` с данными записей.
 
 
-<div class="revision">$Id: prototype.scaffold.txt 1734 2010-01-21 18:41:17Z qiang.xue $</div>
+<div class="revision">$Id: prototype.scaffold.txt 1872 2010-03-10 15:21:55Z qiang.xue $</div>
