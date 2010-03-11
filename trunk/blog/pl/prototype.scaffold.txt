@@ -21,7 +21,7 @@ Please type 'help' for help. Type 'exit' to quit.
 > Info|Info: Część instalacji PHP może używać różnych plików `php.ini` dla parsera PHP wiersza poleceń (CLI). W rezultacie, podczas wykonywania powyższych poleceń `yiic`, możesz spotkać się z błędami takimi jak "YiiBase::include(PDO.php): failed to open stream..." czy też "...could not find driver". Sprawdź dokładnie twoją konfigurację CLI PHP poprzez wywołanie następującego polecenia: 
 >
 > ~~~
-> php -r "phpinfo();"
+> php -i
 > ~~~
 >
 > Wynik powyższego polecenia pokaże, który plik `php.ini` jest używany i które rozszerzenia są załadowane. Jeśli nieprawidłowy plik `php.ini` jest w użyciu, możesz użyć następującego polecenia aby bezpośrednio określić poprawny plik `php.ini`, który powinien zostać użyty:
@@ -77,4 +77,4 @@ W celu lepszego zrozumienia jak powyższe pliki są używane, pokażemy przepły
  5. Metoda `actionIndex()` wyświetla widok `index` wypełniony danymi wiadomości.
 
 
-<div class="revision">$Id: prototype.scaffold.txt 1734 2010-01-21 18:41:17Z qiang.xue $</div>
+<div class="revision">$Id: prototype.scaffold.txt 1872 2010-03-10 15:21:55Z qiang.xue $</div>

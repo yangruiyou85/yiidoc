@@ -116,4 +116,4 @@ Wersja 1.0.5
  * Rozszerzono[CUrlManager] o wsparcie dla parametryzacji reguł dla części URL zawierającej trasę. Zobacz:
      - [Parametryzacja trasy w regułach URL](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 1870 2010-03-09 22:23:19Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 1874 2010-03-10 15:44:41Z qiang.xue $</div>
