@@ -14,7 +14,7 @@ eines Moduls genauso wie auf gewöhnliche Controller einer Anwendung zugreifen.
 
 Module sind in vielen Situationen nützlich. Eine große Anwendung könnte in mehrere
 Module unterteilt werden, die alle einzeln entwickelt und gewartet werden
-können. Häufig benötigten Features, wie Benutzer- oder
+können. Häufig benötigte Features, wie Benutzer- oder
 Kommentarverwaltung, könnten ebenfalls als Modul implementiert werden, um sie in späteren
 Projekten einfach wiederverwenden zu können.
 
