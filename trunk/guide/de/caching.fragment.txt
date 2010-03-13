@@ -56,7 +56,7 @@ mindestens eine Stunde:
 ...Anderer HTML-Inhalt...
 ~~~
 
-Wenn wir die Cachedauer nicht angeben, wird ein Vorgabewert von 60 verwendet,
+Wenn man die Cachedauer nicht angibt, wird ein Vorgabewert von 60 verwendet,
 was bedeutet, dass der gecachte Inhalt nach 60 Sekunden nicht mehr gültig
 ist.
 
@@ -66,7 +66,7 @@ Wie beim Datencaching können auch bei Fragmenten Abhängigkeiten berücksichtig
 werden. So kann zum Beispiel der Inhalt eines
 angezeigten Beitrags davon abhängen, ob der Beitrag verändert wurde.
 
-Um eine Abhängigkeit anzugeben, setzen wir die Option
+Um eine Abhängigkeit anzugeben, setzt man die Option
 [dependency|COutputCache::dependency] entweder auf ein Objekt, dass das
 [ICacheDependency]-Interface implementiert oder auf ein Array das verwendet
 werden kann, um ein Abhängigkeitsobjekt zu erzeugen. Der folgende Code gibt an, dass der
@@ -89,7 +89,7 @@ abhängt:
 Gecachter Inhalt kann abhängig von einem bestimmten Parameter variiert werden.
 Ein Benutzerprofil kann zum Beispiel für verschiedene Benutzer unterschiedlich
 aussehen. Um den Inhalt des Profils zu cachen, soll die gecachte Kopie
-entsprechend der Benutzer-ID variieren. Das bedeuted im Wesentlichen, dass wir
+entsprechend der Benutzer-ID variieren. Das bedeuted im Wesentlichen, dass man
 beim Aufruf von [beginCache()|CBaseController::beginCache()] unterschiedliche
 IDs verwenden sollten. 
 
@@ -97,19 +97,17 @@ Statt vom Entwickler zu erwarten, IDs nach einem bestimmten Schema zu
 variieren, hat [COutputCache] ein solches Feature schon eingebaut. Hier eine
 Übersicht:
 
-   - [varyByRoute|COutputCache::varyByRoute]: Wenn diese Option auf true
-gesetzt wird, wird der gecachte Inhalt entsprechend der 
+   - [varyByRoute|COutputCache::varyByRoute]: Falls true, wird der gecachte Inhalt entsprechend der 
 [Route](/doc/guide/basics.controller#route) variiert. Dadurch führt jede
 Kombination aus angefordertem Controller und Action zu einem anderen
 Cache-Inhalt.
 
-   - [varyBySession|COutputCache::varyBySession]: Wenn diese Option auf true
-gesetzt wird, wird der gecachte Inhalt entsprechend der session ID variiert.
+   - [varyBySession|COutputCache::varyBySession]: Falls true, wird der gecachte 
+Inhalt entsprechend der session ID variiert.
 Dadurch kann für jede Benutzer-Session unterschiedlicher Inhalt angezeigt
 werden, der jeweils vom Cache geliefert wird.
 
-   - [varyByParam|COutputCache::varyByParam]: Wenn diese Option auf true
-gesetzt wird, wird der gecachte Inhalt entsprechend den Werten der angegebenen
+   - [varyByParam|COutputCache::varyByParam]: Falls true, wird der gecachte Inhalt entsprechend den Werten der angegebenen
 GET-Parameter variiert. Wenn eine Seite z.B. einen Beitrag entsprechend dem
 GET-Parameter `id` anzeigt, können wir [varyByParam|COutputCache::varyByParam]
 auf `array('id')` setzen, so dass der Inhalt jedes Beitrags gecacht wird.
@@ -126,8 +124,8 @@ Manchmal möchte man Fragmente nur bei bestimmten Requests cachen.
 Bei einer Seite, die ein Formular anzeigt, soll
 dieses z.B. nur beim ersten Request (per GET-Request) gecacht werden. Bei allen
 weiteren Anfragen (per POST-Request) soll das Formular nicht gecacht werden,
-weil es evtl. Benutzereingaben enthält. Um dies zu erreichen, können wir die
-Option [requestTypes|COutputCache::requestTypes] verwenden:
+weil es evtl. Benutzereingaben enthält. Um dies zu erreichen, kann man 
+[requestTypes|COutputCache::requestTypes] verwenden:
 
 ~~~
 [php]
