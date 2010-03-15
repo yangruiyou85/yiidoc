@@ -16,6 +16,7 @@ Member List of Yiidoc Project
   active  Japanese            shuwatto            shuwatto
   active  Polish              aztech              tomasz.suchanek
   active  Portuguese          davi_alexandre      bastardgoblin
+  active  Portuguese          Wanderson           wanderson.wbc
   active  Russian             Caveman             alex.lukjanenko
   active  Russian             samdark             alexander.makarow           Yes
   active  Simplified Chinese  imdong              donzir
@@ -50,7 +51,6 @@ inactive  Portuguese          jjmf                joaomarq
 inactive  Portuguese          Luiz                luiz.uo
 inactive  Portuguese          mnobre              marconobre
 inactive  Portuguese          raragao             ricardoaragao
-inactive  Portuguese          Wanderson           wanderson.wbc
 inactive  Romanian            mishhh              if.mihai
 inactive  Russian             Bethrezen           b37hr3z3n
 inactive  Russian             cr0t                kuznecov.sg
