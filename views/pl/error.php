@@ -28,7 +28,7 @@ Powyższy błąd wystąpił podczas przetwarzania przez serwer Twojego żądania
 Jeśli myślisz, że jest to błąd serwera proszę skontaktuj się z <?php echo $data['admin']; ?>.
 </p>
 <p>
-Dzi�kujemy!
+Dziękujemy!
 </p>
 <div class="version">
 <?php echo date('Y-m-d H:i:s',$data['time']) .' '. $data['version']; ?>
