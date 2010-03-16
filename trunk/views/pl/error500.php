@@ -26,7 +26,7 @@ Wystąpił wewnętrzny błąd serwera podczas przetwarzania Twojego żądania.
 Proszę skontaktuj się z <?php echo $data['admin']; ?> aby zgłosić problem.
 </p>
 <p>
-Dzi�kujemy.
+Dziękujemy.
 </p>
 <div class="version">
 <?php echo date('Y-m-d H:i:s',$data['time']) .' '. $data['version']; ?>

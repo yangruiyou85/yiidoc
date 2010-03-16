@@ -9,9 +9,9 @@
 	</tr>
 	<tr style="background-color: #ccc;">
 	    <th>Procedura</th>
-		<th>Ilo��</th>
+		<th>Ilość</th>
 		<th>Razem (s)</th>
-		<th>�rednia. (s)</th>
+		<th>średnia. (s)</th>
 		<th>Min. (s)</th>
 		<th>Max. (s)</th>
 	</tr>
