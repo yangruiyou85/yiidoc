@@ -64,7 +64,7 @@ Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal
   * /blog/pt/comment.admin.txt      (Wanderson C. Bragança)
   * /blog/pt/start.overview.txt     (Wanderson C. Bragança)
   * /blog/pt/start.requirements.txt (Wanderson C. Bragança)
-  * /blog/pt/start.toc.txt          (Wanderson C. Bragança)
+  * /blog/pt/toc.txt                (Wanderson C. Bragança)
   * /blog/pt/start.testdrive.txt    (Wanderson C. Bragança)
 
 
