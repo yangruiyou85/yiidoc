@@ -1,6 +1,6 @@
 * Introdução
     - [Visão Geral](start.overview)
-    - [Testdriving com Yii](start.testdrive)
+    - [Iniciando com Yii](start.testdrive)
     - [Análise de Requisitos](start.requirements)
     - [Visão Geral do Projeto](start.design)
 
