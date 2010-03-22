@@ -26,12 +26,13 @@ Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal
   * /guide/pt/basics.namespace.txt (Davi)
   * /guide/pt/basics.convention.txt (Davi)
   * /guide/pt/basics.workflow.txt (Davi)
-  * /guide/pt/form.overview.txt (Wanderson)
+  * /guide/pt/form.overview.txt     (Wanderson C. Bragança)
+  * /guide/pt/database.overview.txt (Wanderson C. Bragança)
+  * /guide/pt/index.txt             (Wanderson C. Bragança)
   * /guide/pt/form.model.txt (Davi)
   * /guide/pt/form.action.txt (Davi)
   * /guide/pt/form.view.txt (Davi)
   * /guide/pt/form.table.txt (Davi)
-  * /guide/pt/database.overview.txt (Wanderson)
   * /guide/pt/database.dao.txt (Davi)
   * /guide/pt/database.ar.txt (Davi)
   * /guide/pt/database.arr.txt (Davi)
@@ -57,6 +58,13 @@ Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal
   * /views/pt/profile-summary-firebug.php (Luiz)
   * /requirements/views/pt/index.php (Luiz)
   * /requirements/messages/pt/yii.php (Flávio - Revisado por Luiz )
+
+*The Yii Blog Tutorial*:
+
+  * /blog/pt/comment.admin.txt      (Wanderson C. Bragança)
+  * /blog/pt/start.overview.txt     (Wanderson C. Bragança)
+  * /blog/pt/start.requirements.txt (Wanderson C. Bragança)
+  * /blog/pt/start.toc.txt          (Wanderson C. Bragança)
 
 
 = Convenções adotadas na tradução =
