@@ -101,7 +101,7 @@ Text durch den tatsächlichen Wert für alias ersetzt.
 
 ~~~
 [php]
-Yii::t('yii', 'Pfad-Alias "{alias}" wurde geändert.',
+Yii::t('yii', 'Pfadalias "{alias}" wurde geändert.',
 	array('{alias}'=>$alias))
 ~~~
 
