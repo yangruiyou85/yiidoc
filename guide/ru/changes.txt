@@ -3,6 +3,11 @@
 
 На этой странице кратко излагаются новые возможности, внесённые в каждом релизе Yii.
 
+Версия 1.1.2
+-------------
+
+ * [Добавлен веб-кодогенератор Gii](/doc/guide/topics.gii)
+
 Версия 1.1.1
 ------------
 
@@ -111,4 +116,4 @@
  * Расширен класс [CUrlManager] поодержкой параметризованных маршрутов в URL-правилах:
      - [Параметризация маршрутов](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 1874 2010-03-10 15:44:41Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 2040 2010-04-11 02:48:52Z qiang.xue $</div>
