@@ -113,7 +113,7 @@
  * Active Record расширена поддержкой отложенной загрузки с динамическими параметрами реляционного запроса:
      - [Динамические параметры реляционного запроса](/doc/guide/database.arr#dynamic-relational-query-options)
 
- * Расширен класс [CUrlManager] поодержкой параметризованных маршрутов в URL-правилах:
+ * Расширен класс [CUrlManager] поддержкой параметризованных маршрутов в URL-правилах:
      - [Параметризация маршрутов](/doc/guide/topics.url#parameterizing-routes)
 
 <div class="revision">$Id: changes.txt 2040 2010-04-11 02:48:52Z qiang.xue $</div>
