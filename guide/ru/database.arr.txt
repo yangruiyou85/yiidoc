@@ -404,7 +404,7 @@ class Post extends CActiveRecord
 	{
 		return array(
 			'commentCount'=>array(self::STAT, 'Comment', 'post_id'),
-			'categoryCount'=>array(self::STAT, 'Category', 'PostCategory(post_id, category_id)'),
+			'categoryCount'=>array(self::STAT, 'Category', 'post_category(post_id, category_id)'),
 		);
 	}
 }
@@ -412,7 +412,7 @@ class Post extends CActiveRecord
 
 Выше мы объявили два статистических запроса: `commentCount` подсчитывает количество комментариев к записи, а `categoryCount` 
 считает количество категорий, к которым относится запись. Обратите внимание, что отношение между `Post` и `Comment` — типа `HAS_MANY`, а
-отношение между `Post` и `Category` — типа `MANY_MANY` (с использованием преобразующей таблицы `PostCategory`). Как можно видеть,
+отношение между `Post` и `Category` — типа `MANY_MANY` (с использованием преобразующей таблицы `post_category`). Как можно видеть,
 порядок объявления очень схож с объявлением отношений, описанных выше. Единственное различие состоит в том, что в данном случае тип отношения 
 равен `STAT`.
 
@@ -504,4 +504,4 @@ class User extends CActiveRecord
  должны описываться в методе [CActiveRecord::scopes], поэтому они не могут быть
 параметризованы.
 
-<div class="revision">$Id: database.arr.txt 2063 2010-04-20 21:47:59Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 2068 2010-04-22 16:42:16Z alexander.makarow $</div>

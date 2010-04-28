@@ -79,7 +79,7 @@ Yii поддерживает интернационализацию на нес�
 
 ~~~
 [php]
-Yii::t('yii', 'Path alias "{alias}" is redefined.',
+Yii::t('app', 'Path alias "{alias}" is redefined.',
 	array('{alias}'=>$alias))
 ~~~
 
@@ -234,4 +234,4 @@ timestamp:
    - [formatPercentage|CNumberFormatter::formatPercentage]: форматирует число в соответствии с форматом форматирования процентов,
    заданным для текущего языка приложения.
    
-<div class="revision">$Id: topics.i18n.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
+<div class="revision">$Id: topics.i18n.txt 2068 2010-04-22 16:42:16Z alexander.makarow $</div>
