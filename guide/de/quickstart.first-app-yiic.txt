@@ -9,7 +9,7 @@ CRUD-Operationen mit der `yiic shell` erstellen
 
 ~~~
 % cd WebVerzeichnis/testdrive
-% YiiVerzeichnis/framework/yiic shell
+% protected/yiic shell
 Yii Interactive Tool v1.1
 Please type 'help' for help. Type 'exit' to quit.
 >> model User tbl_user

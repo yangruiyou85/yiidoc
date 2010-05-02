@@ -19,8 +19,8 @@ Starten Sie `yiic` von der Kommandozeile wie folgt:
 > können sie den Befehl auch wie folgt aufrufen:
 >
 > ~~~
-> % cd WebVerzeichnis/testdrive
-> % php YiiVerzeichnis/framework/yiic.php webapp WebVerzeichnis/testdrive
+> % cd WebVerzeichnis
+> % php YiiVerzeichnis/framework/yiic.php webapp testdrive
 > ~~~
 
 Damit wird im Verzeichnis `WebVerzeichnis/testdrive` die Grundstruktur einer 
