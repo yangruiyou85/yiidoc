@@ -16,7 +16,7 @@
  * @version $Id$
  */
 return array (
-  'Are you sure to delete this item?' => 'Είστε σίγουρος για τη διαγραφή του αντικειμένου;',
+  'Are you sure you want to delete this item?' => 'Είστε σίγουρος για τη διαγραφή του αντικειμένου;',
   'Delete' => 'Διαγραφή',
   'Displaying {start}-{end} of {count} result(s).' => 'Εμφάνιση {start}-{end} από {count} των αποτελεσμάτων.',
   'Either "name" or "value" must be specified for CDataColumn.' => 'Πρέπει να οριστεί είτε το "όνομα" είτε η "τιμή" για το CDataColumn.',
