@@ -90,6 +90,63 @@ class Post extends CActiveRecord
     {
         return parent::model($className);
     }
+	
+    public function tableName()
+    {
+        return 'tbl_post';
+    }
 }
 ~~~
 
+> Tip|提示: 因为AR类会在很多地方使用到，我们可以一次性引入包含AR类的整个目录，而不是一个一个地单独引入。
+> 假设很多AR类放在`protected/models`目录下面，我们可以在应用中这样配置：
+> ~~~
+> [php]
+> return array(
+> 	'import'=>array(
+> 		'application.models.*',
+> 	),
+> );
+> ~~~
+
+默认情况下，AR类的名称和数据库中数据表的名称一样。也可以通过重写[tableName()|CActiveRecord:tableName]方法来指定其他表名。
+[model()|CActiveRecord:model]应该在每个AR类中重新声明（这个稍后会解释）。
+
+> Info: 为了使用1.1.0版本加入的新功能[表前缀](/doc/guide/database.dao#using-table-prefix)，你需要使用重写AR类中的
+[tableName()|CActiveRecord::tableName]方法。示例如下：
+> ~~~
+> [php]
+> public function tableName()
+> {
+>     return '{{post}}';
+> }
+> ~~~
+> 就这样，不再直接写完整的表名，而是返回一个用双花括号包围的表名称。
+
+在AR类中，数据表的字段可以像类的属性那样使用。举个例子，下面的代码可以设置`title`字段（属性）：
+
+~~~
+[php]
+$post=new Post;
+$post->title='一个示例文章';
+~~~
+
+尽管我们没有明确地在`Post`类中添加`title`属性，但是我们仍旧可以通过上面的代码来访问它。
+这是因为`title`是`tbl_post`表中的一个字段，CActiveRecord可以通过使用`__get()`魔术方法来让它可以直接被使用。
+如果你要访问一个并不存在的字段的时候，Yii会抛出一个异常。
+
+> Info|信息: 在这个手册中，我们使用小写的表名和字段名。这是因为不同的数据库对于大小写的敏感不同。
+> 比如说，PostgreSQL对字段名的大小写就敏感，并且如果同时含有大小写，我们还必须在查询语句中将字段名括起来。
+> 使用全小写可以避免这些问题。
+
+AR需要我们明确指定表的主键字段。如果一个表没有设置主键，就需要相应的AR类重写`primaryKey()`来指定一个或者一组可以视为主键的字段。
+
+~~~
+[php]
+public function primaryKey()
+{
+	return 'id';
+	// 对于包含多个字段的一组主键，可以使用数组方式返回，比如
+	// return array('pk1', 'pk2');
+}
+~~~
