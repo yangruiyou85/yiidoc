@@ -168,7 +168,7 @@ können Sie dazu den leistungsstarken Codegenerator Gii verwenden.
 
 Um Gii zu verwenden, muss zunächst die
 [Konfigurationsdatei](/doc/guide/basics.application#application-configuration)
-in `WebRoot/testdrive/protected/main.php` angepasst werden:
+in `WebRoot/testdrive/protected/config/main.php` angepasst werden:
 
 ~~~
 [php]
@@ -263,4 +263,4 @@ schreiben zu müssen!
 
 ![Seite zum Erstellen eines neuen Benutzers](first-app7.png)
 
-<div class="revision">$Id: quickstart.first-app.txt 2041 2010-04-11 03:54:25Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.first-app.txt 2125 2010-05-11 23:36:02Z alexander.makarow $</div>
