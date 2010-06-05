@@ -30,7 +30,7 @@ return array (
   'The column must be specified in the format of "Name:Type:Label", where "Type" and "Label" are optional.' => '"Type"と"Label"がオプションであるときカラムは"Name:Type:Label"というフォーマットで指定されます。',
   'The property "itemView" cannot be empty.' => '"itemView"プロパティは空ではいけません。',
   'Total {count} result(s).' => 'トータル{count}個',
-  'Update' => 'アップデート',
-  'View' => 'ビュー',
+  'Update' => '更新',
+  'View' => '表示',
   '{class} must specify "model" and "attribute" or "name" property values.' => '{class}は"model"と"attribute"または"name"プロパティ値を指定すべきです。',
 );
