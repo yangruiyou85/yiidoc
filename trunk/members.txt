@@ -28,7 +28,7 @@ Member List of Yiidoc Project
   active  Spanish             sebas               sebathi                     Yes
   active  Swedish             tri                 triboe
   active  Tamil               sapauljoseph        sapauljoseph
-  active  Ukrainian           yugene              yugenekr
+  active  Ukrainian           vitaliy.step        vitaliy.step
   active  Vietnamese          Harry Tang          admin@giaduy.info
 inactive  Bulgarian           penkomitev          pemitev
 inactive  Czech               skippy              sklokocka
@@ -71,5 +71,6 @@ inactive  Spanish             ing.espitaleta      ing.espitaleta
 inactive  Spanish             mercurial           geraldo.medrano
 inactive  Spanish             PoL                 freakpol
 inactive  Traditional Chinese clementchen         clementchen
+inactive  Ukrainian           yugene              yugenekr
 inactive  Vietnamese          hnhuan              hn.huan
 inactive  Vietnamese          hung5s              hung5s
