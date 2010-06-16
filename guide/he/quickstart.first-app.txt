@@ -131,7 +131,7 @@ CREATE TABLE tbl_user (
 
 ### הגדרת Gii
 
-בכדי להשתמש ב Gii, אנו קודם צריכים לערוך את הקובץ `WebRoot/testdrive/protected/main.php`, הידוע בשמו כ-קובץ [הגדרות](/doc/guide/basics.application#application-configuration) האפליקציה.
+בכדי להשתמש ב Gii, אנו קודם צריכים לערוך את הקובץ `WebRoot/testdrive/protected/config/main.php`, הידוע בשמו כ-קובץ [הגדרות](/doc/guide/basics.application#application-configuration) האפליקציה.
 
 ~~~
 [php]
@@ -201,4 +201,4 @@ http://hostname/testdrive/index.php?r=user/admin
 
 
 
-«div class="revision"»$Id: quickstart.first-app.txt 2041 2010-01-21 16:54:29Z qiang.xue $«/div»
+«div class="revision"»$Id: quickstart.first-app.txt 2125 2010-01-21 16:54:29Z qiang.xue $«/div»
