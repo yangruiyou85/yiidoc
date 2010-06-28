@@ -165,7 +165,7 @@ przeglądarkowego generatora kodu.
 
 ### Konfigurowanie Gii
 
-W celu używania Gii musimy najpierw wyedytować plik `WebRoot/testdrive/protected/main.php`, który znany jest jako plik [konfiguracja plikacji](/doc/guide/basics.application#application-configuration):
+W celu używania Gii musimy najpierw wyedytować plik `WebRoot/testdrive/protected/config/main.php`, który znany jest jako plik [konfiguracja plikacji](/doc/guide/basics.application#application-configuration):
 
 ~~~
 [php]
@@ -248,4 +248,4 @@ pojedynczej linijki kodu!
 ![Strona tworzenia nowego użytkownika](first-app7.png)
 
 
-<div class="revision">$Id: quickstart.first-app.txt 2041 2010-04-11 03:54:25Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.first-app.txt 2125 2010-05-11 23:36:02Z alexander.makarow $</div>
