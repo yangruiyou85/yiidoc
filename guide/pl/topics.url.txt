@@ -67,7 +67,7 @@ ponieważ jest on wstępnie zadeklarowana jako [CUrlManager] w [CWebApplication]
 
 > Wskazówka: URL wygenerowany przy pomocy metody [createUrl|CController::createUrl]
 jest adresem względnym. Aby uzyskać pełny adres wystarczy poprzedzić adres względny
-`Yii::app()->hostInfo` lub wywołać metodę [createAbsoluteUrl|CController::createAbsoluteUrl].
+`Yii::app()->request->hostInfo` lub wywołać metodę [createAbsoluteUrl|CController::createAbsoluteUrl].
 
 Przyjazne adresy URL
 --------------------
@@ -306,4 +306,4 @@ do strony statycznej. Aby to zrobić po prostu skonfiguruj komponent
 [urlManager|CWebApplication::urlManager] ustawiając jego właściwość
 [urlSuffix|CUrlManager::urlSuffix] na taki sufiks, jaki ci odpowiada.
 
-<div class="revision">$Id: topics.url.txt 1809 2010-02-17 22:08:34Z qiang.xue $</div>
+<div class="revision">$Id: topics.url.txt 2229 2010-06-25 19:57:54Z poppitypop@gmail.com $</div>
