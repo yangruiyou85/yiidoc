@@ -1,12 +1,12 @@
 Protokollierung (Logging)
 =========================
 
-Yii bietet eine flexibles und erweiterbares Logfeature.
-Zu loggende (also zu protokollierende) Meldungen können einer
-Logstufe (engl.: log level) und einer Kategorie zugeordnet werden. Zusammen mit
-Logstufen- und Kategoriefiltern können ausgewählte
-Meldungen an verschiedene Ziele, wie z.B. Dateien, E-Mails,
-Browserfenster etc., weitergeleitet werden
+Yii bietet eine flexibles und erweiterbares Logfeature. Zu loggende 
+(also zu protokollierende) Meldungen können einer
+Logstufe (engl.: log level) und einer Kategorie zugeordnet werden. Mit diesen
+Logstufen und Kategoriefiltern können bestimmte Meldungen jeweils
+an verschiedene Ziele, wie z.B. Dateien, E-Mails, Browserfenster etc., 
+weitergeleitet werden
 
 Loggen von Meldungen
 --------------------
