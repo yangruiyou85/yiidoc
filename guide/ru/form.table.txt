@@ -65,4 +65,4 @@ public function actionBatchUpdate()
 В случае, если возникают ошибки валидации, соответствующие поля ввода будут подсвечены автоматически,
 как и в случае работы с одной моделью, рассмотренном ранее.
 
-<div class="revision">$Id: form.table.txt 2161 2010-06-04 13:34:40Z alexander.makarow $</div>
+<div class="revision">$Id: form.table.txt 2232 2010-06-26 22:42:03Z qiang.xue $</div>
