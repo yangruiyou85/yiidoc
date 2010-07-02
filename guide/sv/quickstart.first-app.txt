@@ -161,7 +161,7 @@ manuellt, använder vi Gii -- en kraftfull webbaserad kodgenerator.
 
 ### Konfigurera Gii
 
-För att Gii skall kunna användas, behöver vi först redigera filen `WebRoot/testdrive/protected/main.php`, 
+För att Gii skall kunna användas, behöver vi först redigera filen `WebRoot/testdrive/protected/config/main.php`, 
 även känd som applikationens [konfigurationsfil](/doc/guide/basics.application#application-configuration):
 
 ~~~
@@ -248,4 +248,4 @@ Allt detta uppnåddes utan att skriva en enda rad kod!
 
 
 
-<div class="revision">$Id: quickstart.first-app.txt 2041 2010-04-11 03:54:25Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.first-app.txt 2125 2010-05-11 23:36:02Z alexander.makarow $</div>
