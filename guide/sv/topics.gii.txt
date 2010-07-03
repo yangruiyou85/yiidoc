@@ -89,7 +89,7 @@ Bygga ut Gii
 Ävensom de standard kodgeneratorer som kommer med till Gii kan generera mycket kraftfull kod, 
 vill vi ofta ha möjlighet att anpassa dem eller skapa nya efter smak och behov. 
 Till exempel kan vi ha önskemålet att generera kod i vår favoritkodningsstil, 
-eller att generara kod som innehåller flerspråksstöd. Allt detta kan med lätthet åstadkommas med Gii.
+eller att generera kod som innehåller flerspråksstöd. Allt detta kan med lätthet åstadkommas med Gii.
 
 Gii kan byggas ut på två sätt: anpassa koden i befintliga kodgeneratorer, alternativt skriva nya kodgeneratorer.
 
@@ -147,11 +147,11 @@ Här innebär `model` att vi tänker *åsidosätta* den modellgenerator som anv�
 `templates/compact` innebär att vi kommer att lägga till en kodmalluppsättning med namnet `compact`.
 
 Därefter modifierar vi vår applikationskonfiguration genom att tillfoga `application.gii` till 
-[GiiModule::generatorPaths], som visats i föregående delavsnitt.
+[GiiModule::generatorPaths], så som visats i föregående delavsnitt.
 
 Öppna nu sidan med modellgeneratorn. Klicka i fältet `Code Template`. En dropdown-lista innehållande vår 
 nytillfogade kodmallskatalog `compact` presenteras. Dock, om vi skulle välja denna kodmall för att generera 
-kod, skulle vi se ett felmeddelande. Anledningen är att ännu återstår att lägga in faktiska kodmallsfiler 
+kod, skulle vi få se ett felmeddelande. Anledningen är att ännu återstår att lägga in faktiska kodmallsfiler 
 i denna nya kodmallsuppsättning `compact`.
 
 Kopiera filen `framework/gii/generators/model/templates/default/model.php` till `protected/gii/model/templates/compact`. 
@@ -177,7 +177,7 @@ public function attributeLabels()
 
 I varje kodmall har vi tillgång till vissa fördefinierade variabler, så som `$labels` i ovanstående exempel. 
 Dessa variabler tillhandahålls av den motsvarande kodgeneratorn. Olika kodgeneratorer kan tillgängliggöra skilda 
-uppsättninga variabler i sina kodmallar. Vänligen läs noggrannt beskrivningarna i standardkodmallarna.
+uppsättningar variabler i sina kodmallar. Vänligen läs noggrannt beskrivningarna i standardkodmallarna.
 
 
 ###Skapa nya kodgeneratorer
@@ -204,10 +204,10 @@ class WidgetGenerator extends CCodeGenerator
 }
 ~~~
 
-I ocanstående kod specificerar vi att generatorn kommer att använda modellklassen vars sökvägsalias 
+I ovanstående kod specificerar vi att generatorn kommer att använda modellklassen vars sökvägsalias 
 är `application.gii.widget.WidgetCode`. Klassen `WidgetGenerator` ärver från och utökar [CCodeGenerator] 
 vilken implementerar en mängd funktionaliteter, inklusive kontrolleråtgärder (actions) som erfordras 
-för att koordinering av kodgenereringsprocessen.
+för koordinering av kodgenereringsprocessen.
 
 #### Skapa `WidgetCode.php`
 
@@ -247,7 +247,7 @@ class WidgetCode extends CCodeModel
 ~~~
 
 Klassen `WidgetCode` ärver från och utökar [CCodeModel]. Liksom för en normal modellklass, 
-kan vi i denna klass deklarera `rules()` och `attributeLabels()` att validera användarinmatning 
+kan vi i denna klass deklarera `rules()` och `attributeLabels()`, för uppgiften att validera användarinmatning 
 respektive att tillhandahålla etiketter för attributen. Märk att eftersom modellklassen [CCodeModel] 
 redan definierar vissa regler och attributetiketter, måste vi här sammanfoga dessa med våra nya regler och etiketter.
 
@@ -255,7 +255,7 @@ Metoden `prepare()` förbereder för koden som kommer att genereras. Dess huvuds
 [CCodeFile]-objekt, vart och ett representerande en kodfil att generera. I vårt exempel behövr vi bara skapa ett enda 
 [CCodeFile]-objekt som representerar klassfilen för widgeten som skall genereras. Den nya widgetklassen kommer att 
 genereras i katalogen `protected/components`. Vi anropar metoden [CCodeFile::render] vilken utför den faktiska 
-kodgenereringen. Denna metod inkluderar kodmallen som ett PHP-skript och returnerar det som detta ekar ut (echo) som 
+kodgenereringen. Denna metod inkluderar kodmallen som ett PHP-skript och returnerar utmatning från detta som 
 genererad kod.
 
 
@@ -291,7 +291,7 @@ Den som provat ut standardkodgeneratorn, har noterat att när man sätter fokus 
 kommer ett behändigt kortfattat tips att dyka upp i anslutning till fältet. Detta kan enkelt åstadkommas 
 genom att lägga in ett `div`-element med CSS-klass `tooltip` i anslutning till inmatningsfältet.
 
-För vissa inmatningsfält vill vi komma ihåg deras senast giltiga innehåll, så att användare besparas 
+För vissa inmatningsfält vill vi komma ihåg deras senaste giltiga innehåll, så att användare besparas 
 besväret att återigen mata in värden varje gång de använder generatorn för kodgenerering. Ett exempel 
 är inmatningsfältet som hämtar in kontrollerns basklassnamn i standardkontrollergeneratorn. 
 Dessa vidhäftande fält presenteras initialt i form av markerad statisk text. Om vi klickar på dessa, 
