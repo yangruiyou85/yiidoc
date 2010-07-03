@@ -54,7 +54,7 @@ http://www.example.com/blog/index.php?r=gii
 Создание моделей
 ----------------
 
-Для начала нам необходимо создать [классы моделей](/doc/ru/guide/basics.model)
+Для начала нам необходимо создать [классы моделей](/doc/guide/ru/basics.model)
 для каждой из таблиц в БД. Эти классы позволят нам работать с БД в стиле ООП,
 что будет показано далее в данном руководстве.
 
@@ -101,8 +101,8 @@ http://www.example.com/blog/index.php?r=gii
 Повторим эти же действия для модели `Comment`.
 
 Рассмотрим сгенерированные файлы в `/wwwroot/blog/protected`. Для удобства
-сгруппируем их в [файлы контроллеров](/doc/ru/guide/basics.controller) и
-[файлы представлений](/doc/ru/guide/basics.view):
+сгруппируем их в [файлы контроллеров](/doc/guide/ru/basics.controller) и
+[файлы представлений](/doc/guide/ru/basics.view):
 
  - файлы контроллеров:
   * `Controllers/PostController.php` содержит класс `PostController`, который
@@ -150,8 +150,8 @@ http://www.example.com/blog/index.php?r=comment
 при отображении списка записей:
 
  0. Пользователь запрашивает URL `http://www.example.com/blog/index.php?r=post`;
- 1. [Входной скрипт](basics.entry) выполняется Web-сервером и инициализирует экземпляр
-    [приложения](basics.application) для обработки запроса;
+ 1. [Входной скрипт](/doc/guide/ru/basics.entry) выполняется Web-сервером и инициализирует экземпляр
+    [приложения](/doc/guide/ru/basics.application) для обработки запроса;
  2. Приложение создает экземпляр класса `PostController` и выполняет его;
  3. Экземпляр класса `PostController` выполняет действие `index` (метод `actionIndex()`).
     Отметим, что `index` является действием по умолчанию и используется в случае,
