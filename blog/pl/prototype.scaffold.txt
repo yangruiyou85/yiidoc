@@ -52,7 +52,7 @@ Na stronie `Model Generator` wprowadz `tbl_user` (nazwa tabeli z użytkownikami)
 
 > Info|Info: Ponieważ generator kodu potrzebuje zapisać wygenerowany kod do plików, wymaga się aby proces sieciowy posiadał pozwolenie na tworzenie i modyfikowanie odpowiednich plików. Upraszczając, możemy nadać procesowu sieciowemu uprawnienie do zapisywania całego katalogu `/wwwroot/blog`. Zauważ, że jest to potrzebne jedynie na maszynie deweloperskiej podczas używania `Gii`.
 
-Powtórz tą samą procedurę dla każdej z pozostałych tabel bazodanowych: `table_post`, `tbl_comment`, `tbl_tag` oraz `tbl_lookup`.
+Powtórz tą samą procedurę dla każdej z pozostałych tabel bazodanowych: `tbl_post`, `tbl_comment`, `tbl_tag` oraz `tbl_lookup`.
 
 > Tip|Wskazówka: Możemy również wprowadzić znak gwiazdki '\*' w polu nazwy tabeli `Table Name`. Spowoduje to wygenerowanie klasy modelu dla *każdej* tabeli za jednym zamachem.
 
