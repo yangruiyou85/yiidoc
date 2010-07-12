@@ -114,4 +114,4 @@ W celu lepszego zrozumienia jak powyższe pliki są używane, pokażemy przepły
  5. Metoda `actionIndex()` wyświetla widok `index` wypełniony danymi wiadomości.
 
 
-<div class="revision">$Id: prototype.scaffold.txt 2243 2010-07-03 19:05:48Z alexander.makarow $</div>
+<div class="revision">$Id: prototype.scaffold.txt 2258 2010-07-12 14:13:50Z alexander.makarow $</div>
