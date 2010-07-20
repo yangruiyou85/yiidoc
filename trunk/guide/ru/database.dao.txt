@@ -81,6 +81,9 @@ array(
 
 ~~~
 [php]
+$connection=Yii::app()->db;   // предполагается, что у вас уже есть сконфигурированное подключение "db"
+// Если нет, вы можете явно его создать:
+// $connection=new CDbConnection($dsn,$username,$password);
 $command=$connection->createCommand($sql);
 // если необходимо, SQL-выражение можно обновить:
 // $command->text=$newSQL;
@@ -190,7 +193,7 @@ $command->execute();
 
 Методы [bindParam()|CDbCommand::bindParam] и [bindValue()|CDbCommand::bindValue] очень похожи, 
 единственное различие состоит в том, что первый привязывает параметр к ссылке на переменную PHP, 
-а второй — к значению. Для параметров, представляющих большой объем данных, с точки зрения производительности
+а второй — к значению. Для параметров, представляющих большие объемы данных, с точки зрения производительности
 предпочтительнее использовать метод [bindParam()|CDbCommand::bindParam].
 
 Подробнее о связывании параметров можно узнать в 
@@ -240,4 +243,4 @@ $sql='SELECT * FROM {{user}}';
 $users=$connection->createCommand($sql)->queryAll();
 ~~~
 
-<div class="revision">$Id: database.dao.txt 1764 2010-02-01 00:09:12Z qiang.xue $</div>
+<div class="revision">$Id: database.dao.txt 2266 2010-07-17 13:58:30Z qiang.xue $</div>
