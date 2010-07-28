@@ -21,7 +21,7 @@
   <br class="clearfloat" />
 
   <div id="footer">
-    <p>Copyright 2008-2009 &copy <a href="http://www.yiisoft.com">Yii Software LLC</a>
+    <p>Copyright 2008—2010 &copy <a href="http://www.yiisoft.com">Yii Software LLC</a>
     All Rights Reserved |
     <a href="http://www.yiiframework.com/doc/terms/">Terms of Use</a><br/>
     <?php echo Yii::powered(); ?></p>
