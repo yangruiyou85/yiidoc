@@ -38,8 +38,9 @@ Testing Translations
 --------------------
 
 You can use the included application to test your translations online.
-To access the application, the whole yiidoc folder should be placed
-under a Web-accessible folder. And you can then access the Guide via:
+To access the application, the whole checked out folder should be placed
+under a Web-accessible folder. For example, `yiidoc`.
+And you can then access the Guide via:
 
 http://hostname/path/to/yiidoc/index.php?r=guide
 
