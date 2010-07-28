@@ -59,7 +59,7 @@ class UserIdentity extends CUserIdentity
 В методе `authenticate()` мы используем класс `User` для поиска строки в
 таблице `User`, в которой значение поля `username` такое же, как полученное
 имя пользователя без учета регистра. Помните, что класс `User` был создан,
-используя инструмент `yiic` в предыдущем разделе. Поскольку класс `User`
+используя инструмент `gii` в предыдущем разделе. Поскольку класс `User`
 наследуется от класса [CActiveRecord], мы можем использовать
 [возможности ActiveRecord](/doc/guide/ru/database.ar)
 для того, чтобы обращаться к таблице `User` в ООП манере.
@@ -158,4 +158,4 @@ switch($identity->errorCode)
 Функцию управления пользователями можно рассматривать как будущее расширение к
 приложению блога.
 
-<div class="revision">$Id: prototype.auth.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
+<div class="revision">$Id: prototype.auth.txt 2284 2010-07-28 15:15:30Z alexander.makarow $</div>
