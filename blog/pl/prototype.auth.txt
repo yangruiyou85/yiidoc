@@ -42,7 +42,7 @@ class UserIdentity extends CUserIdentity
 }
 ~~~
 
-W metodzie `authenticate(), używamy klasy `User` do wyszukiwania wiersza danych w tabeli `User`, którego kolumna `username` posiada tą samą wartość co nazwa użytkownika, bez uwzględnienia wielkości liter. Przypominamy, że klasa `User` została utworzona za pomocą narzędzia `yiic` w poprzedniej części. Ponieważ klasa `User` dziedziczy z  [CActiveRecord], możemy wykorzystać [funkcjonalność rekordu aktywnego](http://www.yiiframework.com/doc/guide/database.ar) i uzyskać dostęp do tabeli `User` w obiektowy (OOP) sposób.
+W metodzie `authenticate(), używamy klasy `User` do wyszukiwania wiersza danych w tabeli `User`, którego kolumna `username` posiada tą samą wartość co nazwa użytkownika, bez uwzględnienia wielkości liter. Przypominamy, że klasa `User` została utworzona za pomocą narzędzia `gii` w poprzedniej części. Ponieważ klasa `User` dziedziczy z  [CActiveRecord], możemy wykorzystać [funkcjonalność rekordu aktywnego](http://www.yiiframework.com/doc/guide/database.ar) i uzyskać dostęp do tabeli `User` w obiektowy (OOP) sposób.
  
 W celu sprawdzenia czy użytkownik wprowadził prawidłowe hasło, wywołujemy metodę `validatePassword` klasy użytkownika `User`. Musimy zmodyfikować plik `/wwwroot/blog/protected/models/User.php` w następujący sposób. Zauważ, że zamiast przechowywać hasło tekstowo w bazie danych, przechowujemy rezultat haszowania hasła oraz losowo wygenerowany klucz soli. Podczas sprawdzania poprawności hasła wprowadzonego przez użytkownika powinniśmy użyć do porównywania rezultatu haszowania hasła zamiast samego hasła.
 
@@ -102,4 +102,4 @@ switch($identity->errorCode)
 
 W celu przetestowania zmodyfikowanej klasy `UserIdentity`, możemy otworzyć adres URL `http://www.example.com/blog/index.php` i spróbować zalogować się przy użyciu nazwy użytkownika oraz hasła przechowywanego w tabeli `User`. Jeśli użyjemy bazy danej dostarczonej przez [mego blogu](http://www.yiiframework.com/demos/blog/), powinniśmy być w stanie zalogować się przy użyciu nazwy użytkownika `demo` oraz hasła `demo`. Zauważ, że ten system blogowy nie dostarcza funkcjonalności zarządzania użytkownikami. W rezultacie użytkownik nie może zmienić swojego konta czy też stworzyć nowe poprzez interfejs sieciowy. Funkcjonalność zarządzania użytkownikami może zostać rozważona jako przyszłe rozszerzenie dla naszej aplikacji.
 
-<div class="revision">$Id: prototype.auth.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
+<div class="revision">$Id: prototype.auth.txt 2284 2010-07-28 15:15:30Z alexander.makarow $</div>
