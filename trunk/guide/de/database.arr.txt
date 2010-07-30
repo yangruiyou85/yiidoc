@@ -250,14 +250,18 @@ OUTER JOIN`.
    - `alias`: Der Alias für die verknüpfte Tabelle. Diese Option ist seit Version 1.0.1 verfügbar. 
 Mit dem Standardwert `null` wird der Beziehungsname als Alias verwendet.
 
-   - `together`: Ob ein JOIN der verknüpften Tabelle gemeinsam mit der Haupt- bzw. anderen Tabellen 
+   - `together`: Ob ein JOIN der verknüpften Tabelle mit der Haupt- bzw. anderen Tabellen 
 erzwungen werden soll. Diese Option ist nur für HAS_MANY und MANY_MANY von Bedeutung.
-Setzt man diesen Wert auf `false`, wird die verknüpfte Tabelle in einer gesonderten
-SQL-Abfrage eingelesen, was manchmal die gesamte Abfrage beschleunigen kann, 
-da weniger gleiche Daten pro Zeile zurückgeliefert werden. Der Standardwert
-ist jedoch `true`. Für weitere Informationen lesen Sie bitte auch den 
-Abschnitt "Geschwindigkeit von relationalen Abfragen". Diese Option ist seit
-Version 1.0.3 verfügbar.
+Setzt man diesen Wert auf `false`, wird eine separate SQL-Abfrage für die verknüpfte Tabelle 
+ausgeführt, wodurch die ganze Abfrage in manchen Fällen beschleunigt wird, da
+weniger gleiche Daten pro Zeile übertragen werden müssen. Ist die Option `true` 
+wird die verknüpfte Tabelle immer mittels JOIN zusammen mit der Haupttabelle
+abgefragt, auch wenn diese seitenweise ausgelesen wird (Pagination).
+Bleibt die Option leer, wird die verbundene Tabelle nur dann
+zusammen mit der Haupttabelle in einer einzigen Abfrage eingelesen, falls 
+diese keine Seitenblätterung verwendet. Für weitere Informationen 
+lesen Sie bitte auch den Abschnitt "Geschwindigkeit von relationalen Abfragen". 
+Diese Option ist seit Version 1.0.3 verfügbar.
 
    - `join`: Zusätzliche `JOIN`-Ausdrück, standardmäßig leer. Diese Option ist seit
 Version 1.1.3 verfügbar.
@@ -576,4 +580,4 @@ class User extends CActiveRecord
 verwendet werden, die in [CActiveRecord::scopes] definiert wurden. Man kann
 daher keine parametrisierten Scopes verwenden.
 
-<div class="revision">$Id: database.arr.txt 2226 2010-06-25 18:12:01Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 2288 2010-07-30 00:36:04Z qiang.xue $</div>
