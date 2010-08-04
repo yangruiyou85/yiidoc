@@ -238,4 +238,4 @@ Alle disse fine funksjonene kommer uten at vi skal skrev en eneste linje kode!
 
 
 
-<div class="revision">$Id: quickstart.first-app.txt 2125 2010-08-04 20:33:00Z eirikhm $</div>
+<div class="revision">$Id: quickstart.first-app.txt 2125 2010-05-11 23:36:02Z alexander.makarow $</div>
