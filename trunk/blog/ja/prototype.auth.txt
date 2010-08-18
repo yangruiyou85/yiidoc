@@ -46,7 +46,7 @@ class UserIdentity extends CUserIdentity
 
 `UserIdentity` クラスでは、`getId()` メソッドをオーバーライドして、`User` テーブルから見つかったユーザの `id` を返すようにしています。元の実装では、代わりにユーザ名を返すようになっていました。`username` と `id` プロパティはともにユーザセッションに保存され、コードのどこからでも `Yii::app()->user` でアクセスすることが可能です。
 
-> Tip|ヒント: `UserIdentity` クラスにおいて、対応するクラスファイルを読み込むことなく [CUserIdentity] を参照しています。 これは [CUserIdentity] が Yii framework のコアクラスであるためです。Yii は任意のコアクラスが最初に参照されたときに、自動的のそのクラスファイルを読み込みます。`User` クラスでも同じことが行われています。 なぜなら、 `User` クラスファイルが、`/wwwroot/blog/protected/models` ディレクトリ以下にあり、アプリケーション初期構成の下記コードで PHP の `include_path` に追加されているからです。
+> Tip|ヒント: `UserIdentity` クラスにおいて、対応するクラスファイルを読み込むことなく [CUserIdentity] を参照しています。 これは [CUserIdentity] が Yii framework のコアクラスであるためです。Yii は任意のコアクラスが最初に参照されたときに、自動的にそのクラスファイルを読み込みます。`User` クラスでも同じことが行われています。 なぜなら、 `User` クラスファイルが、`/wwwroot/blog/protected/models` ディレクトリ以下にあり、アプリケーション初期構成の下記コードで PHP の `include_path` に追加されているからです。
 >
 > ~~~
 > [php]
