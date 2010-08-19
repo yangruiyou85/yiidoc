@@ -213,6 +213,6 @@ Podczas przetwarzania żądania użytkownika aplikacja podlega następującemu c
 	   - utworzenie kontrolera;
 	   - uruchomienie kontrolera;
 
-   7.Zgłoszenie zdarzenia [onEndRequest|CApplication::onEndRequest];
+   7. Zgłoszenie zdarzenia [onEndRequest|CApplication::onEndRequest];
 
-<div class="revision">$Id: basics.application.txt 1601 2009-12-18 04:31:19Z qiang.xue $</div>
+<div class="revision">$Id: basics.application.txt 2311 2010-08-09 13:01:12Z alexander.makarow $</div>
