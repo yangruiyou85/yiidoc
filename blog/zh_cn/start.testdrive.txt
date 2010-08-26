@@ -11,7 +11,7 @@ Yii 之初体验
 
 > Tip|提示: Yii框架可以安装在文件系统的任何地方，而不是必须在Web目录中。它的 `framework` 目录包含了框架的代码，这也是部署Yii应用时唯一一个必要的目录。一个单独的Yii安装可以被用于多个Yii应用。
 
-Yii安装完毕之后，打开浏览器访问URL `http://www.example.com/yii/requirements/index.php`。它将显示Yii提供的需求检查程序。对我们的Blog应用来说，除了Yii所需的最小需求之外，我们还需要启用 `pdo` 和 `pdo_sqlite` 这两个PHP 扩展。这样我们才能访问SQlite数据库。
+Yii安装完毕之后，打开浏览器访问URL `http://www.example.com/yii/requirements/index.php`。它将显示Yii提供的需求检查程序。对我们的Blog应用来说，除了Yii所需的最小需求之外，我们还需要启用 `pdo` 和 `pdo_sqlite` 这两个PHP 扩展。这样我们才能访问SQLite数据库。
 
 
 创建应用骨架
