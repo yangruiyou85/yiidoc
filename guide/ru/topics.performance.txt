@@ -64,7 +64,7 @@
 сервера. Описанное выше
 [кэширование APC](/doc/guide/topics.performance#enabling-apc-extension) относится
 как раз к ним. Существуют и другие решения, такие как
-[Zend Optimizer](http://Zend.com/ZendOptimizer), [eAccelerator](http://eaccelerator.net/)
+[Zend Optimizer](http://www.zend.com/en/products/guard/zend-optimizer), [eAccelerator](http://eaccelerator.net/)
 и [Squid](http://www.squid-cache.org/).
 
 Оптимизация базы данных
@@ -168,4 +168,4 @@ $cs->scriptMap=array(
 </head>
 ~~~
 
-<div class="revision">$Id: topics.performance.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
+<div class="revision">$Id: topics.performance.txt 2343 2010-08-26 21:10:08Z alexander.makarow $</div>
