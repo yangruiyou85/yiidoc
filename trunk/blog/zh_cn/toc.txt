@@ -21,9 +21,8 @@
     - [评论的创建与显示](comment.create)
     - [评论管理](comment.admin)
 
-* Portlet 搭建
-	- [建立Portlet基类](portlet.base)
-	- [用户菜单](portlet.menu)
+* Portlet 
+	- [创建用户菜单 Portlet](portlet.menu)
 	- [登陆位置](portlet.login)
 	- [标签云](portlet.tags)
 	- [建立最新评论](portlet.comments)
