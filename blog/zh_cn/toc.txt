@@ -4,22 +4,22 @@
     - [需求分析](start.requirements)
     - [整体设计](start.design)
 
-* 前期制作
-    - [设置数据库](prototype.database)
+* 初期原型
+    - [建立数据库](prototype.database)
     - [脚手架](prototype.scaffold)
-    - [用户认证](prototype.auth)
-    - [小结](prototype.summary)
+    - [用户验证](prototype.auth)
+    - [总结](prototype.summary)
 
-* 文章(Post)管理
-    - [调整文章模型](post.model)
-    - [建立和修改文章](post.create)
-    - [显示文章](post.display)
-    - [管理文章](post.admin)
+* 日志管理
+    - [自定义日志模型](post.model)
+    - [日志的创建与更新](post.create)
+    - [日志显示](post.display)
+    - [日志管理](post.admin)
 
-* 评论(Comment)管理
-	- [调整评论模型](comment.model)
-    - [建立和显示评论](comment.create)
-    - [管理评论](comment.admin)
+* 评论管理
+    - [自定义评论模型](comment.model)
+    - [评论的创建与显示](comment.create)
+    - [评论管理](comment.admin)
 
 * Portlet 搭建
 	- [建立Portlet基类](portlet.base)
