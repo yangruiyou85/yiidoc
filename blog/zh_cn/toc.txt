@@ -30,7 +30,7 @@
 	- [美化URL](final.url)
 	- [错误日志](final.logging)
     - [自定义错误页](final.error)
-    - [调节与部署](final.deployment)
+    - [最终调整与部署](final.deployment)
     - [改进](final.future)
 
 
