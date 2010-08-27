@@ -7,6 +7,10 @@
 
 此教程在[the Terms of Yii Documentation](http://www.yiiframework.com/doc/terms/)下发布.
 
-中文版由小河（[riverlet](http://www.yiiframework.com/forum/index.php?/user/6467-riverlet/)）翻译。
+此版本中文版由小河（[riverlet](http://www.yiiframework.com/forum/index.php?/user/6467-riverlet/)）翻译。
+
+历史版本翻译者：
+
+1.Wu.GQiang
 
 <div class="revision">$Id: start.overview.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
