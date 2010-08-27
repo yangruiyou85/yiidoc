@@ -23,8 +23,7 @@
 
 * Portlet 
 	- [创建用户菜单 Portlet](portlet.menu)
-	- [登陆位置](portlet.login)
-	- [标签云](portlet.tags)
+	- [创建标签云 Portlet](portlet.tags)
 	- [建立最新评论](portlet.comments)
 
 * 结尾工作
