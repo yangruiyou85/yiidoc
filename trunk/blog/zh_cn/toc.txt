@@ -22,16 +22,16 @@
     - [评论管理](comment.admin)
 
 * Portlet 
-	- [创建用户菜单 Portlet](portlet.menu)
-	- [创建标签云 Portlet](portlet.tags)
-	- [创建最新评论 Portlet](portlet.comments)
+    - [创建用户菜单 Portlet](portlet.menu)
+    - [创建标签云 Portlet](portlet.tags)
+    - [创建最新评论 Portlet](portlet.comments)
 
 * 结尾工作
-	- [美化URL](final.url)
-	- [错误日志](final.logging)
+    - [美化URL](final.url)
+    - [错误日志](final.logging)
     - [自定义错误页](final.error)
     - [最终调整与部署](final.deployment)
-    - [改进](final.future)
+    - [今后的增强](final.future)
 
 
 <div class="revision">$Id: toc.txt 1202 2009-10-21 17:56:59Z qiang.xue $</div>
