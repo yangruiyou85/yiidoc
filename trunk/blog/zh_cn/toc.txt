@@ -27,7 +27,7 @@
 	- [创建最新评论 Portlet](portlet.comments)
 
 * 结尾工作
-	- [漂亮的URLs](final.url)
+	- [美化URL](final.url)
 	- [错误日志](final.logging)
     - [自定义错误页](final.error)
     - [调节与部署](final.deployment)
