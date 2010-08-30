@@ -52,16 +52,16 @@
 	- [单元测试](test.unit)
 	- [Functional Testing](test.functional)
 
-* 特殊主题
+* 专题
 	- [自动化代码生成](topics.gii)
     - [URL 管理](topics.url)
-    - [Authentication and Authorization](topics.auth)
+    - [验证与授权](topics.auth)
     - [主题与皮肤](topics.theming)
     - [日志记录](topics.logging)
     - [错误处理](topics.error)
     - [Web Service](topics.webservice)
     - [国际化 (I18N)](topics.i18n)
-    - [Alternative Template Syntax](topics.prado)
+    - [非主流模板语法](topics.prado)
     - [控制台应用](topics.console)
     - [安全](topics.security)
     - [性能调节](topics.performance)
