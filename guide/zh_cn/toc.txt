@@ -1,4 +1,4 @@
-* Getting Started
+* 开始
 	- [概览](index)
 	- [新功能](changes)
 	- [从版本 1.0 升级到 1.1](upgrade)
@@ -6,7 +6,7 @@
     - [安装](quickstart.installation)
     - [创建第一个 Yii 应用](quickstart.first-app)
 
-* Fundamentals
+* 基础知识
     - [模型-视图-控制器 (MVC)](basics.mvc)
     - [入口脚本](basics.entry)
     - [应用](basics.application)
