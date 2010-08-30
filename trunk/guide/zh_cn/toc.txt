@@ -19,7 +19,7 @@
     - [Conventions](basics.convention)
     - [开发流程](basics.workflow)
 
-* 表单相关
+* 使用表单
     - [概览](form.overview)
     - [创建模型](form.model)
     - [创建动作](form.action)
@@ -27,7 +27,7 @@
     - [Collecting Tabular Input](form.table)
     - [使用表单生成器](form.builder)
 
-* 数据库相关
+* 使用数据库
     - [概览](database.overview)
     - [数据库访问对象（DAO）](database.dao)
     - [Active Record](database.ar)
