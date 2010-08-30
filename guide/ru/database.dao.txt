@@ -38,7 +38,7 @@ $connection->active=false;  // close connection
 
 Формат DSN зависит от используемого драйвера PDO. Как правило, DSN состоит из имени драйвера PDO,
 за которым следует двоеточие, а далее указываются параметры подключения, соответствующие синтаксису подключения
-используемого драйвера. Подробнее с этим можно ознакомиться в [документации по PDO](http://www.php.net/manual/en/pdo.construct.php).
+используемого драйвера. Подробнее с этим можно ознакомиться в [документации по PDO](http://php.net/manual/en/pdo.construct.php).
 Ниже представлены несколько основных форматов DSN:
 
    - SQLite: `sqlite:/path/to/dbfile`
@@ -197,7 +197,7 @@ $command->execute();
 предпочтительнее использовать метод [bindParam()|CDbCommand::bindParam].
 
 Подробнее о связывании параметров можно узнать в
-[соответствующей документации PHP](http://www.php.net/manual/en/pdostatement.bindparam.php).
+[соответствующей документации PHP](http://php.net/manual/en/pdostatement.bindparam.php).
 
 
 Связывание полей

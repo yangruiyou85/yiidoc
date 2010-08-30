@@ -59,7 +59,7 @@ $app=Yii::createWebApplication($configFile);
 Базовой директорией приложения называется корневая директория, содержащая все основные с точки
 зрения безопасности PHP-скрипты и данные. По умолчанию, это поддиректория с названием `protected`
 в директории, содержащей входной скрипт. Изменить местоположение можно изменив свойство
-[basePath|CWebApplication::basePath] в [конфигурации приложения](#application-configuration).
+[basePath|CWebApplication::basePath] в [конфигурации приложения](/doc/guide/basics.application#application-configuration).
 
 Содержимое базовой директории должно быть закрыто от доступа из веб.
 При использовании веб-сервера [Apache HTTP server](http://httpd.apache.org/),
@@ -188,4 +188,4 @@ Yii предопределяет набор ключевых (core) компон
 
    7. Вызов события [onEndRequest|CApplication::onEndRequest].
 
-<div class="revision">$Id: basics.application.txt 2311 2010-08-09 13:01:12Z alexander.makarow $</div>
+<div class="revision">$Id: basics.application.txt 2360 2010-08-28 23:55:47Z qiang.xue $</div>
