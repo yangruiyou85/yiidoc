@@ -76,12 +76,12 @@ class MyWidget extends CWidget
 {
 	public function init()
 	{
-		// this method is called by CController::beginWidget()
+		// 此方法会被 CController::beginWidget() 调用
 	}
 
 	public function run()
 	{
-		// this method is called by CController::endWidget()
+		// 此方法会被 CController::endWidget() 调用
 	}
 }
 ~~~
