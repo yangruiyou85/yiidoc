@@ -6,7 +6,7 @@
 Версия 1.1.4
 ------------
 
- * [Добавлена поддержка параметров для действий контроллера](/doc/guide/basics.controller#action-parameters)
+ * [Добавлена поддержка автоматической привязкии параметров действий контроллера](/doc/guide/basics.controller#action-parameters)
 
 Версия 1.1.3
 -------------
@@ -126,4 +126,4 @@
  * Расширен класс [CUrlManager] поддержкой параметризованных маршрутов в URL-правилах:
      - [Параметризация маршрутов](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 2368 2010-08-29 18:49:37Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 2418 2010-09-02 16:01:46Z qiang.xue $</div>
