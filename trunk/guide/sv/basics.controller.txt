@@ -136,6 +136,94 @@ protected/
             UpdateAction.php
 ~~~
 
+### Action Parameters
+
+Since version 1.1.4, Yii has added support of controller action parameters that
+can be automatically populated from the `$_GET` variable. This feature
+only applies to actions defined as controller methods.
+
+In order to elaborate this feature, let's assume we need to write a `create` action
+for `PostController`. The action requires two parameters:
+
+* `category`: an integer indicating the category ID under which the new post will
+   be created;
+* `language`: a string indicating the language code that the new post will be in.
+
+We may end up with the following boring code for the purpose of retrieving the needed
+parameter values from `$_GET`:
+
+~~~
+[php]
+class PostController extends CController
+{
+	public function actionCreate()
+	{
+		if(isset($_GET['category']))
+			$category=(int)$_GET['category'];
+		else
+			throw new CHttpException(404,'invalid request');
+
+		if(isset($_GET['language']))
+			$language=$_GET['language'];
+		else
+			$language='en';
+
+		// ... fun code starts here ...
+	}
+}
+~~~
+
+Now using the action parameter feature, we can achieve our task more pleasantly:
+
+~~~
+[php]
+class PostController extends CController
+{
+	public function actionCreate($category, $language='en')
+	{
+		// ... fun code starts here ...
+	}
+}
+~~~
+
+Notice that we add two parameters to the action method `actionCreate`.
+The name of these parameters must be exactly the same as the ones we expect
+from `$_GET`. The `$language` parameter takes a default value `en` in case
+when the user does not provide such a parameter in his request. Because `$category`
+does not have a default value, if the user does not provide `category` parameter
+in `$_GET`, a [CHttpException] will be thrown automatically.
+
+There is one drawback in our above improved code. That is, the type of `$category`
+will not be enforced by Yii (remember we require `$category` to be an integer).
+In order for Yii to automatically typecasting the `$category` parameter to be an integer,
+we can add a method comment block as follows:
+
+~~~
+[php]
+class PostController extends CController
+{
+	/**
+	 * Creates a post.
+	 * @param integer $category the category ID of the new post
+	 * @param string $language the language code of the new post
+	 */
+	public function actionCreate($category, $language='en')
+	{
+		// ... fun code starts here ...
+	}
+}
+~~~
+
+In the above comment block, each parameter has a corresponding line of comment, which
+must be in the format of `@param Type ParamName ...`. The `Type` part specifies a
+single PHP type, which can be `integer` (or `int`), `boolean` (or `bool`), `float` (or `double`), or `string`.
+The `ParamName` part specifies the corresponding parameter name (e.g. `$category`).
+
+The method comment block is not required. When it is not specified, it means
+the action itself should take care of the parameter types, and all parameters will
+be passed to the action as is.
+
+
 Filter
 ------
 
@@ -222,4 +310,4 @@ filtret `postOnly` på åtgärderna `edit` och `create`, medan `PerformanceFilte
 tillämpas på alla åtgärder UTOM `edit` och `create`. Om varken plus eller minus 
 förekommer i filterkonfigurationen tillämpas filtret på alla åtgärder.
 
-<div class="revision">$Id: basics.controller.txt 1264 2009-07-21 19:34:55Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 2390 2010-08-30 23:16:37Z alexander.makarow $</div>
