@@ -168,9 +168,10 @@ inmatningselement som skall renderas. Typen `text` innebär till exempel att ett
  - checkboxlist
  - radiolist
 
-Among the above built-in types, we would like to describe a bit more about the usage of those "list" types,
-which include `dropdownlist`, `checkboxlist` and `radiolist`. These types require setting the [items|CFormInputElement::items]
-property of the corresponding input element. One can do so like the following:
+Bland de ovanstående inbyggda typerna förtjänar "list"-typerna `dropdownlist`, `checkboxlist` 
+och `radiolist`, en mer ingående beskrivning. Dessa typer kräver att man sätter propertyn 
+[items|CFormInputElement::items] för det motsvarande inmatningselementet.
+Detta kan göras på följande sätt:
 
 ~~~
 [php]
@@ -194,8 +195,8 @@ class User extends CActiveRecord
 }
 ~~~
 
-The above code will generate a drop-down list selector with prompt text "please select:". The selector options
-include "Male" and "Female", which are returned by the `getGenderOptions` method in the `User` model class.
+Ovanstående kod genererar en drop-downlista vars prompt är "please select:". Listan med alternativ 
+inkluderar "Male" och "Female", vilka returneras av metoden `getGenderOptions` i modellklassen `User` model.
 
 Förutom dessa inbyggda typer, kan alternativet [type|CFormInputElement::type] också ges namnet på en widgetklass 
 eller sökvägsalias till densamma. Widgetklassen måste ärva från [CInputWidget] eller [CJuiInputWidget]. 
