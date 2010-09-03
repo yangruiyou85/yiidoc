@@ -136,21 +136,21 @@ protected/
             UpdateAction.php
 ~~~
 
-### Action Parameters
+### Knyta parametrar till Action
 
-Since version 1.1.4, Yii has added support of controller action parameters that
-can be automatically populated from the `$_GET` variable. This feature
-only applies to actions defined as controller methods.
+Med start i version 1.1.4 har Yii försetts med stöd för automatisk koppling av 
+parametrar till kontrolleråtgärder. Det innebär att en kontrollers åtgärdsmetod 
+kan definiera namngivna parametrar vars värde automatiskt kommer att hämtas från 
+`$_GET` av Yii.
 
-In order to elaborate this feature, let's assume we need to write a `create` action
-for `PostController`. The action requires two parameters:
+För fördjupad inblick i denna finess, antag att vi behöver skriva en `create`-åtgärd 
+för `PostController`. Åtgärden behöver två parametrar:
 
-* `category`: an integer indicating the category ID under which the new post will
-   be created;
-* `language`: a string indicating the language code that the new post will be in.
+* `category`: ett heltal som indikerar det kategori-ID under vilket den nya postningen skall skapas
+* `language`: en sträng som indikerar vilken språkkod den nya postningen skall höra till.
 
-We may end up with the following boring code for the purpose of retrieving the needed
-parameter values from `$_GET`:
+Vi kan komma fram till följande trista kod för ändamålet att hämta in de erforderliga 
+parametervärdena från `$_GET`:
 
 ~~~
 [php]
@@ -173,7 +173,7 @@ class PostController extends CController
 }
 ~~~
 
-Now using the action parameter feature, we can achieve our task more pleasantly:
+Med användning av finessen åtgärdsparametrar kan vi lösa uppgiften mer bekvämt:
 
 ~~~
 [php]
@@ -186,42 +186,12 @@ class PostController extends CController
 }
 ~~~
 
-Notice that we add two parameters to the action method `actionCreate`.
-The name of these parameters must be exactly the same as the ones we expect
-from `$_GET`. The `$language` parameter takes a default value `en` in case
-when the user does not provide such a parameter in his request. Because `$category`
-does not have a default value, if the user does not provide `category` parameter
-in `$_GET`, a [CHttpException] will be thrown automatically.
-
-There is one drawback in our above improved code. That is, the type of `$category`
-will not be enforced by Yii (remember we require `$category` to be an integer).
-In order for Yii to automatically typecasting the `$category` parameter to be an integer,
-we can add a method comment block as follows:
-
-~~~
-[php]
-class PostController extends CController
-{
-	/**
-	 * Creates a post.
-	 * @param integer $category the category ID of the new post
-	 * @param string $language the language code of the new post
-	 */
-	public function actionCreate($category, $language='en')
-	{
-		// ... fun code starts here ...
-	}
-}
-~~~
-
-In the above comment block, each parameter has a corresponding line of comment, which
-must be in the format of `@param Type ParamName ...`. The `Type` part specifies a
-single PHP type, which can be `integer` (or `int`), `boolean` (or `bool`), `float` (or `double`), or `string`.
-The `ParamName` part specifies the corresponding parameter name (e.g. `$category`).
-
-The method comment block is not required. When it is not specified, it means
-the action itself should take care of the parameter types, and all parameters will
-be passed to the action as is.
+Märk att vi lägger till två parametrar till åtgärdsmetoden `actionCreate`.
+Namnen på dessa parametrar måste exakt stämma överens med de vi förväntar oss 
+från `$_GET`. Parametern `$language` erhåller standardvärdet `en` i händelse av att 
+användaren inte tillhandahåller en sådan parameter i sin request. Eftersom `$category` 
+inte är försett med ett standardvärde, kommer en [CHttpException] att genereras om användaren inte 
+tillhandahåller parametern `category` i `$_GET`.
 
 
 Filter
@@ -310,4 +280,4 @@ filtret `postOnly` på åtgärderna `edit` och `create`, medan `PerformanceFilte
 tillämpas på alla åtgärder UTOM `edit` och `create`. Om varken plus eller minus 
 förekommer i filterkonfigurationen tillämpas filtret på alla åtgärder.
 
-<div class="revision">$Id: basics.controller.txt 2390 2010-08-30 23:16:37Z alexander.makarow $</div>
+<div class="revision">$Id: basics.controller.txt 2418 2010-09-02 16:01:46Z qiang.xue $</div>
