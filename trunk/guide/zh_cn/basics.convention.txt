@@ -54,24 +54,19 @@ application', 'basePath'=>'./protected')` 初始化了 `name` 和
 文件
 ----
 
-Conventions for naming and using files depend on their types.
+命名和使用文件的规范取决于它们的类型。
 
-Class files should be named after the public class they contain. For
-example, the [CController] class is in the `CController.php` file.  A
-public class is a class that may be used by any other classes. Each class
-file should contain at most one public class. Private classes (classes that
-are only used by a single public class) may reside in the same file with
-the public class.
+类文件应以它们包含的公有类命名。例如， [CController] 类位于 `CController.php` 文件中。
+公有类是可以被任何其他类使用的类。每个类文件应包含最多一个公有类。
+私有类（只能被一个公有类使用的类）可以放在使用此类的公有类所在的文件中。
 
-View files should be named after the view name. For example, the `index`
-view is in the `index.php` file. A view file is a PHP script file that
-contains HTML and PHP code mainly for presentational purpose.
+视图文件应以视图的名字命名。例如， `index` 视图位于 `index.php` 文件中。
+视图文件是一个PHP脚本文件，它包含了用于呈现内容的 HTML和PHP代码。
 
-Configuration files can be named arbitrarily. A configuration file is a
-PHP script whose sole purpose is to return an associative array
-representing the configuration.
+配置文件可以任意命名。
+配置文件是一个PHP脚本，它的主要目的是返回一个体现配置的关联数组。
 
-Directory
+目录
 ---------
 
 Yii assumes a default set of directories used for various purposes. Each
@@ -123,7 +118,7 @@ applied to the application. Each subdirectory represents a single theme
 whose name is the subdirectory name. It can be customized via
 [CThemeManager::basePath].
 
-Database
+数据库
 --------
 
 Most Web applications are backed by some database. For best practice, we propose
