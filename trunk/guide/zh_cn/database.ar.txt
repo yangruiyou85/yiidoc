@@ -1,12 +1,14 @@
 Active Record
-========================
-虽然Yii DAO可以处理几乎任何数据库相关的任务，但很可能我们会花费90%的时间
-用来书一些通用的SQL语句来执行CRUD操作（创建，读取，更新和删除）。
-同时我们也很难维护这些PHP和SQL语句混合的代码。要解决这些问题，我们可以使用Active Record。
+=============
 
-Active Record（AR）是一种流行的对象关系映射（ORM）技术。每个AR代表一个数据表（或视图），
-其字段作为AR的属性，一个AR实例代表在表中的一行。常见的CRUD操作对应AR中的成员函数。
-于是，我们可以使用更面向对象的方法处理我们的数据。例如，我们可以使用下面的代码在`Post`表中插入一个新行：
+虽然 Yii DAO 可以处理几乎任何数据库相关的任务，
+但很可能我们会花费 90% 的时间以编写一些执行普通 CRUD（create, read, update 和 delete）操作的 SQL 语句。
+而且我们的代码中混杂了SQL语句时也会变得难以维护。要解决这些问题，我们可以使用 Active Record。
+
+Active Record (AR) 是一个流行的 对象-关系映射 (ORM) 技术。
+每个 AR 类代表一个数据表（或视图），数据表（或视图）的列在 AR 类中体现为类的属性，一个 AR 实例则表示表中的一行。
+常见的 CRUD 操作作为 AR 的方法实现。因此，我们可以以一种更加面向对象的方式访问数据。
+例如，我们可以使用以下代码向 `tbl_post` 表中插入一个新行。
 
 ~~~
 [php]
@@ -16,90 +18,90 @@ $post->content='post body content';
 $post->save();
 ~~~
 
-在下面我们将介绍如何设置AR和用它来执行CRUD操作。在下一小节我们将展示如何使用AR
-处理数据库中的关系。为了简单起见，我们使用本节下面的数据库表作为例子。
-请注意，如果你使用MySQL数据库，在下面的SQL中您应该替换`AUTOINCREMENT`为`AUTO_INCREMENT`。
+下面我们讲解怎样设置 AR 并通过它执行 CRUD 操作。我们将在下一节中展示怎样使用 AR 处理数据库关系。
+为简单起见，我们使用下面的数据表作为此节中的例子。注意，如果你使用 MySQL 数据库，你应该将下面的 SQL 中的
+ `AUTOINCREMENT` 替换为 `AUTO_INCREMENT`。
 
 ~~~
 [sql]
-CREATE TABLE Post (
-    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    title VARCHAR(128) NOT NULL,
-    content TEXT NOT NULL,
-    createTime INTEGER NOT NULL
+CREATE TABLE tbl_post (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	title VARCHAR(128) NOT NULL,
+	content TEXT NOT NULL,
+	create_time INTEGER NOT NULL
 );
 ~~~
 
-> Note|注意: AR不是要解决所有与数据库相关的任务。在SQL不包含复杂的语法的情况下，
-用在在PHP代码中对数据库建模。Yii DAO应该用于上述的复杂情况下。
+> Note|注意: AR 并非要解决所有数据库相关的任务。它的最佳应用是模型化数据表为 PHP 结构和执行不包含复杂 SQL 语句的查询。
+对于复杂查询的场景，应使用 Yii DAO。
+
 
 建立数据库连接
---------------
+--------------------------
 
-AR需要一个数据库连接以执行数据库相关的操作。默认情况下，应用中的`db`组件提供了
-CDbConnection实例作为我们需要的数据库连接服务。下面的应用程序配置提供了一个例子：
+AR 依靠一个数据库连接以执行数据库相关的操作。默认情况下，
+它假定 `db` 应用组件提供了所需的 [CDbConnection] 数据库连接实例。如下应用配置提供了一个例子：
 
 ~~~
 [php]
 return array(
-    'components'=>array(
-        'db'=>array(
-            'class'=>'system.db.CDbConnection',
-            'connectionString'=>'sqlite:path/to/dbfile',
-            // turn on schema caching to improve performance
-            // 'schemaCachingDuration'=>3600,
-        ),
-    ),
+	'components'=>array(
+		'db'=>array(
+			'class'=>'system.db.CDbConnection',
+			'connectionString'=>'sqlite:path/to/dbfile',
+			// 开启表结构缓存（schema caching）提高性能
+			// 'schemaCachingDuration'=>3600,
+		),
+	),
 );
 ~~~
 
-> Tip|提示： 由于Active Record需要表的元数据来确定数据的列信息，
-这需要时间来读取和分析元数据。如果您的数据库结构是比较固定的，你应该打开缓存。
-打开方法是配置[CDbConnection::schemaCachingDuration]属性为一个大于0的值。
+> Tip|提示: 由于 Active Record 依靠表的元数据（metadata）测定列的信息，读取元数据并解析需要时间。
+如果你数据库的表结构很少改动，你应该通过配置 [CDbConnection::schemaCachingDuration] 
+属性的值为一个大于零的值开启表结构缓存。
 
-AR的支持受限于数据库管理系统。目前，只有以下数据库管理系统支持：
+对 AR 的支持受 DBMS 的限制，当前只支持下列几种 DBMS：
 
-   - [MySQL 4.1 or later](http://www.mysql.com)
-   - [PostgreSQL 7.3 or later](http://www.postgres.com)
-   - [SQLite 2 and 3](http://www.sqlite.org)
-   - [Microsoft SQL Server 2000 or later](http://www.microsoft.com/sqlserver/)
-   - [Oracle](http://www.oracle.com/)
-   
-> Note|注意: Microsoft SQL Server自1.0.4版本提供支持;而甲骨文自1.0.5版本即提供支持。
+   - [MySQL 4.1 或更高版本](http://www.mysql.com)
+   - [PostgreSQL 7.3 或更高版本](http://www.postgres.com)
+   - [SQLite 2 和 3](http://www.sqlite.org)
+   - [Microsoft SQL Server 2000 或更高版本](http://www.microsoft.com/sqlserver/)
+   - [Oracle](http://www.oracle.com)
 
+> Note|注意:  1.0.4 版开始支持  Microsoft SQL Server；1.0.5 版开始支持 Oracle。
 
-如果你想使用其他组件而不是`db`，你应该重写[CActiveRecord::getDbConnection()]。
-[CActiveRecord]类是所有AR类的基类。
+如果你想使用一个不是 `db` 的应用组件，或者如果你想使用 AR 处理多个数据库，你应该覆盖
+[CActiveRecord::getDbConnection()]。 [CActiveRecord] 类是所有 AR 类的基类。
 
-> Tip|提示: 有两种方法可以在AR模式下使用多种数据库系统。如果数据库的模式不同，
-您可以以不同的方式实现[getDbConnection()]。否则，动态改变静态变量[CActiveRecord::DB]
-是一个更好的主意。
+> Tip|提示: 通过 AR 使用多个数据库有两种方式。如果数据库的结构不同，你可以创建不同的 AR 基类实现不同的 
+[getDbConnection()|CActiveRecord::getDbConnection]。否则，动态改变静态变量 [CActiveRecord::db] 是一个好主意。
 
-Defining AR Class
+定义 AR 类
 -----------------
 
-为了使用一个数据表，我们首先需要集成[CActiveRecord]来定义一个AR类。
-每个AR类代表一个数据库表，每个AR实例代表数据表中的一行。下面的代码介绍了
-要创建一个对应`Post`表的AR类所需要的最少的代码。
+要访问一个数据表，我们首先需要通过集成 [CActiveRecord] 定义一个 AR 类。
+每个 AR 类代表一个单独的数据表，一个 AR 实例则代表那个表中的一行。
+如下例子演示了代表 `tbl_post` 表的 AR 类的最简代码：
 
 ~~~
 [php]
 class Post extends CActiveRecord
 {
-    public static function model($className=__CLASS__)
-    {
-        return parent::model($className);
-    }
-	
-    public function tableName()
-    {
-        return 'tbl_post';
-    }
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
+	public function tableName()
+	{
+		return 'tbl_post';
+	}
 }
 ~~~
 
-> Tip|提示: 因为AR类会在很多地方使用到，我们可以一次性引入包含AR类的整个目录，而不是一个一个地单独引入。
-> 假设很多AR类放在`protected/models`目录下面，我们可以在应用中这样配置：
+> Tip|提示: 由于 AR 类经常在多处被引用，我们可以导入包含 AR 类的整个目录，而不是一个个导入。
+> 例如，如果我们所有的 AR 类文件都在 
+> `protected/models` 目录中，我们可以配置应用如下：
 > ~~~
 > [php]
 > return array(
@@ -109,11 +111,11 @@ class Post extends CActiveRecord
 > );
 > ~~~
 
-默认情况下，AR类的名称和数据库中数据表的名称一样。也可以通过重写[tableName()|CActiveRecord:tableName]方法来指定其他表名。
-[model()|CActiveRecord:model]应该在每个AR类中重新声明（这个稍后会解释）。
+默认情况下，AR 类的名字和数据表的名字相同。如果不同，请覆盖 [tableName()|CActiveRecord::tableName] 方法。
+[model()|CActiveRecord::model] 方法为每个 AR 类声明为如此（稍后解释）。
 
-> Info: 为了使用1.1.0版本加入的新功能[表前缀](/doc/guide/database.dao#using-table-prefix)，你需要使用重写AR类中的
-[tableName()|CActiveRecord::tableName]方法。示例如下：
+> Info|信息: 要使用 1.1.0 版本中引入的 [表前缀功能](/doc/guide/database.dao#using-table-prefix)
+> AR 类的 [tableName()|CActiveRecord::tableName] 方法可以通过如下方式覆盖
 > ~~~
 > [php]
 > public function tableName()
@@ -121,83 +123,487 @@ class Post extends CActiveRecord
 >     return '{{post}}';
 > }
 > ~~~
-> 就这样，不再直接写完整的表名，而是返回一个用双花括号包围的表名称。
+> 这就是说，我们将返回通过双大括号括起来的没有前缀的表名，而不是完整的表的名字。
 
-在AR类中，数据表的字段可以像类的属性那样使用。举个例子，下面的代码可以设置`title`字段（属性）：
+数据表行中列的值可以作为相应 AR 实例的属性访问。例如，如下代码设置了
+`title` 列 (属性):
 
 ~~~
 [php]
 $post=new Post;
-$post->title='一个示例文章';
+$post->title='a sample post';
 ~~~
 
-尽管我们没有明确地在`Post`类中添加`title`属性，但是我们仍旧可以通过上面的代码来访问它。
-这是因为`title`是`tbl_post`表中的一个字段，CActiveRecord可以通过使用`__get()`魔术方法来让它可以直接被使用。
-如果你要访问一个并不存在的字段的时候，Yii会抛出一个异常。
+虽然我们从未在 `Post` 类中显式定义属性 `title`，我们还是可以通过上述代码访问。
+这是因为 `title` 是 `tbl_post` 表中的一个列，CActiveRecord 通过PHP的 `__get()` 魔术方法使其成为一个可访问的属性。
+如果我们尝试以同样的方式访问一个不存在的列，将会抛出一个异常。
 
-> Info|信息: 在这个手册中，我们使用小写的表名和字段名。这是因为不同的数据库对于大小写的敏感不同。
-> 比如说，PostgreSQL对字段名的大小写就敏感，并且如果同时含有大小写，我们还必须在查询语句中将字段名括起来。
-> 使用全小写可以避免这些问题。
+> Info|信息: 此指南中，我们在表名和列名中均使用了小写字母。
+这是因为不同的 DBMS 处理大小写的方式不同。
+例如，PostgreSQL 默认情况下对列的名字大小写不敏感，而且我们必须在一个查询条件中用引号将大小写混合的列名引起来。
+使用小写字母可以帮助我们避免此问题。
 
-AR需要我们明确指定表的主键字段。如果一个表没有设置主键，就需要相应的AR类重写`primaryKey()`来指定一个或者一组可以视为主键的字段。
+AR 依靠表中良好定义的主键。如果一个表没有主键，则必须在相应的 AR
+类中通过如下方式覆盖 `primaryKey()` 方法指定哪一列或哪几列作为主键。
 
 ~~~
 [php]
 public function primaryKey()
 {
 	return 'id';
-	// 对于包含多个字段的一组主键，可以使用数组方式返回，比如
+	// 对于复合主键，要返回一个类似如下的数组
 	// return array('pk1', 'pk2');
 }
 ~~~
 
-创建数据记录
-------------
 
-为了在数据库中插入一行新的数据，我们可以创建一个相应AR类的实例。然后设置这个对象的属性，就可以设置相应的数据表的字段。
-最后使用[save()|CActiveRecord::save]来保存数据到数据库中。
+创建记录
+---------------
+
+要向数据表中插入新行，我们要创建一个相应 AR 类的实例，设置其与表的列相关的属性，然后调用
+ [save()|CActiveRecord::save] 方法完成插入：
 
 ~~~
 [php]
 $post=new Post;
-$post->title='示例文章';
-$post->content='文章的正文';
+$post->title='sample post';
+$post->content='content for the sample post';
 $post->create_time=time();
 $post->save();
 ~~~
 
-如果数据表的主键字段是自增的，在保存之后会自动将主键的值更新到对象中。在上面的代码中，
-`id`属性会指向这个新文章的主键的值，尽管我们一般不会修改这个。
+如果表的主键是自增的，在插入完成后，AR 实例将包含一个更新的主键。在上面的例子中，
+`id` 属性将反映出新插入帖子的主键值，即使我们从未显式地改变它。
 
-如果一个字段在数据表中定义了默认值（比如一个字符串或者一个数字）。那么AR类在实例化的同时
-会自动将相应字段设置为这个默认值。如果你想自己设定另外的默认值，你可以通过显式定义类属性的方式实现。
+如果一个列在表结构中使用了静态默认值（例如一个字符串，一个数字）定义。则 AR 
+实例中相应的属性将在此实例创建时自动含有此默认值。改变此默认值的一个方式就是在 AR 
+类中显示定义此属性：
 
 ~~~
 [php]
 class Post extends CActiveRecord
 {
-	public $title='请输入标题';
+	public $title='please enter a title';
 	......
 }
 
 $post=new Post;
-echo $post->title;  // 会显示：请输入标题
+echo $post->title;  // 这儿将显示: please enter a title
 ~~~
 
-从1.0.2版本开始，一个属性可以在被保存前被赋值为[CDbExpression]形式（插入或更新时也可以）到数据库中。
-比如说，为了保存MySQL中内置函数`NOW()`生成的时间戳，我们可以使用下面的代码：
-
+从版本 1.0.2 起，记录在保存（插入或更新）到数据库之前，其属性可以赋值为 [CDbExpression] 类型。
+例如，为保存一个由 MySQL 的 `NOW()` 函数返回的时间戳，我们可以使用如下代码：
 ~~~
 [php]
 $post=new Post;
 $post->create_time=new CDbExpression('NOW()');
-// $post->create_time='NOW()'; 这个不会正确运行，因为'NOW()'会被视为一个字符串
+// $post->create_time='NOW()'; 不会起作用，因为
+// 'NOW()' 将会被作为一个字符串处理。
 $post->save();
 ~~~
 
-> Tip|提示: 尽管AR让我们可以不书写具体的SQL语句就可以执行数据库操作，有时我们仍旧想
-> 知道AR到底执行了什么样的SQL语句。我们可以通过打开Yii的[Log-Features](/doc/guide/topics.logging)
-> 来达到我们的目的。据个例子，我们可以在应用的配置文件中打开[CWebLogRoute]，然后我们就可以
-> 在页脚看到被执行过的SQL语句。在1.0.5版本起，我们还可以设置[CDbConnection::enableParamLogging]
-> 为true来记录SQL语句中绑定的参数。
+> Tip|提示: 由于 AR 允许我们无需写一大堆 SQL 语句就能执行数据库操作，
+我们经常会想知道 AR 在背后到底执行了什么 SQL 语句。这可以通过开启 Yii 的
+[日志功能](/doc/guide/topics.logging) 实现。例如，我们在应用配置中开启了
+[CWebLogRoute] ，我们将会在每个网页的最后看到执行过的 SQL 语句。
+ 从 1.0.5 版本起，我们可以在应用配置中设置 [CDbConnection::enableParamLogging] 为 true 
+，这样绑定在 SQL 语句中的参数值也会被记录。
 
+
+读取记录
+--------------
+
+要读取数据表中的数据，我们可以通过如下方式调用 `find` 系列方法中的一种：
+
+~~~
+[php]
+// 查找满足指定条件的结果中的第一行
+$post=Post::model()->find($condition,$params);
+// 查找具有指定主键值的那一行
+$post=Post::model()->findByPk($postID,$condition,$params);
+// 查找具有指定属性值的行
+$post=Post::model()->findByAttributes($attributes,$condition,$params);
+// 通过指定的 SQL 语句查找结果中的第一行
+$post=Post::model()->findBySql($sql,$params);
+~~~
+
+如上所示，我们通过 `Post::model()` 调用 `find` 方法。
+请记住，静态方法 `model()` 是每个 AR 类所必须的。
+此方法返回在对象上下文中的一个用于访问类级别方法（类似于静态类方法的东西）的 AR 实例。
+
+如果 `find` 方法找到了一个满足查询条件的行，它将返回一个 `Post` 实例，实例的属性含有数据表行中相应列的值。
+然后我们就可以像读取普通对象的属性那样读取载入的值，例如  `echo $post->title;`。
+
+如果使用给定的查询条件在数据库中没有找到任何东西， `find` 方法将返回 null 。
+
+调用 `find` 时，我们使用 `$condition` 和 `$params` 指定查询条件。此处
+`$condition` 可以是 SQL 语句中的 `WHERE` 字符串，`$params` 则是一个参数数组，其中的值应绑定到 `$condation`
+中的占位符。例如：
+
+~~~
+[php]
+// 查找 postID=10 的那一行
+$post=Post::model()->find('postID=:postID', array(':postID'=>10));
+~~~
+
+> Note|注意: 在上面的例子中，我们可能需要在特定的 DBMS 中将 `postID` 列的引用进行转义。
+例如，如果我们使用 PostgreSQL，我们必须将此表达式写为 `"postID"=:postID`，因为 PostgreSQL
+在默认情况下对列名大小写不敏感。
+
+我们也可以使用 `$condition` 指定更复杂的查询条件。
+不使用字符串，我们可以让 `$condition` 成为一个 [CDbCriteria] 的实例，它允许我们指定不限于 `WHERE` 的条件。
+例如：
+
+~~~
+[php]
+$criteria=new CDbCriteria;
+$criteria->select='title';  // 只选择 'title' 列
+$criteria->condition='postID=:postID';
+$criteria->params=array(':postID'=>10);
+$post=Post::model()->find($criteria); // $params 不需要了
+~~~
+
+注意，当使用 [CDbCriteria] 作为查询条件时，`$params` 参数不再需要了，因为它可以在
+[CDbCriteria] 中指定，就像上面那样。
+
+一种替代 [CDbCriteria] 的方法是给 `find` 方法传递一个数组。
+数组的键和值各自对应标准（criterion）的属性名和值，上面的例子可以重写为如下：
+
+~~~
+[php]
+$post=Post::model()->find(array(
+	'select'=>'title',
+	'condition'=>'postID=:postID',
+	'params'=>array(':postID'=>10),
+));
+~~~
+
+> Info|信息: 当一个查询条件是关于按指定的值匹配几个列时，我们可以使用
+[findByAttributes()|CActiveRecord::findByAttributes]。我们使
+`$attributes` 参数是一个以列名做索引的值的数组。在一些框架中，此任务可以通过调用类似
+ `findByNameAndTitle` 的方法实现。虽然此方法看起来很诱人，
+ 但它常常引起混淆，冲突和比如列名大小写敏感的问题。
+
+当有多行数据匹配指定的查询条件时，我们可以通过下面的 `findAll` 方法将他们全部带回。
+每个都有其各自的 `find` 方法，就像我们已经讲过的那样。
+
+~~~
+[php]
+// 查找满足指定条件的所有行
+$posts=Post::model()->findAll($condition,$params);
+// 查找带有指定主键的所有行
+$posts=Post::model()->findAllByPk($postIDs,$condition,$params);
+// 查找带有指定属性值的所有行
+$posts=Post::model()->findAllByAttributes($attributes,$condition,$params);
+// 通过指定的SQL语句查找所有行
+$posts=Post::model()->findAllBySql($sql,$params);
+~~~
+
+如果没有任何东西符合查询条件，`findAll` 将返回一个空数组。这跟 `find` 不同，`find` 会在没有找到什么东西时返回 null。
+
+除了上面讲述的 `find` 和 `findAll` 方法，为了方便，（Yii）还提供了如下方法：
+
+~~~
+[php]
+// 获取满足指定条件的行数
+$n=Post::model()->count($condition,$params);
+// 通过指定的 SQL 获取结果行数
+$n=Post::model()->countBySql($sql,$params);
+// 检查是否至少有一行复合指定的条件
+$exists=Post::model()->exists($condition,$params);
+~~~
+
+Updating Record
+---------------
+
+After an AR instance is populated with column values, we can change them
+and save them back to the database table.
+
+~~~
+[php]
+$post=Post::model()->findByPk(10);
+$post->title='new post title';
+$post->save(); // save the change to database
+~~~
+
+As we can see, we use the same [save()|CActiveRecord::save] method to
+perform insertion and updating operations. If an AR instance is created
+using the `new` operator, calling [save()|CActiveRecord::save] would insert
+a new row into the database table; if the AR instance is the result of some
+`find` or `findAll` method call, calling [save()|CActiveRecord::save] would
+update the existing row in the table. In fact, we can use
+[CActiveRecord::isNewRecord] to tell if an AR instance is new or not.
+
+It is also possible to update one or several rows in a database table
+without loading them first. AR provides the following convenient
+class-level methods for this purpose:
+
+~~~
+[php]
+// update the rows matching the specified condition
+Post::model()->updateAll($attributes,$condition,$params);
+// update the rows matching the specified condition and primary key(s)
+Post::model()->updateByPk($pk,$attributes,$condition,$params);
+// update counter columns in the rows satisfying the specified conditions
+Post::model()->updateCounters($counters,$condition,$params);
+~~~
+
+In the above, `$attributes` is an array of column values indexed by column
+names; `$counters` is an array of incremental values indexed by column
+names; and `$condition` and `$params` are as described in the previous
+subsection.
+
+Deleting Record
+---------------
+
+We can also delete a row of data if an AR instance has been populated with
+this row.
+
+~~~
+[php]
+$post=Post::model()->findByPk(10); // assuming there is a post whose ID is 10
+$post->delete(); // delete the row from the database table
+~~~
+
+Note, after deletion, the AR instance remains unchanged, but the
+corresponding row in the database table is already gone.
+
+The following class-level methods are provided to delete rows without the
+need of loading them first:
+
+~~~
+[php]
+// delete the rows matching the specified condition
+Post::model()->deleteAll($condition,$params);
+// delete the rows matching the specified condition and primary key(s)
+Post::model()->deleteByPk($pk,$condition,$params);
+~~~
+
+Data Validation
+---------------
+
+When inserting or updating a row, we often need to check if the column
+values comply to certain rules. This is especially important if the column
+values are provided by end users. In general, we should never trust
+anything coming from the client side.
+
+AR performs data validation automatically when
+[save()|CActiveRecord::save] is being invoked. The validation is based on
+the rules specified by in the [rules()|CModel::rules] method of the AR class.
+For more details about how to specify validation rules, refer to
+the [Declaring Validation Rules](/doc/guide/form.model#declaring-validation-rules)
+section. Below is the typical workflow needed by saving a record:
+
+~~~
+[php]
+if($post->save())
+{
+	// data is valid and is successfully inserted/updated
+}
+else
+{
+	// data is invalid. call getErrors() to retrieve error messages
+}
+~~~
+
+When the data for inserting or updating is submitted by end users in an
+HTML form, we need to assign them to the corresponding AR properties. We
+can do so like the following:
+
+~~~
+[php]
+$post->title=$_POST['title'];
+$post->content=$_POST['content'];
+$post->save();
+~~~
+
+If there are many columns, we would see a long list of such assignments.
+This can be alleviated by making use of the
+[attributes|CActiveRecord::attributes] property as shown below. More
+details can be found in the [Securing Attribute Assignments](/doc/guide/form.model#securing-attribute-assignments)
+section and the [Creating Action](/doc/guide/form.action) section.
+
+~~~
+[php]
+// assume $_POST['Post'] is an array of column values indexed by column names
+$post->attributes=$_POST['Post'];
+$post->save();
+~~~
+
+
+Comparing Records
+-----------------
+
+Like table rows, AR instances are uniquely identified by their primary key
+values. Therefore, to compare two AR instances, we merely need to compare
+their primary key values, assuming they belong to the same AR class. A
+simpler way is to call [CActiveRecord::equals()], however.
+
+> Info: Unlike AR implementation in other frameworks, Yii supports
+composite primary keys in its AR. A composite primary key consists of two
+or more columns. Correspondingly, the primary key value is represented as
+an array in Yii. The [primaryKey|CActiveRecord::primaryKey] property gives
+the primary key value of an AR instance.
+
+Customization
+-------------
+
+[CActiveRecord] provides a few placeholder methods that can be overridden
+in child classes to customize its workflow.
+
+   - [beforeValidate|CModel::beforeValidate] and
+[afterValidate|CModel::afterValidate]: these are invoked before and
+after validation is performed.
+
+   - [beforeSave|CActiveRecord::beforeSave] and
+[afterSave|CActiveRecord::afterSave]: these are invoked before and after
+saving an AR instance.
+
+   - [beforeDelete|CActiveRecord::beforeDelete] and
+[afterDelete|CActiveRecord::afterDelete]: these are invoked before and
+after an AR instance is deleted.
+
+   - [afterConstruct|CActiveRecord::afterConstruct]: this is invoked for
+every AR instance created using the `new` operator.
+
+   - [beforeFind|CActiveRecord::beforeFind]: this is invoked before an AR finder
+is used to perform a query (e.g. `find()`, `findAll()`). This has been available
+since version 1.0.9.
+
+   - [afterFind|CActiveRecord::afterFind]: this is invoked after every AR
+instance created as a result of query.
+
+
+Using Transaction with AR
+-------------------------
+
+Every AR instance contains a property named
+[dbConnection|CActiveRecord::dbConnection] which is a [CDbConnection]
+instance. We thus can use the
+[transaction](/doc/guide/database.dao#using-transactions) feature provided by Yii
+DAO if it is desired when working with AR:
+
+~~~
+[php]
+$model=Post::model();
+$transaction=$model->dbConnection->beginTransaction();
+try
+{
+	// find and save are two steps which may be intervened by another request
+	// we therefore use a transaction to ensure consistency and integrity
+	$post=$model->findByPk(10);
+	$post->title='new post title';
+	$post->save();
+	$transaction->commit();
+}
+catch(Exception $e)
+{
+	$transaction->rollBack();
+}
+~~~
+
+
+Named Scopes
+------------
+
+> Note: The support for named scopes has been available since version 1.0.5.
+> The original idea of named scopes came from Ruby on Rails.
+
+A *named scope* represents a *named* query criteria that can be combined with other named scopes and applied to an active record query.
+
+Named scopes are mainly declared in the [CActiveRecord::scopes()] method as name-criteria pairs. The following code declares two named scopes, `published` and `recently`, in the `Post` model class:
+
+~~~
+[php]
+class Post extends CActiveRecord
+{
+	......
+	public function scopes()
+	{
+		return array(
+			'published'=>array(
+				'condition'=>'status=1',
+			),
+			'recently'=>array(
+				'order'=>'create_time DESC',
+				'limit'=>5,
+			),
+		);
+	}
+}
+~~~
+
+Each named scope is declared as an array which can be used to initialize a [CDbCriteria] instance. For example, the `recently` named scope specifies that the `order` property to be `create_time DESC` and the `limit` property to be 5, which translates to a query criteria that should bring back the most recent 5 posts.
+
+Named scopes are mostly used as modifiers to the `find` method calls. Several named scopes may be chained together and result in a more restrictive query result set. For example, to find the recently published posts, we can use the following code:
+
+~~~
+[php]
+$posts=Post::model()->published()->recently()->findAll();
+~~~
+
+In general, named scopes must appear to the left of a `find` method call. Each of them provides a query criteria, which is combined with other criterias, including the one passed to the `find` method call. The net effect is like adding a list of filters to a query.
+
+Starting from version 1.0.6, named scopes can also be used with `update` and `delete` methods. For example, the following code would delete all recently published posts:
+
+~~~
+[php]
+Post::model()->published()->recently()->delete();
+~~~
+
+> Note: Named scopes can only be used with class-level methods. That is, the method must be called using `ClassName::model()`.
+
+
+### Parameterized Named Scopes
+
+Named scopes can be parameterized. For example, we may want to customize the number of posts specified by the `recently` named scope. To do so, instead of declaring the named scope in the [CActiveRecord::scopes] method, we need to define a new method whose name is the same as the scope name:
+
+~~~
+[php]
+public function recently($limit=5)
+{
+	$this->getDbCriteria()->mergeWith(array(
+		'order'=>'create_time DESC',
+		'limit'=>$limit,
+	));
+	return $this;
+}
+~~~
+
+Then, we can use the following statement to retrieve the 3 recently published posts:
+
+~~~
+[php]
+$posts=Post::model()->published()->recently(3)->findAll();
+~~~
+
+If we do not supply the parameter 3 in the above, we would retrieve the 5 recently published posts by default.
+
+
+### Default Named Scope
+
+A model class can have a default named scope that would be applied for all queries (including relational ones) about the model. For example, a website supporting multiple languages may only want to display contents that are in the language the current user specifies. Because there may be many queries about the site contents, we can define a default named scope to solve this problem. To do so, we override the [CActiveRecord::defaultScope] method as follows,
+
+~~~
+[php]
+class Content extends CActiveRecord
+{
+	public function defaultScope()
+	{
+		return array(
+			'condition'=>"language='".Yii::app()->language."'",
+		);
+	}
+}
+~~~
+
+Now, if the following method call will automatically use the query criteria as defined above:
+
+~~~
+[php]
+$contents=Content::model()->findAll();
+~~~
+
+Note that default named scope only applies to `SELECT` queries. It is ignored for `INSERT`, `UPDATE` and `DELETE` queries.
+
+<div class="revision">$Id: database.ar.txt 1681 2010-01-08 03:04:35Z qiang.xue $</div>
