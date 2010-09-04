@@ -29,7 +29,6 @@
 * 结尾工作
     - [美化URL](final.url)
     - [错误日志](final.logging)
-    - [自定义错误页](final.error)
     - [最终调整与部署](final.deployment)
     - [今后的增强](final.future)
 
