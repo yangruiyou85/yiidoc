@@ -313,102 +313,86 @@ $n=Post::model()->countBySql($sql,$params);
 $exists=Post::model()->exists($condition,$params);
 ~~~
 
-Updating Record
+更新记录
 ---------------
 
-After an AR instance is populated with column values, we can change them
-and save them back to the database table.
+在 AR 实例填充了列的值之后，我们可以改变它们并把它们存回数据表。
 
 ~~~
 [php]
 $post=Post::model()->findByPk(10);
 $post->title='new post title';
-$post->save(); // save the change to database
+$post->save(); // 将更改保存到数据库
 ~~~
 
-As we can see, we use the same [save()|CActiveRecord::save] method to
-perform insertion and updating operations. If an AR instance is created
-using the `new` operator, calling [save()|CActiveRecord::save] would insert
-a new row into the database table; if the AR instance is the result of some
-`find` or `findAll` method call, calling [save()|CActiveRecord::save] would
-update the existing row in the table. In fact, we can use
-[CActiveRecord::isNewRecord] to tell if an AR instance is new or not.
+正如我们可以看到的，我们使用同样的 [save()|CActiveRecord::save] 方法执行插入和更新操作。
+如果一个 AR 实例是使用 `new` 操作符创建的，调用 [save()|CActiveRecord::save] 将会向数据表中插入一行新数据；
+如果 AR 实例是某个 `find` 或 `findAll` 方法的结果，调用 [save()|CActiveRecord::save] 将更新表中现有的行。
+实际上，我们是使用 [CActiveRecord::isNewRecord] 说明一个 AR 实例是不是新的。
 
-It is also possible to update one or several rows in a database table
-without loading them first. AR provides the following convenient
-class-level methods for this purpose:
+直接更新数据表中的一行或多行而不首先载入也是可行的。 AR 提供了如下方便的类级别方法实现此目的：
 
 ~~~
 [php]
-// update the rows matching the specified condition
+// 更新符合指定条件的行
 Post::model()->updateAll($attributes,$condition,$params);
-// update the rows matching the specified condition and primary key(s)
+// 更新符合指定条件和主键的行
 Post::model()->updateByPk($pk,$attributes,$condition,$params);
-// update counter columns in the rows satisfying the specified conditions
+// 更新满足指定条件的行的计数列
 Post::model()->updateCounters($counters,$condition,$params);
 ~~~
 
-In the above, `$attributes` is an array of column values indexed by column
-names; `$counters` is an array of incremental values indexed by column
-names; and `$condition` and `$params` are as described in the previous
-subsection.
+在上面的代码中， `$attributes` 是一个含有以 列名作索引的列值的数组；
+`$counters` 是一个由列名索引的可增加的值的数组；`$condition` 和 `$params` 在前面的段落中已有描述。
 
-Deleting Record
+删除记录
 ---------------
 
-We can also delete a row of data if an AR instance has been populated with
-this row.
+如果一个 AR 实例被一行数据填充,我们也可以删除此行数据。
 
 ~~~
 [php]
-$post=Post::model()->findByPk(10); // assuming there is a post whose ID is 10
-$post->delete(); // delete the row from the database table
+$post=Post::model()->findByPk(10); // 假设有一个帖子，其 ID 为 10
+$post->delete(); // 从数据表中删除此行
 ~~~
 
-Note, after deletion, the AR instance remains unchanged, but the
-corresponding row in the database table is already gone.
+注意，删除之后， AR 实例仍然不变，但数据表中相应的行已经没了。
 
-The following class-level methods are provided to delete rows without the
-need of loading them first:
+使用下面的类级别代码，可以无需首先加载行就可以删除它。
 
 ~~~
 [php]
-// delete the rows matching the specified condition
+// 删除符合指定条件的行
 Post::model()->deleteAll($condition,$params);
-// delete the rows matching the specified condition and primary key(s)
+// 删除符合指定条件和主键的行
 Post::model()->deleteByPk($pk,$condition,$params);
 ~~~
 
-Data Validation
+数据验证
 ---------------
 
-When inserting or updating a row, we often need to check if the column
-values comply to certain rules. This is especially important if the column
-values are provided by end users. In general, we should never trust
-anything coming from the client side.
+当插入或更新一行时，我们常常需要检查列的值是否符合相应的规则。
+如果列的值是由最终用户提供的，这一点就更加重要。总体来说，我们永远不能相信任何来自客户端的数据。
 
-AR performs data validation automatically when
-[save()|CActiveRecord::save] is being invoked. The validation is based on
-the rules specified by in the [rules()|CModel::rules] method of the AR class.
-For more details about how to specify validation rules, refer to
-the [Declaring Validation Rules](/doc/guide/form.model#declaring-validation-rules)
-section. Below is the typical workflow needed by saving a record:
+当调用 [save()|CActiveRecord::save] 时， AR 会自动执行数据验证。
+验证是基于在 AR 类的  [rules()|CModel::rules]  方法中指定的规则进行的。
+关于验证规则的更多详情，请参考 [声明验证规则](/doc/guide/form.model#declaring-validation-rules) 一节。
+下面是保存记录时所需的典型的工作流。
 
 ~~~
 [php]
 if($post->save())
 {
-	// data is valid and is successfully inserted/updated
+	// 数据有效且成功插入/更新
 }
 else
 {
-	// data is invalid. call getErrors() to retrieve error messages
+	// 数据无效，调用  getErrors() 提取错误信息
 }
 ~~~
 
-When the data for inserting or updating is submitted by end users in an
-HTML form, we need to assign them to the corresponding AR properties. We
-can do so like the following:
+当要插入或更新的数据由最终用户在一个 HTML 表单中提交时，我们需要将其赋给相应的 AR 属性。
+我们可以通过类似如下的方式实现：
 
 ~~~
 [php]
@@ -417,15 +401,14 @@ $post->content=$_POST['content'];
 $post->save();
 ~~~
 
-If there are many columns, we would see a long list of such assignments.
-This can be alleviated by making use of the
-[attributes|CActiveRecord::attributes] property as shown below. More
-details can be found in the [Securing Attribute Assignments](/doc/guide/form.model#securing-attribute-assignments)
-section and the [Creating Action](/doc/guide/form.action) section.
+如果有很多列，我们可以看到一个用于这种复制的很长的列表。
+这可以通过使用如下所示的 [attributes|CActiveRecord::attributes]  属性简化操作。
+更多信息可以在 [安全的特性赋值](/doc/guide/form.model#securing-attribute-assignments)
+一节和  [创建动作](/doc/guide/form.action) 一节找到。
 
 ~~~
 [php]
-// assume $_POST['Post'] is an array of column values indexed by column names
+// 假设 $_POST['Post'] 是一个以列名索引列值为值的数组
 $post->attributes=$_POST['Post'];
 $post->save();
 ~~~
@@ -474,14 +457,11 @@ since version 1.0.9.
 instance created as a result of query.
 
 
-Using Transaction with AR
+使用 AR 处理事务
 -------------------------
 
-Every AR instance contains a property named
-[dbConnection|CActiveRecord::dbConnection] which is a [CDbConnection]
-instance. We thus can use the
-[transaction](/doc/guide/database.dao#using-transactions) feature provided by Yii
-DAO if it is desired when working with AR:
+每个 AR 实例都含有一个属性名叫 [dbConnection|CActiveRecord::dbConnection] ，是一个 [CDbConnection]
+的实例，这样我们可以在需要时配合 AR 使用由 Yii DAO 提供的 [事务](/doc/guide/database.dao#using-transactions) 功能:
 
 ~~~
 [php]
@@ -489,8 +469,8 @@ $model=Post::model();
 $transaction=$model->dbConnection->beginTransaction();
 try
 {
-	// find and save are two steps which may be intervened by another request
-	// we therefore use a transaction to ensure consistency and integrity
+	// 查找和保存是可能由另一个请求干预的两个步骤
+	// 这样我们使用一个事务以确保其一致性和完整性
 	$post=$model->findByPk(10);
 	$post->title='new post title';
 	$post->save();
