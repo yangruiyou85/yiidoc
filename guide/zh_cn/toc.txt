@@ -24,7 +24,7 @@
     - [创建模型](form.model)
     - [创建动作](form.action)
     - [创建表单](form.view)
-    - [Collecting Tabular Input](form.table)
+    - [收集表格输入](form.table)
     - [使用表单生成器](form.builder)
 
 * 使用数据库
