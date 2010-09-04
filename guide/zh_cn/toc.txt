@@ -29,7 +29,7 @@
 
 * 使用数据库
     - [概览](database.overview)
-    - [数据库访问对象（DAO）](database.dao)
+    - [数据访问对象（DAO）](database.dao)
     - [Active Record](database.ar)
     - [Relational Active Record](database.arr)
 
