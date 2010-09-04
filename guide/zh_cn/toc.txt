@@ -16,7 +16,7 @@
     - [组件](basics.component)
     - [模块](basics.module)
     - [路径别名与名字空间](basics.namespace)
-    - [Conventions](basics.convention)
+    - [开发规范](basics.convention)
     - [开发流程](basics.workflow)
 
 * 使用表单
