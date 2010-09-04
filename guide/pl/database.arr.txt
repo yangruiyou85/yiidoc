@@ -272,9 +272,9 @@ do których się odwołujemy w tej opcji powinny zostać ujednoznacznione.
    jest taki sam jak nazwa relacji.
    
    - `together`: używana jeśli tabele powiązane mają zostać zmuszone do połączenia się razem
-   z główną tabelą. Opcja ta ma znaczenie dla relacji HAS_MANY oraz MANY_MANY. 
-   Jeśli opcja ta ma wartość ustawioną jako false, wtedy tabela związana z relacją HAS_MANY 
-   lub MANY_MANY zostanie połączona z tabelą główną w osobnym zapytaniu SQL, co może zwiększyć 
+   z główną tabelą. Opcja ta ma znaczenie dla relacji `HAS_MANY` oraz `MANY_MANY`. 
+   Jeśli opcja ta ma wartość ustawioną jako false, wtedy tabela związana z relacją `HAS_MANY` 
+   lub `MANY_MANY` zostanie połączona z tabelą główną w osobnym zapytaniu SQL, co może zwiększyć 
    ogólną wydajność zapytania, gdyż zwracana jest mniejsza ilość powtarzających się danych.
    Jeśli ta opcja posiada wartość true, powiązana tabela będzie zawsze dołączona 
    do pierwszej tabeli za pomocą pojedyńczego zapytania SQL, nawet jeśli pierwsza tabela
@@ -568,4 +568,4 @@ class User extends CActiveRecord
 w [CActiveRecord::scopes]. W rezultacie, nie mogą one zostać sparametryzowane.
 
 
-<div class="revision">$Id: database.arr.txt 2288 2010-07-30 00:36:04Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 2350 2010-08-28 18:57:21Z qiang.xue $</div>
