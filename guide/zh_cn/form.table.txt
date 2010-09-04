@@ -28,7 +28,7 @@ public function actionBatchUpdate()
 		if($valid)  // 如果所有项目有效
 			// ...则在此处做一些操作
 	}
-	// displays the view to collect tabular input
+	// 显示视图收集表格输入
 	$this->render('batchUpdate',array('items'=>$items));
 }
 ~~~
