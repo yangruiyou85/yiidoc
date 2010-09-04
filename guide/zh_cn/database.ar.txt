@@ -414,47 +414,37 @@ $post->save();
 ~~~
 
 
-Comparing Records
+对比记录
 -----------------
 
-Like table rows, AR instances are uniquely identified by their primary key
-values. Therefore, to compare two AR instances, we merely need to compare
-their primary key values, assuming they belong to the same AR class. A
-simpler way is to call [CActiveRecord::equals()], however.
+类似于表记录，AR 实例由其主键值来识别。
+因此，要对比两个 AR 实例，假设它们属于相同的 AR 类， 我们只需要对比它们的主键值。
+然而,一个更简单的方式是调用 [CActiveRecord::equals()]。
 
-> Info: Unlike AR implementation in other frameworks, Yii supports
-composite primary keys in its AR. A composite primary key consists of two
-or more columns. Correspondingly, the primary key value is represented as
-an array in Yii. The [primaryKey|CActiveRecord::primaryKey] property gives
-the primary key value of an AR instance.
+> Info|信息: 不同于 AR 在其他框架的执行, Yii 在其 AR 中支持多个主键. 一个复合主键由两个或更多字段构成。相应地，
+主键值在 Yii 中表现为一个数组. [primaryKey|CActiveRecord::primaryKey] 属性给出了一个 AR 实例的主键值。
 
-Customization
+
+自定义
 -------------
 
-[CActiveRecord] provides a few placeholder methods that can be overridden
-in child classes to customize its workflow.
+[CActiveRecord] 提供了几个占位符方法，它们可以在子类中被覆盖以自定义其工作流。
 
-   - [beforeValidate|CModel::beforeValidate] and
-[afterValidate|CModel::afterValidate]: these are invoked before and
-after validation is performed.
+   - [beforeValidate|CModel::beforeValidate] 和
+[afterValidate|CModel::afterValidate]: 这两个将在验证执行之前和之后被调用。
 
-   - [beforeSave|CActiveRecord::beforeSave] and
-[afterSave|CActiveRecord::afterSave]: these are invoked before and after
-saving an AR instance.
+   - [beforeSave|CActiveRecord::beforeSave] 和
+[afterSave|CActiveRecord::afterSave]: 这两个将在保存 AR 实例之前和之后被调用。
 
-   - [beforeDelete|CActiveRecord::beforeDelete] and
-[afterDelete|CActiveRecord::afterDelete]: these are invoked before and
-after an AR instance is deleted.
+   - [beforeDelete|CActiveRecord::beforeDelete] 和
+[afterDelete|CActiveRecord::afterDelete]: 这两个将在一个 AR 实例被删除之前和之后被调用。
 
-   - [afterConstruct|CActiveRecord::afterConstruct]: this is invoked for
-every AR instance created using the `new` operator.
+   - [afterConstruct|CActiveRecord::afterConstruct]: 这个将在每个使用 `new` 操作符创建 AR 实例后被调用。
 
-   - [beforeFind|CActiveRecord::beforeFind]: this is invoked before an AR finder
-is used to perform a query (e.g. `find()`, `findAll()`). This has been available
-since version 1.0.9.
+   - [beforeFind|CActiveRecord::beforeFind]: 这个将在一个 AR 查找器被用于执行查询（例如 `find()`, `findAll()`）之前被调用。
+1.0.9 版本开始可用。  
 
-   - [afterFind|CActiveRecord::afterFind]: this is invoked after every AR
-instance created as a result of query.
+   - [afterFind|CActiveRecord::afterFind]: 这个将在每个 AR 实例作为一个查询结果创建时被调用。
 
 
 使用 AR 处理事务
@@ -483,15 +473,16 @@ catch(Exception $e)
 ~~~
 
 
-Named Scopes
+命名范围
 ------------
 
-> Note: The support for named scopes has been available since version 1.0.5.
-> The original idea of named scopes came from Ruby on Rails.
+> Note: 对命名范围的支持从版本 1.0.5 开始。
+> 命名范围的最初想法来源于 Ruby on Rails.
 
-A *named scope* represents a *named* query criteria that can be combined with other named scopes and applied to an active record query.
+*命名范围(named scope)* 表示一个 *命名的（named）* 查询规则，它可以和其他命名范围联合使用并应用于 Active Record 查询。
 
-Named scopes are mainly declared in the [CActiveRecord::scopes()] method as name-criteria pairs. The following code declares two named scopes, `published` and `recently`, in the `Post` model class:
+命名范围主要是在 [CActiveRecord::scopes()] 方法中以名字-规则对的方式声明。
+如下代码在 `Post` 模型类中声明了两个命名范围, `published` 和 `recently`。
 
 ~~~
 [php]
@@ -513,30 +504,41 @@ class Post extends CActiveRecord
 }
 ~~~
 
-Each named scope is declared as an array which can be used to initialize a [CDbCriteria] instance. For example, the `recently` named scope specifies that the `order` property to be `create_time DESC` and the `limit` property to be 5, which translates to a query criteria that should bring back the most recent 5 posts.
+每个命名范围声明为一个可用于初始化 [CDbCriteria] 实例的数组。
+例如，`recently` 命名范围指定 `order` 属性为 `create_time DESC` ，
+ `limit` 属性为 5。他们翻译为查询规则后就会返回最近的5篇帖子。
 
-Named scopes are mostly used as modifiers to the `find` method calls. Several named scopes may be chained together and result in a more restrictive query result set. For example, to find the recently published posts, we can use the following code:
+命名范围多用作 `find` 方法调用的修改器。
+几个命名范围可以链到一起形成一个更有约束性的查询结果集。例如，
+要找到最近发布的帖子，
+我们可以使用如下代码：
 
 ~~~
 [php]
 $posts=Post::model()->published()->recently()->findAll();
 ~~~
 
-In general, named scopes must appear to the left of a `find` method call. Each of them provides a query criteria, which is combined with other criterias, including the one passed to the `find` method call. The net effect is like adding a list of filters to a query.
+总体来说，命名范围必须出现在一个 `find` 方法调用的左边。
+它们中的每一个都提供一个查询规则，并联合到其他规则，
+包括传递给 `find` 方法调用的那一个。
+最终结果就像给一个查询添加了一系列过滤器。
 
-Starting from version 1.0.6, named scopes can also be used with `update` and `delete` methods. For example, the following code would delete all recently published posts:
+从版本 1.0.6 开始，命名范围也可用于 `update` 和 `delete` 方法。
+例如，如下代码将删除所有最近发布的帖子：
 
 ~~~
 [php]
 Post::model()->published()->recently()->delete();
 ~~~
 
-> Note: Named scopes can only be used with class-level methods. That is, the method must be called using `ClassName::model()`.
+> Note|注意: 命名范围只能用于类级别方法。也就是说，此方法必须使用 `ClassName::model()` 调用。
 
 
-### Parameterized Named Scopes
+### 参数化的命名范围
 
-Named scopes can be parameterized. For example, we may want to customize the number of posts specified by the `recently` named scope. To do so, instead of declaring the named scope in the [CActiveRecord::scopes] method, we need to define a new method whose name is the same as the scope name:
+命名范围可以参数化。例如，
+我们想自定义 `recently` 命名范围中指定的帖子数量，要实现此目的，不是在[CActiveRecord::scopes] 方法中声明命名范围，
+而是需要定义一个名字和此命名范围的名字相同的方法：
 
 ~~~
 [php]
@@ -550,19 +552,23 @@ public function recently($limit=5)
 }
 ~~~
 
-Then, we can use the following statement to retrieve the 3 recently published posts:
+然后，我们就可以使用如下语句获取3条最近发布的帖子。
 
 ~~~
 [php]
 $posts=Post::model()->published()->recently(3)->findAll();
 ~~~
 
-If we do not supply the parameter 3 in the above, we would retrieve the 5 recently published posts by default.
+上面的代码中，如果我们没有提供参数 3，我们将默认获取 5 条最近发布的帖子。
 
 
-### Default Named Scope
+### 默认的命名范围
 
-A model class can have a default named scope that would be applied for all queries (including relational ones) about the model. For example, a website supporting multiple languages may only want to display contents that are in the language the current user specifies. Because there may be many queries about the site contents, we can define a default named scope to solve this problem. To do so, we override the [CActiveRecord::defaultScope] method as follows,
+模型类可以有一个默认命名范围，它将应用于所有
+(包括相关的那些) 关于此模型的查询。例如，一个支持多种语言的网站可能只想显示当前用户所指定的语言的内容。
+因为可能会有很多关于此网站内容的查询，
+我们可以定义一个默认的命名范围以解决此问题。
+为实现此目的，我们覆盖 [CActiveRecord::defaultScope] 方法如下：
 
 ~~~
 [php]
@@ -577,13 +583,13 @@ class Content extends CActiveRecord
 }
 ~~~
 
-Now, if the following method call will automatically use the query criteria as defined above:
+现在，如果下面的方法被调用，将会自动使用上面定义的查询规则：
 
 ~~~
 [php]
 $contents=Content::model()->findAll();
 ~~~
 
-Note that default named scope only applies to `SELECT` queries. It is ignored for `INSERT`, `UPDATE` and `DELETE` queries.
+注意，默认的命名范围只会应用于 `SELECT` 查询。`INSERT`, `UPDATE` 和 `DELETE` 查询将被忽略。
 
-<div class="revision">$Id: database.ar.txt 1681 2010-01-08 03:04:35Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 1681 2010-01-08 03:04:35Z qiang.xue , translated by riverlet$</div>
