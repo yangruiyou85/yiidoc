@@ -69,73 +69,60 @@ application', 'basePath'=>'./protected')` 初始化了 `name` 和
 目录
 ---------
 
-Yii assumes a default set of directories used for various purposes. Each
-of them can be customized if needed.
+Yii 假定了一系列默认的目录用于不同的场合。如果需要，每个目录都可以自定义。
 
-   - `WebRoot/protected`: this is the [application base
-directory](/doc/guide/basics.application#application-base-directory) holding all
-security-sensitive PHP scripts and data files. Yii has a default alias
-named `application` associated with this path. This directory and
-everything under should be protected from being accessed by Web users. It
-can be customized via [CWebApplication::basePath].
+   - `WebRoot/protected`: 这是 [应用基础目录](/doc/guide/basics.application#application-base-directory)，
+ 是放置所有安全敏感的PHP脚本和数据文件的地方。Yii 有一个默认的 `application` 别名指向此目录。
+此目录及目录中的文件应该保护起来防止Web用户访问。它可以通过 [CWebApplication::basePath] 自定义。
 
-   - `WebRoot/protected/runtime`: this directory holds private temporary
-files generated during runtime of the application. This directory must be
-writable by Web server process. It can be customized via
-[CApplication::runtimePath].
+   - `WebRoot/protected/runtime`: 此目录放置应用在运行时产生的私有临时文件。
+此目录必须对 Web 服务器进程可写。它可以通过 [CApplication::runtimePath]自定义。
 
-   - `WebRoot/protected/extensions`: this directory holds all third-party
-extensions. It can be customized via [CApplication::extensionPath].
+   - `WebRoot/protected/extensions`: 此目录放置所有第三方扩展。
+它可以通过 [CApplication::extensionPath] 自定义。
 
-   - `WebRoot/protected/modules`: this directory holds all application
-[modules](/doc/guide/basics.module), each represented as a subdirectory.
+   - `WebRoot/protected/modules`: 此目录放置所有的应用
+[模块](/doc/guide/basics.module)，每个模块使用一个子目录。
 
-   - `WebRoot/protected/controllers`: this directory holds all controller
-class files. It can be customized via [CWebApplication::controllerPath].
+   - `WebRoot/protected/controllers`: 此目录放置所有控制器类文件。
+它可以通过   [CWebApplication::controllerPath] 自定义。
 
-   - `WebRoot/protected/views`: this directory holds all view files,
-including controller views, layout views and system views. It can be
-customized via [CWebApplication::viewPath].
+   - `WebRoot/protected/views`: 此目录放置所有试图文件，
+包含控制器视图，布局视图和系统视图。
+它可以通过 [CWebApplication::viewPath] 自定义。
 
-   - `WebRoot/protected/views/ControllerID`: this directory holds view
-files for a single controller class. Here `ControllerID` stands for the ID
-of the controller. It can be customized via [CController::viewPath].
+   - `WebRoot/protected/views/ControllerID`: 此目录放置单个控制器类中使用的视图文件。
+此处的 `ControllerID` 是指控制器的 ID 。它可以通过 [CController::viewPath] 自定义。
 
-   - `WebRoot/protected/views/layouts`: this directory holds all layout
-view files. It can be customized via [CWebApplication::layoutPath].
+   - `WebRoot/protected/views/layouts`: 此目录放置所有布局视图文件。它可以通过
+[CWebApplication::layoutPath] 自定义。
 
-   - `WebRoot/protected/views/system`: this directory holds all system
-view files. System views are templates used in displaying exceptions and
-errors. It can be customized via [CWebApplication::systemViewPath].
+   - `WebRoot/protected/views/system`: 此目录放置所有系统视图文件。
+系统视图文件是用于显示异常和错误的模板。它可以通过 [CWebApplication::systemViewPath]
+自定义。
 
-   - `WebRoot/assets`: this directory holds published asset files. An
-asset file is a private file that may be published to become accessible to
-Web users. This directory must be writable by Web server process. It can be
-customized via [CAssetManager::basePath].
+   - `WebRoot/assets`: 此目录放置公共资源文件。
+资源文件是可以被发布的，可由Web用户访问的私有文件。此目录必须对 Web 服务器进程可写。
+它可以通过 [CAssetManager::basePath] 自定义
 
-   - `WebRoot/themes`: this directory holds various themes that can be
-applied to the application. Each subdirectory represents a single theme
-whose name is the subdirectory name. It can be customized via
-[CThemeManager::basePath].
+   - `WebRoot/themes`: 此目录放置应用使用的不同的主题。每个子目录即一个主题，主题的名字即目录的名字。
+它可以通过 [CThemeManager::basePath] 自定义。
 
 数据库
 --------
 
-Most Web applications are backed by some database. For best practice, we propose
-the following naming conventions for database tables and columns. Note that they
-are not required by Yii.
+多数Web 应用是由数据库驱动的。为了最佳时间，我们
+推荐在对表和列命名时使用如下命名规范。注意，这些规范并不是 Yii 所必须的。
 
-   - Both database tables and columns are named in lower case.
+   - 数据库表名和列名都使用小写命名。
 
-   - Words in a name should be separated using underscores (e.g. `product_order`).
+   - 名字中的单词应使用下划线分割 (例如 `product_order`)。
 
-   - For table names, you may use either singular or plural names, but not both.
-For simplicity, we recommend using singular names.
+   - 对于表名，你既可以使用单数也可以使用复数。但
+不要 同时使用两者。为简单起见，我们推荐使用单数名字。
 
-   - Table names may be prefixed with a common token such as `tbl_`. This is
-especially useful when the tables of an application coexist in the same database
-with the tables of another application. The two sets of tables can be readily
-separate by using different table name prefixes.
+   - 表名可以使用一个通用前缀，例如 `tbl_` 。这样当应用所使用的表和另一个应用说使用的表共存于同一个数据库中时就特别有用。
+这两个应用的表可以通过使用不同的表前缀很容易地区别开。
 
 
 
