@@ -1,19 +1,19 @@
-Kontroler
-=========
+Kontroler(Controller)
+====================
 
-Sebuah `kontroler` (pengontrol) adalah turunan [CController] atau anak kelasnya. Ia
-dibuat oleh aplikasi saat pengguna memintanya. Ketika kontroler berjalan,
-ia melakukan aksi yang diminta yang biasanya memerlukan model
-dan membuat tampilan yang sesuai. Sebuah `aksi`, dalam bentuk paling sederhana adalah
+Sebuah `kontroler` (pengontrol) adalah turunan dari [CController] atau anak kelasnya.
+Kontroler dibuat oleh aplikasi saat pengguna memintanya. Ketika berjalan, kontroler
+melakukan aksi(action) yang diminta yang biasanya memerlukan model
+dan membuat tampilan yang sesuai. Sebuah `aksi`, dalam bentuk paling sederhana sebenarnya
 hanyalah metode kelas kontroler yang namanya dimulai dengan `action`.
 
-Kontroler memiliki aksi standar. Ketika perminttan pengguna tidak menetapkan 
+Kontroler memiliki aksi standar. Ketika permintaan pengguna tidak menetapkan
 aksi mana yang dijalankan, aksi standar yang akan dijalankan. Biasanya
 aksi standar dinamai sebagai `index`. Ia bisa diubah dengan menyetel
 [CController::defaultAction].
 
-Di bawah ini adalah kode minimal yang diperlukan oleh kelas kontroler. Karena kontroler
-tidak mendefinisikan aksi apapun, memintanya akan memunculkan eksepsi.
+Berikut ini adalah kode minimal yang diperlukan oleh kelas kontroler. Karena kontroler ini
+tidak mendefinisikan aksi apapun, maka jika memanggilnya akan terjadi kesalahan.
 
 ~~~
 [php]
@@ -23,45 +23,47 @@ class SiteController extends CController
 ~~~
 
 
-Rute
-----
+Rute(Route)
+-----------
 
-Kontroler dan aksi diidentifikasi dengan ID. Di mana ID Kontroler dalam
-format `path/ke/xyz` yang merujuk ke file kelas kontroler
-`protected/controllers/path/ke/XyzController.php`, di mana token `xyz`
-harus diganti dengan nama sebenarnya (contoh, `post` merujuk ke
+Kontroler dan aksi diidentifikasi oleh ID. ID Kontroler dalam
+format `path/ke/xyz` sesuai dengan letak file kelas kontroler di
+`protected/controllers/path/ke/XyzController.php`. `xyz`
+harus diganti dengan nama sebenarnya (contoh, `post` pada
 `protected/controllers/PostController.php`). ID Aksi adalah nama metode
-aksi tanpa prefiks `action`. Sebagai contoh, jika kelas kontroler berisi
-sebuah metode bernama `actionEdit`, ID dari aksi terkait adalah 
+aksi tanpa berawalan `action`. Sebagai contoh, jika kelas kontroler berisi
+sebuah metode bernama `actionEdit`, ID dari aksi tersebut adalah
 `edit`.
 
 > Note|Catatan: Sebelum versi 1.0.3, format ID kontroler adalah `path.ke.xyz`
-daripada `path/ke/xyz`.
+sedangkan sekarang dalam format `path/ke/xyz`.
 
-Permintaan para pengguna terhadap kontroler dan aksi tertentu dalam batasan rute. 
+Permintaan pengguna terhadap kontroler dan aksi tertentu sesuai dengan aturan rute.
 Rute dibentuk dengan menggabungkan ID kontroler dan ID aksi yang dipisahkan
 dengan garis miring. Sebagai contoh, rute `post/edit` merujuk ke `PostController`
 dan aksi `edit`. Dan secara standar, URL
 `http://hostname/index.php?r=post/edit` akan meminta kontroler dan 
-aksi ini.
+aksi tersebut.
 
->Note|Catatan: Standarnya, rute sensitif jenis huruf. Sejak versi 1.0.1, dimungkinkan
->menjadikan rute tidak sensitif huruf dengan menyetel [CUrlManager::caseSensitive]
->menjadi false dalam konfigurasi aplikasi. Ketika dalam mode tidak sensitif huruf,
+>Note|Catatan: Secara default, rute bersifat case-sensitive. Sejak versi 1.0.1, dimungkinkan
+>menjadikan rute tidak bersifat case-sensitive dengan mengatur [CUrlManager::caseSensitive]
+>menjadi false dalam konfigurasi aplikasi. Ketika dalam mode tidak bersifat case-sensitive,
 >pastikan Anda mengikuti konvensi bahwa direktori yang berisi file kelas kontroler
 >dalam huruf kecil, dan [peta kontroler|CWebApplication::controllerMap]
 >serta [peta aksi|CController::actions] keduanya menggunakan kunci dalam huruf kecil.
 
-Sejak versi 1.0.3, sebuah aplikasi bisa berisi [modul](/doc/guide/basics.module). Rute aksi kontroler di dalam sebuah modul yakni dalam format `moduleID/controllerID/actionID`. Untuk lebih rinci, lihat [seksi mengenai modul](/doc/guide/basics.module).
+Semenjak versi 1.0.3, sebuah aplikasi bisa berisi [modul](/doc/guide/basics.module).
+Rute aksi kontroler di dalam sebuah modul yakni dalam format `moduleID/controllerID/actionID`.
+Untuk lebih rinci, lihat [seksi mengenai modul](/doc/guide/basics.module).
 
 
 Penurunan Kontroler
 -------------------
 
 Turunan kontroler dibuat ketika [CWebApplication] menangani permintaan
-yang masuk. Berdasarkan ID kontroler yang diberikan, aplikasi akan menggunakan
-aturan berikut untuk menentukan kelas kontroler apa dan di mana
-file kelas ditempatkan.
+yang masuk. Berdasarkan ID kontroler yang diberikan, aplikasi akan
+menentukan kelas kontroler apa dan di manafile kelas ditempatkan, dengan menggunakan
+aturan berikut.
 
    - Jika [CWebApplication::catchAllRequest] ditetapkan, kontroler
 akan dibuat berdasarkan properti ini, dam ID kontroler yang ditetapkan pengguna
@@ -82,13 +84,13 @@ Jika file kelas tidak ada, 404 [CHttpException] akan dimunculkan.
 Dalam hal ketika [modul](/doc/guide/basics.module) dipakai (tersedia sejak versi 1.0.3), proses di atas cukup berbeda. Dalam keadaan tertentu, aplikasi akan memeriksa apakah ID merujuk ke kontroler di dalam sebuah modul, dan jika demikian, turunan modul akan dibuat lebih dulu diikuti dengan turunan kontroler.
 
 
-Aksi
-----
+Aksi(Action)
+------------
 
-Seperti telah disebutkan, aksi dapat didefiniskan sebagi metode yang namanya dimulai
-dengan kata `action`. Cara lebih tinggi adalah dengan mendefinisikan kelas aksi
-dan meminta kontroler untuk menurunkannya bila diminta. Ini mengijinkan aksi
-untuk dipakai ulang dan selanjutnya menjadikan lebih bisa dipakai ulang.
+Seperti yang telah disinggung, aksi dapat didefinisikan sebagai metode yang namanya dimulai
+dengan kata `action`. Cara lebih maju adalah dengan mendefinisikan kelas aksi
+dan meminta kontroler untuk menurunkannya apabila diperlukan. Dengan demikian memungkinkan aksi
+untuk dipakai ulang.
 
 Untuk mendefinisikan kelas aksi baru, lakukan hal berikut:
 
@@ -103,7 +105,7 @@ class UpdateAction extends CAction
 }
 ~~~
 
-Agar kontroler mengamati aksi ini, kita timpa metode
+Agar kontroler menyadari adanya aksi ini, kita timpa metode
 [actions()|CController::actions] pada kelas kontroler kita:
 
 ~~~
@@ -123,8 +125,8 @@ Di atas, kita menggunakan alias path
 `application.controllers.post.UpdateAction` untuk menetapkan apakah file kelas
 aksi adalah `protected/controllers/post/UpdateAction.php`.
 
-Dengan menulis aksi berbais-kelas, kita dapat mengatur aplikasi dalam gaya
-moduler. Sebagai contoh, struktur direktori berikut dapat dipakai untuk
+Dengan menulis aksi berbasis-kelas, kita dapat mengatur aplikasi dalam gaya
+modular. Sebagai contoh, struktur direktori berikut dapat dipakai untuk
 mengatur kode kontroler:
 
 ~~~
@@ -143,11 +145,67 @@ protected/
             UpdateAction.php
 ~~~
 
+Pengikatan Parameter Aksi(Action Parameter Binding)
+---------------------------------------------------
+Semenjak versi 1.1.4, Yii telah menambah dukungan pengikatan parameter aksi otomatis, 
+yakni sebuah aksi kontroler dapat mendefinisikan parameter yang nilainya akan secara 
+otomatis diisi oleh Yii dari nilai `$_GET`.
+
+Untuk menjelaskan fitur ini, mari kita asumsi bahwa kita perlu membuat sebuah aksi `create`
+pada `PostController`. Aksi ini memerlukan dua buah parameter :
+
+   - `category`: sebuah integer yang menunjukkan ID kategori ke berapa post baru yang akan dibuat.
+   - `language`: sebuah string yang mewakili kode bahasa pada post baru.
+
+Kita mungkin akan menggunakan coding berikut ini untuk mendapatkan nilai yang diinginkan dari parameter `$_GET`:
+~~~
+[php]
+class PostController extends CController
+{
+    public function actionCreate()
+    {
+        if(isset($_GET['category']))
+            $category=(int)$_GET['category'];
+        else
+            throw new CHttpException(404,'invalid request');
+
+        if(isset($_GET['language']))
+            $language=$_GET['language'];
+        else
+            $language='en';
+
+        // ... mulai koding di sini...
+    }
+}
+~~~
+
+Sekarang, dengan menggunakan fitur parameter aksi, kita bisa mendapatkan hasil yang sama dengan
+cara yang lebih menyenangkan :
+~~~
+[php]
+class PostController extends CController
+{
+    public function actionCreate($category, $language='en')
+    {
+        $category=(int)$category;
+
+        // ... mulai koding di sini...
+    }
+}
+~~~
+
+Perhatikan bahwa kita menambahkan dua buah parameter ke metode aksi `actionCreate`.
+Nama parameter ini haruslah sama persis dengan nama yang ingin didapatkan dari `$_GET`. Parameter
+`$language` mengambil nilai default `en` apabila ternyata pengguna tidak memberikan nilai pada parameter.
+Karena `$category` tidak memiliki nilai default, maka jika pengguna tidak memberikan parameter `category` di `$_GET`
+sebuah [CHttpException](kode kesalahan 400) akan dikeluarkan secara otomatis.
+
+
 Filter
 ------
 
 Filter adalah kode yang dikonfigurasi untuk dijalankan sebelum dan/atau
-setelah aksi kontroler dijalankan. Sebagai contoh, filter kontrol akses
+setelah aksi kontroler dijalankan. Misalnya, filter kontrol akses
 dapat dijalankan guna memastikan bahwa pengguna diotentikasi sebelum menjalankan
 aksi yang diminta; filter performansi bisa dipakai untuk mengukur waktu
 yang diperlukan dalam menjalankan aksi.
