@@ -49,6 +49,18 @@ wszystkie pliki klas w katalogu będą automatycznie dołączone gdy zajdzie tak
 Yii::import('system.web.*');
 ~~~
 
+Poczynając od wersji 1.1.5, możemy również zaimportować rekursywnie katalog wraz 
+z wszystkimi podkatalogami używając następującego formatu:
+
+~~~
+[php]
+Yii::import('system.web.**');
+~~~
+
+> Note|Uwaga: Importowanie rekursywne katalogów może mieć znaczny wpływ na wydajność
+> aplikacji ze względu na konieczność skanowania katalogu. Jeśli mamy do czynienia z takim przypadkiem
+> zamiast importowania rekursywnego spróbuj bezpośrednio zaimportować każdy katalog z osobna. 
+
 Poza metodą [import|YiiBase::import] aliasy są używane w wielu innych miejscach odnoszących się do klasy.
 Na przykład, alias może zostać przekazany do metody [Yii::createComponent()] w celu
 utworzenia instancji klasy komponentu, nawet jeśli plik klasy nie był dołączony wcześniej.
@@ -66,4 +78,4 @@ od klas zdefiniowanych przez użytkownika. Zaleca się, aby prefix 'C' był zare
 wyłącznie dla frameworku Yii a klasy użytkownika były poprzedzone prefiksem składającym 
 się z innej litery.
 
-<div class="revision">$Id: basics.namespace.txt 1602 2009-12-18 19:33:34Z qiang.xue $</div>
+<div class="revision">$Id: basics.namespace.txt 2452 2010-09-14 18:52:39Z qiang.xue $</div>
