@@ -33,9 +33,9 @@
 
 * Caching
     - [Tinjauan](caching.overview)
-    - [Cache Data](caching.data)
-    - [Cache Fragmen](caching.fragment)
-    - [Cache Halaman](caching.page)
+    - [Penembolokkan Data](caching.data)
+    - [Penembolokkan Fragmen](caching.fragment)
+    - [Penembolokkan Halaman](caching.page)
     - [Konten Dinamis](caching.dynamic)
 
 * Memperluas Yii
