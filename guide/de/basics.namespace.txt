@@ -60,6 +60,20 @@ automatisch eingebunden.
 Yii::import('system.web.*');
 ~~~
 
+Seit Version 1.1.5 kann man Verzeichnisse auch rekursiv, also inkl. aller
+Unterverzeichnisse wie folgt importieren:
+
+~~~
+[php]
+Yii::import('system.web.**');
+~~~
+
+> Hinweis|Note: Importiert man ein Verzeichnis rekursiv kann, das einen sehr
+> negativen Einfluß auf die Geschwindigkeit einer Anwendung haben, da die Verzeichnisse
+> bei jedem Aufruf eingelesen werden müssen. Sollten Sie hier Probleme
+> feststellen, versuchen Sie am besten, jedes Unterverzeichnis einzeln zu
+> importieren.
+
 Aliase werden neben [import|YiiBase::import] noch an vielen anderen Stellen
 verwendet, wo es um Klassen geht. An [Yii::createComponent()] kann zum
 Beispiel auch ein Alias übergeben werden, um eine Instanz der entsprechenden
@@ -80,4 +94,4 @@ Ein Pfadalias kollidiert nicht mit einem Namespace.
 > 'C' für das Yii-Framework zu reservieren und eigene Klassen mit
 > anderen Präfixen zu versehen.
 
-<div class="revision">$Id: basics.namespace.txt 1602 2009-12-18 19:33:34Z qiang.xue $</div>
+<div class="revision">$Id: basics.namespace.txt 2452 2010-09-14 18:52:39Z qiang.xue $</div>
