@@ -457,10 +457,15 @@ $auth->assign('editor','editorC');
 $auth->assign('admin','adminD');
 ~~~
 
+Komponent [authManager|CWebApplication::authManager] (np.
+[CPhpAuthManager], [CDbAuthManager]) załaduje jednostki autoryzacji 
+automatycznie w momencie ich tworzenia. NIE POTRZEBUJEMY
+wywoływać powyższego kodu do odtworzenia ich dla każdego żądania.
+
 > Info|Info: Chociaż powyższy przykad wygląda przydługo oraz nużąco, należy pamiętać, 
-że został on stworzony głównie w celach demonstracyjnych. Deweloperzy zazwyczaj 
-potrzebują wykonać pewne interfejsy użytkownika, tak, że użytkownicy końcowi, mogą
-ich uzywać do tworzenia hierarchii autoryzacji w sposób bardziej intuicyjny.
+> że został on stworzony głównie w celach demonstracyjnych. Deweloperzy zazwyczaj 
+> potrzebują wykonać pewne interfejsy użytkownika, tak, że użytkownicy końcowi, mogą
+> ich uzywać do tworzenia hierarchii autoryzacji w sposób bardziej intuicyjny.
 
 
 ### Używanie reguł biznesowych
@@ -550,4 +555,4 @@ $bizRule='return Yii::app()->user->isGuest;';
 $auth->createRole('guest','gość', $bizRule);
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 2360 2010-08-28 23:55:47Z qiang.xue $</div>
+<div class="revision">$Id: topics.auth.txt 2457 2010-09-14 21:17:17Z qiang.xue $</div>
