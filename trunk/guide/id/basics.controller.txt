@@ -180,7 +180,7 @@ class PostController extends CController
 ~~~
 
 Sekarang, dengan menggunakan fitur parameter aksi, kita bisa mendapatkan hasil yang sama dengan
-cara yang lebih menyenangkan :
+cara yang lebih sederhana :
 ~~~
 [php]
 class PostController extends CController

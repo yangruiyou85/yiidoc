@@ -3,6 +3,65 @@ Fitur Baru
 
 Halaman ini meringkas fitur-fitur utama baru yang diperkenalkan dalam setiap rilis Yii.
 
+Versi 1.1.4
+-----------
+
+* [Menambah dukungan pengikatan parameter aksi otomatis (automatic action parameter binding).](/doc/guide/basics.controller#action-parameter-binding)
+
+Versi 1.1.3
+-----------
+
+* Menambah dukungan untuk mengatur nilai default widget di dalam konfigurasi aplikasi.
+
+Versi 1.1.2
+-------------
+
+* Menambah sebuah alat penghasil code yang berbasis Web. Disebut sebagai Gii
+
+Versi 1.1.1
+-------------
+
+* Menambah CActiveForm yang berguna untuk mempermudah penulisan kode yang berhubungan dengan form serta mendukung validasi yang konsisten dan mulus baik pada bagian klien maupun server.
+
+* Menyusun ulang kode yang dihasilkan oleh yiic. Secara khusus, aplikasi kerangka sekarang diciptakan dengan beberapa susunan (multiple layout); menu operasi ditata ulang untuk halaman-halaman CRUD; menambah pencarian dan penyaringan pada halaman admin yang dihasilkan oleh perinta crud; menggunakan CActiveForm untuk menghasilkan sebuah form;
+
+* Menambah dukungan untuk memungkinkan mendefinisikan perintah yiic global
+
+Versi 1.1.0
+-----------
+
+* Menambah dukungan untuk penuliasn unit dan tes fungsi
+
+* Menambah dukungan penggunaan skin widget
+
+* Menambah pembangun form(form builder) yang dapat diperluas
+
+* Memperbaiki cara deklarasi atribut model safe.
+
+* Mengubah algoritma eager loading untuk query rekaman aktif relasional (relational active record) sehingga seluruh tabel disatukan(join) dalam sebuah kalimat SQL.
+
+* Mengubah default alias tabel menjadi nama relasi rekaman aktif (active record relation)
+
+* Menambah dukungan penggunaan prefiks pada nama tabel
+
+* Menambah seluruh set ekstensi baru yang dikenal dengan pustaka Zii.
+
+* Nama alias untuk tabel utama dalam sebuah query AR ditetapkan sebagai 't'
+
+Versi 1.0.11
+------------
+
+* Menambah dukungan untuk mengurai dan membuat URL dengan hostname berparameter
+  - Memparameterkan Hostname
+
+Versi 1.0.10
+-----------
+
+* Meningkatkan dukungan penggunaan CPhpMessageSource untuk pengaturan pesan(message) modul
+  - Penerjemahan Pesan
+* Ditambahkan dukungan pelampiran fungsi anonim sebagai pengatur event (event handler)
+  - Event Komponen
+
 Versi 1.0.8
 -----------
 
