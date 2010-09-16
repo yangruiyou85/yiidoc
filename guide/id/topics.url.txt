@@ -70,7 +70,7 @@ pra-deklarasi sebagai [CUrlManager] dalam [CWebApplication].
 adalah URL relatif. Untuk mendapatkan URL absolut, kita dapat mengawalinya dengan
 `Yii::app()->hostInfo`, atau memanggil [createAbsoluteUrl|CController::createAbsoluteUrl].
 
-URL ramah-pengguna
+URL Ramah-Pengguna
 ------------------
 
 Ketika `path` dipakai sebagai format URL, kita dapat menetapkan beberapa aturan URL untuk
@@ -223,6 +223,28 @@ rute `post/create` dengan parameter GET `id=123`.
 Dan menghasilkan `comment/list` dan parameter GET `page=2`, kita dapat membuat URL
 `/index.php/comments?page=2`.
 
+
+### Memparameterkan Hostname(Parameterizing Hostname)
+
+Mulai dari versi 1.0.11, Yii sudah memungkinkan untuk menyertakan hostname ke dalam aturan penguraian dan pembuatan URL.
+Kita dapat mengeluarkan bagian dari hostname untuk menjadi sebuah parameter GET. Misalnya, URL `http://admin.example.com/en/profile`
+dapat diuraikan menjadi parameter GET `user=admin` dan `lang=en`. Di lain sisi, aturan dengan hostname juga dapat digunakan untuk membuat URL dengan hostname terparameterisasi.
+
+Untuk menggunakan hostname terparameterisasi, cukup mendeklarasi aturan URL dengan info host, seperti:
+
+~~~
+array(
+    'http://<user:\w+>.example.com/<lang:\w+>/profile' => 'user/profile',
+)
+~~~
+
+Dari contoh di atas, segmen pertama pada hostname akan diperlakukan sebagai parameter `user` sedangkan segmen pertama pada info jalur berupa parameter `lang`.
+Aturan menyesuaikan diri dengan rute `profil/pengguna`.
+
+Harap diperhatikan bahwa [CUrlManager::showScriptName|CUrlManager::showScriptName] tidak akan berefek ketika URL dibuat dengan menggunakan sebuah aturan hostname terparameter.
+
+Juga dicatat bahwa aturan hostname berparameter tidak boleh mengandung sub-folder jika apilikasi berada di bawah sebuah sub-folder Web root.
+Contohnya, jika sebuah aplikasi berada di `http://www.example.com/sandbox/blog`, maka kita masih menggunakan aturan URL yang sama seperti yang dijelaskan di atas tanpa sub-folder sandbox/blog.
 
 ### Menyembunyikan `index.php`
 
