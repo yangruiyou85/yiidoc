@@ -441,6 +441,11 @@ $auth->assign('editor','editorC');
 $auth->assign('admin','adminD');
 ~~~
 
+Компонент [authManager|CWebApplication::authManager] (или его наследники,
+например, [CPhpAuthManager], [CDbAuthManager]) загружает элементы авторизации
+автоматически однократно при создании. НЕ требуется запускать код выше для
+создания элементов авторизации заново при каждом запросе.
+
 > Info|Инфо: Довольно громоздкий пример выше предназначен скорее для демонстрации.
 Разработчикам обычно требуется создать интерфейс и дать возможность пользователям
 интуитивно построить иерархию авторизации.
@@ -531,4 +536,4 @@ $bizRule='return Yii::app()->user->isGuest;';
 $auth->createRole('guest', 'гость', $bizRule);
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 2360 2010-08-28 23:55:47Z qiang.xue $</div>
+<div class="revision">$Id: topics.auth.txt 2457 2010-09-14 21:17:17Z qiang.xue $</div>
