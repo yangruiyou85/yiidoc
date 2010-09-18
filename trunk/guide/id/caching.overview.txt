@@ -80,4 +80,4 @@ Tembolok tidak memastikan keberadaan data yang ditembolok meskipun belum kadalua
 Oleh karenanya, jangan menggunakan tembolok sebagai tempat penyimpanan persisten (misalnya, jangan
 menggunakan tembolok untuk menyimpan session data).
 
-<div class="revision">$Id: caching.overview.txt 1309 2009-08-08 12:37:23Z qiang.xue $</div>
+<div class="revision">$Id: caching.overview.txt 2005 2010-04-03 16:24:46Z alexander.makarow $</div>

@@ -291,4 +291,4 @@ harus diterapkan ke aksi `edit` dan `create`, sementara
 `create`. Jika plus maupun minus tidak muncul dalam konfigurasi filter,
 maka filter akan diterapkan ke semua aksi.
 
-<div class="revision">$Id: basics.controller.txt 1263 2009-07-21 19:22:00Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 2418 2010-09-02 16:01:46Z qiang.xue $</div>

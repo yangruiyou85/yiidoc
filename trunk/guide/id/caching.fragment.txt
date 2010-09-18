@@ -156,4 +156,4 @@ Akan tetapi, tidak dapat dilakukan sebaliknya. Jika tembolok yang luar berisi
 data yang benar, maka akan selalu menyediakan duplikat yang ditembolokkan, meskipun konten
 tembolok yang dalam sudah kadaluarsa.
 
-<div class="revision">$Id: caching.fragment.txt 932 2009-04-14 01:27:30Z qiang.xue@gmail.com $</div>
+<div class="revision">$Id: caching.fragment.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
