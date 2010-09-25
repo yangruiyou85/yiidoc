@@ -2,7 +2,7 @@ Créer le formulaire
 ===================
 
 Ecrire la vue `login` est très simple. On débute avec un tag `form`
-dont l´attribut action sera l´URL de l´action `login` décrite précédemment.
+dont l'attribut action sera l'URL de l'action `login` décrite précédemment.
 On rajoute ensuite les libellés (labels) et les champs (input) pour les
 attributs déclarés dans la classe `LoginForm`. A la fin on ajoute un bouton
 de validation (submit). Tout cela est fait en HTML habituel.
@@ -56,12 +56,12 @@ que la variable `$model` représente une instance `LoginForm`.
 ~~~
 
 Le code ci dessus génère un formulaire plus dynamique. Par example,
-[CHtml::activeLabel()] génère un libellé associé avec l´attribut du modèle.
+[CHtml::activeLabel()] génère un libellé associé avec l'attribut du modèle.
 Si cet attribut à une erreur de saisie, la classe CSS du libellé
-changera à `error`, ce qui modifiera l´apparence du libellé avec les styles
+changera à `error`, ce qui modifiera l'apparence du libellé avec les styles
 CSS appropriés à une erreur. De facon similaire, [CHtml::activeTextField()] génère
-un champ de saisie texte pour l´attribut du modèle et change sa classe CSS
-en cas d´erreur.
+un champ de saisie texte pour l'attribut du modèle et change sa classe CSS
+en cas d'erreur.
 
 Si on utilise le fichier de style CSS `form.css` fourni par le script `yiic`, le formulaire
 généré serait similaire à:
@@ -71,7 +71,7 @@ généré serait similaire à:
 ![Page de connection avec erreurs](login2.png)
 
 Depuis la version 1.1.1, un nouveau widget appelé [CActiveForm] est fourni
-afin de faciliter la création de formulaire. Ce widget est capable d´effectuer
+afin de faciliter la création de formulaire. Ce widget est capable d'effectuer
 une validation consistante aussi bien du coté client que du coté serveur. Le code
 ci dessus peut être réécrit comme suivant en utilisant [CActiveForm]:
 
