@@ -238,7 +238,7 @@ Utilisation des préfixes de table
 ---------------------------------
 
 A partir de la version 1.1.0, Yii supporte les préfixes de tables.
-Un préfixe de table est une chaine de charactère préfixant le nom d'une table.
+Un préfixe de table est une chaine de caractère préfixant le nom d'une table.
 Cette technique est très utilisée dans des environnements d'hébergements partagés
 dans lesquels des applications partagent une meme base de donnée et ainsi utilisent
 différents préfixes pour se différencier l'une de l'autre. Par exemple, une application
