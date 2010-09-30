@@ -441,7 +441,7 @@ $auth->assign('editor','editorC');
 $auth->assign('admin','adminD');
 ~~~
 
-После создания элментов авторизации, компонент [authManager|CWebApplication::authManager] (или его наследники,
+После создания элементов авторизации, компонент [authManager|CWebApplication::authManager] (или его наследники,
 например, [CPhpAuthManager], [CDbAuthManager]) загружает их автоматически. НЕ требуется создавать элементы
 авторизаци при каждом запросе, запуская код, приведённый выше.
 
