@@ -42,7 +42,6 @@ return array (
   'This is required if you are using SQLite database.' => 'これはSQLiteデータベースをお使いなら必要です。',
   'Unable to determine URL path info. Please make sure $_SERVER["PATH_INFO"] (or $_SERVER["PHP_SELF"] and $_SERVER["SCRIPT_NAME"]) contains proper value.' => 'URLパス情報を決定できません。$_SERVER["PATH_INFO"](もしくは$_SERVER["PHP_SELF"]と$_SERVER["SCRIPT_NAME"])が正しい値かどうか確認してください。',
   'GD extension with<br />FreeType support'=>'GD拡張 (FreeTypeサポート)',
-  'GD installed<br />FreeType support not installed' => 'GDはインストールされています。<br />FreeTypeサポートはインストー\
-ルされていません。',
+  'GD installed<br />FreeType support not installed' => 'GDはインストールされています。<br />FreeTypeサポートはインストールされていません。',
   'GD not installed' => 'GDがインストールされていません。',
 );
