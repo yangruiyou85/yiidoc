@@ -152,4 +152,4 @@ akan menjadi `exception.ExceptionClassName` (untuk [CHttpException]
 kategori). Selanjutnya Anda dapat mengeksploitasi fitur [pencatatan](/doc/guide/topics.logging)
 untuk memonitor error yang terjadi selama eksekusi aplikasi.
 
-<div class="revision">$Id: topics.error.txt 772 2009-02-28 18:23:17Z qiang.xue $</div>
+<div class="revision">$Id: topics.error.txt 1064 2009-05-26 00:15:33Z qiang.xue $</div>
