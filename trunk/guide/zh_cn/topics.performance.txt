@@ -111,4 +111,4 @@ $cs->scriptMap=array(
 </head>
 ~~~
 
-<div class="revision">$Id: topics.performance.txt 2343 2010-08-26 21:10:08Z alexander.makarow $</div>
+<div class="revision">$Id$</div>
