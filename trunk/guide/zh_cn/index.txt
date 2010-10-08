@@ -9,12 +9,12 @@ Yii 权威指南
 * dofy
 * dongbeta
 * dreaminto
+* HonestQiao
 * imdong
 * Leric
 * moho
 * nowgoo
 * qiang
-* rainyjune
 * riverlet（[Yii 中国开发者网站](http://www.yiikuangjia.com)）
 * sharehua 
 * thaiki
