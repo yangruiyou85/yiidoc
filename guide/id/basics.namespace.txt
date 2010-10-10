@@ -1,20 +1,21 @@
 Alias Path dan Namespace
 ========================
 
-Yii menggunakan alias secara ekstensif. Alias path dikaitkan dengan
-direktori atau path file. Ditetapkan dalam sintaks titik, mirip dengan
+Yii menggunakan alias secara luas. Alias path dikaitkan dengan
+direktori atau path file. Ditetapkan dalam sintaks dot (titik), mirip dengan
 format namespace yang diadopsi secara luas:
 
 ~~~
 RootAlias.path.ke.target
 ~~~
 
-di mana `RootAlias` adalah alias dari beberapa direktori yang sudah ada. Dengan memanggil [YiiBase::setPathOfAlias()],
-kita dapat menetapkan alias path baru. Demi kenyamanan, Yii sudah mendefinisikan alias root sebagai berikut:
+dengan `RootAlias` sebagai alias dari beberapa direktori yang sudah ada. Dengan memanggil [YiiBase::setPathOfAlias()],
+kita dapat menetapkan alias path baru. Demi kemudahan, Yii sudah mendefinisikan alias root sebagai berikut:
 
  - `system`: merujuk pada direktori Yii framework;
+ - `zii` : merujuk pada direktori [pustaka Zii] (/doc/guide/extension.use#zii-extensions);
  - `application`: merujuk pada [basis direktori](/doc/guide/basics.application#application-base-directory) aplikasi;
- - `webroot`: merujuk pada direktori yang berisi file [naskah entri](/doc/guide/basics.entry). Alias ini sudah tersedia sejak versi 1.0.3.
+ - `webroot`: merujuk pada direktori yang berisi file [skrip entri](/doc/guide/basics.entry). Alias ini sudah tersedia sejak versi 1.0.3.
  - `ext`: merujuk ke direktori yang berisi semua [extensions|ekstensi](/doc/guide/extension.overview) pihak ketiga. Alias ini sudah tersedia sejak versi 1.0.8.
  
 Sebagai tambahan, jika aplikasi menggunakan [modul](/doc/guide/basics.module), alias root juga didefinisikan untuk setiap ID modul dan merujuk pada basis path modul terkait. Fitur ini sudah tersedia sejak versi 1.0.3.
@@ -33,13 +34,13 @@ Yii::import('system.web.CController');
 ~~~
 
 Metode [import|YiiBase::import] berbeda dengan `include` dan `require`
-dalam hal ia lebih efisien. Definisi kelas yang sedang diimpor
-sebenarnya tidak disertakan sampai ia dirujuk untuk pertama kali. Mengimpor
+karena metode ini lebih efisien. Definisi kelas yang sedang diimpor
+sebenarnya tidak disertakan (di-include) sampai ia dirujuk untuk pertama kalinya. Mengimpor
 namespace yang sama berkali-kali juga lebih cepat daripada `include_once`
 dan `require_once`.
 
 > Tip: Ketika merujuk pada kelas yang didefinisikan oleh Yii framework, kita tidak
-perlu mengimpor atau menyertakannya. Semua kelas inti Yii sudah pra-impor.
+perlu mengimpor atau menyertakannya. Semua kelas inti Yii sudah di-import pada awalnya.
 
 Kita juga dapat menggunakan sintaks berikut untuk mengimpor seluruh direktori agar
 file kelas di bawah direktori tersebut secara otomatis disertakan saat
@@ -52,7 +53,7 @@ Yii::import('system.web.*');
 
 Selain [import|YiiBase::import], alias juga dipakai di banyak tempat
 lain untuk merujuk pada kelas. Sebagai contoh, alias dapat dioper ke
-[Yii::createComponent()] guna membuat turunan kelas terkait,
+[Yii::createComponent()] guna membuat instance kelas terkait,
 meskipun file kelas tidak disertakan sebelumnya.
 
 Jangan menyamakan antara alias path dengan namespace. Namespace merujuk pada pengelompokan
@@ -65,7 +66,18 @@ namespace.
 langsung, Anda tidak dapat membuat turunan dari dua kelas yang memiliki
 nama yang sama dengan definisi yang berbeda. Untuk alasan ini, semua kelas Yii 
 framework diawali dengan huruf 'C' (berarti 'class') agar bisa dibedakan dari
-kelas yang didefinisikan-pengguna. Direkomendasikan bahwa prefiks 'C' khusus dipakai hanya untuk pemakaian Yii framework saja, dan kelas yang didefinisikan-pengguna diawali
+kelas yang didefinisikan pengguna. Direkomendasikan bahwa prefiks 'C' khusus dipakai hanya untuk pemakaian Yii framework saja, dan kelas yang didefinisikan-pengguna diawali
 dengan huruf lainnya.
 
-<div class="revision">$Id: basics.namespace.txt 1310 2009-08-08 16:03:46Z qiang.xue $</div>
+Besides [import|YiiBase::import], aliases are also used in many other
+places to refer to classes. For example, an alias can be passed to
+[Yii::createComponent()] to create an instance of the corresponding class,
+even if the class file was not included previously.
+
+Do not confuse path alias with namespace. A namespace refers to a logical
+grouping of some class names so that they can be differentiated from other
+class names even if their names are the same, while path alias is used to
+refer to a class file or directory. Path alias does not conflict with
+namespace.
+
+<div class="revision">$Id: basics.namespace.txt 2468 2010-09-16 00:34:42Z qiang.xue $</div>
