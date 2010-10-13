@@ -105,7 +105,7 @@ return array (
   'CTypedList<{type}> can only hold objects of {type} class.' => 'CTypedList<{type}> chỉ có thể tương tác các đối tượng của lớp {type}.',
   'CUrlManager.UrlFormat must be either "path" or "get".' => 'CUrlManager.UrlFormat phải là "path" hoặc "get".',
   'CWinCache requires PHP wincache extension to be loaded.' => 'CWinCache cần bản mở rộng của PHP wincache.',
-  'CWinCache user cache is disabled. Please set wincache.ucenabled to On in your php.ini.' => 'CWinCache user cache bị tắt. Xin thiết lập wincache.ucenabled la On trong php.ini của bạn.',
+  'CWinCache user cache is disabled. Please set wincache.ucenabled to On in your php.ini.' => 'CWinCache user cache bị tắt. Xin thiết lập wincache.ucenabled là On trong php.ini của bạn.',
   'CXCache requires PHP XCache extension to be loaded.' => 'CXCache cần có PHP XCache extension để chạy.',
   'CZendDataCache requires PHP Zend Data Cache extension to be loaded.' => 'CZendDataCache can62n bản mở rộng của PHP Zend Data Cache tải về',
   'Cannot add "{child}" as a child of "{name}". A loop has been detected.' => 'Không thể thêm "{child}" là con của "{name}". Đã có sự trùng lặp.',
