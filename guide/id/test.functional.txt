@@ -60,7 +60,7 @@ class PostTest extends WebTestCase
 }
 ~~~
 
-Seperti menulis sebuah kelas uji coba unit, kita mendeklarasi fixture untuk digunakan dalam uji coba ini. Di sini kita mengindikasikan bahwa fixture `Post` harus digunakan. Dalam metode uji coba `tesetShow`, kita pertama-tama menginstruksikan Selenium RC membuka URL `post/1`. Perhatikan bahwa di sini digunakan URL relatif, dan URL lengkap terbentuk dari menambah URL basis yang kita set di kelas dasar ((i.e. `http://localhost/yii/demos/blog/index-test.php/post/1`). Kita kemudian memastikan bahwa kita dapat mencari post dengan judul `sample1` dapat ditemukan dalam halaman halaman Web sekarang. Dan kita juga menverifikasi bahwa halaman ini mengandung teks 'Leave a Comment'
+Seperti menulis sebuah kelas uji coba unit, kita mendeklarasi fixture untuk digunakan dalam uji coba ini. Di sini kita mengindikasikan bahwa fixture `Post` harus digunakan. Dalam metode uji coba `tesetShow`, kita pertama-tama menginstruksikan Selenium RC membuka URL `post/1`. Perhatikan bahwa di sini digunakan URL relatif, dan URL lengkap terbentuk dari menambah URL basis yang kita set di kelas dasar ((i.e. `http://localhost/yii/demos/blog/index-test.php/post/1`). Kita kemudian memastikan bahwa kita dapat mencari post dengan judul `sample1` dapat ditemukan dalam halaman halaman Web sekarang. Dan kita juga memverifikasi bahwa halaman ini mengandung teks 'Leave a Comment'
 
 > Tip: Sebelum menjalankan uji coba fungsional, server Selenium-RC harus dinyalakan. Untuk menyalakannya dapat dilakukan dengan menjalankan perintah `java -jar selenium-server.jar` di dalam direktori instalasi server Selenium.
 
