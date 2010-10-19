@@ -82,7 +82,7 @@ http://hostname/testdrive/index.php?r=user/admin
 Halaman ini akan menampilkan daftar user dalam format tabel. Jika kita klik header-nya
 maka kolom yang bersangkutan akan disusun. Jika kita klik tombol setiap baris untuk view,update atau
 delete maka akan dilakukan operasi sesuai dengan tombol yang diklik. Kita dapat menjelajah halaman-halaman
-yang berbeda. Kita juga dapat menfilter dan mencari data yang kita inginkan.
+yang berbeda. Kita juga dapat memfilter dan mencari data yang kita inginkan.
 
 Semua fitur-fitur menarik ini didapatkan tanpa perlu kita menulis satu baris kode sama sekali!
 
