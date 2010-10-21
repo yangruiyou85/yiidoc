@@ -3,7 +3,7 @@ Menggunakan Pustaka Pihak Ketiga
 
 Yii didesain secara hati-hati agar pustaka pihak-ketiga(third-party library) dapat dengan mudah
 diintegrasikan untuk lebih memperluas fungsionalitas Yii.
-Ketika menggunakan pustaka pihak ketiga dalam sebuah proyek, para pengembang
+Ketika menggunakan pustaka pihak ketiga dalam sebuah projek, para pengembang
 sering menghadapi masalah mengenai penyertaan penamaan kelas dan file.
 Karena semua kelas Yii diawali dengan huruf `C`, maka masalah penamaan
 kelas akan jarang terjadi; dan karena Yii tergantung pada
@@ -44,4 +44,4 @@ $hits=$lucene->find(strtolower($keyword));
 ~~~
 
 
-<div class="revision">$Id: extension.integration.txt 251 2008-11-19 22:28:46Z qiang.xue $</div>
+<div class="revision">$Id: extension.integration.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
