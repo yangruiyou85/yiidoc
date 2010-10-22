@@ -1,13 +1,20 @@
 验证和授权(Authentication and Authorization)
 ================================
 
-如果网页的访问需要用户权限限制，那么我们需要使用验证（Authentication）和授权（Authorization）。验证是指核查某人表明的身份信息是否与系统相合。一般来说使用用户名和密码，当然也可能使用别的表明身份方式，录入智能卡，指纹等等。授权是找出已通过验证的用户是否允许操作特定的资源。一般的做法是找出此用户是否属于某个允许操作此资源的角色。
+对于需要限制某些用户访问的网页，我们需要使用验证（Authentication）和授权（Authorization）。
+验证是指核查一个人是否真的是他自己所声称的那个人。这通常需要一个用户名和密码，
+但也包括任何其他可以表明身份的方式，例如一个智能卡，指纹等等。
+授权则是找出已通过验证的用户是否允许操作特定的资源。
+这一般是通过查询此用户是否属于一个有权访问该资源的角色来判断的。
 
-利用Yii内置的验证和授权（auth）框架，我们可以轻松实现上述功能。
+Yii 有一个内置的验证/授权（auth）框架，用起来很方便，还能对其进行自定义，使其符合特殊的需求。
 
-Yii auth framework 的核心一块是一个事先声明的*user application component*（用户应用部件），实现[IWebUser]接口的对象。此用户部件代表当前用户存储的身份信息。我们能够通过`Yii::app()->user`在任何地方来获取它。
+Yii auth 框架的核心是一个预定义的 *用户（user）应用组件* 它是一个实现了 [IWebUser] 接口的对象。
+此用户组件代表当前用户的持久性认证信息。我们可以通过`Yii::app()->user`在任何地方访问它。
 
-使用此用户部件，可以通过[CWebUser::isGuest]检查一个用户是否登陆。可以[login|CWebUser::login] （登陆）或者[logout|CWebUser::logout] （注销）一个用户；可以通过[CWebUser::checkAccess]检查此用户是否能够执行特定的操作;还可以获得此用户的[unique identifier|CWebUser::name]（唯一标识）和别的身份信息。
+使用此用户组件，我们可以通过 [CWebUser::isGuest] 检查检查一个用户是否登陆; 可以 [登录（login）|CWebUser::login] 或
+[注销（logout）|CWebUser::logout] 一个用户；我们可以通过[CWebUser::checkAccess]检查此用户是否可以执行特定的操作；还可以获取此用户的[唯一标识（unique identifier）|CWebUser::name]及其他持久性身份信息。
+
 
 定义身份类 （Defining Identity Class）
 -----------------------
