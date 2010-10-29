@@ -4,11 +4,11 @@ Aplikasi Konsole
 Aplikasi konsol dipakai terutama oleh aplikasi web untuk melakukan pekerjaan
 offline, seperti pembuatan kode, pencarian kompilasi indeks, pengiriman
 email, dll. Yii menyediakan sebuah kerangka kerja untuk penulisan aplikasi konsol
-secara sistematis dan berorientasi-obyek.
+secara sistematis dan berorientasi-objek.
 
-Yii mewakili setiap tugas konsol dalam batasan turunan [perintah|CConsoleCommand],
+Yii mewakili setiap tugas konsol dalam batasan instance [perintah|CConsoleCommand],
 dan [aplikasi konsole|CConsoleApplication] yang dipakai untuk mengirimkan permintaan
-baris perintah ke perintah yang sesuai. Turunan aplikasi dibuat dalam
+baris perintah ke perintah yang sesuai. Instance aplikasi dibuat dalam
 naskah entri. Untuk menjalankan tugas konsol, kita cukup menjalankan
 perintah pada baris perintah sebagai berikut,
 
@@ -16,11 +16,11 @@ perintah pada baris perintah sebagai berikut,
 php entryScript.php CommandName Param0 Param1 ...
 ~~~
 
-di mana `CommandName` merujuk pada nama perintah yang tidak sensitif jenis huruf,
-dan `Param0`, `Param1` dan seterusnya adalah parameter yang dioper ke turunan
+di mana `CommandName` merujuk pada nama perintah yang tidak case-sensitive,
+dan `Param0`, `Param1` dan seterusnya adalah parameter yang dioper ke instance
 perintah.
 
-Naskah entri untuk aplikasi konsol biasanya ditulis seperti berikut,
+Skrip entri untuk aplikasi konsol biasanya ditulis seperti berikut,
 mirip dengan aplikasi Web,
 
 ~~~
@@ -28,20 +28,20 @@ mirip dengan aplikasi Web,
 defined('YII_DEBUG') or define('YII_DEBUG',true);
 // sertakan file bootstrap Yii
 require_once('path/to/yii/framework/yii.php');
-// buat turunan aplikasi dan jalankan
+// buat instance aplikasi dan jalankan
 $configFile='path/to/config/file.php';
 Yii::createConsoleApplication($configFile)->run();
 ~~~
 
 Kemudian kita membuat kelas perintah yang harus diperluas dari [CConsoleCommand].
 Setiap kelas perintah harus dinamai seperti nama perintah ditambahkan dengan
-`Command`. Sebagai contoh, untuk mendifisikan perintah `email`, kita harus menulis kelas
+`Command`. Sebagai contoh, untuk mendefinisikan perintah `email`, kita harus menulis kelas
 `EmailCommand`. Semua file kelas perintah harus ditempatkan di bawah subdirektori
 `commands` pada [basis direktori
 aplikasi](/doc/guide/basics.application#application-base-directory).
 
 > Tip: Dengan mengkonfigurasi [CConsoleApplication::commandMap], Anda juga dapat memiliki
-kelas perintah dalam kkonvensi penamaan berbeda dan ditempatkan dalam direktori
+kelas perintah dalam konvensi penamaan berbeda dan ditempatkan dalam direktori
 yang berbeda.
 
 Menulis kelas perintah umumnya menyangkut implementasi metode
@@ -60,9 +60,9 @@ class EmailCommand extends CConsoleCommand
 }
 ~~~
 
-Kapan saja dalam sebuah perintah, kita dapat mengakses turunan aplikasi konsol
-via `Yii::app()`. Seperti turunan aplikasi Web, aplikasi konsole juga bisa
-dikonfigurasi. Sebagai contoh, kita bosa mengkonfigurasi komponen aplikasi `db`
+Kapan saja dalam sebuah perintah, kita dapat mengakses instance aplikasi konsol
+via `Yii::app()`. Seperti instance aplikasi Web, aplikasi konsole juga bisa
+dikonfigurasi. Sebagai contoh, kita bisa mengkonfigurasi komponen aplikasi `db`
 untuk mengakses database. Konfigurasi biasanya ditetapkan sebagai file PHP dan
 dioper ke pembentuk kelas aplikasi konsol
 (atau [createConsoleApplication|YiiBase::createConsoleApplication] dalam
@@ -93,4 +93,9 @@ terlihat bersama dengan yang standar. Kita juga bisa membuat perintah kita sendi
 dipakai saat `yiic shell` dipakai. Untuk melakukannya, cukup masukkan file kelas
 perintah di bawah direktori `protected/commands/shell`.
 
-<div class="revision">$Id: topics.console.txt 745 2009-02-25 21:45:42Z qiang.xue $</div>
+Mulai dari versi 1.1.1, kita juga dapat membuat command global yang dapat digunakan oleh semua aplikasi Yii
+pada mesin yang sama. Untuk melakukannya, definisikan variabel environment bernama 'YII_CONSOLE_COMMANDS' yang harus merujuk 
+ke direktori yang sudah ada. Kita dapat meletakkan file kelas command global di bawah direktori ini, dan kita akan melihat command ini dapat 
+tersedia di mana saja setiap kali kita menggunakan `yiic`.
+
+<div class="revision">$Id: topics.console.txt 1870 2010-03-09 22:23:19Z qiang.xue $</div>
