@@ -31,6 +31,7 @@ Member List of Yiidoc Project
   active  Simplified Chinese  riverlet            fanbincn
   active  Simplified Chinese  HonestQiao          honestqiao
   active  Simplified Chinese  rainyjune           dreamneverfall
+  active  Slovak              lubosdz             lubosdz
   active  Spanish             buritica            buritica
   active  Spanish             sebas               sebathi                     Yes
   active  Swedish             tri                 triboe
