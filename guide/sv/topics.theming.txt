@@ -278,7 +278,7 @@ kommer Yii även att söka efter skin i underkatalogen `skins` till temats vykat
 (t.ex. `WebRoot/themes/classic/views/skins`). I händelse av att en skin med samma namn existerar 
 i både temats och huvudapplikationens vykataloger, prioriteras temats skin.
 
-Om en widget använder en skin so minte existerar kommer Yii fortfarande att skapa widgeten som vanligt, 
+Om en widget använder en skin som inte existerar kommer Yii fortfarande att skapa widgeten som vanligt, 
 utan felmeddelanden.
 
 > Info: Användning av skin kan sätta ned prestanda eftersom Yii behöver leta efter skin-filen första gången en widget skapas.
@@ -288,7 +288,7 @@ Skin är mycket snarlikt finessen global anpassning av widget. De huvudsakliga s
 
    - Skin är mer relaterat till anpassning av propertyvärden för presentation;
    - En widget kan ha flera skin;
-   - Skin kan åsättas teman;
+   - Skin kan åsättas via teman;
    - Användning av skin är mer resurskrävande än global anpassning av widget.
 
 <div class="revision">$Id: topics.theming.txt 2172 2010-06-07 19:56:01Z qiang.xue $</div>
