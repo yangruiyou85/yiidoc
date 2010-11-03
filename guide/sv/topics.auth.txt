@@ -463,10 +463,15 @@ $auth->assign('editor','editorC');
 $auth->assign('admin','adminD');
 ~~~
 
+Komponenten [authManager|CWebApplication::authManager] (t. ex. 
+[CPhpAuthManager], [CDbAuthManager]) laddar auktoriseringsartiklarna 
+automatiskt när de skapas. Vi behöver INTE exekvera ovanstående kod 
+för att återskapa dem vid varje request.
+
 > Info: Även om ovanstående exempel framstår som omfattande och långrandigt, 
-återfinns det här som demonstration. Utvecklare behöver vanligtvis utveckla 
-någon form av användargränssnitt som slutanvändare sedan kan använda för att, på 
-ett mer intuitivt sätt, åstadkomma en auktoriseringshierarki.
+> återfinns det här som demonstration. Utvecklare behöver vanligtvis utveckla 
+> någon form av användargränssnitt som slutanvändare sedan kan använda för att, på 
+> ett mer intuitivt sätt, åstadkomma en auktoriseringshierarki.
 
 
 ### Använda affärsregler
@@ -558,4 +563,4 @@ $bizRule='return Yii::app()->user->isGuest;';
 $auth->createRole('guest', 'guest user', $bizRule);
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 2360 2010-08-28 23:55:47Z qiang.xue $</div>
+<div class="revision">$Id: topics.auth.txt 2457 2010-09-14 21:17:17Z qiang.xue $</div>
