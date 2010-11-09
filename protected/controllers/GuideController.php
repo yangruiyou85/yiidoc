@@ -19,6 +19,7 @@ class GuideController extends CController
 		'pt'=>'Portuguese',
 		'ru'=>'Russian',
 		'sv'=>'Swedish',
+		'ta_in'=>'Tamil',
 		'vi'=>'Vietnamese',
 		'zh_cn'=>'Simplified Chinese',
 		'zh_tw'=>'Traditional Chinese',
