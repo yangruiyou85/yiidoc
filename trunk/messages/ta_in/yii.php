@@ -13,6 +13,7 @@
  *
  * NOTE, this file must be saved in UTF-8 encoding.
  *
+ * @author Srinivasan A Paul Joseph <sapauljoseph@gmail.com>
  * @version $Id: $
  */
 return array (
