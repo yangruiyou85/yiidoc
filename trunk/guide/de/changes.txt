@@ -7,6 +7,8 @@ Version 1.1.5
 -------------
 
  * [Actions und Binden von Parametern in Konsolenbefehlen](/doc/guide/topics.console)
+ * [Autoload-Unterstützung von Klassen mit Namespace](/doc/guide/basics.namespace)
+ * [Unterstützung von Widget-Views in Themes](/doc/guide/topics.theming#theming-widget-views)
 
 Version 1.1.4
 -------------
@@ -133,4 +135,4 @@ Version 1.0.5
  * [CUrlManager] unterstützt nun das Parametrisieren des Routenteils einer URL. Siehe:
      - [Parametrisierte Routen in URL-Regeln](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 2579 2010-10-28 17:57:02Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 2633 2010-11-09 10:05:20Z haertl.mike $</div>

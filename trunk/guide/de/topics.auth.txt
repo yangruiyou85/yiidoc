@@ -118,6 +118,8 @@ else
 Yii::app()->user->logout();
 ~~~
 
+### Cookie-basierte Anmdeldung
+
 Ein Benutzer wird automatisch wieder abgemeldet, wenn er für einen bestimmten
 Zeitraum nicht aktiv war. Die Dauer hängt von der 
 [Session-Konfiguration](http://de2.php.net/manual/de/session.configuration.php)
@@ -134,6 +136,46 @@ seinem Browser Cookies akzeptieren muss.
 // dass allowAutoLogin in der Userkomponente auf true gesetzt ist
 Yii::app()->user->login($identity,3600*24*7);
 ~~~
+
+Wie bereits erwähnt, werden Daten, die man über [CBaseUserIdentity::setState]
+speichert, ebenfalls im Cookie abgelegt, falls man die cookie-basierte
+Anmeldung verwendet. Wenn der Besucher das nächste mal angemeldet wird, werden
+diese Daten aus dem Cookie ausgelesen und im Status über `Yii::app()->user`
+bereitgestellt.
+
+Auch wenn Yii Maßnahmen bereitstellt, um eine Veränderung dieser Cookiedaten
+auf der Clientseite zu verhindern, empfehlen wir unbedingt, keine sensiblen
+Daten als Status zu speichern. Stattdessen sollte man solche Daten auf der
+Serverseite in einem Permanentspeicher (z.B. einer Datenbank) ablegen und bei
+Bedarf wiederherstellen.
+
+Für jede seriöse Webanwendung empfehlen wir außerdem folgende Strategie, um
+die Sicherheit bei cookie-basierter Anmeldung zu verbessern:
+
+* Zum Zeitpunkt, wenn ein Benutzer sich erfolgreich anmeldet, erzeugt man
+einen zufälligen Schlüssel, der sowohl im Statuscookie als auch im
+Permanentspeicher (z.B. Datenbank) auf dem Server gespeichert wird.
+
+* Wenn der Benutzer das nächste mal per Cookie angemeldet wird, überprüft man, ob die
+beiden Schlüsselwerte übereinstimmen, befor die Anmeldung durchgeführt wird.
+
+* Wenn der Benutzer sich neu über das Anmeldeformular einloggt, muss ein neuer
+Schlüssel erzeugt werden
+
+Damit schließt man aus, dass der Besucher ein altes Statuscookie wiederverwendet,
+dessen Statusinformationen aber schon nicht mehr gültig sind.
+
+Zur Umsetzung dieser Strategie müssen folgende beiden Methoden überschrieben
+werden:
+
+* [CUserIdentity::authenticate()]: Hier wird die eigentliche Authentifizierung
+durchgeführt. Wurde der Benutzer authentifiziert, sollte man hier einen neuen
+Zufallsschlüssel erzeugen und diesen sowohl in der Datenbank als auch im
+Identitätstatus (mit [CBaseUserIdentity::setState]) speichern.
+
+* [CWebUser::beforeLogin()]: Diese Methode wird beim Anmelden eines
+Benutzers aufgerufen. Hier sollte man den Schlüssel aus dem Statuscookie mit
+dem in der Datenbank vergleichen.
 
 Zugangskontrollfilter
 ---------------------
@@ -596,4 +638,4 @@ $bizRule='return Yii::app()->user->isGuest;';
 $auth->createRole('gast','Gast-Benutzer', $bizRule);
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 2457 2010-09-14 21:17:17Z qiang.xue $</div>
+<div class="revision">$Id: topics.auth.txt 2629 2010-11-08 17:04:49Z qiang.xue $</div>
