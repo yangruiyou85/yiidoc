@@ -70,7 +70,7 @@ array(
 			'connectionString'=>'mysql:host=localhost;dbname=testdb',
 			'username'=>'root',
 			'password'=>'password',
-			'emulatePrepare'=>true,  // diperlukan oleh beberapa instalasi MySQL
+			'emulatePrepare'=>true,  //  pada beberapa instalasi MySQL, diperlukan
 		),
 	),
 )
@@ -90,11 +90,11 @@ menggunakan [CDbCommand]. Membuat instance [CDbCommand] dengan memanggil
 
 ~~~
 [php]
-$connection=Yii::app()->db;   // asumsi bahwa anda memiliki koneksi "db" yang terkonfigurasi 
-// Jika tidak, anda bisa membuat sebuah koneksi secara eksplisit 
+$connection=Yii::app()->db;   // asumsi bahwa anda memiliki koneksi "db" yang terkonfigurasi
+// Jika tidak, anda bisa membuat sebuah koneksi secara eksplisit
 // $connection=new CDbConnection($dsn,$username,$password);
 $command=$connection->createCommand($sql);
-// jika diperlukan, statement SQL dapat diupdate sebagai berikut 
+// jika diperlukan, statement SQL dapat diupdate sebagai berikut
 // $command->text=$newSQL;
 ~~~
 
@@ -197,8 +197,8 @@ harus dikerjakan sebelum pernyataan SQL dijalankan.
 
 ~~~
 [php]
-// SQL dengan dua penampung ":username" dan ":email"
-$sql="INSERT INTO users(username, email) VALUES(:username,:email)";
+// SQL dengan dua penampung ":username" and ":email"
+$sql="INSERT INTO tbl_user (username, email) VALUES(:username,:email)";
 $command=$connection->createCommand($sql);
 // ganti penampung ":username" dengan nilai username sebenarnya
 $command->bindParam(":username",$username,PDO::PARAM_STR);
@@ -263,4 +263,4 @@ $sql='SELECT * FROM {{user}}';
 $users=$connection->createCommand($sql)->queryAll();
 ~~~
 
-<div class="revision">$Id: database.dao.txt 1413 2009-09-14 23:38:53Z qiang.xue $</div>
+<div class="revision">$Id: database.dao.txt 2266 2010-07-17 13:58:30Z qiang.xue $</div>
