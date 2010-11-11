@@ -52,12 +52,10 @@ aksi tersebut.
 >dalam huruf kecil, dan [peta kontroler|CWebApplication::controllerMap]
 >serta [peta aksi|CController::actions] keduanya menggunakan kunci dalam huruf kecil.
 
-Semenjak versi 1.0.3, sebuah aplikasi bisa berisi [modul](/doc/guide/basics.module).
-Rute aksi kontroler di dalam sebuah modul yakni dalam format `moduleID/controllerID/actionID`.
-Untuk lebih rinci, lihat [seksi mengenai modul](/doc/guide/basics.module).
+Semenjak versi 1.0.3, sebuah aplikasi bisa berisi [modul](/doc/guide/basics.module). Rute aksi kontroler di dalam sebuah modul yakni dalam format `moduleID/controllerID/actionID`. Untuk lebih rinci, lihat [bagian mengenai modul](/doc/guide/basics.module).
 
 
-Penurunan Kontroler
+Instansiasi Kontroler
 -------------------
 
 Turunan kontroler dibuat ketika [CWebApplication] menangani permintaan
@@ -84,15 +82,15 @@ Jika file kelas tidak ada, 404 [CHttpException] akan dimunculkan.
 Dalam hal ketika [modul](/doc/guide/basics.module) dipakai (tersedia sejak versi 1.0.3), proses di atas cukup berbeda. Dalam keadaan tertentu, aplikasi akan memeriksa apakah ID merujuk ke kontroler di dalam sebuah modul, dan jika demikian, turunan modul akan dibuat lebih dulu diikuti dengan turunan kontroler.
 
 
-Aksi(Action)
+Action (Aksi)
 ------------
 
-Seperti yang telah disinggung, aksi dapat didefinisikan sebagai metode yang namanya dimulai
-dengan kata `action`. Cara lebih maju adalah dengan mendefinisikan kelas aksi
-dan meminta kontroler untuk menurunkannya apabila diperlukan. Dengan demikian memungkinkan aksi
+Seperti yang telah disinggung, action dapat didefinisikan sebagai metode yang namanya dimulai
+dengan kata `action`. Cara lebih maju adalah dengan mendefinisikan kelas action
+dan meminta kontroler untuk menurunkannya apabila diperlukan. Dengan demikian memungkinkan sebuah action
 untuk dipakai ulang.
 
-Untuk mendefinisikan kelas aksi baru, lakukan hal berikut:
+Untuk mendefinisikan kelas action baru, lakukan hal berikut:
 
 ~~~
 [php]
@@ -100,12 +98,12 @@ class UpdateAction extends CAction
 {
 	public function run()
 	{
-		// tempat logika aksi di sini
+		// tempat logika action di sini
 	}
 }
 ~~~
 
-Agar kontroler menyadari adanya aksi ini, kita timpa metode
+Agar kontroler menyadari adanya action ini, kita override metode
 [actions()|CController::actions] pada kelas kontroler kita:
 
 ~~~
@@ -123,7 +121,7 @@ class PostController extends CController
 
 Di atas, kita menggunakan alias path
 `application.controllers.post.UpdateAction` untuk menetapkan apakah file kelas
-aksi adalah `protected/controllers/post/UpdateAction.php`.
+action adalah `protected/controllers/post/UpdateAction.php`.
 
 Dengan menulis aksi berbasis-kelas, kita dapat mengatur aplikasi dalam gaya
 modular. Sebagai contoh, struktur direktori berikut dapat dipakai untuk
@@ -154,10 +152,13 @@ otomatis diisi oleh Yii dari nilai `$_GET`.
 Untuk menjelaskan fitur ini, mari kita asumsi bahwa kita perlu membuat sebuah aksi `create`
 pada `PostController`. Aksi ini memerlukan dua buah parameter :
 
-   - `category`: sebuah integer yang menunjukkan ID kategori ke berapa post baru yang akan dibuat.
-   - `language`: sebuah string yang mewakili kode bahasa pada post baru.
+   * `category`: sebuah integer yang menunjukkan ID kategori ke berapa post baru yang
+akan dibuat.
+   * `language`: sebuah string yang mewakili kode bahasa pada post baru.
 
-Kita mungkin akan menggunakan coding berikut ini untuk mendapatkan nilai yang diinginkan dari parameter `$_GET`:
+Kita mungkin akan menggunakan coding berikut ini untuk mendapatkan nilai yang
+diinginkan dari parameter `$_GET`:
+
 ~~~
 [php]
 class PostController extends CController
@@ -179,8 +180,8 @@ class PostController extends CController
 }
 ~~~
 
-Sekarang, dengan menggunakan fitur parameter aksi, kita bisa mendapatkan hasil yang sama dengan
-cara yang lebih sederhana :
+Sekarang, dengan menggunakan fitur parameter aksi, kita bisa mendapatkan hasil sama lebih gampang :
+
 ~~~
 [php]
 class PostController extends CController
@@ -196,9 +197,32 @@ class PostController extends CController
 
 Perhatikan bahwa kita menambahkan dua buah parameter ke metode aksi `actionCreate`.
 Nama parameter ini haruslah sama persis dengan nama yang ingin didapatkan dari `$_GET`. Parameter
-`$language` mengambil nilai default `en` apabila ternyata pengguna tidak memberikan nilai pada parameter.
-Karena `$category` tidak memiliki nilai default, maka jika pengguna tidak memberikan parameter `category` di `$_GET`
+`$language` mengambil nilai default `en` apabila ternyata pengguna tidak
+memberikan nilai pada parameter. Karena `$category` tidak memiliki nilai default,
+maka jika pengguna tidak memberikan parameter `category` di `$_GET`
 sebuah [CHttpException](kode kesalahan 400) akan dikeluarkan secara otomatis.
+
+Mulai dari versi 1.1.5, Yii juga akan mendukung pendeteksian jenis array untuk parameter action.
+Ini dapat dilakukan dengan PHP type hinting (pemberian petunjuk jenis PHP) dengan menggunakan sintaks berikut :
+
+~~~
+[php]
+class PostController extends CController
+{
+	public function actionCreate(array $categories)
+	{
+		// Yii akan memastikan $categories menjadi sebuah array
+	}
+}
+~~~
+
+Demikianlah, kita menambah kata kunci `array` di depan `$categories` dalam deklarasi
+parameter metode tersebut. Dengan melakukan demikian, jika `$_GET['categories']` adalah
+sebuah string sederhana, akan diubah menjadi sebuah array yang terdiri dari string tersebut.
+
+> Note|Catatan: Jika sebuah parameter dideklarasi tanpa petunjuk jenis `array`, ituartinya parameter tersebut
+> haruslah skalar (misalnya bukan array). Dalam kasus ini, mem-pass sebuah parameter array dengan
+> `$_GET` akan mengakibatkan eksepsi HTTP.
 
 
 Filter
@@ -291,4 +315,4 @@ harus diterapkan ke aksi `edit` dan `create`, sementara
 `create`. Jika plus maupun minus tidak muncul dalam konfigurasi filter,
 maka filter akan diterapkan ke semua aksi.
 
-<div class="revision">$Id: basics.controller.txt 2418 2010-09-02 16:01:46Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 2576 2010-10-28 02:46:14Z qiang.xue $</div>
