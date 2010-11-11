@@ -201,7 +201,7 @@ di atas akan berlaku, menjadi solusi dalam rute `post/read` dan parameter
 GET `array('id'=>100)` (accessible via `$_GET`).
 
 
-> Note|Catatan: Menggunakan aturan URL akan menurunkan performansi aplikasi. Ini
+> Note|Catatan: Menggunakan aturan URL akan menurunkan kinerja aplikasi. Ini
 disebabkan saat mengurai URL yang diminta, [CUrlManager] akan mencoba mencari
 setiap aturan sampai salah satunya diterapkan. Oleh karenanya, aplikasi Web dengan
 lalu lintas tinggi harus meminimalisir pemakaian
@@ -213,7 +213,7 @@ aturan URL.
 Mulai dari versi 1.0.5, kita dapat merujuk parameter bernama dalam bagian rute pada sebuah
 aturan. Ini mengijinkan aturan untuk diterapkan pada multi rute berdasarkan pada kriteria
 yang sesuai. Ini juga membantu mengurangi jumlah aturan yang diperlukan oleh aplikasi,
-Selanjutnya tentunya meingkatkan performansi secara keseluruhan.
+Selanjutnya tentunya meingkatkan kinerja secara keseluruhan.
 
 Kita gunakan contoh berikut untuk menggambarkan bagaimana parameterisasi rute
 dengan parameter bernama:

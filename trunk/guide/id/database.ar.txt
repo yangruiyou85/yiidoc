@@ -60,7 +60,7 @@ return array(
 		'db'=>array(
 			'class'=>'system.db.CDbConnection',
 			'connectionString'=>'sqlite:path/to/dbfile',
-			// hidupkan cache schema untuk meningkatkan performansi
+			// hidupkan cache schema untuk meningkatkan kinerja
 			// 'schemaCachingDuration'=>3600,
 		),
 	),

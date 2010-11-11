@@ -184,7 +184,7 @@ Mengikat Parameter
 
 Untuk menghindari [serangan injeksi
 SQL](http://en.wikipedia.org/wiki/SQL_injection) dan meningkatkan
-performansi pelaksanaan pernyataan SQL secara terus menerus, Anda dapat "menyiapkan"
+kinerja pelaksanaan pernyataan SQL secara terus menerus, Anda dapat "menyiapkan"
 sebuah pernyataan SQL dengan opsional penampung parameter yang akan
 diganti dengan parameter sebenarnya selama proses pengikatan parameter.
 
@@ -212,10 +212,10 @@ $command->execute();
 ~~~
 
 Metode [bindParam()|CDbCommand::bindParam] dan
-[bindValue()|CDbCommand::bindValue] sangat mirip. Perbedaanya hanyalah bahwa
+[bindValue()|CDbCommand::bindValue] sangat mirip. Perbedaannya hanyalah bahwa
 bidParam mengikat parameter dengan referensi variabel PHP sedangkan
 bindValue dengan nilai. Untuk parameter yang mewakili memori blok besar data,
-bidParam dipilih dengan pertimbangan performansi.
+bindParam dipilih dengan pertimbangan kinerja.
 
 Untuk lebih jelasnya mengenai pengikatan parameter, lihat [dokumentasi PHP
 relevan](http://www.php.net/manual/en/pdostatement.bindparam.php).
@@ -229,7 +229,7 @@ baris diambil.
 
 ~~~
 [php]
-$sql="SELECT username, email FROM users";
+$sql="SELECT username, email FROM tbl_user";
 $dataReader=$connection->createCommand($sql)->query();
 // ikat kolom ke-1 (username) ke variabel $username
 $dataReader->bindColumn(1,$username);
