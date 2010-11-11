@@ -7,7 +7,7 @@ geprüft, ob jemand auch tatsächlich der ist, der er vorgibt zu sein. Meist
 geschieht das per Benutzernamen und Passwort.  Man könnte aber auch eine andere
 zur Identifizierung geeignete Methode verwenden, z.B. eine Chipkarte, 
 den Fingerabdruck, etc. Über die *Autorisierung* wird festgestellt, ob die
-authentifizierte (bzw. auch identifizierte) Person auch tatsächlich berechtigt 
+identifizierte (also authentifizierte) Person auch tatsächlich berechtigt 
 ist, bestimmte Ressourcen zu manipulieren. Normalerweise wird dazu geprüft, ob die
 Person einer bestimmten Rolle zugeordnet ist, die Zugriff auf die Ressource
 hat. 
@@ -33,27 +33,38 @@ Benutzers abfragen.
 Definieren der Identitätsklasse
 -------------------------------
 
-Ein Benutzer wird über eine eigens definierte Klasse authentifiziert, die sog.
-Identitätsklasse (engl.: identity class). Sie enthält die eigentliche
-Programmlogik für die Authentifizierung und sollte dazu das Interface 
-[IUserIdentity] implementieren. Je nachdem, wie die Identität geprüft wird
-(z.B. per OpenID, LDAP, ...), können unterschiedliche
-Identitätsklassen angelegt werden. Für den Anfang empfiehlt es sich, zunächst 
-[CUserIdentity] zu erweitern. Das ist die Basisklasse für alle
-Authentifzierungsmethoden, die auf Benutzernamen und Passwort basieren.
+Wie bereits erwähnt, geht es bei der Authentifizierung darum, die Identität
+eines Benutzers zu prüfen. Bei einer typischen Webanwendung werden dazu meist
+ein Benutzername und ein Passwort herangezogen. Es kann aber auch andere
+Methoden geben, die entsprechend eine andere Implementierung erfordern. Damit
+die Art der Authentifizierung geändert werden kann, führt das
+Yii Auth-Framework eine Identitätsklasse (engl.: identity class) ein.
 
-Im wesentlichen muss für eine neue Identitätsklasse die Methode 
-[IUserIdentity::authenticate] implementiert werden. Eine Identitätsklasse kann auch
-weitere Identitätsdaten deklarieren, die während einer Benutzersitzung beständig
-bereitgehalten werden sollen.
+Eine Identitätsklasse enthält die eigentliche Logik zur Authentifizierung und
+sollte das [IUserIdentity]-Interface implementieren. So können Klassen für 
+verschiedene Identifizierungsmethoden (z.B. OpenID, LDAP, Twitter
+OAuth oder Facebook Connect) angelegt werden. Um eine eigene Identitätsklasse
+zu erstellen, empfiehlt es sich für den Anfang, [CUserIdentity] zu erweitern.
+Das ist die Basisklasse für alle Methoden, die auf Benutzername und Passwort
+basieren.
 
-Im folgenden Beispiel haben wir [ActiveRecords](/doc/guide/database.ar)
-verwendet, um Benutzernamen und Passwort mit den Werten in einer
-Datenbanktabelle zu vergleichen. Zusätzlich haben wir die `getId`-Methode 
-überschrieben, damit sie die Benutzer-ID zurückgibt, die während der
-Authentifizierung in `_id` abgelegt wurde (normalerweise liefert sie den
-Benutzernamen zurück). Auch den `title`-Wert legen wir als gleichnamigen
-beständigen Status (engl.: state) ab.
+Im wesentlichen muss eine neue Identitätsklasse nur die Methode 
+[IUserIdentity::authenticate] implementieren. Sie kapselt die Kernlogik
+zur Authentifizierung. Daneben können noch weitere identitätsbezogene Daten
+deklariert werden, die während einer Benutzersitzung beständig bereitgehalten
+werden sollen.
+
+#### Ein Beispiel
+
+Im folgenden Beispiel zeigen wir, wie man eine Identitätsklasse zur
+datenbankgestützten Authentifizierung verwendet. Ein Besucher wird dazu
+Benutzernamen und Passwort in ein Anmeldeformular eingeben. Diese Daten werden
+dann mittels [ActiveRecord](/doc/guide/database.ar) gegen eine Benutzertabelle
+in der Datenbank geprüft. Das Beispiel demonstriert dabei gleich mehreres:
+
+1. Wie man `authenticate()` für eine DB-gestützte Prüfung der Anmeldedaten implementiert.
+2. Dass man die `CUserIdentity::getId()`-Methode überschreiben kann, um die Eigenschaft `_id` statt des Benutzernamens zurückzuliefern, wie das in der Basisimplementierung der Fall ist.
+3. Wie man die Methode `setState()` ([CBaseUserIdentity::setState]) verwendet, um weitere Daten dauerhaft für spätere Requests zu speichern
 
 ~~~
 [php]
@@ -83,27 +94,31 @@ class UserIdentity extends CUserIdentity
 }
 ~~~
 
-Daten, die man durch Aufruf von [CBaseUserIdentity::setState] als Benutzerstatus
-speichert, werden an [CWebUser] übergeben, wo sie beständig z.B. in der
-Session abgelegt werden. Auf diese Daten kann wie auf Eigenschaften von [CWebUser] zugegriffen werden.
-Man kann zum Beispiel die Information `title` des aktuellen Benutzers über
-`Yii::app()->user->title` abfragen. (Dies ist seit Version 1.0.3 möglich. In
-früheren Versionen musste man stattdessen
+Im nächsten Abschnitt zu An- und Abmeldung werden wir sehen, dass diese
+Identitätsklasse an die login-Methode des Benutzerobjekts übergeben wird.
+Sämtliche Informationen, die (per Aufruf von [CBaseUserIdentity::setState]) in
+einem Status gespeichert wurden, werden dort in einem beständigen
+Speicher, wie etwa der Session, abgelegt. Diese Daten stehen dann direkt als
+Eigenschaften von [CWebUser] zur Verfügung. In unserem Beispiel haben wir den
+Titel über `$this->setState('title', $record->title);` gespeichert. Wurde der
+Anmeldeprozess durchlaufen, kann man daher die `title`-Information des aktuellen
+Benutzers über `Yii::app()->user->title` abrufen. (Dies ist seit Version 1.0.3 
+möglich. In früheren Versionen musste man stattdessen
 `Yii::app()->user->getState('title')` verwenden.)
 
-
 > Info|Info: Standardmäßig verwendet [CWebUser] die Session als beständigen
-Speicher für Identitätsdaten. Wenn die cookie-basierte Anmeldung aktiviert
+Speicher für solche Identitätsdaten. Wenn die cookie-basierte Anmeldung aktiviert
 wird (indem [CWebUser::allowAutoLogin] auf true gesetzt wurde), können
 Identitätsdaten auch in einem Cookie gespeichert werden. Stellen Sie sicher,
-dass sie keine vertraulichen Informationen (z.B. Passwörter) beständig halten.
+dass Sie hier keine vertraulichen Informationen (z.B. Passwörter) speichern.
 
 
 An- und Abmelden
 ----------------
 
-Mit Identitätsklasse und Userkomponente kann man nun leicht die An- und
-Abmeldung von Benutzern umsetzen.
+Nachdem wir an einem Beispiel demonstriert haben, wie eine Identitätsklasse
+erstellt wird, kann man diese nun zum einfachen An- und Abmelden verwenden.
+Das folgende Beispiel zeigt, wie dies erreicht wird:
 
 ~~~
 [php]
@@ -117,6 +132,28 @@ else
 // Aktuellen Benutzer abmelden
 Yii::app()->user->logout();
 ~~~
+
+Wir erzeugen hier eine neues UserIdentity-Objekt und übergeben die
+Anmeldedaten (also die `$username`- und `$password`-Werte aus dem
+Anmeldeformular) an den Konstruktor. Danach rufen wir einfach die
+`authenticate()`-Methode auf. Falls erfolgreich, übergeben wir die
+Identitätsinformationen an die Methode [CWebUser::login], die diese dann in
+einem Permanentspeicher (standardmäßig der Sesssion) ablegt, um sie für
+späteren Requests verfügbar zu machen. Schlägt die Authentifizierung fehl,
+können wir über die `errorMessage`-Eigenschaft weitere Informationen dazu
+abfragen.
+
+Ob ein Benutzer erfolgreich authentifiziert wurde, kann in der gesamten
+Anwendung einfach über `Yii::app()->user->isGuest` geprüft werden. Verwendet
+man einen Permanentspeicher, wie die Session (Standard) und/oder ein Cookie
+(wie im folgenden Beschrieben), um die Identitätsinformationen zu speichern,
+kann der Anwender über mehrere aufeinanderfolgende Requests angemeldet
+bleiben. In diesem Fall wird die Identitätsklasse bzw. der gesamte
+Anmeldeprozess nicht bei jedem Request benötigt bzw. durchlaufen. Stattdessen
+lädt CWebUser die Identitätsinformationen automatisch aus dem entsprechenden 
+Permanentspeicher und verwendet sie um den Rückgabewert von
+`Yii::app()->user->isGuest` zu bestimmen.
+
 
 ### Cookie-basierte Anmdeldung
 
@@ -156,8 +193,8 @@ die Sicherheit bei cookie-basierter Anmeldung zu verbessern:
 einen zufälligen Schlüssel, der sowohl im Statuscookie als auch im
 Permanentspeicher (z.B. Datenbank) auf dem Server gespeichert wird.
 
-* Wenn der Benutzer das nächste mal per Cookie angemeldet wird, überprüft man, ob die
-beiden Schlüsselwerte übereinstimmen, befor die Anmeldung durchgeführt wird.
+* Wenn der Benutzer bei einem späteren Request per Cookie angemeldet wird, überprüft man, ob die
+beiden Schlüsselwerte übereinstimmen, bevor die Anmeldung durchgeführt wird.
 
 * Wenn der Benutzer sich neu über das Anmeldeformular einloggt, muss ein neuer
 Schlüssel erzeugt werden
@@ -187,9 +224,9 @@ Requesttyp. Dieser einfache Filter steht als Anwendungskomponente
 ["accessControl"|CController::filterAccessControl] bereit.
 
 > Tip|Tipp: Der Zugangskontrollfilter ist für einfache Fälle gedacht. 
-Kompliziertere Berechtigungsregeln können mit der rollenbasierten
-Zugriffskontrolle (RBAC) umgesetzt werden, auf die wir in Kürze eingehen
-werden.
+Kompliziertere Berechtigungsregeln kann man mit der rollenbasierten
+Zugriffskontrolle (RBAC) umsetzen, die wir im nächsten Abschnitt
+behandeln werden.
 
 Um diesen Filter in einem Controller zu verwenden, überschreibt man die
 [CController::filters]-Methode wie folgt (siehe auch
@@ -243,7 +280,7 @@ class PostController extends CController
 
 Hier werden drei Regeln in jeweils einem Array definiert. Das erste Element
 eines solchen Arrays ist entweder `'allow'` (erlaube) oder `'deny'` (verbiete). Die
-restlichen Name-Wert-Paare bestimmen, wann diese Regel gilt. Die Regeln
+weiteren Name-Wert-Paare bestimmen, wann diese Regel gilt. Die Regeln
 oben bedeuten der Reihe nach, dass die `create`- und `edit`-Actions nicht von
 anonymen Benutzern aufgerufen werden können. Die `delete`-Action darf von Benutzern
 mit der Rolle `admin` ausgeführt werden. Und die `delete`-Action darf von
@@ -270,7 +307,7 @@ Kontext, darf die Action ausgeführt werden.
 >     ),
 > );
 > ~~~
-> Diese Regel ist nötig, da eine Action ausgeführt werden darf, wenn keine
+> Diese Regel ist nötig, da eine Action ausgeführt werden darf, falls keine
 > anderslautende passende Regel gefunden wurde.
 
 Eine Regel kann folgende Kontextparameter enthalten:
@@ -416,8 +453,8 @@ Ordnung als eine Baumstruktur. In dieser Hierarchie stehen Rollen auf der
 obersten Ebene, Operationen auf der untersten und Tätigkeiten zwischen diesen
 beiden.
 
-Hat man eine Autorisierungshierarchie erstellt, kann man den Rollen aus dieser
-Hierarchie Benutzer zuweisen. Ein Benutzer, der einer Rolle
+Wurde die Autorisierungshierarchie einmal erstellt, kann man Benutzer zu den 
+Rollen in dieser Hierarchie hinzufügen. Ein Benutzer, dem eine Rolle
 zugewiesen wurde, hat alle von dieser Rolle dargestellten Berechtigungen. Weist man 
 einem Benutzer z.B. die Rolle `administrator` zu, hat er Administratorrechte,
 was die Tätigkeiten `Beiträge verwalten` und `Benutzer verwalten` beinhaltet 
@@ -538,14 +575,14 @@ $auth->assign('redakteur','redakteurC');
 $auth->assign('admin','adminD');
 ~~~
 
-Sind diese Elemente erstellt, werden sie automatisch von der
+Wurden diese Hierarchie einmalig erstellt, wird sie automatisch von der
 [authManager|CWebApplication::authManager]-Komponente (also
-[CPhpAuthManager] oder [CDbAuthManager]) geladen. Sie müssen NICHT
-bei jedem Request erneut angelegt werden!
+z.B. [CPhpAuthManager] oder [CDbAuthManager]) geladen. Man muss obigen
+Code also nur einmal ausführen, NICHT bei jeden Request.
 
 > Info|Info: Das Verfahren oben mutet etwas umständlich an. Es soll
 > aber lediglich das Prinzip demonstrieren. In der Regel wird der 
-> Entwickler eine geeignete Benutzerschnittstelle entwerfen, mit
+> Entwickler eine geeignete Verwaltungsschnittstelle entwerfen, mit
 > der man Autorisierungshierarchien intuitiver erstellen kann.
 
 
@@ -579,8 +616,9 @@ if(Yii::app()->user->checkAccess('erstelleBeitrag'))
 ~~~
 
 Ist eine Geschäftsregel mit weiteren Parametern mit dem Element verbunden,
-können diese ebenfalls mit übergeben werden. Im Beispiel oben könnte man so zum
-Beispiel prüfen, ob ein Benutzer einen bestimmten Beitrag aktualisieren darf:
+können diese ebenfalls mit übergeben werden. Um zum Beispiel zu prüfen, ob
+ein Benutzer einen bestimmten Beitrag aktualisieren darf, würde man die
+Beitragsdaten in `$params` übergeben:
 
 ~~~
 [php]
@@ -638,4 +676,4 @@ $bizRule='return Yii::app()->user->isGuest;';
 $auth->createRole('gast','Gast-Benutzer', $bizRule);
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 2629 2010-11-08 17:04:49Z qiang.xue $</div>
+<div class="revision">$Id: topics.auth.txt 2637 2010-11-11 04:39:58Z jefftulsa@gmail.com $</div>
