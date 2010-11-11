@@ -362,8 +362,8 @@ dari situ mengindikasikan aturan validasi yang mana yang harus diaplikasikan.
 Validasi dilakukan berdasarkan skenario. Properti [scenario|CModel::scenario]
 mentukan skenario model mana yang digunakan dan aturan validasi mana yang
 Misalnya, untuk skenario `login`, kita hanya ingin
-menvalidasi input `username` dan `password` pada user model; sedangkan pada skenario
-`register`, kita peru menvalidasi inputan yang lebih banyak seperti `email`,`address` dan lain-lain.
+memvalidasi input `username` dan `password` pada user model; sedangkan pada skenario
+`register`, kita peru memvalidasi inputan yang lebih banyak seperti `email`,`address` dan lain-lain.
 Contoh berikut menunjukkan bagaimana melakukan validasi pada skenario `register`:
 
 ~~~
