@@ -141,7 +141,7 @@ public function actionIndex(array $types) { ... }
 php entryScript.php sitemap index --types=News --types=Article
 ~~~
 
-Команда, приведённая выеше, запустит `actionIndex(array('News', 'Article'))`.
+Команда, приведённая выше, запустит `actionIndex(array('News', 'Article'))`.
 
 
 Доступ к ресурсам
