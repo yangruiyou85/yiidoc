@@ -19,11 +19,19 @@ Yii auth 框架的核心是一个预定义的 *用户（user）应用组件* 它
 定义身份类 （Defining Identity Class）
 -----------------------
 
-为了验证一个用户，我们定义一个有验证逻辑的身份类。这个身份类实现[IUserIdentity] 接口。不同的类可能实现不同的验证方式（例如：OpenID，LDAP）。最好是继承 [CUserIdentity]，此类是居于用户名和密码的验证方式。
+为了验证一个用户，我们定义一个有验证逻辑的身份类。这个身份类实现[IUserIdentity] 接口。
+
+不同的类可能实现不同的验证方式（例如：OpenID，LDAP）。最好是继承 [CUserIdentity]，此类是居于用户名和密码的验证方式。
 
 定义身份类的主要工作是实现[IUserIdentity::authenticate]方法。在用户会话中根据需要，身份类可能需要定义别的身份信息
 
+#### 应用实例
+
 下面的例子，我们使用[Active Record](/doc/guide/database.ar)来验证提供的用户名、密码和数据库的用户表是否吻合。我们通过重写`getId`函数来返回验证过程中获得的`_id`变量（缺省的实现则是返回用户名）。在验证过程中，我们还借助[CBaseUserIdentity::setState]函数把获得的`title`信息存成一个状态。
+
+1. The implementation of the `authenticate()` to use the database to validate credentials.
+2. Overriding the `CUserIdentity::getId()` method to return the `_id` property because the default implementation returns the username as the ID.
+3. Using the `setState()` ([CBaseUserIdentity::setState]) method to demonstrate storing other information that can easily be retrieved upon subsequent requests.
 
 ~~~
 [php]
@@ -76,6 +84,12 @@ else
 Yii::app()->user->logout();
 ~~~
 
+Here we are creating a new UserIdentity object and passing in the authentication credentials (i.e. the `$username` and `$password` values submitted by the user) to its constructor. We then simply call the `authenticate()` method. If successful, we pass the identity information into the [CWebUser::login] method, which will store the identity information into persistent storage (PHP session by default) for retrieval upon subsequent requests. If the authentication fails, we can interrogate the `errorMessage` property for more information as to why it failed.
+
+Whether or not a user has been authenticated can easily be checked throughout the application by using `Yii::app()->user->isGuest`. If using persistent storage like session (the default) and/or a cookie (discussed below) to store the identity information, the user can remain logged in upon subsequent requests. In this case, we don't need to use the UserIdentity class and the entire login process upon each request. Rather CWebUser will automatically take care of loading the identity information from this persistent storage and will use it to determine whether `Yii::app()->user->isGuest` returns true or false.
+
+### 基于Cookie 的登录
+
 缺省情况下，用户将根据[session configuration](http://www.php.net/manual/en/session.configuration.php)完成一序列inactivity动作后注销。设置用户部件的[allowAutoLogin|CWebUser::allowAutoLogin]属性为true和在[CWebUser::login]方法中设置一个持续时间参数来改变这个行为。即使用户关闭浏览器，此用户将保留用户登陆状态时间为被设置的持续时间之久。前提是用户的浏览器接受cookies。
 
 ~~~
@@ -84,6 +98,44 @@ Yii::app()->user->logout();
 // 确保用户部件的allowAutoLogin被设置为true。
 Yii::app()->user->login($identity,3600*24*7);
 ~~~
+
+As we mentioned above, when cookie-based login is enabled, the states
+stored via [CBaseUserIdentity::setState] will be saved in the cookie as well.
+The next time when the user is logged in, these states will be read from
+the cookie and made accessible via `Yii::app()->user`.
+
+Although Yii has measures to prevent the state cookie from being tampered
+on the client side, we strongly suggest that security sensitive information be not
+stored as states. Instead, these information should be restored on the server
+side by reading from some persistent storage on the server side (e.g. database).
+
+In addition, for any serious Web applications, we recommend using the following
+strategy to enhance the security of cookie-based login.
+
+* When a user successfully logs in by filling out a login form, we generate and
+store a random key in both the cookie state and in persistent storage on server side
+(e.g. database).
+
+* Upon a subsequent request, when the user authentication is being done via the cookie information, we compare the two copies
+of this random key and ensure a match before logging in the user.
+
+* If the user logs in via the login form again, the key needs to be re-generated.
+
+By using the above strategy, we eliminate the possibility that a user may re-use
+an old state cookie which may contain outdated state information.
+
+To implement the above strategy, we need to override the following two methods:
+
+* [CUserIdentity::authenticate()]: this is where the real authentication is performed.
+If the user is authenticated, we should re-generate a new random key, and store it
+in the database as well as in the identity states via [CBaseUserIdentity::setState].
+
+* [CWebUser::beforeLogin()]: this is called when a user is being logged in.
+We should check if the key obtained from the state cookie is the same as the one
+from the database.
+
+
+
 
 访问控制过滤器（Access Control Filter）
 ---------------------
@@ -335,6 +387,12 @@ $auth->assign('admin','adminD');
 
 > info|信息：虽然上面的例子看起来冗长和枯燥，这主要是为示范的目的。开发者通常需要制定一些用户接口，以便最终用户可以更直观使用它来建立一个授权等级。
 
+
+### Using Business Rules
+
+When we are defining the authorization hierarchy, we can associate a role, a task or an operation with a so-called *business rule*. We may also associate a business rule when we assign a role to a user. A business rule is a piece of PHP code that is executed when we perform access checking. The returning value of the code is used to determine if the role or assignment applies to the current user. In the example above, we associated a business rule with the `updateOwnPost` task. In the business rule we simply check if the current user ID is the same as the specified post's author ID. The post information in the `$params` array is supplied by developers when performing access checking.
+
+
 ### 访问检查（Access Checking）
 
 为了执行访问检查，我们得先知道
@@ -393,4 +451,4 @@ $bizRule='return Yii::app()->user->isGuest;';
 $auth->createRole('guest',$bizRule);
 ~~~
 
-<div class="revision">$Id: topics.auth.txt 759 2009-02-26 21:23:53Z qiang.xue 译 : sharehua $</div>
+<div class="revision">$Id$</div>
