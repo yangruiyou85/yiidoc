@@ -171,6 +171,28 @@ class PostController extends CController
 当用户没有在请求中指定 `$language` 参数时，这个参数会使用默认值 `en` 。
 由于 `$category` 没有默认值，如果用户没有在 `$_GET` 中提供 `category` 参数，
 将会自动抛出一个 [CHttpException] (错误代码 400) 异常。
+Starting from version 1.1.5, Yii also supports array type detection for action parameters.
+This is done by PHP type hinting using the syntax like the following:
+
+~~~
+[php]
+class PostController extends CController
+{
+	public function actionCreate(array $categories)
+	{
+		// Yii will make sure $categories be an array
+	}
+}
+~~~
+
+That is, we add the keyword `array` in front of `$categories` in the method parameter
+declaration. By doing so, if `$_GET['categories']` is a simple string, it will be
+converted into an array consisting of that string.
+
+> Note: If a parameter is declared without the `array` type hint, it means the parameter
+> must be a scalar (i.e., not an array). In this case, passing in an array parameter via
+> `$_GET` would cause an HTTP exception.
+
 
 
 过滤器

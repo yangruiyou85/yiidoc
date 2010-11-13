@@ -3,6 +3,13 @@
 
 此页面总结了每次 Yii 发布所引入的新功能。
 
+Version 1.1.5
+-------------
+
+ * [添加了对控制台命令的动作和参数绑定的支持](/doc/guide/topics.console)
+ * [添加了对自动调入命名空间类的支持](/doc/guide/basics.namespace)
+ * [添加了对视图组件的主题支持](/doc/guide/topics.theming#theming-widget-views)
+
 版本 1.1.4
 -------------
 
@@ -121,4 +128,4 @@
  * 增强了 [CUrlManager] ，支持URL规则中的 route 部分。查看：
      - [Parameterizing Routes in URL Rules](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 2418 2010-09-02 16:01:46Z qiang.xue $</div>
+<div class="revision">$Id$</div>
