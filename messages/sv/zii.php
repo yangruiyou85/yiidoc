@@ -18,7 +18,7 @@
 return array (
   'Are you sure you want to delete this item?' => 'Bekräfta att borttagning skall utföras',
   'Home' => 'Hem',
-  'The button type "{type}" is not supported.' => 'Knappar av typen "{type}" stöds inte.',
+  'The button type "{type}" is not supported.' => 'Knapptypen "{type}" stöds inte.',
   'Delete' => 'Ta bort',
   'Displaying {start}-{end} of {count} result(s).' => 'Visar {start}-{end} av totalt {count} post(er).',
   'Either "name" or "value" must be specified for CDataColumn.' => 'Antingen "name" eller "value" måste specificeras för CDataColumn.',
