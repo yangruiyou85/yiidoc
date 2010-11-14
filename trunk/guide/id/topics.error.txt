@@ -17,7 +17,7 @@ dengan memanggil fungsi PHP
 dan [set_error_handler](http://www.php.net/manual/en/function.set-error-handler.php).
 Jika Anda tidak menginginkan Yii menangani error dan eksepsi, Anda dapat mendefinisikan
 constant `YII_ENABLE_ERROR_HANDLER` dan `YII_ENABLE_EXCEPTION_HANDLER` menjadi
-false dalam [naskah entri](/doc/guide/basics.entry).
+false dalam [skrip entri](/doc/guide/basics.entry).
 
 Standarnya, [errorHandler|CApplication::errorHandler] (atau
 [exceptionHandler|CApplication::exceptionHandler]) akan memunculkan event
@@ -87,7 +87,7 @@ disediakan oleh Yii framework.
 
 Oleh karena itu, jika kita ingin mengkustomisasi tampilan error, kita cukup membuat
 file tampilan error di bawah direktori tampilan sistem pada aplikasi atau tema Anda.
-Setiap file tampilan adalah naskah PHP normal yang berisi kode HTML.
+Setiap file tampilan adalah skrip PHP normal yang berisi kode HTML.
 Untuk lebih jelasnya, silahkan merujuk ke file tampilan standar framework di bawah
 direktori `view`.
 

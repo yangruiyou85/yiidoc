@@ -14,7 +14,7 @@ Menghidupkan [ekstensi
 PHP APC](http://www.php.net/manual/en/book.apc.php) barangkali merupakan
 cara termudah untuk meningkatkan performa aplikasi secara keseluruhan.
 ekstensi men-cache dan mengoptimasi kode menengah PHP dan menghindari waktu
-yang dipakai dalam penguraian naskah PHP untuk setiap permintaan yang masuk.
+yang dipakai dalam penguraian skrip PHP untuk setiap permintaan yang masuk.
 
 Mematikan Mode Debug
 --------------------
@@ -103,7 +103,7 @@ untuk PHP.
 Memperkecil File Skrip
 -----------------------
 
-Halaman yang kompleks sering harus menyertakan banyak file eksternal JavaScript dan CSS. Karena setiap file akan menyebabkan lalu lintas tambahan ke server dan sebaliknya, kita harus memperkecil jumlah file naskah dengan menggabungnya ke dalam file agar lebih sedikit jumlahnya. Kita juga harus mempertimbangkan pengurangan ukuran setiap file naskah guna mengurangi waktu transmisi jaringan. Ada banyak piranti untuk membantu dua aspek ini.
+Halaman yang kompleks sering harus menyertakan banyak file eksternal JavaScript dan CSS. Karena setiap file akan menyebabkan lalu lintas tambahan ke server dan sebaliknya, kita harus memperkecil jumlah file skrip dengan menggabungnya ke dalam file agar lebih sedikit jumlahnya. Kita juga harus mempertimbangkan pengurangan ukuran setiap file skrip guna mengurangi waktu transmisi jaringan. Ada banyak piranti untuk membantu dua aspek ini.
 
 Untuk halaman yang dibuat oleh Yii, kenyataannya bahwa beberapa file skrip dirender oleh komponen yang tidak ingin kita ubah (misalnya komponen inti Yii, komponen pihak ketiga). Untuk memperkecil file skrip ini, kita memerlukan dua langkah.
 
@@ -122,7 +122,7 @@ $cs->scriptMap=array(
 );
 ~~~
 
-Apa yang dilakukan kode di atas adalah memetakan file-file JavaScript ke URL `/js/all.js`. Jika ada file JavaScript harus disertakan oleh beberapa komponen, Yii akan menyertakan URL (sekali) alih-alih file naskah secara individual.
+Apa yang dilakukan kode di atas adalah memetakan file-file JavaScript ke URL `/js/all.js`. Jika ada file JavaScript harus disertakan oleh beberapa komponen, Yii akan menyertakan URL (sekali) alih-alih file skrip secara individual.
 
 Kedua, kita perlu menggunakan beberapa piranti untuk menggabung (dan mungkin memadatkan) file JavaScript ke dalam satu file dan menyimpannya sebagai `js/all.js`.
 
@@ -141,7 +141,7 @@ $cs->scriptMap=array(
 );
 ~~~
 
-Dengan memetakan file naskah ini menjadi false, kita melarang Yii untuk membuat kode penyertaan file-file ini. Sebaliknya, kita menulis kode berikut dalam halaman kita u8ntuk secara eksplisit menyertakan file naskah dari Google,
+Dengan memetakan file skrip ini menjadi false, kita melarang Yii untuk membuat kode penyertaan file-file ini. Sebaliknya, kita menulis kode berikut dalam halaman kita u8ntuk secara eksplisit menyertakan file skrip dari Google,
 
 ~~~
 [php]

@@ -29,7 +29,7 @@ $this->render('edit', array(
 ~~~
 
 Dalam contoh di atas, metode [render()|CController::render] akan mengurai parameter array 
-kedua ke dalam variabel. Hasilnya, dalam naskah tampilan kita dapat mengakses
+kedua ke dalam variabel. Hasilnya, dalam skrip tampilan kita dapat mengakses
 variabel lokal `$var1` dan `$var2`.
 
 Tata Letak
@@ -64,7 +64,7 @@ view untuk menghasilkan beberapa antar muka pengguna yang kompleks dan berdiri s
 contoh, widget kalender bisa dipakai untuk menyiapkan antar muka kalender pengguna yang 
 kompleks. Widget menghidupkan pemakaian kembali yang lebih baik dalam antar muka pengguna.
 
-Untuk menggunakan widget, lakukan seperti berikut dalam naskah tampilan:
+Untuk menggunakan widget, lakukan seperti berikut dalam skrip tampilan:
 
 ~~~
 [php]

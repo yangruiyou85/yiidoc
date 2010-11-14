@@ -29,9 +29,9 @@ lainnya mengenai pengguna.
 Mendefinisikan Kelas Identitas
 ------------------------------
 
-Seperti yang sudah disinggung di atas, otentikasi adalah segala sesuatu yang berhubungan dengan validasi identitas pengguna. Sebuah implementasi otentikasi pada aplikasi Web pada umumnya menyangkut kombinasi penggunaan username dan password untuk menverifikasi identitas user. Namun, otentikasi bisa juga menyertakan implementasi yang berbeda atau metode lain. Untuk mengakomodasi kebutuhan metode yang beragam, Yii Framework memperkenalkan identity class (kelas identitas)
+Seperti yang sudah disinggung di atas, otentikasi adalah segala sesuatu yang berhubungan dengan validasi identitas pengguna. Sebuah implementasi otentikasi pada aplikasi Web pada umumnya menyangkut kombinasi penggunaan username dan password untuk memverifikasi identitas user. Namun, otentikasi bisa juga menyertakan implementasi yang berbeda atau metode lain. Untuk mengakomodasi kebutuhan metode yang beragam, Yii Framework memperkenalkan identity class (kelas identitas)
 
-Kita mendefinisikan sebuah kelas yagn mengandung logika otentikasi yang sebenarnya. Identity class harus mengimplementasi interface [IUserIdentity]. Kelas-kelas identity dapat
+Kita mendefinisikan sebuah kelas yang mengandung logika otentikasi yang sebenarnya. Identity class harus mengimplementasi interface [IUserIdentity]. Kelas-kelas identity dapat
 diimplementasikan untuk pendekatan otentiksai yang berbeda-beda (misalnya OpenID, LDAP, Twitter OAuth, Facebook Connect). Adalah sebuah permulaan yang baik ketika menulis implementasi sendiri dengan menurunkan [CUserIdentity] yang menjadi kelas dasar untuk otentikasi dengan pendekatan penggunaan username dan password.
 
 Pekerjaan utama dalam mendefinisikan kelas identitas adalah implementasi

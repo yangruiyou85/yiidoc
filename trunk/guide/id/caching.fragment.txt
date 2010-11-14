@@ -8,7 +8,7 @@ dibutuhkan dalam membuatnya untuk setiap permintaan.
 
 Untuk menggunakan penembolokan fragmen, kita memanggil
 [CController::beginCache()|CBaseController::beginCache()] dan
-[CController::endCache()|CBaseController::endCache()] dalam naskah tampilan 
+[CController::endCache()|CBaseController::endCache()] dalam skrip tampilan
 kontroler. Masing-masing dari dua metode menandai awal dan akhir konten halaman 
 yang harus ditembolokkan. Seperti [penembolokan data](/doc/guide/caching.data), kita memerlukan
 ID guna mengidentifikasi fragmen yang sedang ditembolok.

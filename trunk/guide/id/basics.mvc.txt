@@ -27,8 +27,8 @@ menangani permintaan pengguna:
 ![Alur kerja umum aplikasi Yii](flow.png)
 
    1. Pengguna membuat permintaan dengan URL `http://www.example.com/index.php?r=post/show&id=1`
-dan server Web menangani permintaan dengan menjalankan naskah bootstrap `index.php`.
-   2. Naskah bootstrap membuat sebuah instance [aplikasi](/doc/guide/basics.application)
+dan server Web menangani permintaan dengan menjalankan skrip bootstrap `index.php`.
+   2. Skrip bootstrap membuat sebuah instance [aplikasi](/doc/guide/basics.application)
 dan menjalankannya.
    3. Aplikasi mendapatkan rincian informasi permintaan pengguna dari
 [komponen aplikasi](/doc/guide/basics.application#application-component)

@@ -3,7 +3,7 @@ Keamanan
 
 Pecegahan Cross Site Scripting
 ----------------------------------------
-Cross-site scripting atau penaskahan situs-silang (juga dikenal sebagai XSS) terjadi saat aplikasi web
+Cross-site scripting atau penaskahan silang antar situs(juga dikenal sebagai XSS) terjadi saat aplikasi web
 mengumpulkan data berbahaya dari pengguna. Penyerang sering akan menginjeksi JavaScript,
 VBScript, ActiveX, HTML, atau Flash ke dalam aplikasi yang mudah diserang guna menipu
 pengguna aplikasi lain dan mengumpulkan data darinya. Sebagai contoh, sistem forum yang
