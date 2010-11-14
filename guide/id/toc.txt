@@ -8,7 +8,7 @@
 
 * Fundamental
     - [Model-View-Controller (MVC)](basics.mvc)
-    - [Naskah Entri](basics.entry)
+    - [Skrip Entri](basics.entry)
     - [Aplikasi](basics.application)
     - [Kontroler](basics.controller)
     - [Model](basics.model)

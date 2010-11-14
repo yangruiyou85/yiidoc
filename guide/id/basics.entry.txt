@@ -1,11 +1,11 @@
-Naskah Entri
+Skrip Entri
 ============
 
-Naskah entri adalah naskah bootstrap PHP yang bagian awal menangani permintaan pengguna.
- Naskah ini adalah satu-satunya naskah PHP yang secara langsung dapat diminta pengguna
+Skrip entri adalah skrip bootstrap PHP yang bagian awal menangani permintaan pengguna.
+ Skrip ini adalah satu-satunya skrip PHP yang secara langsung dapat diminta pengguna
 untuk dijalankan.
 
-Dalam banyak kasus, naskah entri aplikasi Yii berisi kode yang sesederhana
+Dalam banyak kasus, skrip entri aplikasi Yii berisi kode yang sesederhana
 seperti berikut,
 
 ~~~
@@ -19,7 +19,7 @@ $configFile='path/to/config/file.php';
 Yii::createWebApplication($configFile)->run();
 ~~~
 
-Pertama-tama naskah menyertakan file boostrap Yii framework, `yii.php`. Selanjutnya
+Pertama-tama skrip menyertakan file boostrap Yii framework, `yii.php`. Selanjutnya
 membuat instance aplikasi Web dengan konfigurasi yang sudah ditetapkan
 dan menjalankannya.
 

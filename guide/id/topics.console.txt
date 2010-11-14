@@ -163,7 +163,7 @@ Menggunakan Piranti `yiic`
 
 Kita sudah menggunakan piranti `yiic` untuk [membuat aplikasi pertama
 kita](/doc/guide/quickstart.first-app). Sebenarnya piranti `yiic`
-diimplementasikan sebagai aplikasi konsol yang file naskah entrinya
+diimplementasikan sebagai aplikasi konsol yang file skrip entrinya
 `framework/yiic.php`. Menggunakan `yiic`, kita dapat melaksanakan tugas-tugas seperti
 membuat kerangka aplikasi Web, membuat kelas kontroler atau kelas model,
 membuat kode yang dibutuhkan oleh operasi CRUD, menguraikan pesan yang

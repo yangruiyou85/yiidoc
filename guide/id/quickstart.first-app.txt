@@ -61,8 +61,8 @@ testdrive/
    images/                   berisi file gambar
    themes/                   berisi tema aplikasi
    protected/                berisi file perlindungan aplikasi
-      yiic                   naskah baris perintah yiic
-      yiic.bat               naskah baris perintah untuk Windows
+      yiic                   skrip baris perintah yiic
+      yiic.bat               skrip baris perintah untuk Windows
       commands/              berisi perintah 'yiic' yang dikustomisasi
          shell/              berisi perintah 'yiic shell' yang dikustomisasi
       components/            berisi komponen pengguna

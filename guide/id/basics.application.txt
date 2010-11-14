@@ -7,7 +7,7 @@ guna pemrosesan selanjutnya. Aplikasi juga bertindak sebagai tempat pusat
 untuk menyimpan konfigurasi tingkat-aplikasi. Oleh karena itu, aplikasi juga
 disebut `kontroler-depan(front controller)`.
 
-Aplikasi dibuat sebagai singleton(tunggal) oleh [naskah entri](/doc/guide/basics.entry).
+Aplikasi dibuat sebagai singleton(tunggal) oleh [skrip entri](/doc/guide/basics.entry).
 Singleton aplikasi dapat diakses di mana saja melalui [Yii::app()|YiiBase::app].
 
 
@@ -45,7 +45,7 @@ return array(...);
 
 Untuk menerapkan konfigurasi, kita mengirim nama file konfigurasi sebagai
 sebuah parameter bagi constructor aplikasi, atau ke [Yii::createWebApplication()]
-, yang biasanya dikerjakan dalam [naskah  entri](/doc/guide/basics.entry), seperti berikut:
+, yang biasanya dikerjakan dalam [skrip  entri](/doc/guide/basics.entry), seperti berikut:
 
 ~~~
 [php]
@@ -64,7 +64,7 @@ Direktori Basis Aplikasi
 
 Direktori basis aplikasi merujuk ke direktori root yang berisi semua
 data dan skrip PHP yang sensitif. Secara default, direktori ini adalah subdirektori
-bernama `protected` yang ditempatkan di bawah direktori yang berisi naskah
+bernama `protected` yang ditempatkan di bawah direktori yang berisi skrip
 entri. Direktori ini dapat dikustomisasi melalui konfigurasi properti
 [basePath|CWebApplication::basePath] dalam [konfigurasi aplikasi](#application-configuration).
 
