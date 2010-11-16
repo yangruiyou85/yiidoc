@@ -40,13 +40,12 @@ Konfigurasi di atas menjelaskan bahwa kita memiliki sebuah [komponen aplikasi](h
 
 Dengan konfigurasi ini, kita dapat mengakses objek koneksi DB dengan menggunakan `Yii::app()->db` di tempat manapun di dalam kode kami. Harap diingat `Yii::app()` mengembalikan instance aplikasi yang kita buat di dalam skrip entri. Jika anda tertarik pada metode dan properti apa saja yang ada di koneksi DB, anda bisa merujuk ke [referensi kelas|CDbConnection]-nya. Namun, pada kebanyakan kasus kita tidak akan menggunakan koneksi DB secara langsung. Kita akan menggunakan apa yang disebut [ActiveRecord](http://www.yiiframework.com/doc/guide/database.ar) untuk mengakses database.
 
-Khusus properti `tablePrefix` yang diatur di konfigurasi akan dijelaskan lebih sedikit. Properti ini memberitahukan koneksi `db` bahwa harus menghormati sebuah fakta bahwa kita menggunakan `tbl_` sebagai prefiks nama tabel dalam database kita. Jika sebuah statement SQL ada token dan ditutup dengan kurung kurawal ganda (seperti `{{post}}`), maka koneksi `db` harus menerjemahkannya menjadi sebuah nama dengan prefiks tabel (misalnya `tbl_post`) sebelum mengirimnya ke DBMS untuk eksekusi. 
-We would like to explain a bit more about the `tablePrefix` property that we set in the configuration. This tells the `db` connection that it should respect the fact we are using `tbl_` as the prefix to our database table names. In particular, if in a SQL statement there is a token enclosed within double curly brackets (e.g. `{{post}}`), then the `db` connection should translate it into a name with the table prefix (e.g. `tbl_post`) before sending it to DBMS for execution. This feature is especially useful if in future we need to modify the table name prefix without touching our source code. For example, if we are developing a generic content management system (CMS), we may exploit this feature so that when it is being installed in a new environment, we can allow users to choose a table prefix they like.
+Khusus properti `tablePrefix` yang diatur di konfigurasi akan dijelaskan lebih sedikit. Properti ini memberitahukan koneksi `db` bahwa dia harus memperhatikan fakta bahwa kita menggunakan `tbl_` sebagai prefiks nama tabel dalam database kita. Jika sebuah statement SQL ada token ditutup dengan kurung kurawal ganda (seperti `{{post}}`), maka koneksi `db` harus menerjemahkannya menjadi sebuah nama dengan prefiks tabel (misalnya `tbl_post`) sebelum mengirimnya ke DBMS untuk dieksekusi. Fitur ini sangat berguna khususnya apabila di masa yang akan datang kita perlu mengubah prefiks nama tabel tanpa mengubah kode. Misalnya, jika kita membuat sebuah content management system (CMS), kita bisa memanfaatkan fitur ini sehingga ketika diinstal di lingkungan baru, memungkinkan pengguna untuk memilih prefiks tabel yang diinginkan mereka.
 
-> Tip: If you want to use MySQL instead of SQLite to store data, you may create
-> a MySQL database named `blog` using the SQL statements in
-> `/wwwroot/yii/demos/blog/protected/data/schema.mysql.sql`. Then, modify the
-> application configuration as follows,
+> Tip|Tips: Jika anda ingin menggunakan MySQL alih-alih SQLite untuk menyimpan data, anda bisa membuat
+> sebuah database bernama `blog` menggunakan statement SQL di dalam
+> `/wwwroot/yii/demos/blog/protected/data/schema.mysql.sql`. Kemudian modifikasi konfigurasi aplikasi
+> menjadi seperti berikut ini,
 >
 > ~~~
 > [php]
