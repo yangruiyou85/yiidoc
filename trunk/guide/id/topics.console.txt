@@ -87,7 +87,7 @@ lebih spesifik seperti halnya yang dilakukan kita di [CController].
 Sebuah action command console ditulis dengan sebuah metode di dalam kelas command console.
 Sebuah nama metode harus berupa format `actionXyz`, dengan `Xyz` merujuk pada nama action
 dengan huruf depan sebagai huruf kapital. Misalnya, sebuah metode bernama `actionIndex`
-mendefinisikan sebuah acton bernama `index`.
+mendefinisikan sebuah action bernama `index`.
 
 Untuk mengeksekusi action tertentu, kita menggunakan format command console berikut:
 
