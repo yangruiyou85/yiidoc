@@ -30,6 +30,7 @@
 * Praca z bazami danych
     - [Przegląd](database.overview)
     - [Obiekt dostępu do bazy danych (DAO)](database.dao)
+    - [Konstruktor zapytań](database.query-builder)	
     - [Rekord Aktywny](database.ar)
     - [Relacyjny Rekord Aktywny](database.arr)
 
@@ -67,4 +68,4 @@
     - [Zwiększanie wydajności](topics.performance)
     - [Code Generation using Command Line Tools (deprecated)](quickstart.first-app-yiic)	
 
-<div class="revision">$Id: toc.txt 2098 2010-05-05 19:49:51Z qiang.xue $</div>
+<div class="revision">$Id: toc.txt 2666 2010-11-17 19:56:48Z qiang.xue $</div>
