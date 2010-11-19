@@ -8,7 +8,7 @@
     - [Memasang Database](prototype.database)
     - [Scaffolding](prototype.scaffold)
     - [Mengotentikasi User](prototype.auth)
-    - [Rangkuman](prototype.summary)
+    - [Kesimpulan](prototype.summary)
 
 * Manajemen Post 
     - [Kustomisasi Model Post](post.model)
@@ -16,19 +16,19 @@
     - [Menampilkan Post](post.display)
     - [Mengatur Post](post.admin)
 
-* Manajemen Comment
+* Manajemen Komentar
 	- [Kustomisasi Model Comment](comment.model)
-    - [Membuat dan Menampilkan Comments](comment.create)
-    - [Mengatur Comments](comment.admin)
+    - [Membuat dan Menampilkan Komentar](comment.create)
+    - [Mengatur Komentar](comment.admin)
 
 * Portlet
-	- [Membuat Portlent Menu User](portlet.menu)
+	- [Membuat Portlet Menu User](portlet.menu)
 	- [Membuat Portlet Cloud Tag](portlet.tags)
 	- [Membuat Portlet Recent Comments](portlet.comments)
 
 * Pekerjaan Terakhir
 	- [Mempercantik URL](final.url)
-	- [Mencatat Error](final.logging)
+	- [Mencatat Log Error](final.logging)
     - [Tune-up terakhir dan Pemasangan](final.deployment)
     - [Pengembangan untuk Kedepannya](final.future)
 
