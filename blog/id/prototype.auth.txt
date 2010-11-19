@@ -1,15 +1,15 @@
-Authenticating User
+Mengotentikasi User
 ===================
 
-Our blog application needs to differentiate between the system owner and guest users. Therefore, we need to implement the [user authentication](http://www.yiiframework.com/doc/guide/topics.auth) feature.
+Aplikasi blog kita perlu membedakan pemilik sistem dengan user tamu. Oleh karena itu, kita harus mengimplementasikan fitur [autentikasi user](http://www.yiiframework.com/doc/guide/topics.auth).
 
-As you may have found that the skeleton application already provides user authentication by checking if the username and password are both `demo` or `admin`. In this section, we will modify the corresponding code so that the authentication is done against the `User` database table.
+Seperti yang mungkin sudah anda temukan bahwa aplikasi kerangka sudah menyediakan otentikasi user dengan mengecek apakah username dan password sama-sama `demo` atau sama-sama `admin`. Untuk bagian ini, kita akan memodifikasi kode bersangkutan supaya otentikasi dilakukan terhadap tabel database `User`.
 
-User authentication is performed in a class implementing the [IUserIdentity] interface. The skeleton application uses the `UserIdentity` class for this purpose. The class is stored in the file `/wwwroot/blog/protected/components/UserIdentity.php`.
+Otentikasi user dilakukan di dalam sebuah kelas yang meng-implement interface [IUserIdentity]. Aplikasi skeleton menggunakan kelas `UserIdentity` untuk tujuan ini. Kelas disimpan di dalam file `/wwwroot/blog/protected/components/UserIdentity.php`.
 
-> Tip: By convention, the name of a class file must be the same as the corresponding class name suffixed with the extension `.php`. Following this convention, one can refer to a class using a [path alias](http://www.yiiframework.com/doc/guide/basics.namespace). For example, we can refer to the `UserIdentity` class with the alias `application.components.UserIdentity`. Many APIs in Yii can recognize path aliases (e.g. [Yii::createComponent()|YiiBase::createComponent]), and using path aliases avoids the necessity of embedding absolute file paths in the code. The existence of the latter often causes trouble when we deploy an application.
+> Tip: Sesuai konvensi, nama file kelas harus sama dengan nama kelas yang diakhiri dengan ekstensi `.php`. Dengan mengikuti konvensi ini, siapapun dapat merujuk sebuah kelas cukup dengan sebuah [path alias](http://www.yiiframework.com/doc/guide/basics.namespace). Misalnya, kita dapat merujuk kelas `UserIdentity` dengan menggunakan alias `application.components.UserIdentity`. Banyak API di dalam Yii mengenali alias path (misalnya [Yii::createComponent()||YiiBase::createComponent]), dan menggunakan path alias akan menhindari kewajiban untuk meng-embed path file absolut ke dalam kode. Kalau misalnya diembed path file abslut maka akan menyebabkan masalah ketika memasang aplikasi.
 
-We modify the `UserIdentity` class as follows,
+Kita memodifikasi kelas `UserIdentity` sebagai berikut,
 
 ~~~
 [php]
@@ -42,9 +42,9 @@ class UserIdentity extends CUserIdentity
 }
 ~~~
 
-In the `authenticate()` method, we use the `User` class to look for a row in the `tbl_user` table whose `username` column is the same as the given username in a case-insensitive manner. Remember that the `User` class was created using the `gii` tool in the prior section. Because the `User` class extends from [CActiveRecord], we can exploit [the ActiveRecord feature](http://www.yiiframework.com/doc/guide/database.ar) to access the `tbl_user` table in an OOP fashion.
+Dalam method `authenticate()`, kita menggunakan kelas `User` untuk mencari sebaris dalam tabel `tbl_user` yang kolom `username` sama dengan username yang diberikan tanpa memperhatikan case-sensitive. Ingat kelas `User` dibuat dengan menggunakan tool `gii` pada bagian sebelumnya. Di karenakan kelas `User` diturunkan dari [CActiveRecord], kita dapat memanfaatkan [fitur CActiveRecord](http://www.yiiframework.com/doc/guide/database.ar) untuk mengakses tabel `tbl_user` dengan gaya OOP.
 
-In order to check if the user has entered a valid password, we invoke the `validatePassword` method of the `User` class. We need to modify the file `/wwwroot/blog/protected/models/User.php` as follows. Note that instead of storing the plain password in the database, we store the hash result of the password and a randomly generated salt key. When validating the user-entered password, we should compare the hash results, instead.
+Guna mengecek apakah user telah memasukkan sebuah password yang valid, kita memanggil method `validatePassword` dari kelas `User`. Kita perlu memodifikasi file `/wwwroot/blog/protected/models/User.php` menjadi berikut ini. Sebelumnya, harap diperhatikan bahwa alih-alih menyimpan password polos di dalam database, kita simpan hasil hash dari password dan sebuah salt yang dihasilkan secara random. Ketika validasi password yang dimasukkan user, kita harus membandingkan hasil hash.
 
 ~~~
 [php]
@@ -63,11 +63,11 @@ class User extends CActiveRecord
 }
 ~~~
 
-In the `UserIdentity` class, we also override the `getId()` method which returns the `id` value of the user found in the `tbl_user` table. The parent implementation would return the username, instead. Both the `username` and `id` properties will be stored in the user session and may be accessed via `Yii::app()->user` from anywhere in our code.
+Di dalam kelas `UserIdentity`, kita juga meng-override method `getId()` yang mengembalikan nilai `id` dari user yang ditemukan di tabel `tbl_user`. Implementasi kelas induk akan mengembalikan username. Baik properti `username` dan `id` akan disimpan di dalam session user dan bisa diakses dengan `Yii::app()->user` dari manapun di kode kita.
 
-> Tip: In the `UserIdentity` class, we reference the class [CUserIdentity] without explicitly including the corresponding class file. This is because [CUserIdentity] is a core class provided by the Yii framework. Yii will automatically include the class file for any core class when it is referenced for the first time.
+> Tip: Di dalam kelas `UserIdentity`, kita mereferensikan kelas [CUserIdentity] tanpa secara eksplisit meng-include file tersebut. Ini dikarenakan [CUserIdentity] adalah kelas inti yang disediakan oleh framework Yii. Yii akan meng-include file kelas secara otomatis untuk setiap kelas inti yang direferensikan pada saat pertama kali.
 >
-> We also do the same with the `User` class. This is because the `User` class file is placed under the directory `/wwwroot/blog/protected/models` which has been added to the PHP `include_path` according to the following lines found in the application configuration:
+> Kita juga melakukan hal yang sama pada kelas `User`. Ini dikarenakan file kelas `User` diletakkan di dalam direktori `/wwwroot/blog/protected/models` yang telah ditambahkan ke `include_path` PHP menurut baris yang ditemukan di dalam konfigurasi aplikasi berikut:
 >
 > ~~~
 > [php]
@@ -81,9 +81,9 @@ In the `UserIdentity` class, we also override the `getId()` method which returns
 > );
 > ~~~
 >
-> The above configuration says that any class whose class file is located under either `/wwwroot/blog/protected/models` or `/wwwroot/blog/protected/components` will be automatically included when the class is referenced for the first time.
+> Konfigurasi di atas menjelaskan bahwa setiap kelas yang filenya terletak entah di `/wwwroot/blog/protected/models` atau `/wwwroot/blog/protected/components` akan disertakan secara otomatis ketika kelas direferensikan untuk pertama kalinya.
 
-The `UserIdentity` class is mainly used by the `LoginForm` class to authenticate a user based on the username and password input collected from the login page. The following code fragment shows how `UserIdentity` is used:
+Kelas `UserIdentity` pada umumnya digunakan oleh kelas `LoginForm` untuk otentikasi seorang user berdasarkan username dan password yang diinput dari halaman login. Berikut merupakan bagian-bagian dari kode yang menunjukkan bagaimana `UserIdentity` digunakan:
 
 ~~~
 [php]
@@ -98,8 +98,8 @@ switch($identity->errorCode)
 }
 ~~~
 
-> Info: People often get confused about identity and the `user` application component. The former represents a way of performing authentication, while the latter is used to represent the information related with the current user. An application can only have one `user` component, but it can have one or several identity classes, depending on what kind of authentication it supports. Once authenticated, an identity instance may pass its state information to the `user` component so that they are globally accessible via `user`.
+> Info: Orang-orang sering dibingungkan dengan komponen aplikasi identity dengan `user`. Identity mewakili cara melakukan otentikasi, sedangkan `user` digunakan untuk mewakili informasi yang berhubungan dengan user sekarang. Sebuah aplikasi hanya dapat memiliki sebuat komponen `user`, tetapi bisa memiliki kelas identity satu atau lebih, tergantung pada apa otentikasi apa yang didukung. Begitu terotentikasi, sebuah instance identity akan di-pass state information-nya kepada komponen `user` sehingga dapat diakses secara global melalui `user`.
 
-To test the modified `UserIdentity` class, we can browse the URL `http://www.example.com/blog/index.php` and try logging in with the username and password that we store in the `tbl_user` table. If we use the database provided by the [blog demo](http://www.yiiframework.com/demos/blog/), we should be able to login with username `demo` and password `demo`. Note that this blog system does not provide the user management feature. As a result, a user cannot change his account or create a new one through the Web interface. The user management feature may be considered as a future enhancement to the blog application.
+Untuk mencoba kelas `UserIdentity` yang telah termodifikasi, kita dapat browse URL `http://www.example.com/blog/index.php` dan mencoba melakukan login dengan username dan password yang tersimpan di dalam tabel `tbl_user`. Jika kita menggunakan database yang disediakan [demo blog](http://www.yiiframework.com/demos/blog/), kita seharusnya bisa login dengan username `demo` dan password `demo`. Perhatikan bahwa sistem blog ini tidak menyediakan fitur manajemen user. Akibatnya, seorang user tidak bisa mengubah account-nya ataupun membuat satu yang baru melalui aplikasi Web bersangkutan. Fitur manajemen user dianggap sebagai peningkatan kedepannya pada aplikasi blog.
 
 <div class="revision">$Id: prototype.auth.txt 2333 2010-08-24 21:11:55Z mdomba $</div>
