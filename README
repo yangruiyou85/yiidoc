@@ -33,6 +33,34 @@ and also display them online.
 
 Thank you for your support and contribution to Yii!
 
+Ensure UTF-8 encoding
+---------------------
+
+It's very important that the translations are saved with a correct UTF-8 encoding.
+Especially wrongly encoded view files can cause massive trouble to developers and
+end-users (ie "headers already sent" error). There's a special console command
+that will help you to ensure that your translations are correctly encoded.
+
+This command will list every translation file which appears to have an incorrect
+UTF-8 encoding.
+
+protected/yiic utf8 checkencoding
+
+If one of your translations is in there, please open it and save it with UTF-8 encoding.
+You may try Google or ask in the Forum on how to configure your editor so that the correct
+encoding gets applied.
+
+This command will list every translation file which contains a so called UTF-8 BOM header.
+
+protected/yiic utf8 checkbom
+
+Simply check if one of your translations is in there. If that's the case you can use the
+following command to remove the UTF-8 BOM header.
+
+protected/yiic utf8 fixbom /path/to/translation/file
+
+When you're done with your files, simply re-run "utf8 checkbom" one more time to verify all
+of your affected translations are indeed fixed.
 
 Testing Translations
 --------------------
