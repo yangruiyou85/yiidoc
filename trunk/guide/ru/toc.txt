@@ -18,6 +18,7 @@
 	- [Псевдоним пути и пространство имен](basics.namespace)
 	- [Соглашения](basics.convention)
 	- [Процесс разработки](basics.workflow)
+    - [Лучшие практики MVC](basic.best-practices)
 
 * Работа с формами
 	- [Обзор](form.overview)
@@ -68,4 +69,4 @@
 	- [Улучшение производительности](topics.performance)
 	- [Генерация кода при помощи консоли (устаревшее)](quickstart.first-app-yiic)
 
-<div class="revision">$Id: toc.txt 2666 2010-11-17 19:56:48Z qiang.xue $</div>
+<div class="revision">$Id: toc.txt 2672 2010-11-22 19:13:16Z qiang.xue $</div>
