@@ -16,6 +16,9 @@
  * @version $Id: $
  */
 return array (
+  'GD extension with<br />FreeType support' => 'Rozszerzenie GD <br />ze wsparciem dla FreeType',
+  'GD installed<br />FreeType support not installed' => 'Rozszerzenie GD jest zainstalowane<br />ale bez wsparcia FreeType',
+  'GD not installed' => 'Nie zainstalowano GD',
   '$_SERVER does not have {vars}.' => '$_SERVER nie posiada zmiennej(nych) {vars}',
   '$_SERVER variable' => 'zmienna $_SERVER',
   '$_SERVER["SCRIPT_FILENAME"] must be the same as the entry script file path.' => '$_SERVER["SCRIPT_FILENAME"] musi być taki sam jak ścieżka pliku skryptu wejściowego.',
@@ -23,7 +26,6 @@ return array (
   'All <a href="http://www.yiiframework.com/doc/api/#system.db">DB-related classes</a>' => 'Wszystkie <a href="http://www.yiiframework.com/doc/api/#system.db">klasy bazodanowe</a>',
   'DOM extension' => 'rozszerzenie DOM',
   'Either $_SERVER["REQUEST_URI"] or $_SERVER["QUERY_STRING"] must exist.' => 'Zarówno $_SERVER["REQUEST_URI"] jak i $_SERVER["QUERY_STRING"] muszą istnieć.',
-  'GD extension' => 'rozszerzenie GD',
   'Mcrypt extension' => 'rozszerzenie Mcrypt',
   'Memcache extension' => 'rozszerzenie Memcache',
   'PCRE extension' => 'rozszerzenie PCRE',
