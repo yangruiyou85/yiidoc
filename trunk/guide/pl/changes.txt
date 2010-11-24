@@ -6,6 +6,7 @@ Ta strona zawiera streszczenie najważniejszych nowych funkcji wprowadzonych w k
 Version 1.1.6
 -------------
  * [Dodano konstruktora zapytań](/doc/guide/database.query-builder)
+ * [Najlepsze praktyki w MVC](/doc/guide/basics.best-practices) 
 
 
 Wersja 1.1.5
@@ -142,4 +143,4 @@ Wersja 1.0.5
  * Rozszerzono[CUrlManager] o wsparcie dla parametryzacji reguł dla części URL zawierającej trasę. Zobacz:
      - [Parametryzacja trasy w regułach URL](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 2666 2010-11-17 19:56:48Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 2672 2010-11-22 19:13:16Z qiang.xue $</div>
