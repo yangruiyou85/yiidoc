@@ -1,7 +1,7 @@
-Konstrukto zapytañ
+Konstrukto zapytaÅ„
 =============
 
-Konstruktor zapytañ w Yii umo¿liwia zorientowane obiektowo pisanie zapytañ SQL. Daje to programiœcie mo¿liwoœæ u¿ywania w³aœciwoœci i metod klasy w celu okreœlenia poszczególnych czêœci zapytania SQL. W ten sposób do³¹cza te ró¿ne czêœci do poprawnego zapytania SQL, które mo¿e zostaæ póŸniej wywo³ane poprzez metody DAO opisane w [obiekcie dostêpu do bazy danych (DAO)](/doc/guide/database.dao). Nastêpuj¹cy kod pokazuje typowe u¿ycie konstruktora zapytañ:
+Konstruktor zapytaÅ„ w Yii umoÅ¼liwia zorientowane obiektowo pisanie zapytaÅ„ SQL. Daje to programiÅ›cie moÅ¼liwoÅ›Ä‡ uÅ¼ywania wÅ‚aÅ›ciwoÅ›ci i metod klasy w celu okreÅ›lenia poszczegÃ³lnych czÄ™Å›ci zapytania SQL. W ten sposÃ³b doÅ‚Ä…cza te rÃ³Å¼ne czÄ™Å›ci do poprawnego zapytania SQL, ktÃ³re moÅ¼e zostaÄ‡ pÃ³Åºniej wywoÅ‚ane poprzez metody DAO opisane w [obiekcie dostÄ™pu do bazy danych (DAO)](/doc/guide/database.dao). NastÄ™pujÄ…cy kod pokazuje typowe uÅ¼ycie konstruktora zapytaÅ„:
 
 ~~~
 [php]
@@ -13,44 +13,44 @@ $user = Yii::app()->db->createCommand()
 	->queryRow();
 ~~~
 
-Konstruktora zapytañ najlepiej u¿ywaæ gdy potrzebujesz z³o¿yæ instrukcje SQL proceduralnie lub te¿ bazuj¹c na pewnych warunkacj logicznych zaistnia³ych w twojej aplikacji. G³ównymi korzyœciami stosowania konstruktora zapytañ s¹:
+Konstruktora zapytaÅ„ najlepiej uÅ¼ywaÄ‡ gdy potrzebujesz zÅ‚oÅ¼yÄ‡ instrukcje SQL proceduralnie lub teÅ¼ bazujÄ…c na pewnych warunkacj logicznych zaistniaÅ‚ych w twojej aplikacji. GÅ‚Ã³wnymi korzyÅ›ciami stosowania konstruktora zapytaÅ„ sÄ…:
 
-* mo¿liwoœæ tworzenia skomplikowanych instrukcji SQL w sposób programistyczny.
+* moÅ¼liwoÅ›Ä‡ tworzenia skomplikowanych instrukcji SQL w sposÃ³b programistyczny.
 
-* automatyczne dodawanie cudzys³owu do nazw tabeli i ich kolumn w celu ochrony przed konfliktem z zarezerwowanymi w SQL s³owami i znakami specjalnymi.
+* automatyczne dodawanie cudzysÅ‚owu do nazw tabeli i ich kolumn w celu ochrony przed konfliktem z zarezerwowanymi w SQL sÅ‚owami i znakami specjalnymi.
 
-* dodatkowo w cudzys³ó brane s¹ wartoœci parametrów a tak¿e u¿ywane jest wi¹zanie parametrów gdzie tylko to mo¿liwe, co pozwala zredukowaæ ryzyko ataków SQL injection.
+* dodatkowo w cudzysÅ‚Ã³ brane sÄ… wartoÅ›ci parametrÃ³w a takÅ¼e uÅ¼ywane jest wiÄ…zanie parametrÃ³w gdzie tylko to moÅ¼liwe, co pozwala zredukowaÄ‡ ryzyko atakÃ³w SQL injection.
 
-* oferta pewnego stopnia abstrakcji bazy danych, co umo¿liwia migracjê do innych platform bazodanowych.
-
-
-Nie jest konieczne u¿ywanie kreatora zapytañ. 
-It is not mandatory to use the Query Builder. W rzeczywistoœci, jeœli twoje zapytania s¹ proste, ³atwiej i szybciej napisaæ je bezpoœrednio w instrukcji SQL. 
+* oferta pewnego stopnia abstrakcji bazy danych, co umoÅ¼liwia migracjÄ™ do innych platform bazodanowych.
 
 
-Przygotowanie konstruktora zapytañ.
+Nie jest konieczne uÅ¼ywanie kreatora zapytaÅ„. 
+It is not mandatory to use the Query Builder. W rzeczywistoÅ›ci, jeÅ›li twoje zapytania sÄ… proste, Å‚atwiej i szybciej napisaÄ‡ je bezpoÅ›rednio w instrukcji SQL. 
+
+
+Przygotowanie konstruktora zapytaÅ„.
 -----------------------
 
-Konstruktor zapytañ dostarczony jest w ramach [CDbCommand], g³ównej klasy zapytañ bazodanowych opisanych w [DAO](/doc/guide/database.dao).
+Konstruktor zapytaÅ„ dostarczony jest w ramach [CDbCommand], gÅ‚Ã³wnej klasy zapytaÅ„ bazodanowych opisanych w [DAO](/doc/guide/database.dao).
 
-Aby rozpocz¹æ u¿ywanie konstruktora zapytañ tworzymy now¹ instancjê [CDbCommand] w nastêpuj¹cy sposób:
+Aby rozpoczÄ…Ä‡ uÅ¼ywanie konstruktora zapytaÅ„ tworzymy nowÄ… instancjÄ™ [CDbCommand] w nastÄ™pujÄ…cy sposÃ³b:
 
 ~~~
 [php]
 $command = Yii::app()->db->createCommand();
 ~~~
 
-Oznacza to, ¿e u¿ywamy `Yii::app()->db` w celu uzyskania po³¹czenia z baz¹ danych a nastêpnie wywo³ujemy [CDbConnection::createCommand()] w celu utworzenia potrzebnej instancji polecenia (ang. command).
+Oznacza to, Å¼e uÅ¼ywamy `Yii::app()->db` w celu uzyskania poÅ‚Ä…czenia z bazÄ… danych a nastÄ™pnie wywoÅ‚ujemy [CDbConnection::createCommand()] w celu utworzenia potrzebnej instancji polecenia (ang. command).
 
-Zauwa¿, ¿e zamiast przekazywania ca³ej instrukcji SQL do wywo³ania `createCommand()` tak jak robiliœmy to w [DAO](/doc/guide/database.dao), pozostawiamy je puste. Dzieje siê tak, dlatego, ¿e bêdziemy tworzyæ pojedynczo poszczególne czêœci instrukcji SQL u¿ywaj¹c metod konstruktora zapytañ, które opiszemy w dalszej czêœci.
+ZauwaÅ¼, Å¼e zamiast przekazywania caÅ‚ej instrukcji SQL do wywoÅ‚ania `createCommand()` tak jak robiliÅ›my to w [DAO](/doc/guide/database.dao), pozostawiamy je puste. Dzieje siÄ™ tak, dlatego, Å¼e bÄ™dziemy tworzyÄ‡ pojedynczo poszczegÃ³lne czÄ™Å›ci instrukcji SQL uÅ¼ywajÄ…c metod konstruktora zapytaÅ„, ktÃ³re opiszemy w dalszej czÄ™Å›ci.
 
 
-Tworzenie zapytañ
+Tworzenie zapytaÅ„
 ----------------
 
-Tworzenie zapytañ SQL obejmuje wywo³ywanie ró¿nych metod konstruktora zapytañ w celu utworzenia poszczególnych czêœci tego zapytania. Poniewa¿ wszystkie te metody zwracaj¹ instancjê [CDbCommand], mo¿emy wywo³ywaæ je ³¹ñcuchowo, tak jak pokazano to w poprzednim przyk³adzie.
+Tworzenie zapytaÅ„ SQL obejmuje wywoÅ‚ywanie rÃ³Å¼nych metod konstruktora zapytaÅ„ w celu utworzenia poszczegÃ³lnych czÄ™Å›ci tego zapytania. PoniewaÅ¼ wszystkie te metody zwracajÄ… instancjÄ™ [CDbCommand], moÅ¼emy wywoÅ‚ywaÄ‡ je Å‚Ä…Å„cuchowo, tak jak pokazano to w poprzednim przykÅ‚adzie.
 
-W dalszej czêœci, wyjaœnimi jak u¿ywaæ tych metod kreatora zapytañ. Zak³adamy, ¿e u¿ywamy MySQL. Zauwa¿, ¿e jeœli u¿ywasz innego DBMS, do³¹czanie cudzys³owów do tabel/kolumn/wartoœci mo¿e siê ró¿niæ od tego z przyk³adów.
+W dalszej czÄ™Å›ci, wyjaÅ›nimi jak uÅ¼ywaÄ‡ tych metod kreatora zapytaÅ„. ZakÅ‚adamy, Å¼e uÅ¼ywamy MySQL. ZauwaÅ¼, Å¼e jeÅ›li uÅ¼ywasz innego DBMS, doÅ‚Ä…czanie cudzysÅ‚owÃ³w do tabel/kolumn/wartoÅ›ci moÅ¼e siÄ™ rÃ³Å¼niÄ‡ od tego z przykÅ‚adÃ³w.
 
 
 ### select
@@ -60,9 +60,9 @@ W dalszej czêœci, wyjaœnimi jak u¿ywaæ tych metod kreatora zapytañ. Zak³adamy, ¿
 function select($columns='*')
 ~~~
 
-Metoda [select|CDbCommand::select] okreœla czêœæ `SELECT` zapytania. Parametr `$columns`, który mo¿e mieæ postaæ ³añcucha znaków reprezentuj¹cego rodzielone przecinkami nazwy kolumn lub te¿ tablicy z nazwami kolumn, definiuje kolumny które zostan¹ wybrane w zapytaniu. Nazwy kolumn mog¹ zawieraæ prefixy tabel i/lub aliasy kolumn. Metoda ta automatycznie zacytuje (doda cudzys³owy) nazwy kolumn, chyba ¿e kolumna zawiera nawiasy (co oznacza, ¿e kolumna jest wyra¿eniem bazodanowym).
+Metoda [select|CDbCommand::select] okreÅ›la czÄ™Å›Ä‡ `SELECT` zapytania. Parametr `$columns`, ktÃ³ry moÅ¼e mieÄ‡ postaÄ‡ Å‚aÅ„cucha znakÃ³w reprezentujÄ…cego rodzielone przecinkami nazwy kolumn lub teÅ¼ tablicy z nazwami kolumn, definiuje kolumny ktÃ³re zostanÄ… wybrane w zapytaniu. Nazwy kolumn mogÄ… zawieraÄ‡ prefixy tabel i/lub aliasy kolumn. Metoda ta automatycznie zacytuje (doda cudzysÅ‚owy) nazwy kolumn, chyba Å¼e kolumna zawiera nawiasy (co oznacza, Å¼e kolumna jest wyraÅ¼eniem bazodanowym).
 
-Poni¿ej znajduje siê kilka przyk³adów:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w:
 
 ~~~
 [php]
@@ -86,7 +86,7 @@ select(array('id', 'count(*) as num'))
 function selectDistinct($columns)
 ~~~
 
-Metoda [selectDistinct|CDbCommand::selectDistinct] jest podobna do [select|CDbCommand::select] z t¹ ró¿nic¹ ¿e zwraca ona flagê `DISTINCT`. Na przyk³ad, `selectDistinct('id, username')` wygeneruje nastêpuj¹cy SQL:
+Metoda [selectDistinct|CDbCommand::selectDistinct] jest podobna do [select|CDbCommand::select] z tÄ… rÃ³Å¼nicÄ… Å¼e zwraca ona flagÄ™ `DISTINCT`. Na przykÅ‚ad, `selectDistinct('id, username')` wygeneruje nastÄ™pujÄ…cy SQL:
 
 ~~~
 SELECT DISTINCT `id`, `username`
@@ -100,9 +100,9 @@ SELECT DISTINCT `id`, `username`
 function from($tables)
 ~~~
 
-Metoda [from|CDbCommand::from] okreœla czêœæ `FROM` zapytania. Mo¿e ni¹ byæ zarówno ³añcuch znaków reprezentuj¹cy oddzielone przecinkami nazwy tabel lub te¿ tablica z nazwami tabel. Nazwy tabel mog¹ zawieraæ prefiksy schematów bazy danych (np. `public.tbl_user`) i/lub aliasy tabel (np. `tbl_user u`). Metoda ta automatycznie doda cudzys³owy do nazw tabel, chyba ¿e zawieraj¹ one nawiasy (co oznacza, ¿e tabela zosta³a przekazana jako podzapytanie lub wyra¿enie).
+Metoda [from|CDbCommand::from] okreÅ›la czÄ™Å›Ä‡ `FROM` zapytania. MoÅ¼e niÄ… byÄ‡ zarÃ³wno Å‚aÅ„cuch znakÃ³w reprezentujÄ…cy oddzielone przecinkami nazwy tabel lub teÅ¼ tablica z nazwami tabel. Nazwy tabel mogÄ… zawieraÄ‡ prefiksy schematÃ³w bazy danych (np. `public.tbl_user`) i/lub aliasy tabel (np. `tbl_user u`). Metoda ta automatycznie doda cudzysÅ‚owy do nazw tabel, chyba Å¼e zawierajÄ… one nawiasy (co oznacza, Å¼e tabela zostaÅ‚a przekazana jako podzapytanie lub wyraÅ¼enie).
 
-Poni¿ej znajduje siê kilka przyk³adów:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w:
 
 ~~~
 [php]
@@ -124,33 +124,33 @@ from(array('tbl_user', '(select * from tbl_profile) p'))
 function where($conditions, $params=array())
 ~~~
 
-Metoda [where|CDbCommand::where] okreœla czêœæ `WHERE` zapytania. Parametr `$conditions` okreœla warunki zapytania a `$params` definiuje parametry, które zostan¹ zwi¹zanane go ca³ego zapytania. Parametr metody `$conditions` mo¿e byæ zarówno ³añcuchem (np. `id=1`) lub te¿ tablic¹ o nastêpuj¹cym formacie:
+Metoda [where|CDbCommand::where] okreÅ›la czÄ™Å›Ä‡ `WHERE` zapytania. Parametr `$conditions` okreÅ›la warunki zapytania a `$params` definiuje parametry, ktÃ³re zostanÄ… zwiÄ…zanane go caÅ‚ego zapytania. Parametr metody `$conditions` moÅ¼e byÄ‡ zarÃ³wno Å‚aÅ„cuchem (np. `id=1`) lub teÅ¼ tablicÄ… o nastÄ™pujÄ…cym formacie:
 
 ~~~
 [php]
 array(operator, argument1, argument2, ...)
 ~~~
 
-gdzie `operator` mo¿e byæ jednym z: 
+gdzie `operator` moÅ¼e byÄ‡ jednym z: 
 
-* `and`: argumenty powinny zostaæ z³¹czone razem przy u¿yciu `AND`. Na przyk³ad, `array('and', 'id=1', 'id=2')` wygeneruje `id=1 AND id=2`. Jeœli argument jest tablic¹, zostanie on przekonwertowany do ³añcucha przy u¿yciu przed chwil¹ opisanej regu³y. Na przyk³ad, `array('and', 'type=1', array('or', 'id=1', 'id=2'))` wygeneruje `type=1 AND (id=1 OR id=2)`. Metoda ta NIE dodaje cudzys³owów ani nie wycina znaków steruj¹cych (ang. quoting and escaping).
+* `and`: argumenty powinny zostaÄ‡ zÅ‚Ä…czone razem przy uÅ¼yciu `AND`. Na przykÅ‚ad, `array('and', 'id=1', 'id=2')` wygeneruje `id=1 AND id=2`. JeÅ›li argument jest tablicÄ…, zostanie on przekonwertowany do Å‚aÅ„cucha przy uÅ¼yciu przed chwilÄ… opisanej reguÅ‚y. Na przykÅ‚ad, `array('and', 'type=1', array('or', 'id=1', 'id=2'))` wygeneruje `type=1 AND (id=1 OR id=2)`. Metoda ta NIE dodaje cudzysÅ‚owÃ³w ani nie wycina znakÃ³w sterujÄ…cych (ang. quoting and escaping).
 
-* `or`: podobny do operatora `and` z t¹ ró¿nic¹, ¿e argumenty ³¹czone s¹ za pomoc¹ OR.
+* `or`: podobny do operatora `and` z tÄ… rÃ³Å¼nicÄ…, Å¼e argumenty Å‚Ä…czone sÄ… za pomocÄ… OR.
 
-* `in`: pierwszy argument powinien byæ kolumn¹ b¹dŸ te¿ wyra¿eniem bazodanowym, a drugi argument powinien byæ tablic¹ reprezentuj¹c¹ zakres wartoœci w których kolumna lub wyra¿enie powinny siê znajdowaæ. Na przyk³ad, `array('in', 'id', array(1,2,3))` wygeneruje `id IN (1,2,3)`. Metoda ta poprawnie doda cudzys³owy do nazw kolumn oraz wytnie znaki steruj¹ce dla wartoœci w zakresie.
+* `in`: pierwszy argument powinien byÄ‡ kolumnÄ… bÄ…dÅº teÅ¼ wyraÅ¼eniem bazodanowym, a drugi argument powinien byÄ‡ tablicÄ… reprezentujÄ…cÄ… zakres wartoÅ›ci w ktÃ³rych kolumna lub wyraÅ¼enie powinny siÄ™ znajdowaÄ‡. Na przykÅ‚ad, `array('in', 'id', array(1,2,3))` wygeneruje `id IN (1,2,3)`. Metoda ta poprawnie doda cudzysÅ‚owy do nazw kolumn oraz wytnie znaki sterujÄ…ce dla wartoÅ›ci w zakresie.
 
-* `not in`: podony do operatora `in` z t¹ ró¿nic¹, ¿e `IN` zast¹pione jest `NOT IN` w wygenerowanym warunku.
+* `not in`: podony do operatora `in` z tÄ… rÃ³Å¼nicÄ…, Å¼e `IN` zastÄ…pione jest `NOT IN` w wygenerowanym warunku.
 
-* `like`: pierwszy argument powinien byæ kolumn¹ lub te¿ wyra¿eniem bazodanowym, a drugi argument ³añcuchem lub tablic¹ reprezentuj¹c¹ zakres wartoœci, do których je przypasowujemy. Na przyk³ad, `array('like', 'name', 'tester')` wygeneruje `name LIKE '%tester%'`. Jeœli przekazany zosta³zakres wartoœci w postaci tablicy, `LIKE` zostanie  wielokrotnie zostanie u¿yte i po³¹czone za pomoc¹ operatora `AND`. Na przyk³ad, `array('like', 'name', array('test', 'sample'))` wygeneruje `name LIKE '%test%' AND name LIKE '%sample%'`. Metoda ta poprawnie doda cudzys³owy oraz wytnie znaki sterujace dla wartoœci w zakresie.
+* `like`: pierwszy argument powinien byÄ‡ kolumnÄ… lub teÅ¼ wyraÅ¼eniem bazodanowym, a drugi argument Å‚aÅ„cuchem lub tablicÄ… reprezentujÄ…cÄ… zakres wartoÅ›ci, do ktÃ³rych je przypasowujemy. Na przykÅ‚ad, `array('like', 'name', 'tester')` wygeneruje `name LIKE '%tester%'`. JeÅ›li przekazany zostaÅ‚zakres wartoÅ›ci w postaci tablicy, `LIKE` zostanie  wielokrotnie zostanie uÅ¼yte i poÅ‚Ä…czone za pomocÄ… operatora `AND`. Na przykÅ‚ad, `array('like', 'name', array('test', 'sample'))` wygeneruje `name LIKE '%test%' AND name LIKE '%sample%'`. Metoda ta poprawnie doda cudzysÅ‚owy oraz wytnie znaki sterujace dla wartoÅ›ci w zakresie.
 
-* `not like`: podobny do operatora `like` z t¹ ró¿nic¹, ¿e `LIKE` zast¹pione jest `NOT LIKE` w wygenerowanym warunku.
+* `not like`: podobny do operatora `like` z tÄ… rÃ³Å¼nicÄ…, Å¼e `LIKE` zastÄ…pione jest `NOT LIKE` w wygenerowanym warunku.
 
-* `or like`: podobne do operatora `like` z t¹ ró¿nic¹, ¿e `OR` jest u¿ywany do ³¹czenia kilku predykatów `LIKE`.
+* `or like`: podobne do operatora `like` z tÄ… rÃ³Å¼nicÄ…, Å¼e `OR` jest uÅ¼ywany do Å‚Ä…czenia kilku predykatÃ³w `LIKE`.
 
-* `or not like`: podobne do operatora `not like` z t¹ ró¿nic¹, ¿e `OR` jest u¿ywany do ³¹czenia kilku predykatów `NOT LIKE`.
+* `or not like`: podobne do operatora `not like` z tÄ… rÃ³Å¼nicÄ…, Å¼e `OR` jest uÅ¼ywany do Å‚Ä…czenia kilku predykatÃ³w `NOT LIKE`.
 
 
-Poni¿ej znajduje siê kilka przyk³adów u¿ywania `where`:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w uÅ¼ywania `where`:
 
 ~~~
 [php]
@@ -186,9 +186,9 @@ where(array('or not like', 'name', array('Qiang', 'Xue')))
 function order($columns)
 ~~~
 
-Metoda [order|CDbCommand::order] okreœla czêœæ `ORDER BY` zapytania. Parametr `$columns` definiuje kolumny, po których bêdziemy sortowaæ. Mo¿e on byæ zarówno ³añcuchem reprezentuj¹cym rozdzielone przecinkiem kolumny i kierunki sortowania (`ASC` or `DESC`) lub tablic¹ kolumn i kierunków sortowania. Nazwy kolumn mog¹ zawieraæ prefiksy tabeli. Metoda automatycznie doda cudzys³owy do nazwy kolumn chyba, ¿e kolumna zawiera nawiasy (co oznacze, ¿e kolumna jest wyra¿eniem bazodanowym).
+Metoda [order|CDbCommand::order] okreÅ›la czÄ™Å›Ä‡ `ORDER BY` zapytania. Parametr `$columns` definiuje kolumny, po ktÃ³rych bÄ™dziemy sortowaÄ‡. MoÅ¼e on byÄ‡ zarÃ³wno Å‚aÅ„cuchem reprezentujÄ…cym rozdzielone przecinkiem kolumny i kierunki sortowania (`ASC` or `DESC`) lub tablicÄ… kolumn i kierunkÃ³w sortowania. Nazwy kolumn mogÄ… zawieraÄ‡ prefiksy tabeli. Metoda automatycznie doda cudzysÅ‚owy do nazwy kolumn chyba, Å¼e kolumna zawiera nawiasy (co oznacze, Å¼e kolumna jest wyraÅ¼eniem bazodanowym).
 
-Poni¿ej znajduje siê kilka przyk³adów:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w:
 
 ~~~
 [php]
@@ -207,9 +207,9 @@ function limit($limit, $offset=null)
 function offset($offset)
 ~~~
 
-Metody [limit|CDbCommand::limit] oraz [offset|CDbCommand::offset] okreœlaj¹ czeœæ `LIMIT` i `OFFSET` zapytania. Zauwa¿, ¿e czêœæ DBMS mo¿e nie wspieraæ sk³adni `LIMIT` oraz `OFFSET`. W takim przypadku konstruktor zapytañ przepisze ca³¹ instrukcjê tak aby zasymulowaæ funkcje limit i offset.
+Metody [limit|CDbCommand::limit] oraz [offset|CDbCommand::offset] okreÅ›lajÄ… czeÅ›Ä‡ `LIMIT` i `OFFSET` zapytania. ZauwaÅ¼, Å¼e czÄ™Å›Ä‡ DBMS moÅ¼e nie wspieraÄ‡ skÅ‚adni `LIMIT` oraz `OFFSET`. W takim przypadku konstruktor zapytaÅ„ przepisze caÅ‚Ä… instrukcjÄ™ tak aby zasymulowaÄ‡ funkcje limit i offset.
 
-Poni¿ej znajduje siê kilka przyk³adów:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w:
 
 ~~~
 [php]
@@ -233,11 +233,11 @@ function crossJoin($table)
 function naturalJoin($table)
 ~~~
 
-Metoda [join|CDbCommand::join] i jej warianty okreœla w jaki sposób tabele z³¹czyæ pozosta³e tabele u¿ywaj¹c `INNER JOIN`, `LEFT OUTER JOIN`, `RIGHT OUTER JOIN`, `CROSS JOIN` lub `NATURAL JOIN`. Parametr `$table` definiuje nazwê tabeli do³¹czanej. Nazwa tabeli mo¿e zawieraæ prefiks schematu bazy danych i/lub alias. Metoda ta doda cudzys³owy do nazw tabel, chyba ¿e zawiera ona nawiasy, bo oznacze ¿e jest ona wyra¿eniem b¹dŸ podzapytaniem. Parametr `$conditions` okreœla warunki z³¹czenia. Jego sk³adnia jest taka sama jak [where|CDbCommand::where]. Parametr `$params` okreœla parametry, które zostan¹ zwi¹zane z ca³ym zapytaniem. 
+Metoda [join|CDbCommand::join] i jej warianty okreÅ›la w jaki sposÃ³b tabele zÅ‚Ä…czyÄ‡ pozostaÅ‚e tabele uÅ¼ywajÄ…c `INNER JOIN`, `LEFT OUTER JOIN`, `RIGHT OUTER JOIN`, `CROSS JOIN` lub `NATURAL JOIN`. Parametr `$table` definiuje nazwÄ™ tabeli doÅ‚Ä…czanej. Nazwa tabeli moÅ¼e zawieraÄ‡ prefiks schematu bazy danych i/lub alias. Metoda ta doda cudzysÅ‚owy do nazw tabel, chyba Å¼e zawiera ona nawiasy, bo oznacze Å¼e jest ona wyraÅ¼eniem bÄ…dÅº podzapytaniem. Parametr `$conditions` okreÅ›la warunki zÅ‚Ä…czenia. Jego skÅ‚adnia jest taka sama jak [where|CDbCommand::where]. Parametr `$params` okreÅ›la parametry, ktÃ³re zostanÄ… zwiÄ…zane z caÅ‚ym zapytaniem. 
 
-Zauwa¿, ¿e w odró¿nieniu do pozosta³ych metod konstruktora zapytañ ka¿de wywo³anie metody join zostanie do³¹czone do poprzedniego wywo³ania.
+ZauwaÅ¼, Å¼e w odrÃ³Å¼nieniu do pozostaÅ‚ych metod konstruktora zapytaÅ„ kaÅ¼de wywoÅ‚anie metody join zostanie doÅ‚Ä…czone do poprzedniego wywoÅ‚ania.
 
-Poni¿ej znajduje siê kilka przyk³adów:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w:
 
 ~~~
 [php]
@@ -255,10 +255,10 @@ leftJoin('pub.tbl_profile p', 'p.user_id=id AND type=:type', array(':type'=>1))
 function group($columns)
 ~~~
 
-Metoda [group|CDbCommand::group] okreœla czêœæ  `GROUP BY` zapytania.
-Parametr `$columns` definiuje kolumny, po których bêdziemy grupowaæ. Mo¿e nim byæ zarówno ³añcuch reprezentuj¹cy rozdzielone przecinkami kolumny jak i tablica kolumn. Nazwy kolumn mog¹ zawieraæ prefiksy tabel. Metoda ta automatycznie doda cudzys³ów do nazwy kolumn chyba ¿e zawieraj¹ one nawiasy (co oznacza, ¿e kolumna jest wyra¿eniem bazodanowym).
+Metoda [group|CDbCommand::group] okreÅ›la czÄ™Å›Ä‡  `GROUP BY` zapytania.
+Parametr `$columns` definiuje kolumny, po ktÃ³rych bÄ™dziemy grupowaÄ‡. MoÅ¼e nim byÄ‡ zarÃ³wno Å‚aÅ„cuch reprezentujÄ…cy rozdzielone przecinkami kolumny jak i tablica kolumn. Nazwy kolumn mogÄ… zawieraÄ‡ prefiksy tabel. Metoda ta automatycznie doda cudzysÅ‚Ã³w do nazwy kolumn chyba Å¼e zawierajÄ… one nawiasy (co oznacza, Å¼e kolumna jest wyraÅ¼eniem bazodanowym).
 
-Poni¿ej znajduje siê kilka przyk³adów:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w:
 
 ~~~
 [php]
@@ -276,9 +276,9 @@ group(array('tbl_profile.name', 'id')
 function having($conditions, $params=array())
 ~~~
 
-Metoda [having|CDbCommand::having] okreœla czêœæ `HAVING` zapytania. Jej u¿ycie jest identyczne z [where|CDbCommand::where].
+Metoda [having|CDbCommand::having] okreÅ›la czÄ™Å›Ä‡ `HAVING` zapytania. Jej uÅ¼ycie jest identyczne z [where|CDbCommand::where].
 
-Poni¿ej znajduje siê kilka przyk³adów:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w:
 
 ~~~
 [php]
@@ -296,9 +296,9 @@ having(array('or', 'id=1', 'id=2'))
 function union($sql)
 ~~~
 
-Metoda [union|CDbCommand::union] okreœla czêœæ `UNION` zapytania. Do³¹cza ona wartoœæ `$sql` do istniej¹cego zapytania SQL przy u¿yciu operatora `UNION`. Kilkukrotne wywo³anie `union()` spowoduje do³¹czenie kilku SQLi do istniej¹cej instrukcji SQL.
+Metoda [union|CDbCommand::union] okreÅ›la czÄ™Å›Ä‡ `UNION` zapytania. DoÅ‚Ä…cza ona wartoÅ›Ä‡ `$sql` do istniejÄ…cego zapytania SQL przy uÅ¼yciu operatora `UNION`. Kilkukrotne wywoÅ‚anie `union()` spowoduje doÅ‚Ä…czenie kilku SQLi do istniejÄ…cej instrukcji SQL.
 
-Poni¿ej znajduje siê kilka przyk³adów:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w:
 
 ~~~
 [php]
@@ -314,11 +314,11 @@ union('select * from tbl_profile')
 function insert($table, $columns)
 ~~~
 
-Metoda [insert|CDbCommand::insert] okreœla instrukcjê `INSERT`. Parametr `$table` definiuje, do której tabeli bêdziemy dodawaæ, zaœ `$columns` jest tablic¹ par nazwa-wartoœæ okreœlaj¹cych wartoœci wstawiane do kolumn. Metoda ta doda poprawnie cudzys³owy do nazwy tabeli oraz u¿yje wi¹zania parametrów dla wartoœci, które maj¹ zostaæ wstawione.
+Metoda [insert|CDbCommand::insert] okreÅ›la instrukcjÄ™ `INSERT`. Parametr `$table` definiuje, do ktÃ³rej tabeli bÄ™dziemy dodawaÄ‡, zaÅ› `$columns` jest tablicÄ… par nazwa-wartoÅ›Ä‡ okreÅ›lajÄ…cych wartoÅ›ci wstawiane do kolumn. Metoda ta doda poprawnie cudzysÅ‚owy do nazwy tabeli oraz uÅ¼yje wiÄ…zania parametrÃ³w dla wartoÅ›ci, ktÃ³re majÄ… zostaÄ‡ wstawione.
 
-Zauwa¿, ¿e w odró¿nieniu od poprzednich metod, które opisywa³y czêœci zapytania `SELECT`, metody `insert`, `update` oraz `delete` (ostatnie dwie opiszemy krótko) definiuj¹ ca³¹ instrukcjê SQL.
+ZauwaÅ¼, Å¼e w odrÃ³Å¼nieniu od poprzednich metod, ktÃ³re opisywaÅ‚y czÄ™Å›ci zapytania `SELECT`, metody `insert`, `update` oraz `delete` (ostatnie dwie opiszemy krÃ³tko) definiujÄ… caÅ‚Ä… instrukcjÄ™ SQL.
 
-Poni¿ej znajduje siê kilka przyk³adów:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w:
 
 ~~~
 [php]
@@ -334,9 +334,9 @@ insert('tbl_user', array('name'=>'Tester', 'email'=>'tester@example.com'))
 function update($table, $columns, $conditions='', $params=array())
 ~~~
 
-Metoda [update|CDbCommand::update] okreœla instrukcjê SQL `UPDATE`. Parametr `$table` definiuje któr¹ tabelê bêdziemy aktualizowaæ; parametr `$columns` jest tablic¹ par nazwa-wartoœæ okreœlaj¹cych watroœci kolumn, które zostan¹ zaktualizowane; parametry `$conditions` oraz `$params` s¹ takie jak w metodzie [where|CDbCommand::where], która opisuje klauzulê `WHERE` w instrukcji `UPDATE`. Metoda ta doda poprawnie cudzys³ów do nazwy tabeli i u¿yje wi¹zania parametrów dla wartoœci, które bêd¹ zaktualizowane.
+Metoda [update|CDbCommand::update] okreÅ›la instrukcjÄ™ SQL `UPDATE`. Parametr `$table` definiuje ktÃ³rÄ… tabelÄ™ bÄ™dziemy aktualizowaÄ‡; parametr `$columns` jest tablicÄ… par nazwa-wartoÅ›Ä‡ okreÅ›lajÄ…cych watroÅ›ci kolumn, ktÃ³re zostanÄ… zaktualizowane; parametry `$conditions` oraz `$params` sÄ… takie jak w metodzie [where|CDbCommand::where], ktÃ³ra opisuje klauzulÄ™ `WHERE` w instrukcji `UPDATE`. Metoda ta doda poprawnie cudzysÅ‚Ã³w do nazwy tabeli i uÅ¼yje wiÄ…zania parametrÃ³w dla wartoÅ›ci, ktÃ³re bÄ™dÄ… zaktualizowane.
 
-Poni¿ej znajduje siê kilka przyk³adów:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w:
 
 ~~~
 [php]
@@ -352,9 +352,9 @@ update('tbl_user', array('name'=>'Tester'), 'id=:id', array(':id'=>1))
 function delete($table, $conditions='', $params=array())
 ~~~
 
-Metoda [delete|CDbCommand::delete] okreœla instrukcjê SQL `DELETE`. Parametr `$table` definiuje, która tabela zostanie zaktualizowana; parametry `$conditions` oraz `$params` s¹ takie jak w metodzie [where|CDbCommand::where], która okreœla klauzulê `WHERE` w instrukcji `DELETE`. Metoda ta doda poprawnie cudzys³owy do nazwy tabeli.
+Metoda [delete|CDbCommand::delete] okreÅ›la instrukcjÄ™ SQL `DELETE`. Parametr `$table` definiuje, ktÃ³ra tabela zostanie zaktualizowana; parametry `$conditions` oraz `$params` sÄ… takie jak w metodzie [where|CDbCommand::where], ktÃ³ra okreÅ›la klauzulÄ™ `WHERE` w instrukcji `DELETE`. Metoda ta doda poprawnie cudzysÅ‚owy do nazwy tabeli.
 
-Poni¿ej znajduje siê kilka przyk³adów:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w:
 
 ~~~
 [php]
@@ -363,12 +363,12 @@ delete('tbl_user', 'id=:id', array(':id'=>1))
 ~~~
 
 
-Wykonywanie zapytañ
+Wykonywanie zapytaÅ„
 -----------------
 
-Po wywo³aniu powy¿szych metod konstruktora zapytañ, mo¿emy wywo³aæ metody DAO w celu wykonania zapytañ, tak jak zosta³o to opisane w [DAO](/doc/guide/database.dao). Na przyk³ad, wywo³ujemy metodê [CDbCommand::queryRow()] by uzyskaæ wiersz wyników, lub [CDbCommand::queryAll()] by zwróciæ wszystkie za jednym razem. Zwróæ uwagê na to, ¿e dla zpaytañ `INSERT`, `UPDATE` oraz `DELETE` musimy u¿yæ metody [CDbCommand::execute()] aby je wykonaæ.
+Po wywoÅ‚aniu powyÅ¼szych metod konstruktora zapytaÅ„, moÅ¼emy wywoÅ‚aÄ‡ metody DAO w celu wykonania zapytaÅ„, tak jak zostaÅ‚o to opisane w [DAO](/doc/guide/database.dao). Na przykÅ‚ad, wywoÅ‚ujemy metodÄ™ [CDbCommand::queryRow()] by uzyskaÄ‡ wiersz wynikÃ³w, lub [CDbCommand::queryAll()] by zwrÃ³ciÄ‡ wszystkie za jednym razem. ZwrÃ³Ä‡ uwagÄ™ na to, Å¼e dla zpaytaÅ„ `INSERT`, `UPDATE` oraz `DELETE` musimy uÅ¼yÄ‡ metody [CDbCommand::execute()] aby je wykonaÄ‡.
 
-Poni¿ej znajduje siê kilka przyk³adów:
+PoniÅ¼ej znajduje siÄ™ kilka przykÅ‚adÃ³w:
 
 ~~~
 [php]
@@ -388,7 +388,7 @@ Yii::app()->db->createCommand()
 Zwracanie SQLi
 ---------------
 
-Poza wykonywaniem zapytania skonstruowanego przy pomocy konstruktora zapytañ, mo¿emy róznie¿ zwróciæ odpowiadaj¹c¹ mu instrukcjê SQL. Osi¹gamy to poprzez wywo³anie metody [CDbCommand::getText()].
+Poza wykonywaniem zapytania skonstruowanego przy pomocy konstruktora zapytaÅ„, moÅ¼emy rÃ³znieÅ¼ zwrÃ³ciÄ‡ odpowiadajÄ…cÄ… mu instrukcjÄ™ SQL. OsiÄ…gamy to poprzez wywoÅ‚anie metody [CDbCommand::getText()].
 
 ~~~
 [php]
@@ -398,13 +398,13 @@ $sql = Yii::app()->db->createCommand()
 	->getText();
 ~~~
 
-Jeœli znajduj¹ siê w nim parametry, które bêd¹ zwi¹zane z zapytaniem, mo¿emy je zwrócic poprzez w³aœciwoœæ [CDbCommand::params].
+JeÅ›li znajdujÄ… siÄ™ w nim parametry, ktÃ³re bÄ™dÄ… zwiÄ…zane z zapytaniem, moÅ¼emy je zwrÃ³cic poprzez wÅ‚aÅ›ciwoÅ›Ä‡ [CDbCommand::params].
 
 
-Sk³adnia alternatywna
+SkÅ‚adnia alternatywna
 ------------------
 
-Czasami u¿ywanie ³añcucha metod w celu zbudowanie zapytania nie jest optymalnym rozwi¹zaniem. Konstruktor zapytañ Yii umo¿liwia utworzenie zapytania przy u¿yciu prostych przypisañ do w³aœciwoœci obiektu. W szczególnoœci, dla ka¿dej metody konstruktora istniej¹ odpowiadaj¹ce im w³aœciwoœci o takiej samej nazwie jak metoda. Przypisanie wartoœci do w³aœciwoœci jednoznaczne jest z wywo³aniem odpowiadaj¹cej jej metody. Na przyk³ad, nastêpuj¹ce dwa wyra¿enia s¹ równoznaczne, przy za³o¿eniu, ¿e `$command` reprezentuje obiekt [CDbCommand]:
+Czasami uÅ¼ywanie Å‚aÅ„cucha metod w celu zbudowanie zapytania nie jest optymalnym rozwiÄ…zaniem. Konstruktor zapytaÅ„ Yii umoÅ¼liwia utworzenie zapytania przy uÅ¼yciu prostych przypisaÅ„ do wÅ‚aÅ›ciwoÅ›ci obiektu. W szczegÃ³lnoÅ›ci, dla kaÅ¼dej metody konstruktora istniejÄ… odpowiadajÄ…ce im wÅ‚aÅ›ciwoÅ›ci o takiej samej nazwie jak metoda. Przypisanie wartoÅ›ci do wÅ‚aÅ›ciwoÅ›ci jednoznaczne jest z wywoÅ‚aniem odpowiadajÄ…cej jej metody. Na przykÅ‚ad, nastÄ™pujÄ…ce dwa wyraÅ¼enia sÄ… rÃ³wnoznaczne, przy zaÅ‚oÅ¼eniu, Å¼e `$command` reprezentuje obiekt [CDbCommand]:
 
 ~~~
 [php]
@@ -412,7 +412,7 @@ $command->select(array('id', 'username'));
 $command->select = array('id', 'username');
 ~~~
 
-Ponadto, metoda [CDbConnection::createCommand()] mo¿e wzi¹æ tablicê jako parametr. Pary nazwa-wartoœæ w tablicy zostan¹ u¿yte do zainicjalizowania w³aœciwoœci tworzonej instancji [CDbCommand]. Oznacza to, ¿e mo¿emy u¿ywaæ nastêpuj¹cego kodu w celu utworzenia zapytania:
+Ponadto, metoda [CDbConnection::createCommand()] moÅ¼e wziÄ…Ä‡ tablicÄ™ jako parametr. Pary nazwa-wartoÅ›Ä‡ w tablicy zostanÄ… uÅ¼yte do zainicjalizowania wÅ‚aÅ›ciwoÅ›ci tworzonej instancji [CDbCommand]. Oznacza to, Å¼e moÅ¼emy uÅ¼ywaÄ‡ nastÄ™pujÄ…cego kodu w celu utworzenia zapytania:
 
 ~~~
 [php]
