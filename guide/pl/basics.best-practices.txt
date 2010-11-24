@@ -1,84 +1,84 @@
 Najlepsze praktyki w MVC
 ==================
 
-Chocia¿ MVC (model-widok-kontroler) jest wzorcem znanym prawie przez ka¿dego programistê, sposób jego zastosowania w rzeczywistej aplikacji wci¹¿ umyka wielu ludziom. G³ówn¹ ide¹ MVC jest **"mo¿liwoœæ ponownego u¿ycia kodu oraz oddzielenie warstw"** (ang. code reusability and separation of concerns). W tej czêœci poradnika opiszemy kilka ogólnych wskazówk dotycz¹cych tego jak lepiej pod¹¿aæ ide¹ MVC podczas procesu tworzenia aplikacji.
+ChociaÅ¼ MVC (model-widok-kontroler) jest wzorcem znanym prawie przez kaÅ¼dego programistÄ™, sposÃ³b jego zastosowania w rzeczywistej aplikacji wciÄ…Å¼ umyka wielu ludziom. GÅ‚Ã³wnÄ… ideÄ… MVC jest **"moÅ¼liwoÅ›Ä‡ ponownego uÅ¼ycia kodu oraz oddzielenie warstw"** (ang. code reusability and separation of concerns). W tej czÄ™Å›ci poradnika opiszemy kilka ogÃ³lnych wskazÃ³wk dotyczÄ…cych tego jak lepiej podÄ…Å¼aÄ‡ ideÄ… MVC podczas procesu tworzenia aplikacji.
 
-Aby lepiej wyt³umaczyæ te wskazówki, za³ó¿my, ¿e aplikacja zawiera kilka podaplikacji, takich jak:
+Aby lepiej wytÅ‚umaczyÄ‡ te wskazÃ³wki, zaÅ‚Ã³Å¼my, Å¼e aplikacja zawiera kilka podaplikacji, takich jak:
 
-* front end: strona ukierunkowana na zwyk³ego u¿ytkownika;
-* back end: strona ukierunkowana na zarz¹dzanie aplikacj¹;
-* konsola (ang. console): sk³ada siê z poleceñ konsoli wywo³ywanych w oknie terminala lub te¿ jako zadanie crona wspieraj¹ce ca³¹ aplikacjê;
-* API sieciowe (ang. Web API): dostarcza interfejsów systemom zewnêtrznym (ang. third parties) w celu integracji z aplikacj¹. 
+* front end: strona ukierunkowana na zwykÅ‚ego uÅ¼ytkownika;
+* back end: strona ukierunkowana na zarzÄ…dzanie aplikacjÄ…;
+* konsola (ang. console): skÅ‚ada siÄ™ z poleceÅ„ konsoli wywoÅ‚ywanych w oknie terminala lub teÅ¼ jako zadanie crona wspierajÄ…ce caÅ‚Ä… aplikacjÄ™;
+* API sieciowe (ang. Web API): dostarcza interfejsÃ³w systemom zewnÄ™trznym (ang. third parties) w celu integracji z aplikacjÄ…. 
 
-Podaplikacje mog¹ byæ zaimplementowane jako [modu³y](/doc/guide/basics.module), lub te¿ jako aplikacje Yii, które wspó³dziel¹ pewien kod z innymi podaplikacjami. 
+Podaplikacje mogÄ… byÄ‡ zaimplementowane jako [moduÅ‚y](/doc/guide/basics.module), lub teÅ¼ jako aplikacje Yii, ktÃ³re wspÃ³Å‚dzielÄ… pewien kod z innymi podaplikacjami. 
 
 
 Model
 -----
 
-[Modele](/doc/guide/basics.model) stanowi¹ podstawow¹ strukturê danych aplikacji sieci sieciowej. Modele czêsto s¹ wspó³dzielone pomiêdzy ró¿nymi podaplikacjami aplikacji sieciowej. Na przyk³ad, model logowania do systemu `LoginForm` moze byæ u¿ywany zarówno w front endzie jak i back endzie aplikacji; zaœ model `News` mo¿eby byæ u¿ywany w konsoli poleceñ oraz w front/back endzie aplikacji. Dlatego te¿, modele
+[Modele](/doc/guide/basics.model) stanowiÄ… podstawowÄ… strukturÄ™ danych aplikacji sieci sieciowej. Modele czÄ™sto sÄ… wspÃ³Å‚dzielone pomiÄ™dzy rÃ³Å¼nymi podaplikacjami aplikacji sieciowej. Na przykÅ‚ad, model logowania do systemu `LoginForm` moze byÄ‡ uÅ¼ywany zarÃ³wno w front endzie jak i back endzie aplikacji; zaÅ› model `News` moÅ¼eby byÄ‡ uÅ¼ywany w konsoli poleceÅ„ oraz w front/back endzie aplikacji. Dlatego teÅ¼, modele
 
-* powinny zawieraæ w³aœciwoœci reprezentujace pewne dane;
+* powinny zawieraÄ‡ wÅ‚aÅ›ciwoÅ›ci reprezentujace pewne dane;
 
-* powinny zawieraæ logikê biznesow¹ (np. zasady sprawdzania poprawnoœci) w celu zapewnienia, i¿ reprezentowane dane spe³niaj¹ za³o¿enia projektowe;
+* powinny zawieraÄ‡ logikÄ™ biznesowÄ… (np. zasady sprawdzania poprawnoÅ›ci) w celu zapewnienia, iÅ¼ reprezentowane dane speÅ‚niajÄ… zaÅ‚oÅ¼enia projektowe;
 
-* mog¹ zawieraæ kod manipuluj¹cy danymi. Na przyk³ad model `SearchForm`, który poza reprezentowaniem danych wejœciowych s³u¿¹cych do wyszukiwania mo¿e zawieraæ metodê `search` implementuj¹c¹ aktualne wyszukiwanie.
+* mogÄ… zawieraÄ‡ kod manipulujÄ…cy danymi. Na przykÅ‚ad model `SearchForm`, ktÃ³ry poza reprezentowaniem danych wejÅ›ciowych sÅ‚uÅ¼Ä…cych do wyszukiwania moÅ¼e zawieraÄ‡ metodÄ™ `search` implementujÄ…cÄ… aktualne wyszukiwanie.
 
-Czasami stosowanie poprzednio przedstawionej zasady mo¿e spowodowaæ, ¿e nasz model bêdzie zbyt obszerny, gdy¿ bêdzie zawiera³ zbyt wiele kodu w jednej klasie. Mo¿e to spowodowaæ, ¿e modelem cie¿ko bêdzie zarz¹dzaæ jeœli zawiera on kod s³u¿¹cy ró¿nym celom. Na przyk³ad, model `News` mo¿e zawieraæ metodê o nazwie `getDeletedNews`, która jest u¿ywana jedynie przez back end.
-Dla wiêkszych aplikacji, nastêpuj¹ca strategia mo¿e zostaæ u¿yta w celu zwiêkszenia ³atwoœci zarz¹dzania modelami:
+Czasami stosowanie poprzednio przedstawionej zasady moÅ¼e spowodowaÄ‡, Å¼e nasz model bÄ™dzie zbyt obszerny, gdyÅ¼ bÄ™dzie zawieraÅ‚ zbyt wiele kodu w jednej klasie. MoÅ¼e to spowodowaÄ‡, Å¼e modelem cieÅ¼ko bÄ™dzie zarzÄ…dzaÄ‡ jeÅ›li zawiera on kod sÅ‚uÅ¼Ä…cy rÃ³Å¼nym celom. Na przykÅ‚ad, model `News` moÅ¼e zawieraÄ‡ metodÄ™ o nazwie `getDeletedNews`, ktÃ³ra jest uÅ¼ywana jedynie przez back end.
+Dla wiÄ™kszych aplikacji, nastÄ™pujÄ…ca strategia moÅ¼e zostaÄ‡ uÅ¼yta w celu zwiÄ™kszenia Å‚atwoÅ›ci zarzÄ…dzania modelami:
 
-* zdefiniuj now¹ klasê modelu `NewsBase`, która to zawiera kod wsó³dzielony przez ró¿ne podaplikacje (np. front end, back end);
+* zdefiniuj nowÄ… klasÄ™ modelu `NewsBase`, ktÃ³ra to zawiera kod wsÃ³Å‚dzielony przez rÃ³Å¼ne podaplikacje (np. front end, back end);
 
-* w ka¿dej podaplikacji, zdefiniuje model `News` poprzez rozszerzenie z `NewsBase`. Model `News` mo¿e wtedy zawieraæ kod charakterystyczny dla danej podaplikacji w której model ten siê znajduje.
+* w kaÅ¼dej podaplikacji, zdefiniuje model `News` poprzez rozszerzenie z `NewsBase`. Model `News` moÅ¼e wtedy zawieraÄ‡ kod charakterystyczny dla danej podaplikacji w ktÃ³rej model ten siÄ™ znajduje.
 
-Dla przedstawionego wczeœniej przyk³adu, u¿wanie tej strategi spowoduje, ¿e bêdziemy mieli model `News` dla front endu zawieraj¹cy jedynie metodê `getLatestNews` oraz inny model `News` w bak endzie, który zawieraæ bêdzie jedynie metodê `getDeleteNews`.
+Dla przedstawionego wczeÅ›niej przykÅ‚adu, uÅ¼wanie tej strategi spowoduje, Å¼e bÄ™dziemy mieli model `News` dla front endu zawierajÄ…cy jedynie metodÄ™ `getLatestNews` oraz inny model `News` w bak endzie, ktÃ³ry zawieraÄ‡ bÄ™dzie jedynie metodÄ™ `getDeleteNews`.
 
-Ogólnie rzecz bior¹c, modele nie powinny zawieraæ logiki, która bezpoœrednio ma do czynienia z u¿ytkownikiem koñcowym. Precyzuj¹c, modele:
+OgÃ³lnie rzecz biorÄ…c, modele nie powinny zawieraÄ‡ logiki, ktÃ³ra bezpoÅ›rednio ma do czynienia z uÅ¼ytkownikiem koÅ„cowym. PrecyzujÄ…c, modele:
 
-* nie powinien u¿ywaæ zmiennych `$_GET`, `$_POST`, lub innych tym podobnym zmienneych, które reprezentuj¹ ¿¹danie u¿ytkownika. Zapamiêtaj, ¿e model mo¿e zostaæ u¿yty przez zupe³nie inn¹ podaplikacjê (np. testy jednostkowe, WEB API), które to mog¹ nie u¿ywaæ tych zmiennych w celu reprezentacji ¿¹dania u¿ytkownika. Kontroler jest w tym przypadku najlepszym miejcem do zajêcia siê tymi zmiennymi
-* powinien unikaæ osadzania kodu HTML lub te¿ kod prezentacji. Poniewa¿ ten ostatni ro¿ni siê w zale¿noœci od zapotrzebowañ u¿ytkownika koñcowego. Lepiej w tym celu u¿ywaæ widoki. 
+* nie powinien uÅ¼ywaÄ‡ zmiennych `$_GET`, `$_POST`, lub innych tym podobnym zmienneych, ktÃ³re reprezentujÄ… Å¼Ä…danie uÅ¼ytkownika. ZapamiÄ™taj, Å¼e model moÅ¼e zostaÄ‡ uÅ¼yty przez zupeÅ‚nie innÄ… podaplikacjÄ™ (np. testy jednostkowe, WEB API), ktÃ³re to mogÄ… nie uÅ¼ywaÄ‡ tych zmiennych w celu reprezentacji Å¼Ä…dania uÅ¼ytkownika. Kontroler jest w tym przypadku najlepszym miejcem do zajÄ™cia siÄ™ tymi zmiennymi
+* powinien unikaÄ‡ osadzania kodu HTML lub teÅ¼ kod prezentacji. PoniewaÅ¼ ten ostatni roÅ¼ni siÄ™ w zaleÅ¼noÅ›ci od zapotrzebowaÅ„ uÅ¼ytkownika koÅ„cowego. Lepiej w tym celu uÅ¼ywaÄ‡ widoki. 
 
 
 Widok
 ----
 
-[Widoki](/doc/guide/basics.view) s¹ odpowiedzialne za reprezentowanie modeli w formacie po¿¹danym przez u¿ytkowników koñcowych. Ogólnie rzecz bior¹c widoki:
+[Widoki](/doc/guide/basics.view) sÄ… odpowiedzialne za reprezentowanie modeli w formacie poÅ¼Ä…danym przez uÅ¼ytkownikÃ³w koÅ„cowych. OgÃ³lnie rzecz biorÄ…c widoki:
 
-* powinny zawieraæ przede wszystkim kod prezentacyjny, taki jak HTML, prosty kod PHP przegl¹daj¹cy, formatuj¹cy i wyœwietlaj¹cy dane;
+* powinny zawieraÄ‡ przede wszystkim kod prezentacyjny, taki jak HTML, prosty kod PHP przeglÄ…dajÄ…cy, formatujÄ…cy i wyÅ›wietlajÄ…cy dane;
 
-* powinny unikaæ zawierania kodu, który wywo³uje bezpoœrednio zapytania bazodanowe. Taki kod lepiej jest umieœciæ w modelach.
+* powinny unikaÄ‡ zawierania kodu, ktÃ³ry wywoÅ‚uje bezpoÅ›rednio zapytania bazodanowe. Taki kod lepiej jest umieÅ›ciÄ‡ w modelach.
 
-* powinny unikaæ bezpoœredniego u¿ywania `$_GET`, `$_POST` lub innych podobnych zmiennych, które reprezentuj¹ ¿¹danie u¿ytkownika koñcowego. Tak jak modele, widoki powinny byæ na tyle "g³upie" by nie przejnowaæ pracy wykonywanej przez kontroler.
+* powinny unikaÄ‡ bezpoÅ›redniego uÅ¼ywania `$_GET`, `$_POST` lub innych podobnych zmiennych, ktÃ³re reprezentujÄ… Å¼Ä…danie uÅ¼ytkownika koÅ„cowego. Tak jak modele, widoki powinny byÄ‡ na tyle "gÅ‚upie" by nie przejnowaÄ‡ pracy wykonywanej przez kontroler.
 
-* mog¹ mieæ bezpoœredni dostêp do w³aœciwoœci i metod kontrolera oraz modeli. Jednak¿e, powinien on byæ wykorzystywany jedynie w celach prezentacyjnych.
+* mogÄ… mieÄ‡ bezpoÅ›redni dostÄ™p do wÅ‚aÅ›ciwoÅ›ci i metod kontrolera oraz modeli. JednakÅ¼e, powinien on byÄ‡ wykorzystywany jedynie w celach prezentacyjnych.
 
 
-Widoki mog¹ byæ wielokrotnie u¿ywane na ró¿norakie sposoby:
+Widoki mogÄ… byÄ‡ wielokrotnie uÅ¼ywane na rÃ³Å¼norakie sposoby:
 
-* uk³ady: wspólne obszary prezentacji (np. nag³ówek strony, stopka) mog¹ zostaæ umieszczone w widoku uk³adu.
+* ukÅ‚ady: wspÃ³lne obszary prezentacji (np. nagÅ‚Ã³wek strony, stopka) mogÄ… zostaÄ‡ umieszczone w widoku ukÅ‚adu.
 
-* czêœciowe widoki: u¿ywaj czêœciowych widoków (widoki które nie s¹ udekorowane przez uk³ady) w celu ponownego wykorzystania kodu prezentacyjnego. Na przyk³ad, w Gii u¿ywamy czêœciowego widoku `_form.php` do wygenerowania formularza do wprowadzania danych zarówno dla stron tworz¹cych jak i aktualizuj¹cych model.
+* czÄ™Å›ciowe widoki: uÅ¼ywaj czÄ™Å›ciowych widokÃ³w (widoki ktÃ³re nie sÄ… udekorowane przez ukÅ‚ady) w celu ponownego wykorzystania kodu prezentacyjnego. Na przykÅ‚ad, w Gii uÅ¼ywamy czÄ™Å›ciowego widoku `_form.php` do wygenerowania formularza do wprowadzania danych zarÃ³wno dla stron tworzÄ…cych jak i aktualizujÄ…cych model.
 
-* wid¿ety: jeœli do zaprezentowania czêœciowego widoku potrzeba du¿ej iloœci logiki, widok czêœciowy mo¿e zostaæ zamieniony w wid¿et, w którym to plik z jego klas¹ jest najlepszym miejscem na zawarcie tej logiki. Dla wid¿etów, które generuj¹ wiele znaczników HTML, lepiej sprawuj¹ siê pliki widoków przechowywuj¹ce te znaczniki
+* widÅ¼ety: jeÅ›li do zaprezentowania czÄ™Å›ciowego widoku potrzeba duÅ¼ej iloÅ›ci logiki, widok czÄ™Å›ciowy moÅ¼e zostaÄ‡ zamieniony w widÅ¼et, w ktÃ³rym to plik z jego klasÄ… jest najlepszym miejscem na zawarcie tej logiki. Dla widÅ¼etÃ³w, ktÃ³re generujÄ… wiele znacznikÃ³w HTML, lepiej sprawujÄ… siÄ™ pliki widokÃ³w przechowywujÄ…ce te znaczniki
 
-* klasy pomocnicze: w widokach czêsto istnieje zapotrzebowanie na pewne fragmenty kodu wykonuj¹ce drobne zadania, takie jak formatowanie danych, generowanie tagów HTML. Fragmenty te najlepiek zaimplementowaæ w postaci klas pomocniczych. Na przyk³ad Yii zawiera potê¿n¹ klasê pomocnicz¹ [CHtml], która potrafi utworzyæ powszechnie u¿ywany kod HTML. Klasy pomocnicze mo¿na umieœciæ w [automatycznie ³adowanych katalogach](/doc/guide/basics.namespace), w taki sposób, ¿e nie bêd¹ one wymaga³y jawnego do³¹czania w przypadku ich u¿ywania.
+* klasy pomocnicze: w widokach czÄ™sto istnieje zapotrzebowanie na pewne fragmenty kodu wykonujÄ…ce drobne zadania, takie jak formatowanie danych, generowanie tagÃ³w HTML. Fragmenty te najlepiek zaimplementowaÄ‡ w postaci klas pomocniczych. Na przykÅ‚ad Yii zawiera potÄ™Å¼nÄ… klasÄ™ pomocniczÄ… [CHtml], ktÃ³ra potrafi utworzyÄ‡ powszechnie uÅ¼ywany kod HTML. Klasy pomocnicze moÅ¼na umieÅ›ciÄ‡ w [automatycznie Å‚adowanych katalogach](/doc/guide/basics.namespace), w taki sposÃ³b, Å¼e nie bÄ™dÄ… one wymagaÅ‚y jawnego doÅ‚Ä…czania w przypadku ich uÅ¼ywania.
 
 
 Kontroler
 ----------
 
-[Kontrolery](/doc/guide/basics.controller) s¹ klejem ³¹cz¹cym modele, widoki oraz inne komponenty w dzia³aj¹c¹ aplikacjê. Kontrolery dzia³aj¹ bezpoœrednio na pograniczu ¿¹dañ u¿ytkownika koñcowego. Dlatego te¿ kontrolery:
+[Kontrolery](/doc/guide/basics.controller) sÄ… klejem Å‚Ä…czÄ…cym modele, widoki oraz inne komponenty w dziaÅ‚ajÄ…cÄ… aplikacjÄ™. Kontrolery dziaÅ‚ajÄ… bezpoÅ›rednio na pograniczu Å¼Ä…daÅ„ uÅ¼ytkownika koÅ„cowego. Dlatego teÅ¼ kontrolery:
 
-* mog¹ posiadaæ dostêp do `$_GET`, `$_POST` oraz innych zmiennych PHP które reprezentuj¹ ¿¹danie u¿ytkownika;
+* mogÄ… posiadaÄ‡ dostÄ™p do `$_GET`, `$_POST` oraz innych zmiennych PHP ktÃ³re reprezentujÄ… Å¼Ä…danie uÅ¼ytkownika;
 
-* mog¹ tworzyæ instancje modeli oraz zarz¹dzaæ ich cyklem ¿ycia. Na przyk³ad, w typowym u¿yciu akcji update (aktualizacji), kontroler mo¿e najpierw utworzyæ instancjê modelu; nastêpnie wype³niæ j¹ danymi pochodz¹cymi z danych wype³nionych przez u¿ytkownika i przekazanych przez zmienn¹ `$_POST`; na koniec, po prawid³owym zapisaniu modelu, kontroler mo¿e przekierowaæ przegl¹darkê u¿ytkownika do strony wyœwietlaj¹cej szczegó³y modelu. Zauwa¿, ¿e aktualna implementacja zapisywania modelu powinny znajdowaæ siê w modelu a nie w kontrolerze.
+* mogÄ… tworzyÄ‡ instancje modeli oraz zarzÄ…dzaÄ‡ ich cyklem Å¼ycia. Na przykÅ‚ad, w typowym uÅ¼yciu akcji update (aktualizacji), kontroler moÅ¼e najpierw utworzyÄ‡ instancjÄ™ modelu; nastÄ™pnie wypeÅ‚niÄ‡ jÄ… danymi pochodzÄ…cymi z danych wypeÅ‚nionych przez uÅ¼ytkownika i przekazanych przez zmiennÄ… `$_POST`; na koniec, po prawidÅ‚owym zapisaniu modelu, kontroler moÅ¼e przekierowaÄ‡ przeglÄ…darkÄ™ uÅ¼ytkownika do strony wyÅ›wietlajÄ…cej szczegÃ³Å‚y modelu. ZauwaÅ¼, Å¼e aktualna implementacja zapisywania modelu powinny znajdowaÄ‡ siÄ™ w modelu a nie w kontrolerze.
 
-* powinny unikaæ osadzania instrukcji SQL, które lepiej trzymaæ w modelu.
+* powinny unikaÄ‡ osadzania instrukcji SQL, ktÃ³re lepiej trzymaÄ‡ w modelu.
 
-* powinny unikaæ osadzania HTML-a i innych znaczników reprezentacyjnych, które lepiej przechowywaæ w widokach.
+* powinny unikaÄ‡ osadzania HTML-a i innych znacznikÃ³w reprezentacyjnych, ktÃ³re lepiej przechowywaÄ‡ w widokach.
 
 
-W dobrze zaprojektowanej aplikacji MVC, kontrolery s¹ czêsto bardzo ma³e, zawieraj¹ prawdopodobnie jedynie kilkadziesi¹t linijek kodu zaœ modele s¹ bardzo du¿e, zawieraj¹ du¿o kodu reprezentuj¹cego i manipuluj¹cego danymi. Dzieje siê tak poniewa¿ struktura i logika biznesowa reprezetnowana przez modele ró¿ni znacznie w zale¿noœci od aplikacji i musi byæ napisana œwie¿o podczas gdy logika kontrolera czêsto wynika z podobnych wzorców, które mog¹ zostaæ uproszczone poprzez u¿ywany framework czy te¿ klasy bazowe.
+W dobrze zaprojektowanej aplikacji MVC, kontrolery sÄ… czÄ™sto bardzo maÅ‚e, zawierajÄ… prawdopodobnie jedynie kilkadziesiÄ…t linijek kodu zaÅ› modele sÄ… bardzo duÅ¼e, zawierajÄ… duÅ¼o kodu reprezentujÄ…cego i manipulujÄ…cego danymi. Dzieje siÄ™ tak poniewaÅ¼ struktura i logika biznesowa reprezetnowana przez modele rÃ³Å¼ni znacznie w zaleÅ¼noÅ›ci od aplikacji i musi byÄ‡ napisana Å›wieÅ¼o podczas gdy logika kontrolera czÄ™sto wynika z podobnych wzorcÃ³w, ktÃ³re mogÄ… zostaÄ‡ uproszczone poprzez uÅ¼ywany framework czy teÅ¼ klasy bazowe.
 
 
 <div class="revision">$Id: basics.best-practices.txt 2672 2010-11-22 19:13:16Z qiang.xue $</div>
