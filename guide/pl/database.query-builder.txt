@@ -424,4 +424,4 @@ $row = Yii::app()->db->createCommand(array(
 ))->queryRow();
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2666 2010-11-17 19:56:48Z qiang.xue $</div>	
+<div class="revision">$Id: database.query-builder.txt 2666 2010-11-17 19:56:48Z qiang.xue $</div>
