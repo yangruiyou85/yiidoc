@@ -51,15 +51,15 @@ Aturan-aturan yang dideklarasikan method `rules()` dijalankan satu per satu keti
 
 > Note|Catatan: Sangat penting untuk diingat bahwa atribut-atribut yang muncul di `rules()` harus dimasukan oleh end user. Atribut lain, seperti `id` dan `create_time` di dalam model `Post`, yang akan diset oleh kode kita atau database, tidak seharusnya muncul di `rules()`. Untuk lebih detail, silahkan merujuk ke [Pengamanan Assignment Atribut](http://www.yiiframework.com/doc/guide/form.model#securing-attribute-assignments).
 
-After making these changes, we can visit the post creation page again to verify that the new validation rules are taking effect.
+Setelah melakukan perubahan-perubahan, kita dapat mengunjungi halaman pembuatan post untuk memastikan bahwa aturan validasi yang baru berjalan.
 
 
-Customizing `relations()` Method
+Kustomisasi Metode `relations()`
 --------------------------------
 
-Lastly we customize the `relations()` method to specify the related objects of a post. By declaring these related objects in `relations()`, we can exploit the powerful [Relational ActiveRecord (RAR)](http://www.yiiframework.com/doc/guide/database.arr) feature to access the related object information of a post, such as its author and comments, without the need to write complex SQL JOIN statements.
+Terakhir kita mengutak metode `relations()` untuk menetapkan objek yang berkaitan pada sebuah post. Dengan mendeklarasikan objek yang terkait di dalam `relations()`, kita dapat memanfaatkan kemampuan fitur [Relational ActiveRecord (RAR)](http://www.yiiframework.com/doc/guide/database.arr) untuk mengakses informasi objek yang berhubungan dengan post, misalnya pengarang (author) dan komentar (comment), tanpa perlu menulis statement SQL JOIN yang kompleks.
 
-We customize the `relations()` method as follows:
+Kita mengatur metode `relations()` dengan cara ini:
 
 ~~~
 [php]
@@ -76,7 +76,7 @@ public function relations()
 }
 ~~~
 
-We also introduce in the `Comment` model class two constants that are used in the above method:
+Kita juga memperkenalkan dua konstan pada kelas model `Comment` yang digunakan di dalam metode di atas:
 
 ~~~
 [php]
@@ -88,14 +88,14 @@ class Comment extends CActiveRecord
 }
 ~~~
 
-The relations declared in `relations()` state that
+Relasi yang dideklarasi di dalam status `relations()` bahwa
 
- * A post belongs to an author whose class is `User` and the relationship is established based on the `author_id` attribute value of the post;
- * A post has many comments whose class is `Comment` and the relationship is established based on the `post_id` attribute value of the comments. These comments should be sorted according to their creation time and the comments must be approved.
- * The `commentCount` relation is a bit special as it returns back an aggregation result which is about how many comments the post has.
+ * Sebuah post merupakan kepunyaan dari pengarang (author) yang kelasnya adalah `User` dan relasi dibuat berdasarkan nilai atribut `author_id` dari sebuah post;
+ * Sebuah post bisa memiliki banyak komentar yang kelasnya adalah `Comment` dan relasi yang dibuat berdasarkan nilai atribut `post_id` pada komentar. Komentar-komentar ini akan diusun berdasarkan waktu pembuatan dan komentar-komentar harus disetujui.
+ * Relasi `commentCount` agak spesial karena mengembalikan hasil agregat yakni berapa banyak komentar yang dimiliki oleh post.
 
 
-With the above relation declaration, we can easily access the author and comments of a post like the following:
+Dengan deklarasi relasi di atas, kita dapat dengan gampang mengakses nama pengarang dan komentar seperti berikut :
 
 ~~~
 [php]
@@ -107,15 +107,15 @@ foreach($comments as $comment)
 	echo $comment->content;
 ~~~
 
-For more details about how to declare and use relations, please refer to [the Guide](http://www.yiiframework.com/doc/guide/database.arr).
+Untuk informasi lebih lengkap bagaimana mendeklarasi dan menggunakan relasi, silahkan merujuk ke [Guide](http://www.yiiframework.com/doc/guide/database.arr).
 
 
-Adding `url` Property
+Menambah Properti `url`
 ---------------------
 
-A post is a content that is associated with a unique URL for viewing it. Instead of calling [CWebApplication::createUrl] everywhere in our code to get this URL, we may add a `url` property in the `Post` model so that the same piece of URL creation code can be reused. Later when we describe how beautify URLs, we will see adding this property will bring us great convenience.
+Sebuah post adalah konten yang berasosiasi dengan URL unik untuk menampilkan. Alih-alih memanggil [CWebApplication::createUrl] di mana-mana, dengan mengambil URL ini, kita boleh menambah sebuah properti `url` di dalam model `Post` sehingga kode pembuatan URL yang sama dapat dipakai ulang. Kemudian ketika kita melihat bagaimana mempercantik URL, kita akan melihat bagaimana menambah properti ini akan meningkatkan kenyamanan.
 
-To add the `url` property, we modify the `Post` class by adding a getter method like the following:
+Untuk menambah properti `url`, kita memodifikasi kelas `Post` dengan menambah sebuah fungsi getter berikut:
 
 ~~~
 [php]
@@ -131,17 +131,17 @@ class Post extends CActiveRecord
 }
 ~~~
 
-Note that in addition to the post ID, we also add the post title as a GET parameter in the URL. This is mainly for search engine optimization (SEO) purpose, as we will describe in [Beautifying URLs](/doc/blog/final.url).
+Harap dicatat bahwa sebagai tambahan pada ID post, kita juga dapat menambah judul post sebagai parameter GET di dalam URL. Tujuannya adalah untuk search engine optimization (SEO), seperti yang kita jelaskan pada [Mempercantik URL](/doc/blog/final.url).
 
-Because [CComponent] is the ultimate ancestor class of `Post`, adding the getter method `getUrl()` enables us to use the expression like `$post->url`. When we access `$post->url`, the getter method will be executed and its result is returned as the expression value. For more details about such component features, please refer to [the guide](/doc/guide/basics.component).
+Karena [CComponent] adalah kelas induk tertinggi dari kelas `Post`, menambah fungsi getter `getUrl()` memungkinkan kita untuk menggunakan ekspresi seperti `$post->url`. Ketika kita mengakses `$post->url`, metode getter akan dieksekusi dan hasilnya akan dikembalikan sebagai nilai ekspresi. Untuk informasi lebih lengkap mengenai fitur component ini, silahkan mengacu ke [Guide](/doc/guide/basics.component).
 
 
-Representing Status in Text
+Mewakili Status dalam Teks
 ---------------------------
 
-Because the status of a post is stored as an integer in the database, we need to provide a textual representation so that it is more intuitive when being displayed to end users. In a large system, the similar requirement is very common.
+Karena status sebuah post disimpan dalam database sebagai integer, kita perlu menyediakan teks yang diwakili sehingga lebih intuitif ketika ditampilkan kepada end user. Pada sistem yang besar, keperluan seperti ini sangatlah umum.
 
-As a generic solution, we use the `tbl_lookup` table to store the mapping between integer values and textual representations that are needed by other data objects. We modify the `Lookup` model class as follows to more easily access the textual data in the table,
+Sebagai solusi yang umum, kita menggunakan tabel `tbl_lookup` untuk menyimpan pemetaan antara nilai integer dan teks yang diwakili diperlukan oleh objek data lain . Kita modifikasikan kelas model `Lookup`, supaya lebih gampang mengakses data teks dalam tabel, menjadi berikut,
 
 ~~~
 [php]
@@ -177,11 +177,11 @@ class Lookup extends CActiveRecord
 }
 ~~~
 
-Our new code mainly provides two static methods: `Lookup::items()` and `Lookup::item()`. The former returns a list of strings belonging to the specified data type, while the latter returns a particular string for the given data type and data value.
+Kode baru kita utamanya menyediakan dua metode statik: `Lookup::items()` dan `Lookup::item()`. Yang pertama mengembalikan sebuah daftar string kepunyaan tipe data tertentu, sedangkan yang kedua mengembalikan sebuah string tertentu sesuai tipe data dan nilai data yang diberikan.
 
-Our blog database is pre-populated with two lookup types: `PostStatus` and `CommentStatus`. The former refers to the possible post statuses, while the latter the comment statuses.
+Pada awal-awal, database blog kita sudah dipopulasikan dengan dua tipe lookup : `PostStatus` dan `CommentStatus`. Yang pertama merujuk ke status post, sedangkan yang kedua merujuk ke status komentar.
 
-In order to make our code easier to read, we also declare a set of constants to represent the status integer values. We should use these constants through our code when referring to the corresponding status values.
+Dalam rangka membuat kode kita lebih gampang di baca, kita juga mendeklarasikan sebuah set konstan yang mewakili nilai integer status. Kita harus menggunakan konstan ini sepanjang kode kita ketika ingin merujuk ke nilai status yang terkait.
 
 ~~~
 [php]
@@ -194,7 +194,7 @@ class Post extends CActiveRecord
 }
 ~~~
 
-Therefore, we can call `Lookup::items('PostStatus')` to get the list of possible post statuses (text strings indexed by the corresponding integer values), and call `Lookup::item('PostStatus', Post::STATUS_PUBLISHED)` to get the string representation of the published status.
+Oleh karena itu, kita dapat memanggil `Lookup::items('PostStatus')` untuk mendapatkan daftar dari status post yang memungkinkan (string teks diindeks berdasarkan nilai integer yang bersangkutan), dan memanggil `Lookup::item('PostStatus', Post::STATUS_PUBLISHED)` untuk mendapatkan teks yang mewakili nilai status yang dipublikasi.
 
 
 <div class="revision">$Id: post.model.txt 2119 2010-05-10 01:27:29Z qiang.xue $</div>
