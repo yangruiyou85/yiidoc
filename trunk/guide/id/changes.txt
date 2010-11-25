@@ -52,7 +52,7 @@ Versi 1.1.0
 
 * [Menambah dukungan penggunaan prefiks pada nama tabel](/doc/guide/database.dao#using-table-prefix)
 
-* Menambah seluruh set ekstensi baru yang dikenal dengan [pustaka Zii](http://code.google.com/p/zii/).
+* Menambah seluruh set extension baru yang dikenal dengan [pustaka Zii](http://code.google.com/p/zii/).
 
 * Nama alias untuk tabel utama dalam sebuah query AR ditetapkan sebagai 't'
 
@@ -78,8 +78,8 @@ Versi 1.0.8
 	 - [Cache Data](/doc/guide/caching.data)
 
  * Diperkenalkan standar alias path root `ext` baru yang merujuk ke direktori
-yang berisi semua ekstensi pihak ketiga.
-	 - [Menggunakan Ekstensi](/doc/guide/extension.use)
+yang berisi semua extension pihak ketiga.
+	 - [Menggunakan Extension](/doc/guide/extension.use)
 
 Versi 1.0.7
 -----------
