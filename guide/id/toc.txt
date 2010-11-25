@@ -42,8 +42,8 @@
 
 * Memperluas Yii
     - [Tinjauan](extension.overview)
-    - [Menggunakan Ekstensi](extension.use)
-    - [Membuat Ekstensi](extension.create)
+    - [Menggunakan Extension](extension.use)
+    - [Membuat Extension](extension.create)
     - [Menggunakan Librari Pihak Ketiga](extension.integration)
 
 * Uji Coba

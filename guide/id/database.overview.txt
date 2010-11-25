@@ -2,7 +2,7 @@ Bekerja dengan Database
 =======================
 
 Yii menyediakan dukungan bertenaga untuk pemrograman database. Dibangun di atas
-ekstensi PHP Data Objects (PDO), Yii Data Access Objects (DAO) mengijinkan
+extension PHP Data Objects (PDO), Yii Data Access Objects (DAO) mengijinkan
 pengaksesan ke manajemen database (DBMS) berbeda dalam satu antar muka
 tunggal yang sama. Aplikasi yang dikembangkan menggunakan Yii DAO dapat dialihkan
 dengan mudah untuk menggunakan DBMS berbeda tanpa perlu memodifikasi kode

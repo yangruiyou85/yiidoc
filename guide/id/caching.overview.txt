@@ -29,17 +29,17 @@ array(
 Ketika aplikasi berjalan, komponen tembolok dapat diakses melalui `Yii::app()->cache`.
 
 Yii menyediakan berbagai komponen tembolok yang dapat menyimpan data tembolok dalam
-berbagai media. Misalnya, komponen [CMemCache] mengenkapsulasi ekstensi
+berbagai media. Misalnya, komponen [CMemCache] mengenkapsulasi extension
 PHP memcache dan menggunakan memori sebagai media penyimpanan tembolok; komponen
-[CApcCache] mengenkapsulasi ekstensi PHP APC; dan komponen
+[CApcCache] mengenkapsulasi extension PHP APC; dan komponen
 [CDbCache] menyimpan data tembolok di dalam database. Berikut ini adalah
 komponen-komponen cache yang tersedia:
 
-   - [CMemCache]: menggunakan [ekstensi memcache](http://www.php.net/manual/en/book.memcache.php) PHP.
+   - [CMemCache]: menggunakan [extension memcache](http://www.php.net/manual/en/book.memcache.php) PHP.
 
-   - [CApcCache]: menggunakan [ekstensi APC](http://www.php.net/manual/en/book.apc.php) PHP.
+   - [CApcCache]: menggunakan [extension APC](http://www.php.net/manual/en/book.apc.php) PHP.
 
-   - [CXCache]: menggunakan [ekstensi XCache](http://xcache.lighttpd.net/) PHP.
+   - [CXCache]: menggunakan [extension XCache](http://xcache.lighttpd.net/) PHP.
 Catatan, [CXCache] sudah tersedia sejak versi 1.0.1.
 
    - [CEAcceleratorCache]: menggunakan PHP [EAccelerator extension](http://eaccelerator.net/).
