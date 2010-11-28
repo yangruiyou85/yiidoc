@@ -15,6 +15,7 @@ Member List of Yiidoc Project
   active  Idonesian           Kabayan             ade999                      Yes
   active  Idonesian           junxiong            garry3peace
   active  Italian             ilzale              francesco.salerno@mac.com
+  active  Italian             lorenzomar          marzullo.lorenzo@gmail.com
   active  Japanese            iwasaki             iwasaki@cresc.com
   active  Japanese            mocapapa            mocapapa@g.pugpug.org       Yes
   active  Japanese            shuwatto            shuwatto
