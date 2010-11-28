@@ -1,7 +1,7 @@
-Konstrukto zapytań
+Konstruktor zapytań
 =============
 
-Konstruktor zapytań w Yii umożliwia zorientowane obiektowo pisanie zapytań SQL. Daje to programiście możliwość używania właściwości i metod klasy w celu określenia poszczególnych części zapytania SQL. W ten sposób dołącza te różne części do poprawnego zapytania SQL, które może zostać później wywołane poprzez metody DAO opisane w [obiekcie dostępu do bazy danych (DAO)](/doc/guide/database.dao). Następujący kod pokazuje typowe użycie konstruktora zapytań:
+Konstruktor zapytań w Yii umożliwia zorientowane obiektowo pisanie zapytań SQL. Daje to programiście możliwość używania właściwości i metod klasy w celu określenia poszczególnych części zapytania SQL. W ten sposób dołącza te różne części do poprawnego zapytania SQL, które może zostać później wywołane poprzez metody DAO opisane w [obiekcie dostępu do bazy danych (DAO)](/doc/guide/database.dao). Następujący kod pokazuje typowe użycie konstruktora zapytań tworzące zapytanie SELECT w SQL-u:
 
 ~~~
 [php]
@@ -45,10 +45,27 @@ Oznacza to, że używamy `Yii::app()->db` w celu uzyskania połączenia z bazą 
 Zauważ, że zamiast przekazywania całej instrukcji SQL do wywołania `createCommand()` tak jak robiliśmy to w [DAO](/doc/guide/database.dao), pozostawiamy je puste. Dzieje się tak, dlatego, że będziemy tworzyć pojedynczo poszczególne części instrukcji SQL używając metod konstruktora zapytań, które opiszemy w dalszej części.
 
 
-Tworzenie zapytań
+Tworzenie zapytań zwracających dane
 ----------------
 
-Tworzenie zapytań SQL obejmuje wywoływanie różnych metod konstruktora zapytań w celu utworzenia poszczególnych części tego zapytania. Ponieważ wszystkie te metody zwracają instancję [CDbCommand], możemy wywoływać je łąńcuchowo, tak jak pokazano to w poprzednim przykładzie.
+Zapytania zwracające dane odnoszą się do instrukcji SELECT w SQL-u. Konstruktor zapytań dostarcza zbioru metod tworzących poszczególne części instrukcji SELECT. Ponieważ wszystkie te metody zwracają instancję [CDbCommand], możemy wywoływać je łąńcuchowo, tak jak pokazano to w przykładzie na początku tego rozdziału.
+
+* [select|CDbCommand::select]: definiuje część SELECT zapytania
+* [selectDistinct|CDbCommand::selectDistinct]: definiuje część SELECT zapytania i zwraca flagę DISTINCT
+* [from|CDbCommand::from]: definiuje część FROM zapytania
+* [where|CDbCommand::where]: definiuje część WHERE zapytania
+* [join|CDbCommand::join]: dołącza fragment zapytania inner join 
+* [leftJoin|CDbCommand::leftJoin]: dołącza fragment zapytania outer join 
+* [rightJoin|CDbCommand::rightJoin]: dołącza fragment zapytania right inner join 
+* [crossJoin|CDbCommand::crossJoin]: dołącza fragment zapytania cross join 
+* [naturalJoin|CDbCommand::naturalJoin]: dołącza fragment zapytania natural join 
+* [group|CDbCommand::group]: definiuje część GROUP BY zapytania
+* [having|CDbCommand::having]: definiuje część HAVING zapytania
+* [order|CDbCommand::order]: definiuje część ORDER BY zapytania
+* [limit|CDbCommand::limit]: definiuje część LIMIT zapytania
+* [offset|CDbCommand::offset]: definiuje część OFFSET zapytania
+* [union|CDbCommand::union]: dołącza fragment zapytania UNION 
+
 
 W dalszej części, wyjaśnimi jak używać tych metod kreatora zapytań. Zakładamy, że używamy MySQL. Zauważ, że jeśli używasz innego DBMS, dołączanie cudzysłowów do tabel/kolumn/wartości może się różnić od tego z przykładów.
 
@@ -186,7 +203,8 @@ where(array('or not like', 'name', array('Qiang', 'Xue')))
 function order($columns)
 ~~~
 
-Metoda [order|CDbCommand::order] określa część `ORDER BY` zapytania. Parametr `$columns` definiuje kolumny, po których będziemy sortować. Może on być zarówno łańcuchem reprezentującym rozdzielone przecinkiem kolumny i kierunki sortowania (`ASC` or `DESC`) lub tablicą kolumn i kierunków sortowania. Nazwy kolumn mogą zawierać prefiksy tabeli. Metoda automatycznie doda cudzysłowy do nazwy kolumn chyba, że kolumna zawiera nawiasy (co oznacze, że kolumna jest wyrażeniem bazodanowym).
+Metoda [order|CDbCommand::order] określa część `ORDER BY` zapytania. 
+Parametr `$columns` definiuje kolumny, po których będziemy sortować. Może on być zarówno łańcuchem reprezentującym rozdzielone przecinkiem kolumny i kierunki sortowania (`ASC` or `DESC`) lub tablicą kolumn i kierunków sortowania. Nazwy kolumn mogą zawierać prefiksy tabeli. Metoda automatycznie doda cudzysłowy do nazwy kolumn chyba, że kolumna zawiera nawiasy (co oznacze, że kolumna jest wyrażeniem bazodanowym).
 
 Poniżej znajduje się kilka przykładów:
 
@@ -307,6 +325,71 @@ union('select * from tbl_profile')
 ~~~
 
 
+### Wykonywanie zapytań
+
+Po wywołaniu powyższych metod konstruktora zapytań tworzących zapytanie, możemy wywołać metody DAO, tak jak je opisano w [DAO](/doc/guide/database.dao) celem wykonania zapytania. Na przykład, możemy wywołać metodę [CDbCommand::queryRow()] aby zwrócić wiersz rezultatu lub też metodę [CDbCommand::queryAll()] aby otrzymać wszystkie wiersze naraz.
+Poniżej znajduje się kilka przykładów:
+
+~~~
+[php]
+$users = Yii::app()->db->createCommand()
+	->select('*')
+	->from('tbl_user')
+	->queryAll();
+~~~
+
+
+### Zwracanie SQLi
+
+Poza zwracaniem zapytań utworzonych przez konstruktora zapytań, możemy zwracać również odpowiadające in instrukcje SQL dzięki wywołaniu metody [CDbCommand::getText()].
+
+~~~
+[php]
+$sql = Yii::app()->db->createCommand()
+	->select('*')
+	->from('tbl_user')
+	->getText();
+~~~
+
+Jeśli posiadamy jakiekolwiek parametry, które powinny zostać powiązane z zapytaniem, mogą one zostać zwrócone przez właściwość [CDbCommand::params].
+
+
+### Alternatywna składnia tworzenia zapytań
+
+Czasami, tworzenie łańcucha metod w celu utworzenia zapytania może nie być optymalnym wyborem. Kreator zapytań pozwala tworzyć zapytanie poprzez proste przypiania do właściwości obiektu. W szczególności, dla każdej metody konstruktora zapyta istnieje odpowiadająca jej właściwość o tej samej nazwie. Przypisanie wartości do tej właściwości jest jednoznaczne z wywołaniem odpowiadającej tej właściwości metody. Na przykład, następujące dwie instrukcje są równoznaczne, przy założeniu, że zmienna `$command` reprezentuje obiekt [CDbCommand]:
+
+~~~
+[php]
+$command->select(array('id', 'username'));
+$command->select = array('id', 'username');
+~~~
+
+Ponadto, do metody [CDbConnection::createCommand()] możemy przekazać parametr w postaci tablicy. Pary nazwa-wartość w tablicy będą użyte w celu zainicjalizowania właściwości tworzonej instancji [CDbCommand]. Oznacza to, że możemy używać następującego kodu celem utworzenia zapytania:
+
+~~~
+[php]
+$row = Yii::app()->db->createCommand(array(
+	'select' => array('id', 'username'),
+	'from' => 'tbl_user',
+	'where' => 'id=:id',
+	'params' => array(':id'=>1),
+))->queryRow();
+~~~
+
+
+Tworzenie zapytań manipulujących danymi
+----------------------------------
+
+Zapytania manipulujące danymi odnoszą się do instrukcji SQL dla wstawiania, aktualizowania oraz usuwania danych z tabeli bazodanowej. Kreator zapytań dostarcza dla nich odpowiednio metody `insert`, `update` oraz `delete`. W odróżnieniu do metod tworzących zapytanie SELECt opisanych wcześniej, każda z tych metod manipulujących danymi określa całe zapytanie SQL.
+
+* [insert|CDbCommand::insert]: wstawia wiersz do tabeli
+* [update|CDbCommand::update]: aktualizuje dane w tabeli
+* [delete|CDbCommand::delete]: usuwa wane z tabeli
+
+
+Poniżej opiszemy te metody.
+
+
 ### insert
 
 ~~~
@@ -315,8 +398,6 @@ function insert($table, $columns)
 ~~~
 
 Metoda [insert|CDbCommand::insert] określa instrukcję `INSERT`. Parametr `$table` definiuje, do której tabeli będziemy dodawać, zaś `$columns` jest tablicą par nazwa-wartość określających wartości wstawiane do kolumn. Metoda ta doda poprawnie cudzysłowy do nazwy tabeli oraz użyje wiązania parametrów dla wartości, które mają zostać wstawione.
-
-Zauważ, że w odróżnieniu od poprzednich metod, które opisywały części zapytania `SELECT`, metody `insert`, `update` oraz `delete` (ostatnie dwie opiszemy krótko) definiują całą instrukcję SQL.
 
 Poniżej znajduje się kilka przykładów:
 
@@ -363,20 +444,12 @@ delete('tbl_user', 'id=:id', array(':id'=>1))
 ~~~
 
 
-Wykonywanie zapytań
------------------
+### Wykonywanie zapytań
 
-Po wywołaniu powyższych metod konstruktora zapytań, możemy wywołać metody DAO w celu wykonania zapytań, tak jak zostało to opisane w [DAO](/doc/guide/database.dao). Na przykład, wywołujemy metodę [CDbCommand::queryRow()] by uzyskać wiersz wyników, lub [CDbCommand::queryAll()] by zwrócić wszystkie za jednym razem. Zwróć uwagę na to, że dla zpaytań `INSERT`, `UPDATE` oraz `DELETE` musimy użyć metody [CDbCommand::execute()] aby je wykonać.
-
-Poniżej znajduje się kilka przykładów:
+Ponieważ zapytania manipulujące nie zwracają danych wywołujemy metodę [CDbCommand::execute()] dla tych zapytań. Oto kilka przykładów:
 
 ~~~
 [php]
-$users = Yii::app()->db->createCommand()
-	->select('*')
-	->from('tbl_user')
-	->queryAll();
-
 Yii::app()->db->createCommand()
 	->insert('tbl_user', array(
 		'username' => 'tester',
@@ -385,43 +458,215 @@ Yii::app()->db->createCommand()
 ~~~
 
 
-Zwracanie SQLi
----------------
+Tworzenie zapytań manipulująych schematami
+------------------------------------
 
-Poza wykonywaniem zapytania skonstruowanego przy pomocy konstruktora zapytań, możemy róznież zwrócić odpowiadającą mu instrukcję SQL. Osiągamy to poprzez wywołanie metody [CDbCommand::getText()].
+Poza zwykłymi zapytaniami zwracającymi i manipulującymi danymi, kreator zapytań oferuje zestaw metod tworzących zapytania SQL, które potrafią manipulować schematem bazy danej. W szczegolności wspiera on następujące zapytania:
+
+* [createTable|CDbCommand::createTable]: tworzy tabelę
+* [renameTable|CDbCommand::renameTable]: zmienia nazwę tabeli
+* [dropTable|CDbCommand::dropTable]: usuwa tabelę
+* [addColumn|CDbCommand::addColumn]: dodaje kolumnę do tabeli
+* [renameColumn|CDbCommand::renameColumn]: dodaje kolumnę tabeli 
+* [alterColumn|CDbCommand::alterColumn]: zmienia kolumnę tabeli
+* [dropColumn|CDbCommand::dropColumn]: usuwa kolumnę tabeli
+* [createIndex|CDbCommand::createIndex]: tworzy index
+* [dropIndex|CDbCommand::dropIndex]: usuwa index
+
+> Info|Info: Pomimo faktu iż aktualnie zapytania SQL manipulujące schematami bazy danych różnią się znacznie dla różnych DBMS, to kreator zapytań stara się dostarczyć ujednoliconego interfejsu tworzącego te zapytania. Upraszcza to zadanie migracji baz danych z jednego DBMS do innego.
+
+
+###Abstrakcyjne typy danych
+
+Kreator zapytań wprowadza zestaw abstrakcyjnych typów danych, które mogą być używane do definiowania kolumn tabeli. W odróżnieniu do fizycznych typów danych, które są określone dla każdego z DBMS i różnią się dla różnych DBMS, abstrakcyjne typy danych są niezależne od DBMS. Kiedy abstrakcyjny typ danych używany jest do definiowania kolumn tabeli, konstruktor zapytań przekonwertuje je do odpowiadających im fizycznych typów danych.
+
+Następujące abstrakcyjne typy danych wspomagane są przez kreator zapytań.
+
+* `pk`: generyczny klucz podstawowy, dla MySQL-a zostanie on przekonwertowany na `int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY`;
+* `string`: typ łańcuchowy, dla MySQL-a zostanie on przekonwertowany do `varchar(255)`;
+* `text`: typ tekstowy (długi ciąg łańcuchowy), dla MySQL-a zostanie on przekonwertowany na `text`;
+* `integer`: liczba całkowita, dla MySQL-a zostanie pzrekonwertowana na `int(11)`;
+* `float`: liczba rzeczywista, dla MySQL-a zostanie przekonwertowana na `float`;
+* `decimal`: typ dziesiętny, dla MySQL-a zostanie przekonwertowany na `decimal`;
+* `datetime`: typ reprezentujący datę i czas, dla MySQL-a zostanie przekonwertowany na `datetime`;
+* `timestamp`: stępel czasu, dla MySQL-a zostanie przekonwertowany na `timestamp`;
+* `time`: typ reprezentujący czas, dla MySQL-a zostanie przekonwertowany na `time`;
+* `date`: typ reprezentujący datę, dla MySQL-a zostanie przekonwertowany na `date`;
+* `binary`: typ danych binarnych, dla MySQL-a zostanie przekonwertowany na `blob`;
+* `boolean`: typ logiczny, dla MySQL-a zostanie przekonwertowany na `tinyint(1)`;
+
+
+###createTable
 
 ~~~
 [php]
-$sql = Yii::app()->db->createCommand()
-	->select('*')
-	->from('tbl_user')
-	->getText();
+function createTable($table, $columns, $options=null)
 ~~~
 
-Jeśli znajdują się w nim parametry, które będą związane z zapytaniem, możemy je zwrócic poprzez właściwość [CDbCommand::params].
+Metoda [createTable|CDbCommand::createTable] definiuje instrukcję SQL tworzącą tabelę. Parametr `$table` określa nazwę tabeli, która zostanie utworzona. Parametr `$columns` określa kolumny w nowej tabeli. Muszą one przekazane jako pary nazwa-definicja (np. `'username'=>'string'`). Parametr `$options` określa dodatkowe fragmentu SQL-a, które powinny zostać dołączone do generowanego SQL-a. Kreator zapytań doda odpowiednio cudzysłowy do nazwy tabeli.
 
+Podczas definiowana kolumn można używac opisanych wcześniej abstrakcyjnych typów danych. Konstruktor zapytań przekonwertuje je odpowiadających im fizycznych typów danych, odpowiednio do aktualnie używanego DBMS. Na przykład, `string` zostanie przekonwertowany do `varchar(255)` dla MySQL-a.
 
-Składnia alternatywna
-------------------
+Definicja kolumny może również zawierać nieabstrakcyjne typy danych oraz definicje. Będą one umieszczone w generowanych SQL-u bez zmian. Na przykład, `point` nie jest abstrakcyjnym typem danych i jeśli zostanie użyty w definicji kolumny, pojawi się niezmieniony w zwracanym SQL-u; zaś `string NOT NULL` zostanie przekonwertowany do `varchar(255) NOT NULL` (tylko abstrakcyjny typ `string` został przekonwertowany).
 
-Czasami używanie łańcucha metod w celu zbudowanie zapytania nie jest optymalnym rozwiązaniem. Konstruktor zapytań Yii umożliwia utworzenie zapytania przy użyciu prostych przypisań do właściwości obiektu. W szczególności, dla każdej metody konstruktora istnieją odpowiadające im właściwości o takiej samej nazwie jak metoda. Przypisanie wartości do właściwości jednoznaczne jest z wywołaniem odpowiadającej jej metody. Na przykład, następujące dwa wyrażenia są równoznaczne, przy założeniu, że `$command` reprezentuje obiekt [CDbCommand]:
+Poniżej znajduje się przykład pokazujący jak utworzyć tabelę:
 
 ~~~
 [php]
-$command->select(array('id', 'username'));
-$command->select = array('id', 'username');
+// CREATE TABLE `tbl_user` (
+//     `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+//     `username` varchar(255) NOT NULL,
+//     `location` point
+// ) ENGINE=InnoDB
+createTable('tbl_user', array(
+	'id' => 'pk',
+	'username' => 'string NOT NULL',
+	'location' => 'point',
+), 'ENGINE=InnoDB')
 ~~~
 
-Ponadto, metoda [CDbConnection::createCommand()] może wziąć tablicę jako parametr. Pary nazwa-wartość w tablicy zostaną użyte do zainicjalizowania właściwości tworzonej instancji [CDbCommand]. Oznacza to, że możemy używać następującego kodu w celu utworzenia zapytania:
+
+###renameTable
 
 ~~~
 [php]
-$row = Yii::app()->db->createCommand(array(
-	'select' => array('id', 'username'),
-	'from' => 'tbl_user',
-	'where' => 'id=:id',
-	'params' => array(':id'=>1),
-))->queryRow();
+function renameTable($table, $newName)
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2666 2010-11-17 19:56:48Z qiang.xue $</div>
+Metoda [renameTable|CDbCommand::renameTable] definiuje instruckję SQL zmieniające nazwę tabeli. Parametr `$table` określa nazwę tabeli, której nazwa zostanie zmieniona. Parametr `$newName` określa nowa nazwę tej tabeli. Kreator zapytań doda prawidłowo cudzysowy do nazw abeli.
+
+Poniżej znajduje się przykład pokazujący jak zmienić nazwę tabelę:
+
+~~~
+[php]
+// RENAME TABLE `tbl_users` TO `tbl_user`
+renameTable('tbl_users', 'tbl_user')
+~~~
+
+
+###dropTable
+
+~~~
+[php]
+function dropTable($table)
+~~~
+
+Metoda [dropTable|CDbCommand::dropTable] definiuje instrukcję SQL usuwające tabelę. Parametr `$table` określa nazwę tabeli, która zostanie usunięta. Kreator zapytań doda prawidłowo cudzysłowy do nazwy tabeli.
+
+Poniżej znajduje się przykład pokazujący jak usunąć tabelę:
+
+~~~
+[php]
+// DROP TABLE `tbl_user`
+dropTable('tbl_user')
+~~~
+
+
+###addColumn
+
+~~~
+[php]
+function addColumn($table, $column, $type)
+~~~
+
+Metoda [addColumn|CDbCommand::addColumn] definiuje instrukcję SQL dodające nową kolumnę do tabeli. Parametr `$table` określa nazwę tabeli do której nowa kolumna zostanie dodana. Parametr `$column` określa nazwę nowej kolumny a parametr `$type` specyfikuje definicję nowej kolumny. Definicja kolumny może zawierać abstrakcyjne typy danaych, tak jak opisano to w "createTable". Kreator zapyta doda prawidłowo cudzysłowy dla nazwy tabeli oraz nazwy kolumny.
+
+Poniżej znajduje się przykład pokazujący jak dodać kolumnę do tabeli:
+
+~~~
+[php]
+// ALTER TABLE `tbl_user` ADD `email` varchar(255) NOT NULL
+addColumn('tbl_user', 'email', 'string NOT NULL')
+~~~
+
+
+###dropColumn
+
+~~~
+[php]
+function dropColumn($table, $column)
+~~~
+
+Metoda [dropColumn|CDbCommand::dropColumn] definiuje instrukcję usuwającą kolumnę w tabeli. Parametr `$table` określa nazwę tabeli, której kolumna będzie usunięta. Parametr `$column` określa nazwę kolumny, która zostanie usunięta. Konstruktor zapytań doda prawidłowo cudzysłowy dla nazwy tabeli oraz nazwy kolumny.
+
+Poniżej znajduje się przykład pokazujący jak usunąć kolumnę z tabeli:
+
+~~~
+[php]
+// ALTER TABLE `tbl_user` DROP COLUMN `location`
+dropColumn('tbl_user', 'location')
+~~~
+
+
+###renameColumn
+
+~~~
+[php]
+function renameColumn($table, $name, $newName)
+~~~
+
+Metoda [renameColumn|CDbCommand::renameColumn] definiuje instrukcję SQL służąca zmianie nazw kolumny w tabeli. Parametr `$table` określa nazwę tabeli, w której nazwa kolumn zostanie zmieniona. Parametr `$name` określa starą nazwę kolumny. Parametr `$newName` definiuje nową nazwę kolumny. Konstruktor zapyta doda prawidłowo cudzysłowy zarówno dla nazwy tabli jak i dla nazw kolumn. 
+
+Poniżej znajduje się przykład pokazujący jak zmienić nazwę kolumny w tabeli:
+
+~~~
+[php]
+// ALTER TABLE `tbl_users` CHANGE `name` `username` varchar(255) NOT NULL
+renameColumn('tbl_user', 'name', 'username')
+~~~
+
+
+###alterColumn
+
+~~~
+[php]
+function alterColumn($table, $column, $type)
+~~~
+
+Metoda [alterColumn|CDbCommand::alterColumn] definiuje instrukcję SQL zmieniającą kolumnę tabeli. Parametr `$table` określa nazwę tabeli, której kolumna będzie zmieniania. Parametr `$column` określa nazwę kolumny, która będzie zmieniana. Parametr `$type` określa nową definicję kolumny. Definicja kolumny może zawierać abstrakcyjne typy danych, tak jak to zostało opisane dla "createTable". Kreator zapyta doda prawidłowo cudzysłowy zarówno dla nazwy tabeli jak i dla nazwy kolumny.
+
+Poniżej znajduje się przykład pokazujący jak zmienić kolmnę w tabeli:
+
+~~~
+[php]
+// ALTER TABLE `tbl_user` CHANGE `username` `username` varchar(255) NOT NULL
+alterColumn('tbl_user', 'username', 'string NOT NULL')
+~~~
+
+
+###createIndex
+
+~~~
+[php]
+function createIndex($table, $name, $column, $unique=false)
+~~~
+
+Metoda [createIndex|CDbCommand::createIndex] definiuje instrukcję SQL tworzącą indeks. Parametr `$table` określa nazwę tabeli w której znajduje się index. Parametr `$name` określa nazwę indeksu, który zostanie utworzony. Parametr `$column` określa nazwę kolumny, która zostanie zindeksowana. Parametr `$unique` określa, czy tworzony indeks powinien być unikalny. Jeśli indeks zawiera wiele kolumn, muszą być one rozdzielone przecinkami. Konstruktor zapytań doda poprawnie cudzysłowy do nazw tabeli, nazw indeksów oraz nazw kolumn(y).
+
+Poniżej znajduje się przykład pokazujący jak utworzyć indeks.
+
+~~~
+[php]
+// CREATE INDEX `idx_username` ON `tbl_user` (`username`)
+createIndex('tbl_user', 'idx_username')
+~~~
+
+
+###dropIndex
+
+~~~
+[php]
+function dropIndex($table, $name)
+~~~
+
+Metoda [dropIndex|CDbCommand::dropIndex] definiuje instrukcję SQL usuwającą index. Parametr `$table` określa nazwę tabeli, w której znajduje się indeks. Parametr `$name` określa nazwę indeksu, który będzie usuwany. Kreator zapytań doda cudzysłowy zarówno do nazw tabeli jak i do indeksu.
+
+Poniżej znajduje się przykład pokazujący jak usunąć indeks.
+
+~~~
+[php]
+// DROP INDEX `idx_username` ON `tbl_user`
+dropIndex('tbl_user', 'idx_username')
+~~~
+
+<div class="revision">$Id: database.query-builder.txt 2681 2010-11-28 02:49:35Z qiang.xue $</div>
