@@ -1,7 +1,7 @@
 * Początek
 	- [Przegląd](index)
     - [Nowe funkcjonalności](changes)
-	- [Upgrade z 1.0 do 1.1](upgrade)
+	- [Migracja wersji 1.0 do 1.1](upgrade)
     - [Czym jest Yii](quickstart.what-is-yii)
     - [Instalacja](quickstart.installation)
     - [Pierwsza aplikacja w Yii](quickstart.first-app)
@@ -18,7 +18,7 @@
     - [Aliasy oraz przestrzenie nazw](basics.namespace)
     - [Konwencje](basics.convention)
     - [Przebieg developmentu](basics.workflow)
-    - [Najlepsze praktyki w MVC](basic.best-practices)	
+    - [Najlepsze praktyki w MVC](basics.best-practices)	
 
 * Praca z formularzami
     - [Przegląd](form.overview)
@@ -26,7 +26,7 @@
     - [Tworzenie akcji](form.action)
     - [Tworzenie formularza](form.view)
     - [Odczytywanie tablicowych danych wejściowych](form.table)
-    - [Uzywanie generatora formularzy](form.builder)
+    - [Używanie generatora formularzy](form.builder)
 
 * Praca z bazami danych
     - [Przegląd](database.overview)
@@ -67,6 +67,6 @@
     - [Aplikacje konsolowe](topics.console)
     - [Bezpieczeństwo](topics.security)
     - [Zwiększanie wydajności](topics.performance)
-    - [Code Generation using Command Line Tools (deprecated)](quickstart.first-app-yiic)	
+    - [Generowanie kodu przy użyciu narzędzia linii poleceń (zarzucone)](quickstart.first-app-yiic)	
 
 <div class="revision">$Id: toc.txt 2672 2010-11-22 19:13:16Z qiang.xue $</div>
