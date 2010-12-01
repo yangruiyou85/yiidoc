@@ -6,6 +6,7 @@ Na tej stronie znajdziesz podsumowanie najważniejszych funkcji dodanych w danym
 Wersja 1.1.6
 -------------
  * [Dodano konstruktor zapytań](/doc/guide/database.query-builder)
+ * [Dodano migrację bazy danych](/doc/guide/database.migration) 
  * [Najlepsze praktyki w MVC](/doc/guide/basics.best-practices) 
 
 
@@ -143,4 +144,4 @@ Wersja 1.0.5
  * Rozszerzono[CUrlManager] o wsparcie dla parametryzacji reguł dla części URL zawierającej trasę. Zobacz:
      - [Parametryzacja trasy w regułach URL](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 2672 2010-11-22 19:13:16Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 2694 2010-11-30 17:47:23Z qiang.xue $</div>

@@ -34,6 +34,7 @@
     - [Konstruktor zapytań](database.query-builder)	
     - [Rekord Aktywny](database.ar)
     - [Relacyjny Rekord Aktywny](database.arr)
+    - [Migracja bazy danych](database.migration)	
 
 * Buforowanie podręczne (ang. caching)
     - [Przegląd](caching.overview)
@@ -69,4 +70,4 @@
     - [Zwiększanie wydajności](topics.performance)
     - [Generowanie kodu przy użyciu narzędzia linii poleceń (zarzucone)](quickstart.first-app-yiic)	
 
-<div class="revision">$Id: toc.txt 2672 2010-11-22 19:13:16Z qiang.xue $</div>
+<div class="revision">$Id: toc.txt 2694 2010-11-30 17:47:23Z qiang.xue $</div>
