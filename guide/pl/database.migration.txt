@@ -1,0 +1,190 @@
+Migracja bazy danych
+==================
+
+> Note|Uwaga: Funkcjonalnoœæ migrowania bazy danych zosta³a udostêpniona od wersji 1.1.6.
+
+Tak jak w przypadku kodu, struktura bazy danych zmienia siê wraz z dewelopmentem i zarz¹dzaniem aplikacji bazodanowej. Na przyk³ad, podczas dewelopmentu, mo¿emy chcieæ dodaæ nowa tabelê, czy te¿, po przeniesieniu aplikacji na serwer produkcyjny, mo¿e powstaæ potrzeba dodania indeksu do kolumny. Wa¿ne jest, aby œledziæ te zmiany w strukturze bazy danych (nazywane **migracj¹**) tak jak to robimy z kodem. Jeœli kod Ÿród³owy i baza danych rozsynchronizuj¹ siê, jest bardzo prawdopodobne, ¿e ca³y system przestanie dzia³aæ. Z tego powodu, Yii dostarcza narzêdzie do migracji, które mo¿e œledziæ historiê migracji bazy danych, aplikowaæ nowe migracje lub te¿ odwracaæ istniej¹ce.
+
+Nastêpuj¹ce kroki pokazuj¹ sposób u¿ywania migracji bazy danych w trakcie dewelopmentu:
+
+1. Jan utworzy³ now¹ migracjê (np. doda³ now¹ tabelê)
+2. Jan skomitowa³ now¹ migracjê do systemu kontroli wersji (np. SVN, GIT)
+3. Stefan œci¹gn¹³ zmiany z systemy kontroli wersji i otrzyma³ now¹ migracjê
+4. Stefan zaaplikowa³ now¹ migracjê na swoj¹ lokaln¹ bazê danych
+
+
+Yii wspiera migracjê bazy danych poprzez narzêdzie linii poleceñ `yiic migrate`. Narzêdzie to wspiera tworzenie nowych migracji, aplikowanie/usuwanie/poprawianie migracji oraz wyœwietlanie nowych migracji oraz ich historii.
+
+W dalszej czêœci opiszemy w jaki sposób u¿ywaæ to narzêdzie.
+
+
+Tworzenie migracji
+-------------------
+
+W celu utworzenia nowej migracji (np. utworzenie nowej tabeli), uruchamiamy nastêpuj¹ce polecenie:
+
+~~~
+yiic migrate create --name=create_news_table
+~~~
+
+Parametr `name` powinien bardzo zwiêŸle opisywaæ migracjê. Jeœli nie zosta³ podany, przyjmie wartoœæ `untitled`. Jak zobaczymy w dalszej czêœci, parametr `name` u¿ywany jest jako czêœæ klasy PHP, dlatego te¿ powinien zawieraæ jedynie litery, cyfry lub znaki podkreœlenia.
+
+Powy¿sze polecenie utworzy w katalogu `protected/migrations` nowy plik nazwany `m20101129185401_create_news_table.php`, który zawieraæ bêdzie nastêpuj¹cy, pocz¹tkowy kod:
+
+~~~
+[php]
+class m20101129185401_create_news_table extends CDbMigration
+{
+	public function up()
+	{
+	}
+
+    /*
+    public function down()
+    {
+    }
+    */
+}
+~~~
+
+Zauwa¿, ¿e nazwa klasy jest taka sama jak nazwa pliku, zgodnie z wzorcem `m<timestamp>_<name>`, gdzie `<timestamp>` wskazuje na stempel czasu UTC (z ang. uniwersalny czas koordynowany) w którym to migracja zosta³a utworzona, a wartoœæ reprezentuj¹ca `<name>` pobierana jest z parametru `name` polecenia.
+
+Metoda `up()` powinna zawieraæ kod implementuj¹cy aklualn¹ migracjê bazy danych, podczas gdy metoda `down()` mo¿e zawieraæ kod usuwaj¹cy to, co zosta³o zrobione w `up()`.
+
+Czasami niemo¿liwe jest zaimplementowanie metody `down()`. Na przyk³ad, jeœli usunêliœmy wiersze tabeli w metodzie `up()`, nie bêdziemy w stanie ich odtwozyæ w metodzie `down()`. W takim przypadku migracja nazywana jest nieodwracaln¹, co oznacza, ¿e nie mo¿emy powróciæ do poprzedniego stan bazy danych.
+
+W ramach przyk³adu poka¿my migracjê tworz¹c¹ tabelê wiadomoœci.
+
+~~~
+[php]
+class m20101129185401_create_news_table extends CDbMigration
+{
+	public function up()
+	{
+		$this->createTable('tbl_news', array(
+			'id' => 'pk',
+			'title' => 'string NOT NULL',
+			'content' => 'text',
+		));
+	}
+
+	public function down()
+	{
+		$this->dropTable('tbl_news');
+	}
+}
+~~~
+
+Klasa bazowa [CDbMigration] dostarcza metod manipuluj¹cych danymi oraz schematem bazy danych. Na przyk³ad, metoda [CDbMigration::createTable] utworzy tabelê w bazie danych, zaœ metoda [CDbMigration::insert] wstawi wiersz danych. Wszystkie te metody u¿ywaj¹ po³¹czenia z baz¹ danych zwracanego przez metodê [CDbMigration::getDbConnection()], która domyœlnie zwraca `Yii::app()->db`.
+
+> Info|Info: Jak mo¿na zauwa¿yæ, metody bazodanowe dostarczane przez [CDbMigration] s¹ bardzo podobne dp tych z [CDbCommand]. Rzeczywiœcie s¹ one takie same z tym wyj¹tkien, ¿e metody [CDbMigration] odmierzaj¹ czas u¿ywany przez przez nie zu¿yty oraz wyœwietlaj¹ pewne informacjê o parametrach metody.
+
+
+Aplikowanie migracji
+-------------------
+
+W celu zastosowanie wszystkich nowodostêpnych migracji (np. by zaktualizowaæ lokaln¹ wersjê bazy danych) uruchom nastêpuj¹ce polecenie:
+
+~~~
+yiic migrate
+~~~
+
+Polecenie wyœwietli listê wszystkich nowych migracji. Jeœli potwierdzisz zaaplikowanie tych migracji, polecenie to wywo³a metodê `up()` ka¿dej z klasy migracyjnych, jedna po drugiej, w kolejnoœci wartoœci znacznika czasu (ang. timestamp) zapisanego w nazie klasy.
+
+Po zastosowaniu migracji, narzêdzie migrujace zachowa rekord w tabeli o nazwie `tbl_migration`. Pozwoli to narzêdziu zidentyfikowaæ, które migracje zosta³y zaaplikowane a które nie. Jeœli tabela `tbl_migration` nie istnieje, narzêdzie utworzy j¹ w bazie danych okreœlonej przez komponent aplikacji `db`.
+
+W celu zmigrowania bazy danych do okreœlonej wersji, mo¿emy u¿yæ nastêpuj¹cego polecenia:
+
+~~~
+yiic migrate --version=20101129185401
+~~~
+
+Oznacza to, ¿e u¿yliœmy parametru wersji `version` w celu okreœlenia stempla czasu (ang. timestamp), do którego chcemy zmigrowaæ bazê danych. Jeœli istnieje wiele migracji pomiêdzy ostatnio zaaplikowan¹ migracja a okreœlon¹ w poleceniu, wszystkie one zostan¹ zaaplikowane. Jeœli okreœlona migracja zosta³a ju¿ wczeœniej zaaplikowana, wtedy to wszystkie migracje po niej zostan¹ odwrócone.
+
+Czasami mo¿emy chcie¿ zaaplikowaæ jedn¹ b¹dŸ kilka nowych migracji. Mo¿emy w tym celu u¿yæ nastêpuj¹cego polecenia:
+
+~~~
+yiic migrate up --step=3
+~~~
+
+Polecenie to zaaplikuje 3 kolejne nowe migracje. Zmiana parametru `step` pozwoli nam zmieniæ iloœæ migracji, które zostan¹ zaaplikowane. Jeœli parametr nie zosta³ okreœlony, przyjmuje on domyœln¹ wartoœæ 1, oznaczaj¹c¹ zaaplikowanie jednej migracji naraz.
+
+
+Odwracanie migracji
+--------------------
+
+W celu odwrócenia ostaniej lub kilku ostatnio zaaplikowanych migracji, mo¿emy u¿yæ nastêpuj¹cego polecenia:
+
+~~~
+yiic migrate down --step=3
+~~~
+
+Polecenie to wywo³a metodê `down()` dla 3 ostatnio zaaplikowanych migracji. Zmienianie parametru `step` pozwala nam zmieniaæ iloœæ migracji, które chcemy odwróciæ. Jeœli parametr nie zosta³ okreœlony przyjmuje on wartoœæ domyœln¹ 1, oznaczaj¹c¹ odwrócenie jednej migracji naraz.
+
+Mo¿liwe jest równie¿ przywrócenie migracji do konkretnej wersji, w pokazany wczeœniej sposób:
+
+~~~
+yiic migrate --version=20101129185401
+~~~
+
+Tak jak wspominaliœmy wczeœniej nie wszystkie migracje mo¿na odwrócic. Próbuj¹c odwróciæ ten typ migracji otrzymamy wyj¹tek i przerwiemy ca³y proces.
+
+
+Przywracanie migracji
+------------------
+
+Przywracanie migracji oznacza usuniêcie a nastêpnie zaaplikowanie okreœlonej migracji. Mo¿e to byæ zrobione za pomoc¹ nastêpuj¹cego polecenia:
+
+~~~
+yiic migrate redo --step=3
+~~~
+
+
+Wyœwietlanie informacji o migracji
+-----------------------------
+
+Poza aplikowaniem i odwracaniem migracji, narzêdzie do migracji potrafi równie¿ wyœwietliæ historiê migracji oraz now¹ migracjê, gotowe do zaaplikowania.
+
+~~~
+yiic migrate history --limit=10
+yiic migrate list
+~~~
+
+Pierwsze polecenie poka¿e ostatnie 10 migracji, które zosta³y zaaplikowane wraz z czasem kiedy siê to sta³o. Drugie polecenie wyœwietli pe³n¹ listê nowych migracji, które nie zosta³y jeszcze zaaplikowane.
+
+
+Dostosowywanie narzêdzia migracji
+--------------------------
+
+Narzêdzie migracyjne mo¿e zostaæ dostosowane w pary obszarach. By to uczyniæ, musimy zmodyfikowaæ plik konfiguracji aplikacji konsolowej poprzez dodanie nastêpuj¹cego kodu:
+
+~~~
+[php]
+return array(
+	......
+	'commandMap'=>array(
+		'migrate'=>array(
+			'class'=>'system.cli.commands.MigrateCommand',
+			'migrationPath'=>'path/to/migrations',
+			'migrationTable'=>'migration_table_name',
+			'connectionID'=>'db_app_id',
+			'templateFile'=>'path/to/template',
+		),
+		......
+	),
+	......
+);
+~~~
+
+Powy¿szy kod pozwala skonfigurowaæ kilka w³aœciwoœci narzêdzia migracji:
+
+* `migrationPath`: ³añcuch znaków, okreœla katalog przechowywuj¹cy wszystkie klasy z migracjami. Jeœli nie zosta³ podany, bêdzie wskazywa³ podkatalog `migrations` w œcie¿ce g³ównej aplikacji.
+
+* `migrationTable`: ³añcuch, okreœla nazwê tabeli w bazie danych przechowuj¹c¹ historiê migracji. Domyœlna nazwa to `tbl_migration`. Struktura tabeli jest nastêpuj¹ca `version varchar(255) primary key, apply_time integer`.
+
+* `connectionID`: ³añcuch, okreœla identyfikator ID komponentu bazodanowego aplikacji. Domyœlnie 'db'.
+
+* `templateFile`: ³añcuch, okreœla œcie¿kê do pliku, który pos³u¿y jako szablon kodu do generowania klasy migracji. Jeœli pusty, wewnêtrzy szablon zostanie u¿yty. W szablonie token `{ClassName}` zostanie zast¹piony przez aktualn¹ nazwê klasy.
+
+
+<div class="revision">$Id: database.migration.txt 2696 2010-11-30 20:23:09Z alexander.makarow $</div>
