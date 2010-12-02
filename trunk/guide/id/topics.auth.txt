@@ -299,7 +299,7 @@ komponen pengguna dikonfigurasi menjadi URL halaman login,
 browser akan mengalihkan ke halaman itu. Catatan bahwa standarnya,
 [loginUrl|CWebUser::loginUrl] merujuk ke halaman `site/login`.
 
-   - Sebaliknya eksepsi HTTP akan ditampilkan dengan kode kesalahan 401.
+   - Sebaliknya exception HTTP akan ditampilkan dengan kode kesalahan 401.
 
 Ketika mengkonfigurasi properti [loginUrl|CWebUser::loginUrl], Anda dapat
 menyediakan URL relatif ataupun absolut. Selain itu, Anda juga bisa menyediakan array

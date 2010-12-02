@@ -28,14 +28,14 @@ Membuat Koneksi Database
 Untuk membuat koneksi database, buat instance [CDbConnection] dan mengaktifkannya.
 Nama sumber data (DSN) diperlukan untuk menetapkan informasi yang diperlukan
 untuk menyambung ke database. Nama pengguna dan kata sandi juga diperlukan
-guna melakukan koneksi. Eksepsi akan dimunculkan seandainya kesalahan terjadi
+guna melakukan koneksi. Exception akan dimunculkan seandainya kesalahan terjadi
 selama pelaksanaan koneksi (misalnya DSN tidak benar atau username/password
 tidak benar).
 
 ~~~
 [php]
 $connection=new CDbConnection($dsn,$username,$password);
-// melakukan koneksi. Anda dapat mencoba try...catch eksepsi yang mungkin
+// melakukan koneksi. Anda dapat mencoba try...catch exception yang mungkin
 $connection->active=true;
 ......
 $connection->active=false;  // tutup koneksi
@@ -111,7 +111,7 @@ yang dapat ditelusuri baris data yang dihasilkan. Untuk
 kenyamanan, satu set metode `queryXXX()` juga diimplementasikan yang secara
 langsung mengembalikan hasil queri.
 
-Eksepsi akan dimunculkan jika kesalahan terjadi selama eksekusi pernyataan
+Exception akan dimunculkan jika kesalahan terjadi selama eksekusi pernyataan
 SQL.
 
 ~~~
@@ -173,7 +173,7 @@ try
 	//.... eksekusi SQL lainnya
 	$transaction->commit();
 }
-catch(Exception $e) // eksepsi dimunculkan jika queri gagal
+catch(Exception $e) // exception dimunculkan jika queri gagal
 {
 	$transaction->rollBack();
 }

@@ -1,4 +1,4 @@
-Controller(Controller)
+Controller
 ====================
 
 Sebuah `controller` adalah turunan dari [CController] atau anak kelasnya.
@@ -23,7 +23,7 @@ class SiteController extends CController
 ~~~
 
 
-Rute(Route)
+Route
 -----------
 
 Controller dan action diidentifikasi oleh ID. ID Controller dalam
@@ -38,27 +38,27 @@ sebuah metode bernama `actionEdit`, ID dari action tersebut adalah
 > Note|Catatan: Sebelum versi 1.0.3, format ID controller adalah `path.ke.xyz`
 sedangkan sekarang dalam format `path/ke/xyz`.
 
-Permintaan pengguna terhadap controller dan action tertentu sesuai dengan aturan rute.
-Rute dibentuk dengan menggabungkan ID controller dan ID action yang dipisahkan
-dengan garis miring. Sebagai contoh, rute `post/edit` merujuk ke `PostController`
-dan action `edit`. Dan secara standar, URL
+Request pengguna terhadap controller dan action tertentu sesuai dengan aturan route.
+Route dibentuk dengan menggabungkan ID controller dan ID action yang dipisahkan
+dengan garis miring. Sebagai contoh, route `post/edit` merujuk ke `PostController`
+dan action `edit`. Dan secara default, URL
 `http://hostname/index.php?r=post/edit` akan meminta controller dan
 action tersebut.
 
->Note|Catatan: Secara default, rute bersifat case-sensitive. Sejak versi 1.0.1, dimungkinkan
->menjadikan rute tidak bersifat case-sensitive dengan mengatur [CUrlManager::caseSensitive]
+>Note|Catatan: Secara default, route bersifat case-sensitive. Sejak versi 1.0.1, dimungkinkan
+>menjadikan route tidak bersifat case-sensitive dengan mengatur [CUrlManager::caseSensitive]
 >menjadi false dalam konfigurasi aplikasi. Ketika dalam mode tidak bersifat case-sensitive,
 >pastikan Anda mengikuti konvensi bahwa direktori yang berisi file kelas controller
 >dalam huruf kecil, dan [peta controller|CWebApplication::controllerMap]
 >serta [peta action|CController::actions] keduanya menggunakan kunci dalam huruf kecil.
 
-Semenjak versi 1.0.3, sebuah aplikasi bisa berisi [modul](/doc/guide/basics.module). Rute action controller di dalam sebuah modul yakni dalam format `moduleID/controllerID/actionID`. Untuk lebih rinci, lihat [bagian mengenai modul](/doc/guide/basics.module).
+Semenjak versi 1.0.3, sebuah aplikasi bisa berisi [module](/doc/guide/basics.module). Route action controller di dalam sebuah module yakni dalam format `moduleID/controllerID/actionID`. Untuk lebih rinci, lihat [bagian mengenai module](/doc/guide/basics.module).
 
 
 Instansiasi Controller
 -------------------
 
-Instance controller dibuat ketika [CWebApplication] menangani permintaan
+Instance controller dibuat ketika [CWebApplication] menangani request
 yang masuk. Berdasarkan ID controller yang diberikan, aplikasi akan
 menentukan kelas controller apa dan di mana file kelas ditempatkan, dengan menggunakan
 aturan berikut.
@@ -82,11 +82,11 @@ Jika file kelas tidak ada, 404 [CHttpException] akan dimunculkan.
 Dalam hal ketika [modul](/doc/guide/basics.module) dipakai (tersedia sejak versi 1.0.3), proses di atas cukup berbeda. Dalam keadaan tertentu, aplikasi akan memeriksa apakah ID merujuk ke controller di dalam sebuah modul, dan jika demikian, turunan modul akan dibuat lebih dulu diikuti dengan turunan controller.
 
 
-Action (Action)
+Action
 ------------
 
 Seperti yang telah disinggung, action dapat didefinisikan sebagai metode yang namanya dimulai
-dengan kata `action`. Cara lebih maju adalah dengan mendefinisikan kelas action
+dengan kata `action`. Cara tingkat mahir adalah dengan mendefinisikan kelas action
 dan meminta controller untuk menurunkannya apabila diperlukan. Dengan demikian memungkinkan sebuah action
 untuk dipakai ulang.
 
@@ -143,9 +143,9 @@ protected/
             UpdateAction.php
 ~~~
 
-Pengikatan Parameter Action(Action Parameter Binding)
+Action Parameter Binding
 ---------------------------------------------------
-Semenjak versi 1.1.4, Yii telah menambah dukungan pengikatan parameter action otomatis,
+Semenjak versi 1.1.4, Yii telah menambah dukungan binding (pengikatan) parameter action otomatis,
 yakni sebuah action controller dapat mendefinisikan parameter yang nilainya akan secara
 otomatis diisi oleh Yii dari nilai `$_GET`.
 
@@ -180,7 +180,7 @@ class PostController extends CController
 }
 ~~~
 
-Sekarang, dengan menggunakan fitur parameter action, kita bisa mendapatkan hasil sama lebih gampang :
+Sekarang, dengan menggunakan fitur parameter action, kita bisa mendapatkan hasil sama dengan cara lebih gampang :
 
 ~~~
 [php]
@@ -220,9 +220,9 @@ Demikianlah, kita menambah kata kunci `array` di depan `$categories` dalam dekla
 parameter metode tersebut. Dengan melakukan demikian, jika `$_GET['categories']` adalah
 sebuah string sederhana, akan diubah menjadi sebuah array yang terdiri dari string tersebut.
 
-> Note|Catatan: Jika sebuah parameter dideklarasi tanpa petunjuk jenis `array`, ituartinya parameter tersebut
-> haruslah skalar (misalnya bukan array). Dalam kasus ini, mem-pass sebuah parameter array dengan
-> `$_GET` akan mengakibatkan eksepsi HTTP.
+> Note|Catatan: Jika sebuah parameter dideklarasi tanpa petunjuk jenis `array`, itu artinya parameter tersebut
+> haruslah skalar (seperti non-array). Dalam kasus ini, mem-pass sebuah parameter array dengan
+> `$_GET` akan mengakibatkan HTTP exception.
 
 
 Filter
@@ -236,7 +236,7 @@ yang diperlukan dalam menjalankan action.
 
 Action bisa memiliki multipel filter. Filter dijalankan dalam urutan seperti
 yang terlihat dalam daftar filter. Filter bisa menjaga eksekusi action dan filter
-lain yang tidak dieksekusithe action and the rest of the unexecuted filters.
+lain yang tidak dieksekusi.
 
 Filter bisa didefinisikan sebagai metode kelas controller. Nama metode harus
 dimulai dengan `filter`. Sebagai contoh, keberadaan metode

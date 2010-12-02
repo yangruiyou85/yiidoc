@@ -161,7 +161,7 @@ $post->title='a sample post';
 Meskipun kita tidak pernah mendeklarasikan properti `title` secara eksplisit dalam kelas `Post`,
 kita masih dapat mengaksesnya dalam kode di atas. Ini disebabkan `title` adalah
 kolom dalam tabel `Post`, dan CActiveRecord membuatnya bisa diakses seperti layaknya
-properti dengan bantuan metode magic PHP `__get()`. Eksepsi (exception) akan ditampilkan
+properti dengan bantuan metode magic PHP `__get()`. Exception (exception) akan ditampilkan
 jika kita mencoba mengakses kolom yang tidak ada, dengan cara yang sama.
 
 > Info: Di dalam panduan ini, kita menggunakan huruf kecil untuk seluruh nama tabel dan kolom.
