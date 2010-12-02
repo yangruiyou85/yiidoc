@@ -24,16 +24,20 @@ Tworzenie migracji
 W celu utworzenia nowej migracji (np. utworzenie nowej tabeli), uruchamiamy następujące polecenie:
 
 ~~~
-yiic migrate create --name=create_news_table
+yiic migrate create <name>
 ~~~
 
-Parametr `name` powinien bardzo zwięźle opisywać migrację. Jeśli nie został podany, przyjmie wartość `untitled`. Jak zobaczymy w dalszej części, parametr `name` używany jest jako część klasy PHP, dlatego też powinien zawierać jedynie litery, cyfry lub znaki podkreślenia.
+Wymagany parametr `name` bardzo określa zwięźle opisuje migrację (np. `create_news_table`). Jak zobaczymy w dalszej części, parametr `name` używany jest jako część klasy PHP. Z tej przyczyny powinien zawierać jedynie litery, cyfry i/lub znaki podkreślenia.
 
-Powyższe polecenie utworzy w katalogu `protected/migrations` nowy plik nazwany `m20101129185401_create_news_table.php`, który zawierać będzie następujący, początkowy kod:
+~~~
+yiic migrate create create_news_table
+~~~
+
+Powyższe polecenie utworzy w katalogu `protected/migrations` nowy plik nazwany `m20101129_185401_create_news_table.php`, który zawierać będzie następujący, początkowy kod:
 
 ~~~
 [php]
-class m20101129185401_create_news_table extends CDbMigration
+class m101129_185401_create_news_table extends CDbMigration
 {
 	public function up()
 	{
@@ -47,9 +51,9 @@ class m20101129185401_create_news_table extends CDbMigration
 }
 ~~~
 
-Zauważ, że nazwa klasy jest taka sama jak nazwa pliku, zgodnie z wzorcem `m<timestamp>_<name>`, gdzie `<timestamp>` wskazuje na stempel czasu UTC (z ang. uniwersalny czas koordynowany) w którym to migracja została utworzona, a wartość reprezentująca `<name>` pobierana jest z parametru `name` polecenia.
+Zauważ, że nazwa klasy jest taka sama jak nazwa pliku, zgodnie z wzorcem `m<timestamp>_<name>`, gdzie `<timestamp>` wskazuje na stempel czasu UTC (w domyślnym formacie `yymmdd_hhmmss`) w którym to migracja została utworzona, a wartość reprezentująca `<name>` pobierana jest z parametru `name` polecenia.
 
-Metoda `up()` powinna zawierać kod implementujący aklualną migrację bazy danych, podczas gdy metoda `down()` może zawierać kod usuwający to, co zostało zrobione w `up()`.
+Metoda `up()` powinna zawierać kod implementujący aklualną migrację bazy danych, podczas gdy metoda `down()` może zawierać kod odwracający to, co zostało zrobione w `up()`.
 
 Czasami niemożliwe jest zaimplementowanie metody `down()`. Na przykład, jeśli usunęliśmy wiersze tabeli w metodzie `up()`, nie będziemy w stanie ich odtwozyć w metodzie `down()`. W takim przypadku migracja nazywana jest nieodwracalną, co oznacza, że nie możemy powrócić do poprzedniego stan bazy danych.
 
@@ -57,7 +61,7 @@ W ramach przykładu pokażmy migrację tworzącą tabelę wiadomości.
 
 ~~~
 [php]
-class m20101129185401_create_news_table extends CDbMigration
+class m101129_185401_create_news_table extends CDbMigration
 {
 	public function up()
 	{
@@ -93,21 +97,21 @@ Polecenie wyświetli listę wszystkich nowych migracji. Jeśli potwierdzisz zaap
 
 Po zastosowaniu migracji, narzędzie migrujace zachowa rekord w tabeli o nazwie `tbl_migration`. Pozwoli to narzędziu zidentyfikować, które migracje zostały zaaplikowane a które nie. Jeśli tabela `tbl_migration` nie istnieje, narzędzie utworzy ją w bazie danych określonej przez komponent aplikacji `db`.
 
-W celu zmigrowania bazy danych do określonej wersji, możemy użyć następującego polecenia:
+Czasami możemy chcież jedynie zaaplikować jedną lub kilka migracji. W tym celu używamy następującego polecenia:
 
 ~~~
-yiic migrate --version=20101129185401
+yiic migrate up 3
 ~~~
 
-Oznacza to, że użyliśmy parametru wersji `version` w celu określenia stempla czasu (ang. timestamp), do którego chcemy zmigrować bazę danych. Jeśli istnieje wiele migracji pomiędzy ostatnio zaaplikowaną migracja a określoną w poleceniu, wszystkie one zostaną zaaplikowane. Jeśli określona migracja została już wcześniej zaaplikowana, wtedy to wszystkie migracje po niej zostaną odwrócone.
+Polecenie to zaaplikuje 3 nowe migracje. Zmieniając wartość 3 zmieniamy ilość migracji, które mają zostać zaaplikowane.
 
-Czasami możemy chcież zaaplikować jedną bądź kilka nowych migracji. Możemy w tym celu użyć następującego polecenia:
+Możemy również zmigrować bazę danych do określonej wersji za pomocą następującego polecenia:
 
 ~~~
-yiic migrate up --step=3
+yiic migrate to 101129_185401
 ~~~
 
-Polecenie to zaaplikuje 3 kolejne nowe migracje. Zmiana parametru `step` pozwoli nam zmienić ilość migracji, które zostaną zaaplikowane. Jeśli parametr nie został określony, przyjmuje on domyślną wartość 1, oznaczającą zaaplikowanie jednej migracji naraz.
+Oznacza to, że korzystamy z części nazwy migracji zawierającej informację o stemplu czasowym w celu określenia wersji, do której chcemy zmigorwać baze danych. Jeśli pomiędzy ostatnio zastosowaną migracją a określoną przez nas występują inne, wszystkie te migracje zostaną zaaplikowane. Jeśli określona migracja zostałą zaaplikowana wcześniej, wtedy wszystkie migracje określone po niej zostaną odwrócone (zostanie to opisane w dalszej części).
 
 
 Odwracanie migracji
@@ -116,16 +120,10 @@ Odwracanie migracji
 W celu odwrócenia ostaniej lub kilku ostatnio zaaplikowanych migracji, możemy użyć następującego polecenia:
 
 ~~~
-yiic migrate down --step=3
+yiic migrate down [step]
 ~~~
 
-Polecenie to wywoła metodę `down()` dla 3 ostatnio zaaplikowanych migracji. Zmienianie parametru `step` pozwala nam zmieniać ilość migracji, które chcemy odwrócić. Jeśli parametr nie został określony przyjmuje on wartość domyślną 1, oznaczającą odwrócenie jednej migracji naraz.
-
-Możliwe jest również przywrócenie migracji do konkretnej wersji, w pokazany wcześniej sposób:
-
-~~~
-yiic migrate --version=20101129185401
-~~~
+Polecenie to wywoła metodę `down()` dla kilku ostatnio zaaplikowanych migracji. Zmienianie parametru `step` pozwala nam zmieniać ilość migracji, które chcemy odwrócić. Jeśli parametr nie został określony przyjmuje on wartość domyślną 1, oznaczającą odwrócenie jednej migracji naraz.
 
 Tak jak wspominaliśmy wcześniej nie wszystkie migracje można odwrócic. Próbując odwrócić ten typ migracji otrzymamy wyjątek i przerwiemy cały proces.
 
@@ -133,11 +131,13 @@ Tak jak wspominaliśmy wcześniej nie wszystkie migracje można odwrócic. Prób
 Przywracanie migracji
 ------------------
 
-Przywracanie migracji oznacza usunięcie a następnie zaaplikowanie określonej migracji. Może to być zrobione za pomocą następującego polecenia:
+Przywracanie migracji oznacza odwrócenie a następnie zaaplikowanie określonej migracji. Może to być zrobione za pomocą następującego polecenia:
 
 ~~~
-yiic migrate redo --step=3
+yiic migrate redo 3
 ~~~
+
+Polecenie to odwróci a następnie zaaplikuje ostatnio 3 zaaplikowane migracje. Jeśli wartość 3 nie została przekazana, polecenie to odwróci a następnie zaaplikuje ostatnio zaaplikowaną migrację.
 
 
 Wyświetlanie informacji o migracji
@@ -146,11 +146,11 @@ Wyświetlanie informacji o migracji
 Poza aplikowaniem i odwracaniem migracji, narzędzie do migracji potrafi również wyświetlić historię migracji oraz nową migrację, gotowe do zaaplikowania.
 
 ~~~
-yiic migrate history --limit=10
-yiic migrate list
+yiic migrate history 10
+yiic migrate list 10
 ~~~
 
-Pierwsze polecenie pokaże ostatnie 10 migracji, które zostały zaaplikowane wraz z czasem kiedy się to stało. Drugie polecenie wyświetli pełną listę nowych migracji, które nie zostały jeszcze zaaplikowane.
+Pierwsze polecenie pokaże ostatnie 10 migracji, które zostały zaaplikowane wraz z czasem kiedy się to stało. Drugie polecenie wyświetli listę 10 migracji, które nie zostały jeszcze zaaplikowane.
 
 
 Dostosowywanie narzędzia migracji
@@ -187,4 +187,4 @@ Powyższy kod pozwala skonfigurować kilka właściwości narzędzia migracji:
 * `templateFile`: łańcuch, określa ścieżkę do pliku, który posłuży jako szablon kodu do generowania klasy migracji. Jeśli pusty, wewnętrzy szablon zostanie użyty. W szablonie token `{ClassName}` zostanie zastąpiony przez aktualną nazwę klasy.
 
 
-<div class="revision">$Id: database.migration.txt 2696 2010-11-30 20:23:09Z alexander.makarow $</div>
+<div class="revision">$Id: database.migration.txt 2703 2010-12-02 05:28:08Z qiang.xue $</div>
