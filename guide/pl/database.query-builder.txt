@@ -641,6 +641,46 @@ alterColumn('tbl_user', 'username', 'string NOT NULL')
 ~~~
 
 
+###addForeignKey
+
+~~~
+[php]
+function addForeignKey($name, $table, $columns,
+	$refTable, $refColumns, $delete=null, $update=null)
+~~~
+Metoda [addForeignKey|CDbCommand::addForeignKey] buduje i wykonuje instrukcję SQL dodającą ograniczenia klucza obcego w tabeli. Parametr `$name` określa nazwę klucza obcego. Parametry `$table` oraz `$columns` określają nazwę tabeli oraz nazwę kolumny, której ten klucz obcy dotyczy. Jeśli podajemy wiele kolumn, powinny być one rozdzielone znakiem spacji. Parametry `$refTable` oraz `$refColumns` określają nazwę tabeli oraz kolumny, do której klucz obcy referuje. Parametry `$delete` oraz `$update` określają odpowiednio opcję `ON DELETE` oraz `ON UPDATE` w instrukcji SQL. Większość DBMS wspiera następujące opcje: `RESTRICT`, `CASCADE`, `NO ACTION`, `SET DEFAULT`, `SET NULL`. Konstruktor zapytań prawidłowo doda cudzysłowy do nazwy tabeli, nazwy indeksu oraz nazw(y) kolumn(y).
+
+
+Poniżej znajduje się przykład pokazujący jak dodać ograniczenie klucza obcego:
+
+~~~
+[php]
+// ALTER TABLE `tbl_profile` ADD CONSTRAINT `fk_profile_user_id`
+// FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`id`)
+// ON DELETE CASCADE ON UPDATE CASCADE
+addForeignKey('fk_profile_user_id', 'tbl_profile', 'user_id',
+	'tbl_user', 'id', 'CASCADE', 'CASCADE')
+~~~
+
+
+###dropForeignKey
+
+~~~
+[php]
+function dropForeignKey($name, $table)
+~~~
+
+Metoda [dropForeignKey|CDbCommand::dropForeignKey] buduje i wykonuje instrukcję SQL usuwającą ograniczenie klucza obcego. Parametr `$name` określa ograniczenie klucza obcego, który zostanie usunięty. Parametr `$table` określa nazwe tabeli, w której ten klucz się znajduje. Konstruktor zapytań doda odpowiednio cudzysłowy do nazwy tabeli jak i do nazwy ograniczeń.
+
+Poniżej znajduje się przykład pokazujący jak usunąć ograniczenie dla klucza obcego:
+
+~~~
+[php]
+// ALTER TABLE `tbl_profile` DROP FOREIGN KEY `fk_profile_user_id`
+dropForeignKey('fk_profile_user_id', 'tbl_profile')
+~~~
+
+
 ###createIndex
 
 ~~~
@@ -676,4 +716,4 @@ Poniżej znajduje się przykład pokazujący jak usunąć indeks.
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2692 2010-11-30 02:38:24Z qiang.xue $</div>
+<div class="revision">$Id: database.query-builder.txt 2705 2010-12-02 17:23:27Z qiang.xue $</div>
