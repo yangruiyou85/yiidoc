@@ -123,21 +123,21 @@ W celu odwrócenia ostaniej lub kilku ostatnio zaaplikowanych migracji, możemy 
 yiic migrate down [step]
 ~~~
 
-Polecenie to wywoła metodę `down()` dla kilku ostatnio zaaplikowanych migracji. Zmienianie parametru `step` pozwala nam zmieniać ilość migracji, które chcemy odwrócić. Jeśli parametr nie został określony przyjmuje on wartość domyślną 1, oznaczającą odwrócenie jednej migracji naraz.
+gdzie opcjonalny parametr `step` określa jak wiele migracji zostanie odwróconych. Domyślnie przyjmuje wartość 1, co oznacza odwracanie ostatnio zaaplikowanej migracji.
 
 Tak jak wspominaliśmy wcześniej nie wszystkie migracje można odwrócic. Próbując odwrócić ten typ migracji otrzymamy wyjątek i przerwiemy cały proces.
 
 
-Przywracanie migracji
+Poprawianie migracji
 ------------------
 
-Przywracanie migracji oznacza odwrócenie a następnie zaaplikowanie określonej migracji. Może to być zrobione za pomocą następującego polecenia:
+Poprawianie migracji oznacza odwrócenie a następnie zaaplikowanie określonej migracji. Może to być zrobione za pomocą następującego polecenia:
 
 ~~~
-yiic migrate redo 3
+yiic migrate redo [step]
 ~~~
 
-Polecenie to odwróci a następnie zaaplikuje ostatnio 3 zaaplikowane migracje. Jeśli wartość 3 nie została przekazana, polecenie to odwróci a następnie zaaplikuje ostatnio zaaplikowaną migrację.
+gdzie opcjonalny parametr `step` określa jak wiele migracji zostanie poprawionych. Domyślnie przyjmuje wartość 1 co oznacza, że ostatnia migracja zostanie poprawiona.
 
 
 Wyświetlanie informacji o migracji
@@ -146,17 +146,60 @@ Wyświetlanie informacji o migracji
 Poza aplikowaniem i odwracaniem migracji, narzędzie do migracji potrafi również wyświetlić historię migracji oraz nową migrację, gotowe do zaaplikowania.
 
 ~~~
-yiic migrate history 10
-yiic migrate list 10
+yiic migrate history [limit]
+yiic migrate new [limit]
 ~~~
 
-Pierwsze polecenie pokaże ostatnie 10 migracji, które zostały zaaplikowane wraz z czasem kiedy się to stało. Drugie polecenie wyświetli listę 10 migracji, które nie zostały jeszcze zaaplikowane.
+gdzie opcjonalny parametr `limit` określa ilość migracji do wyświetlenia. Jeśli parametr `limit` nie został zdefiniowany, wszystkie migracje zostaną wyświetlone.
+
+Pierwsze polecenie pokaże migracje, które zostały zaaplikowane, drugie zaś wyświetli migracje, które nie zostały jeszcze zaaplikowane.
 
 
-Dostosowywanie narzędzia migracji
---------------------------
+Modyfikowanie historii migracji
+---------------------------
 
-Narzędzie migracyjne może zostać dostosowane w pary obszarach. By to uczynić, musimy zmodyfikować plik konfiguracji aplikacji konsolowej poprzez dodanie następującego kodu:
+Czasami możemy chcieć zmodyfikować historię migracji do konkretnej wersji bez aplikowania lub też odwracania migracji. Dzieje się to często, kiedy tworzymy nową migracje. Możemy użyć następującego polecenia aby to zrobić.
+
+~~~
+yiic migrate mark 101129_185401
+~~~
+
+Polecenie to jest bardzo podobne do `yiic migrate to` z tym wyjątkiem, że modyfikuje ono wyłącznie tabelę z historią migracji do określonej wersji bez aplikowania czy też odwracania migracji.
+
+
+Dostosowywanie poleceń migracji
+-----------------------------
+
+Istnieje kilka sposobów by dostosować polecenia migracji.
+
+### Poprzez opcje linii poleceń
+
+Polecenia migracji dostarczane są wraz z czterema opcjami, które mogą być określone w linii poleceń:
+
+* `migrationPath`: łańcuch znaków, określający katalog przechowujący wszystkie plik klas migracji. Należy go zdefiniować używając aliasu ścieżki do istniejącego katalogu. Jeśli opcja ta nie została określona, będzie ona używać podkatalogu `migrations` znajdującego się w katalogu bazowym aplikacji. 
+
+* `migrationTable`: łańcuch znaków, określający nazwę tabeli bazy danych przechowywującej informacje o historii migracji. Domyślna wartość to `tbl_migration`. Struktura tej tabeli jest następująca `version varchar(255) primary key, apply_time integer`.
+
+* `connectionID`: łańcuch znaków, określający identyfikator komponentu bazy danych aplikacji. Domyślnie 'db'.
+
+* `templateFile`: łańcuch znaków, określający ścieżkę do pliku, który posłuży jako szablon kodu używany do generowania klas migracji. Należy go określić przy użyciu aliasu ścieżki (np. `application.migrations.template`). Jeśli nie został podany, wewnętrzny szablon zostanie użyty, Wewnątrz szablony, token `{ClassName}` zostanie zastąpiony aktualną nazwą klasy migrującej.
+
+W celu określenia tych opcji wykonaj polecenia migracji używając następującego formatu
+
+~~~
+yiic migrate up --opcja1=wartość1 --opcja2=wartość2 ...
+~~~
+
+Na przykład, jeśli chcemy przeprowadzić migrację dla modułu `forum`, którego pliki migracyjne znajdują się w jego wewnętrznym katalogu `migrations`, możemy użyć następującego polecenia:
+
+~~~
+yiic migrate up --migrationPath=ext.forum.migrations
+~~~
+
+
+### Globalne konfigurowanie poleceń
+
+Podczas gdy opcje linii poleceń pozawalają nam konfigurować polecenia w locie, czasami możemy chcieć skonfigurować polecenia raz na zawsze. Na przykład, możemy chcieć używać innej tabeli do przechowywania historii migracji, czy też możemy chcież używać zmienionego szablonu miracyjnego. Możemy to uczynić poprzez zmodyfikowanie pliku konfiguracyjnego aplikacji konsolowej w następujący sposób:
 
 ~~~
 [php]
@@ -165,10 +208,10 @@ return array(
 	'commandMap'=>array(
 		'migrate'=>array(
 			'class'=>'system.cli.commands.MigrateCommand',
-			'migrationPath'=>'path/to/migrations',
-			'migrationTable'=>'migration_table_name',
-			'connectionID'=>'db_app_id',
-			'templateFile'=>'path/to/template',
+			'migrationPath'=>'application.migrations',
+			'migrationTable'=>'tbl_migration',
+			'connectionID'=>'db',
+			'templateFile'=>'application.migrations.template',
 		),
 		......
 	),
@@ -176,15 +219,7 @@ return array(
 );
 ~~~
 
-Powyższy kod pozwala skonfigurować kilka właściwości narzędzia migracji:
-
-* `migrationPath`: łańcuch znaków, określa katalog przechowywujący wszystkie klasy z migracjami. Jeśli nie został podany, będzie wskazywał podkatalog `migrations` w ścieżce głównej aplikacji.
-
-* `migrationTable`: łańcuch, określa nazwę tabeli w bazie danych przechowującą historię migracji. Domyślna nazwa to `tbl_migration`. Struktura tabeli jest następująca `version varchar(255) primary key, apply_time integer`.
-
-* `connectionID`: łańcuch, określa identyfikator ID komponentu bazodanowego aplikacji. Domyślnie 'db'.
-
-* `templateFile`: łańcuch, określa ścieżkę do pliku, który posłuży jako szablon kodu do generowania klasy migracji. Jeśli pusty, wewnętrzy szablon zostanie użyty. W szablonie token `{ClassName}` zostanie zastąpiony przez aktualną nazwę klasy.
+Jeśli teraz uruchomimy polecenie `migrate` powyższa konfiguracja będzie obowiązywać bez konieczności wprowadzania za każdym razem opcji poprzez linię poleceń.
 
 
-<div class="revision">$Id: database.migration.txt 2703 2010-12-02 05:28:08Z qiang.xue $</div>
+<div class="revision">$Id: database.migration.txt 2708 2010-12-02 18:22:39Z qiang.xue $</div>
