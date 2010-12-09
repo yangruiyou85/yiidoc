@@ -1,0 +1,25 @@
+#summary Convenzioni per la traduzione di yiidoc in Italiano.
+
+= Introduzione =
+
+Add your content here.
+
+
+= Dettagli =
+
+
+
+= Archivi in traduzione: =
+* /guide/it/nome.archivio (autore)
+
+= Archivi già tradotti: =
+
+*Guida definitiva per Yii*:
+
+* /guide/it/nome.archivio (autore)
+
+
+*Messaggi del framework Yii*:
+
+
+*The Yii Blog Tutorial*:
