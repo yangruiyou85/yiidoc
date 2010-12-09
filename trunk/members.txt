@@ -4,6 +4,7 @@ Member List of Yiidoc Project
   Status  Language            Forum ID            Google Account              Lead
 ------------------------------------------------------------------------------------
   active  Bulgarian           koleto              nstoitsev
+  active  Catalan             jdl                 jdomin123
   active  Dutch               Blizz               blizzke
   active  French              kiwisoft            pgaultier
   active  French              locked              etienne.adam
