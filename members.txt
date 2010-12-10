@@ -27,7 +27,7 @@ Member List of Yiidoc Project
   active  Portuguese          Wanderson           wanderson.wbc
   active  Russian             Caveman             alex.lukjanenko
   active  Russian             samdark             alexander.makarow           Yes
-  active  Simplified Chinese  imdong              donzir
+  active  Simplified Chinese  dongbeta            yiidoc@dongbeta.com
   active  Simplified Chinese  moho                goldendegree
   active  Simplified Chinese  sharehua            8080268@qq.com
   active  Simplified Chinese  Qiang Wu            wgq91here
