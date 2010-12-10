@@ -10,7 +10,6 @@ Yii 权威指南
 * dongbeta
 * dreaminto
 * HonestQiao
-* imdong
 * Leric
 * moho
 * nowgoo
