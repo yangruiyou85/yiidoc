@@ -1,7 +1,7 @@
 Membuat dan Menampilkan Comment
 ================================
 
-Pada bagian ini, kita mengimplementasikan fitur penampilan dan pembuatan comment..
+Pada bagian ini, kita mengimplementasikan fitur penampilan dan pembuatan comment.
 
 Guna meningkatkan interaksi pengguna, kita akan menampilkan error yang mungkin terjadi kepada user setiap kali mereka selesai memasukkan satu field. Ini dikenal dengan validasi input client-side. Kita akan melihat bagaimana ini dapat dilakukan dengan sangat gampang. Harap diperhatikan bahwa ini memerlukan versi Yii 1.1.1 atau lebih tinggi.
 
