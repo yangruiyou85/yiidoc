@@ -18,7 +18,7 @@
 	- [Псевдоним пути и пространство имен](basics.namespace)
 	- [Соглашения](basics.convention)
 	- [Процесс разработки](basics.workflow)
-	- [Лучшие практики MVC](basic.best-practices)
+	- [Лучшие практики MVC](basics.best-practices)
 
 * Работа с формами
 	- [Обзор](form.overview)
