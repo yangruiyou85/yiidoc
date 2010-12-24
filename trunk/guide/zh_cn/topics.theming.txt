@@ -247,4 +247,4 @@ differences are as follows.
    - Skin is themeable;
    - Using skin is more expensive than using global widget customization.
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: topics.theming.txt 1774 2010-11-13 15:34:33Z HonestQiao $</div>

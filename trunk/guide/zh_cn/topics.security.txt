@@ -105,4 +105,4 @@ Yii::app()->request->cookies[$name]=$cookie;
 ~~~
 
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: topics.security.txt 1173 2009-09-03 16:46:23Z i@imdong.net $</div>
