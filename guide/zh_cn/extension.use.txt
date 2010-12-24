@@ -281,4 +281,4 @@ Yii::import('application.extensions.xyz.XyzClass');
 
 来包含它的类文件.然后,我们既可以创建一个类的实例,配置它的属性,也可以调用它的方法.我们还可以创建一个新的子类来扩展它.ss
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: extension.use.txt 1774 2010-11-13 15:34:33Z HonestQiao $</div>

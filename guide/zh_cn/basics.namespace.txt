@@ -110,4 +110,4 @@ In order to be able to autoload a namespaced class, the namespace must be named 
 a way similar to naming a path alias. For example, the class `application\components\GoogleMap`
 must be stored in a file that can be aliased as `application.components.GoogleMap`.
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: basics.namespace.txt 1774 2010-11-13 15:34:33Z HonestQiao $</div>
