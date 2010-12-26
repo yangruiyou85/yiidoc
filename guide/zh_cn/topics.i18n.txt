@@ -62,7 +62,7 @@ language）|CApplication::sourceLanguage]。目标语言是应用程序的目标
 ### 信息翻译
 
 信息翻译是通过调用 [Yii::t()|YiiBase::t] 实现的。此方法会将信息从 
-[源语言|CApplication::sourceLanguage] 翻译我 [目标语言|CApplication::language]。
+[源语言|CApplication::sourceLanguage] 翻译为 [目标语言|CApplication::language]。
 
 当翻译一条信息时，必须指定它的分类（category），因为一条信息在不同的分类或上下文中可能会有
 不同的翻译。分类 `yii` 被保留为仅限 Yii 框架核心使用。
