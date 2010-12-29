@@ -262,8 +262,6 @@ array(
 в секции `Directory` для `/wwwroot/blog`.
 
 ~~~
-Options +FollowSymLinks
-IndexIgnore */*
 RewriteEngine on
 
 # if a directory or a file exists, use it directly
@@ -288,4 +286,4 @@ RewriteRule . index.php
 Для этого нужно просто настроить компонент [urlManager|CWebApplication::urlManager] путем назначения свойству
 [urlSuffix|CUrlManager::urlSuffix] любого желаемого окончания.
 
-<div class="revision">$Id: topics.url.txt 2739 2010-12-14 01:50:04Z weizhuo $</div>
+<div class="revision">$Id: topics.url.txt 2773 2010-12-26 16:58:38Z jefftulsa $</div>
