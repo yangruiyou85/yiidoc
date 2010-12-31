@@ -1,9 +1,9 @@
-Logging Errors
+Pencatatan Error
 ==============
 
-A production Web application often needs sophisticated logging for various events. In our blog application, we would like to log the errors occurring when it is being used. Such errors could be programming mistakes or users' misuse of the system. Logging these errors will help us to improve the blog application.
+Sebuah aplikasi Web yangjadi sering membutuhkan pencatatan yang lengkap untuk berbagai event. Dalam aplikasi blog kita, kita ingin mencatata error-error yang terjadi ketika sedang digunakan. Error ini dapat berupa kesalahan pemograman atau penyalahgunaan sistem. Dengan mencatat sistem akan membantu kita untuk mengimprovisasi aplikasi blog.
 
-We enable the error logging by modifying the [application configuration](http://www.yiiframework.com/doc/guide/basics.application#application-configuration) as follows,
+Kita mengatifkan pencatatan dengan memngubah [konfigurasi aplikasi](http://www.yiiframework.com/doc/guide/basics.application#application-configuration) sebagai berikut,
 
 ~~~
 [php]
@@ -27,9 +27,9 @@ return array(
 );
 ~~~
 
-With the above configuration, if an error or warning occurs, detailed information will be logged and saved in a file located under the directory `/wwwroot/blog/protected/runtime`.
+Dengan konfigurasi di atas, jika sebuah error atau warning terjadi, informasi detail akan dicatat dan disimpan di dalam sebuah file yang terletak di bawah direktori `/wwwroot/blog/protected/runtime`.
 
-The `log` component offers more advanced features, such as sending log messages to a list of email addresses, displaying log messages in JavaScript console window, etc. For more details, please refer to [the Guide](http://www.yiiframework.com/doc/guide/topics.logging).
+Komponen `log` menyediakan fitur maju lainnya, seperti mengirim pesan log ke daftar alamat email, menampilkan pesan log di dalam console JavaScript
 
 
 <div class="revision">$Id: final.logging.txt 878 2009-03-23 15:31:21Z qiang.xue $</div>

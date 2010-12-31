@@ -1,20 +1,20 @@
-Creating User Menu Portlet
+Membuat Portolet Menu User
 ==========================
 
-Based on the requirements analysis, we need three different portlets: the "user menu" portlet, the "tag cloud" portlet and the "recent comments" portlet. We will develop these portlets by extending the [CPortlet] widget provided by Yii.
+Berdasarkan pada analisis kebutuhan, kita memerlukan tiga portlet berbeda: portlet "menu user", portlet "tag cloud" dan portlet "comment terbaru". Kita akan membuat ketiga portlet ini dengan menurunkan widget [CPortlet] yang disediakan Yii.
 
-In this section, we will develop our first concrete portlet - the user menu portlet which displays a list of menu items that are only available to authenticated users. The menu contains four items:
+Dalam seksi ini, kita akan membuat portlet konkrit pertama - portlet menu user yang akan menampilkan daftar item menu yang hanya ada pada user yang sudah diotentikasi. Menu tersebut terdiri atas empat item.
 
- * Approve Comments: a hyperlink that leads to a list of comments pending approval;
- * Create New Post: a hyperlink that leads to the post creation page;
- * Manage Posts: a hyperlink that leads to the post management page;
- * Logout: a link button that would log out the current user.
+ * Menyetujui Comment: sebuah hyperlink yang menuju ke daftar comment yang statusnya masih menunggu persetujuan.
+ * Membuat Post Baru : sebuah hyperlink yang menuju ke halaman pembuatan post
+ * Menangani Post : sebuah hyperlink yang menuju halaman manajemen post
+ * Logout : sebuah tombol link yang akan me-logout-kan user saat ini.
 
 
-Creating `UserMenu` Class
+Pembuatan Kelas `UserMenu`
 -------------------------
 
-We create the `UserMenu` class to represent the logic part of the user menu portlet. The class is saved in the file `/wwwroot/blog/protected/components/UserMenu.php` which has the following content:
+Kita membuat kelas `UserMenu` untuk mewakili bagian logis dari portlet menu user. Kelas ini disimpan di file `/wwwroot/blog/protected/components/UserMenu.php` yang isinya sebagai berikut:
 
 ~~~
 [php]
@@ -35,15 +35,15 @@ class UserMenu extends CPortlet
 }
 ~~~
 
-The `UserMenu` class extends from the `CPortlet` class from the `zii` library. It overrides both the `init()` method and the `renderContent()` method of `CPortlet`. The former sets the portlet title to be the name of the current user; the latter generates the portlet body content by rendering a view named `userMenu`.
+Kelas `UserMenu` diturunkan dari kelas `CPortlet` dari pustaka `zii`. Kelas ini mengoveride method `init()` dan method `renderContent()` dari CPortlet. Method `init()` mengeset judul dari portlet sesuai nama user saat ini; sedangkan method `renderContent()` men-generate isi dengan me-render sebuah view bernama `userMenu`.
 
-> Tip: Notice that we have to explicitly include the `CPortlet` class by calling `Yii::import()` before we refer to it the first time. This is because `CPortlet` is part of the `zii` project -- the official extension library for Yii. For performance consideration, classes in this project are not listed as core classes. Therefore, we have to import it before we use it the first time.
+> Tip|Tips : Perhatikan bahwa kita sudah meng-include kelas `CPortlet` secara eksplisit dengan memanggil `Yii::import()` sebelum merujuk padanya untuk pertama kali. Ini dikarenakan `CPortlet` merupakan bagian dari projek `zi` -- pustaka extension resmi untuk Yii. Untuk pertimbangan kinerja, kelas-kelas dalam projek ini bukan bagian dari kelas inti. Oleh karenanya, kita harus meng-import-kannya sebelum untuk pertama kalinya digunakan.
 
 
-Creating `userMenu` View
+Membuat View `userMenu`
 ------------------------
 
-Next, we create the `userMenu` view which is saved in the file `/wwwroot/blog/protected/components/views/userMenu.php`:
+Selanjutnya, kita membuat view `userMenu` yang disimpan di dalam file `/wwwroot/blog/protected/components/views/userMenu.php`:
 
 ~~~
 [php]
@@ -56,13 +56,13 @@ Next, we create the `userMenu` view which is saved in the file `/wwwroot/blog/pr
 </ul>
 ~~~
 
-> Info: By default, view files for a widget should be placed under the `views` sub-directory of the directory containing the widget class file. The file name must be the same as the view name.
+> Info: Secara default, file view untuk sebuah widget harus diletakkan di dalam sub-direktori `views` dari direktori yang berisi file kelas widget. Nama file harus sama dengan nama view.
 
 
-Using `UserMenu` Portlet
+Menggunakan Portlet `UserMenu`
 ------------------------
 
-It is time for us to make use of our newly completed `UserMenu` portlet. We modify the layout view file `/wwwroot/blog/protected/views/layouts/column2.php` as follows:
+Saatnya kita menggunakan portlet `UserMenu` yang baru saja dibuat. Kita modifikasi file view layout `/wwwroot/blog/protected/views/layouts/column2.php` menjadi berikut:
 
 ~~~
 [php]
@@ -73,22 +73,22 @@ It is time for us to make use of our newly completed `UserMenu` portlet. We modi
 ......
 ~~~
 
-In the above, we call the `widget()` method to generate and execute an instance of the `UserMenu` class. Because the portlet should only be displayed to authenticated users, we only call `widget()` when the `isGuest` property of the current user is false (meaning the user is authenticated).
+Di atas, kita memanggil method `widget()` untuk menghasilkan dan mengeksekusi instance dari kelas `UserMenu1. Karena portlet harus ditampilkan kepada user yang terotentikasi, kita memangil `widget()` hanya ketika properti `isGuest` pada user saat ini bernilai false (yang artinya dia adalah user yang terotentikasi).
 
 
-Testing `UserMenu` Portlet
+Uji Coba Portlet `UserMenu`
 --------------------------
 
-Let's test what we have so far.
+Ayo kita mencoba apa yang ada sejauh ini.
 
- 1. Open a browser window and enter the URL `http://www.example.com/blog/index.php`. Verify that there is nothing displayed in the side bar section of the page.
- 2. Click on the `Login` hyperlink and fill out the login form to login. If successful, verify that the `UserMenu` portlet appears in the side bar and the portlet has the username as its title.
- 3. Click on the 'Logout' hyperlink in the `UserMenu` portlet. Verify that the logout action is successful and the `UserMenu` portlet disappears.
+ 1. Buka sebuah window browser dan masukkan URL `http://www.example.com/blog/index.php`. Pastikan bahwa tidak ada yang tertampilkan di bagian samping dari halaman.
+ 2. Klik hyperlink 'Login' dan isi form login untuk login. Jika sukses, verifikasi bahwa `portlet` `UserMenu` muncul di sisi sebelah kanan dan portlet memiliki username di bagian judulnya
+ 3. Klik hyperlink 'Logout' di dalam portlet `UserMenu`. Verifikasi bahwa action logout sukses dan portlet `UserMenu` hilang
 
 
-Summary
+Kesimpulan
 -------
 
-What we have created is a portlet that is highly reusable. We can easily reuse it in a different project with little or no modification. Moreover, the design of this portlet follows closely the philosophy that logic and presentation should be separated. While we did not point this out in the previous sections, such practice is used nearly everywhere in a typical Yii application.
+Kita sudah membuat sebuah portlet yang tingkat reusable-nya tinggi. Kita dapat dengan gampang memakai kembali di projek berlainan dengan projek yang berbeda dengan sedikit atua tanpa modifikasi. Lebih lanjut, desain dari portlet ini mengikuti  sedekat mungkin filosofi bahwa logika dan presentasi harus dipisahkan. Walaupun kita tidak menunjukkan ini di tutorial bagian sebelumnya, practice ini hampir digunakan di mana saja dalam aplikasi Yii dalam tipikal
 
 <div class="revision">$Id: portlet.menu.txt 1739 2010-01-22 15:20:03Z qiang.xue $</div>

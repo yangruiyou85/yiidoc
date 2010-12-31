@@ -1,13 +1,13 @@
-Creating Recent Comments Portlet
+Membuat Recent Comments Portlet
 ================================
 
-In this section, we create the last portlet that displays a list of comments recently published.
+Pada bagian ini, kita membuat portlet terakhir yang menampilkan daftar comment yang dipublikasi baru-baru ini.
 
 
-Creating `RecentComments` Class
+Membuat Class `RecentComment`
 -------------------------------
 
-We create the `RecentComments` class in the file `/wwwroot/blog/protected/components/RecentComments.php`. The file has the following content:
+Kita membuat class `RecentComments` di dalam file `/wwwroot/blog/protected/components/RecentComments.php`. File ini memiliki isi:
 
 ~~~
 [php]
@@ -30,7 +30,7 @@ class RecentComments extends CPortlet
 }
 ~~~
 
-In the above we invoke the `findRecentComments` method which is defined in the `Comment` class as follows,
+Di atas, kita memanggil method `findRecentComments` yang mendefinisikan class `Comment` sebagai berikut,
 
 ~~~
 [php]
@@ -49,16 +49,16 @@ class Comment extends CActiveRecord
 ~~~
 
 
-Creating `recentComments` View
+Membuat View `recentComments`
 -------------------------
 
-The `recentComments` view is saved in the file `/wwwroot/blog/protected/components/views/recentComments.php`. It simply displays every comment returned by the `RecentComments::getRecentComments()` method.
+View `recentComments` disimpan di dalam file `/wwwroot/blog/protected/components/views/recentComments.php`. File view ini hanya menampilkan setiap comment yang dihasilkan oleh method `RecentComments::getRecentComments()`.
 
 
-Using `RecentComments` Portlet
+Menggunakan Portlet `RecentComments`
 ------------------------------
 
-We modify the layout file `/wwwroot/blog/protected/views/layouts/column2.php` to embed this last portlet,
+Kita memodifikasi file layout `/wwwroot/blog/protected/views/layouts/column2.php` untuk menempelkan portlet terakhir ini.
 
 ~~~
 [php]
