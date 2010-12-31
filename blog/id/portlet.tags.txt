@@ -1,13 +1,13 @@
-Creating Tag Cloud Portlet
+Membuat Tag Cloud Portlet
 ==========================
 
-[Tag cloud](http://en.wikipedia.org/wiki/Tag_cloud) displays a list of post tags with visual decorations hinting the popularity of each individual tag.
+[Tag cloud](http://en.wikipedia.org/wiki/Tag_cloud) menampilkan daftar tag post dengan tampilan visual yang menunjukkan popularitas tiap tag.
 
 
-Creating `TagCloud` Class
+Membuat Class `TagCloud`
 -------------------------
 
-We create the `TagCloud` class in the file `/wwwroot/blog/protected/components/TagCloud.php`. The file has the following content:
+Kita membuat class `TagCloud` di dalam file `/wwwroot/blog/protected/components/TagCloud.php`. File tersebut berisi :
 
 ~~~
 [php]
@@ -34,15 +34,15 @@ class TagCloud extends CPortlet
 }
 ~~~
 
-Unlike the `UserMenu` portlet, the `TagCloud` portlet does not use a view. Instead, its presentation is done in the `renderContent()` method. This is because the presentation does not contain much HTML tags.
+Tidak seperti portlet `UserMenu`, portlet `TagCloud` tidak menggunakan view. Sistem penampilannya dilakukan oleh method `renderContent()`. Alasannya karena tampilannya yang tidak mengandung terlalu banyak tag HTML.
 
-We display each tag as a hyperlink to the post index page with the corresponding tag parameter. The font size of each tag link is adjusted according to their relative weight among other tags. If a tag has higher frequency value than the other, it will have a bigger font size.
+Kita menampilkan setiap tag sebagai hyperlink ke post halaman index dengan parameter tag bersangkutan. Ukuran font untuk setiap link tag diatur sesuai dengan berat terhadap tag-tag lainnya. Jika sebuah tag memiliki nilai frekuensi yang lebih tinggi dibandingkan yang lainnya, maka ukuran font-nya akan lebih besar.
 
 
-Using `TagCloud` Portlet
+Menggunakan Portlet `TagCloud`
 -------------------------
 
-Usage of the `TagCloud` portlet is very simple. We modify the layout file `/wwwroot/blog/protected/views/layouts/column2.php` as follows,
+Penggunaan portlet `TagCloud` sangat sederhana. Kita mengubah file layout `/wwwroot/blog/protected/views/layouts/column2.php` menjadi berikut,
 
 ~~~
 [php]

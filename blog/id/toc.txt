@@ -28,7 +28,7 @@
 
 * Pekerjaan Terakhir
 	- [Mempercantik URL](final.url)
-	- [Mencatat Log Error](final.logging)
+	- [Pencatatan Error](final.logging)
     - [Tune-up terakhir dan Pemasangan](final.deployment)
     - [Pengembangan untuk Kedepannya](final.future)
 
