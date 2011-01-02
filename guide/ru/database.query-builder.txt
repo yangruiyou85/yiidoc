@@ -234,17 +234,29 @@ where(array('in', 'id', array(1, 2))
 // WHERE `id` NOT IN (1, 2)
 where(array('not in', 'id', array(1,2)))
 // WHERE `name` LIKE '%Qiang%'
-where(array('like', 'name', 'Qiang'))
-// WHERE `name` LIKE '%Qiang%' AND `name` LIKE '%Xue%'
-where(array('like', 'name', array('Qiang', 'Xue')))
-// WHERE `name` LIKE '%Qiang%' OR `name` LIKE '%Xue%'
-where(array('or like', 'name', array('Qiang', 'Xue')))
+where(array('like', 'name', '%Qiang%'))
+// WHERE `name` LIKE '%Qiang' AND `name` LIKE '%Xue'
+where(array('like', 'name', array('%Qiang', '%Xue')))
+// WHERE `name` LIKE '%Qiang' OR `name` LIKE '%Xue'
+where(array('or like', 'name', array('%Qiang', '%Xue')))
 // WHERE `name` NOT LIKE '%Qiang%'
-where(array('not like', 'name', 'Qiang'))
+where(array('not like', 'name', '%Qiang%'))
 // WHERE `name` NOT LIKE '%Qiang%' OR `name` NOT LIKE '%Xue%'
-where(array('or not like', 'name', array('Qiang', 'Xue')))
+where(array('or not like', 'name', array('%Qiang%', '%Xue%')))
 ~~~
 
+Стоит отметить, что в случае, когда оператор содержит `like`, необходимо явно
+задавать спецсимволы (вроде `%` и `_`). Если паттерн вводится пользователем, то
+необходимо использовать приведённый ниже код для экранирования спецсимволов и
+предотвращения интерпретации их как спецсимволов:
+
+~~~
+[php]
+$keyword=$_GET['q'];
+// экранирует символы % и _
+$keyword=strtr($keyword, array('%'=>'\%', '_'=>'\_'));
+$command->where(array('like', 'title', '%'.$keyword.'%'));
+~~~
 
 ### order
 
@@ -591,18 +603,18 @@ $command->delete('tbl_user', 'id=:id', array(':id'=>1));
 
 Построитель запросов поддерживает следующие абстрактные типы:
 
-* `pk`: a generic primary key type, will be converted into `int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY` for MySQL;
-* `string`: string type, will be converted into `varchar(255)` for MySQL;
-* `text`: text type (long string), will be converted into `text` for MySQL;
-* `integer`: integer type, will be converted into `int(11)` for MySQL;
-* `float`: floating number type, will be converted into `float` for MySQL;
-* `decimal`: decimal number type, will be converted into `decimal` for MySQL;
-* `datetime`: datetime type, will be converted into `datetime` for MySQL;
-* `timestamp`: timestamp type, will be converted into `timestamp` for MySQL;
-* `time`: time type, will be converted into `time` for MySQL;
-* `date`: date type, will be converted into `date` for MySQL;
-* `binary`: binary data type, will be converted into `blob` for MySQL;
-* `boolean`: boolean type, will be converted into `tinyint(1)` for MySQL.
+* `pk`: обычный первичный ключ. Для MySQL конвертируется в `int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY`;
+* `string`: строка. Для MySQL конвертируется в `varchar(255)`;
+* `text`: текстовый тип (длинная строка). Для MySQL конвертируется в `text`;
+* `integer`: целое. Для MySQL конвертируется в `int(11)`;
+* `float`: число с плавающей точкой. Для MySQL конвертируется в `float`;
+* `decimal`: дясятичное число. Для MySQL конвертируется в `decimal`;
+* `datetime`: дата и время. Для MySQL конвертируется в `datetime`;
+* `timestamp`: метка времени. Для MySQL конвертируется в `timestamp`;
+* `time`: время. Для MySQL конвертируется в `time`;
+* `date`: дата. Для MySQL конвертируется в `date`;
+* `binary`: бинарный. Для MySQL конвертируется в `blob`;
+* `boolean`: булевый. Для MySQL конвертируется в `tinyint(1)`.
 
 
 ###createTable
@@ -612,13 +624,26 @@ $command->delete('tbl_user', 'id=:id', array(':id'=>1));
 function createTable($table, $columns, $options=null)
 ~~~
 
-The [createTable|CDbCommand::createTable] method builds and executes a SQL statement for creating a table. The `$table` parameter specifies the name of the table to be created. The `$columns` parameter specifies the columns in the new table. They must be given as name-definition pairs (e.g. `'username'=>'string'`). The `$options` parameter specifies any extra SQL fragment that should be appended to the generated SQL. The query builder will quote the table name as well as the column names properly.
+Метод [createTable|CDbCommand::createTable] строит и выполняет SQL запрос для
+создания таблицы. Параметр `$table` задаёт имя создаваемой таблицы. Параметр
+`$columns` определяет поля новой таблицы. Они должны быть указаны в виде пар
+имя-определение (т.е. `'username'=>'string'`). Параметр `$options` задаёт
+дополнительный фрагмент SQL, который будет добавлен к генерируемому SQL.
+Построитель запроса экранирует имя таблицы и имена полей.
 
-When specifying a column definition, one can use an abstract data type as described above. The query builder will convert the abstract data type into the corresponding physical data type, according to the currently used DBMS. For example, `string` will be converted into `varchar(255)` for MySQL.
+Для указания определения поля можно использовать абстрактный тип данных, как уже
+было описано ранее. Построитель конвертирует абстрактный тип дынных в
+соответствующий реальный тип данных в соответствии с используемой СУБД. К примеру,
+`string` в случае MySQL сконвертируется в `varchar(255)`.
 
-A column definition can also contain non-abstract data type or specifications. They will be put in the generated SQL without any change. For example, `point` is not an abstract data type, and if used in a column definition, it will appear as is in the resulting SQL; and `string NOT NULL` will be converted into `varchar(255) NOT NULL` (i.e., only the abstract type `string` is converted).
+Определение поля также может содержать неабстрактный тип данных и спецификаций.
+Они будут в результирующем SQL без каких-либо изменений. К примеру,
+`point` не является абстрактным типом данных и при использовании в определении
+поля будет включён в получающийся SQL как есть. `string NOT NULL` будет
+конвертирован в `varchar(255) NOT NULL` (т.е. конвертируются только абстрактнй
+тип `string`).
 
-Below is an example showing how to create a table:
+Пример создания таблицы:
 
 ~~~
 [php]
@@ -642,9 +667,12 @@ createTable('tbl_user', array(
 function renameTable($table, $newName)
 ~~~
 
-The [renameTable|CDbCommand::renameTable] method builds and executes a SQL statement for renaming a table. The `$table` parameter specifies the name of the table to be renamed. The `$newName` parameter specifies the new name of the table. The query builder will quote the table names properly.
+Метод [renameTable|CDbCommand::renameTable] строит и выполняет SQL запрос для
+пепеименования таблицы. Параметр `$table` задаёт имя переименовываемой таблицы.
+Параметр `$newName` определяет новое имя таблицы. Построитель запроса
+экранирует имена таблицы.
 
-Below is an example showing how to rename a table:
+Пример переименования таблицы:
 
 ~~~
 [php]
@@ -660,9 +688,11 @@ renameTable('tbl_users', 'tbl_user')
 function dropTable($table)
 ~~~
 
-The [dropTable|CDbCommand::dropTable] method builds and executes a SQL statement for dropping a table. The `$table` parameter specifies the name of the table to be dropped. The query builder will quote the table name properly.
+Метод [dropTable|CDbCommand::dropTable] строит и выполняет SQL запрос для удаления
+таблицы. Параметр `$table` определяет имя удаляемой таблицы. Построитель запроса
+экранирует имя таблицы.
 
-Below is an example showing how to drop a table:
+Пример удаления теблицы:
 
 ~~~
 [php]
@@ -677,9 +707,11 @@ dropTable('tbl_user')
 function truncateTable($table)
 ~~~
 
-The [truncateTable|CDbCommand::truncateTable] method builds and executes a SQL statement for truncating a table. The `$table` parameter specifies the name of the table to be truncated. The query builder will quote the table name properly.
+Метод [truncateTable|CDbCommand::truncateTable] строит и выполняет SQL запрос для
+очистки всех данных таблицы. Параметр `$table` определяет имя очищаемой таблицы.
+Построитель запроса экранирует имя таблицы.
 
-Below is an example showing how to drop a table:
+Пример очистки таблицы:
 
 ~~~
 [php]
@@ -695,9 +727,14 @@ truncateTable('tbl_user')
 function addColumn($table, $column, $type)
 ~~~
 
-The [addColumn|CDbCommand::addColumn] method builds and executes a SQL statement for adding a new table column. The `$table` parameter specifies the name of the table that the new column will be added to. The `$column` parameter specifies the name of the new column. And `$type` specifies the definition of the new column. Column definition can contain abstract data type, as described in the subsection of "createTable". The query builder will quote the table name as well as the column name properly.
+Метод [addColumn|CDbCommand::addColumn] строит и выполняет SQL запрос для
+добавления нового поля таблицы. Параметр `$table` задаёт имя таблицы, к которой
+будет добавляться новое поле. Параметр `$column` — имя нового поля. `$type`
+задаёт тип поля. Определение поля может содержать абстрактный тип данных,
+как уже было описано в подразделе «createTable». Построитель запроса
+экранирует имя таблицы и имя поля.
 
-Below is an example showing how to add a table column:
+Пример добавления поля:
 
 ~~~
 [php]
@@ -713,9 +750,12 @@ addColumn('tbl_user', 'email', 'string NOT NULL')
 function dropColumn($table, $column)
 ~~~
 
-The [dropColumn|CDbCommand::dropColumn] method builds and executes a SQL statement for dropping a table column. The `$table` parameter specifies the name of the table whose column is to be dropped. The `$column` parameter specifies the name of the column to be dropped. The query builder will quote the table name as well as the column name properly.
+Метод [dropColumn|CDbCommand::dropColumn] строит и выполняет SQL запрос для
+удаления поля таблицы. Параметр `$table` задаёт имя таблицы из которой удаляется
+поле. Параметр `$column` определяет имя удаляемого поля. Построитель запроса
+экранирует имя таблицы и имя поля.
 
-Below is an example showing how to drop a table column:
+Пример удаления поля таблицы:
 
 ~~~
 [php]
@@ -731,9 +771,13 @@ dropColumn('tbl_user', 'location')
 function renameColumn($table, $name, $newName)
 ~~~
 
-The [renameColumn|CDbCommand::renameColumn] method builds and executes a SQL statement for renaming a table column. The `$table` parameter specifies the name of the table whose column is to be renamed. The `$name` parameter specifies the old column name. And `$newName` specifies the new column name. The query builder will quote the table name as well as the column names properly.
+Метод [renameColumn|CDbCommand::renameColumn] строит и выполняет SQL запрос для
+переименования поля таблицы. Параметр `$table` задаёт имя таблицы, поле которой
+будет переименовано. Параметр `$name` определяет имя переимновываемого поля.
+`$newName` задаёт имя нового поля. Построитель запроса экранирует имя таблицы и
+имена полей.
 
-Below is an example showing how to rename a table column:
+Пример переименования поля таблицы:
 
 ~~~
 [php]
@@ -749,9 +793,14 @@ renameColumn('tbl_user', 'name', 'username')
 function alterColumn($table, $column, $type)
 ~~~
 
-The [alterColumn|CDbCommand::alterColumn] method builds and executes a SQL statement for altering a table column. The `$table` parameter specifies the name of the table whose column is to be altered. The `$column` parameter specifies the name of the column to be altered. And `$type` specifies the new definition of the column. Column definition can contain abstract data type, as described in the subsection of "createTable". The query builder will quote the table name as well as the column name properly.
+Метод [alterColumn|CDbCommand::alterColumn] строит и выполняет SQL запрос для
+изменения поля таблицы. Параметр `$table` задаёт имя таблицы, поле которой
+будет изменено. Параметр `$column` определяет имя изменяемого поля. `$type`
+задаёт новое определение поля, которое может содержать абстрактный тип данных,
+как было описано в подразделе «createTable». Построитель запросов экранирует имя
+таблицы и имя поля.
 
-Below is an example showing how to alter a table column:
+Пример изменения поля таблицы:
 
 ~~~
 [php]
@@ -770,9 +819,17 @@ function addForeignKey($name, $table, $columns,
 	$refTable, $refColumns, $delete=null, $update=null)
 ~~~
 
-The [addForeignKey|CDbCommand::addForeignKey] method builds and executes a SQL statement for adding a foreign key constraint  to a table. The `$name` parameter specifies the name of the foreign key. The `$table` and `$columns` parameters specify the table name and column name that the foreign key is about. If there are multiple columns, they should be separated by comma characters. The `$refTable` and `$refColumns` parameters specify the table name and column name that the foreign key references. The `$delete` and `$update` parameters specify the `ON DELETE` and `ON UPDATE` options in the SQL statement, respectively. Most DBMS support these options: `RESTRICT`, `CASCADE`, `NO ACTION`, `SET DEFAULT`, `SET NULL`. The query builder will properly quote the table name, index name and column name(s).
+Метод [addForeignKey|CDbCommand::addForeignKey] строит и выполняет SQL запрос для
+добавления внешнего ключа в таблицу. Параметр `$name` задаёт имя внешнего ключа.
+Параметры `$table` и `$columns` определяют имя таблицы и имя поля внешнего
+ключа. Если указаны несколько полей, то они должны быть разделены запятыми.
+Параметры `$refTable` и `$refColumns` определяют имя таблицы и имя поля, на которое
+ссылается внешний ключ. Параметры `$delete` и `$update` задают SQL-опции
+`ON DELETE` и `ON UPDATE` соответственно. Большинство СУБД поддерживают
+следующие опции: `RESTRICT`, `CASCADE`, `NO ACTION`, `SET DEFAULT` и `SET NULL`.
+Построитель запросов экранирует имя таблицы, имя индекса и имена полей.
 
-Below is an example showing how to add a foreign key constraint,
+Пример добавления внешнего ключа:
 
 ~~~
 [php]
@@ -791,9 +848,12 @@ addForeignKey('fk_profile_user_id', 'tbl_profile', 'user_id',
 function dropForeignKey($name, $table)
 ~~~
 
-The [dropForeignKey|CDbCommand::dropForeignKey] method builds and executes a SQL statement for dropping a foreign key constraint. The `$name` parameter specifies the name of the foreign key constraint to be dropped. The `$table` parameter specifies the name of the table that the foreign key is on. The query builder will quote the table name as well as the constraint names properly.
+Метод [dropForeignKey|CDbCommand::dropForeignKey] строит и выполняет SQL запрос
+для удаления внешнего ключа. Параметр `$name` задаёт имя внешнего ключа,
+который требуется удалить. Параметр `$table` — имя таблицы, из которой
+удаляется ключ. Построитель запроса экранирует имя таблицы и имя ключа.
 
-Below is an example showing how to drop a foreign key constraint:
+Пример удаления внешнего ключа:
 
 ~~~
 [php]
@@ -809,9 +869,14 @@ dropForeignKey('fk_profile_user_id', 'tbl_profile')
 function createIndex($name, $table, $column, $unique=false)
 ~~~
 
-The [createIndex|CDbCommand::createIndex] method builds and executes a SQL statement for creating an index. The `$name` parameter specifies the name of the index to be created. The `$table` parameter specifies the name of the table that the index is on. The `$column` parameter specifies the name of the column to be indexed. And the `$unique` parameter specifies whether a unique index should be created. If the index consists of multiple columns, they must be separated by commas. The query builder will properly quote the table name, index name and column name(s).
+Метод [createIndex|CDbCommand::createIndex] строит и выполняет SQL запрос
+для создания индекса. Параметр `$name` задаёт имя индекса, который будет создан.
+Параметр `$table` — имя таблицы, в которой создаётся индекс. Параметр `$column`
+— имя индексируемого поля. Параметр `$unique` определяет, должен ли быть
+индекс уникальным. Если индекс состоит из нескольких полей, то они разделяются
+запятыми. Построитель запросов экранирует имя таблицы, имя индекса и имена полей.
 
-Below is an example showing how to create an index:
+Пример создания индекса:
 
 ~~~
 [php]
@@ -827,9 +892,12 @@ createIndex('idx_username', 'tbl_user')
 function dropIndex($name, $table)
 ~~~
 
-The [dropIndex|CDbCommand::dropIndex] method builds and executes a SQL statement for dropping an index. The `$name` parameter specifies the name of the index to be dropped. The `$table` parameter specifies the name of the table that the index is on. The query builder will quote the table name as well as the index names properly.
+Метод [dropIndex|CDbCommand::dropIndex] строит и выполняет SQL запрос для
+удаления индекса. Параметр `$name` задаёт имя удаляемого индекса.
+Параметр `$table` — имя таблицы, в которой создаётся индекс. Построитель
+запроса экранирует имя таблицы и имя индекса.
 
-Below is an example showing how to drop an index:
+Пример удаления индекса:
 
 ~~~
 [php]
@@ -837,4 +905,4 @@ Below is an example showing how to drop an index:
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2795 2010-12-31 00:22:33Z alexander.makarow $</div>
+<div class="revision">$Id: database.query-builder.txt 2802 2011-01-02 04:00:33Z alexander.makarow $</div>
