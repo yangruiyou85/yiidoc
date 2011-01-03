@@ -3,10 +3,12 @@
 = Terminy i ich tłumaczenia =
 
  * *bootstrapt script* - skrypt rozruchowy
+ * *customize* - dostosowywać (do własnych potrzeb)
  * *entry script* - skrypt wejściowy
  * *layout* - układ
  * *render view* - generowanie widoku
  * *request processing* - przetwarzanie żądania
+ * *resolve request* - rozszyfrowanie żądania
  * *route* - trasa
  * *view* - widok
  * *theme* - motyw
