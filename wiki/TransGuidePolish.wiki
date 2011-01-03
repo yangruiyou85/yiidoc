@@ -2,8 +2,8 @@
 
 = Terminy i ich tłumaczenia =
 
-*layout* - układ
-*render view* - generowanie widoku
-*route* - trasa
-*view* - widok
-*theme* - motyw
+ * *layout* - układ
+ * *render view* - generowanie widoku
+ * *route* - trasa
+ * *view* - widok
+ * *theme* - motyw
