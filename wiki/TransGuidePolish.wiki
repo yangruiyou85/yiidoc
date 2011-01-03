@@ -1,0 +1,5 @@
+#summary Konwencja nazewnictwa dla polskiego tłumaczenia
+
+= Terminy i ich tłumaczenia =
+
+*route* - trasa
