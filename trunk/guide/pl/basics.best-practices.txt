@@ -28,9 +28,9 @@ Czasami stosowanie poprzednio przedstawionej zasady może spowodować, że nasz 
 
 * zdefiniuj nową klasę modelu `NewsBase`, która to zawiera kod wsółdzielony przez różne podaplikacje (np. front end, back end);
 
-* w każdej podaplikacji, zdefiniuje model `News` poprzez rozszerzenie z `NewsBase`. Umieść cały kod właściwy tej podaplikacji w tym modelu;
+* w każdej podaplikacji, zdefiniuje model `News` poprzez rozszerzenie z `NewsBase`. Umieść cały kod właściwy tej podaplikacji w tym modelu.
 
-Zatem jeśli mielibyśmy zastosować tą strategię w naszym przykładzie, dodalibyśmy model `News` zawierający jedynie metodę `getLatestNews` do aplikacji frontendowej oraz dodalibyśmy następny model `News`, zawierający jedynie metodę `getDeleteNews`, do aplikacji backendowej.
+Zatem jeśli mielibyśmy zastosować tą strategię w naszym przykładzie, dodalibyśmy model `News` zawierający jedynie metodę `getLatestNews` do aplikacji frontendowej oraz dodalibyśmy następny model `News`, zawierający jedynie metodę `getDeletedNews`, do aplikacji backendowej.
 
 Ogólnie rzecz biorąc, modele nie powinny zawierać logiki, która bezpośrednio ma do czynienia z użytkownikiem końcowym. Precyzując, modele:
 
@@ -81,4 +81,4 @@ Kontroler
 W dobrze zaprojektowanej aplikacji MVC, kontrolery są często bardzo małe, zawierają prawdopodobnie jedynie kilkadziesiąt linijek kodu zaś modele są bardzo duże, gdyż zawierają dużo kodu odpowiedzialnego za reprezentację i manipulację danymi. Dzieje się tak ponieważ struktura i logika biznesowa reprezetnowana przez modele jest bardzo typowa dla konkretnej aplikacji i musi być bardzo bardzo dostosowana aby sprostać wymaganiom stawianym przez aplikację; podczas gdy logika kontrolera często naśladuje podobe wzorców z różnych aplikacji i dlatego może zostać uproszczona poprzez używanie frameworku czy też klas bazowych.
 
 
-<div class="revision">$Id: basics.best-practices.txt 2678 2010-11-26 16:08:14Z jefftulsa@gmail.com $</div>
+<div class="revision">$Id: basics.best-practices.txt 2795 2010-12-31 00:22:33Z alexander.makarow $</div>

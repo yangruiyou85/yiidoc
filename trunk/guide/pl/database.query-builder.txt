@@ -184,15 +184,25 @@ where(array('in', 'id', array(1, 2))
 // WHERE `id` NOT IN (1, 2)
 where(array('not in', 'id', array(1,2)))
 // WHERE `name` LIKE '%Qiang%'
-where(array('like', 'name', 'Qiang'))
-// WHERE `name` LIKE '%Qiang%' AND `name` LIKE '%Xue%'
-where(array('like', 'name', array('Qiang', 'Xue')))
-// WHERE `name` LIKE '%Qiang%' OR `name` LIKE '%Xue%'
-where(array('or like', 'name', array('Qiang', 'Xue')))
+where(array('like', 'name', '%Qiang%'))
+// WHERE `name` LIKE '%Qiang' AND `name` LIKE '%Xue'
+where(array('like', 'name', array('%Qiang', '%Xue')))
+// WHERE `name` LIKE '%Qiang' OR `name` LIKE '%Xue'
+where(array('or like', 'name', array('%Qiang', '%Xue')))
 // WHERE `name` NOT LIKE '%Qiang%'
-where(array('not like', 'name', 'Qiang'))
+where(array('not like', 'name', '%Qiang%'))
 // WHERE `name` NOT LIKE '%Qiang%' OR `name` NOT LIKE '%Xue%'
-where(array('or not like', 'name', array('Qiang', 'Xue')))
+where(array('or not like', 'name', array('%Qiang%', '%Xue%')))
+~~~
+
+Zauważ, że jeśli operator zawiera `like`, musimy bezpośrednio zdefiniować symbole wieloznaczne (takie jak `%` i `_`) we wzorcu. Jeśli wzorce pochodzą z danych wejściowych użytkownika, powinniśmy również użyć następującego kodu w celu usunięcia znaków specjalnych aby zapobiec traktowaniu ich jako symbole wieloznaczne:
+
+~~~
+[php]
+$keyword=$_GET['q'];
+// usuwanie znaków % oraz _ 
+$keyword=strtr($keyword, array('%'=>'\%', '_'=>'\_'));
+$command->where(array('like', 'title', '%'.$keyword.'%'));
 ~~~
 
 
@@ -464,7 +474,6 @@ Oto przykład:
 $command->delete('tbl_user', 'id=:id', array(':id'=>1));
 ~~~
 
-
 Tworzenie zapytań manipulująych schematami
 ------------------------------------
 
@@ -473,8 +482,9 @@ Poza zwykłymi zapytaniami zwracającymi i manipulującymi danymi, kreator zapyt
 * [createTable|CDbCommand::createTable]: tworzy tabelę
 * [renameTable|CDbCommand::renameTable]: zmienia nazwę tabeli
 * [dropTable|CDbCommand::dropTable]: usuwa tabelę
+* [truncateTable|CDbCommand::truncateTable]: usuwa wszystkie wpisy z tabeli
 * [addColumn|CDbCommand::addColumn]: dodaje kolumnę do tabeli
-* [renameColumn|CDbCommand::renameColumn]: dodaje kolumnę tabeli 
+* [renameColumn|CDbCommand::renameColumn]: zmienia nazwę kolumny tabeli 
 * [alterColumn|CDbCommand::alterColumn]: zmienia kolumnę tabeli
 * [dropColumn|CDbCommand::dropColumn]: usuwa kolumnę tabeli
 * [createIndex|CDbCommand::createIndex]: tworzy index
@@ -568,6 +578,23 @@ Poniżej znajduje się przykład pokazujący jak usunąć tabelę:
 dropTable('tbl_user')
 ~~~
 
+###truncateTable
+
+~~~
+[php]
+function truncateTable($table)
+~~~
+
+Metoda [truncateTable|CDbCommand::truncateTable] buduje i wykonuje instrukcję SQL czyszczącą tabelę. Parametr `$table` określa nazwę tabeli, która zostanie wyczyszczona. Kreator zapytań doda prawidłowo cudzysłowy do nazwy tabeli.
+
+Poniżej znajduje się przykład pokazujący jak wyczyścić tabelę:
+
+~~~
+[php]
+// TRUNCATE TABLE `tbl_user`
+truncateTable('tbl_user')
+~~~
+
 
 ###addColumn
 
@@ -639,6 +666,8 @@ Poniżej znajduje się przykład pokazujący jak zmienić kolmnę w tabeli:
 // ALTER TABLE `tbl_user` CHANGE `username` `username` varchar(255) NOT NULL
 alterColumn('tbl_user', 'username', 'string NOT NULL')
 ~~~
+
+
 
 
 ###addForeignKey
@@ -716,4 +745,4 @@ Poniżej znajduje się przykład pokazujący jak usunąć indeks.
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2705 2010-12-02 17:23:27Z qiang.xue $</div>
+<div class="revision">$Id: database.query-builder.txt 2802 2011-01-02 04:00:33Z alexander.makarow $</div>
