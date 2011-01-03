@@ -2,8 +2,12 @@
 
 = Terminy i ich tłumaczenia =
 
+ * *bootstrapt script* - skrypt rozruchowy
+ * *entry script* - skrypt wejściowy
  * *layout* - układ
  * *render view* - generowanie widoku
+ * *request processing* - przetwarzanie żądania
  * *route* - trasa
  * *view* - widok
  * *theme* - motyw
+ * *web application* - aplikację sieciowa
