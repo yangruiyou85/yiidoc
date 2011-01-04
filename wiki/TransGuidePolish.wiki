@@ -7,6 +7,8 @@
  * *entry script* - skrypt wejściowy
  * *fetching (data)* - pobieranie (danych)
  * *layout* - układ
+ * *parameter binding* - przypinanie parametrów
+ * *placeholder* - symbol zastępczy
  * *render view* - generowanie widoku
  * *request processing* - przetwarzanie żądania
  * *resolve request* - rozszyfrowanie żądania
