@@ -10,6 +10,8 @@
  * *request processing* - przetwarzanie żądania
  * *resolve request* - rozszyfrowanie żądania
  * *route* - trasa
+ * *SQL statement* - instrukcja SQL
+ * *SQL query* - zapytranie SQL
  * *view* - widok
  * *theme* - motyw
  * *web application* - aplikację sieciowa
