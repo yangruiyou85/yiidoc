@@ -5,6 +5,7 @@
  * *bootstrapt script* - skrypt rozruchowy
  * *customize* - dostosowywać (do własnych potrzeb)
  * *entry script* - skrypt wejściowy
+ * *fetching (data)* - pobieranie (danych)
  * *layout* - układ
  * *render view* - generowanie widoku
  * *request processing* - przetwarzanie żądania
