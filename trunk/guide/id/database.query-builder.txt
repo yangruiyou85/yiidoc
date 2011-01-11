@@ -17,7 +17,7 @@ Query Builder sangat cocok digunakan ketika anda memerlukan menggabungkan sebuah
 
 * Memungkinkan membangun statement SQL yang kompleks secara programatik
 
-* Fitur ini akan memberikan quote pada nama tabel dan kolom secara otomatis guna mencegah konflik dengan tulisan SQL ataupun karakter khusus.
+* Fitur ini akan memberikan quote pada nama table dan kolom secara otomatis guna mencegah konflik dengan tulisan SQL ataupun karakter khusus.
 
 * Fitur ini juga memberikan quote pada nilai parameter dan melakukan binding pada parameter ketika memungkinkan, sehingga mengurangi resiko terserang SQL injection.
 
@@ -74,7 +74,7 @@ Berikut, kami akan menunjukkan bagaimana menggunakan method-method query builder
 function select($columns='*')
 ~~~
 
-Method [select|CDbCommand::select] menentukan bagian `SELECT` pada query. Parameter `$columns` menentukan kolom-kolom apa saja yang akan di-select, yang bisa berupa string dengan nama kolom dipisah koma, atau sebuah array dari nama kolom. Nama kolom dapat berisi prefiks tabel dan/atau alias kolom. Method ini akan secara otomatis memberikan quote pada nama kolom kecuali kolom tersebut mengandung tanda kurung (yang bararti kolom yang diberikan merupakan ekspresi DB).
+Method [select|CDbCommand::select] menentukan bagian `SELECT` pada query. Parameter `$columns` menentukan kolom-kolom apa saja yang akan di-select, yang bisa berupa string dengan nama kolom dipisah koma, atau sebuah array dari nama kolom. Nama kolom dapat berisi prefiks table dan/atau alias kolom. Method ini akan secara otomatis memberikan quote pada nama kolom kecuali kolom tersebut mengandung tanda kurung (yang bararti kolom yang diberikan merupakan ekspresi DB).
 
 Berikut ini merupakan beberapa contoh:
 
@@ -114,7 +114,7 @@ SELECT DISTINCT `id`, `username`
 function from($tables)
 ~~~
 
-Method [from|CDbCommand::from] menentukan bagian `FROM` pada query. Parameter `$tables` menentukan tabel mana yang akan di-select. Yang ini juga bisa berupa string dengan nama tabel dipisahkan dengan koma, atau sebuah array dari nama tabel. Nama tabel dapat diambil dari prefiks skema (misalnya `public.tbl_user`) dan/atau alias tabel (misalnya `tbl_user u`). Method ini akan secara otomatis memberikan quote pada nama tabel kecuali nama tabelnya mengandung huruf kurung (yang artinya berupa sub-query atau ekspresi DB).
+Method [from|CDbCommand::from] menentukan bagian `FROM` pada query. Parameter `$tables` menentukan table mana yang akan di-select. Yang ini juga bisa berupa string dengan nama table dipisahkan dengan koma, atau sebuah array dari nama table. Nama table dapat diambil dari prefiks skema (misalnya `public.tbl_user`) dan/atau alias table (misalnya `tbl_user u`). Method ini akan secara otomatis memberikan quote pada nama table kecuali nama table-nya mengandung huruf kurung (yang artinya berupa sub-query atau ekspresi DB).
 
 Berikut merupakan beberapa contoh:
 
@@ -211,7 +211,7 @@ function order($columns)
 ~~~
 
 Method [order|CDbCommand::order] menentukan bagian `ORDER BY` pada query.
-Parameter `$columns` menentukan kolom-kolom yang diurutkan. Dapat berupa sebuah string dengan kolom yang dipisahkan koma dan arah pengurutan (`ASC` atau `DESC`), atau sebuah array dari kolom dan arah pengurutan. Nama kolom dapat mengandung prefiks tabel. Method ini akan memberikan quote pada nama kolom secara otomatis kecuali kolom tersebut mengandung tanda kurung (yang berarti kolom tersebut merupakan ekspresi DB).
+Parameter `$columns` menentukan kolom-kolom yang diurutkan. Dapat berupa sebuah string dengan kolom yang dipisahkan koma dan arah pengurutan (`ASC` atau `DESC`), atau sebuah array dari kolom dan arah pengurutan. Nama kolom dapat mengandung prefiks table. Method ini akan memberikan quote pada nama kolom secara otomatis kecuali kolom tersebut mengandung tanda kurung (yang berarti kolom tersebut merupakan ekspresi DB).
 
 Berikut merupakan beberapa contohnya:
 
@@ -258,7 +258,7 @@ function crossJoin($table)
 function naturalJoin($table)
 ~~~
 
-Method [join|CDbCommand::join] dan varian-variannya menentukan bagaimana melakukan join dengan tabel lain dengan menggunakan `INNER JOIN`, `LEFT OUTER JOIN`, `RIGHT OUTER JOIN`, `CROSS JOIN`, atau `NATURAL JOIN`. Parameter `$table` menentukan tabel mana yang akan dijoin. Nama tabel akan mengandung prefiks skema dan /atau alias. Method ini akan memberikan quote pada nama tabel kecuali kolom tersebut mengandung tanda kurung yang artinya bis berupa ekspresi DB atau sub-query. Parameter `$conditions` menentukan kondisi join. Sintaksnya sama dengan [where|CDbCommand::where]. Dan `$params` menentukan parameter yang diikat pada keseluruhan query.
+Method [join|CDbCommand::join] dan varian-variannya menentukan bagaimana melakukan join dengan table lain dengan menggunakan `INNER JOIN`, `LEFT OUTER JOIN`, `RIGHT OUTER JOIN`, `CROSS JOIN`, atau `NATURAL JOIN`. Parameter `$table` menentukan table mana yang akan dijoin. Nama table akan mengandung prefiks skema dan /atau alias. Method ini akan memberikan quote pada nama table kecuali kolom tersebut mengandung tanda kurung yang artinya bis berupa ekspresi DB atau sub-query. Parameter `$conditions` menentukan kondisi join. Sintaksnya sama dengan [where|CDbCommand::where]. Dan `$params` menentukan parameter yang diikat pada keseluruhan query.
 
 Perhatikan bahwa tidak seperti method query builder lainnya, setiap pemanggilan method join akan ditambahkan di belakang sebelumnya.
 
@@ -280,10 +280,10 @@ leftJoin('pub.tbl_profile p', 'p.user_id=id AND type=:type', array(':type'=>1))
 function group($columns)
 ~~~
 
-The [group|CDbCommand::group] method specifies the `GROUP BY` part of a query.
-The `$columns` parameter specifies the columns to be grouped by, which can be either a string representing comma-separated columns, or an array of columns. Column names can contain table prefixes. The method will automatically quote the column names unless a column contains some parenthesis (which means the column is given as a DB expression).
+Method [group|CDbCommand::group] menetapkan bagian `GROUP BY` pada query.
+Parameter `$columns` menentukan kolom-kolom yang dikelompokkan. Bisa berupa string yang berisi kolom dipisah koma, atau sebuah array dari kolom. Nama kolom bisa didapatkan pada prefiks table. Method ini akan secara otomatis memberikan quote pada nama kolom kecuali terdapat sebuah kolom yang mengandung tanda kurung (yang artinya kolom tersebut merupakan ekspresi DB).
 
-Below are some examples:
+Berikut beberapa contoh:
 
 ~~~
 [php]
@@ -301,9 +301,9 @@ group(array('tbl_profile.name', 'id')
 function having($conditions, $params=array())
 ~~~
 
-The [having|CDbCommand::having] method specifies the `HAVING` part of a query. Its usage is the same as [where|CDbCommand::where].
+Method [having|CDbCommand::having] menetapkan bagian `HAVING` pada query. Penggunaannya sama dengan [where|CDbCommand::where].
 
-Below are some examples:
+Berikut contoh-contohnya:
 
 ~~~
 [php]
@@ -321,9 +321,9 @@ having(array('or', 'id=1', 'id=2'))
 function union($sql)
 ~~~
 
-The [union|CDbCommand::union] method specifies the `UNION` part of a query. It appends `$sql` to the existing SQL using `UNION` operator. Calling `union()` multiple times will append multiple SQLs to the existing SQL.
+Method [union|CDbCommand::union] menentukan bagian `UNION` pada query. Method ini akan menambahkan `$sql` ke SQL yang sudah ada dengan menggunakan operator `UNION`. Memanggil `union()` beberapa kali akan menambahkan berkali-kali SQL-SQL-nya ke belakang SQL yang sudah ada.
 
-Below are some examples:
+Berikut beberapa contohnya:
 
 ~~~
 [php]
@@ -332,10 +332,10 @@ union('select * from tbl_profile')
 ~~~
 
 
-### Executing Queries
+### Menjalankan Query
 
-After calling the above query builder methods to build a query, we can call the DAO methods as described in [Data Access Objects](/doc/guide/database.dao) to execute the query. For example, we can call [CDbCommand::queryRow()] to obtain a row of result, or [CDbCommand::queryAll()] to get all rows at once.
-Below are some examples:
+Setelah melakukan pemanggilan method query builder di atas, kita dapat memanggil method DAO seperti yang dijelaskan pada [Data Access Objects](/doc/guide/database.dao) untuk mengeksekusi query. Misalnya, kita dapat memanggil [CDbCommand::queryRow()] untuk mendapatkan sebaris hasil atau [CDbCommand::queryAll()] untuk mendapatkan seluruhnya sekaligus.
+Berikut beberapa contohnya :
 
 ~~~
 [php]
@@ -346,9 +346,9 @@ $users = Yii::app()->db->createCommand()
 ~~~
 
 
-### Retrieving SQLs
+### Mengambil SQL-SQL
 
-Besides executing a query built by the Query Builder, we can also retrieve the corresponding SQL statement. This can be done by calling [CDbCommand::getText()].
+Selain menjalankan query yang dibuat oleh Query Builder, kita juga dapat menarik statement SQL bersangkutan. Untuk melakukannya gunakan fungsi [CDbCommand::getText()].
 
 ~~~
 [php]
@@ -358,12 +358,12 @@ $sql = Yii::app()->db->createCommand()
 	->text;
 ~~~
 
-If there are any parameters to be bound to the query, they can be retrieved via the [CDbCommand::params] property.
+Jika terdapat parameter tertentu yang terikat pada query, mereka dapat diambil melalui properti [CDbCommand::params].
 
 
-### Alternative Syntax for Building Queries
+### Sintaks Alternatif untuk Membentuk Query
 
-Sometimes, using method chaining to build a query may not be the optimal choice. The Yii Query Builder allows a query to be built using simple object property assignments. In particular, for each query builder method, there is a corresponding property that has the same name. Assigning a value to the property is equivalent to calling the corresponding method. For example, the following two statements are equivalent, assuming `$command` represents a [CDbCommand] object:
+Kadangkala, menggunakan method chaining bukanlah pilihan yang tepat. Query Builder Yii memungkinkan kita untuk membuat query dengan menggunakan assignment property object yang sederhana. Pada umumnya, untuk setiap method query builder, terdapat sebuah property yang memiliki nama yang sama. Meng-assign nilai ke property sama saja dengan memanggil method tersebut. Misalnya, berikut merupakan dua statement yang ekuivalen, dengan asumsi `$command` adalah objek [CDbCommand]:
 
 ~~~
 [php]
@@ -371,7 +371,7 @@ $command->select(array('id', 'username'));
 $command->select = array('id', 'username');
 ~~~
 
-Furthermore, the [CDbConnection::createCommand()] method can take an array as the parameter. The name-value pairs in the array will be used to initialize the properties of the created [CDbCommand] instance. This means, we can use the following code to build a query:
+Selain itu, method [CDbConnection::createCommand()] dapat menerima array sebagai parameter. Pasangan nama-nilai di array akan digunakan untuk inisialisasi property instance [CDbCommand] yang dibuat. Ini artinya, kita dapat menggunakan code berikut untuk membuat sebuah query:
 
 ~~~
 [php]
@@ -384,9 +384,9 @@ $row = Yii::app()->db->createCommand(array(
 ~~~
 
 
-### Building Multiple Queries
+### Membangun Beberapa Query
 
-A [CDbCommand] instance can be reused multiple times to build several queries. Before building a new query, however, the [CDbCommand::reset()] method must be invoked to clean up the previous query. For example:
+Sebuah instance [CDbCommand] dapat dipakai ulang beberapa kali untuk membuat beberapa query. Namun, sebelum membuat query baru, harus memanggil method [CDbCommand::reset()] terlebih dahulu untuk menghapus query sebelumnya. Misalnya:
 
 ~~~
 [php]
@@ -397,17 +397,17 @@ $posts = $command->select('*')->from('tbl_posts')->queryAll();
 ~~~
 
 
-Building Data Manipulation Queries
+Membuat Query Manipulasi Data
 ----------------------------------
 
-Data manipulation queries refer to SQL statements for inserting, updating and deleting data in a DB table. Corresponding to these queries, the query builder provides `insert`, `update` and `delete` methods, respectively. Unlike the SELECT query methods described above, each of these data manipulation query methods will build a complete SQL statement and execute it immediately.
+Query manipulasi data adalah statement SQL untuk melakukan insert, update dan delete data dalam table database. Query builder menyediakan `insert`, `update` dan `delete` untuk tiap query tersebut. Tidak seperti method query SELECT yang dijelaskan di atas, setiap method query manipulasi data ini akan membuat sebuah statement SQL lengkap dan langsung menjalankannya.
 
-* [insert|CDbCommand::insert]: inserts a row into a table
-* [update|CDbCommand::update]: updates the data in a table
-* [delete|CDbCommand::delete]: deletes the data from a table
+* [insert|CDbCommand::insert]: menyisipkan sebaris ke table
+* [update|CDbCommand::update]: melakukan update data pada sebuah table
+* [delete|CDbCommand::delete]: menghapus data dari table 
 
 
-Below we describe these data manipulation query methods.
+Di bawah ini kami akan memaparkan method-method query manipulasi data
 
 
 ### insert
@@ -417,13 +417,13 @@ Below we describe these data manipulation query methods.
 function insert($table, $columns)
 ~~~
 
-The [insert|CDbCommand::insert] method builds and executes an `INSERT` SQL statement. The `$table` parameter specifies which table to be inserted into, while `$columns` is an array of name-value pairs specifying the column values to be inserted. The method will quote the table name properly and will use parameter-binding for the values to be inserted.
+Method [insert|CDbCommand::insert] membuat dan menjalankan statement SQL `INSERT`. Parameter `$table` menentukan table yang mana yang disisipkan, sedangkan `$columns` merupakan sebuah array dengan pasangan nama-nilai yang menjelaskan nilai-nilai kolom yang akan disisipkan. Method tersebut akan memberikan quote pada nama table dan akan menggunakan parameter-binding untuk nilai yang dimasukkan.
 
-Below is an example:
+Berikut merupakan contohnya:
 
 ~~~
 [php]
-// build and execute the following SQL:
+// buat dan jalankan SQL berikut :
 // INSERT INTO `tbl_user` (`name`, `email`) VALUES (:name, :email)
 $command->insert('tbl_user', array(
 	'name'=>'Tester',
@@ -439,13 +439,13 @@ $command->insert('tbl_user', array(
 function update($table, $columns, $conditions='', $params=array())
 ~~~
 
-The [update|CDbCommand::update] method builds and executes an `UPDATE` SQL statement. The `$table` parameter specifies which table to be updated; `$columns` is an array of name-value pairs specifying the column values to be updated; `$conditions` and `$params` are like in [where|CDbCommand::where], which specify the `WHERE` clause in the `UPDATE` statement. The method will quote the table name properly and will use parameter-binding for the values to be updated.
+Method [update|CDbCommand::update] akan membuat dan mengeksekusi statement `UPDATE` SQL. Parameter `$table` menentukan table mana yang akan di-update; `$columns` adalah sebuah array dengan pasangan nama-nilai yang menentukan nilai kolom yang akan di-update; `$conditions` dan `$params` mirip dengan [where|CDbCommand::where], yang akan menetapkan klausa `WHERE` dalam statement `UPDATE`. Method ini akan memberikan quote pada nama dan menggunakan parameter-binding untuk nilai yang di-update.
 
-Below is an example:
+Berikut merupakan contohnya:
 
 ~~~
 [php]
-// build and execute the following SQL:
+// buat dan jalankan SQL berikut:
 // UPDATE `tbl_user` SET `name`=:name WHERE id=:id
 $command->update('tbl_user', array(
 	'name'=>'Tester',
@@ -460,54 +460,54 @@ $command->update('tbl_user', array(
 function delete($table, $conditions='', $params=array())
 ~~~
 
-The [delete|CDbCommand::delete] method builds and executes a `DELETE` SQL statement. The `$table` parameter specifies which table to be updated; `$conditions` and `$params` are like in [where|CDbCommand::where], which specify the `WHERE` clause in the `DELETE` statement. The method will quote the table name properly.
+Method [delete|CDbCommand::delete] membuat dan menjalankan statement SQL `DELETE`. Parameter `$table` menentukan table yang mana yang akan dihapus; `$conditions`  dan `$params` mirip dengan [where|CDbCommand::where], yakni menentukan `WHERE` di dalam statement `DELETE`. Method ini akan memberikan quote pada nama.
 
-Below is an example:
+Berikut salah satu contoh:
 
 ~~~
 [php]
-// build and execute the following SQL:
+//buat dan eksekusi SQL berikut:
 // DELETE FROM `tbl_user` WHERE id=:id
 $command->delete('tbl_user', 'id=:id', array(':id'=>1));
 ~~~
 
-Building Schema Manipulation Queries
+Membuat Query Manipulasi Schema
 ------------------------------------
 
-Besides normal data retrieval and manipulation queries, the query builder also offers a set of methods for building and executing SQL queries that can manipulate the schema of a database. In particular, it supports the following queries:
+Selain query manipulasi dan penarikan normal, query builder juga menyediakan sekumpulan method yang digunakan untuk membuat dan menjalankan query SQL untuk manipulasi schema pada database. Query builder mendukung query-query berikut:
 
-* [createTable|CDbCommand::createTable]: creates a table
-* [renameTable|CDbCommand::renameTable]: renames a table
-* [dropTable|CDbCommand::dropTable]: drops a table
-* [truncateTable|CDbCommand::truncateTable]: truncates a table
-* [addColumn|CDbCommand::addColumn]: adds a table column
-* [renameColumn|CDbCommand::renameColumn]: renames a table column
-* [alterColumn|CDbCommand::alterColumn]: alters a table column
-* [dropColumn|CDbCommand::dropColumn]: drops a table column
-* [createIndex|CDbCommand::createIndex]: creates an index
-* [dropIndex|CDbCommand::dropIndex]: drops an index
+* [createTable|CDbCommand::createTable]: membuat table
+* [renameTable|CDbCommand::renameTable]: mengubah nama table
+* [dropTable|CDbCommand::dropTable]: drop (menghapus) table
+* [truncateTable|CDbCommand::truncateTable]: mengosongkan table
+* [addColumn|CDbCommand::addColumn]: menambahkan sebuah kolom table
+* [renameColumn|CDbCommand::renameColumn]: mengubah nama kolom table
+* [alterColumn|CDbCommand::alterColumn]: mengubah sebuah kolom table
+* [dropColumn|CDbCommand::dropColumn]: me-drop (hapus) kolom table
+* [createIndex|CDbCommand::createIndex]: membuat index
+* [dropIndex|CDbCommand::dropIndex]: me-drop (hapus) index
 
-> Info: Although the actual SQL statements for manipulating database schema vary widely across different DBMS, the query builder attempts to provide a uniform interface for building these queries. This simplifies the task of migrating a database from one DBMS to another.
+> Info: Walaupun statement SQL yang digunakan untuk manipulasi database schema sangat berbeda di antara DBMS, query builder mencoba menyediakan sebuah interface yang seragam untuk membuat query-query ini. Ini akan memudahkan proses migrasi database dari satu DBMS ke yang lainnya.
 
 
-###Abstract Data Types
+###Tipe Data Abstrak 
 
-The query builder introduces a set of abstract data types that can be used in defining table columns. Unlike the physical data types that are specific to particular DBMS and are quite different in different DBMS, the abstract data types are independent of DBMS. When abstract data types are used in defining table columns, the query builder will convert them into the corresponding physical data types.
+Query builder memperkenalkan sekumpulan tipe data abstrak yang dapat digunakan untuk mendefinisikan kolom table. Tidak seperti tipe data physical yang spesifik pada DBMS tertentu dan cukup berbeda di DBMS lainnya, tipe data abstrak bebas dari DBMS. Ketika tipe data abstrak digunakan untuk mendefinisikan kolom table, query builder akan mengubahnya menjadi tipe data physical bersangkutan.
 
-The following abstract data types are supported by the query builder.
+Berikut tipe data abstrak yang didukung oleh query builder.
 
-* `pk`: a generic primary key type, will be converted into `int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY` for MySQL;
-* `string`: string type, will be converted into `varchar(255)` for MySQL;
-* `text`: text type (long string), will be converted into `text` for MySQL;
-* `integer`: integer type, will be converted into `int(11)` for MySQL;
-* `float`: floating number type, will be converted into `float` for MySQL;
-* `decimal`: decimal number type, will be converted into `decimal` for MySQL;
-* `datetime`: datetime type, will be converted into `datetime` for MySQL;
-* `timestamp`: timestamp type, will be converted into `timestamp` for MySQL;
-* `time`: time type, will be converted into `time` for MySQL;
-* `date`: date type, will be converted into `date` for MySQL;
-* `binary`: binary data type, will be converted into `blob` for MySQL;
-* `boolean`: boolean type, will be converted into `tinyint(1)` for MySQL.
+* `pk`: sebuah jenis primary key generik, akan diubah menjadi `int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY` pada MySQL;
+* `string`: jenis string, akan diubah menjadi `varchar(255)` pada MySQL;
+* `text`: jenis teks (string panjang), akan diubah menjadi `text` pada MySQL
+* `integer`: jenis integer, akan diubah menjadi `int(11)` pada MySQL;
+* `float`: tipe angka floating, akan diubah menjadi `float` pada MySQL;
+* `decimal`: tipe angka desimal, akan diubah menjadi `decimal` pada MySQL;
+* `datetime`: tipe waktu tanggal, akan diubah menjadi `datetime` pada MySQL;
+* `timestamp`: tipe timestamp, akan diubah menjadi `timestamp` pada MySQL;
+* `time`: tipe waktu, akan diubah menjadi `time` pada MySQL;
+* `date`: tipe tanggal, akan diubah menjadi `date` pada MySQL;
+* `binary`: tipe data biner, akan diubah menjadi `blob` pada MySQL
+* `boolean`: tipe boolean, akan diubah menjadi `tinyint(1)` pada MySQL
 
 
 ###createTable
@@ -517,13 +517,13 @@ The following abstract data types are supported by the query builder.
 function createTable($table, $columns, $options=null)
 ~~~
 
-The [createTable|CDbCommand::createTable] method builds and executes a SQL statement for creating a table. The `$table` parameter specifies the name of the table to be created. The `$columns` parameter specifies the columns in the new table. They must be given as name-definition pairs (e.g. `'username'=>'string'`). The `$options` parameter specifies any extra SQL fragment that should be appended to the generated SQL. The query builder will quote the table name as well as the column names properly.
+Method [createTable|CDbCommand::createTable] akan membuat dan menjalankan statement SQL untuk menghasilkan sebuah table. Parameter `$table` akan menentukan nama dari table yang dibuat. Parameter `$columns` menentukan kolom-kolom pada table baru. Kolom-kolom ini harus diberikan dalam bentuk pasangan nama-definisi (misalnya `'username'=>'string'`). Parameter `$options` menentukan pecahan SQL ekstra yang harus ditambahkan pada SQL yang dihasilkan. Query builder akan memberikan quote pada nama table dan nama kolom.
 
-When specifying a column definition, one can use an abstract data type as described above. The query builder will convert the abstract data type into the corresponding physical data type, according to the currently used DBMS. For example, `string` will be converted into `varchar(255)` for MySQL.
+Ketika menentukan definisi sebuah kolom, kita dapat menggunakan tipe data abstrak seperti yang sudah dijelaskan di atas. Query builder akan mengubah tipe data abstrak tersebut menjadi tipe data physical bersangkuta, sesuai dengan DBMS yang digunakan. Misalnya, `string` akan diubah menjadi `varchar(255)` pada MySQL.
 
-A column definition can also contain non-abstract data type or specifications. They will be put in the generated SQL without any change. For example, `point` is not an abstract data type, and if used in a column definition, it will appear as is in the resulting SQL; and `string NOT NULL` will be converted into `varchar(255) NOT NULL` (i.e., only the abstract type `string` is converted).
+Sebuah definisi kolom juga bisa mengandung tipe data non-abstrak atau spesifikasi. Definisi kolom ini akan dmasukkan juga ke dalam SQL tanpa perubahan. Misalnya `point` bukanlah tipe data abstrak, dan jika digunakan di definisi kolom, maka akan keluar demikian pada SQL; dan `string NOT NULL` akan diubah menjadi `varchar(255) NOT NULL` (hanya tipe abstrak `string` yang diubah).
 
-Below is an example showing how to create a table:
+Berikut contoh bagaimana membuat sebuah table:
 
 ~~~
 [php]
@@ -547,9 +547,9 @@ createTable('tbl_user', array(
 function renameTable($table, $newName)
 ~~~
 
-The [renameTable|CDbCommand::renameTable] method builds and executes a SQL statement for renaming a table. The `$table` parameter specifies the name of the table to be renamed. The `$newName` parameter specifies the new name of the table. The query builder will quote the table names properly.
+Method [renameTable|CDbCommand::renameTable] membuat dan menjalankan statement SQL untuk mengubah nama table. Parameter `$table` menentukan nama dari table yang akan di-rename. Parameter `$newName` menentukan nama baru dari table. Query builder akan memberikan quote pada nama table.
 
-Below is an example showing how to rename a table:
+Berikut contoh bagaimana melakukan perubahan nama pada table :
 
 ~~~
 [php]
@@ -565,9 +565,9 @@ renameTable('tbl_users', 'tbl_user')
 function dropTable($table)
 ~~~
 
-The [dropTable|CDbCommand::dropTable] method builds and executes a SQL statement for dropping a table. The `$table` parameter specifies the name of the table to be dropped. The query builder will quote the table name properly.
+Method [dropTable|CDbCommand::dropTable] membuat dan menjalankan statement SQL untuk menghapus sebuah table. Parameter `$table` menentukan nama table yang akan di-drop (hapus). Query builder akan memberikan quote pada nama table.
 
-Below is an example showing how to drop a table:
+Berikut contoh bagaimana menghapus sebuah table:
 
 ~~~
 [php]
@@ -582,9 +582,9 @@ dropTable('tbl_user')
 function truncateTable($table)
 ~~~
 
-The [truncateTable|CDbCommand::truncateTable] method builds and executes a SQL statement for truncating a table. The `$table` parameter specifies the name of the table to be truncated. The query builder will quote the table name properly.
+Method [truncateTable|CDbCommand::truncateTable] membuat dan menjalankan statement SQL untuk menghapus sebuah table. Parameter `$table` menentukan nama table yang ingin dikosongkan. Query builder akan memberikan quote pada nama table.
 
-Below is an example showing how to truncate a table:
+Berikut contoh bagaimana mengosongkan table:
 
 ~~~
 [php]
@@ -600,9 +600,9 @@ truncateTable('tbl_user')
 function addColumn($table, $column, $type)
 ~~~
 
-The [addColumn|CDbCommand::addColumn] method builds and executes a SQL statement for adding a new table column. The `$table` parameter specifies the name of the table that the new column will be added to. The `$column` parameter specifies the name of the new column. And `$type` specifies the definition of the new column. Column definition can contain abstract data type, as described in the subsection of "createTable". The query builder will quote the table name as well as the column name properly.
+Method [addColumn|CDbCommand::addColumn] membuat dan menjalankan statement SQL untuk menambah kolom table baru. Parameter `$table` menentukan nama dari table yang akan ditambahkan kolom baru. Parameter `$column` akan menentukan nama dari kolom baru. Dan `$type` menentukan definisi kolom baru. Definisi kolom dapat mengandung tipe data abstrak, seperti yang dijelaskan pada sub-bagian "createTable" sebelumnya. Query builder akan memberikan quote pada nama table termasuk nama kolom.
 
-Below is an example showing how to add a table column:
+Berikut contoh menambah sebuah kolom table:
 
 ~~~
 [php]
@@ -618,9 +618,9 @@ addColumn('tbl_user', 'email', 'string NOT NULL')
 function dropColumn($table, $column)
 ~~~
 
-The [dropColumn|CDbCommand::dropColumn] method builds and executes a SQL statement for dropping a table column. The `$table` parameter specifies the name of the table whose column is to be dropped. The `$column` parameter specifies the name of the column to be dropped. The query builder will quote the table name as well as the column name properly.
+Method [dropColumn|CDbCommand::dropColumn] membuat dan menjalankan statement SQL untuk menghapus kolom table. Parameter `$table` menentukan nama dari table yang kolomnnya akan dihapus. Parameter `$column` menentukan nama dari kolom yang akan dihapus. Query builder akan memberikan quote pada nama table termasuk nama kolom.
 
-Below is an example showing how to drop a table column:
+Berikut contoh bagaimana menghapus sebuah kolom table:
 
 ~~~
 [php]
@@ -636,9 +636,9 @@ dropColumn('tbl_user', 'location')
 function renameColumn($table, $name, $newName)
 ~~~
 
-The [renameColumn|CDbCommand::renameColumn] method builds and executes a SQL statement for renaming a table column. The `$table` parameter specifies the name of the table whose column is to be renamed. The `$name` parameter specifies the old column name. And `$newName` specifies the new column name. The query builder will quote the table name as well as the column names properly.
+Method [renameColumn|CDbCommand::renameColumn] membuat dan mengeksekusi statement SQL untuk mengubah nama kolom table. Parameter `$table` menentukan nama table yang nama kolomnya akan diubah. Parameter `$name` menentukan nama kolom yang lama. Dan `$newName` menentukan nama kolom baru. Query builder akan memberikan quote pada nama table termasuk pada nama kolom.
 
-Below is an example showing how to rename a table column:
+Berikut contoh mengubah nama kolom table:
 
 ~~~
 [php]
@@ -654,9 +654,9 @@ renameColumn('tbl_user', 'name', 'username')
 function alterColumn($table, $column, $type)
 ~~~
 
-The [alterColumn|CDbCommand::alterColumn] method builds and executes a SQL statement for altering a table column. The `$table` parameter specifies the name of the table whose column is to be altered. The `$column` parameter specifies the name of the column to be altered. And `$type` specifies the new definition of the column. Column definition can contain abstract data type, as described in the subsection of "createTable". The query builder will quote the table name as well as the column name properly.
+Method [alterColumn|CDbCommand::alterColumn] membuat dan menjalankan statement SQL untuk mengubah kolom table. Parameter `$table` menentukan nama table yang kolomnya akan diubah. Parameter `$column` menentukan nama kolom yang akan diubah. Dan `$type` menentukan definisi baru pada kolom. Definisi kolom dapat mengandung tipe data abstrak, seperti yang sudah dijelaskan pada sub-bagian "createTable". Query builder akan memberikan quote pada nama table dan nama kolom. 
 
-Below is an example showing how to alter a table column:
+Berikut contoh mengubah kolom table:
 
 ~~~
 [php]
@@ -675,9 +675,9 @@ function addForeignKey($name, $table, $columns,
 	$refTable, $refColumns, $delete=null, $update=null)
 ~~~
 
-The [addForeignKey|CDbCommand::addForeignKey] method builds and executes a SQL statement for adding a foreign key constraint  to a table. The `$name` parameter specifies the name of the foreign key. The `$table` and `$columns` parameters specify the table name and column name that the foreign key is about. If there are multiple columns, they should be separated by comma characters. The `$refTable` and `$refColumns` parameters specify the table name and column name that the foreign key references. The `$delete` and `$update` parameters specify the `ON DELETE` and `ON UPDATE` options in the SQL statement, respectively. Most DBMS support these options: `RESTRICT`, `CASCADE`, `NO ACTION`, `SET DEFAULT`, `SET NULL`. The query builder will properly quote the table name, index name and column name(s).
+Method [addForeignKey|CDbCommand::addForeignKey] akan membuat dan menjalankan statement SQL untuk menambahkan foreign key constraint pada sebuah table. Parameter `$name` menentukan nama foreign key. Parameter `$table` dan `$columns` menentukan nama table dan nama kolom yang akan ditetapkan sebagai foreign key. JIka lebih dari satu kolom, maka bisa dipisahkan dengan menggunakan koma. Parameter `$refTable` dan `$refColumns` menentukan nama dan kolom table yang akan menjadi reference foreign key. Parameter `$delete` dan `$update` menentukan opsi `ON DELETE` dan `ON UPDATE` dalam statement SQL. Kebanyakan DBMS mendukung opsi ini:`RESTRICT`, `CASCADE`, `NO ACTION`, `SET DEFAULT`, `SET NULL`.  Query builder akan memberikan quote pada nama table, nama index dan nama kolom.
 
-Below is an example showing how to add a foreign key constraint,
+Berikut contoh menambah foreign key constraint,
 
 ~~~
 [php]
@@ -696,9 +696,9 @@ addForeignKey('fk_profile_user_id', 'tbl_profile', 'user_id',
 function dropForeignKey($name, $table)
 ~~~
 
-The [dropForeignKey|CDbCommand::dropForeignKey] method builds and executes a SQL statement for dropping a foreign key constraint. The `$name` parameter specifies the name of the foreign key constraint to be dropped. The `$table` parameter specifies the name of the table that the foreign key is on. The query builder will quote the table name as well as the constraint names properly.
+Method [dropForeignKey|CDbCommand::dropForeignKey] membuat dan menjalankan statement SQL untuk menghapus sebuah foreign key constraint. Parameter `$name` menentukan nama dari foreign key constraint yang akan dihapus. Parameter `$table` menentukan nama table yang foreign key constraintnya akan dihapus. Query builder akan memberikan quote pada nama table dan juga nama constraint.
 
-Below is an example showing how to drop a foreign key constraint:
+Berikut contoh menghapus foreign key constraint:
 
 ~~~
 [php]
@@ -714,9 +714,9 @@ dropForeignKey('fk_profile_user_id', 'tbl_profile')
 function createIndex($name, $table, $column, $unique=false)
 ~~~
 
-The [createIndex|CDbCommand::createIndex] method builds and executes a SQL statement for creating an index. The `$name` parameter specifies the name of the index to be created. The `$table` parameter specifies the name of the table that the index is on. The `$column` parameter specifies the name of the column to be indexed. And the `$unique` parameter specifies whether a unique index should be created. If the index consists of multiple columns, they must be separated by commas. The query builder will properly quote the table name, index name and column name(s).
+Method [createIndex|CDbCommand::createIndex] membuat dan menjalankan statement SQL untuk membuat sebuah index. Parameter `$name` menentukan nama index yang akan dibuat. Parameter `$table` menentukan nama table yang index-nya berada. Parameter `$column` menentukan nama kolom yang akan di-indeks. Dan parameter `$unique` menentukan apakah harus membuat unique index. Jika index terdiri dari beberapa kolom, maka harus dipisah dengan koma. Query builder akan memberikan quote pada nama table, nama index dan nama kolom.
 
-Below is an example showing how to create an index:
+Berikut contoh pembuatan index:
 
 ~~~
 [php]
@@ -732,7 +732,7 @@ createIndex('idx_username', 'tbl_user')
 function dropIndex($name, $table)
 ~~~
 
-The [dropIndex|CDbCommand::dropIndex] method builds and executes a SQL statement for dropping an index. The `$name` parameter specifies the name of the index to be dropped. The `$table` parameter specifies the name of the table that the index is on. The query builder will quote the table name as well as the index names properly.
+Method [dropIndex|CDbCommand::dropIndex] membuat dan mengeksekusi statement SQL untuk menghapus indeks. Parameter `$name` menentukan nama dari yang index-nya akan dihapus. Parameter `$table` menentukan nama table yang index-nya akan dihapus. Query builder akan memberikan quote pada nama table sekaligus nama index.
 
 Below is an example showing how to drop an index:
 
