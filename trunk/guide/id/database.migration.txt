@@ -1,0 +1,228 @@
+Migrasi Database
+==================
+
+> Note|Catatan: Fitur migrasi database telah tersedia sejak versi 1.1.6
+
+Sama seperti halnya dengan source code, struktur database selalu berkembang seiring kita mengembangkan dan merawat aplikasi database-driven. Misalnya, ketika saat pengembangan, kita ingin menambah sebuah tabel baru, atau setelah aplikasi sudah rampung, kita mungkin menyadari perlu menambah sebuah indeks pada sebuah kolom. Sangatlah penting untuk selalu menjaga track dari perubahan strutktural database ini (yang disebut dengan **migration (migrasi)** seperti halnya yang kita lakukan pada source code. Jika source code dan database tidak tersinkronisasi, besar peluangnya keseluruhan aplikasi akan rusak. Karena itulah, Yii menyediakan fungsi migrasi database yang bisa menjaga histori migrasi database, mengaplikasikan migrasi baru ataupun mengembalikannya.
+
+Berikut merupakan langkah-langkah yang dilakukan untuk migrasi database pada masa pengembangan:
+
+1. Budi membuat sebuah migrasi baru (misalnya membuat tabel baru)
+2. Budi commit migrasi baru ke sistem pengaturan source (seperti SVN, GIT)
+3. Joni mengupdate dari sistem pengontrolan source dan mendapatkan migrasi baru
+4. Joni mengaplikasikan migrasi ke database pengembangan lokalnya
+
+
+Yii mendukung migrasi database melalui perintah `yiic migrate`. Tool ini mendukung pembuatan migrasi baru, mengaplikasikan/mengubah/mengulangi migrasi, dan menampilkan histori migrasi dan migrasi baru.
+
+Berikut ini, kita akan menjelaskan cara penggunaan tool ini.
+
+
+Pembutan Migrasi
+-------------------
+
+Untuk membuat sebuah migrasi baru (seperti membuat table news), kita jalankan perintah ini:
+To create a new migration (e.g. create a news table), we run the following command:
+
+~~~
+yiic migrate create <name>
+~~~
+
+Parameter wajib `name` digunakan sebagai deskripsi yang sangat singkat tentang migrasi (misalnya `create_news_table`). Seperti yang akan ditunjukkan berikut ini, parameter `name` digunakan sebagai bagian dari nama kelas PHP. Oleh karena itu, seharusnya hanya mengandung huruf, angka atau garis bawah (underscore).
+
+~~~
+yiic migrate create create_news_table
+~~~
+
+Perintah di atas akan membuat sebuah file baru bernama `m101129_185401_create_news_table.php` di dalam `protected/migrations` yang mengandung code berikut ini:
+
+~~~
+[php]
+class m101129_185401_create_news_table extends CDbMigration
+{
+	public function up()
+	{
+	}
+
+    /*
+    public function down()
+    {
+    }
+    */
+}
+~~~
+
+Perhatikan bahwa nama kelas sama dengan nama file dengan pola `m<timestamp>_<name>`, dengan `<timestamp>` merujuk pada timestamp UTC (dalam format `yymmdd_hhmmss`) ketika migrasi dibuat, dan `<name>` diambil dari parameter `name` dari command-nya.
+
+Method `up()` harus mengandung code yang mengimplementasikan migrasi database aktual, sedangkan method `down()` bisa berisi code yang me-revert apa yang telah dilakukan `up()`.
+
+Kadangkala, mengimplementasi `down()` adalah tidak mungkin. Misalnya, kita menghapus baris tabel di `up()`, kita tidak akan bisa mengembalikan mereka dengan `down()`. Dalam hal ini, migrasi disebut sebagai irreversible(tidak dapat dibalikkan), yang artinya kita tidak bisa roll back ke keadaan sebelumnya dalam database.
+
+Contohnya, mari melihat tentang cara pembuatan sebuah tabel news.
+
+~~~
+[php]
+class m101129_185401_create_news_table extends CDbMigration
+{
+	public function up()
+	{
+		$this->createTable('tbl_news', array(
+			'id' => 'pk',
+			'title' => 'string NOT NULL',
+			'content' => 'text',
+		));
+	}
+
+	public function down()
+	{
+		$this->dropTable('tbl_news');
+	}
+}
+~~~
+
+Kelas dasar [CDbMigration] menyediakan sekumpulan method untuk manipulasi data dan skema database. Misalnya, [CDbMigration::createTable] akan membuat table database, sedangkan [CDbMigration::insert] akan menyisipkan sebuah baris data. Method-method ini semuanya menggunakan koneksi database yang dikembalikan oleh [CDbMigration::getDbConnection()], yang secara default akan mengembalikan `Yii::app()->db`.
+
+> Info|Catatan: Kamu mungkin menyadari bahwa method-method database yang disediakan oleh [CDbMigration] sangat mirip dengan method-method di [CDbCommand]. Memang mereka hampir sama kecuali method [CDbMigration] akan mengukur waktu yang digunakan oleh methodnya dan mencetak beberapa pesan tentang parameter method.
+
+
+Mengaplikasikan Migrasi
+-------------------
+
+Untuk mengaplikasikan migrasi baru yang tersedia (misalnya membuat database lokal up-to-date), jalankan perintah berikut:
+
+~~~
+yiic migrate
+~~~
+
+Perintah ini akan menampilkan daftar semua migrasi yang baru. Jika anda konfirmasi untuk mengaplikasikan migrasi, maka akan dijalankan method `up()` di setiap kelas migrasi baru, satu per satu secara berurutan, sesuai dengan urutan nilai timstamp di dalam nama kelas.
+
+Setelah mengaplikasikan migrasi, tool migrasi akan mencatat record di sebuah table database bernama `tbl_migration`. Dengan demikian memungkinkan tool untuk mengidentifikasikan berapa migrasi yang telah diaplikasikan dan yang mana belum. Jika table `tbl_migration` tidak ada, maka tool ini akan secara otomatis membuatkannya, tergantung pada database yang dispesifikasikan komponen aplikasi `db`.
+
+Kadang-kadang, kita hanya ingin mengaplikasikan satu atau beberapa migrasi. Kita dapat menggunakan perintah berikut ini:
+
+~~~
+yiic migrate up 3
+~~~
+
+Perintah ini kan mengaplikasikan 3 migrasi baru. Mengubah nilai 3 akan memungkinkan kita untuk mengubah jumlah migrasi yang diaplikasikan.
+
+Kita juga dapat migrasikan database ke versi tertentu melalui perintah berikut:
+
+~~~
+yiic migrate to 101129_185401
+~~~
+
+Begitulah, kita menggunakan bagian timestamp pada nama migrasi untuk menentukan versi yang ingin kita migrasikan databasenya. Jika terdapat beberapa migrasi di antara migrasi terakhir yang di-apply dan migrasi khusus, semua migrasi ini akan diaplikasikan. Jika migrasi yang ditetapkan telah diaplikasikan sebelumnya, maka seluruh migrasi diaplikasikan setelah di-revert (kembalikan ke semula)
+
+
+Me-Revert Migrations
+--------------------
+
+To revert the last one or several applied migrations, we can use the following command:
+
+~~~
+yiic migrate down [step]
+~~~
+
+where the optional `step` parameter specifies how many migrations to be reverted back. It defaults to 1, meaning reverting back the last applied migration.
+
+As we described before, not all migrations can be reverted. Trying to revert such migrations will throw an exception and stop the whole reverting process.
+
+
+Redoing Migrations
+------------------
+
+Redoing migrations means first reverting and then applying the specified migrations. This can be done with the following command:
+
+~~~
+yiic migrate redo [step]
+~~~
+
+where the optional `step` parameter specifies how many migrations to be redone. It defaults to 1, meaning redoing the last migration.
+
+
+Showing Migration Information
+-----------------------------
+
+Besides applying and reverting migrations, the migration tool can also display the migration history and the new migrations to be applied.
+
+~~~
+yiic migrate history [limit]
+yiic migrate new [limit]
+~~~
+
+where the optional parameter `limit` specifies the number of migrations to be displayed. If `limit` is not specified, all available migrations will be displayed.
+
+The first command shows the migrations that have been applied, while the second command shows the migrations that have not been applied.
+
+
+Modifying Migration History
+---------------------------
+
+Sometimes, we may want to modify the migration history to a specific migration version without actually applying or reverting the relevant migrations. This often happens when developing a new migration. We can use the the following command to achieve this goal.
+
+~~~
+yiic migrate mark 101129_185401
+~~~
+
+This command is very similar to `yiic migrate to` command, except that it only modifies the migration history table to the specified version without applying or reverting the migrations.
+
+
+Customizing Migration Command
+-----------------------------
+
+There are several ways to customize the migration command.
+
+### Use Command Line Options
+
+The migration command comes with four options that can be specified in command line:
+
+* `interactive`: boolean, specifies whether to perform migrations in an interactive mode. Defaults to true, meaning the user will be prompted when performing a specific migration. You may set this to false should the migrations be done in a background process.
+
+* `migrationPath`: string, specifies the directory storing all migration class files. This must be specified in terms of a path alias, and the corresponding directory must exist. If not specified, it will use the `migrations` sub-directory under the application base path.
+
+* `migrationTable`: string, specifies the name of the database table for storing migration history information. It defaults to `tbl_migration`. The table structure is `version varchar(255) primary key, apply_time integer`.
+
+* `connectionID`: string, specifies the ID of the database application component. Defaults to 'db'.
+
+* `templateFile`: string, specifies the path of the file to be served as the code template for generating the migration classes. This must be specified in terms of a path alias (e.g. `application.migrations.template`). If not set, an internal template will be used. Inside the template, the token `{ClassName}` will be replaced with the actual migration class name.
+
+To specify these options, execute the migrate command using the following format
+
+~~~
+yiic migrate up --option1=value1 --option2=value2 ...
+~~~
+
+For example, if we want to migrate for a `forum` module whose migration files are located within the module's `migrations` directory, we can use the following command:
+
+~~~
+yiic migrate up --migrationPath=ext.forum.migrations
+~~~
+
+
+### Configure Command Globally
+
+While command line options allow us to configure the migration command on-the-fly, sometimes we may want to configure the command once for all. For example, we may want to use a different table to store the migration history, or we may want to use a customized migration template. We can do so by modifying the console application's configuration file like the following,
+
+~~~
+[php]
+return array(
+	......
+	'commandMap'=>array(
+		'migrate'=>array(
+			'class'=>'system.cli.commands.MigrateCommand',
+			'migrationPath'=>'application.migrations',
+			'migrationTable'=>'tbl_migration',
+			'connectionID'=>'db',
+			'templateFile'=>'application.migrations.template',
+		),
+		......
+	),
+	......
+);
+~~~
+
+Now if we run the `migrate` command, the above configurations will take effect without requiring us to enter the command line options every time.
+
+
+<div class="revision">$Id: database.migration.txt 2832 2011-01-10 14:37:04Z qiang.xue $</div>
