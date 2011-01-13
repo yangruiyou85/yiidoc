@@ -9,7 +9,10 @@
  * *development* - dewelopment lub rozwój aplikacji
  * *entry script* - skrypt wejściowy
  * *fetching (data)* - pobieranie (danych)
+ * *internationalization* - umiędzynaradawianie
+ * *info* - info
  * *layout* - układ
+ * *note* - uwaga
  * *parameter binding* - przypinanie parametrów
  * *placeholder* - symbol zastępczy
  * *render view* - generowanie widoku
