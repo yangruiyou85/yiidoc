@@ -18,6 +18,7 @@
     - [Modul](basics.module)
     - [Konvensi](basics.convention)
     - [Alur Kerja Pengembangan](basics.workflow)
+    - [Praktek MVC Terbaik](basics.best-practices)
 
 * Bekerja dengan Form
     - [Tinjauan](form.overview)
@@ -30,8 +31,10 @@
 * Bekerja dengan Database
     - [Tinjauan](database.overview)
     - [Database Access Objects](database.dao)
+    - [Query Builder](database.query-builder)
     - [Rekaman Aktif](database.ar)
     - [Rekaman Aktif Relasional](database.arr)
+    - [Migrasi Database](database.migration)
 
 * Caching
     - [Tinjauan](caching.overview)
@@ -67,4 +70,4 @@
     - [Pengaturan Kinerja](topics.performance)
     - [Menghasilkan Kode dengan Command Line Tools(deprecated)](quickstart.first-app-yiic)
 
-<div class="revision">$Id: toc.txt 2098 2010-05-05 19:49:51Z qiang.xue $</div>
+<div class="revision">$Id: toc.txt 2700 2010-12-01 13:08:26Z alexander.makarow $</div>

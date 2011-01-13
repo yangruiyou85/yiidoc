@@ -92,7 +92,8 @@ Untuk lebih jelasnya, silahkan merujuk ke file tampilan standar framework di baw
 direktori `view`.
 
 
-### Penanganan Error dengan Penggunaan Action(Aksi)
+Penanganan Error dengan Penggunaan Action(Aksi)
+---------------------------------------------------------------------------------
 
 Mulai dari Yii versi 1.0.6, Yii memungkinkan kita menggunakan sebuah [action dari controller](/doc/guide/basics.controller#action)
 untuk menangani tugas penampilan error. Untuk itu, kita harus mengatur error handler(penanganan error) dalam konfigurasi aplikasi:
@@ -141,7 +142,7 @@ aksi `error` bisa saja di-request oleh end user secara langsung yang berarti tid
 Karena kita sedang melemparkan larik(array) `$error` ke view, kita akan memperluas variabel individu
 secara otomatis. Sebagai hasilnya, kita dapat mengakses variabel-variabel `$code`, `$type` secara langsung di view.
 
-Pencatatan Pesan
+Pencatatan Message(Pesan)
 ----------------
 
 Pesan tingkat `error` akan selalu dicatat bila terjadi kesalahan. Jika error
@@ -152,4 +153,4 @@ akan menjadi `exception.ExceptionClassName` (untuk [CHttpException]
 kategori). Selanjutnya Anda dapat mengeksploitasi fitur [pencatatan](/doc/guide/topics.logging)
 untuk memonitor error yang terjadi selama eksekusi aplikasi.
 
-<div class="revision">$Id: topics.error.txt 1064 2009-05-26 00:15:33Z qiang.xue $</div>
+<div class="revision">$Id: topics.error.txt 2739 2010-12-14 01:50:04Z weizhuo $</div>

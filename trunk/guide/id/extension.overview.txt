@@ -1,4 +1,4 @@
-Tinjauan
+Meng-extend Yii
 ========
 
 Memperluas Yii merupakan kegiatan umum selama pengembangan. Contohnya, saat
@@ -27,4 +27,4 @@ di atas. Bahkan, Yii didesain secara teliti sehingga hampir seluruh kodenya
 dapat diperluas dan diatur agar sesuai dengan kebutuhan
 setiap individu.
 
-<div class="revision">$Id: extension.overview.txt 1398 2009-09-06 01:15:01Z qiang.xue $</div>
+<div class="revision">$Id: extension.overview.txt 2739 2010-12-14 01:50:04Z weizhuo $</div>
