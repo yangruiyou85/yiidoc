@@ -196,7 +196,7 @@ Yii::t('Xyz.имяКатегории', 'сообщение для перевод
 ~~~
 
 
-> Information|Информация: число и порядок значений можно узнать в разделе
+> Info|Информация: число и порядок значений можно узнать в разделе
  [Language Plural Rules](http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html)
  на сайте CLDR.
 
@@ -260,4 +260,4 @@ timestamp:
    - [formatPercentage|CNumberFormatter::formatPercentage]: форматирует число в соответствии с форматом форматирования процентов,
    заданным для текущего языка приложения.
 
-<div class="revision">$Id: topics.i18n.txt 2522 2010-09-30 21:13:25Z alexander.makarow $</div>
+<div class="revision">$Id: topics.i18n.txt 2845 2011-01-13 02:16:19Z alexander.makarow $</div>
