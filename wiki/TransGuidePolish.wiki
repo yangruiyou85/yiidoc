@@ -2,8 +2,10 @@
 
 = Terminy i ich tłumaczenia =
 
+ * *apply migration* - aplikowanie migracji
  * *bootstrapt script* - skrypt rozruchowy
  * *customize* - dostosowywać (do własnych potrzeb)
+ * *development* - dewelopment lub rozwój aplikacji
  * *entry script* - skrypt wejściowy
  * *fetching (data)* - pobieranie (danych)
  * *layout* - układ
@@ -12,9 +14,13 @@
  * *render view* - generowanie widoku
  * *request processing* - przetwarzanie żądania
  * *resolve request* - rozszyfrowanie żądania
+ * *revert migration* - odwracanie migracji
+ * *required parameter* - parametr obowiązkowy
+ * *redoing migration* - poprawianie migracji
  * *route* - trasa
  * *SQL statement* - instrukcja SQL
  * *SQL query* - zapytranie SQL
- * *view* - widok
  * *theme* - motyw
+ * *timestamp* - stempel czasu
+ * *view* - widok
  * *web application* - aplikację sieciowa
