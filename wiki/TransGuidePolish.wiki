@@ -12,6 +12,8 @@
  * *internationalization* - umiędzynaradawianie
  * *info* - info
  * *layout* - układ
+ * *message* - komunikat
+ * *message source* - źródło komunikatów
  * *note* - uwaga
  * *parameter binding* - przypinanie parametrów
  * *placeholder* - symbol zastępczy
