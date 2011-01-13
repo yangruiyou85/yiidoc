@@ -12,6 +12,7 @@
  * *internationalization* - umiędzynaradawianie
  * *info* - info
  * *layout* - układ
+ * *locale* - ustawienia lokalne
  * *message* - komunikat
  * *message source* - źródło komunikatów
  * *note* - uwaga
