@@ -1,11 +1,11 @@
 Migracja bazy danych
 ==================
 
-> Note|Uwaga: Funkcjonalność migrowania bazy danych została udostępniona od wersji 1.1.6.
+> Note|Uwaga: Funkcjonalność migrowania bazy danych jest dostępna od wersji 1.1.6.
 
-Tak jak w przypadku kodu, struktura bazy danych zmienia się wraz z dewelopmentem i zarządzaniem aplikacji bazodanowej. Na przykład, podczas dewelopmentu, możemy chcieć dodać nowa tabelę, czy też, po przeniesieniu aplikacji na serwer produkcyjny, może powstać potrzeba dodania indeksu do kolumny. Ważne jest, aby śledzić te zmiany w strukturze bazy danych (nazywane **migracją**) tak jak to robimy z kodem. Jeśli kod źródłowy i baza danych rozsynchronizują się, jest bardzo prawdopodobne, że cały system przestanie działać. Z tego powodu, Yii dostarcza narzędzie do migracji, które może śledzić historię migracji bazy danych, aplikować nowe migracje lub też odwracać istniejące.
+Podobnie jak kod tak i struktura bazy danych zmienia się wraz z rozwojem i zarządzaniem aplikacją bazodanową. Na przykład, podczas rozwoju, możemy chcieć dodać nową tabelę, czy też, po przeniesieniu aplikacji na serwer produkcyjny, może powstać potrzeba dodania indeksu do kolumny. Ważne jest, aby śledzić te zmiany w strukturze bazy danych (nazywane **migracją**) podobnie jak to robimy z kodem. Jeśli kod źródłowy i baza danych rozsynchronizują się, zachodzi duże prawdopodobieństwo, że cały system przestanie działać. Z tego powodu, Yii dostarcza narzędzie do migracji, które może śledzić historię migracji bazy danych, aplikować nowe migracje lub też odwracać istniejące.
 
-Następujące kroki pokazują sposób używania migracji bazy danych w trakcie dewelopmentu:
+Poniższe kroki pokazują sposób używania migracji bazy danych w trakcie rozwoju aplikacji:
 
 1. Jan utworzył nową migrację (np. dodał nową tabelę)
 2. Jan skomitował nową migrację do systemu kontroli wersji (np. SVN, GIT)
@@ -13,7 +13,7 @@ Następujące kroki pokazują sposób używania migracji bazy danych w trakcie d
 4. Stefan zaaplikował nową migrację na swoją lokalną bazę danych
 
 
-Yii wspiera migrację bazy danych poprzez narzędzie linii poleceń `yiic migrate`. Narzędzie to wspiera tworzenie nowych migracji, aplikowanie/usuwanie/poprawianie migracji oraz wyświetlanie nowych migracji oraz ich historii.
+Yii wspiera migrację bazy danych poprzez narzędzie linii poleceń `yiic migrate`. Pozwala ono na tworzenie nowych, aplikowanie/odwracanie/poprawianie migracji oraz wyświetlanie historii oraz nowych migracji.
 
 W dalszej części opiszemy w jaki sposób używać to narzędzie.
 
@@ -21,19 +21,19 @@ W dalszej części opiszemy w jaki sposób używać to narzędzie.
 Tworzenie migracji
 -------------------
 
-W celu utworzenia nowej migracji (np. utworzenie nowej tabeli), uruchamiamy następujące polecenie:
+Aby utworzyć nową migrację (np. dodającej nową tabelę), wykonujemy następujące polecenie:
 
 ~~~
 yiic migrate create <name>
 ~~~
 
-Wymagany parametr `name` bardzo określa zwięźle opisuje migrację (np. `create_news_table`). Jak zobaczymy w dalszej części, parametr `name` używany jest jako część klasy PHP. Z tej przyczyny powinien zawierać jedynie litery, cyfry i/lub znaki podkreślenia.
+Obowiązkowy parametr `name` bardzo zwięźle opisuje migrację (np. `create_news_table`). Jak zobaczymy w dalszej części, parametr `name` używany jest jako część nazwy klasy PHP. Z tej przyczyny powinien zawierać jedynie litery, cyfry i/lub znaki podkreślenia.
 
 ~~~
 yiic migrate create create_news_table
 ~~~
 
-Powyższe polecenie utworzy w katalogu `protected/migrations` nowy plik nazwany `m20101129_185401_create_news_table.php`, który zawierać będzie następujący, początkowy kod:
+Powyższe polecenie utworzy w katalogu `protected/migrations` nowy plik o nazwie `m20101129_185401_create_news_table.php`, który zawierać będzie następujący, początkowy kod:
 
 ~~~
 [php]
@@ -51,13 +51,13 @@ class m101129_185401_create_news_table extends CDbMigration
 }
 ~~~
 
-Zauważ, że nazwa klasy jest taka sama jak nazwa pliku, zgodnie z wzorcem `m<timestamp>_<name>`, gdzie `<timestamp>` wskazuje na stempel czasu UTC (w domyślnym formacie `yymmdd_hhmmss`) w którym to migracja została utworzona, a wartość reprezentująca `<name>` pobierana jest z parametru `name` polecenia.
+Zauważ, że nazwa klasy jest taka sama jak nazwa pliku, zgodnie z wzorcem `m<timestamp>_<name>`, gdzie `<timestamp>` wskazuje na stempel czasu UTC (w domyślnym formacie `yymmdd_hhmmss`) utworzenia migracji, zaś wartość reprezentująca `<name>` pobierana jest z parametru `name` polecenia.
 
-Metoda `up()` powinna zawierać kod implementujący aklualną migrację bazy danych, podczas gdy metoda `down()` może zawierać kod odwracający to, co zostało zrobione w `up()`.
+Metoda `up()` powinna zawierać kod implementujący aklualną migrację bazy danych, podczas gdy metoda `down()` może zawierać kod odwracający to, co zostało zrobione w metodzie `up()`.
 
-Czasami niemożliwe jest zaimplementowanie metody `down()`. Na przykład, jeśli usunęliśmy wiersze tabeli w metodzie `up()`, nie będziemy w stanie ich odtwozyć w metodzie `down()`. W takim przypadku migracja nazywana jest nieodwracalną, co oznacza, że nie możemy powrócić do poprzedniego stan bazy danych.
+Czasami niemożliwe jest zaimplementowanie metody `down()`. Na przykład, jeśli usunęliśmy wiersze tabeli w metodzie `up()`, nie będziemy w stanie ich odtwozyć w metodzie `down()`. W takim przypadku migracja nazywana jest nieodwracalną, co oznacza, że nie możemy powrócić do poprzedniego stanu bazy danych.
 
-W ramach przykładu pokażmy migrację tworzącą tabelę wiadomości.
+W ramach przykładu pokażemy migrację tworzącą tabelę wiadomości.
 
 ~~~
 [php]
@@ -81,23 +81,23 @@ class m101129_185401_create_news_table extends CDbMigration
 
 Klasa bazowa [CDbMigration] dostarcza metod manipulujących danymi oraz schematem bazy danych. Na przykład, metoda [CDbMigration::createTable] utworzy tabelę w bazie danych, zaś metoda [CDbMigration::insert] wstawi wiersz danych. Wszystkie te metody używają połączenia z bazą danych zwracanego przez metodę [CDbMigration::getDbConnection()], która domyślnie zwraca `Yii::app()->db`.
 
-> Info|Info: Jak można zauważyć, metody bazodanowe dostarczane przez [CDbMigration] są bardzo podobne dp tych z [CDbCommand]. Rzeczywiście są one takie same z tym wyjątkien, że metody [CDbMigration] odmierzają czas używany przez przez nie zużyty oraz wyświetlają pewne informację o parametrach metody.
+> Info|Info: Jak zauważyłeś, metody bazodanowe dostarczane przez [CDbMigration] są bardzo podobne do tych z [CDbCommand]. Rzeczywiście są one prawie takie same z tym wyjątkien, że metody [CDbMigration] odmierzają czas zużyty na ich wykonanie oraz wyświetlają pewne dodatkowe informację o parametrach metody.
 
 
 Aplikowanie migracji
 -------------------
 
-W celu zastosowanie wszystkich nowodostępnych migracji (np. by zaktualizować lokalną wersję bazy danych) uruchom następujące polecenie:
+Aby zaaplikować wszystkie nowe migracje (np. aktualizujące lokalną wersję bazy danych) uruchom następujące polecenie:
 
 ~~~
 yiic migrate
 ~~~
 
-Polecenie wyświetli listę wszystkich nowych migracji. Jeśli potwierdzisz zaaplikowanie tych migracji, polecenie to wywoła metodę `up()` każdej z klasy migracyjnych, jedna po drugiej, w kolejności wartości znacznika czasu (ang. timestamp) zapisanego w nazie klasy.
+Polecenie wyświetli listę wszystkich nowych migracji. Jeśli potwierdzisz zaaplikowanie tych migracji, polecenie to wywoła metodę `up()` każdej z klasy migracyjnych, jedna po drugiej, w kolejności wartości znacznika czasu (ang. timestamp) zapisanego w nazwie klasy.
 
-Po zastosowaniu migracji, narzędzie migrujace zachowa rekord w tabeli o nazwie `tbl_migration`. Pozwoli to narzędziu zidentyfikować, które migracje zostały zaaplikowane a które nie. Jeśli tabela `tbl_migration` nie istnieje, narzędzie utworzy ją w bazie danych określonej przez komponent aplikacji `db`.
+Po zastosowaniu migracji, narzędzie migrujace zapisze rekord w tabeli `tbl_migration`. Pozwoli to narzędziu zidentyfikować, które migracje zostały zaaplikowane a które nie. Jeśli tabela `tbl_migration` nie istnieje, narzędzie migracji utworzy ją w bazie określonej przez komponent aplikacji `db`.
 
-Czasami możemy chcież jedynie zaaplikować jedną lub kilka migracji. W tym celu używamy następującego polecenia:
+Czasami możemy chcieć zaaplikować tylko jedną lub kilka migracji. W tym celu używamy następującego polecenia:
 
 ~~~
 yiic migrate up 3
@@ -111,7 +111,7 @@ Możemy również zmigrować bazę danych do określonej wersji za pomocą nast�
 yiic migrate to 101129_185401
 ~~~
 
-Oznacza to, że korzystamy z części nazwy migracji zawierającej informację o stemplu czasowym w celu określenia wersji, do której chcemy zmigorwać baze danych. Jeśli pomiędzy ostatnio zastosowaną migracją a określoną przez nas występują inne, wszystkie te migracje zostaną zaaplikowane. Jeśli określona migracja zostałą zaaplikowana wcześniej, wtedy wszystkie migracje określone po niej zostaną odwrócone (zostanie to opisane w dalszej części).
+Oznacza to, że korzystamy z części nazwy migracji zawierającej informację o stemplu czasowym w celu określenia wersji, do której chcemy zmigrować bazę danych. Jeśli pomiędzy ostatnio zastosowaną migracją a określoną przez nas występują inne, wszystkie te migracje zostaną zaaplikowane. Jeśli dana migracja zostałą zaaplikowana wcześniej, wtedy wszystkie migracje występujące po niej zostaną odwrócone (zostanie to opisane w dalszej części).
 
 
 Odwracanie migracji
@@ -123,15 +123,15 @@ W celu odwrócenia ostaniej lub kilku ostatnio zaaplikowanych migracji, możemy 
 yiic migrate down [step]
 ~~~
 
-gdzie opcjonalny parametr `step` określa jak wiele migracji zostanie odwróconych. Domyślnie przyjmuje wartość 1, co oznacza odwracanie ostatnio zaaplikowanej migracji.
+gdzie opcjonalny parametr `step` określa jak wiele migracji zostanie odwróconych. Domyślnie przyjmuje wartość 1 co oznacza odwracanie ostatnio zaaplikowanej migracji.
 
-Tak jak wspominaliśmy wcześniej nie wszystkie migracje można odwrócic. Próbując odwrócić ten typ migracji otrzymamy wyjątek i przerwiemy cały proces.
+Tak jak wspominaliśmy wcześniej nie wszystkie migracje można odwracać. Próbując odwrócać nieodwracalną migrację otrzymamy wyjątek i a proces odwracania zostaie przerwany. 
 
 
 Poprawianie migracji
 ------------------
 
-Poprawianie migracji oznacza odwrócenie a następnie zaaplikowanie określonej migracji. Może to być zrobione za pomocą następującego polecenia:
+Poprawianie migracji oznacza odwrócenie a następnie zaaplikowanie danej migracji jeszcze raz. Może to być zrobione za pomocą następującego polecenia:
 
 ~~~
 yiic migrate redo [step]
@@ -143,14 +143,14 @@ gdzie opcjonalny parametr `step` określa jak wiele migracji zostanie poprawiony
 Wyświetlanie informacji o migracji
 -----------------------------
 
-Poza aplikowaniem i odwracaniem migracji, narzędzie do migracji potrafi również wyświetlić historię migracji oraz nową migrację, gotowe do zaaplikowania.
+Poza aplikowaniem i odwracaniem migracji, narzędzie do migracji potrafi również wyświetlać historię oraz listę nowych, gotowych do zaaplikowania migracji.
 
 ~~~
 yiic migrate history [limit]
 yiic migrate new [limit]
 ~~~
 
-gdzie opcjonalny parametr `limit` określa ilość migracji do wyświetlenia. Jeśli parametr `limit` nie został zdefiniowany, wszystkie migracje zostaną wyświetlone.
+Opcjonalny parametr `limit` określa ilość migracji do wyświetlenia. Jeśli parametr `limit` nie został zdefiniowany, wyświetlone zostaną wszystkie migracje.
 
 Pierwsze polecenie pokaże migracje, które zostały zaaplikowane, drugie zaś wyświetli migracje, które nie zostały jeszcze zaaplikowane.
 
@@ -164,17 +164,19 @@ Czasami możemy chcieć zmodyfikować historię migracji do konkretnej wersji be
 yiic migrate mark 101129_185401
 ~~~
 
-Polecenie to jest bardzo podobne do `yiic migrate to` z tym wyjątkiem, że modyfikuje ono wyłącznie tabelę z historią migracji do określonej wersji bez aplikowania czy też odwracania migracji.
+Polecenie to jest bardzo podobne do `yiic migrate to` z tym wyjątkiem, że modyfikuje ono wyłącznie tabelę zawierającą wpisy o historii migracji tak aby wskazywała ona daną wersję migracji bez jej aplikowania czy też odwracania.
 
 
 Dostosowywanie poleceń migracji
 -----------------------------
 
-Istnieje kilka sposobów by dostosować polecenia migracji.
+Istnieje kilka sposobów aby dostosować polecenia migracji.
 
 ### Poprzez opcje linii poleceń
 
 Polecenia migracji dostarczane są wraz z czterema opcjami, które mogą być określone w linii poleceń:
+
+* `interactive`: boolean, określa kiedy wykonywać migrację w trybie interaktywnym. Domyślnie true, co oznacza, iż użytkownik jest monitowany o wynikach migracji podczas jej wykonywania. Jeżeli ustawisz tę wartość na false migracja powinna się przebiegać w tle.
 
 * `migrationPath`: łańcuch znaków, określający katalog przechowujący wszystkie plik klas migracji. Należy go zdefiniować używając aliasu ścieżki do istniejącego katalogu. Jeśli opcja ta nie została określona, będzie ona używać podkatalogu `migrations` znajdującego się w katalogu bazowym aplikacji. 
 
@@ -182,9 +184,9 @@ Polecenia migracji dostarczane są wraz z czterema opcjami, które mogą być ok
 
 * `connectionID`: łańcuch znaków, określający identyfikator komponentu bazy danych aplikacji. Domyślnie 'db'.
 
-* `templateFile`: łańcuch znaków, określający ścieżkę do pliku, który posłuży jako szablon kodu używany do generowania klas migracji. Należy go określić przy użyciu aliasu ścieżki (np. `application.migrations.template`). Jeśli nie został podany, wewnętrzny szablon zostanie użyty, Wewnątrz szablony, token `{ClassName}` zostanie zastąpiony aktualną nazwą klasy migrującej.
+* `templateFile`: łańcuch znaków, określający ścieżkę do pliku, który posłuży jako szablon kodu używany do generowania klas migracji. Należy go określić przy użyciu aliasu ścieżki (np. `application.migrations.template`). Jeśli nie został podany, wewnętrzny szablon zostanie użyty, W szablonie token `{ClassName}` zostanie zastąpiony aktualną nazwą klasy migrującej.
 
-W celu określenia tych opcji wykonaj polecenia migracji używając następującego formatu
+W celu zdefiniowania tych opcji wykonaj polecenia migracji używając formatu
 
 ~~~
 yiic migrate up --opcja1=wartość1 --opcja2=wartość2 ...
@@ -199,7 +201,7 @@ yiic migrate up --migrationPath=ext.forum.migrations
 
 ### Globalne konfigurowanie poleceń
 
-Podczas gdy opcje linii poleceń pozawalają nam konfigurować polecenia w locie, czasami możemy chcieć skonfigurować polecenia raz na zawsze. Na przykład, możemy chcieć używać innej tabeli do przechowywania historii migracji, czy też możemy chcież używać zmienionego szablonu miracyjnego. Możemy to uczynić poprzez zmodyfikowanie pliku konfiguracyjnego aplikacji konsolowej w następujący sposób:
+Podczas gdy opcje linii poleceń pozwalają nam konfigurować polecenia w locie, czasami możemy chcieć skonfigurować polecenia raz na zawsze. Na przykład, możemy chcieć używać innej tabeli do przechowywania historii migracji, czy też możemy chcież używać zmienionego szablonu migracyjnego. Możemy to zrobić poprzez zmodyfikowanie pliku konfiguracyjnego aplikacji konsolowej w następująco:
 
 ~~~
 [php]
@@ -222,4 +224,4 @@ return array(
 Jeśli teraz uruchomimy polecenie `migrate` powyższa konfiguracja będzie obowiązywać bez konieczności wprowadzania za każdym razem opcji poprzez linię poleceń.
 
 
-<div class="revision">$Id: database.migration.txt 2708 2010-12-02 18:22:39Z qiang.xue $</div>
+<div class="revision">$Id: database.migration.txt 2832 2011-01-10 14:37:04Z qiang.xue $</div>
