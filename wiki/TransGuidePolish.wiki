@@ -29,5 +29,6 @@
  * *SQL query* - zapytranie SQL
  * *theme* - motyw
  * *timestamp* - stempel czasu
+ * *tip* - wskazówka
  * *view* - widok
  * *web application* - aplikację sieciowa
