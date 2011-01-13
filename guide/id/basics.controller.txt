@@ -12,13 +12,22 @@ action mana yang dijalankan, action standar yang akan dijalankan. Biasanya
 action default dinamai sebagai `index`. Action default bisa diubah dengan menyetel
 [CController::defaultAction].
 
-Berikut ini adalah kode minimal yang diperlukan oleh kelas controller. Karena controller ini
-tidak mendefinisikan action apapun, maka jika memanggilnya akan terjadi kesalahan.
+Berikut merupakan code untuk mendefinisikan controller `site`, sebuah action `index` (action
+default), dan sebuah action `contact`:
 
 ~~~
 [php]
 class SiteController extends CController
 {
+	public function actionIndex()
+	{
+		// ...
+	}
+
+	public function actionContact()
+	{
+		// ...
+	}
 }
 ~~~
 
@@ -315,4 +324,4 @@ harus diterapkan ke action `edit` dan `create`, sementara
 `create`. Jika plus maupun minus tidak muncul dalam konfigurasi filter,
 maka filter akan diterapkan ke semua action.
 
-<div class="revision">$Id: basics.controller.txt 2576 2010-10-28 02:46:14Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 2672 2010-11-22 19:13:16Z qiang.xue $</div>

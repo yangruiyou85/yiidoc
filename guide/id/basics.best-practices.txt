@@ -1,4 +1,4 @@
-Best MVC Practices
+Praktek MVC Terbaik (Best Practices)
 ==================
 
 Walaupun Model-View-Controller (MVC) dikenali hampir seluruh Web developer, bagaimana menggunakan MVC secara benar di dalam pengembangan aplikasi nyata masih membingungkan banyak orang. Pemikiran utama dari MVC adalah **code yang dapat dipakai ulang dan pemisahan tanggung jawab**. Pada bagian ini, kita akan melihat bagaimana petunjuk umum mengikuti MVC ketika mengembangkan aplikasi Yii.
