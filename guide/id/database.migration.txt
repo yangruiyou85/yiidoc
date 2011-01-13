@@ -104,7 +104,7 @@ Kadang-kadang, kita hanya ingin mengaplikasikan satu atau beberapa migrasi. Kita
 yiic migrate up 3
 ~~~
 
-Perintah ini kan mengaplikasikan 3 migrasi baru. Mengubah nilai 3 akan memungkinkan kita untuk mengubah jumlah migrasi yang diaplikasikan.
+Perintah ini kan mengaplikasikan 3 migrasi baru. Dengan mengubah nilai 3 akan mengubah jumlah migrasi yang diaplikasikan.
 
 Kita juga dapat migrasikan database ke versi tertentu melalui perintah berikut:
 
@@ -112,97 +112,97 @@ Kita juga dapat migrasikan database ke versi tertentu melalui perintah berikut:
 yiic migrate to 101129_185401
 ~~~
 
-Begitulah, kita menggunakan bagian timestamp pada nama migrasi untuk menentukan versi yang ingin kita migrasikan databasenya. Jika terdapat beberapa migrasi di antara migrasi terakhir yang di-apply dan migrasi khusus, semua migrasi ini akan diaplikasikan. Jika migrasi yang ditetapkan telah diaplikasikan sebelumnya, maka seluruh migrasi diaplikasikan setelah di-revert (kembalikan ke semula)
+Kita menggunakan bagian timestamp pada nama migrasi untuk menentukan versi yang ingin kita migrasikan databasenya. Jika terdapat beberapa migrasi di antara migrasi terakhir yang di-apply dan migrasi khusus, semua migrasi ini akan diaplikasikan. Jika migrasi yang ditetapkan telah diaplikasikan sebelumnya, maka seluruh migrasi diaplikasikan setelah di-revert (kembalikan ke semula)
 
 
 Me-Revert Migrations
 --------------------
 
-To revert the last one or several applied migrations, we can use the following command:
+Untuk me-revert migrasi yang paling terakhir atau beberapa migrasi yang sudah teraplikasikan, kita dapat menggunakan command berikut ini:
 
 ~~~
 yiic migrate down [step]
 ~~~
 
-where the optional `step` parameter specifies how many migrations to be reverted back. It defaults to 1, meaning reverting back the last applied migration.
+dengan parameter opsional `step` menentukan berapa banyak migrasi yang ingin di-revert. Nilai default-nya adalah 1, yang artinya me-revert kembali ke migrasi yang sudah teraplikasi paling terakhir.
 
-As we described before, not all migrations can be reverted. Trying to revert such migrations will throw an exception and stop the whole reverting process.
+Seperti yang sudah disebutkan sebelumnya, tidak semua migrasi dapat di-revert. Mencoba me-revert migrasi seperti demikian akan menghasilkan error dan menghentikan seluruh proses revert.
 
 
-Redoing Migrations
+Mengulangi Migrasi
 ------------------
 
-Redoing migrations means first reverting and then applying the specified migrations. This can be done with the following command:
+Mengulangi migrasi maksudnya melakukan revert kemudian mengaplikasikan migrasi tertentu. Proses ini dapat dilakukan dengan melakukan perintah berikut:
 
 ~~~
 yiic migrate redo [step]
 ~~~
 
-where the optional `step` parameter specifies how many migrations to be redone. It defaults to 1, meaning redoing the last migration.
+dengan parameter opsional `step` menunjukkan berapa banyak migrasi yang ingin diulangi. Nilai default-nya 1, yang artinya mengulangi migrasi terakhir.
 
 
-Showing Migration Information
+Menampilkan Informasi Migrasi
 -----------------------------
 
-Besides applying and reverting migrations, the migration tool can also display the migration history and the new migrations to be applied.
+Selain mengaplikasikan dan me-revert migrasi, perangkat migrasi juga dapat digunakan untuk menampilkan histori migrasi dan migrasi baru yang akan diaplikasikan.
 
 ~~~
 yiic migrate history [limit]
 yiic migrate new [limit]
 ~~~
 
-where the optional parameter `limit` specifies the number of migrations to be displayed. If `limit` is not specified, all available migrations will be displayed.
+Parameter opsional `limit` menunjukkan angka migrasi yang akan ditampilkan. Jika `limit` tidak ditentukan, semua migrasi yang tersedia akan ditampilkan.
 
-The first command shows the migrations that have been applied, while the second command shows the migrations that have not been applied.
+Perintah pertama yang menampilkan migrasi yang sudah diaplikasikan, sedangkan perintah kedua menampilkan migrasi yang belum diaplikasikan.
 
 
-Modifying Migration History
+Mengubah Histori Migrasi
 ---------------------------
 
-Sometimes, we may want to modify the migration history to a specific migration version without actually applying or reverting the relevant migrations. This often happens when developing a new migration. We can use the the following command to achieve this goal.
+Kadang-kadang, mungkin kita ingin mengubah histori migrasi ke versi migrasi tertentu tanpa sebetulnya mengaplikasikan atau me-revert kembali  migrasi yang bersangkutan. Biasanya sering terjadi selama pengembangan migrasi baru. Kita dapat menggunakan perintah berikut.
 
 ~~~
 yiic migrate mark 101129_185401
 ~~~
 
-This command is very similar to `yiic migrate to` command, except that it only modifies the migration history table to the specified version without applying or reverting the migrations.
+Perintah ini sangat mirip dengan perintah `yiic migrate to` kecuali dia hanya memodifikasikan tabel histori migrasi ke versi yang ditentukan tanpa melakukan perubahan ataupun me-revert migrasi.
 
 
-Customizing Migration Command
+Mengkustomisasi Perintah Migrasi
 -----------------------------
 
-There are several ways to customize the migration command.
+Terdapat beberapa cara untuk mengkustomisasi perintah migration.
 
-### Use Command Line Options
+### Menggunakan Opsi Command Line
 
-The migration command comes with four options that can be specified in command line:
+ Perintah migrasi datang dari empat opsi yang dpaat ditentukan di command line:
 
-* `interactive`: boolean, specifies whether to perform migrations in an interactive mode. Defaults to true, meaning the user will be prompted when performing a specific migration. You may set this to false should the migrations be done in a background process.
+* `interactive`: boolean, menentukan apakah migrasi dilakukan dengan cara interaktif. Secara default bernilai true, yang artinya user akan ditanya terlebih dahulu ketika melakukan migrasi tertentu. Anda dapat set nilainya menjadi false sehingga migrasi dapat dilakukan di belakang layar.
 
-* `migrationPath`: string, specifies the directory storing all migration class files. This must be specified in terms of a path alias, and the corresponding directory must exist. If not specified, it will use the `migrations` sub-directory under the application base path.
+* `migrationPath`: string, menentukan direktori yang menampung seluruh file kelas migrasi. Harus diisi dengan bentuk path alias, dan direktori bersangkutan harus ada. Jika tidak ditentukan, maka akan digunakan sub-direktori `migrations` di dalam base path aplikasi.
 
-* `migrationTable`: string, specifies the name of the database table for storing migration history information. It defaults to `tbl_migration`. The table structure is `version varchar(255) primary key, apply_time integer`.
+* `migrationTable`: string, menentukan nama tabel database yang digunakan untuk menyimpan informasi histori migrasi. Secara default bernilai `tbl_migration`. Struktur tabelnya yakni `version varchar(255) primary key, apply_time integer`.
 
-* `connectionID`: string, specifies the ID of the database application component. Defaults to 'db'.
+* `connectionID`: string, menentukan ID pada komponen database aplikasi. Nilai default adala 'db'.
 
-* `templateFile`: string, specifies the path of the file to be served as the code template for generating the migration classes. This must be specified in terms of a path alias (e.g. `application.migrations.template`). If not set, an internal template will be used. Inside the template, the token `{ClassName}` will be replaced with the actual migration class name.
+* `templateFile`: string, menentukan jalur ke file yang ditunjukkan sebagai template code untuk men-generate kelas migrasi. Harus diisi dalam format path alias (misalnya `application.migrations.template`). Jika tidak diisi, maka template internal yang akan digunakan. Di dalam template, token `{ClassName}` akan digantikan oleh nama kelas migrasi yang sesungguhnya.
 
-To specify these options, execute the migrate command using the following format
+Untuk menentukan opsi-opsi tersebut, jalankan perintah migrate dengan format ini
 
 ~~~
 yiic migrate up --option1=value1 --option2=value2 ...
 ~~~
 
-For example, if we want to migrate for a `forum` module whose migration files are located within the module's `migrations` directory, we can use the following command:
+Misalnya kita ingin migrasi module forum yang file-file migrasinya terletak di direktori module `migrations`, kita dapat menggunakan perintah berikut :
 
 ~~~
 yiic migrate up --migrationPath=ext.forum.migrations
 ~~~
 
 
-### Configure Command Globally
+### Mengatur Perintah Secara Global
 
-While command line options allow us to configure the migration command on-the-fly, sometimes we may want to configure the command once for all. For example, we may want to use a different table to store the migration history, or we may want to use a customized migration template. We can do so by modifying the console application's configuration file like the following,
+Opsi command line memungkinkan kita melakukan konfiguras secara on-the-fly, namun kadangkala kita mungkin ingin mengatur command untuk selamanya. Misalnya, kita ingin menggunakan tabel yang berbeda untuk menyimpan histori migrasi, atau kita ingin menggunakan sebuah template migrasi yang sudah kita desain. Kita dapat melakukannya dengan mengubah konfigurasi console aplikasi dengan begini,
 
 ~~~
 [php]
@@ -222,7 +222,7 @@ return array(
 );
 ~~~
 
-Now if we run the `migrate` command, the above configurations will take effect without requiring us to enter the command line options every time.
+Sekarang jika kita jalankan perintah `migrate`, konfigurasi di atas akan berefek tanpa kita harus menulis perintah opsi setiap saat lagi.
 
 
 <div class="revision">$Id: database.migration.txt 2832 2011-01-10 14:37:04Z qiang.xue $</div>
