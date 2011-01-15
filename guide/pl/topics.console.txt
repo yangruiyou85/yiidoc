@@ -150,7 +150,7 @@ public function actionIndex(array $types) { ... }
 Aby wypełnić tablicę wartościami, po prostu powtarzamy tę samą opcje kilka razy w linii poleceń:
 
 ~~~
-php emtryScript.php sitemap index --types=News --types=Article
+yiic sitemap index --types=News --types=Article
 ~~~
 
 Powyższe polecenie wywoła ostatecznie `actionIndex(array('News', 'Article'))`.
@@ -222,4 +222,4 @@ Jak widzimy, format konfiguracji jest bardzo podobny do tego z aplikacji sieciow
 gdyż zarówno [CConsoleApplication] jak i [CWebApplication] dziedziczą po tej samej klasie bazowej.
 
 
-<div class="revision">$Id: topics.console.txt 2701 2010-12-02 04:30:18Z qiang.xue $</div>
+<div class="revision">$Id: topics.console.txt 2867 2011-01-15 10:22:03Z haertl.mike $</div>
