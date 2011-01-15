@@ -184,7 +184,15 @@ zakładając, ze tłumaczona wiadomość to:
 ~~~
 
 i że przekazujemy wartość liczbową 2 w w tablicy parametrów komunikatu podczas wywoływania
-metody [Yii::t()|YiiBase::t], otrzymamy `many books` jako końcowy wynik tłumaczenia komunikatu.
+metody [Yii::t()|YiiBase::t], otrzymamy `many books` jako końcowy wynik tłumaczenia komunikatu:
+
+~~~
+[php]
+Yii::t('app', 'n==1#one book|n>1#many books', array(1)));
+//lub od wersji 1.1.6
+Yii::t('app', 'n==1#one book|n>1#many books', 1));
+~~~
+
 
 W skróconej notacji, jeśli wyrażenie jest liczbą, będzie ono potraktowane jako `n==Liczba`.
 Dlatego, powyższej tłumaczony komunikat, może również być zapisany jako:
@@ -193,25 +201,85 @@ Dlatego, powyższej tłumaczony komunikat, może również być zapisany jako:
 [php]
 '1#one book|n>1#many books'
 ~~~
-
-
+	
 ### Format liczby mnogiej
 
-Poczynając od wersji 1.1.6 alternatywny format bazujący na CLDR może być
-używany w nieco prostszy sposób, co jest bardzo wygodne w przypadku języków
+Poczynając od wersji 1.1.6 alternatywny format liczby mnogiej bazujący na CLDR może być
+używany z prostszą składnią. Jest to bardzo wygodne w przypadku języków
 posiadająych złożone formy liczby mnogiej.
+
 
 Reguła dla języka angielskiego dla powyższej liczby mnogiej jest zapisana w następujący sposób:
 
 ~~~
 [php]
-'one book|many books'
+Yii::t('test', 'cucumber|cucumbers', 1);
+Yii::t('test', 'cucumber|cucumbers', 2);
+Yii::t('test', 'cucumber|cucumbers', 0);
 ~~~
 
-Dla języka rosyjskiego zaś:
+Powyższy kod zwróci:
+
+~~~
+cucumber
+cucumbers
+cucumbers
+~~~
+
+Jeśli chcesz wstawić numer, możesz użyć następującego kodu:
+
 ~~~
 [php]
-'одна книга|две книги|пять книг'
+echo Yii::t('test', '{n} cucumber|{n} cucumbers', 1);
+~~~
+
+Gdzie `{n}` jest specjalnym symbolem zastępczym przechowującym numer. Powyższy kod wydrukuje text `1 cucumber`.
+
+Możesz również dodawać dodatkowe parametry:
+
+~~~
+[php]
+Yii::t('test', '{username} has a cucumber|{username} has {n} cucumbers',
+array(5, '{username}' => 'samdark'));
+~~~
+
+a nawet zastępować parametry numeryczne czymś innymi wartościami:
+
+~~~
+[php]
+function convertNumber($number)
+{
+	// konwertuje numer do słowa
+	return $number;
+}
+
+Yii::t('test', '{n} cucumber|{n} cucumbers',
+array(5, '{n}' => convertNumber(5)));
+~~~
+
+Dla porównania w języku rosyjskim będzie to:
+~~~
+[php]
+Yii::t('app', 'cucumber|cucumbers', 62);
+Yii::t('app', 'cucumber|cucumbers', 1.5);
+Yii::t('app', 'cucumber|cucumbers', 1);
+Yii::t('app', 'cucumber|cucumbers', 7);
+~~~
+
+z przetłumaczonym komunikatem
+
+~~~
+[php]
+'cucumber|cucumbers' => 'огурец|огурца|огурцов|огурца',
+~~~
+
+co w rezultacie da nam
+
+~~~
+62 огурца
+1.5 огурца
+1 огурец
+7 огурцов
 ~~~
 
 
@@ -284,4 +352,4 @@ lub zmiennoprzeciwkową.
    - [formatPercentage|CNumberFormatter::formatPercentage]: metoda ta formatuje podaną liczbę używając 
    wzorca procentowego predefiniowanego w danych docelowych ustawień lokalnych.
 
-<div class="revision">$Id: topics.i18n.txt 2845 2011-01-13 02:16:19Z alexander.makarow $</div>
+<div class="revision">$Id: topics.i18n.txt 2866 2011-01-15 09:20:03Z haertl.mike $</div>
