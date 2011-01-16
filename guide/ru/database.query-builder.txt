@@ -131,7 +131,7 @@ function selectDistinct($columns)
 
 Метод [selectDistinct|CDbCommand::selectDistinct] делает то же, что и метод
 [select|CDbCommand::select] плюс добавляет к выражению `DISTINCT`. К примеру,
-`select('id, username')` сгенеруреут следующий SQL:
+`selectDistinct('id, username')` сгенеруреут следующий SQL:
 
 ~~~
 SELECT DISTINCT `id`, `username`
@@ -910,4 +910,4 @@ function dropIndex($name, $table)
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2802 2011-01-02 04:00:33Z alexander.makarow $</div>
+<div class="revision">$Id: database.query-builder.txt 2868 2011-01-15 22:11:10Z haertl.mike $</div>
