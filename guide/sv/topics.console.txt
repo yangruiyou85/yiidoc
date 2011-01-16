@@ -154,7 +154,7 @@ public function actionIndex(array $types) { ... }
 Faktiskt arrayinnehåll levereras genom att samma alternativ upprepas på kommandoraden:
 
 ~~~
-php entryScript.php sitemap index --types=News --types=Article
+yiic sitemap index --types=News --types=Article
 ~~~
 
 Ovanstående kommando leder till metodanropet `actionIndex(array('News', 'Article'))`.
@@ -230,4 +230,4 @@ konfiguration. Detta beror på att både [CConsoleApplication] och [CWebApplicat
 samma basklass.
 
 
-<div class="revision">$Id: topics.console.txt 2701 2010-12-02 04:30:18Z qiang.xue $</div>
+<div class="revision">$Id: topics.console.txt 2867 2011-01-15 10:22:03Z haertl.mike $</div>
