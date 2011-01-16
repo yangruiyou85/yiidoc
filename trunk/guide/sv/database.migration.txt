@@ -5,7 +5,7 @@ Databasmigrering
 
 Likt källkod vidareutvecklas strukturen för en databas över tid under utveckling och förvaltning 
 av en databasdriven applikation. Till exempel under pågående utveckling, kan vi behöva lägga till en ny tabell; 
-när applikationen gått i produktionor kan vi upptäcka behov av att lägga till ett index för en kolumn. 
+när applikationen gått i produktion kan vi upptäcka behov av att lägga till ett index för en kolumn. 
 Dat är viktigt att hålla reda på sådana strukturella databasändringar (benämnda **migration**), 
 så som vi gör med vår källkod. Om källkod och databas kommer ur synk, är det mycket sannolikt att 
 hela systemet kan fallera. Av denna anledning tillhandahåller Yii ett verktyg för databasmigrering 
@@ -37,8 +37,8 @@ yiic migrate create <name>
 ~~~
 
 Den obligatoriska `name`-parametern specificerar en mycket kortfattad beskrivning 
-av migreringen (t.ex. `create_news_table`). Som vi kommer att visa nedan, kommer  
-`name`-parametern att användas som en del i ett PHP-klassnamn. Därför skall den bara 
+av migreringen (t.ex. `create_news_table`). Nedan framgår det att `name`-parametern 
+kommer att användas som en del i ett PHP-klassnamn. Därför skall den bara 
 innehålla bokstäver, siffror och/eller understrykningstecken.
 
 ~~~
@@ -72,7 +72,7 @@ Metoden `up()` skall innehålla koden som implementerar den aktuella databasmigr
 medan metoden `down()` kan innehålla kod för att återställa det som sker i `up()`.
 
 Ibland är det inte möjligt att implementera `down()`. Om vi exempelvis tar bort tabellrader i `up()`, 
-komemer vi inte att kunna återställa dem i `down()`. I sådant fall kallas migreringen irreversibel, 
+kommer vi inte att kunna återställa dem i `down()`. I sådant fall kallas migreringen irreversibel, 
 med innebörden att vi inte kan backa till ett tidigare tillstånd för databasen.
 
 Tag som exempel migreringen att skapa en news-tabell.
@@ -97,9 +97,9 @@ class m101129_185401_create_news_table extends CDbMigration
 }
 ~~~
 
-Basklassen [CDbMigration] erbjuder en uppsättnig metoder för manipulering av data och databasens schema. 
+Basklassen [CDbMigration] erbjuder en uppsättning metoder för manipulering av data och databasens schema. 
 Till exempel, [CDbMigration::createTable] skapar en databastabell, medan [CDbMigration::insert] lägger till 
-en rad med data. Dessa metoder använder alla databasanslutningen som [CDbMigration::getDbConnection()] returnerar, 
+en rad med data. Dessa metoder använder alla databasanslutningen som returneras av [CDbMigration::getDbConnection()], 
 som standard `Yii::app()->db`.
 
 > Info: Noterbart är att databasmetoderna som [CDbMigration] erbjuder är mycket lika de i [CDbCommand]. 
@@ -123,7 +123,7 @@ tidstämpelvärden i klassnamnen anger.
 
 Efter applicering av en migrering kommer migreringsverktyget att spara en post i databastabellen `tbl_migration`. 
 Detta möjliggör för vektyget att hålla reda på vilka migreringar som applicerats och vilka som inte har applicerats. 
-Om tabellen `tbl_migration` inte existerar, kommer verktyget att automatiskt skapa den i den databas som specificeras 
+Om tabellen `tbl_migration` inte existerar, kommer verktyget att automatiskt skapa den i databasen som specificeras 
 av applikationskomponenten `db`.
 
 Ibland vill vi bara applicera en eller ett fåtal nya migreringar. Följande kommando kan då användas:
@@ -151,16 +151,16 @@ migreringen redan har applicerats tidigare, kommer alla migreringar som applicer
 Återställa migreringar
 ----------------------
 
-För att återställa den senaste eller flera applicerade migreringar, kan följande kommando användas:
+För att backa tillbaka den senaste eller flera applicerade migreringar, kan följande kommando användas:
 
 ~~~
 yiic migrate down [step]
 ~~~
 
-där den friviliga `step`-parametern specificerar antalet migreringar som skall backas tillbaka. 
+där den frivilliga `step`-parametern specificerar antalet migreringar som skall backas tillbaka. 
 Som standard är den 1, vilket innebär att den senaste migreringen backas.
 
-Som tidigare beskrivits kan inte alla migreringar backas. Försök att backa sådana migreringar kommer att 
+Som tidigare beskrivits kan inte alla migreringar backas. Försök att backa irreversibla migreringar kommer att 
 generera ett undantag och innebär att hela återställningsprocessen stoppas.
 
 
@@ -174,7 +174,7 @@ Detta kan göras med följande kommando:
 yiic migrate redo [step]
 ~~~
 
-där den frivilliga `step`-parameter specificerar antalet migreringar som skall göras om. Standardvärde 1, 
+där den frivilliga `step`-parametern specificerar antalet migreringar som skall göras om. Standardvärde 1, 
 med innebörden att göra om den senaste migreringen.
 
 
@@ -244,8 +244,8 @@ För att specificera dessa alternativ, exekvera migreringskommandot på följand
 yiic migrate up --option1=value1 --option2=value2 ...
 ~~~
 
-Till exempel, om vi vill migrera för en `forum`-modul vars migreringsfiler är placerade i modulens 
-`migrations`-katalog, kan vi använda följande kommando:
+Till exempel, om vi vill migrera för en modul `forum`, vars migreringsfiler är placerade i modulens 
+underkatalog `migrations`, kan vi använda följande kommando:
 
 ~~~
 yiic migrate up --migrationPath=ext.forum.migrations

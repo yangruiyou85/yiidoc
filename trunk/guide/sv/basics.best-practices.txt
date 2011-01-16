@@ -12,7 +12,7 @@ underapplikationer, så som
 
 * förgrund (front end): en publikt tillgänglig webbplats för vanliga användare;
 * bakgrund (back end): en webbplats som tillgängliggör funktionalitet for administrering av applikationen. 
-Detta är vanligen endast tillgängligt för administratörspersonal;
+Denna är vanligen endast åtkomlig för administratörspersonal;
 * console: en applikation bestående av konsolkommandon som körs i ett terminalfänster eller 
 som schemalagda jobb, till stöd för hela applikationen;
 * Web API: erbjuder programmeringsgränssnitt åt tredje part för integrering med applikationen.
@@ -27,7 +27,7 @@ Modell (model)
 [Modeller](/doc/guide/basics.model) representerar den underliggande datastrukturen för en webbapplikation. 
 Modeller delas ofta mellan skilda underapplikationer till en webbapplikation. Till exempel kan en 
 `LoginForm`-modell användas både av förgrunds- och bakgrundsdelen av en applikation; en `News`-modell 
-skulle kunna användas av konsolkommandon såväl som webb-API:er och förgrunds-/bakgrundsdelarna av en 
+skulle kunna användas av konsolkommandon såväl som webb-API:er som förgrunds-/bakgrundsdelarna av en 
 applikation. Detta medför att modeller:
 
 * bör innehålla propertyn för representation av specifik data;
@@ -39,7 +39,7 @@ konstruktionskraven;
 förutom att representera inmatning av sökriterier, även innehålla en `search`-metod 
 för implementering av själva sökningen.
 
-Ibland kan tillämpning av föregående regel göra en modell mycket omfattande (fat), med alltför mycket 
+Ibland kan tillämpning av föregående regel göra en modell mycket omfångsrik (fat), med alltför mycket 
 kod i en enda klass. Det kan även medföra att en modell blir svår att underhålla om koden den innehåller 
 är avsedd för olika ändamål. Till exempel kan en `News`-modell innehålla en metod `getLatestNews`, 
 som endast används av applikationens förgrundsdel; den kan även innehålla en metod `getDeletedNews`, 
@@ -75,7 +75,7 @@ Vy (view)
 [Vyer](/doc/guide/basics.view) har till uppgift att presentera modeller i det format användarna önskar. 
 Allmänt gäller för vyer att de:
 
-* i huvudsak bör innehålla presentationsrelaterad kod, så som HTML samt okomplicerad PHP-kod för genomlöpning (traverse), 
+* i huvudsak bör innehålla presentationsrelaterad kod, så som HTML samt okomplicerad PHP-kod för traversering, 
 formatering och återgivning (render) av data;
 
 * bör undvika innehåll som utför uttryckliga databasfrågor. Sådan kod är mer lämpad för placering i modeller.
@@ -102,7 +102,7 @@ HTML-kod (markup), är det bäst att använda widget-specifika vyfiler för såd
 * Hjälpklasser: i vyer behöver vi ofta kodfragment för mindre uppfifter som att formatera data eller 
 generera HTML-taggar. En bättre lösning än att placera denna kod direkt i vyfiler, är att placera alla dessa 
 kodfragment i hjälpklasser ämnade för vyer. Därefter är det bara att använda hjälpklassen direkt i vyfilerna. 
-Yii innehåller exempel på detta tillvägagångssätt. Med i Yii finns en kraftfull hjälpklass, [CHtml], som kan 
+Yii innehåller exempel på detta tillvägagångssätt i form av en kraftfull hjälpklass, [CHtml], som kan 
 producera vanligtvis använd HTML-kod. Hjälpklasser kan placeras i en [automatiskt laddad katalog](/doc/guide/basics.namespace) 
 så att de kan användas utan uttrycklig inkludering av klassen.
 
@@ -113,13 +113,13 @@ Kontroller (controller)
 [Kontroller](/doc/guide/basics.controller) är limmet som sammanfogar modeller, vyer och andra komponenter till en körbar 
 applikation. Kontroller har till uppgift att direkt handskas med användarens request. Därför gäller för kontroller att de: 
 
-* kan använda sig av `$_GET`, `$_POST` och andra PHP-variabler som representerar användarens requests;
+* kan använda sig av `$_GET`, `$_POST` och andra PHP-variabler som representerar användarens request;
 
 * kan instantiera modeller och förvalta deras livscykel. Till exempel, i en typisk uppdateringsåtgärd (action) 
 för en modell, kan kontrollern först instantiera modellen; därefter förse den med innehåll från användarens 
-inmatning via `$_POST`; efter att framgångsrikt ha sparat modellen, kan kontrollern omdirigera webbläsaren 
-till sidan som presenterar modellens detaljer. Märk att den faktiska implementeringen av att spara en modell, 
-bör placeras i modellen i stället för i kontrollern.
+inmatning, via `$_POST`; för att sedan, efter att framgångsrikt ha sparat modellen omdirigera webbläsaren 
+till sidan som presenterar modellens detaljer. Märk att den faktiska implementeringen av kod för att spara 
+en modell bör placeras i modellen i stället för i kontrollern.
 
 * bör undvika inbäddade SQL-satser, vilka det är bättre att hålla inom modeller.
 
