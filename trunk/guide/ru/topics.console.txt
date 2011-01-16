@@ -147,7 +147,7 @@ public function actionIndex(array $types) { ... }
 Чтобы передать массив значений необходимо указать одну и ту же опцию несколько раз:
 
 ~~~
-php entryScript.php sitemap index --types=News --types=Article
+yiic sitemap index --types=News --types=Article
 ~~~
 
 Команда, приведённая выше, запустит `actionIndex(array('News', 'Article'))`.
@@ -221,4 +221,4 @@ return array(
 и [CConsoleApplication] и [CWebApplication] наследуют один и тот же базовый класс.
 
 
-<div class="revision">$Id: topics.console.txt 2701 2010-12-02 04:30:18Z qiang.xue $</div>
+<div class="revision">$Id: topics.console.txt 2867 2011-01-15 10:22:03Z haertl.mike $</div>
