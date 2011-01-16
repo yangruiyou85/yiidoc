@@ -242,17 +242,17 @@ array(5, '{n}' => convertNumber(5)));
 Для Русского строка перевода будет выглядеть так:
 ~~~
 [php]
-Yii::t('app', 'cucumber|cucumbers', 62);
-Yii::t('app', 'cucumber|cucumbers', 1.5);
-Yii::t('app', 'cucumber|cucumbers', 1);
-Yii::t('app', 'cucumber|cucumbers', 7);
+Yii::t('app', '{n} cucumber|{n} cucumbers', 62);
+Yii::t('app', '{n} cucumber|{n} cucumbers', 1.5);
+Yii::t('app', '{n} cucumber|{n} cucumbers', 1);
+Yii::t('app', '{n} cucumber|{n} cucumbers', 7);
 ~~~
 
 Соответствующая строка из файла с переводом:
 
 ~~~
 [php]
-'cucumber|cucumbers' => 'огурец|огурца|огурцов|огурца',
+'{n} cucumber|{n} cucumbers' => '{n} огурец|{n} огурца|{n} огурцов|{n} огурца',
 ~~~
 
 На выходе:
@@ -331,4 +331,4 @@ timestamp:
    - [formatPercentage|CNumberFormatter::formatPercentage]: форматирует число в соответствии с форматом форматирования процентов,
    заданным для текущего языка приложения.
 
-<div class="revision">$Id: topics.i18n.txt 2866 2011-01-15 09:20:03Z haertl.mike $</div>
+<div class="revision">$Id: topics.i18n.txt 2870 2011-01-16 04:56:12Z alexander.makarow $</div>
