@@ -260,17 +260,17 @@ array(5, '{n}' => convertNumber(5)));
 Dla porównania w języku rosyjskim będzie to:
 ~~~
 [php]
-Yii::t('app', 'cucumber|cucumbers', 62);
-Yii::t('app', 'cucumber|cucumbers', 1.5);
-Yii::t('app', 'cucumber|cucumbers', 1);
-Yii::t('app', 'cucumber|cucumbers', 7);
+Yii::t('app', '{n} cucumber|{n} cucumbers', 62);
+Yii::t('app', '{n} cucumber|{n} cucumbers', 1.5);
+Yii::t('app', '{n} cucumber|{n} cucumbers', 1);
+Yii::t('app', '{n} cucumber|{n} cucumbers', 7);
 ~~~
 
 z przetłumaczonym komunikatem
 
 ~~~
 [php]
-'cucumber|cucumbers' => 'огурец|огурца|огурцов|огурца',
+'{n} cucumber|{n} cucumbers' => '{n} огурец|{n} огурца|{n} огурцов|{n} огурца',
 ~~~
 
 co w rezultacie da nam
@@ -352,4 +352,4 @@ lub zmiennoprzeciwkową.
    - [formatPercentage|CNumberFormatter::formatPercentage]: metoda ta formatuje podaną liczbę używając 
    wzorca procentowego predefiniowanego w danych docelowych ustawień lokalnych.
 
-<div class="revision">$Id: topics.i18n.txt 2866 2011-01-15 09:20:03Z haertl.mike $</div>
+<div class="revision">$Id: topics.i18n.txt 2870 2011-01-16 04:56:12Z alexander.makarow $</div>
