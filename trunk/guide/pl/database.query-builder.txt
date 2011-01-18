@@ -745,4 +745,4 @@ Poniżej znajduje się przykład pokazujący jak usunąć indeks.
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2842 2011-01-12 21:31:22Z alexander.makarow $</div>
+<div class="revision">$Id: database.query-builder.txt 2868 2011-01-15 22:11:10Z haertl.mike $</div>
