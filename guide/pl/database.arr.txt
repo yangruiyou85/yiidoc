@@ -209,7 +209,7 @@ $posts=Post::model()->with(
 Powyższy przykład zwróci wszystkie posty razem z ich autorami oraz kategoriami. 
 Zwróci również dla każdego autora profil oraz posty.
 
-Poczynając od wersji 1.1.0, zachłanne ładowanie może zostać również wywołane poprzez
+Zachłanne ładowanie może zostać również wywołane poprzez
 określenie właściwości [CDbCriteria::with] w następujący sposób:
 
 ~~~
@@ -251,12 +251,11 @@ do których się odwołujemy w tej opcji powinny zostać ujednoznacznione.
 do których się odwołujemy w tej opcji powinny zostać ujednoznacznione.
 
    - `params`: parametry, które zostaną przypięte do wygenerowanego wyrażenia SQL. 
-   Powinny zostać przekazane jako tablica par nazwa-wartość. Opcja ta jest dostępna 
-   od wersji 1.0.3.
+   Powinny zostać przekazane jako tablica par nazwa-wartość. 
 
    - `on`: klauzula `ON`. Warunki określone tutaj będą dołączone do warunków złączenia 
    przy użyciu operatora `AND`. Nazwy kolumn do których się odwołujemy w tej opcji 
-   powinny zostać ujednoznacznione. Opcja ta jest dostępna od wersji 1.0.2.
+   powinny zostać ujednoznacznione. 
 
    - `order`: klauzula `ORDER BY`. Nazwy kolumn do których się odwołujemy 
    w tej opcji powinny zostać ujednoznacznione
@@ -267,9 +266,8 @@ do których się odwołujemy w tej opcji powinny zostać ujednoznacznione.
 
    - `joinType`: typ złączenia dla relacji. Domyślna wartość to `LEFT OUTER JOIN`.
 
-   - `alias`: alias dla tablicy powiązanej z relacją. Opcja ta jest dostępna 
-   od wersji 1.0.1. Domyślnie posiada wartość null, co oznacza iż alias tablicy 
-   jest taki sam jak nazwa relacji.
+   - `alias`: alias dla tablicy powiązanej z relacją. Domyślnie posiada wartość null, 
+   co oznacza iż alias tablicy jest taki sam jak nazwa relacji.
    
    - `together`: używana jeśli tabele powiązane mają zostać zmuszone do połączenia się razem
    z główną tabelą. Opcja ta ma znaczenie dla relacji `HAS_MANY` oraz `MANY_MANY`. 
@@ -289,11 +287,10 @@ do których się odwołujemy w tej opcji powinny zostać ujednoznacznione.
 
    - `having`: klauzula `HAVING`. Domyślnie pusta. Nazwy kolumn  
 	do których się odwołujemy w tej opcji powinny zostać ujednoznacznione.
-	Uwaga, opcja ta jest dostępna od wersji 1.0.1.
    
    - `index`: nazwa kolumny, której wartość powinna zostać użyta jako klucz tablicy, która zawiera powiązane obiekty. 
    Bez ustawienia tej opcji, tablica obiektów powiązanych będzie używała indeksu całkowitoliczbowego rozpoczynającego się od liczby zero.
-   Opcja ta może zotać ustawiona tylko dla relacji `HAS_MANY` oraz `MANY_MANY`. Opcja ta jest dostępna od wesji 1.0.7.   
+   Opcja ta może zotać ustawiona tylko dla relacji `HAS_MANY` oraz `MANY_MANY`.
    
 Dodatkowo, następujące opcje są dostępne dla wybranych relacji podczas opóźnionego 
 ładowania:   
@@ -356,16 +353,11 @@ $posts=Post::model()->with('comments')->findAll(array(
 ));
 ~~~
 
-> Note|Uwaga: sposób ujednoznaczniania kolumn zmienił się od wersji 1.1.0. 
-> Poprzednie w wersji 1.0.x, Yii domyślnie generowało w sposób automatyczny 
-> alias tabeli sla każdej tabeli relacyjnej i musieliśmy używać prefiksu `??.` 
-> w celu odniesienia się do automatycznie wygenerowanego aliasu. Również, w wersji 
-> 1.0.x, alias nazwy tabeli głównej był nazwą samej tabeli.
 
 Dynamiczne opcje pytań relacyjnych
 --------------------------------
 
-Wraz z wersją 1.0.2 możemy używać dynamicznych opcji zapytań relacyjnych zarówno w metodzie 
+Możemy używać dynamicznych opcji zapytań relacyjnych zarówno w metodzie 
 [with()|CActiveRecord::with] jak i opcji `with`. Dynamiczne opcje nadpiszą istniejące 
 opcje tak jak zostało to określone w metodzie [relations()|CActiveRecord::relations].
 Na przykład, dla powyższego modelu `User`, jeśli chcemy używać techniki zachłannego ładowania
@@ -380,7 +372,7 @@ User::model()->with(array(
 ))->findAll();
 ~~~
 
-Poczynając od wersji 1.0.5, opcje dynamicznych zapytań mogą być również używane dla leniwego ładowania  
+Opcje dynamicznych zapytań mogą być również używane dla leniwego ładowania  
 w celu wykonywania zapytań relacyjnych. Aby to zrobić, powinniśmy wywołać metodę, której nazwa jest identyczna
 z nazwą relacji oraz przekazać opcje dynamicznego zapytania jako parametr metody. 
 Na przykład, następujący kod zwróci posty użytkownika, których `status` wynosi 1:
@@ -438,25 +430,9 @@ Możemy również dynamicznie ustawić tą opcję kiedy wykonujemy zachłanne ł
 $posts = Post::model()->with(array('comments'=>array('together'=>false)))->findAll();
 ~~~
 
-> Note|Uwaga: W wersji 1.0.x, domyślnym zachowaniem Yii jest generowanie i wykonywanie 
-> `N+1` zapytań SQL, jeśli występuje `N` relacji `HAS_MANY` lub `MANY_MANY`.
-> Każda relacja `HAS_MANY` lub `MANY_MANY` posiada swoje własne zapytanie SQL. Poprzez wywołanie 
-> metody `together()` po `with()`, możemy narzucić wygenerowania i wykonanie się tylko 
-> jednego zapytania SQL. Na przykład:
->
-> ~~~
-> [php]
-> $posts=Post::model()->with(
-> 	'author.profile',
-> 	'author.posts',
-> 	'categories')->together()->findAll();
-> ~~~
-
 
 Zapytania statystyczne (ang. Statistical Query)
 -----------------
-
-> Note|Uwaga: Zapytania statystyczne są wspierane od wersji 1.0.4
 
 Poza zapytaniami relacyjnymi opisanymi powyżej, Yii wspiera również tak zwane zapytania statystyczne (lub zapytania agregacyjne). Odnoszą się one do uzyskiwania agregowanych 
 informacji o powiązanych obiektach, takich jak liczba komentarzy dla każdego postu, średni ocena dla każdego produktu, itp. Zapytania statystyczne mogą być wykonywane dla obiektów   
@@ -520,8 +496,6 @@ do własnych potrzeb poprzez określenie dodatkowych opcji podczas deklarowania 
 Relacyjne zapytania z nazwanymi podzbiorami
 ----------------------------------
 
-> Note|Uwaga: Wsparcie dla nazwanych podzbiorów zostało wprowadzone wraz z wersją 1.0.5.
-
 Relacyjne zapytania mogą być wykonywane w połączeniu z [nazwanymi zbiorami](/doc/guide/database.ar#named-scopes).
 Rozróżniamy dwa przypadki. W pierwszym, nazwany podzbiór stosowany jest do głównego modelu. W drugim, nazwany podzbiór stosowany jest 
 do powiązanego modelu. 
@@ -568,4 +542,4 @@ class User extends CActiveRecord
 w [CActiveRecord::scopes]. W rezultacie, nie mogą one zostać sparametryzowane.
 
 
-<div class="revision">$Id: database.arr.txt 2782 2010-12-28 16:18:06Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>

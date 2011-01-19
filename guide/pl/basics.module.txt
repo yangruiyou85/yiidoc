@@ -1,8 +1,6 @@
 Moduł
 ======
 
-> Note|Uwaga: Wsparcie dla modułów zostało dodane od wersji 1.0.3.
-
 Moduł jest samowystarczalną jednostką aplikacji, która zawiera [modele](/doc/guide/basics.model), 
 [widoki](/doc/guide/basics.view), [kontrolery](/doc/guide/basics.controller) oraz inne 
 wpierające komponenty. W wielu aspektach, moduły przypominają [aplikację](/doc/guide/basics.application). 
@@ -125,4 +123,4 @@ Aby uzyskać dostęp do akcji modułu dziecka, powinniśmy skorzystać z trasy
 `IDModułuRodzica/IDModułuDziecka/IDKontrolera/IDAkcji`.
 
 
-<div class="revision">$Id: basics.module.txt 2363 2010-08-29 02:35:15Z qiang.xue $</div>
+<div class="revision">$Id: basics.module.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
