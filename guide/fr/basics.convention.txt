@@ -145,4 +145,22 @@ utilisés par l'application. Chaque sous dossier correspond à un et un seul th�
 le nom est le nom du dossier. Ce chemin peut être modifié via 
 la propriété [CThemeManager::basePath].
 
-<div class="revision">$Id: basics.convention.txt 749 $</div>
+Base de données
+---------------
+
+La plupart des applications Web utilisent une base de données. En guise de bonne pratique,
+nous proposons les conventions de nommage suivantes (qui ne sont pas nécessaire au bon
+fonctionnement de Yii):
+
+   - Les noms de tables et de colonnes doivent être en minuscules.
+
+   - Les mots au sein d'un nom doivent être séparés par des underscores (ex: `product_order`).
+
+   - Les noms de tables peuvent être au singulier ou au pluriel, mais pas les deux.
+Pour simplifier, nous recommandons d'utiliser des noms singuliers.
+
+   - Les noms des tables peuvent être préfixés d'une chaine commune telle que `tbl_`. Cela peut
+être utile lorsque des tables de plusieurs applications distinctes doivent coexister au sein
+de la même base de données.
+
+<div class="revision">$Id: basics.convention.txt 1906 $</div>
