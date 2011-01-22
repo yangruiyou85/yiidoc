@@ -66,7 +66,7 @@ Le dossier de base de l'application est le dossier racine qui contient tous les
 élément sensibles de l'application (scripts PHP, données, ...). En standard,
 c'est le sous dossier `protected` qui se trouve à l'intérieur du dossier
 qui contient le script de démarrage. Ce dossier peut être changé en modifiant
-la propriété [basePath|CWebApplication::basePath] dans le fichier de [configuration de l'application](#application-configuration).
+la propriété [basePath|CWebApplication::basePath] dans le fichier de [configuration de l'application](/doc/guide/basics.application#application-configuration).
 
 Les utilisateurs Web ne doivent pas pouvoir accéder aux contenus de ce dossier.
 Cela peut être réalisé très simplement sur [serveur Web Apache](http://httpd.apache.org/),
@@ -164,6 +164,9 @@ composant.
    - [errorHandler|CApplication::errorHandler]: [CErrorHandler] - gestion
 des erreurs PHP et des exceptions.
 
+   - [format|CApplication::format]: [CFormatter] - formate les données pour
+l'affichage.
+
    - [messages|CApplication::messages]: [CPhpMessageSource] -
 fourni la traduction des messages utilisés par Yii.
 
@@ -215,4 +218,4 @@ par les étapes suivantes :
 
    7. Levée de l'évènement [onEndRequest|CApplication::onEndRequest];
 
-<div class="revision">$Id: basics.application.txt 857 $</div>
+<div class="revision">$Id: basics.application.txt 1906 $</div>
