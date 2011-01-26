@@ -463,7 +463,7 @@ $command->update('tbl_user', array(
 function delete($table, $conditions='', $params=array())
 ~~~
 
-Metoda [delete|CDbCommand::delete] buduje i wywołuje instrukcję SQL `DELETE`. Parametr `$table` definiuje, która tabela zostanie zaktualizowana; parametry `$conditions` oraz `$params` są takie jak w metodzie [where|CDbCommand::where], która określa klauzulę `WHERE` w instrukcji `DELETE`. Metoda ta doda poprawnie cudzysłowy do nazwy tabeli.
+Metoda [delete|CDbCommand::delete] buduje i wywołuje instrukcję SQL `DELETE`. Parametr `$table` definiuje tabelę, z której będziemy usuwać; parametry `$conditions` oraz `$params` są takie jak w metodzie [where|CDbCommand::where], która określa klauzulę `WHERE` w instrukcji `DELETE`. Metoda ta doda poprawnie cudzysłowy do nazwy tabeli.
 
 Oto przykład:
 
@@ -745,4 +745,4 @@ Poniżej znajduje się przykład pokazujący jak usunąć indeks.
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2868 2011-01-15 22:11:10Z haertl.mike $</div>
+<div class="revision">$Id: database.query-builder.txt 2898 2011-01-20 15:57:03Z haertl.mike $</div>

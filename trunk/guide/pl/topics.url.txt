@@ -112,8 +112,20 @@ dostosowania opcji w następujący sposób:
 'pattern1'=>array('route1', 'urlSuffix'=>'.xml', 'caseSensitive'=>false)
 ~~~
 
-W powyższym kodzie, tablica zawiera listę opcji, które można dostosowywać. Następujące opcje mogą
-zostać określone dla reguł adresu URL:
+Poczynając od wersji 1.1.7, można używać następującego formatu ( wzorzec jest 
+określony w postaci elementu tablicy ) co pozwala określić kilka reguł 
+z tym samym wzorcem:
+
+~~~
+[php]
+array('route1', 'pattern'=>'pattern1', 'urlSuffix'=>'.xml', 'caseSensitive'=>false)
+~~~
+
+W powyższym kodzie, tablica zawiera listę dodatkowych opcji dla reguły. 
+Dostępne opcje zostały wyjaśnione poniżej:
+
+   - [pattern|CUrlRule::pattern]: wzorzec używany do dopasowywania oraz tworzenia URLi. 
+   Opcja ta jest dostępna od wersji 1.1.7
 
    - [urlSuffix|CUrlRule::urlSuffix]: sufiks adresu URL używany specjalnie dla danej reguły.  
    Domyślnie posiada wartość null, oznaczającą że używana jest wartość [CUrlManager::urlSuffix].
@@ -319,4 +331,4 @@ do strony statycznej. Aby to zrobić po prostu skonfiguruj komponent
 [urlManager|CWebApplication::urlManager] ustawiając jego właściwość
 [urlSuffix|CUrlManager::urlSuffix] na taki sufiks, jaki ci odpowiada.
 
-<div class="revision">$Id: topics.url.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: topics.url.txt 2904 2011-01-21 17:00:57Z qiang.xue $</div>
