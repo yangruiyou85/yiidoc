@@ -22,8 +22,8 @@ http://hostname/index.php?r=ControllerID/ActionID
 
 La variable GET `r` correspond à la [route](/doc/guide/basics.controller#route) 
 qui est transcodée par le framework en contrôleur et action. Si `ActionID` 
-n'est pas spécifiée, le contrôleur prendra l'action par défaut (definie via la propriété [CController::defaultAction]); 
-de plus, si `ControllerID` n'est pas défini,(ou si la variable `r` est absente), l'application
+n'est pas spécifiée, le contrôleur prendra l'action par défaut (définie via la propriété [CController::defaultAction]); 
+de plus, si `ControllerID` n'est pas défini (ou si la variable `r` est absente), l'application
 utilisera le contrôleur par défaut (défini via la propriété [CWebApplication::defaultController]).
 
 En utilisant le [CUrlManager], il est possible de concevoir et de reconnaître 
@@ -99,7 +99,7 @@ Par défaut, Yii s'appuie sur plusieurs répertoires. Chacun peut
 être configuré en fonction des besoins.
 
    - `WebRoot/protected`: C'est le [dossier de base de l'application](/doc/guide/basics.application#application-base-directory) 
-qui contient tous les élément sensibles (PHP et données). Yii dispose d'un
+qui contient tous les éléments sensibles (PHP et données). Yii dispose d'un
 raccourcis par défaut `application` associé à ce chemin. Tout accès à ce dossier, 
 ainsi qu'à ce qu'il contient doit être interdit aux utilisateurs web. Ce chemin
 peut être modifié via la propriété [CWebApplication::basePath].
@@ -131,7 +131,7 @@ la propriété [CController::getViewPath].
 layouts. Ce chemin peut être modifié via la propriété [CWebApplication::layoutPath].
 
    - `WebRoot/protected/views/system`: ce dossier contient toutes les
-vues système. Les vues systèmes sont des gabarits permettant l'affichage
+vues systèmes. Les vues systèmes sont des gabarits permettant l'affichage
 des exceptions et des erreurs. Ce chemin peut être modifié via 
 la propriété [CWebApplication::systemViewPath].
 
