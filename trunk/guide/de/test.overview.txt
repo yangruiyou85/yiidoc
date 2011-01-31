@@ -1,12 +1,6 @@
 Übersicht
 =========
 
-> Note|Hinweis: Die in diesem Kapitel beschriebenen Tests erfordern Yii 1.1
-> oder höher. Das bedeutet jedoch nicht, dass Sie Ihre mit Yii 1.0.x
-> entwickelten Anwendungen nicht testen können. Es gibt viele gute
-> Test-Frameworks, die Sie dabei unterstützen, z.B.
-> [PHPUnit](http://www.phpunit.de/) oder [SimpleTest](http://www.simpletest.org/).
-
 Testen ist ein unverzichtbarer Bestandteil der Softwareentwicklung. Ob wir uns
 dessen bewusst sind oder nicht: wir führen während der Entwicklung andauernd Tests durch. 
 Wenn wir zum Beispiel eine PHP-Klasse schreiben und dort `echo`- oder `die`-Anweisungen
@@ -159,4 +153,4 @@ einer Anwendungsinstanz, die fast genauso aussieht, wie jene die unsere
 Web-Requests beantwortet. Der wesentliche Unterschied liegt darin, dass ein
 Fixturemanager enthalten ist und sie die Testdatenbank verwendet.
 
-<div class="revision">$Id: test.overview.txt 2739 2010-12-14 01:50:04Z weizhuo $</div>
+<div class="revision">$Id: test.overview.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>

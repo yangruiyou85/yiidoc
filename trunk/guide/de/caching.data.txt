@@ -47,10 +47,9 @@ selben Server eindeutig sein. Die Cachekomponente kann die IDs
 unterschiedlicher Anwendungen unterscheiden.
 
 Einige Cachespeicher, wie MemCache oder APC, unterstützen die Abfrage mehrerer
-gespeicherter Werte auf einmal. Dadurch kann der Overhead beim Abrufen von
-gecachten Daten reduziert wreden. Seit Version 1.0.8 wird dieses Feature
-per [mget()|CCache::mget] unterstützt. Falls der zugrundeliegende
-Cachespeicher dieses Feature nicht unterstützt, wird es von
+gespeicherter Werte auf einmal. Durch Verwendung von [mget()|CCache::mget] 
+kann so der Overhead beim Abrufen von gecachten Daten reduziert werden.
+Wird dieses Feature nicht vom Cachespeicher unterstützt, wird es von
 [mget()|CCache::mget] simuliert.
 
 Mit [delete()|CCache::delete] wird ein einzelner Cacheeintrag gelöscht. Mit 
@@ -110,7 +109,6 @@ Wert über mehrere Requests und Sessions hinweg beständig bleibt. Er wird über
    - [CChainedCacheDependency]: Ändert sich, wenn eine der Abhängigkeiten in
 der Kette eine Änderung anzeigt.
 
-   - [CExpressionDependency]: Ändert sich, wenn der Wert des angegebenen PHP-Ausdrucks sich ändert. Diese Klasse
-steht seit Version 1.0.4 zur Verfügung.
+   - [CExpressionDependency]: Ändert sich, wenn der Wert des angegebenen PHP-Ausdrucks sich ändert.
 
-<div class="revision">$Id: caching.data.txt 1855 2010-03-04 22:42:32Z qiang.xue $</div>
+<div class="revision">$Id: caching.data.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
