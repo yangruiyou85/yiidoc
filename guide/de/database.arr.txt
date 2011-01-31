@@ -187,7 +187,7 @@ Dieses Beispiel liefert alle Beiträge zusammen mit ihrem Autor und den
 Kategorien zurück. Zusätzlich wird zu jedem Autor auch gleich sein Profil 
 sowie die Liste aller seiner Beiträge abgefragt.
 
-Seit Version 1.1.0 kann `eager loading` auch über die
+`Eager loading` kann auch über die
 [CDbCriteria::with]-Eigenschaft angestoßen werden:
 
 ~~~
@@ -230,12 +230,11 @@ vereindeutigt werden.
 sollten vereindeutigt werden.
 
    - `params`: Parameter (als Name-Wert-Paare), die an die erzeugte SQL Abfrage gebunden werden
-sollen. Verfügbar seit Version 1.0.3.
+sollen. 
 
    - `on`: Zusätzliche `ON` Klausel, die an die JOIN-Kondition
 mit einem `AND` Operator angehängt werden soll. Die Spaltennamen sollten
 vereindeutigt werden. Bei `MANY_MANY`-Beziehungen wird diese Option ignoriert.
-Sie ist seit Version 1.0.2 verfügbar.
 
    - `order`: Die `ORDER BY` Klausel, standardmäßig leer. Spaltennamen
 sollten vereindeutigt werden. 
@@ -247,8 +246,7 @@ Option eine Endlosschleife entstehen kann.
    - `joinType`: Der Typ des JOINs für diese Beziehung. Der Standardwert ist `LEFT
 OUTER JOIN`.
 
-   - `alias`: Der Alias für die verknüpfte Tabelle. Diese Option ist seit Version 1.0.1 verfügbar. 
-Mit dem Standardwert `null` wird der Beziehungsname als Alias verwendet.
+   - `alias`: Der Alias für die verknüpfte Tabelle. Mit dem Standardwert `null` wird der Beziehungsname als Alias verwendet.
 
    - `together`: Ob ein JOIN der verknüpften Tabelle mit der Haupt- bzw. anderen Tabellen 
 erzwungen werden soll. Diese Option ist nur für `HAS_MANY` und `MANY_MANY` von Bedeutung.
@@ -261,7 +259,6 @@ Bleibt die Option leer, wird die verbundene Tabelle nur dann
 zusammen mit der Haupttabelle in einer einzigen Abfrage eingelesen, falls 
 diese keine Seitenblätterung verwendet. Für weitere Informationen 
 lesen Sie bitte auch den Abschnitt "Geschwindigkeit von relationalen Abfragen". 
-Diese Option ist seit Version 1.0.3 verfügbar.
 
    - `join`: Zusätzliche `JOIN`-Ausdrück, standardmäßig leer. Diese Option ist seit
 Version 1.1.3 verfügbar.
@@ -270,13 +267,13 @@ Version 1.1.3 verfügbar.
 sollten vereindeutigt werden.
 
    - `having`: Die `HAVING` Klausel, standarmäßig leer. Spaltennamen
-sollten vereindeutigt werden. Diese Option ist seit Version 1.0.1. verfügbar.
+sollten vereindeutigt werden. 
 
    - `index`: Der Spaltenname, deren Wert als Schlüssel für den Array mit
 relationalen Objekten verwendet werden soll. Wird diese Option nicht gesetzt, 
 wird ein 0-basierter ganzzahliger Index verwendet.
 Diese Option kann nur für `HAS_MANY`- und `MANY_MANY`-Beziehungen gesetzt
-werden. Diese Option ist seit Version 1.0.7 verfügbar.
+werden.
 
 Zusätzlich sind beim `lazy loading` folgende Optionen für bestimmte Beziehungen 
 verfügbar:
@@ -343,18 +340,12 @@ $posts=Post::model()->with('comments')->findAll(array(
 ));
 ~~~
 
-> Note|Hinweis: Die Art und Weise, wie Spaltennamen eindeutig angesprochen
-> werden, hat sich seit Version 1.1.0 geändert. In früheren 1.0.x-Versionen hat
-> Yii automatisch ein Alias für jede verknüpfte Tabelle erstellt und man
-> musste die Präfix `??.` als Platzhalter für diesen Alias verwenden. Der
-> Alias der Haupttabelle entsprach deren Namen.
-
 
 Dynamische Optionen für relationale Abfragen 
 --------------------------------------------
 
-Seit Version 1.0.2 kann man sowohl beim [with()|CActiveRecord::with]-Aufruf 
-als auch bei der `with`-Eigenschaft dynamische Optionen angeben. Diese 
+Sowohl beim [with()|CActiveRecord::with]-Aufruf 
+als auch bei der `with`-Eigenschaft kann man dynamische Optionen angeben. Diese 
 überschreiben dann jene Optionen, die fest in
 [relations()|CActiveRecord::relations] definiert wurden. Möchte man zum
 Beispiel beim obigen `User`-Model per `eager loading` gemeinsam alle Beiträge in
@@ -369,7 +360,7 @@ User::model()->with(array(
 ))->findAll();
 ~~~
 
-Seit Version 1.0.5 kann man auch beim `lazy loading` dynamisch Optionen
+Auch beim `lazy loading` kann man dynamisch Optionen
 überschreiben, indem man den Beziehungsnamen als Methode aufruft, und die
 dynamischen Optionen als Parameter übergibt. Dieser Aufruf liefert zum
 Beispiel alle Beiträge mit `status` 1 eines Benutzers:
@@ -430,25 +421,8 @@ Man kann diese Option auch dynamisch beim eager loading setzen:
 $posts = Post::model()->with(array('comments'=>array('together'=>false)))->findAll();
 ~~~
 
-> Note|Hinweis: In Version 1.0.x führt Yii bei `N` `HAS_MANY`- oder `MANY_MANY`-Beziehungen 
-> standardmäßig `N+1` SQL-Abfragen aus. Jede dieser Beziehungen führt also zu einer weiteren 
-> SQL-Abfrage. Um auch hier eine einzelne Abfrage zu erzwingen, kann man die `together()`-Methode 
-> nach `with()` aufrufen:
->
-> ~~~
-> [php]
-> $posts=Post::model()->with(
-> 	'author.profile',
-> 	'author.posts',
-> 	'categories')->together()->findAll();
-> ~~~
->
-
-
 Statistische Abfragen
 ---------------------
-
-> Note|Hinweis: Statistische Abfragen werden seit Version 1.0.4 unterstützt.
 
 Neben den oben beschriebenen relationalen Abfragen unterstützt Yii auch sogenannte
 statistische (auch: aggregierte) Abfragen. Damit können statistische
@@ -527,8 +501,6 @@ werden sollen. Sie müssen als Array aus Name-Wert-Paare angegeben werden.
 Relationale Abfragen mit Scopes
 -------------------------------
 
-> Note|Hinweis: Scopes werden seit Version 1.0.5 unterstützt.
-
 Auch relationale Abfragen können mit [Scopes](/doc/guide/database.ar#named-scopes) 
 kombiniert werden. Dabei unterscheidet man zwei Fälle: Scopes die auf das Hauptobjekt
 und Scopes die auf die verknüpften Objekte angewendet werden.
@@ -580,4 +552,4 @@ class User extends CActiveRecord
 verwendet werden, die in [CActiveRecord::scopes] definiert wurden. Man kann
 daher keine parametrisierten Scopes verwenden.
 
-<div class="revision">$Id: database.arr.txt 2782 2010-12-28 16:18:06Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
