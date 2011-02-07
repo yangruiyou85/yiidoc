@@ -393,7 +393,7 @@ Instancja [CDbCommand] może być wielokrotnie używana do konstruowania kilku z
 
 ~~~
 [php]
-$command = Yii::app()->createCommand();
+$command = Yii::app()->db->createCommand();
 $users = $command->select('*')->from('tbl_users')->queryAll();
 $command->reset();  // wyszyść poprzednie zapytanie
 $posts = $command->select('*')->from('tbl_posts')->queryAll();
@@ -745,4 +745,4 @@ Poniżej znajduje się przykład pokazujący jak usunąć indeks.
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2898 2011-01-20 15:57:03Z haertl.mike $</div>
+<div class="revision">$Id: database.query-builder.txt 2920 2011-01-28 07:56:42Z mdomba $</div>
