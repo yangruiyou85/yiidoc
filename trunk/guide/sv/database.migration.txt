@@ -281,4 +281,4 @@ Om vi nu kör `migrate`-kommandot, kommer ovanstående konfigureringar att gäll
 mata in kommandoradsalternativ varje gång.
 
 
-<div class="revision">$Id: database.migration.txt 2832 2011-01-10 14:37:04Z qiang.xue $</div>
+<div class="revision">$Id: database.migration.txt 2951 2011-02-11 13:02:22Z mdomba $</div>
