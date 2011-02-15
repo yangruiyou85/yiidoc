@@ -60,10 +60,7 @@ EOD;
 			{
 				$results[$name]="outdated (source: r$srcRevision, translation: r{$matches[2]}).";
 				
-				$tr=array();
-				$tr['{name}']=$name;
-				$tr['{old}']=$matches[2];
-				$tr['{new}']=$srcRevision;
+				$tr=array('{name}'=>$name,'{old}'=>$matches[2],'{new}'=>$srcRevision);
 				$urls[$name]=strtr($template,$tr);
 			}
 		}
