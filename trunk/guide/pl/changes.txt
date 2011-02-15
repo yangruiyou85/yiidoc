@@ -6,6 +6,7 @@ Na tej stronie znajdziesz podsumowanie najważniejszych funkcji dodanych w danym
 Wersja 1.1.7
 -------------
  * [Dodano wsparcie dla RESTful URL](/doc/guide/topics.url#user-friendly-urls)
+ * [Dodano wsparcie dla buforowania zapytań](/doc/guide/caching.data#query-caching)
  
 Wersja 1.1.6
 -------------
@@ -74,4 +75,4 @@ Wersja 1.1.0
 
  * Alias nazwy dla tabeli głównej w zapytaniu AR ustalony został jako 't'.
 
-<div class="revision">$Id: changes.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 2949 2011-02-11 03:48:01Z qiang.xue $</div>
