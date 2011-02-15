@@ -224,4 +224,4 @@ return array(
 Jeśli teraz uruchomimy polecenie `migrate` powyższa konfiguracja będzie obowiązywać bez konieczności wprowadzania za każdym razem opcji poprzez linię poleceń.
 
 
-<div class="revision">$Id: database.migration.txt 2832 2011-01-10 14:37:04Z qiang.xue $</div>
+<div class="revision">$Id: database.migration.txt 2951 2011-02-11 13:02:22Z mdomba $</div>
