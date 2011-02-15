@@ -27,6 +27,9 @@ EOD;
 	 */
 	public function run($args)
 	{
+	  // Url template
+	  $template='http://code.google.com/p/yii/source/diff?format=side&path=/trunk/docs/guide/{name}&old={old}&r={new}'; // TRi
+	  
 		if(!isset($args[0]))
 			$this->usageError('the language ID is not specified.');
 		$path=Yii::getPathOfAlias('application').'/../'.$this->type.'/'.$args[0];
@@ -36,6 +39,7 @@ EOD;
 
 		$files=CFileHelper::findFiles($srcPath,array('fileTypes'=>array('txt'),'level'=>0));
 		$results=array();
+		$urls=array();  // TRi
 		foreach($files as $file)
 		{
 			$name=basename($file);
@@ -53,13 +57,29 @@ EOD;
 			else if($matches[2]>=$srcRevision)
 				$results[$name]="up-to-date.";
 			else
+			{
 				$results[$name]="outdated (source: r$srcRevision, translation: r{$matches[2]}).";
+				// TRi
+				$tr=array();
+				$tr['{name}']=$name;
+				$tr['{old}']=$matches[2];
+				$tr['{new}']=$srcRevision;
+				$urls[$name]=strtr($template,$tr);
+			}
 		}
 
 		asort($results);
 		foreach($results as $name=>$result)
 		{
 			echo str_pad($name,30,' ',STR_PAD_LEFT).': '.$result."\n";
+		}
+		
+		// TRi
+		echo "\n****************** diff URL's ******************\n";
+		asort($urls);
+		foreach($urls as $name=>$result)
+		{
+			echo $name.":\n".$result."\n\n";
 		}
 	}
 }

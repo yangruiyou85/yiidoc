@@ -66,14 +66,14 @@ för att bygga individuella delar av en SELECT-sats. Eftersom alla dessa metoder
 i retur, kan de anropas i en kedja (method chaining), som exemplet i början av detta avsnitt visar.
 
 * [select()|CDbCommand::select() ]: specificerar SELECT-delen av frågan
-* [selectDistinct()|CDbCommand::selectDistinct() ]: specificerar SELECT-delen av frågan och aktiverar DISTINCT-flaggan
+* [selectDistinct()|CDbCommand::selectDistinct]: specificerar SELECT-delen av frågan och aktiverar DISTINCT-flaggan
 * [from()|CDbCommand::from() ]: specificerar FROM-delen av frågan
 * [where()|CDbCommand::where() ]: specificerar WHERE-delen av frågan
 * [join()|CDbCommand::join() ]: lägger till ett "inner join"-fragment till frågan
-* [leftJoin()|CDbCommand::leftJoin() ]: lägger till ett "left outer join"-fragment
-* [rightJoin()|CDbCommand::rightJoin() ]: lägger till ett "right outer join"-fragment
-* [crossJoin()|CDbCommand::crossJoin() ]: lägger till ett "cross join query"-fragment
-* [naturalJoin()|CDbCommand::naturalJoin() ]: lägger till ett "natural join"-fragment
+* [leftJoin()|CDbCommand::leftJoin]: lägger till ett "left outer join"-fragment
+* [rightJoin()|CDbCommand::rightJoin]: lägger till ett "right outer join"-fragment
+* [crossJoin()|CDbCommand::crossJoin]: lägger till ett "cross join query"-fragment
+* [naturalJoin()|CDbCommand::naturalJoin]: lägger till ett "natural join"-fragment
 * [group()|CDbCommand::group() ]: specificerar GROUP BY-delen av frågan
 * [having()|CDbCommand::having() ]: specificerar HAVING-delen av frågan
 * [order()|CDbCommand::order() ]: specificerar ORDER BY-delen av frågan
@@ -124,7 +124,7 @@ select(array('id', 'count(*) as num'))
 function selectDistinct($columns)
 ~~~
 
-Metoden [selectDistinct()|CDbCommand::selectDistinct() ] är snarlik [select()|CDbCommand::select() ] förutom att  
+Metoden [selectDistinct()|CDbCommand::selectDistinct] är snarlik [select()|CDbCommand::select() ] förutom att  
 den aktiverar `DISTINCT`-flaggan. Till exempel, `selectDistinct('id, username')` kommer att generera följande SQL:
 
 ~~~
@@ -485,9 +485,9 @@ Som motsvarighet till dessa frågor tillhandahåller frågeverktyget metoderna `
 Till skillnad från SELECT-frågemetoderna som beskrivits ovan, bygger var och en av frågemetoderna för datamanipulering 
 en komplett SQL-sats och exekverar den omedelbart.
 
-* [insert()|CDbCommand::insert() ]: infogar en rad i en tabell
-* [update()|CDbCommand::update() ]: uppdaterar data i en tabell
-* [delete()|CDbCommand::delete() ]: tar bort data ur en tabell
+* [insert()|CDbCommand::insert]: infogar en rad i en tabell
+* [update()|CDbCommand::update]: uppdaterar data i en tabell
+* [delete()|CDbCommand::delete]: tar bort data ur en tabell
 
 
 Nedan beskrivs dessa frågemetoder för datamanipulering.
@@ -500,7 +500,7 @@ Nedan beskrivs dessa frågemetoder för datamanipulering.
 function insert($table, $columns)
 ~~~
 
-Metoden [insert()|CDbCommand::insert() ] bygger och exekverar en SQL `INSERT`-sats. 
+Metoden [insert()|CDbCommand::insert] bygger och exekverar en SQL `INSERT`-sats. 
 Parametern `$table` specificerar vilken tabell att infoga i, medan `$columns` är en vektor 
 innehållande namn-värdepar som specificerar vilka kolumnvärden som skall infogas. 
 Metoden kommer att korrekt omge tabellnamn med diakritiskt tecken samt använda parameterbindning 
@@ -526,7 +526,7 @@ $command->insert('tbl_user', array(
 function update($table, $columns, $conditions='', $params=array())
 ~~~
 
-Metoden [update()|CDbCommand::update() ] bygger och exekverar en SQL `UPDATE`-sats. 
+Metoden [update()|CDbCommand::update] bygger och exekverar en SQL `UPDATE`-sats. 
 Parametern `$table` specificerar vilken tabell som skall uppdateras; `$columns` är en vektor 
 innehållande namn-värdepar som specificerar vilka kolumnvärden som skall uppdateras; 
 `$conditions` och `$params` specificerar, precis som i [where()|CDbCommand::where() ], `WHERE`-ledet i `UPDATE`-satsen. 
@@ -552,11 +552,10 @@ $command->update('tbl_user', array(
 function delete($table, $conditions='', $params=array())
 ~~~
 
-Metoden [delete()|CDbCommand::delete()] bygger och exekverar en SQL `DELETE`-sats. 
-Parametern `$table` specificerar vilken tabell som skall uppdateras;
-`$conditions` och `$params` specificerar, precis som i [where()|CDbCommand::where() ], 
-`WHERE`-ledet i `DELETE`-satsen. Metoden kommer att korrekt omge tabellnamn med 
-diakritiskt tecken.
+Metoden [delete()|CDbCommand::delete] bygger och exekverar en SQL `DELETE`-sats. 
+Parametern `$table` specificerar tabell att ta bort från; `$conditions` och `$params` 
+specificerar, precis som i [where()|CDbCommand::where() ], `WHERE`-ledet i 
+`DELETE`-satsen. Metoden kommer att korrekt omge tabellnamn med diakritiskt tecken.
 
 Nedan följer ett exempel:
 
@@ -574,16 +573,16 @@ Förutom vanliga frågor som hämtar eller manipulerar data, erbjuder frågeverk
 metoder som bygger och exekverar SQL-frågor som kan manipulera schema i en databas. 
 Mer specifikt erbjuds stöd för följande frågor:
 
-* [createTable()|CDbCommand::createTable() ]: skapar en tabell
-* [renameTable()|CDbCommand::renameTable() ]: ändrar namn på en tabell
-* [dropTable()|CDbCommand::dropTable() ]: tar bort en tabell
-* [truncateTable()|CDbCommand::truncateTable() ]: tömmer en tabell på data
-* [addColumn()|CDbCommand::addColumn() ]: lägger till en tabellkolumn
-* [renameColumn()|CDbCommand::renameColumn() ]: ändrar namn på en tabellkolumn
-* [alterColumn()|CDbCommand::alterColumn() ]: ändrar specifikation för en tabellkolumn
-* [dropColumn()|CDbCommand::dropColumn() ]: tar bort en tabellkolumn
-* [createIndex()|CDbCommand::createIndex() ]: skapar ett index
-* [dropIndex()|CDbCommand::dropIndex() ]: tar bort ett index
+* [createTable()|CDbCommand::createTable]: skapar en tabell
+* [renameTable()|CDbCommand::renameTable]: ändrar namn på en tabell
+* [dropTable()|CDbCommand::dropTable]: tar bort en tabell
+* [truncateTable()|CDbCommand::truncateTable]: tömmer en tabell på data
+* [addColumn()|CDbCommand::addColumn]: lägger till en tabellkolumn
+* [renameColumn()|CDbCommand::renameColumn]: ändrar namn på en tabellkolumn
+* [alterColumn()|CDbCommand::alterColumn]: ändrar specifikation för en tabellkolumn
+* [dropColumn()|CDbCommand::dropColumn]: tar bort en tabellkolumn
+* [createIndex()|CDbCommand::createIndex]: skapar ett index
+* [dropIndex()|CDbCommand::dropIndex]: tar bort ett index
 
 > Info: Även om de faktiska SQL-satserna för schemamanipulering varierar en hel del 
 mellan olika databashanterare (DBMS), försöker frågeverktyget att erbjuda ett enhetligt 
@@ -621,7 +620,7 @@ Följande abstrakta datatyper stöds av frågeverktyget.
 function createTable($table, $columns, $options=null)
 ~~~
 
-Metoden [createTable()|CDbCommand::createTable() ] bygger och exekverar en SQL-sats som skapar en tabell. 
+Metoden [createTable()|CDbCommand::createTable] bygger och exekverar en SQL-sats som skapar en tabell. 
 Parametern `$table` specificerar namnet på tabellen som skall skapas. Parametern `$columns` specificerar 
 kolumnerna i den nya tabellen. De måste anges i form av namn-definitionspar (t.ex. `'username'=>'string'`). 
 Parametern `$options` specificerar möjliga extra SQL-fragment som skall följa på genererad SQL. 
@@ -661,7 +660,7 @@ createTable('tbl_user', array(
 function renameTable($table, $newName)
 ~~~
 
-Metoden [renameTable()|CDbCommand::renameTable() ] bygger och exekverar en SQL-sats som ändrar 
+Metoden [renameTable()|CDbCommand::renameTable] bygger och exekverar en SQL-sats som ändrar 
 namnet på en tabell. Parametern `$table` specificerar namnet på tabellen som skall namnändras. 
 Parametern `$newName` specificerar det nya tabellnamnet. Frågeverktyget kommer att korrekt 
 omge tabellnamnen med diakritiskt tecken.
@@ -682,7 +681,7 @@ renameTable('tbl_users', 'tbl_user')
 function dropTable($table)
 ~~~
 
-Metoden [dropTable()|CDbCommand::dropTable() ] bygger och exekverar en SQL-sats som tar bort en tabell. 
+Metoden [dropTable()|CDbCommand::dropTable] bygger och exekverar en SQL-sats som tar bort en tabell. 
 Parametern `$table` specificerar namnet på tabellen som skall tas bort. Frågeverktyget kommer att 
 korrekt omge tabellnamnet med diakritiskt tecken.
 
@@ -701,7 +700,7 @@ dropTable('tbl_user')
 function truncateTable($table)
 ~~~
 
-Metoden [truncateTable()|CDbCommand::truncateTable() ] bygger och exekverar en SQL-sats som tar bort 
+Metoden [truncateTable()|CDbCommand::truncateTable] bygger och exekverar en SQL-sats som tar bort 
 allt innehåll ur en tabell. Parametern `$table` specificerar namnet på tabellen som skall tömmas. 
 Frågeverktyget kommer att korrekt omge tabellnamnet med diakritiskt tecken.
 
@@ -721,7 +720,7 @@ truncateTable('tbl_user')
 function addColumn($table, $column, $type)
 ~~~
 
-Metoden [addColumn()|CDbCommand::addColumn() ] bygger och exekverar en SQL-sats som lägger till en ny 
+Metoden [addColumn()|CDbCommand::addColumn] bygger och exekverar en SQL-sats som lägger till en ny 
 tabellkolumn. Parametern `$table` specificerar namnet på tabellen som en ny kolumn skall tillfogas. 
 Parametern `$column` specificerar namnet på den nya kolumnen. Och `$type` specificerar definitionen 
 för den nya kolumnen. En kolumndefinition kan innehålla abstrakt datatyp, som beskrivits i avsnittet 
@@ -743,7 +742,7 @@ addColumn('tbl_user', 'email', 'string NOT NULL')
 function dropColumn($table, $column)
 ~~~
 
-Metoden [dropColumn()|CDbCommand::dropColumn()] bygger och exekverar en SQL-sats som tar bort en 
+Metoden [dropColumn()|CDbCommand::dropColumn] bygger och exekverar en SQL-sats som tar bort en 
 tabellkolumn. Parametern `$table` specificerar namnet på tabellen ur vilken en kolumn skall tas bort. 
 Parametern `$column` specificerar namnet på kolumnen som skall tas bort. Frågeverktyget kommer 
 att korrekt omge tabellnamn och kolumnnamn med diakritiskt tecken.
@@ -764,7 +763,7 @@ dropColumn('tbl_user', 'location')
 function renameColumn($table, $name, $newName)
 ~~~
 
-Metoden [renameColumn()|CDbCommand::renameColumn() ] bygger och exekverar en SQL-sats som ändrar namn 
+Metoden [renameColumn()|CDbCommand::renameColumn] bygger och exekverar en SQL-sats som ändrar namn 
 på en tabellkolumn. Parametern `$table` specificerar namnet på tabellen vars kolumn skall byta namn. 
 Parametern `$name` specificerar det befintliga kolumnnamnet. `$newName` specificerar önskat kolumnnamn. 
 Frågeverktyget kommer att korrekt omge tabellnamn och kolumnnamn med diakritiskt tecken.
@@ -785,7 +784,7 @@ renameColumn('tbl_user', 'name', 'username')
 function alterColumn($table, $column, $type)
 ~~~
 
-Metoden [alterColumn()|CDbCommand::alterColumn() ] bygger och exekverar en SQL-sats som ändrar definition 
+Metoden [alterColumn()|CDbCommand::alterColumn] bygger och exekverar en SQL-sats som ändrar definition 
 för en tabellkolumn. Parametern `$table` specificerar namnet på tabellen vars kolumndefinition skall ändras. 
 Parametern `$column` specificerar namnet på kolumnen som skall ändras. Och `$type` specificerar den nya 
 kolumndefinitionen. En kolumndefinition kan innehålla abstrakt datatyp, så som beskrivits tidigare för 
@@ -810,7 +809,7 @@ function addForeignKey($name, $table, $columns,
 	$refTable, $refColumns, $delete=null, $update=null)
 ~~~
 
-Metoden [addForeignKey()|CDbCommand::addForeignKey() ] bygger och exekverar en SQL-sats som lägger till 
+Metoden [addForeignKey()|CDbCommand::addForeignKey] bygger och exekverar en SQL-sats som lägger till 
 ett integritetsvillkor (constraint) till en tabell. Parametern `$name` specificerar namnet på villkoret. 
 Parametrarna `$table` och `$columns` specificerar tabell- och kolumnnamn för referensattributet (FK). 
 Vid flera kolumner skall dessa separeras med kommatecken. Parametrarna `$refTable` och `$refColumns` 
@@ -838,7 +837,7 @@ addForeignKey('fk_profile_user_id', 'tbl_profile', 'user_id',
 function dropForeignKey($name, $table)
 ~~~
 
-Metoden [dropForeignKey()|CDbCommand::dropForeignKey() ] bygger och exekverar en SQL-sats som tar bort ett 
+Metoden [dropForeignKey()|CDbCommand::dropForeignKey] bygger och exekverar en SQL-sats som tar bort ett 
 integritetsvillkor. Parametern `$name` specificerar namnet på det villkor som skall tas bort. 
 Parametern  `$table` specificerar namnet på tabellen som innehåller villkoret. Frågeverktyget kommer 
 att korrekt omge tabellnamnet och villkorsnamnet med diakritiskt tecken.
@@ -859,7 +858,7 @@ dropForeignKey('fk_profile_user_id', 'tbl_profile')
 function createIndex($name, $table, $column, $unique=false)
 ~~~
 
-Metoden [createIndex()|CDbCommand::createIndex() ] bygger och exekverar en SQL-sats som skapar ett index. 
+Metoden [createIndex()|CDbCommand::createIndex] bygger och exekverar en SQL-sats som skapar ett index. 
 Parametern `$name` specificerar namn på det index som skall skapas. Parametern `$table` specificerar 
 namnet på tabellen som indexet skall tillhöra. Parametern `$column` specificerar namnet på kolumnen 
 som skall indexeras. Och parametern `$unique` specificerar huruvida ett unikt index skall skapas. 
@@ -882,7 +881,7 @@ createIndex('idx_username', 'tbl_user')
 function dropIndex($name, $table)
 ~~~
 
-Metoden [dropIndex()|CDbCommand::dropIndex() ] bygger och exekverar en SQL-sats som tar bort ett index. 
+Metoden [dropIndex()|CDbCommand::dropIndex] bygger och exekverar en SQL-sats som tar bort ett index. 
 Parametern `$name` specificerar namn för indexet som skall tas bort. Parametern `$table` specificerar 
 namnet på tabellen som indexet tillhör. Frågeverktyget kommer att korrekt omge tabellnamn och indexnamn 
 med diakritiskt tecken.
