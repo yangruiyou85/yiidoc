@@ -6,7 +6,7 @@ Member List of Yiidoc Project
   active  Bulgarian           koleto              nstoitsev
   active  Catalan             jdl                 jdomin123
   active  Dutch               Blizz               blizzke
-  active  Dutch               marcovtwout         mr@vtwout.net
+  active  Dutch               marcovtwout         marcovtwout
   active  French              kiwisoft            pgaultier
   active  French              locked              etienne.adam
   active  German              Mike                haertl.mike                 Yes
