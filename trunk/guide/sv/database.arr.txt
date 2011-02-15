@@ -189,8 +189,8 @@ Ovanstående exempel hämtar in alla postningar tillsammans med deras respektive
 författare och kategorier. Det hämtar även in varje författares profil samt 
 postningar.
 
-Från och med version 1.1.0, kan eager loading även exekveras genom att man
-specificerar propertyn [CDbCriteria::with], som i följande exempel:
+Eager loading kan även exekveras genom att man specificerar propertyn [CDbCriteria::with], 
+som i följande exempel:
 
 ~~~
 [php]
@@ -232,13 +232,12 @@ relationella frågan. De sammanfattas nedan.
    detta alternativ måste göras otvetydiga.
 
    - `params`: parametrarna som skall kopplas ihop med den genererade SQL-satsen. 
-   Dessa skall ges som en array bestående av namn-värdepar. Detta alternativ har 
-   varit tillgängligt sedan version 1.0.3.
+   Dessa skall ges som en array bestående av namn-värdepar.
 
    - `on`: motsvarar `ON`-ledet. Villkoret som specificeras här kommer att läggas till 
    sammanslagningsvillkoret med hjälp av `AND`-operatorn. Kolumnnamn som refereras till 
    i detta alternativ måste göras otvetydiga. Detta alternativ är inte relevant vid 
-   `MANY_MANY`-relationer. Alternativet har varit tillgängligt sedan version 1.0.2.
+   `MANY_MANY`-relationer.
 
    - `order`: motsvarar `ORDER BY`-ledet. Det är som standard tomt. Kolumnnamn som 
    refereras till i detta alternativ måste göras otvetydiga. 
@@ -250,8 +249,7 @@ relationella frågan. De sammanfattas nedan.
    - `joinType`: typ av sammanslagning för detta samband. Den är som standard 
    `LEFT OUTER JOIN`.
 
-   - `alias`: aliasnamn för tabellen som förknippas med detta samband. Detta 
-   alternativ har varit tillgängligt sedan version 1.0.1. Standardvärde 
+   - `alias`: aliasnamn för tabellen som förknippas med detta samband. Standardvärde 
    är null, vilket innebär att tabellalias genereras automatiskt. Detta skiljer 
    sig från `aliasToken` på så sätt att den senare bara är en platshållare och 
    ersätts med faktiskt tabellalias.
@@ -267,7 +265,6 @@ relationella frågan. De sammanfattas nedan.
    Om detta alternativ inte sätts, kommer den associerade tabellen att sammanfogas med 
    den primära tabellen i en och samma SQL-fråga, endast när den primära tabellen inte sidindelas.
    För fler detaljer se avsnittet "Relational Query Performance". 
-   Detta alternativ har varit tillgängligt sedan version 1.0.3.
 
    - `join`: ett tillkommande `JOIN`-led. Det är som standard tomt. Detta alternativ har 
    varit tillgängligt sedan version 1.1.3.
@@ -276,14 +273,12 @@ relationella frågan. De sammanfattas nedan.
    refereras till i detta alternativ måste göras otvetydiga. 
 
    - `having`: motsvarar `HAVING`-ledet. Det är som standard tomt. Kolumnnamn som 
-   refereras till i detta alternativ måste göras otvetydiga. Detta alternativ har 
-   varit tillgängligt sedan version 1.0.1.
+   refereras till i detta alternativ måste göras otvetydiga.
 
    - `index`: namnet på kolumnen vars värden skall användas som nycklar 
    i den array som lagrar relaterade objekt. Om detta alternativ inte sätts 
    kommer en relaterad objektarray att använda ett nollbaserat heltalsindex. 
    Detta alternativ kan endast sättas för sambandstyperna `HAS_MANY` och `MANY_MANY`. 
-   Detta alternativ har varit tillgängligt sedan version 1.0.7.
 
 
 Dessutom är följande alternativ tillgängliga för vissa samband när lazy loading används:
@@ -358,18 +353,12 @@ $posts=Post::model()->with('comments')->findAll(array(
 ));
 ~~~
 
-> Note|Märk: semantiken vid otvetydiggörande av kolumnnamn har ändrats fr o m version 1.1.0.
-> Tidigare, i version 1.0.x, genererade Yii underförstått ett tabellalias för varje relaterad
-> tabell prefixet `??.` användes för referens till detta automatiskt genererade alias. Vidare är, 
-> i version 1.0.x, aliasnamnet för den primära tabellen identiskt med tabellnamnet.
-
 
 Alternativ för dynamisk relationell fråga
 -----------------------------------------
 
-Med start från och med version 1.0.2, går det att använda alternativ för 
-dynamisk relationell fråga både med metoden [with()|CActiveRecord::with] och 
-med `with`-alternativet. De dynamiska alternativen skriver över existerande 
+Det går att använda alternativ för dynamisk relationell fråga både med metoden [with()|CActiveRecord::with] 
+och med `with`-alternativet. De dynamiska alternativen skriver över existerande 
 alternativ som specificerats i metoden [relations()|CActiveRecord::relations]. 
 Till exempel, för att, med ovanstående `User`-modell, använda tillvägagångssättet 
 eager loading till att hämta in postningar tillhörande en författare i *stigande 
@@ -384,11 +373,10 @@ User::model()->with(array(
 ))->findAll();
 ~~~
 
-Med start fr o m version 1.0.5 kan dynamiska frågealternativ även användas 
-med relationella frågor som använder tillvägagångssättet lazy loading. 
-För att göra så, anropa en metod vars namn är lika sambandsnamnet och lämna med 
-de dynamiska frågealternativen som metodparameter. Till exempel returnerar 
-följande kod de av en användares postningar vars status` är lika med 1:
+Dynamiska frågealternativ kan även användas med relationella frågor som använder 
+tillvägagångssättet lazy loading. För att göra så, anropa en metod vars namn är 
+lika sambandsnamnet och lämna med de dynamiska frågealternativen som metodparameter. 
+Till exempel returnerar följande kod de av en användares postningar vars status` är lika med 1:
 
 ~~~
 [php]
@@ -442,27 +430,9 @@ Vi kan även sätta detta alternativ dynamiskt när vi genomför eager loading:
 $posts = Post::model()->with(array('comments'=>array('together'=>false)))->findAll();
 ~~~
 
-> Note|Märk: I version 1.0.x, var det underförstådda beteendet att Yii genererade och
-> exekverade `N+1` SQL-satser om det fanns `N` `HAS_MANY`- eller `MANY_MANY`-samband.
-> Varje `HAS_MANY`- eller `MANY_MANY`-samband hade sin egen SQL-sats. Genom att anropa
-> metoden `together()` efter `with()` kunde generering och exekvering av endast en SQL-sats 
-> tvingas fram. Till exempel,
->
-> ~~~
-> [php]
-> $posts=Post::model()->with(
-> 	'author.profile',
-> 	'author.posts',
-> 	'categories')->together()->findAll();
-> ~~~
->
-
-
 
 Statistikfråga
 --------------
-
-> Note|Märk: Statistikfrågor har understötts fr o m version 1.0.4.
 
 Utöver relationella frågor som beskrivits ovan, stöder Yii också så kallade statistikfrågor 
 (eller aggregationsfrågor). Detta refererar till inhämtning av aggregeringsinformation om 
@@ -536,8 +506,6 @@ De skall anges som en array av namn-värdepar.
 Relationell fråga med namngivna omfång
 --------------------------------------
 
-> Note|Märk: Stödet för namngivna omfång har varit tillgängligt sedan version 1.0.5.
-
 Relationella frågor kan även utföras i kombination med [namngivna omfång](/doc/guide/database.ar#named-scopes). 
 Detta kan ske i två former. I den första formen appliceras namngivna omfång på huvudmodellen. 
 I den andra formen appliceras namngivna omfång på relaterade modeller.
@@ -587,4 +555,4 @@ class User extends CActiveRecord
 [CActiveRecord::scopes]. Detta innebär också att de inte kan parametriseras.
 
 
-<div class="revision">$Id: database.arr.txt 2782 2010-12-28 16:18:06Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
