@@ -7,9 +7,10 @@
 ------------
  * [Добавлена поддержка URL в стиле REST](/doc/guide/topics.url#user-friendly-urls)
  * [Добавлена поддеожка с запросов](/doc/guide/caching.data#query-caching)
+ * [Теперь возможно передать параметры именованной группе условий отношения](/doc/guide/database.arr#relational-query-with-named-scopes)
 
 Версия 1.1.6
--------------
+------------
  * [Добавлен построитель запросов](/doc/guide/database.query-builder)
  * [Добавлены миграции](/doc/guide/database.migration)
  * [Лучшие практики MVC](/doc/guide/basics.best-practices)
@@ -145,4 +146,4 @@
  * Расширен класс [CUrlManager] поддержкой параметризованных маршрутов в URL-правилах:
      - [Параметризация маршрутов](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 2949 2011-02-11 03:48:01Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 2980 2011-02-20 04:08:16Z alexander.makarow $</div>

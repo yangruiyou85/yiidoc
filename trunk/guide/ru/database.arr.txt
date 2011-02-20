@@ -457,6 +457,20 @@ $posts=Post::model()->published()->recently()->with('comments')->findAll();
 ~~~
 [php]
 $posts=Post::model()->with('comments:recently:approved')->findAll();
+// или, начиная с версии 1.1.7
+$posts=Post::model()->with(
+    'comments'=>array(
+        'scopes'=>array('recently','approved')
+    ),
+)->findAll();
+// или, начиная с версии 1.1.7
+$posts=Post::model()->findAll(array(
+    'with'=>array(
+        'comments'=>array(
+            'scopes'=>array('recently','approved')
+        ),
+    ),
+));
 ~~~
 
 Этот запрос вернёт все записи вместе с одобренными комментариями. Здесь `comments`
@@ -480,10 +494,40 @@ class User extends CActiveRecord
 		);
 	}
 }
+// или, начиная с версии 1.1.7
+class User extends CActiveRecord
+{
+	public function relations()
+	{
+		return array(
+		    'posts'=>array(self::HAS_MANY, 'Post', 'author_id',
+				'with'=>array(
+					'comments'=>array(
+						'scopes'=>'approved'
+					),
+				),
+			),
+		);
+	}
+}
 ~~~
 
-> Note|Примечание: Именованные группы параметров, применяемые к реляционным моделям,
- должны описываться в методе [CActiveRecord::scopes], поэтому они не могут быть
-параметризованы.
 
-<div class="revision">$Id: database.arr.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+С версии 1.1.7 стало возможно передать параметры именованным группам условий
+отношения. К примеру, если в `Post` есть именованная группа условий `rated`,
+принимающая минимальный рейтинг записи, использовать её в `User` можно так:
+
+~~~
+[php]
+$users=User::model()->findAll(
+	'with'=>array(
+		'posts'=>array(
+			'scopes'=>array(
+				'rated'=>5,
+			),
+		),
+	),
+);
+~~~
+
+<div class="revision">$Id: database.arr.txt 2980 2011-02-20 04:08:16Z alexander.makarow $</div>
