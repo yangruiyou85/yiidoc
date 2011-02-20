@@ -6,6 +6,7 @@
 Версия 1.1.7
 ------------
  * [Добавлена поддержка URL в стиле REST](/doc/guide/topics.url#user-friendly-urls)
+ * [Добавлена поддеожка с запросов](/doc/guide/caching.data#query-caching)
 
 Версия 1.1.6
 -------------
@@ -144,4 +145,4 @@
  * Расширен класс [CUrlManager] поддержкой параметризованных маршрутов в URL-правилах:
      - [Параметризация маршрутов](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id: changes.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 2949 2011-02-11 03:48:01Z qiang.xue $</div>

@@ -290,4 +290,4 @@ return array(
 без ввода каких-либо дополнительных параметров.
 
 
-<div class="revision">$Id: database.query-builder.txt 2842 2011-01-12 21:31:22Z alexander.makarow $</div>
+<div class="revision">$Id: database.migration.txt 2951 2011-02-11 13:02:22Z mdomba $</div>
