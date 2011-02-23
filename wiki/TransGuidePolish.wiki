@@ -3,7 +3,7 @@
 = Terminy i ich tłumaczenia =
 
  * *apply migration* - aplikowanie migracji
- * *bootstrapt script* - skrypt rozruchowy
+ * *bootstrap script* - skrypt rozruchowy
  * *choice format* - alternatywny format [i18n]
  * *customize* - dostosowywać (do własnych potrzeb)
  * *development* - dewelopment lub rozwój aplikacji
@@ -26,9 +26,9 @@
  * *redoing migration* - poprawianie migracji
  * *route* - trasa
  * *SQL statement* - instrukcja SQL
- * *SQL query* - zapytranie SQL
+ * *SQL query* - zapytanie SQL
  * *theme* - motyw
  * *timestamp* - stempel czasu
  * *tip* - wskazówka
  * *view* - widok
- * *web application* - aplikację sieciowa
+ * *web application* - aplikacja sieciowa
