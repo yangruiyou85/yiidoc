@@ -28,6 +28,7 @@ Member List of Yiidoc Project
   active  Polish              Filip Górczyński    filip.gorczynski
   active  Portuguese          davi_alexandre      bastardgoblin
   active  Portuguese          Wanderson           wanderson.wbc
+  active  Portuguese          Ivan Wilhelm        ivan.whm
   active  Russian             Caveman             alex.lukjanenko
   active  Russian             samdark             alexander.makarow           Yes
   active  Simplified Chinese  dongbeta            yiidoc@dongbeta.com
