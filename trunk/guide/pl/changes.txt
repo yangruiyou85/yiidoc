@@ -7,6 +7,8 @@ Wersja 1.1.7
 -------------
  * [Dodano wsparcie dla RESTful URL](/doc/guide/topics.url#user-friendly-urls)
  * [Dodano wsparcie dla buforowania zapytań](/doc/guide/caching.data#query-caching)
+ * [Od teraz można przekazywać parametry do relacyjnych nazwanych podzbiorów](/doc/guide/database.arr#relational-query-with-named-scopes) 
+ * [Dodano możliwość wykonywania relacyjnych zapytań bez zwracania powiązanych modeli](/doc/guide/database.arr#performing-relational-query-without-getting-related-models) 
  
 Wersja 1.1.6
 -------------
@@ -75,4 +77,4 @@ Wersja 1.1.0
 
  * Alias nazwy dla tabeli głównej w zapytaniu AR ustalony został jako 't'.
 
-<div class="revision">$Id: changes.txt 2949 2011-02-11 03:48:01Z qiang.xue $</div>
+<div class="revision">$Id: changes.txt 3006 2011-02-26 01:40:07Z alexander.makarow $</div>

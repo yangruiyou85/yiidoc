@@ -236,6 +236,31 @@ $posts=Post::model()->findAll(array(
 );
 ~~~
 
+
+Wykonywanie relacyjnych zapytań bez konieczności zwracania powiązanych modeli
+---------------------------------------------------------
+
+Czasami potrzebujemy wykonać zapytanie relacyjne ale nie potrzebujemy danych z powiązanych
+modeli. Załóżmy, że mamy użytkowników `User`, którzy utworzyli wiele postów `Post`. 
+Posty mogą być zarówno opublikowane jak i zapisane jako szkice. O tym stanie decyduje pole 
+`published` w modelu postu. Chcielibyśmy więc otrzymać listę wszystkich użytkowników,
+którzy opublikowali posty ale nie jesteśmy zainteresowani treścią tych postów. Możemy
+to osiągnąć w następujący sposób:
+
+~~~
+[php]
+$users=User::model()->with(array(
+	'posts'=>array(
+		// nie chcemy wybierać postów
+		'select'=>false,
+		// lecz chcemy dostać tylko użytkowników, którzy publikowali posty
+		'joinType'=>'INNER JOIN',
+		'condition'=>'posts.published=1',
+	),
+))->findAll();
+~~~
+
+
 Opcje zapytań relacyjnych
 ------------------------
 
@@ -542,4 +567,4 @@ class User extends CActiveRecord
 w [CActiveRecord::scopes]. W rezultacie, nie mogą one zostać sparametryzowane.
 
 
-<div class="revision">$Id: database.arr.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 3005 2011-02-26 01:39:46Z alexander.makarow $</div>
