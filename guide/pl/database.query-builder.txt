@@ -1,5 +1,5 @@
 Konstruktor zapytań
-=============
+===================
 
 Konstruktor zapytań w Yii umożliwia zorientowane obiektowo pisanie zapytań SQL. Daje to programiście możliwość używania właściwości i metod klasy w celu określenia poszczególnych części zapytania SQL. W ten sposób dołącza te różne części do poprawnego zapytania SQL, które może zostać później wywołane poprzez metody DAO opisane w [obiekcie dostępu do bazy danych (DAO)](/doc/guide/database.dao). Następujący kod pokazuje typowe użycie konstruktora zapytań tworzące zapytanie SELECT w SQL-u:
 
@@ -24,8 +24,19 @@ Konstruktora zapytań najlepiej używać gdy potrzebujesz złożyć instrukcje S
 * oferta pewnego stopnia abstrakcji bazy danych, co umożliwia migrację do innych platform bazodanowych.
 
 
-Nie jest konieczne używanie kreatora zapytań. 
-It is not mandatory to use the Query Builder. W rzeczywistości, jeśli twoje zapytania są proste, łatwiej i szybciej napisać je bezpośrednio w instrukcji SQL. 
+Nie jest konieczne używanie kreatora zapytań. W rzeczywistości, jeśli twoje zapytania są proste, łatwiej i szybciej napisać je bezpośrednio w instrukcji SQL. 
+
+> Note|Uwaga: Konstruktor zapytań nie może być używany do modyfikowania istniejącego zapytania utworzonego za pomocą instrukcji SQL.
+> Na przykład, poniższy kod nie zadziała:
+>
+> ~~~
+> [php]
+> $command = Yii::app()->db->createCommand('SELECT * FROM tbl_user');
+> // poniższa linia NIE DOŁĄCZY klauzuli WHERE do powyższego zapytania SQL
+> $command->where('id=:id', array(':id'=>$id));
+> ~~~
+>
+> Inaczej rzecz ujmując, nie należy jednocześnie wykorzystywać zwykłego SQL-a z konstruktorem zapytań.
 
 
 Przygotowanie konstruktora zapytań.
@@ -745,4 +756,4 @@ Poniżej znajduje się przykład pokazujący jak usunąć indeks.
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2950 2011-02-11 12:56:38Z mdomba $</div>
+<div class="revision">$Id: database.query-builder.txt 2979 2011-02-20 02:35:48Z alexander.makarow $</div>
