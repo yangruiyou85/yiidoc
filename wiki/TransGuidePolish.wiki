@@ -15,6 +15,7 @@
  * *locale* - ustawienia lokalne
  * *message* - komunikat
  * *message source* - źródło komunikatów
+ * *named scope* - nazwany podzbiór
  * *note* - uwaga
  * *parameter binding* - przypinanie parametrów
  * *placeholder* - symbol zastępczy
