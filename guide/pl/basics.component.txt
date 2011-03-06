@@ -40,7 +40,7 @@ Powyższy kod definiuje właściwość do zapisu nazwaną `textWidth` (nazwa zal
 od wielkości liter). Podczas czytania właściwości, wywoływana jest metoda `getTextWidth()`,
 a wartość, którą zwróciła staje się wartością właściwości; podobnie, gdy ustawiamy
 właściwość, wywoływana jest metoda `setTextWidth()`. Jeśli setter nie został zdefiniowany,
-właściwość będzie można tylko odczytywań a próba jej ustawienia zakończy się 
+właściwość będzie można tylko odczytywać a próba jej ustawienia zakończy się 
 rzuceniem wyjątku. Używanie getterów oraz setterów do definiowania właściwości 
 ma tą zaletę, że dodatkowa logika (np. sprawdzanie poprawności, wywoływanie zdarzeń)
 może zostać wywołana podczas odczytu lub zapisu właściwości.
