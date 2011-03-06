@@ -201,7 +201,7 @@ Nazwa tych parametrów musi taka sama jak parametry, których oczekujemy w zmien
 Parametr języka `$language` przyjmuje domyślną wartość `en` w przypadku, gdy użytkownik nie 
 dostarczył go w swoim żądaniu. Poniewać kategoria `$category` nie posiada wartości domyślnej
 jeśli użytkownik jej nie dostarczy nam parametru `category` w `$_GET`, 
-automatycznie zostanie wyrzucony błąd [CHttpException] (kod błędu 400).
+automatycznie zostanie wyrzucony błąd [CHttpException] (kod błędu 404).
 
 Poczynając od wersji 1.1.5, Yii wspiera również wykrywanie typu tablicowego dla parametrów akcji.
 Odbywa się przy użyciu podpowiadania typów PHP o następującej składni:
@@ -294,7 +294,7 @@ class PostController extends CController
 }
 ~~~
 
-Powyższy kod definiuje dwa filtry: `postOnly` praz `PerformanceFilter`.
+Powyższy kod definiuje dwa filtry: `postOnly` oraz `PerformanceFilter`.
 Filtr `postOnly` jest filtrem opartym na metodzie (odpowiadająca filtrowi metoda jest 
 już zdefiniowana w klasie [CController]); zaś filtr `PerformanceFilter` jest filtrem opartym 
 na obiekcie. Alias ścieżki `application.filters.PerformanceFilter` określa, iż plikiem 
