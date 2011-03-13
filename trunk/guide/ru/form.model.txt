@@ -131,6 +131,9 @@ public function ValidatorName($attribute,$params) { … }
 
    - `email`: псевдоним класса [CEmailValidator], который отвечает за проверку корректности email адреса;
 
+   - `date`: псевдоним класса [CDateValidator], проверяющего, является ли атрбут
+корректной датой, временем или и тем и другим.
+
    - `default`: псевдоним класса [CDefaultValueValidator], который присваивает значение
 по умолчанию выбранным атрибутам;
 
@@ -363,4 +366,4 @@ public function rules()
 
 Далее мы увидим, что возможность указания меток в модели данных позволяет быстро создавать сложные формы.
 
-<div class="revision">$Id: form.model.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 3052 2011-03-12 14:27:07Z qiang.xue $</div>
