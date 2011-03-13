@@ -6,6 +6,7 @@
  * *bootstrap script* - skrypt rozruchowy
  * *choice format* - alternatywny format [i18n]
  * *customize* - dostosowywać (do własnych potrzeb)
+ * *directory* - katalog
  * *development* - dewelopment lub rozwój aplikacji
  * *entry script* - skrypt wejściowy
  * *fetching (data)* - pobieranie (danych)
