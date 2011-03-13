@@ -19,7 +19,8 @@ avsnitt.
 
 > Info: Stödet för referensattributrestriktioner varierar mellan olika databashanterare.
 > SQLite < 3.6.19 stöder inte referensattributrestriktioner, men det går ändå
-> att deklarera restriktionerna när tabeller skapas.
+> att deklarera restriktionerna när tabeller skapas. MySQL:s MyISAM-motor
+> saknar stöd för referensattributrestriktioner.
 
 
 Deklarera tabellsamband
@@ -214,6 +215,29 @@ $posts=Post::model()->findAll(array(
 		'categories',
 	)
 );
+~~~
+
+
+Genomföra relationell fråga utan att hämta relaterade modeller
+--------------------------------------------------------------
+
+Ibland vill vi utföra frågor som använder samband, utan att hämta in relaterade modeller. 
+Antag att vi har `User`-poster som skapat många `Post`-poster. Post kan ha status publicerad 
+men kan även ha utkaststatus. Detta bestäms av fältet `published` i modellen Post. 
+Ny vill vi hämta alla användare som har publicerade postningar utan att inkludera själva 
+postningarna. Detta kan upppnås på följande sätt:
+
+~~~
+[php]
+$users=User::model()->with(array(
+	'posts'=>array(
+		// vi vill inte selektera fält från postningar
+		'select'=>false,
+		// men vi vill bara ha användare med publicerade postningar
+		'joinType'=>'INNER JOIN',
+		'condition'=>'posts.published=1',
+	),
+))->findAll();
 ~~~
 
 
@@ -526,6 +550,20 @@ Fäljande kod visar hur namngivna omfång appliceras på relaterade modeller.
 ~~~
 [php]
 $posts=Post::model()->with('comments:recently:approved')->findAll();
+// eller sedan 1.1.7
+$posts=Post::model()->with(
+    'comments'=>array(
+        'scopes'=>array('recently','approved')
+    ),
+)->findAll();
+// eller sedan 1.1.7
+$posts=Post::model()->findAll(array(
+    'with'=>array(
+        'comments'=>array(
+            'scopes'=>array('recently','approved')
+        ),
+    ),
+));
 ~~~
 
 Ovanstående fråga skulle hämta alla postningar tillsammans med deras för publicering 
@@ -549,10 +587,40 @@ class User extends CActiveRecord
 		);
 	}
 }
+
+// eller sedan 1.1.7
+class User extends CActiveRecord
+{
+	public function relations()
+	{
+		return array(
+		    'posts'=>array(self::HAS_MANY, 'Post', 'author_id',
+				'with'=>array(
+					'comments'=>array(
+						'scopes'=>'approved'
+					),
+				),
+			),
+		);
+	}
+}
 ~~~
 
-> Note|Märk: Namngivna omfång som appliceras på relaterade modeller måste specificeras i 
-[CActiveRecord::scopes]. Detta innebär också att de inte kan parametriseras.
+Sedan version 1.1.7 är det möjligt att lämna med parametrar för relationella namngivna omfång.
+Till exempel, ett omfång med namnet `rated` i modellen `Post` som accepterar minsta önskade 
+ratingvärde för en postning, kan användas på följande sätt från modellen `User`:
 
+~~~
+[php]
+$users=User::model()->findAll(
+	'with'=>array(
+		'posts'=>array(
+			'scopes'=>array(
+				'rated'=>5,
+			),
+		),
+	),
+);
+~~~
 
-<div class="revision">$Id: database.arr.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: database.arr.txt 3061 2011-03-13 11:44:46Z alexander.makarow $</div>
