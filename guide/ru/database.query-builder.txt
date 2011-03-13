@@ -197,7 +197,7 @@ function where($conditions, $params=array())
 array(operator, operand1, operand2, ...)
 ~~~
 
-где `operator` может быть одинм из следующего:
+где `operator` может быть одинм из следующих:
 
 * `and`: операнды соединяются при помощи `AND`. К примеру, `array('and', 'id=1', 'id=2')`
 сгенерирует `id=1 AND id=2`. Если операнд задан массивом, то он будет конвертирован
