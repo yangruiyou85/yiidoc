@@ -50,7 +50,7 @@ Menggunakan Teknik Cache
 ------------------------
 
 Seperti dijelaskan dalam seksi [Caching](/doc/guide/caching.overview), Yii
-menyediakan beberapa solusi penembolokan yang bisa meningkatkan performa aplikasi
+menyediakan beberapa solusi caching yang bisa meningkatkan performa aplikasi
 Web secara signifikan. Jika pembuatan beberapa data memerlukan waktu lama,
 kita dapat menggunakan pendekatan [cache data](/doc/guide/caching.data) untuk
 mengurangi frekuensi pembuatan data; Jika bagian halaman relatif tetap statis,

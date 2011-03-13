@@ -94,7 +94,7 @@ Untuk mengaplikasikan migrasi baru yang tersedia (misalnya membuat database loka
 yiic migrate
 ~~~
 
-Perintah ini akan menampilkan daftar semua migrasi yang baru. Jika anda konfirmasi untuk mengaplikasikan migrasi, maka akan dijalankan method `up()` di setiap kelas migrasi baru, satu per satu secara berurutan, sesuai dengan urutan nilai timstamp di dalam nama kelas.
+Perintah ini akan menampilkan daftar semua migrasi yang baru. Jika Anda konfirmasi untuk mengaplikasikan migrasi, maka akan dijalankan method `up()` di setiap kelas migrasi baru, satu per satu secara berurutan, sesuai dengan urutan nilai timstamp di dalam nama kelas.
 
 Setelah mengaplikasikan migrasi, tool migrasi akan mencatat record di sebuah table database bernama `tbl_migration`. Dengan demikian memungkinkan tool untuk mengidentifikasikan berapa migrasi yang telah diaplikasikan dan yang mana belum. Jika table `tbl_migration` tidak ada, maka tool ini akan secara otomatis membuatkannya, tergantung pada database yang dispesifikasikan komponen aplikasi `db`.
 

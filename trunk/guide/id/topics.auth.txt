@@ -197,7 +197,7 @@ Dalam contoh di atas, kita menetapkan bahwa filter [kontrol
 akses|CController::filterAccessControl] harus diterapkan pada setiap
 aksi `PostController`. Rincian aturan otorisasi yang dipakai oleh
 filter ditetapkan dengan meng-override [CController::accessRules] pada kelas
-kontroler.
+controller.
 
 ~~~
 [php]
@@ -258,8 +258,8 @@ Aturan akses akan sesuai dengan parameter konteks berikut:
    - [aksi|CAccessRule::actions]: menetapkan aksi mana dijalankan jika aturan sesuai.
 Ini harus berupa array ID aksi. Pembandingannya bersifat case-sensitive.
 
-   - [kontroler|CAccessRule::controllers]: menetapkan kontroler mana yang sesuai aturan
-ini. Ini harus berupa array ID kontroler. Pembandingannya bersifat case-sensitive.
+   - [controller|CAccessRule::controllers]: menetapkan controller mana yang sesuai aturan
+ini. Ini harus berupa array ID controller. Pembandingannya bersifat case-sensitive.
 Opsi ini sudah tersedia sejak versi 1.0.4.
 
    - [pengguna|CAccessRule::users]: menetapkan pengguna mana yang sesuai aturan ini.
@@ -307,7 +307,7 @@ Ketika mengkonfigurasi properti [loginUrl|CWebUser::loginUrl], Anda dapat
 menyediakan URL relatif ataupun absolut. Selain itu, Anda juga bisa menyediakan array
 yang akan dipakai untuk membuat URL dengan memanggil [CWebApplication::createUrl].
 Elemen pertma array harus menetapkan
-[rute](/doc/guide/basics.controller#route) ke aksi kontroler login,
+[rute](/doc/guide/basics.controller#route) ke aksi controller login,
 dan pasangan nama-nilai lainnya adalah parmeter GET. Sebagai contoh,
 
 ~~~
@@ -392,7 +392,7 @@ perijinan yang disajikan oleh role. Sebagai contoh, jika kita menempatkan role
 yang termasuk `post management` dan `user management` (dan operasi terkait
 seperti misalnya `create user`).
 
-Sekarang bagian yang menyenangkan. Dalam aksi kontroler, kita ingin memeriksa apakah
+Sekarang bagian yang menyenangkan. Dalam aksi controller, kita ingin memeriksa apakah
 pengguna saat ini dapat menghapus tulisan yang ditetapkan. Menggunakan hirarki RBAC serta
 penempatan, ini bisa dikerjakan dengan mudah seperti berikut:
 

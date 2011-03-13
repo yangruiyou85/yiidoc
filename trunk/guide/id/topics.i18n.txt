@@ -214,7 +214,7 @@ subdirektori `LocaleID`. Jika ditemukan, path file yang akan dikembalikan;
 jika tidak, path file asli yang akan dikembalikan.
 
 Terjemahan file dipakai terutama saat membuat tampilan. Ketika memanggil salah satu
-metode render dalam kontroler atau widget, file tampilan akan diterjemahkan
+metode render dalam controller atau widget, file tampilan akan diterjemahkan
 secara otomatis. Sebagai contoh, jika [target
 bahasa|CApplication::language] adalah `zh_cn` sementara [sumber
 bahasa|CApplication::sourceLanguage] adalah `en_us`, pembuatan tampilan bernama

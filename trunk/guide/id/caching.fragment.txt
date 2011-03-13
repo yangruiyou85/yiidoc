@@ -1,16 +1,16 @@
-Penembolokan Fragmen(Caching Fragment)
+Caching Fragment
 ====================================
 
-Penembolokan fragmen merujuk pada melakukan penembolokan pada sebuah bagian halaman. Sebagai
+Caching fragmen merujuk pada melakukan caching pada sebuah bagian halaman. Sebagai
 contoh, jika halaman menampilkan ringkasan penjualan tahunan berbentuk tabel,
-kita dapat menyimpan tabel ini pada tembolok guna mengeliminasi waktu yang
+kita dapat menyimpan tabel ini pada cache guna mengeliminasi waktu yang
 dibutuhkan dalam membuatnya untuk setiap permintaan.
 
-Untuk menggunakan penembolokan fragmen, kita memanggil
+Untuk menggunakan caching fragmen, kita memanggil
 [CController::beginCache()|CBaseController::beginCache()] dan
 [CController::endCache()|CBaseController::endCache()] dalam skrip tampilan
-kontroler. Masing-masing dari dua metode menandai awal dan akhir konten halaman 
-yang harus ditembolokkan. Seperti [penembolokan data](/doc/guide/caching.data), kita memerlukan
+controller. Masing-masing dari dua metode menandai awal dan akhir konten halaman 
+yang harus ditembolokkan. Seperti [caching data](/doc/guide/caching.data), kita memerlukan
 ID guna mengidentifikasi fragmen yang sedang ditembolok.
 
 ~~~
@@ -27,21 +27,21 @@ mengembalikan false, konten yang ditembolokkan akan disisipkan secara otomatis;
 sebaliknya, konten di dalam pernyataan-`if` yang akan dijalankan dan ditembolokkan
 saat [endCache()|CBaseController::endCache()] dipanggil.
 
-Opsi Tembolok
+Opsi Caching
 ----------
 
 Ketika memanggil [beginCache()|CBaseController::beginCache()], kita dapat 
-menyediakan array sebagai parameter kedua yang terdiri dari opsi tembolok untuk
-mengkustomisasi tembolok fragmen. Bahkan pada dasarnya, metode
+menyediakan array sebagai parameter kedua yang terdiri dari opsi cache untuk
+mengkustomisasi cache fragmen. Bahkan pada dasarnya, metode
 [beginCache()|CBaseController::beginCache()] dan 
 metode [endCache()|CBaseController::endCache()] 
 adalah pembungkus untuk widget [COutputCache]. Oleh karenanya, opsi
-tembolok dapat bernilai awal untuk setiap properti [COutputCache].
+cache dapat bernilai awal untuk setiap properti [COutputCache].
 
 ### Durasi
 
 Barangkali, opsi paling umum adalah [duration|COutputCache::duration]
-yang menetapkan berapa lama konten tetap benar dalam tembolok. Opsi ini mirip
+yang menetapkan berapa lama konten tetap benar dalam cache. Opsi ini mirip
 dengan parameter masa hidup [CCache::set()]. Kode berikut melakukan 
 penembolokkan fragmen konten untuk satu jam:
 
@@ -59,7 +59,7 @@ ditembolokkan akan disegarkan setelah 60 detik.
 
 ### Ketergantungan
 
-Seperti halnya [penembolokan data](/doc/guide/caching.data), fragmen konten yang
+Seperti halnya [caching data](/doc/guide/caching.data), fragmen konten yang
 sedang ditembolokkan juga bisa memiliki ketergantungan. Sebagai contoh, konten
 tulisan yang sedang ditampilkan tergantung apakah tulisan dimodifikasi atau tidak.
 
@@ -94,12 +94,12 @@ Alih-alih meminta para pengembang untuk memvariasikan ID berdasarkan pada bebera
    - [varyByRoute|COutputCache::varyByRoute]: dengan menyetel opsi ini
 menjadi true, konten yang ditembolokkan kan divariasikan berdasarkan
 [rute](/doc/guide/basics.controller#route). Oleh karena itu, setiap kombinasi
-kontroler dan aksi yang diminta akan memiliki konten ditembolokkan terpisah.
+controller dan aksi yang diminta akan memiliki konten ditembolokkan terpisah.
 
    - [varyBySession|COutputCache::varyBySession]: dengan menyetel opsi ini
 menjadi true, kita bisa membuat konten ditembolokkan divariasikan berdasarkan ID
 sesi. Oleh karena itu, setiap sesi pengguna dapat melihat konten secara berbeda 
-dan semuanya dilayani dari tembolok.
+dan semuanya dilayani dari cache.
 
    - [varyByParam|COutputCache::varyByParam]: dengan menyetel opsi ini
 menjadi array nama, kita dapat membuat konten ditembolok divariasikan
@@ -111,7 +111,7 @@ kita hanya bisa menembolokkan satu tulisan..
 
 ### Jenis Permintaan
 
-Ada kalanya kita menginginkan penembolokan fragmen diaktifkan hanya untuk jenis
+Ada kalanya kita menginginkan caching fragmen diaktifkan hanya untuk jenis
 permintaan tertentu. Sebagai contoh, untuk halaman yang menampilkan formulir, 
 kita hanya ingin menembolokkan formulir saat awal formulir diminta (via permintaan GET).
 Setiap tampilan selanjutnya (via permintaan POST) terhadap formulir tidak harus 
@@ -132,8 +132,8 @@ Penembolokkan Berulang
 
 Penembolokkan fragmen dapat diulang. Yaitu, fragmen yang ditembolokkan disertakan dalam
 fragmen yang lebih besar yang juga ditembolokkan. Sebagai contoh, komentar ditembolokkan
-dalam fragmen tembolok lebih dalam, dan ditembolokkan bersama dengan konten tulisan di
-tembolok fragmen lebih luar.
+dalam fragmen cache lebih dalam, dan ditembolokkan bersama dengan konten tulisan di
+cache fragmen lebih luar.
 
 ~~~
 [php]
@@ -148,12 +148,12 @@ tembolok fragmen lebih luar.
 ...konten HTML lain...
 ~~~
 
-Opsi tembolok yang berbeda dapat disetel untuk pengulangan penembolokkan. Sebagai contoh,
-tembolok yang lebih dalam dan tembolok yang lebih luar dalam contoh di atas dapat disetel dengan
-nilai durasi yang berbeda. Saat data ditembolokkan masuk tembolok yang lebih luar
-tidak valid, tembolok yang lebih dalam yang masih bisa menyediakan fragmen dalam yang valid.
-Akan tetapi, tidak dapat dilakukan sebaliknya. Jika tembolok yang luar berisi
+Opsi cache yang berbeda dapat disetel untuk pengulangan penembolokkan. Sebagai contoh,
+cache yang lebih dalam dan cache yang lebih luar dalam contoh di atas dapat disetel dengan
+nilai durasi yang berbeda. Saat data ditembolokkan masuk cache yang lebih luar
+tidak valid, cache yang lebih dalam yang masih bisa menyediakan fragmen dalam yang valid.
+Akan tetapi, tidak dapat dilakukan sebaliknya. Jika cache yang luar berisi
 data yang benar, maka akan selalu menyediakan duplikat yang ditembolokkan, meskipun konten
-tembolok yang dalam sudah kadaluarsa.
+cache yang dalam sudah kadaluarsa.
 
 <div class="revision">$Id: caching.fragment.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>

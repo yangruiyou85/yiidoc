@@ -90,8 +90,8 @@ menggunakan [CDbCommand]. Membuat instance [CDbCommand] dengan memanggil
 
 ~~~
 [php]
-$connection=Yii::app()->db;   // asumsi bahwa anda memiliki koneksi "db" yang terkonfigurasi
-// Jika tidak, anda bisa membuat sebuah koneksi secara eksplisit
+$connection=Yii::app()->db;   // asumsi bahwa Anda memiliki koneksi "db" yang terkonfigurasi
+// Jika tidak, Anda bisa membuat sebuah koneksi secara eksplisit
 // $connection=new CDbConnection($dsn,$username,$password);
 $command=$connection->createCommand($sql);
 // jika diperlukan, statement SQL dapat diupdate sebagai berikut

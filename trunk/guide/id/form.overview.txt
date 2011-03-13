@@ -11,8 +11,8 @@ MVC.
 Langkah-langkah berikut umumnya diperlukan saat berhadapan dengan formulir dalam Yii:
 
    1. Buat kelas model yang mewakili field data yang dikumpulkan;
-   2. Buat aksi kontroler dengan kode yang merespon pengiriman formulir.
-   3. Buat formulir dalam file skrip tampilan sesuai dengan aksi kontroler.
+   2. Buat aksi controller dengan kode yang merespon pengiriman formulir.
+   3. Buat formulir dalam file skrip tampilan sesuai dengan aksi controller.
 
 Dalam subseksi berikut, kami menjelaskan setiap langkah ini secara lebih rinci.
 

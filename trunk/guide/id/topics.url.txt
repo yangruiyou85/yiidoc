@@ -11,7 +11,7 @@ Untuk aplikasi Yii, ini dilakukan dengan bantuan
 Membuat URL
 -----------
 
-Meskipun URL bisa dibuat secara manual dalam view kontroler, seringkali lebih
+Meskipun URL bisa dibuat secara manual dalam view controller, seringkali lebih
 jauh fleksibel jika membuatnya secara dinamis:
 
 ~~~
@@ -19,7 +19,7 @@ jauh fleksibel jika membuatnya secara dinamis:
 $url=$this->createUrl($route,$params);
 ~~~
 
-di mana `$this` merujuk ke instance kontroler; `$route` menetapkan
+di mana `$this` merujuk ke instance controller; `$route` menetapkan
 [rute](/doc/guide/basics.controller#route) permintaan; dan `$params`
 adalah daftar parameter `GET` yang akan ditambahkan ke URL.
 
@@ -104,7 +104,7 @@ array(
 Aturan ditetapkan sebagai array dengan pasangan pola-rute (pattern-route), masing-masing
 berkaitan dengan satu aturan. Pola aturan harus ekspresi reguler yang benar
 tanpa pemisah dan pembeda. Ini dipakai untuk menyamakan bagian info path
-URL. Dan [rute](/doc/guide/basics.controller#route) harus merujuk ke kontroler rute yang valid.
+URL. Dan [rute](/doc/guide/basics.controller#route) harus merujuk ke controller rute yang valid.
 
 Selain format pola-rute demikian, aturan juga dapat ditentukan
 dengan opsi yang dikustomisasi, seperti berikut ini :
@@ -230,7 +230,7 @@ array(
 ~~~
 
 Dalam contoh di atas, kita menggunakan parameter bernama dalam bagian rute pada sebuah aturan:
-`_c` dan `_a`. Yang pertama sesuai dengan ID kontroler yang bisa berupa `post` ataupun `comment`,
+`_c` dan `_a`. Yang pertama sesuai dengan ID controller yang bisa berupa `post` ataupun `comment`,
 sementara yang kedua sesuai dengan ID aksi yakni `create`, `update` atau `delete`.
 Anda dapat menamai parameter secara berbeda selama tidak bertabrakan dengan parameter
 GET yang terlihat dalam URL.
