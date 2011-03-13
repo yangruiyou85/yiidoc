@@ -5,44 +5,19 @@ Dotychczas zobaczyliśmy jak używać Rekordu Aktywnego (AR) aby wybierać dane 
 tabeli bazodanowej. W tej sekcji opiszemy jak używać AR aby złączyć kilka powiązanych 
 tabel baz danych i zwrócić połączony zbiór danych. 
 
-W celu używania relacyjnego AR, wymagane jest, aby relacja dla obcego klucza głównego 
-była dobrze zdefiniowana pomiędzy tabelami, które będą łączone. AR bazuje na metadanych 
-tych relacji gdy decyduje jak połączyć tabele.
-
-> Note|Uwaga: Poczynając od wersji 1.0.1, możesz używać relacyjnego AR nawet jeśli
-> nie zdefiniowałeś kluczy obcych w swojej bazie danych.
+W celu używania relacyjnego AR, rekomendujemy aby zadekalrować ograniczenia postawowego klucza obcego
+dla tabel, które potrzebujemy złączać. Ograniczenia przyczynią się do zachowania
+spójności i integralności danych relacyjnych.
 
 Dla uproszczenia, będziemy używali schematu bazy danych pokazanego na następnym 
 diagramie zależności encji (ER) celem zilustrowania przykładów w tej sekcji.
 
 ![Diagram ER](er.png)
 
-> Info|Info: Wsparcie dla ograniczeń kluczy obcych różni sie w różnych DBMS.
->
+> Info|Info: Wsparcie dla ograniczeń kluczy obcych różni sie dla różnych DBMS.
 > SQLite < 3.6.19 nie wspiera ograniczeń kluczy obcych, lecz wciąż możesz deklarować
-> ograniczenia, podczas tworzenia tabel. AR może wykorzystać te deklaracje
-> aby prawidłowo wspierać relacyjne zapytania.
->
-> MySQL wspiera ograniczenia kluczy obcych gdy używany jest silnik InnoDB, 
-> w przeciwieństwie do silnika MyISAM. Zalecamy zatem używanie InnoDB dla twoich
-> baz danych MySQL.
-> Podczas używania MyISAM, możesz wykorzystać następujący trik
-> aby móc wykonywać relacyjne zapytania przy użyciu AR:
-> ~~~
-> [sql]
-> CREATE TABLE Foo
-> (
->   id INTEGER NOT NULL PRIMARY KEY
-> );
-> CREATE TABLE bar
-> (
->   id INTEGER NOT NULL PRIMARY KEY,
->   fooID INTEGER
->      COMMENT 'CONSTRAINT FOREIGN KEY (fooID) REFERENCES Foo(id)'
-> );
-> ~~~
-> Powyżej użyliśmy słowa kluczowego `COMMENT` aby opisać ograniczenia klucza obcego
-> co może zostać przeczytanie przez AR aby rozponać opisywaną relację.
+> ograniczenia, podczas tworzenia tabel. Silnik MyISAM w ogóle nie posiada wsparcia 
+> dla kluczy obcych.
 
 Deklarowanie relacji
 ----------------------
@@ -238,7 +213,7 @@ $posts=Post::model()->findAll(array(
 
 
 Wykonywanie relacyjnych zapytań bez konieczności zwracania powiązanych modeli
----------------------------------------------------------
+-----------------------------------------------------------------------------
 
 Czasami potrzebujemy wykonać zapytanie relacyjne ale nie potrzebujemy danych z powiązanych
 modeli. Załóżmy, że mamy użytkowników `User`, którzy utworzyli wiele postów `Post`. 
@@ -295,7 +270,7 @@ do których się odwołujemy w tej opcji powinny zostać ujednoznacznione.
    co oznacza iż alias tablicy jest taki sam jak nazwa relacji.
    
    - `together`: używana jeśli tabele powiązane mają zostać zmuszone do połączenia się razem
-   z główną tabelą. Opcja ta ma znaczenie dla relacji `HAS_MANY` oraz `MANY_MANY`. 
+   z główną tabelą oraz pozostałymi tabelami. Opcja ta ma znaczenie dla relacji `HAS_MANY` oraz `MANY_MANY`. 
    Jeśli opcja ta ma wartość ustawioną jako false, wtedy tabela związana z relacją `HAS_MANY` 
    lub `MANY_MANY` zostanie połączona z tabelą główną w osobnym zapytaniu SQL, co może zwiększyć 
    ogólną wydajność zapytania, gdyż zwracana jest mniejsza ilość powtarzających się danych.
@@ -350,7 +325,7 @@ posortowanych malejąco wg czasu ich utworzenia. Każda instancja postu będzie
 również posiadała wczytaną odpowiadającą jej kategorię.
 
 Ujednoznacznianie nazw kolumn
----------------------------
+-----------------------------
 
 Kiedy nazwa kolumny pojawia się w dwóch lub więcej tabelach, które będą łączone 
 należy ją ujednoznacznić (rozróżnić). Robi się to poprzedzając nazwę kolumny
@@ -540,6 +515,20 @@ Następujący kod pokazuje, jak zastosować nazwane podzbiory do modelu powiąza
 ~~~
 [php]
 $posts=Post::model()->with('comments:recently:approved')->findAll();
+// lub od 1.1.7
+$posts=Post::model()->with(
+    'comments'=>array(
+        'scopes'=>array('recently','approved')
+    ),
+)->findAll();
+// lub od 1.1.7
+$posts=Post::model()->findAll(array(
+    'with'=>array(
+        'comments'=>array(
+            'scopes'=>array('recently','approved')
+        ),
+    ),
+));
 ~~~
 
 Powyższe zapytanie zwróci wszystkie posty wraz z zatwierdzonymi komentarzami. Zauważ, że `comments` jest referencją 
@@ -561,10 +550,40 @@ class User extends CActiveRecord
 		);
 	}
 }
+
+// lub od 1.1.7
+class User extends CActiveRecord
+{
+	public function relations()
+	{
+		return array(
+		    'posts'=>array(self::HAS_MANY, 'Post', 'author_id',
+				'with'=>array(
+					'comments'=>array(
+						'scopes'=>'approved'
+					),
+				),
+			),
+		);
+	}
+}
 ~~~
 
-> Note|Uwaga: Nazwane podzbiory zastosowane dla modelów w relacji muszą zostać określone
-w [CActiveRecord::scopes]. W rezultacie, nie mogą one zostać sparametryzowane.
+Poczynając od wersji 1.1.7 pożliwe jest przekazywanie parametrów do ralacyjnych nazwanych podzbiorów.
+Na przykład, jeśli posiadasz podzbiór o nazwie `rated` w modelu `Post`, który określa miminalną ocenę
+postu, możesz go używać z poziomu klasy użytkownika `User` w następujący sposób:
 
+~~~
+[php]
+$users=User::model()->findAll(
+	'with'=>array(
+		'posts'=>array(
+			'scopes'=>array(
+				'rated'=>5,
+			),
+		),
+	),
+);
+~~~
 
-<div class="revision">$Id: database.arr.txt 3005 2011-02-26 01:39:46Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3061 2011-03-13 11:44:46Z alexander.makarow $</div>

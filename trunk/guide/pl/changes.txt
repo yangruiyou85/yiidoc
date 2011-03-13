@@ -9,6 +9,8 @@ Wersja 1.1.7
  * [Dodano wsparcie dla buforowania zapytań](/doc/guide/caching.data#query-caching)
  * [Od teraz można przekazywać parametry do relacyjnych nazwanych podzbiorów](/doc/guide/database.arr#relational-query-with-named-scopes) 
  * [Dodano możliwość wykonywania relacyjnych zapytań bez zwracania powiązanych modeli](/doc/guide/database.arr#performing-relational-query-without-getting-related-models) 
+ * [Dodano wsparcie dla transakcji dla funkcjonalności migracji baz danych](/doc/guide/database.migration#transactional-migrations)
+ * [Dodano wsparcie dla używania wiązania parametrów dla akcji opartych na klasach](/doc/guide/basics.controller#action-parameter-binding) 
  
 Wersja 1.1.6
 -------------
@@ -77,4 +79,4 @@ Wersja 1.1.0
 
  * Alias nazwy dla tabeli głównej w zapytaniu AR ustalony został jako 't'.
 
-<div class="revision">$Id: changes.txt 3006 2011-02-26 01:40:07Z alexander.makarow $</div>
+<div class="revision">$Id: changes.txt 3058 2011-03-13 04:20:12Z qiang.xue $</div>
