@@ -24,7 +24,7 @@ bagian ini.
 Mendeklarasikan Hubungan
 ------------------------
 
-Sebelum kita menggunakan AR untuk melakukan queri relasional, kita perlu membuat AR
+Sebelum kita menggunakan AR untuk melakukan query relasional, kita perlu membuat AR
 mengetahui bagaimana satu kelas AR dikaitkan dengan yang lain.
 
 Hubungan antara dua kelas AR secara langsung dikaitkan dengan hubungan
@@ -110,7 +110,7 @@ hubungan `categories` dalam `Post` ditetapkan dengan foreign key
 `tbl_post_category(post_id, category_id)`.
 
 Deklarasi hubungan dalam kelas AR secara implisit menambahkan properti
-ke kelas untuk setiap hubungan. Setelah queri relasional dilakukan,
+ke kelas untuk setiap hubungan. Setelah query relasional dilakukan,
 properti terkait akan diisi dengan instance dari AR yang dihubungkan.
 Sebagai contoh, jika `$author` mewakili turunan AR `User`, kita
 bisa menggunakan `$author->posts` untuk mengakses kaitannya dengan turunan `Post`.
@@ -118,12 +118,12 @@ bisa menggunakan `$author->posts` untuk mengakses kaitannya dengan turunan `Post
 Melakukan Queri Relasional
 --------------------------
 
-Cara termudah melakukan queri relasional adalah dengan membaca properti
-relasional turunan AR. Jika properti tidak diakses sebelumnya, queri
+Cara termudah melakukan query relasional adalah dengan membaca properti
+relasional turunan AR. Jika properti tidak diakses sebelumnya, query
 relasional akan diinisiasi, yang menggabungkan dua tabel terkait dan filter
-dengan primary key pada instance dari AR saat ini. Hasil queri akan disimpan
+dengan primary key pada instance dari AR saat ini. Hasil query akan disimpan
 ke properti sebagai instance kelas AR terkait. Proses ini dikenal sebagai
-pendekatan *lazy loading*, contohnya, queri relasional dilakukan hanya
+pendekatan *lazy loading*, contohnya, query relasional dilakukan hanya
 saat obyek terkait mulai diakses. Contoh di bawah memperlihatkan
 bagaimana menggunakan pendekatan ini:
 
@@ -131,7 +131,7 @@ bagaimana menggunakan pendekatan ini:
 [php]
 // ambil tulisan di mana ID adalah 10
 $post=Post::model()->findByPk(10);
-// ambil penulis tulisan: queri relasional akan dilakukan di sini
+// ambil penulis tulisan: query relasional akan dilakukan di sini
 $author=$post->author;
 ~~~
 
@@ -146,7 +146,7 @@ Kalau tidak, Anda akan menerima pesan kesalahan "Trying to get property of non-o
 Pendekatan lazy loading sangat nyaman untuk dipakai, tetapi tidak efisien
 dalam beberapa skenario. Sebagai contoh, jika kita ingin mengakses informasi
 author (pengarang) untuk `N` post, menggunakan pendekatan lazy akan menyertakan eksekusi
-`N` queri join. Kita harus beralih ke apa yang disebut pendekatan *eager loading*
+`N` query join. Kita harus beralih ke apa yang disebut pendekatan *eager loading*
 dlam situasi seperti ini.
 
 Pendekatan eager loading mengambil instance AR terkait bersama
@@ -163,8 +163,8 @@ $posts=Post::model()->with('author')->findAll();
 Kode di atas akan mengembalikan sebuah array turunan `Post`. Tidak seperti pendekatan
 lazy, properti `author` dalam setiap instance `Post` sudah diisi dengan
 instance `User` terkait sebelum kita mengakses properti.
-Alih-alih menjalankan queri join (gabungan) untuk setiap post, pendekatan eager loading
-membawa semua post bersama dengan author-nya ke dalam satu queri join (gabungan)!
+Alih-alih menjalankan query join (gabungan) untuk setiap post, pendekatan eager loading
+membawa semua post bersama dengan author-nya ke dalam satu query join (gabungan)!
 
 Kita dapat menetapkan nama multipel relasi dalam metode
 [with()|CActiveRecord::with] dan pendekatan eager loading akan mengembalikan
@@ -224,7 +224,7 @@ Opsi Queri Relasional
 
 Telah kita sebutkan bahwa opsi tambahan dapat dispesifikasi dalam deklarasi relasi.
 Opsi ini ditetapkan sebagai pasangan name-value (nama-nilai), dipakai untuk mengkustomisasi
-queri relasional. Rangkumannya adalah sebagai berikut.
+query relasional. Rangkumannya adalah sebagai berikut.
 
    - `select`: daftar kolom yang dipilih untuk kelas AR terkait.
 Standarnya adalah '*', yang artinya semua kolom. Nama-nama kolom yang direferensi dalam
@@ -356,7 +356,7 @@ $posts=Post::model()->with('comments')->findAll(array(
 Opsi Queri Relasional Dinamis
 -----------------------------
 
-Mulai dari versi 1.0.2, kita dapat menggunakan opsi queri relasional dinamis baik dalam
+Mulai dari versi 1.0.2, kita dapat menggunakan opsi query relasional dinamis baik dalam
 [with()|CActiveRecord::with] maupun opsi `with`. Opsi dinamis akan
 menimpa opsi yang sudah ada seperti yang ditetapkan pada metode [relations()|CActiveRecord::relations].
 Sebagai contoh, dengan model `User` di atas, jika kita ingin menggunakan pendekatan eager
@@ -372,7 +372,7 @@ User::model()->with(array(
 ))->findAll();
 ~~~
 
-Mulai dari versi 1.0.5, opsi queri dinamis juga dapat dipakai saat menggunakan pendekatan  lazy loading untuk melakukan queri relasional. Untuk mengerjakannya, kita harus memanggil metode yang namanya sama dengan nama relasi dan mengoper opsi queri dinamis sebagai parameter metode. Sebagai contoh, kode berikut mengembalikan tulisan pengguna yang memiliki `status` = 1:
+Mulai dari versi 1.0.5, opsi query dinamis juga dapat dipakai saat menggunakan pendekatan  lazy loading untuk melakukan query relasional. Untuk mengerjakannya, kita harus memanggil metode yang namanya sama dengan nama relasi dan mengoper opsi query dinamis sebagai parameter metode. Sebagai contoh, kode berikut mengembalikan tulisan pengguna yang memiliki `status` = 1:
 ~~~
 [php]
 $user=User::model()->findByPk(1);
@@ -400,11 +400,11 @@ Jadi pendekatan mana yang lebih efisien? Sebetulnya tidak ada jawaban pasti. Men
 mungkin lebih efisien karena mengurangi overhead pada DBMS untuk parsing dan executing pada statement SQL. Di lain pihak,
 menggunakan statement SQL tunggal, kemungkinan akan menghasilkan data redundansi sehingga perlu waktu lebih lama untuk baca dan memprosesnya.
 
-Oleh karena itu, Yii menyediakan opsi queri `together` sehingga kita dapat memilih di antara dua pendekatan ini jika diperlukan.
+Oleh karena itu, Yii menyediakan opsi query `together` sehingga kita dapat memilih di antara dua pendekatan ini jika diperlukan.
 Secara default, Yii akan mengadopsi pendekatan pertama, yakni menghasilkan statement SQL tunggal untuk melakukan eager loading.
 Kita dapat mengeset opsi `together` menjadi false di dalam deklarasi relasi sehingga beberapa tabel
 di-join pada statement SQL yang terpisah. Sebagai contoh, supaya dapat menggunakan pendekatan kedua untuk melakukan
-queri pada post terbaru beserta komentar-komentarnya, kita dapat mendeklarasi hubungan `comments` dalam kelas `Post` sebagai berikut :
+query pada post terbaru beserta komentar-komentarnya, kita dapat mendeklarasi hubungan `comments` dalam kelas `Post` sebagai berikut :
 
 ~~~
 [php]
@@ -443,9 +443,9 @@ Queri Statistik
 
 > Note|Catatan: Queri statistik sudah didukung sejak versi 1.0.4.
 
-Selain queri yang dijelaskan di atas, Yii juga mendukung apa yang disebut queri statistik (atau queri agregasional). Maksud dari queri statistik adalah pengambilan informasi agregasional mengenai objek terkait, seperti jumlah komentar untuk setiap tulisan, rata-rata peringkat setiap produk, dll. Queri statistik hanya bisa dilakukan untuk obyek terkait dalam `HAS_MANY` (misalnya sebuah tulisan memiliki banyak komentar) atau `MANY_MANY` (misalnya tulisan milik banyak kategori dan kategori memiliki banyak tulisan).
+Selain query yang dijelaskan di atas, Yii juga mendukung apa yang disebut query statistik (atau query agregasional). Maksud dari query statistik adalah pengambilan informasi agregasional mengenai objek terkait, seperti jumlah komentar untuk setiap tulisan, rata-rata peringkat setiap produk, dll. Queri statistik hanya bisa dilakukan untuk obyek terkait dalam `HAS_MANY` (misalnya sebuah tulisan memiliki banyak komentar) atau `MANY_MANY` (misalnya tulisan milik banyak kategori dan kategori memiliki banyak tulisan).
 
-Melakukan queri statistik sangat mirip dengan melakukan queri relasional seperti dijelaskan sebelumnya. Pertama kita perlu mendeklarasikan queri statistik dalam metode [relations()|CActiveRecord::relations] pada [CActiveRecord] seperti yang kita lakukan dengan queri relasional.
+Melakukan query statistik sangat mirip dengan melakukan query relasional seperti dijelaskan sebelumnya. Pertama kita perlu mendeklarasikan query statistik dalam metode [relations()|CActiveRecord::relations] pada [CActiveRecord] seperti yang kita lakukan dengan query relasional.
 
 ~~~
 [php]
@@ -461,7 +461,7 @@ class Post extends CActiveRecord
 }
 ~~~
 
-Dalam contoh di atas, kita mendeklarasikan dua queri statistik: `commentCount` menghitung jumlah komentar milik sebuah post, dan `categoryCount` menghitung jumlah kategori di mana post tersebut berada. Catatan bahwa hubungan antara `Post` dan `Comment` adalah `HAS_MANY`, sementara hubungan `Post` dan `Category` adalah `MANY_MANY` (dengan menggabung tabel `PostCategory`). Seperti yang bisa kita lihat, deklarasi sangat mirip dengan relasi yang kita lihat dalam subbagian sebelumnya. Perbedaannya jenis relasinya adalah `STAT` di sini.
+Dalam contoh di atas, kita mendeklarasikan dua query statistik: `commentCount` menghitung jumlah komentar milik sebuah post, dan `categoryCount` menghitung jumlah kategori di mana post tersebut berada. Catatan bahwa hubungan antara `Post` dan `Comment` adalah `HAS_MANY`, sementara hubungan `Post` dan `Category` adalah `MANY_MANY` (dengan menggabung tabel `PostCategory`). Seperti yang bisa kita lihat, deklarasi sangat mirip dengan relasi yang kita lihat dalam subbagian sebelumnya. Perbedaannya jenis relasinya adalah `STAT` di sini.
 
 
 Dengan deklarasi di atas, kita dapat mengambil sejumlah komentar untuk sebuah tulisan menggunakan ekspresi `$post->commentCount`. Ketika kita mengakses properti ini untuk pertama kalinya, pernyataan SQL akan dijalankan secara implisit untuk mengambil hasil terkait. Seperti yang sudah kita ketahui, ini disebut pendekatan *lazy loading*. Kita juga dapat menggunakan pendekatan *eager loading* jika kita harus menentukan jumlah komentar untuk multipel tulisan:
@@ -471,13 +471,13 @@ Dengan deklarasi di atas, kita dapat mengambil sejumlah komentar untuk sebuah tu
 $posts=Post::model()->with('commentCount', 'categoryCount')->findAll();
 ~~~
 
-Pernyataan di atas akan menjalankan tiga SQL untuk menghasilkan semua post bersama dengan jumlah komentar dan jumlah kategorinya. Menggunakan pendekatan lazy loading, kita akan berakhir dengan `2*N+1` queri SQL jika ada `N` post.
+Pernyataan di atas akan menjalankan tiga SQL untuk menghasilkan semua post bersama dengan jumlah komentar dan jumlah kategorinya. Menggunakan pendekatan lazy loading, kita akan berakhir dengan `2*N+1` query SQL jika ada `N` post.
 
-Secara default, queri statistik akan menghitung ekspresi `COUNT` (dan selanjutnya jumlah komentar dan jumlah kategori dalam contoh di atas). Kita dapat mengkustomisasinya dengan menetapkan opsi tambahan saat mendeklarasikannya dalam [relations()|CActiveRecord::relations]. Opsi yang tersedia diringkas seperti berikut.
+Secara default, query statistik akan menghitung ekspresi `COUNT` (dan selanjutnya jumlah komentar dan jumlah kategori dalam contoh di atas). Kita dapat mengkustomisasinya dengan menetapkan opsi tambahan saat mendeklarasikannya dalam [relations()|CActiveRecord::relations]. Opsi yang tersedia diringkas seperti berikut.
 
    - `select`: ekspresi statistik. Standarnya `COUNT(*)`, yang berarti jumlah turunan objek.
 
-   - `defaultValue`: nilai yang diberikan ke record bersangkutan yang tidak menerima hasil queri statistik. Sebagai contoh, jika ada sebuah post tidak memiliki komentar apapun, `commentCount` akan menerima nilai ini. Nilai standar untuk opsi ini adalah 0.
+   - `defaultValue`: nilai yang diberikan ke record bersangkutan yang tidak menerima hasil query statistik. Sebagai contoh, jika ada sebuah post tidak memiliki komentar apapun, `commentCount` akan menerima nilai ini. Nilai standar untuk opsi ini adalah 0.
 
    - `condition`: klausul `WHERE`. Default-nya kosong.
 
@@ -506,7 +506,7 @@ $posts=Post::model()->published()->recently()->with('comments')->findAll();
 ~~~
 
 
-Ini sangat mirip dengan queri non-relasional. Perbedaannya hanyalah bahwa kita memiliki panggilan `with()` setelah rantai named-scope. Queri ini akan membawa kembali post terbaru yang dipublikasikan bersama dengan komentar-komentarnya.
+Ini sangat mirip dengan query non-relasional. Perbedaannya hanyalah bahwa kita memiliki panggilan `with()` setelah rantai named-scope. Queri ini akan membawa kembali post terbaru yang dipublikasikan bersama dengan komentar-komentarnya.
 
 Kode berikut memperlihatkan bagaimana untuk menerapkan named scope ke model terkait.
 
