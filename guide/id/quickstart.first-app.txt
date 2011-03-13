@@ -78,8 +78,8 @@ testdrive/
       extensions/            berisi extension pihak-ketiga
       messages/              berisi terjemahan pesan
       models/                berisi file kelas model
-         LoginForm.php       model formulir untuk aksi 'login'
-         ContactForm.php     model formulir untuk aksi 'contact'
+         LoginForm.php       model form untuk aksi 'login'
+         ContactForm.php     model form untuk aksi 'contact'
       runtime/               berisi file yang dibuat secara temporal
       views/                 berisi file controller tampilan dan tata letak
          layouts/            berisi file tampilan tata letak
@@ -199,8 +199,8 @@ http://hostname/testdrive/index.php?r=user
 Ini akan menampilkan sebuah daftar entri pengguna dalam tabel `User`. 
 
 Klik tombol `Create User`. Kita akan dibawa ke halaman login
-jika kita belum login sebelumnya. Setelah masuk, kita melihat formulir
-input yang mengijinkan kita untuk menambah entri pengguna baru. Lengkapi formulir dan
+jika kita belum login sebelumnya. Setelah masuk, kita melihat form
+input yang mengijinkan kita untuk menambah entri pengguna baru. Lengkapi form dan
 klik tombol `Create`. Lengkapi form dan klik tombol `Create`. Jika terjadi kesalahan input,
 sebuah tampilan error yang bagus akan muncul dan mencegah kita menyimpan inputan kita.
 Kembali ke halaman daftar user, kita seharusnya melihat sebuah user baru sudah muncul di daftar.

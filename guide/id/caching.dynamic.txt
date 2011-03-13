@@ -14,7 +14,7 @@ kebanyakan isinya sama kecuali nama pengguna. Kita juga bisa membagi halaman
 ke dalam beberapa fragmen dan menembolokannya secara individual, tapi ini mempersulit tampilan kita dan menjadikan kode kita sangat kompleks. Pendekatan
 yang lebih baik adalah penggunaan fitur *konten dinamis* yang disediakan oleh [CController].
 
-Konten dinamis berarti sebuah fragmen output yang tidak harus ditembolokkan
+Konten dinamis berarti sebuah fragmen output yang tidak harus di-cache
 meskipun disertakan di dalam fragmen cache. Untuk membuat konten selalu dinamis,
 harus dibuat setiap kali meskipun penyertaan konten
 sedang dilayani dari cache. Dikarenakan alasan ini, kita memerlukan konten dinamis yang

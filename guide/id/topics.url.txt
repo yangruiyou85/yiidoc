@@ -31,13 +31,13 @@ apa yang disebut dengan format `get`. Sebagai contoh, `$route='post/read'` dan
 /index.php?r=post/read&id=100
 ~~~
 
-di mana parameter terlihat dalam string queri sebagai daftar `Nama=Nilai`
+di mana parameter terlihat dalam string query sebagai daftar `Nama=Nilai`
 yang disambung dengan karakter ampersand (karakter &), dan parameter `r` menetapkan
 permintaan [rute](/doc/guide/basics.controller#route). Format URL ini
 tidak ramah-pengguna karena memakai beberapa karakter bukan-kata.
 
 Kita ingin menjadikan URL di atas terlihat lebih bersih dan lebih jelas dengan
-menggunakan apa yang disebut format `path` yang mengeliminir string queri dan
+menggunakan apa yang disebut format `path` yang mengeliminir string query dan
 menyimpan parameter GET ke dalam info path bagian dari URL:
 
 ~~~
@@ -188,7 +188,7 @@ sesuai dengan parameter rute, aturan akan dipakai untuk membuat URL.
 
 Jika parameter GET dioper ke [createUrl|CController::createUrl] lebih
 dari yang dibutuhkan oleh aturan, parameter tambahan akan muncul dalam
-string queri. Sebagai contoh, jika kita memanggil
+string query. Sebagai contoh, jika kita memanggil
 `$this->createUrl('post/read',array('id'=>100,'year'=>2008))`, kita akan
 mendapatkan `/index.php/post/100?year=2008`. Agar parameter tambahan ini
 muncul dalam bagian info path, kita harus menambahkan `/*` pada aturan.

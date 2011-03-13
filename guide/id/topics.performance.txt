@@ -80,23 +80,23 @@ Pengambilan data dari database sering menjadi hambatan utama performa dalam
 aplikasi Web. Meskipun menggunakan caching tetap dapat mengurangi performa,
 ini tidak sepenuhnya memecahkan masalah. Ketika database berisi data yang besar
 dan data yang di-cache tidak benar, pengambilan besar data bisa sangat lambat
-tanpa desain database dan queri yang benar.
+tanpa desain database dan query yang benar.
 
-Desainlah indeks dengan benar dalam database. Mengindeks bisa menjadikan queri `SELECT` jauh
-lebih cepat, tapi dapat memperlambat queri `INSERT`, `UPDATE` atau `DELETE`.
+Desainlah indeks dengan benar dalam database. Mengindeks bisa menjadikan query `SELECT` jauh
+lebih cepat, tapi dapat memperlambat query `INSERT`, `UPDATE` atau `DELETE`.
 
-Untuk queri yang kompleks, direkomendasikan membuat view database daripada
-menggunakan queri di dalam kode PHP dan meminta DBMS untuk menguraikannya
+Untuk query yang kompleks, direkomendasikan membuat view database daripada
+menggunakan query di dalam kode PHP dan meminta DBMS untuk menguraikannya
 berulang kali.
 
 Jangan berlebihan menggunakan [Active Record](/doc/guide/database.ar). Meskipun [Active
 Record](/doc/guide/database.ar) baik pada pemodelan data dalam gaya OOP,
 sebenarnya menurunkan performa karena harus membuat satu atau beberapa
-objek untuk mewakili setiap baris dari hasil queri. Untuk aplikasi intensif
+objek untuk mewakili setiap baris dari hasil query. Untuk aplikasi intensif
 data, penggunaan [DAO](/doc/guide/database.dao) atau
 API database di tingkat lebih rendah bisa menjadi pilihan yang lebih baik.
 
-Terakhir, gunakan `LIMIT` dalam queri `SELECT` Anda. Ini akan menghindari
+Terakhir, gunakan `LIMIT` dalam query `SELECT` Anda. Ini akan menghindari
 pengambilan data berlebihan dari database dan menghabiskan alokasi memori
 untuk PHP.
 
