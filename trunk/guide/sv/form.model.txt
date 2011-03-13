@@ -141,6 +141,9 @@ aliasnamn:
    - `email`: alias för [CEmailValidator], garanterar att attributet är en 
    giltig email-adress.
 
+   - `date`: alias för [CDateValidator], garanterar att attributet representerar 
+   ett giltigt datum-, tid-, eller datetime-värde.
+
    - `default`: alias för [CDefaultValueValidator], tilldelar specificerade 
    attribut ett standardvärde.
 
@@ -379,4 +382,4 @@ ledtext. Detta kan anpassas genom att åsidosätta metoden
 avsnitt, tillåter specificering av ledtexter i modellen, oss att skapa formulär 
 snabbare och mer kraftfullt.
 
-<div class="revision">$Id: form.model.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 3052 2011-03-12 14:27:07Z qiang.xue $</div>

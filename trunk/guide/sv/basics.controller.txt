@@ -219,6 +219,21 @@ att konverteras till en array med strängen som innehåll.
 > mäste vara skalär (dvs inte en array). Om, i detta fall, en arrayparameter förmedlas via
 > `$_GET` leder det till en HTTP-exception.
 
+Med start från version 1.1.7, fungerar automatisk koppling av parametrar även för klassbaserade 
+åtgärder. När metoden `run()` i en åtgärdsklass deklareras med parametrar, kommer dessa att erhålla 
+värden från motsvarande namngivna request-parametrar. Till exempel,
+
+~~~
+[php]
+class UpdateAction extends CAction
+{
+	public function run($id)
+	{
+		// $id erhåller värde från $_GET['id']
+	}
+}
+~~~
+
 
 Filter
 ------
@@ -306,4 +321,4 @@ filtret `postOnly` på åtgärderna `edit` och `create`, medan `PerformanceFilte
 tillämpas på alla åtgärder UTOM `edit` och `create`. Om varken plus eller minus 
 förekommer i filterkonfigurationen tillämpas filtret på alla åtgärder.
 
-<div class="revision">$Id: basics.controller.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 3058 2011-03-13 04:20:12Z qiang.xue $</div>
