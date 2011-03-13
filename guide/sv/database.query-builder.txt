@@ -36,6 +36,18 @@ att reducera risken för "SQL injection"-attacker.
 Det är inte nödvändigt att använda frågeverktyget. Faktum är att enkla frågor lättare och snabbare kan 
 skrivas direkt med SQL-satser.
 
+> Note|Märk: Frågeverktyget kan inte användas för att modifiera en existerande fråga, specificerad som en
+> SQL-sats. Följande kod kommer inte att fungera:
+>
+> ~~~
+> [php]
+> $command = Yii::app()->db->createCommand('SELECT * FROM tbl_user');
+> // Nedanstående rad kommer INTE att lägga till ett WHERE-led till ovanstående SQL
+> $command->where('id=:id', array(':id'=>$id));
+> ~~~
+>
+> Med andra ord, blanda inte renodlad SQL med användning av frågeverktyget.
+
 
 Förbereda frågeverktyget
 ------------------------
@@ -894,4 +906,4 @@ Nedan följer ett exempel på hur man tar bort ett index:
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2950 2011-02-11 12:56:38Z mdomba $</div>
+<div class="revision">$Id: database.query-builder.txt 2979 2011-02-20 02:35:48Z alexander.makarow $</div>
