@@ -1,7 +1,7 @@
 Testing
 ========
 
-> Note|Catatan: Fitur uji coba yang disinggung dalam bagian ini memerlukan Yii versi 1.1 atau lebih tinggi.  Tetapi tidak berarti anda tidak bisa menguji aplikasi yang dikembangkan dengan menggunakan Yii 1.0.x. Terdapat banyak sekali framework uji coba yang tersedia untuk membantu melakukan pekerjaan ini seperti [PHPUnit](http://www.phpunit.de/), [SimpleTest](http://www.simpletest.org/).
+> Note|Catatan: Fitur uji coba yang disinggung dalam bagian ini memerlukan Yii versi 1.1 atau lebih tinggi.  Tetapi tidak berarti Anda tidak bisa menguji aplikasi yang dikembangkan dengan menggunakan Yii 1.0.x. Terdapat banyak sekali framework uji coba yang tersedia untuk membantu melakukan pekerjaan ini seperti [PHPUnit](http://www.phpunit.de/), [SimpleTest](http://www.simpletest.org/).
 
 Uji coba merupakan proses pengembangan piranti lunak yang tidak bisa diabaikan. Disadari atau tidak, kita selalu melakukan uji coba setiap saat ketika mengembangkan aplikasi Web. Misalnya, ketika kita menulis sebuah kelas di PHP, kita mungkin menggunakan beberapa `echo` atau `die` untuk memastikan implementasi kita benar. Ketika kita mengimplementasi ke halaman Web yang berisi form HTML yang kompleks, kita juga mungkin mencoba menginput beberapa data untuk memastikan halaman web berinteraksi sesuai harapan. Pengembang yang lebih ahli akan menulis beberapa kode untuk mengotomatisasi proses ini sehingga setiap kali ingin melakukan uji coba, cukup memanggil kodenya dan komputer yang akan mengerjakannya. Proses ini dikenal dengan sebutan *otomatisasi test*, yang merupakan topik utama dalam bagian ini.
 

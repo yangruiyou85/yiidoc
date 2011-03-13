@@ -13,7 +13,7 @@ $user = Yii::app()->db->createCommand()
 	->queryRow();
 ~~~
 
-Query Builder sangat cocok digunakan ketika anda memerlukan menggabungkan sebuah statement SQL secara prosedural, atau berdasarkan suatu kondisi logis dalam aplikasi anda. Manfaat utama dalam menggunakan Query Builder termasuk:
+Query Builder sangat cocok digunakan ketika Anda memerlukan menggabungkan sebuah statement SQL secara prosedural, atau berdasarkan suatu kondisi logis dalam aplikasi Anda. Manfaat utama dalam menggunakan Query Builder termasuk:
 
 * Memungkinkan membangun statement SQL yang kompleks secara programatik
 
@@ -23,7 +23,7 @@ Query Builder sangat cocok digunakan ketika anda memerlukan menggabungkan sebuah
 
 * Fitur ini menyediakan sekian tingkatan abstraksi pada DB, yang menyederhanakan migrasi ke platform DB yang berbeda.
 
-Menggunakan Query Builder bukanlah sebuah keharusan. Bahkan, jika query anda cukup sederhana, akan leih gampang dan cepat menulis SQL-nya langsung.
+Menggunakan Query Builder bukanlah sebuah keharusan. Bahkan, jika query Anda cukup sederhana, akan leih gampang dan cepat menulis SQL-nya langsung.
 
 
 Mempersiapkan Query Builder
@@ -64,7 +64,7 @@ Query penarik data merujuk pada statement SELECT pada SQL. Query builder menyedi
 * [offset|CDbCommand::offset]: menentukan bagian OFFSET pada query
 * [union|CDbCommand::union]: menentukan bagian UNION pada query
 
-Berikut, kami akan menunjukkan bagaimana menggunakan method-method query builder ini. Supaya sederhana, kami mengasumsi database yang digunakan adalah MySQL. Perhatikan bahwa jika anda menggunakan DBMS yang lain, quote table/kolom/nilai akan berbeda dengan contoh.
+Berikut, kami akan menunjukkan bagaimana menggunakan method-method query builder ini. Supaya sederhana, kami mengasumsi database yang digunakan adalah MySQL. Perhatikan bahwa jika Anda menggunakan DBMS yang lain, quote table/kolom/nilai akan berbeda dengan contoh.
 
 
 ### select

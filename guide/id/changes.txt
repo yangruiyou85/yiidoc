@@ -72,7 +72,7 @@ Versi 1.0.11
 Versi 1.0.10
 -----------
 
-* Meningkatkan dukungan penggunaan CPhpMessageSource untuk pengaturan pesan(message) modul
+* Meningkatkan dukungan penggunaan CPhpMessageSource untuk pengaturan pesan(message) module
 	 - [Penerjemahan Pesan](/doc/guide/topics.i18n#message-translation)
 
 * Ditambahkan dukungan pelampiran fungsi anonim sebagai pengatur event (event handler)

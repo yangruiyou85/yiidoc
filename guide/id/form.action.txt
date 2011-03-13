@@ -2,7 +2,7 @@ Membuat Aksi
 ============
 
 Setelah kita memiliki model, kita dapat mulai menulis logika yang diperlukan
-untuk memanipulasi model. Kita tempatkan logika ini di dalam sebuah aksi kontroler.
+untuk memanipulasi model. Kita tempatkan logika ini di dalam sebuah aksi controller.
 Untuk contoh formulir login, kode berikut diperlukan:
 
 ~~~

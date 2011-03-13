@@ -219,7 +219,7 @@ return array(
 );
 ~~~
 
-Seperti yang anda lihat, format konfigurasi sangat mirip dengan 
+Seperti yang Anda lihat, format konfigurasi sangat mirip dengan 
 apa yang kita lakukan pada konfigurasi aplikasi Web. Ini dikarenakan kelas [CConsoleApplication] dan [CWebApplication]
 berbagi kelas dasar yang sama.
 

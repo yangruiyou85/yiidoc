@@ -26,10 +26,10 @@ Untuk kemudahan, Yii mendefinisikan beberapa alias root berikut :
  - `system`: merujuk pada direktori Yii framework;
  - `zii` : merujuk pada direktori [pustaka Zii] (/doc/guide/extension.use#zii-extensions);
  - `application`: merujuk pada [basis direktori](/doc/guide/basics.application#application-base-directory) aplikasi;
- - `webroot`: merujuk pada direktori yang berisi file [skrip entri](/doc/guide/basics.entry). Alias ini sudah tersedia sejak versi 1.0.3.
- - `ext`: merujuk ke direktori yang berisi semua [extensions|extension](/doc/guide/extension.overview) pihak ketiga. Alias ini sudah tersedia sejak versi 1.0.8.
+ - `webroot`: merujuk pada direktori yang berisi file [skrip entri](/doc/guide/basics.entry).
+ - `ext`: merujuk ke direktori yang berisi semua [extensions|extension](/doc/guide/extension.overview) pihak ketiga.
  
-Sebagai tambahan, jika aplikasi menggunakan [modul](/doc/guide/basics.module), alias root juga didefinisikan untuk setiap ID modul dan merujuk pada basis path modul terkait. Fitur ini sudah tersedia sejak versi 1.0.3.
+Sebagai tambahan, jika aplikasi menggunakan [module](/doc/guide/basics.module), alias root juga didefinisikan untuk setiap ID module dan merujuk pada basis path module terkait.
 
 
 Mengimpor Kelas
@@ -127,4 +127,4 @@ dengan cara yang mirip dengan alias path. Misalnya, sebuah kelas `application\co
 harus disimpan ke dalam sebuah file yang dapat dialiaskan sebagai `application.components.GoogleMap`.
 
 
-<div class="revision">$Id: basics.namespace.txt 2630 2010-11-08 21:13:33Z qiang.xue $</div>
+<div class="revision">$Id: basics.namespace.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>

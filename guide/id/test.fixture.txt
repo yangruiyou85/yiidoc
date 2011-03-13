@@ -53,7 +53,7 @@ Terkadang, kita tidak ingin mereset semua tabel yang memiliki file fixture sebel
 
 Juga ada kemungkinan kita tidak suka dengan cara [CDbFixtureManager] dalam me-reset sebuah tabel, misalnya mengosongkannya lalu memasukkan data dengan fixture data. Kalau begitu, kita dapat menulis sebuah skrip inisialisasi untuk file fixture tertentu. Nama skrip haruslah berupa nama tabel yang berakhiran `.init.php`. Misalnya kita ingin menginisialisasi tabel `Post` maka ditulis `Post.init.php`. Ketika melihat skrip ini, [CDBFixtureManager] akan menjalankan skrip ini alih-alih menggunakan cara biasa untuk me-reset tabel.
 
-> Tip: Memiliki terlalu banyak file fixture akan meningkatkan waktu uji coba secara dramatis. Oleh karenanya, anda diharapkan hanya menyediakan file fixture yang tabel-tabelnya mungkin berubah ketika terjadi uji coba. Tabel yang berfungsi sebagai sumber data(look-ups) dan tidak akan berubah, tidak perlu file fixture.
+> Tip: Memiliki terlalu banyak file fixture akan meningkatkan waktu uji coba secara dramatis. Oleh karenanya, Anda diharapkan hanya menyediakan file fixture yang tabel-tabelnya mungkin berubah ketika terjadi uji coba. Tabel yang berfungsi sebagai sumber data(look-ups) dan tidak akan berubah, tidak perlu file fixture.
 
 Di dua bab berikutnya, kita akan memahami bagaimana menggunakan fixture yang diatur oleh [CDbFixtureManager] dalam uji coba unit dan fungsional.
 
