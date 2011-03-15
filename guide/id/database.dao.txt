@@ -124,7 +124,7 @@ $column=$command->queryColumn(); // query dan kembalikan kolom pertama hasil
 $value=$command->queryScalar();  // query dan kembalikan field pertama dalam baris pertama
 ~~~
 
-Mengambil Hasil Queri
+Mengambil Hasil Query
 ---------------------
 
 Setelah [CDbCommand::query()] membuat instance [CDbDataReader], Anda
