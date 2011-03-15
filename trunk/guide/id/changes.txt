@@ -96,7 +96,7 @@ Versi 1.0.7
 
  * Ditambahkan opsi `index` pada relasi AR agar obyek terkait bisa diindeks
 menggunakan nilai kolom tertentu
-     - [Opsi Queri Relasional](/doc/guide/database.arr#relational-query-options)
+     - [Opsi Query Relasional](/doc/guide/database.arr#relational-query-options)
 
 Versi 1.0.6
 -------------
@@ -105,7 +105,7 @@ Versi 1.0.6
      - [Lingkup Bernama](/doc/guide/database.ar#named-scopes)
 
  * Ditambahkan dukungan untuk pemakaian lingkup bernama dalam opsi `with` pada aturan relasional:
-     - [Queri Relasional dengan Lingkup Bernama](/doc/guide/database.arr#relational-query-with-named-scopes)
+     - [Query Relasional dengan Lingkup Bernama](/doc/guide/database.arr#relational-query-with-named-scopes)
 
  * Ditambahkan dukungan untuk pengukuran eksekusi SQL
      - [Mengukur Eksekusi SQL](/doc/guide/topics.logging#profiling-sql-executions)

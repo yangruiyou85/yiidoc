@@ -17,8 +17,8 @@ bagian ini.
 
 > Info: Dukungan untuk constraint foreign key bervariasi pada berbagai DBMS.
 > SQLite < 3.6.19 tidak mendukung constraint foreign key, tetapi kita masih dapat
-> mendeklarasikan constraint pada saat pembuatan tabel.
-
+> mendeklarasikan constraint pada saat pembuatan tabel. Engine MySQL MyISAM
+> tidak mendukung foreign key sama sekali.
 
 
 Mendeklarasikan Hubungan
@@ -115,7 +115,7 @@ properti terkait akan diisi dengan instance dari AR yang dihubungkan.
 Sebagai contoh, jika `$author` mewakili turunan AR `User`, kita
 bisa menggunakan `$author->posts` untuk mengakses kaitannya dengan turunan `Post`.
 
-Melakukan Queri Relasional
+Melakukan Query Relasional
 --------------------------
 
 Cara termudah melakukan query relasional adalah dengan membaca properti
@@ -176,8 +176,8 @@ post bersama dengan author dan category-nya (kategorinya):
 $posts=Post::model()->with('author','categories')->findAll();
 ~~~
 
-kia juga bisa melakukan nested eager loading. Alih-alih mendaftar nama-nama
-hubungan, kita mengopernya dalam penyajian hirarkis nama hubungan ke metode
+kita juga bisa melakukan nested eager loading. Alih-alih mendaftar nama-nama
+relation, kita mengopernya dalam penyajian hirarki nama relasi ke method
 [with()|CActiveRecord::with], seperti berikut,
 
 ~~~
@@ -191,7 +191,7 @@ $posts=Post::model()->with(
 Contoh di atas akan mengembalikan semua post bersama dengan author dan
 category-nya. Ini juga akan menghasilkan profil setiap author serta post.
 
-Mulai dari versi 1.1.0 eager loading dapat dijalankan dengan menspesifikasi properti 
+Eager loading dapat dijalankan dengan menspesifikasi properti
 [CDbCriteria::with], seperti di bawah ini:
 
 ~~~
@@ -219,7 +219,30 @@ $posts=Post::model()->findAll(array(
 ~~~
 
 
-Opsi Queri Relasional
+Melakukan query relasional tanpa mengambil model bersangkutan
+---------------------------------------------------------
+
+Terkadang kita perlu melakukan query dengan menggunakan relasi tetapi tidak
+ingin mengambil model bersangkutan. Misalnya, kita memiliki `User` yang memposting beberapa `Post`. Post dapat dipublikasi
+tetapi juga dapat dalam status draft. Status ini ditentukan oleh field `published` pada
+model post. Sekarang kita ingin mengambil semua user yang telah mempublikasikan post dan kita
+sendiri tidak tertarik pada post-post mereka. Maka, kita dapat mengambilnya dengan cara demikian:
+
+~~~
+[php]
+$users=User::model()->with(array(
+	'posts'=>array(
+		//kita tidak ingin men-select post
+		'select'=>false,
+		// tetapi hanya ingin mengambil user yang telah publikasi post
+		'joinType'=>'INNER JOIN',
+		'condition'=>'posts.published=1',
+	),
+))->findAll();
+~~~
+
+
+Opsi Query Relasional
 ---------------------
 
 Telah kita sebutkan bahwa opsi tambahan dapat dispesifikasi dalam deklarasi relasi.
@@ -234,14 +257,12 @@ opsi ini tidak boleh ambigu.
 direferensikan di opsi ini juga tidak boleh ambigu.
 
    - `params`: parameter yang diikat ke pernyataan SQL yang dibuat.
-Ini harus berupa array (larik) pasangan name-value. Opsi ini sudah tersedia sejak
-versi 1.0.3.
+Ini harus berupa array (larik) pasangan name-value.
 
    - `on`: klausul `ON`. Kondisi yang ditetapkan di sini akan ditambahkan ke
 kondisi penggabungan menggunakan operator `AND`. Nama kolom direferensikan
 dalam opsi ini tidak boleh ambigu.
-Opsi ini tidak berlaku pada relasi `MANY_MANY`. Opsi ini sudah tersedia sejak
-versi 1.0.2.
+Opsi ini tidak berlaku pada relasi `MANY_MANY`. 
 
    - `order`: klausul `ORDER BY`. Default-nya kosong. Nama kolom yang digunakan
 di sini tidak boleh ambigu.
@@ -254,8 +275,7 @@ pengulangan tanpa akhir.
 OUTER JOIN`.
 
    - `alias`: alias untuk tabel terkait dengan hubungan ini.
-Opsii ini sudah tersedia sejak versi 1.0.1. Default-nya null,
-yang berarti alias tabel sama dengan nama relasi.
+Default-nya null, yang berarti alias tabel sama dengan nama relasi.
 
    - `together`: menentukan apakah tabel yang terkait dengan hubungan ini harus
 dipaksa untuk bergabung bersama dengan tabel primer dan tabel lainnya.
@@ -268,10 +288,9 @@ query, walaupun jika tabel primer tersebut terpaginasi (paginated).
 Jika opsi ini tidak di-set, maka tabel yang terasosiasi akan di-join dengan tabel primer ke dalam query SQL tunggal
 hanya ketika tabel primer tidak terpaginasi.
 Untuk info selengkapnya, silahkan melihat bagian "Relational Query Performance".
-Opsi ini telah ada semenjak versi 1.0.3
 
-   - `join`: klausul `JOIN` ekstra. Secara default kosong. Opsi ini sudah ada
-semenjak versi 1.1.3
+   - `join`: klausul `JOIN` ekstra. Secara default kosong. Opsi ini sudah
+ada semenjak versi 1.1.3
 
    - `group`: klausul `GROUP BY`. Default-nya kosong. Nama kolom
 yang direferensi ke dalam opsi ini tidak boleh ambigu.
@@ -283,7 +302,6 @@ yang direferensi dalam opsi tidak boleh ambigu.
 array yang menyimpan obyek terkait. Tanpa menyetel opsi ini,
 array obyek terkait akan menggunakan indeks integer berbasis-nol.
 Opsi ini hanya bisa disetel untuk relasi `HAS_MANY` dan `MANY_MANY`.
-Opsi ini sudah tersedia sejak versi 1.0.7.
 
 
 Sebagai tambahan, opsi berikut tersedia untuk relasi tertentu
@@ -318,6 +336,7 @@ Sekarang jika kita mengakses `$author->posts`, kita akan mendapatkan post-post d
 yang tersusun berdasarkan waktu pembuatan secara terbalik (descending). Setiap instance post
 juga me-load category-nya.
 
+
 Membedakan Nama Kolom
 ---------------------
 
@@ -326,8 +345,9 @@ sebuah kolom dengan nama yang sama, maka kita perlu membedakannya. Kita dapat
 melakukannya dengan menambah awalan pada nama kolom dengan nama alias tabel.
 
 Dalam query AR relasi, nama alias untuk tabel utama ditetapkan sebagai `t`,
-sedangkan nama alias untuk sebuah tabel relasi adalah sama dengan nama relasi secara default. Misalnya,
-pada statement berikut, nama alias untuk `Post` adalah `t` dan untuk `Comment` adalah
+sedangkan nama alias untuk sebuah tabel relasi adalah sama dengan nama relasi
+secara default. Misalnya, pada statement berikut, nama alias untuk
+`Post` adalah `t` dan untuk `Comment` adalah
 `comments`:
 
 ~~~
@@ -335,7 +355,7 @@ pada statement berikut, nama alias untuk `Post` adalah `t` dan untuk `Comment` a
 $posts=Post::model()->with('comments')->findAll();
 ~~~
 
-Sekarang kita asumsi masing-masin `Post` dan `Comment` memiliki sebuah kolom bernama `create_time` yang
+Sekarang kita asumsi masing-masing `Post` dan `Comment` memiliki sebuah kolom bernama `create_time` yang
 menunjukkan waktu pembuatan post atau komentar, dan kita ingin mengambil nilai post beserta komentar-komentar
 dengan mengurutkan waktu pembuatan post baru kemudian waktu pembuatan komentar. Kita harus membedakan
 kolom `create_time` dengan kode berikut : 
@@ -347,16 +367,11 @@ $posts=Post::model()->with('comments')->findAll(array(
 ));
 ~~~
 
-> Note|Catatan: Perilaku pada pembedaan kolom telah mengalami perubahan semenjak versi 1.1.0.
-> Sebelumnya, pada versi 1.0.x, secara default Yii akan otomatis membuat sebuah alias tabel
-> untuk setiap tabel relasi, dan kita harus menggunakan prefik `??.` untuk merujuk ke
-> alias yang dihasilkan otomatis ini. Dan juga, pada versi 1.0.x, nama alias tabel utama
-> adalah namanya sendiri
 
-Opsi Queri Relasional Dinamis
+Opsi Query Relasional Dinamis
 -----------------------------
 
-Mulai dari versi 1.0.2, kita dapat menggunakan opsi query relasional dinamis baik dalam
+Kita dapat menggunakan opsi query relasional dinamis baik dalam
 [with()|CActiveRecord::with] maupun opsi `with`. Opsi dinamis akan
 menimpa opsi yang sudah ada seperti yang ditetapkan pada metode [relations()|CActiveRecord::relations].
 Sebagai contoh, dengan model `User` di atas, jika kita ingin menggunakan pendekatan eager
@@ -372,14 +387,16 @@ User::model()->with(array(
 ))->findAll();
 ~~~
 
-Mulai dari versi 1.0.5, opsi query dinamis juga dapat dipakai saat menggunakan pendekatan  lazy loading untuk melakukan query relasional. Untuk mengerjakannya, kita harus memanggil metode yang namanya sama dengan nama relasi dan mengoper opsi query dinamis sebagai parameter metode. Sebagai contoh, kode berikut mengembalikan tulisan pengguna yang memiliki `status` = 1:
+Opsi query dinamis juga dapat dipakai saat menggunakan pendekatan  lazy loading untuk melakukan query relasional. Untuk mengerjakannya, kita harus memanggil metode yang namanya sama dengan nama relasi dan mengoper opsi query dinamis sebagai parameter metode. Sebagai contoh, kode berikut mengembalikan tulisan pengguna yang memiliki `status` = 1:
+
 ~~~
 [php]
 $user=User::model()->findByPk(1);
 $posts=$user->posts(array('condition'=>'status=1'));
 ~~~
 
-Performa Queri Relasi
+
+Performa Query Relasi
 ---------------------
 
 Seperti yang dijelaskan di atas, pendekatan eager loading sering dipakai dalam skenario
@@ -423,27 +440,12 @@ Kita juga dapat mengeset opsi ini secara dinamis ketika melakukan eager loading:
 $posts = Post::model()->with(array('comments'=>array('together'=>false)))->findAll();
 ~~~
 
-> Note|Catatan: Pada versi 1.0.x, perilaku default-nya adalah Yii akan menghasilkan
-> sekaligus mengeksekusi `N+1` statement SQL jika terdapat `N` relasi `HAS_MANY` atau `MANY_MANY`.
-> Tiap-tiap relasi `HAS_MANY` atau `MANY_MANY` memiliki statement SQL sendiri. Dengan memanggil
-> metode `together()` setelah `with()`, kita dapat mendesak hanya sebuah statement SQL yang dihasilkan
-> dan dieksekusi. Misalnya,
->
-> ~~~
-> [php]
-> $posts=Post::model()->with(
-> 	'author.profile',
-> 	'author.posts',
-> 	'categories')->together()->findAll();
-> ~~~
->
 
-Queri Statistik
+
+Query Statistik
 ---------------
 
-> Note|Catatan: Queri statistik sudah didukung sejak versi 1.0.4.
-
-Selain query yang dijelaskan di atas, Yii juga mendukung apa yang disebut query statistik (atau query agregasional). Maksud dari query statistik adalah pengambilan informasi agregasional mengenai objek terkait, seperti jumlah komentar untuk setiap tulisan, rata-rata peringkat setiap produk, dll. Queri statistik hanya bisa dilakukan untuk obyek terkait dalam `HAS_MANY` (misalnya sebuah tulisan memiliki banyak komentar) atau `MANY_MANY` (misalnya tulisan milik banyak kategori dan kategori memiliki banyak tulisan).
+Selain query yang dijelaskan di atas, Yii juga mendukung apa yang disebut query statistik (atau query agregasional). Maksud dari query statistik adalah pengambilan informasi agregasional mengenai objek terkait, seperti jumlah komentar untuk setiap tulisan, rata-rata peringkat setiap produk, dll. Query statistik hanya bisa dilakukan untuk obyek terkait dalam `HAS_MANY` (misalnya sebuah tulisan memiliki banyak komentar) atau `MANY_MANY` (misalnya tulisan milik banyak kategori dan kategori memiliki banyak tulisan).
 
 Melakukan query statistik sangat mirip dengan melakukan query relasional seperti dijelaskan sebelumnya. Pertama kita perlu mendeklarasikan query statistik dalam metode [relations()|CActiveRecord::relations] pada [CActiveRecord] seperti yang kita lakukan dengan query relasional.
 
@@ -491,12 +493,10 @@ Ini harus berupa array pasangan nama-nilai.
    - `having`: klausul `HAVING`. Default-nya kosong.
 
 
-Queri Relasional dengan Named Scope
+Query Relasional dengan Named Scope
 ---------------------------------------
 
-> Note|Catatan: Dukungan named scope sudah tersedia sejak versi 1.0.5.
-
-Queri relasional juga dapat dilakukan dengan kombinasi [named scope](/doc/guide/database.ar#named-scopes). Named scope pada tabel relasional datang dengan dua bentuk. Dalam bentuk pertama, named scope diterapkan ke model utama. Dalam bentuk kedua, named scope diterapkan ke model terkait.
+Query relasional juga dapat dilakukan dengan kombinasi [named scope](/doc/guide/database.ar#named-scopes). Named scope pada tabel relasional datang dengan dua bentuk. Dalam bentuk pertama, named scope diterapkan ke model utama. Dalam bentuk kedua, named scope diterapkan ke model terkait.
 
 Kode berikut memperlihatkan bagaimana untuk menerapkan named scope ke model utama.
 
@@ -505,17 +505,30 @@ Kode berikut memperlihatkan bagaimana untuk menerapkan named scope ke model utam
 $posts=Post::model()->published()->recently()->with('comments')->findAll();
 ~~~
 
+Ini sangat mirip dengan query non-relasional. Perbedaannya hanyalah bahwa kita memiliki panggilan `with()` setelah rantai named-scope. Query ini akan membawa kembali post terbaru yang dipublikasikan bersama dengan komentar-komentarnya.
 
-Ini sangat mirip dengan query non-relasional. Perbedaannya hanyalah bahwa kita memiliki panggilan `with()` setelah rantai named-scope. Queri ini akan membawa kembali post terbaru yang dipublikasikan bersama dengan komentar-komentarnya.
-
-Kode berikut memperlihatkan bagaimana untuk menerapkan named scope ke model terkait.
+Kode berikut memperlihatkan bagaimana untuk menerapkan named scope ke model bersangkutan.
 
 ~~~
 [php]
 $posts=Post::model()->with('comments:recently:approved')->findAll();
+// atau kalau mulai dari 1.1.7
+$posts=Post::model()->with(
+    'comments'=>array(
+        'scopes'=>array('recently','approved')
+    ),
+)->findAll();
+// or semenjak 1.1.7
+$posts=Post::model()->findAll(array(
+    'with'=>array(
+        'comments'=>array(
+            'scopes'=>array('recently','approved')
+        ),
+    ),
+));
 ~~~
 
-Queri di atas akan membawa kembali semua tulisan bersama dengan komentarnya yang sudah disetujui. Catatan bahwa `comments` merujuk ke nama relasi, sementara `recently` dan `approved` merujuk ke dua named scope yang dideklarasikan dalam kelas model `Comment`. Nama relasi dan named scope harus dipisahkan dengan titik dua.
+Query di atas akan membawa kembali semua tulisan bersama dengan komentarnya yang sudah disetujui. Catatan bahwa `comments` merujuk ke nama relasi, sementara `recently` dan `approved` merujuk ke dua named scope yang dideklarasikan dalam kelas model `Comment`. Nama relasi dan named scope harus dipisahkan dengan titik dua.
 
 Named scope dapat ditetapkan dalam opsi `with` pada aturan relasional yang dideklarasikan dalam [CActiveRecord::relations()]. Dalam contoh berikut, jika kita mengakses `$user->posts`, maka akan mengembalikan semua komentar yang *disetujui* pada tulisan.
 
@@ -526,13 +539,45 @@ class User extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'posts'=>array(self::HAS_MANY, 'Post', 'authorID',
+			'posts'=>array(self::HAS_MANY, 'Post', 'author_id',
 				'with'=>'comments:approved'),
+		);
+	}
+}
+
+// atau semenjak 1.1.7
+class User extends CActiveRecord
+{
+	public function relations()
+	{
+		return array(
+		    'posts'=>array(self::HAS_MANY, 'Post', 'author_id',
+				'with'=>array(
+					'comments'=>array(
+						'scopes'=>'approved'
+					),
+				),
+			),
 		);
 	}
 }
 ~~~
 
-> Note|Catatan: Named scope yang diterapkan ke model terkait harus ditetapkan dalam [CActiveRecord::scopes]. Sebagai hasilnya, named scope tidak bisa diparameterisasi.
+Mulai dari versi 1.1.7, Yii memungkinkan passing parameter untuk relational named scopes.
+Misalnya, jika anda memiliki scope bernama `rated` di dalam `Post` yang menerima rating
+minimal post, Anda dapat menggunakannya dari `User` dengan cara berikut:
 
-<div class="revision">$Id: database.arr.txt 2782 2010-12-28 16:18:06Z qiang.xue $</div>
+~~~
+[php]
+$users=User::model()->findAll(
+	'with'=>array(
+		'posts'=>array(
+			'scopes'=>array(
+				'rated'=>5,
+			),
+		),
+	),
+);
+~~~
+
+<div class="revision">$Id: database.arr.txt 3061 2011-03-13 11:44:46Z alexander.makarow $</div>
