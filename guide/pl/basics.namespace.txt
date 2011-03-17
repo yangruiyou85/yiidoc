@@ -27,8 +27,11 @@ Dla wygody, Yii predefiniuje następujące aliasy nadrzędne:
  - `webroot`: wskazuje na katalog zawierający plik [skryptu wejściowego](/doc/guide/basics.entry). 
  - `ext`: wskazuje na katalog zawierający wszystkie [rozszerzenia](/doc/guide/extension.overview) stron trzecich. 
  
-Dodatkowo, jeśli aplikacja używa [modułów](/doc/guide/basics.module) alias główny jest również 
-predefiniowany dla każdego ID modułu i wskazuje na katalog główny danego modułu.
+Dodatkowo, jeśli aplikacja używa [modułów](/doc/guide/basics.module), każdy z nich będzie posiadał 
+predefiniowany alias główny o tej samej nazwie jak ID modułu i będzie on wskazywał na katalog
+główny danego modułu. Na przykład, jeśli aplikacja używa modułu, którego ID to `users`, to 
+zostanie predefiniowany dla niego alias główny `users`.
+
 
 Importowanie klas
 -----------------
@@ -103,7 +106,7 @@ wyłącznie dla frameworku Yii a klasy użytkownika były poprzedzone prefiksem 
 się z innej litery.
 
 Klasy w przestrzeni nazw
-------------------
+------------------------
 
 Klasy w przestrzeni nazw są klasami zadeklarowanymi w nieglobalnej przestrzeni nazw.
 Na przykład, klasa `application\components\GoogleMap` zadeklarowana jest w przestrzeni nazw
@@ -118,4 +121,5 @@ W celu umożliwienia autoładowania klas w przestrzeni nazw, przestrzeń nazw mu
 w podobny sposób do nazw aliasów ścieżek. Na przykład, klasa `application\components\GoogleMap`
 musi być zapisana w pliku, którego aliasem jest `application.components.GoogleMap`.
 
-<div class="revision">$Id: basics.namespace.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+
+<div class="revision">$Id: basics.namespace.txt 3086 2011-03-15 00:04:53Z qiang.xue $</div>
