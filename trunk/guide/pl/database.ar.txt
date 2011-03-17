@@ -576,14 +576,6 @@ Ogólnie rzecz biorąc, nazwane podzbiory musza pojawić się po lewej stronie o
 które są łączone z pozostałymi kryteriami, włączając w to te, które zostały przekazane do metody `find`. Efekt końcowy jest podobny do tego,  
 jakby do zapytania dodano listę filtrów.
 
-Nazwane podzbiory mogą być również używane wraz z metodami `update` oraz `delete`. 
-Na przykład, następujący kod usunie wszystkie aktualnie opublikowane posty: 
-
-~~~
-[php]
-Post::model()->published()->recently()->delete();
-~~~
-
 > Note|Uwaga: Nazwane podzbiory mogą być tylko używane wyłącznie z poziomu metod klasowych.   
 Oznacza to, że muszą one być wywołane w przy użyciu `NazwaKlasy::model()`.
 
@@ -648,4 +640,4 @@ $contents=Content::model()->findAll();
 
 Zauważ, że domyślne nazwane podzbiory mają zastosowanie tylko dla zapytań `SELECT`. Są one ignorowane dla zapytań `INSERT`, `UPDATE` oraz `DELETE`.
 
-<div class="revision">$Id: database.ar.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 3093 2011-03-16 15:50:34Z qiang.xue $</div>
