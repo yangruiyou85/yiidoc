@@ -107,8 +107,6 @@ Halaman yang kompleks sering harus menyertakan banyak file eksternal JavaScript 
 
 Untuk halaman yang dibuat oleh Yii, kenyataannya bahwa beberapa file skrip dirender oleh komponen yang tidak ingin kita ubah (misalnya komponen inti Yii, komponen pihak ketiga). Untuk memperkecil file skrip ini, kita memerlukan dua langkah.
 
-> Note|Catatan: Fitur `scriptMap` yang dijelaskan berikut ini sudah tersedia sejak versi 1.0.3.
-
 Pertama, kita mendeklarasikan skrip yang diperkecil dengan mengkonfigurasi properti [scriptMap|CClientScript::scriptMap] pada komponen aplikasi [clientScript|CWebApplication::clientScript]. Ini bisa dikerjakan baik dalam konfigurasi aplikasi ataupun dalam kode. Sebagai contoh,
 
 ~~~
@@ -157,4 +155,4 @@ Dengan memetakan file skrip ini menjadi false, kita melarang Yii untuk membuat k
 </head>
 ~~~
 
-<div class="revision">$Id: topics.performance.txt 2343 2010-08-26 21:10:08Z alexander.makarow $</div>
+<div class="revision">$Id: topics.performance.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>

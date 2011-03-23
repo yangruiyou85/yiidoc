@@ -14,12 +14,6 @@ Setiap extension memiliki nama yang secara identitas unik diantara semua extensi
 Extension diberi nama `xyz`, kita dapat menggunakan alias path `ext.xyz` untuk 
 menempatkannya pada basis direktori yang berisi semua file `xyz`.
 
-> Note|Catatan: Alias path root `ext` sudah tersedia sejak versi 1.0.8.
-Sebelumnya, kita perlu menggunakan `application.extensions` untuk merujuk ke
-direktori yang berisi semua extension. Dalam penjelasan berikut, kita
-menganggap `ext` sudah didefinisikan. Anda perlu menggantinya dengan `application.extensions`
-jika Anda menggunakan versi 1.0.7 atau lebih rendah.
-
 Extension yang berbeda memiliki persyaratan mengenai pengimporan,
 konfigurasi dan pemakaian. Selanjutnya, kita meringkas skenario pemakaian umum
 mengenai extension, berdasarkan pada kategorisasinya seperti dijelaskan dalam
@@ -31,8 +25,7 @@ Extension Zii
 
 Sebelum kita mulai melihat penggunaan extension pihak ketiga, kami akan memperkenalkan
 pustaka extension Zii, yang merupakan kumpulan extension yang dikembangkan oleh tim developer Yii
-dan disertakan dalam setiap rilis semenjak versi 1.1.0. Pustaka Zii di-host sebagai
-projek Google bernama [zii](http://code.google.com/p/zii/).
+dan disertakan dalam setiap rilis.
 
 Ketika menggunakan sebuah ektensi Zii, kita harus merujuk ke kelas bersangkutan dengan menggunakan
 alias path dalam bentuk `zii.path.ke.NamaKelas`. Di sini akar alias `zii` ditentukan oleh Yii. Dia akan dirujukkan
@@ -322,4 +315,4 @@ Selanjutnya, kita dapat membuat turunan kelas, mengkonfigurasi propertinya,
 dan memanggi metodenya. Kita juga bisa menurunkannya untuk membuat anak kelas baru.
 
 
-<div class="revision">$Id: extension.use.txt 1780 2010-02-01 20:32:50Z qiang.xue $</div>
+<div class="revision">$Id: extension.use.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>

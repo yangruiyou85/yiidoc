@@ -44,4 +44,26 @@ $hits=$lucene->find(strtolower($keyword));
 ~~~
 
 
-<div class="revision">$Id: extension.integration.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
+Menggunakan Yii di Sistem Pihak Ketiga
+------------------------------
+
+Yii juga bisa dijadikan sebagai pustaka tersendiri untuk mendukung pengembangan dan menyokong
+sistem pihak ketiga, seperti Wordpress, Joomla dan lain-lain. Untuk melakukannya, sertakan
+kode berikut di bootsrap code dari sistem pihak ketiga:
+
+~~~
+[php]
+require_once('path/to/yii.php');
+Yii::createWebApplication('path/to/config.php');
+~~~
+
+Kode di atas sangat mirip dengan bootstrap code yang digunakan aplikasi Yii
+pada umumnya kecuali satu hal, dia tidak memanggil method `run()` setelah membuat
+instance aplikasi web.
+
+Sekarang kita dapat menggunakan fitur yang ditawari Yii ketika mengembangkan aplikasi pihak ketiga. Misalnya,
+kita dapat menggunakan `Yii::app()` untuk mengakses instance aplikasi; kita dapat menggunakan fitur database
+seperti DAO dan ActiveRecord; kita dapat menggunakan model dan fitur validasi dan lain-lain.
+
+
+<div class="revision">$Id: extension.integration.txt 2953 2011-02-11 15:52:21Z qiang.xue $</div>
