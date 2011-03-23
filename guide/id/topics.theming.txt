@@ -207,8 +207,6 @@ $this->widget('CLinkPager', array(
 Skin
 ----
 
-> Note|Catatan: Fitur skin telah tersedia semenjak versi 1.1.0
-
 Kita dapat menggunakan tema(theme) dapat mempercepat tampilan view. Sedangkan untuk dapat menyesuaikan tampilan [widgets](/doc/guide/basics.view#widget) secara sistematis, maka kita dapat menggunakan skin.
 
 Sebuah skin merupakan sebuah array dengan pasangan nama-nilai(name-value) yang digunakan untuk menentukan nilai awal properti widget. Sebuah skin merupakan milik kelas widget dan sebuah kelas widget dapat memiliki beberapa skin yang dibedakan berdasarkan namanya. Misalnya kita dapat memiliki sebuah skin untuk widget [CLinkPager] dan skin dinamakan sebagai `classic`
@@ -290,4 +288,4 @@ Perbedaan utamanya adalah:
    - Skin dapat ditemakan(themeable);
    - Menggunakan skin lebih berat dibandingkan menggunakan kustomisasi widget global;
 
-<div class="revision">$Id: topics.theming.txt 2619 2010-11-04 15:30:43Z qiang.xue $</div>
+<div class="revision">$Id: topics.theming.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>

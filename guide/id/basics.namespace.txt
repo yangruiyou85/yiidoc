@@ -28,8 +28,10 @@ Untuk kemudahan, Yii mendefinisikan beberapa alias root berikut :
  - `application`: merujuk pada [basis direktori](/doc/guide/basics.application#application-base-directory) aplikasi;
  - `webroot`: merujuk pada direktori yang berisi file [skrip entri](/doc/guide/basics.entry).
  - `ext`: merujuk ke direktori yang berisi semua [extensions|extension](/doc/guide/extension.overview) pihak ketiga.
- 
-Sebagai tambahan, jika aplikasi menggunakan [module](/doc/guide/basics.module), alias root juga didefinisikan untuk setiap ID module dan merujuk pada basis path module terkait.
+
+Sebagai tambahan, jika suatu aplikasi menggunakan [module](/doc/guide/basics.module), maka setiap module akan
+memiliki root alias yang sudah di-define. Root alias ini memiliki nama yang sama dengan ID module dan merujuk ke base path module. Misalnya,
+jika sebuah aplikasi menggunakan module yang memiliki ID `users`, maka sebuah root alias bernama `users` akan di-define.
 
 
 Mengimpor Kelas
@@ -127,4 +129,4 @@ dengan cara yang mirip dengan alias path. Misalnya, sebuah kelas `application\co
 harus disimpan ke dalam sebuah file yang dapat dialiaskan sebagai `application.components.GoogleMap`.
 
 
-<div class="revision">$Id: basics.namespace.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: basics.namespace.txt 3086 2011-03-15 00:04:53Z qiang.xue $</div>
