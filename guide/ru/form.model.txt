@@ -131,7 +131,7 @@ public function ValidatorName($attribute,$params) { … }
 
    - `email`: псевдоним класса [CEmailValidator], который отвечает за проверку корректности email адреса;
 
-   - `date`: псевдоним класса [CDateValidator], проверяющего, является ли атрбут
+   - `date`: псевдоним класса [CDateValidator], проверяющего, является ли атрибут
 корректной датой, временем или и тем и другим.
 
    - `default`: псевдоним класса [CDefaultValueValidator], который присваивает значение
