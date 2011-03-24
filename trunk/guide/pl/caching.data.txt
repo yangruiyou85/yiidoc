@@ -92,7 +92,7 @@ danych, które wymagają odświeżenia.
 
 Poniżej znajduje się podsumowanie dostępnych zależności buforowania:
 
-   - [CFileCacheDependency]: zależność jest zmieniona jeśli jeśli zmienił się czas
+   - [CFileCacheDependency]: zależność jest zmieniona jeśli zmienił się czas
    ostatniej modyfikacji pliku.
 
    - [CDirectoryCacheDependency]: zależność jest zmieniona jeśli jakikolwiek z plików
@@ -148,7 +148,7 @@ rezultat instrukcji SQL, która ma zostać wykonana. Dzieje się to poprzez spra
 
 - czy bufor zawiera wpis zindeksowany za pomocą instrukcji SQL.
 - czy ważność tego wpisu nie upłynęła (mniej niż 1000 sekund od momentu kiedy został on zapisany w buforze).
-- czy zależność nie zmieniła się (maksymalna wartość `update_time` jest taka sama jak wtedy gdy wynik zapytania został zapisany w buforze ).
+- czy zależność nie zmieniła się (maksymalna wartość `update_time` jest taka sama jak wtedy gdy wynik zapytania został zapisany w buforze).
 
 Jeśli wszystkie powyższe warunki zostały spełnione, zbuforowane wartości zostaną zwrócone bezpośrednio z bufora.
 W przeciwnym przypadku, instrukcja SQL zostanie wysłana do serwera bazy danych w celu jej wykonania
@@ -175,7 +175,7 @@ Yii spróbuje użyć buforowania zapytań, które opiszemy w ostatniej podsekcji
 
 ### Buforowanie wielu zapytań
 
-Domyślnie z każde wywołanie metody `cache()` (zarówno w [CDbConnection] jak i [CActiveRecord]),
+Domyślnie każde wywołanie metody `cache()` (zarówno w [CDbConnection] jak i [CActiveRecord]),
 będzie oznaczać, że następne zapytanie SQL zostanie zbuforowane. Pozostałe zapytania SQL
 NIE BĘDĄ buforowane dopóki nie wywołamy ponownie metody `cache()`. Na przykład:
 
@@ -189,8 +189,8 @@ $rows = Yii::app()->db->cache(1000, $dependency)->createCommand($sql)->queryAll(
 $rows = Yii::app()->db->createCommand($sql)->queryAll();
 ~~~
 
-Poprzez wprowadzeniu dodatkowego parametru `$queryCount` w metodzie `cache()`, możemy
-wymóc buforowanie wielu zapytań. W następnym przykładzie, podczas wywołania metody `cache()`
+Poprzez wprowadzenie dodatkowego parametru `$queryCount` w metodzie `cache()`, możemy
+wymusić buforowanie wielu zapytań. W następnym przykładzie, podczas wywołania metody `cache()`
 określimy, iż buforowanie zapytań powinno nastąpić dla dwóch kolejnych zapytań:
 
 ~~~
@@ -202,7 +202,7 @@ $rows = Yii::app()->db->createCommand($sql)->queryAll();
 ~~~
 
 Jak wiadomo (poprzez sprawdzanie [rejestrowania komunikatów](/doc/guide/topics.logging))
-podczas wykonywania zapytań relacyjnych, możliwe jest wykonania kilku zapytań SQL.
+podczas wykonywania zapytań relacyjnych, możliwe jest wykonanie kilku zapytań SQL.
 Na przykład, jeśli relacja pomiędzy postem `Post` a komentarzem `Comment` jest typu wiele-do-wielu `HAS_MANY`,
 wtedy następujący kod będzie wykonywał dwa zapytania do bazy danych:
 
