@@ -487,11 +487,11 @@ $posts=Post::model()->published()->recently()->with('comments')->findAll();
 [php]
 $posts=Post::model()->with('comments:recently:approved')->findAll();
 // или, начиная с версии 1.1.7
-$posts=Post::model()->with(
+$posts=Post::model()->with(array(
     'comments'=>array(
         'scopes'=>array('recently','approved')
     ),
-)->findAll();
+))->findAll();
 // или, начиная с версии 1.1.7
 $posts=Post::model()->findAll(array(
     'with'=>array(
@@ -553,7 +553,7 @@ class User extends CActiveRecord
 
 ~~~
 [php]
-$users=User::model()->findAll(
+$users=User::model()->findAll(array(
 	'with'=>array(
 		'posts'=>array(
 			'scopes'=>array(
@@ -561,7 +561,7 @@ $users=User::model()->findAll(
 			),
 		),
 	),
-);
+));
 ~~~
 
 Реляционные запросы с through
@@ -697,4 +697,4 @@ $teacher=User::model()->findByPk(1);
 $students=$teacher->students;
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3115 2011-03-24 22:35:54Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3117 2011-03-25 00:02:26Z alexander.makarow $</div>
