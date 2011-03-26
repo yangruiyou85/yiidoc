@@ -610,16 +610,8 @@ $beitraege=Beitrag::model()->veroeffentlicht()->kuerzlich()->findAll();
 Scopes müssen grundsätzlich links vom Aufruf einer
 `find`-Methode stehen. Jeder einzelne von ihnen liefert ein Abfragekriterium, das
 mit weiteren Kriterien kombiniert wird, inklusive demjenigen, das als
-Parameter and die `find`-Methode übergeben wurde. Letztendlich fügt man 
+Parameter and die `find`-Methode übergeben wurde. Letztendlich fügt man
 einer Abfrage also eine Liste von Filtern hinzu.
-
-Scopes können auch mit `update`- und `delete`-Methoden verwendet werden. 
-Der folgende Code löscht zum Beispiel alle kürzlich veröffentlichten Beiträge:
-
-~~~
-[php]
-Beitrag::model()->veroeffentlicht()->kuerzlich()->delete();
-~~~
 
 > Note|Hinweis: Scopes können nur mit Methoden auf Klassenebene
 verwendet werden. Das bedeutet, dass die Methoden über `KlassenName::model()`
@@ -688,4 +680,4 @@ $contents=Content::model()->findAll();
 Beachten Sie, dass der Standardscope nur für `SELECT`-Abfragen verwendet wird. 
 Bei `INSERT`-, `UPDATE`- und `DELETE`-Statements wird er ignoriert.
 
-<div class="revision">$Id: database.ar.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 3122 2011-03-25 02:45:43Z qiang.xue $</div>

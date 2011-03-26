@@ -18,7 +18,8 @@ Beziehungsmodell:
 > Info|Info: Je nach DBMS werden Fremdschlüssel-Constraints auf
 > unterschiedliche Arten unterstützt. So verwendet z.B. SQLite 
 > vor Version 3.6.19 keine Constraints. Man kann sie aber trotzdem
-> beim Erstellen einer Tabelle angeben.
+> beim Erstellen einer Tabelle angeben. MySQLs MyISAM-Engine kann gar keine
+> Constraints.
 
 Angeben von Beziehungen
 -----------------------
@@ -214,6 +215,30 @@ $posts=Post::model()->findAll(array(
 );
 ~~~
 
+Relationale Abfragen ohne verknüpfte Models zu beziehen
+-------------------------------------------------------
+
+Manchmal müssen relationale Abfragen ausgeführt werden, ohne dass Daten
+aus den verknüpften Models (Tabellen) benötigt werden. Ein `User` könnte z.B.
+viele `Post`s (Beiträge) haben. Ein Beitrag kann entweder veröffentlicht sein,
+oder sich im Entwurfsmodus befinden, was über das Feld `published` im
+Post-Model festgelegt wird. Nun sei angenommen, man möchte alle Benutzer
+abfragen, die einen Beitrag veröffentlicht haben, ohne dass die Beiträge an
+sich weiter interessieren. Das erreicht man wie folgt:
+
+~~~
+[php]
+$users=User::model()->with(array(
+	'posts'=>array(
+		// von posts soll nichts geliefert werden:
+		'select'=>false,
+		// aber es sollen nur die Benutzer mit veröffentlichten Beiträgen
+		// gewählt werden:
+		'joinType'=>'INNER JOIN',
+		'condition'=>'posts.published=1',
+	),
+))->findAll();
+~~~
 
 Optionen für relationale Abfragen
 ---------------------------------
@@ -282,8 +307,11 @@ verfügbar:
 verwendet werden.
 
    - `offset`: Offset der abzufragenden Zeilen. Kann NICHT mit `BELONGS_TO`
-verwendet werden.   
-   
+verwendet werden.
+
+   - `through`: Name des Models das als Brücke zu den verknüpften Daten
+dienen soll. Kann nur mit `HAS_ONE` und `HAS_MANY` verwendet werden. Diese
+Option ist seit Version 1.1.7 verfügbar.
 
 Hier sehen Sie am Beispiel der `posts`-Beziehung in `User`, wie man einige dieser
 Optionen verwenden kann:
@@ -522,6 +550,20 @@ Bei verknüpften Objekten können Scopes so verwendet werden:
 ~~~
 [php]
 $posts=Post::model()->with('comments:kuerzlich:freigegeben')->findAll();
+// oder seit 1.1.7
+$posts=Post::model()->with(array(
+    'comments'=>array(
+        'scopes'=>array('kuerzlich','freigegeben')
+    ),
+))->findAll();
+// oder seit 1.1.7
+$posts=Post::model()->findAll(array(
+    'with'=>array(
+        'comments'=>array(
+            'scopes'=>array('kuerzlich','freigegeben')
+        ),
+    ),
+));
 ~~~
 
 Diese Abfrage liefert alle Beiträge zusammen mit ihren freigegebenen
@@ -546,10 +588,175 @@ class User extends CActiveRecord
 		);
 	}
 }
+
+// oder seit 1.1.7
+class User extends CActiveRecord
+{
+	public function relations()
+	{
+		return array(
+		    'posts'=>array(self::HAS_MANY, 'Post', 'author_id',
+				'with'=>array(
+					'comments'=>array(
+						'scopes'=>'freigegeben'
+					),
+				),
+			),
+		);
+	}
+}
 ~~~
 
 > Note|Hinweis: Bei relationalen Abfragen können nur Scopes
 verwendet werden, die in [CActiveRecord::scopes] definiert wurden. Man kann
 daher keine parametrisierten Scopes verwenden.
 
-<div class="revision">$Id: database.arr.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+Seit Version 1.1.17 kann man auch bei verknüpften Objekten Scopes mit
+Parametern verwenden. Hat `Post` zum Beispiel einen Scope `bewertung` der eine
+Minimalbewertung als Parameter erwartet, kann man ihn von `User` wie folgt
+verwenden:
+
+~~~
+[php]
+$users=User::model()->findAll(array(
+	'with'=>array(
+		'posts'=>array(
+			'scopes'=>array(
+				'bewertung'=>5,
+			),
+		),
+	),
+));
+~~~
+
+Relationale Abfragen mit through
+--------------------------------
+
+Verwendet man `through`, sollte eine Beziehung wie folgt definiert sein:
+
+~~~
+[php]
+'name'=>array('beziehungsTyp', 'KlassenName', 'fremdSchluessel', 'through'=>'beziehungsName', ...weitere Optionen)
+~~~
+
+Hierbei ist `fremdSchluessel` der Name eines Schlüssels, der
+
+ - in einer Tabelle `beziehungsName` definiert ist
+ - auf eine Tabelle mit Daten für `KlassenName` verweist
+
+`through` kann mit `HAS_ONE` und `HAS_MANY` verwendet werden.
+
+### Through mit HAS_MANY
+
+![HAS_MANY through ER](has_many_through.png)
+
+Ein Beispiel für `HAS_MANY` mit `through` sind Benutzer in einer bestimmten
+Gruppe, falls ein Benutzer über Rollen zu einer Gruppe hinzugefügt wird.
+
+Ein komplizierteres Beispiel wären alle Kommenatre für Benutzer in einer
+bestimmten Gruppe zu beziehen. In diesem Fall müssen mehrere Beziehungen mit
+`through` in einem einzelnen Model verwendet werden:
+
+~~~
+[php]
+class Group extends CActiveRecord
+{
+   ...
+   public function relations()
+   {
+       return array(
+           'roles'=>array(self::HAS_MANY,'Role','group_id'),
+           'users'=>array(self::HAS_MANY,'User','user_id','through'=>'roles'),
+           'comments'=>array(self::HAS_MANY,'Comment','user_id','through'=>'users'),
+       );
+   }
+}
+~~~
+
+### Verwendungsbeispiele
+
+~~~
+[php]
+// Alle Gruppen mit allen zugehörigen Usern beziehen:
+$groups=Group::model()->with('users')->findAll();
+
+// Alle Gruppen mit allen zugehörigen Usern und Rollen beziehen
+$groups=Group::model()->with('roles','users')->findAll();
+
+// Alle User und Rollen beziehen, deren Group-ID 1 ist
+$group=Group::model()->findByPk(1);
+$users=$group->users;
+$roles=$group->roles;
+
+// Alle Kommentare beziehen, deren Group-ID 1 ist
+$group=Group::model()->findByPk(1);
+$comments=$group->comments;
+~~~
+
+### Through mit HAS_ONE
+
+![HAS_ONE through ER](has_one_through.png)
+
+Ein Beispiel für `HAS_ONE` mit `through` wären User-Adressen, die über ein
+Profil an User gebunden sind. All diese Einheiten (User, Profil und Adresse)
+haben entsprechende Models:
+
+~~~
+[php]
+class User extends CActiveRecord
+{
+   ...
+   public function relations()
+   {
+       return array(
+           'profile'=>array(self::HAS_ONE,'Profile','user_id'),
+           'address'=>array(self::HAS_ONE,'Address','profile_id','through'=>'profile'),
+       );
+   }
+}
+~~~
+
+### Verwendungsbeispiele
+
+~~~
+[php]
+// Adresse für den User mit ID 1 beziehen
+$user=User::model()->findByPk(1);
+$address=$user->address;
+~~~
+
+### through auf sich selbst
+
+`through` kann mit einem Model angewendet werden, dass per Brückenmodel auf
+sich selbst verweist. Im folgenden Beispiel unterrichten manche User andere
+User:
+
+![through self ER](through_self.png)
+
+In diesem Fall können Beziehungen wie folgt definiert werden:
+
+~~~
+[php]
+class User extends CActiveRecord
+{
+   ...
+   public function relations()
+   {
+       return array(
+           'mentorships'=>array(self::HAS_MANY,'Mentorship','teacher_id','joinType'=>'INNER JOIN'),
+           'students'=>array(self::HAS_MANY,'User','student_id','through'=>'mentorships','joinType'=>'INNER JOIN'),
+       );
+   }
+}
+~~~
+
+### Verwendungsbeispiele
+
+~~~
+[php]
+// Alle Schüler die von Lehrer mit ID 1 unterrichtet werden
+$teacher=User::model()->findByPk(1);
+$students=$teacher->students;
+~~~
+
+<div class="revision">$Id: database.arr.txt 3117 2011-03-25 00:02:26Z alexander.makarow $</div>
