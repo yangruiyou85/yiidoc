@@ -702,7 +702,7 @@ $comments=$group->comments;
 
 Ett exempel på användning av `HAS_ONE` med `through` är att hämta en användares adress 
 när användaren är kopplad till addressen genom en profil. Alla dessa entiteter 
-(user, profile, and address) har motsvarande modeller:
+(user, profile, och address) har motsvarande modeller:
 
 ~~~
 [php]
@@ -729,7 +729,7 @@ $address=$user->address;
 ~~~
 
 
-### through mot self
+### Egensamband med through 
 
 `through` kan användas för en modell som relaterar till sig själv via en bryggmodell. 
 I exemplet handlar det om en användare som är mentor för andra användare:
