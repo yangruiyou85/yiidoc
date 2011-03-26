@@ -21,7 +21,7 @@ Aliasy nadrzędne
 
 Dla wygody, Yii predefiniuje następujące aliasy nadrzędne: 
 
- - `system`: wskazuje katalog frameworka Yii; 
+ - `system`: wskazuje katalog frameworku Yii; 
  - `zii`: wskazuje na katalog z [biblioteką Zii](/doc/guide/extension.use#zii-extensions); 
  - `application`: wskazuje do [katalogu głównego aplikacji](/doc/guide/basics.application#application-base-directory);
  - `webroot`: wskazuje na katalog zawierający plik [skryptu wejściowego](/doc/guide/basics.entry). 
