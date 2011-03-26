@@ -30,7 +30,9 @@ För att underlätta fördefinierar Yii följande rot-alias:
  - `ext`: refererar till katalogen som innehåller alla [tredjepartstillägg](/doc/guide/extension.overview).
 
 Om applikationen dessutom använder sig av [moduler](/doc/guide/basics.module), 
-fördefinieras också ett rotalias för varje modul-ID. Detta alias refererar till modulens rotsökväg.
+fördefinieras, för varje modul, ett rotalias med samma namn som modul-ID, 
+refererande till modulens rotsökväg. Till exempel, om en applikation använder en modul 
+vars ID är `users`, kommer ett rotalias med namnet `users` att fördefinieras.
 
 
 Importera klasser
@@ -126,4 +128,4 @@ Till exempel klassen `application\components\GoogleMap` måste lagras i en fil s
 kan ges alias `application.components.GoogleMap`.
 
 
-<div class="revision">$Id: basics.namespace.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: basics.namespace.txt 3086 2011-03-15 00:04:53Z qiang.xue $</div>
