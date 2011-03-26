@@ -300,9 +300,12 @@ Dodatkowo, następujące opcje są dostępne dla wybranych relacji podczas opó�
 
    - `offset`: offset dla zwracanych wierszy. Opcja ta nie ma zastosowania 
    dla relacji `BELONGS_TO`.
+   
+   - `through`: nazwa relacji modelu, która będzie używany jako pomost 
+   podczas zwracania powiązanych danych. Opcja ta może zotać ustawiona tylko dla relacji `HAS_ONE` oraz `HAS_MANY`.
+   Opcja ta jest dostępna od wersji 1.1.7.
 
-  Poniżej zmodyfikujemy deklarację relacji `posts` w klasie `User` poprzez 
-  wybranie części z powyższych opcji.
+Poniżej zmodyfikujemy deklarację relacji `posts` w klasie `User` poprzez wybranie części z powyższych opcji.
 
 ~~~
 [php]
@@ -516,11 +519,11 @@ Następujący kod pokazuje, jak zastosować nazwane podzbiory do modelu powiąza
 [php]
 $posts=Post::model()->with('comments:recently:approved')->findAll();
 // lub od 1.1.7
-$posts=Post::model()->with(
+$posts=Post::model()->with(array(
     'comments'=>array(
         'scopes'=>array('recently','approved')
     ),
-)->findAll();
+))->findAll();
 // lub od 1.1.7
 $posts=Post::model()->findAll(array(
     'with'=>array(
@@ -569,13 +572,16 @@ class User extends CActiveRecord
 }
 ~~~
 
+> Note|Uwaga: Nazwane podzbiory zastosowane do powiązanych modeli muszą być określone w CActiveRecord::scopes.
+> W wyniku tego, nie mogą one zostać sparametryozwane.
+
 Poczynając od wersji 1.1.7 pożliwe jest przekazywanie parametrów do ralacyjnych nazwanych podzbiorów.
 Na przykład, jeśli posiadasz podzbiór o nazwie `rated` w modelu `Post`, który określa miminalną ocenę
 postu, możesz go używać z poziomu klasy użytkownika `User` w następujący sposób:
 
 ~~~
 [php]
-$users=User::model()->findAll(
+$users=User::model()->findAll(array(
 	'with'=>array(
 		'posts'=>array(
 			'scopes'=>array(
@@ -583,7 +589,140 @@ $users=User::model()->findAll(
 			),
 		),
 	),
-);
+));
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3061 2011-03-13 11:44:46Z alexander.makarow $</div>
+Zapytania relacyjne z użyciem pomostu (ang. through)
+----------------------------------------------------
+
+W przypadky korzystania z `through`, definicja relacji powinna wyglądać w następujący sposób:
+
+~~~
+[php]
+'relationName'=>array('relationType', 'ClassName', 'foreign_key', 'through'=>'throughRelationName', ...dodatkowe opcje)
+~~~
+
+W powyższym przykładzie wartość `foreign_key` jest nazwą klucza, który:
+
+  - jest zdefiniowany w tabeli określonej poprzez `throughRelationName`.
+  - wskazuje na tabelę przechowującą dane dla modelu `ClassName`.
+
+Pomost `through` można używać z relacjami typu `HAS_ONE` oraz `HAS_MANY`.
+
+### Pomosty w HAS_MANY
+
+![Diagram relacji encji dla pomostów w HAS_MANY](has_many_through.png)
+
+Przykładem relacji `HAS_MANY` z pomostem `through` jest zwracanie użytkowników danej grupy 
+jeśli są oni przypisani do nich poprzez role.
+
+Trochę bardziej skomplikowanym przykładem jest zwracanie wszyskich komentarzy dla 
+wszystkich użytkowników danej grupy. W takim przypadku musimy użyć kilku relacji z
+pomostem `through` w jednym modelu:
+
+~~~
+[php]
+class Group extends CActiveRecord
+{
+   ...
+   public function relations()
+   {
+       return array(
+           'roles'=>array(self::HAS_MANY,'Role','group_id'),
+           'users'=>array(self::HAS_MANY,'User','user_id','through'=>'roles'),
+           'comments'=>array(self::HAS_MANY,'Comment','user_id','through'=>'users'),
+       );
+   }
+}
+~~~
+
+#### Przykłady użycia
+
+~~~
+[php]
+// zwtóć wszystkie grupy wraz z odpowiadającymi im użytkownikami
+$groups=Group::model()->with('users')->findAll();
+
+// zwróć wsztystkie grupy wraz z odpowiadającymi im użytkownikami i rolami
+$groups=Group::model()->with('roles','users')->findAll();
+
+// zwróć wszystkich użytkowników i role gdzie ID grupy to 1
+$group=Group::model()->findByPk(1);
+$users=$group->users;
+$roles=$group->roles;
+
+// zwróć wszystkie komentarze gdzie ID grupy to 1
+$group=Group::model()->findByPk(1);
+$comments=$group->comments;
+~~~
+
+
+### Pomosty w HAS_ONE
+
+![Diagram relacji encji dla pomostów w HAS_ONE](has_one_through.png)
+
+Przykładem relacji `HAS_ONE` z pomostem `through` jest zwracanie adresu użytkownika
+gdy adres jest przypisane do użytkownika poprzez profil. Wszystkie 
+user is bound to address using profile. Każdy z tych bytów (użytkownik, profil oraz adres)
+posiada odpowiadające im modele:
+
+~~~
+[php]
+class User extends CActiveRecord
+{
+   ...
+   public function relations()
+   {
+       return array(
+           'profile'=>array(self::HAS_ONE,'Profile','user_id'),
+           'address'=>array(self::HAS_ONE,'Address','profile_id','through'=>'profile'),
+       );
+   }
+}
+~~~
+
+#### Przykłady użycia
+
+~~~
+[php]
+// zwróć adres użytkownika o ID równym 1
+$user=User::model()->findByPk(1);
+$address=$user->address;
+~~~
+
+
+### pomost wskazujący na własny model
+
+Pomost `through` może być używany w modelu wiążącym się z samym sobą za pomocą pomostowego modelu. W naszym przypadku
+jest to użytkownik będący mentorem innego użytkownika:
+
+
+![Diagram relacji encji dla pomostów wskazujących na własny model](through_self.png)
+
+W takim przypadku możemy określić relacje następująco:
+
+~~~
+[php]
+class User extends CActiveRecord
+{
+   ...
+   public function relations()
+   {
+       return array(
+           'mentorships'=>array(self::HAS_MANY,'Mentorship','teacher_id','joinType'=>'INNER JOIN'),
+           'students'=>array(self::HAS_MANY,'User','student_id','through'=>'mentorships','joinType'=>'INNER JOIN'),
+       );
+   }
+}
+~~~
+
+#### Przykłady użycia
+
+~~~
+[php]
+// zwróć wszystkich studentów prowadzonych przez nauczyciela o ID równym 1
+$teacher=User::model()->findByPk(1);
+$students=$teacher->students;
+~~~
+
+<div class="revision">$Id: database.arr.txt 3127 2011-03-26 12:21:47Z alexander.makarow $</div>
