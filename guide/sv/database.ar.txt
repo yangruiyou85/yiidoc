@@ -603,14 +603,6 @@ Vart och ett av dem tillhandahåller ett frågekriterium som kombineras med andr
 inklusive det som lämnas med i anropet `find`-metoden. Nettoeffekten blir som att lägga till 
 en lista av filter till en fråga.
 
-Namngivna omfång kan även användas med metoderna `update` och `delete`. Till exempel följande kod 
-skulle ta bort alla nyligen publicerade postningar:
-
-~~~
-[php]
-Post::model()->published()->recently()->delete();
-~~~
-
 > Note|Märk: Namngivna omfång kan endast användas för metoder på klassnivå. 
 Det innebär att metoden måste anropas på formatet `Klassnamn::model()`.
 
@@ -646,13 +638,13 @@ Om parametern 3 ovan utelämnas kommer de fem senaste postningarna att
 hämtas, enligt förbestämt standardvärde.
 
 
-### Förbestämt namngivet omfång
+### Förbestämt omfång
 
-En modellklass kan ha ett förbestämt namngivet omfång som kommer att åsättas 
+En modellklass kan ha ett förbestämt omfång som kommer att åsättas 
 alla frågor (inklusive relationella sådana) avseende modellen. Till exempel kan  
 en webbplats som stöder flera språk vilja begränsa innehåll som visas till 
 det språk den aktuella användaren valt. Eftersom det kan bli många frågor 
-gällande webbplatsens innehåll, kan ett förbestämt namngivet omfång lindra 
+gällande webbplatsens innehåll, kan ett förbestämt omfång lindra 
 detta problem. För att göra detta, åsidosätt metoden [CActiveRecord::defaultScope] enligt följande,
 
 ~~~
@@ -675,7 +667,7 @@ Nu kommer följande metodanrop att automatiskt använda frågekriteriet som defi
 $contents=Content::model()->findAll();
 ~~~
 
-Märk att ett förbestämt namngivet omfång endast gäller för `SELECT`-frågor. 
+Märk att ett förbestämt omfång endast gäller för `SELECT`-frågor. 
 Det ignoreras för `INSERT`-, `UPDATE`- och `DELETE`-frågor.
 
-<div class="revision">$Id: database.ar.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 3122 2011-03-25 02:45:43Z qiang.xue $</div>
