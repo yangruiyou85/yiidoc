@@ -607,14 +607,9 @@ $posts=Post::model()->opublikowane()->najnowsze(3)->findAll();
 
 Jeśli w powyższym kodzie nie przekazalibyśmy 3, otrzymalibyśmy domyślnie 5 ostatnio opublikowanych postów.
 
-### Domyślne nazwane podzbiory
+### Domyślne podzbiory
 
-Klasa modelu może posiadać domyślne nazwane podzbiory, które będą stosowane dla wszystkich zapytań
-(włączająć w to zapytania relacyjne) dla modelu. Na przykład, strona wspierająca wielojęzyczność| 
-może chcież wyświetlać zawartość w aktualnie wybranym języku. Ponieważ, możemy mieć wiele 
-zapytań związanych z zawartością strony, możemy zdecydować się na zdefiniowanie
-domyśnie nazwanych podzbiorów, aby rozwiązać ten problem. Aby to zrobić, nadpisujemy 
-metodę [CActiveRecord::defaultScope] w następujący sposób:
+Klasa modelu może posiadać domyślne podzbiory, które będą stosowane dla wszystkich zapytań (włączająć w to zapytania relacyjne) dla modelu. Na przykład, strona wspierająca wielojęzyczność może chcież wyświetlać zawartość w aktualnie wybranym języku. Ponieważ, możemy mieć wiele zapytań związanych z zawartością strony, możemy zdecydować się na zdefiniowanie domyślnych podzbiorów, aby rozwiązać ten problem. Aby to zrobić, nadpisujemy  metodę [CActiveRecord::defaultScope] w następujący sposób:
 
 
 ~~~
@@ -638,6 +633,6 @@ kreteriów zapytania:
 $contents=Content::model()->findAll();
 ~~~
 
-Zauważ, że domyślne nazwane podzbiory mają zastosowanie tylko dla zapytań `SELECT`. Są one ignorowane dla zapytań `INSERT`, `UPDATE` oraz `DELETE`.
+Zauważ, że domyślne podzbiory mają zastosowanie tylko dla zapytań `SELECT`. Są one ignorowane dla zapytań `INSERT`, `UPDATE` oraz `DELETE`.
 
-<div class="revision">$Id: database.ar.txt 3093 2011-03-16 15:50:34Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 3122 2011-03-25 02:45:43Z qiang.xue $</div>
