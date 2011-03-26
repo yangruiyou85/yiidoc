@@ -40,6 +40,17 @@ andere DB-Platform erleichtert.
 Der Query Builder muss nicht zwingend verwendet werden. Für einfache Abfragen
 ist es sogar einfacher und schneller die SQL-Abfragen direkt in den Code zu schreiben.
 
+>Note|Hinweis: Der Query Builder kann nicht verwendet werden, um eine
+>vorhandene Abfrage zu verändern. Hier ein Beispiel, was nicht funktioniert:
+>
+> ~~~
+> [php]
+> $command = Yii::app()->db->createCommand('SELECT * FROM tbl_user');
+> // die folgende Zeile wird den WHERE-Ausdruck NICHT anhängen:
+> $command->where('id=:id', array(':id'=>$id));
+> ~~~
+>
+> In anderen Worten: Mischen sie keine reinen SQL-Ausdrücke mit dem Query Builder.
 
 Vorbereiten des Query Builders
 ------------------------------
@@ -75,21 +86,21 @@ SELECT-Ausdrucks zusammenzufügen. Da alle diese Methdoen die
 [CDbCommand]-Instanz zurückgeben, kann man die Aufrufe wie im Eingangsbeispiel
 gezeigt verketten.
 
-* [select|CDbCommand::select]: beschreibt den SELECT-Teil der Abfrage
-* [selectDistinct|CDbCommand::selectDistinct]: beschreibt den SELECT-Teil der Abfrage und schaltet das DISTINCT-Flag ein
-* [from|CDbCommand::from]: beschreibt den FROM-Teil der Abfrage
-* [where|CDbCommand::where]: beschreibt den WHERE-Teil der Abfrage
-* [join|CDbCommand::join]: hängt ein INNER JOIN-Fragment an
-* [leftJoin|CDbCommand::leftJoin]: hängt ein LEFT OUTER JOIN-Fragment an
-* [rightJoin|CDbCommand::rightJoin]: hängt ein RIGHT OUTER JOIN-Fragment an
-* [crossJoin|CDbCommand::crossJoin]: hängt ein CROSS JOIN-Fragment an
-* [naturalJoin|CDbCommand::naturalJoin]: hängt ein NATURAL JOIN-Fragment an
-* [group|CDbCommand::group]: beschreibt den GROUP BY-Teil der Abfrage
-* [having|CDbCommand::having]: beschreibt den HAVING-Teil der Abfrage
-* [order|CDbCommand::order]: beschreibt den ORDER BY-Teil der Abfrage
-* [limit|CDbCommand::limit]: beschreibt den LIMIT-Teil der Abfrage
-* [offset|CDbCommand::offset]: beschreibt den OFFSET-Teil der Abfrage
-* [union|CDbCommand::union]: hängt ein UNION-Fragment an
+* [select()|CDbCommand::select()]: beschreibt den SELECT-Teil der Abfrage
+* [selectDistinct()|CDbCommand::selectDistinct()]: beschreibt den SELECT-Teil der Abfrage und schaltet das DISTINCT-Flag ein
+* [from()|CDbCommand::from()]: beschreibt den FROM-Teil der Abfrage
+* [where()|CDbCommand::where()]: beschreibt den WHERE-Teil der Abfrage
+* [join()|CDbCommand::join()]: hängt ein INNER JOIN-Fragment an
+* [leftJoin()|CDbCommand::leftJoin()]: hängt ein LEFT OUTER JOIN-Fragment an
+* [rightJoin()|CDbCommand::rightJoin()]: hängt ein RIGHT OUTER JOIN-Fragment an
+* [crossJoin()|CDbCommand::crossJoin()]: hängt ein CROSS JOIN-Fragment an
+* [naturalJoin()|CDbCommand::naturalJoin()]: hängt ein NATURAL JOIN-Fragment an
+* [group()|CDbCommand::group()]: beschreibt den GROUP BY-Teil der Abfrage
+* [having()|CDbCommand::having()]: beschreibt den HAVING-Teil der Abfrage
+* [order()|CDbCommand::order()]: beschreibt den ORDER BY-Teil der Abfrage
+* [limit()|CDbCommand::limit()]: beschreibt den LIMIT-Teil der Abfrage
+* [offset()|CDbCommand::offset()]: beschreibt den OFFSET-Teil der Abfrage
+* [union()|CDbCommand::union()]: hängt ein UNION-Fragment an
 
 
 Wir beschreiben im folgenden, wie man diese Query Builder Methoden verwendet.
@@ -98,14 +109,14 @@ Sie, dass sich je nach verwendetem DBMS das verwendete Zeichen für die
 Anführungszeichen bei Tabellen- und Spaltennamen sowie der Werte unterscheiden kann.
 
 
-### select
+### select()
 
 ~~~
 [php]
 function select($columns='*')
 ~~~
 
-Die [select|CDbCommand::select]-Methode beschreibt den `SELECT`-Teil der
+Die [select()|CDbCommand::select()]-Methode beschreibt den `SELECT`-Teil der
 Abfrage. Der `$columns` Parameter gibt die SELECT-Spalten entweder als String
 mit den Spaltennamen durch Komma getrennt oder als Array an. Spaltennamen
 können Tabellenpräfixe und/oder Spaltenaliase enthalten. Die Methode wird die
@@ -130,14 +141,14 @@ select(array('id', 'count(*) as num'))
 ~~~
 
 
-### selectDistinct
+### selectDistinct()
 
 ~~~
 [php]
 function selectDistinct($columns)
 ~~~
 
-Die [selectDistinct|CDbCommand::selectDistinct]-Methode ähnelt
+Die [selectDistinct()|CDbCommand::selectDistinct()]-Methode ähnelt
 [select|CDbCommand::select], mit dem Unterschied dass es das `DISTINCT`-Flag
 aktiviert. For example, `selectDistinct('id, username')` will generate the following SQL:
 
@@ -146,14 +157,14 @@ SELECT DISTINCT `id`, `username`
 ~~~
 
 
-### from
+### from()
 
 ~~~
 [php]
 function from($tables)
 ~~~
 
-Die [from|CDbCommand::from]-Methode beschreibt den `FROM`-Teil einer Abfrage.
+Die [from()|CDbCommand::from()]-Methode beschreibt den `FROM`-Teil einer Abfrage.
 Der `$tables`-Parameter gibt die Tabellennamen entweder als String mit Tabellennamen 
 durch Komma getrennt oder als Array an. Tabellennamen können Schemapräfixe
 (z.B. `public.tbl_user`) und/oder Tabellenaliase (z.B. `tbl_user u`)
@@ -176,14 +187,14 @@ from(array('tbl_user', '(select * from tbl_profile) p'))
 ~~~
 
 
-### where
+### where()
 
 ~~~
 [php]
 function where($conditions, $params=array())
 ~~~
 
-Die [where|CDbCommand::where]-Methode beschreibt den `WHERE`-Teil einer
+Die [where()|CDbCommand::where()]-Methode beschreibt den `WHERE`-Teil einer
 Abfrage. Der `$conditions`-Parameter gibt die Abfragebedingung an und 
 `$params` die Parameter die an die ganze Abfrage gebunden werden sollen.
 Der `$conditions`-Parameter kann entweder ein String (z.B. `id=1`) oder ein
@@ -272,14 +283,14 @@ $command->where(array('like', 'title', '%'.$keyword.'%'));
 ~~~
 
 
-### order
+### order()
 
 ~~~
 [php]
 function order($columns)
 ~~~
 
-Die [order|CDbCommand::order]-Methode bestimmt den `ORDER BY`-Teil einer
+Die [order()|CDbCommand::order()]-Methode bestimmt den `ORDER BY`-Teil einer
 Abfrage. Der Parameter `$columns` gibt die Spalten an, nach denen sortiert
 werden soll und kann entweder ein String aus Spaltennamen und
 Sortierrichtungen (`ASC` oder `DESC`) sein, die durch Komma getrennt werden oder eine Array aus
@@ -298,7 +309,7 @@ order(array('tbl_profile.name', 'id desc')
 ~~~
 
 
-### limit und `offset`
+### limit() und offset()
 
 ~~~
 [php]
@@ -306,8 +317,8 @@ function limit($limit, $offset=null)
 function offset($offset)
 ~~~
 
-Die [limit|CDbCommand::limit]- und [offset|CDbCommand::offset]-Methods
-definieren den `LIMIT`- und `OFFSET`-Teil einer Abfra. Beachten Sie, dass
+Die [limit()|CDbCommand::limit()]- und [offset()|CDbCommand::offset()]-Methoden
+definieren den `LIMIT`- und `OFFSET`-Teil einer Abfrage. Beachten Sie, dass
 diese Syntax evtl. nicht von allen DBMS unterstützt wird. In diesem Fall wird
 der gesamte Ausdruck vom Query Builder so umgeschrieben, dass er diese
 Funktion simuliert.
@@ -325,7 +336,7 @@ offset(20)
 ~~~
 
 
-### join und Varianten
+### join() und Varianten
 
 ~~~
 [php]
@@ -336,7 +347,7 @@ function crossJoin($table)
 function naturalJoin($table)
 ~~~
 
-Die [join|CDbCommand::join]-Methode und deren Varianten legen fest, wie andere
+Die [join()|CDbCommand::join()]-Methode und deren Varianten legen fest, wie andere
 Tabellen mit `INNER JOIN`, `LEFT OUTER JOIN`, `RIGHT OUTER JOIN`, `CROSS JOIN`
 oder `NATURAL JOIN` angebunden werden sollen. Der `$table`-Parameter gibt den
 Namen der anzubindenden Tabelle an und kann ein Schemapräfix und/oder einen Alias
@@ -360,14 +371,14 @@ leftJoin('pub.tbl_profile p', 'p.user_id=id AND type=:type', array(':type'=>1))
 ~~~
 
 
-### group
+### group()
 
 ~~~
 [php]
 function group($columns)
 ~~~
 
-Mit der [group|CDbCommand::group]-Methode bestimmt man den `GROUP BY`-Teil
+Mit der [group()|CDbCommand::group()]-Methode bestimmt man den `GROUP BY`-Teil
 einer Abfrage. Der Parameter `$columns` gibt die Spalten an, nach denen
 gruppiert werden soll und kann entweder ein String aus Spaltennamen sein, 
 die durch Komma getrennt werden oder eine Array aus
@@ -386,15 +397,15 @@ group(array('tbl_profile.name', 'id')
 ~~~
 
 
-### having
+### having()
 
 ~~~
 [php]
 function having($conditions, $params=array())
 ~~~
 
-Die [having|CDbCommand::having]-Methode gibt den `HAVING`-Teil einer Abfrage
-an. Sie wird analog zur [where|CDbCommand::where]-Methode verwendet.
+Die [having()|CDbCommand::having()]-Methode gibt den `HAVING`-Teil einer Abfrage
+an. Sie wird analog zur [where()|CDbCommand::where()]-Methode verwendet.
 
 Einige Beispiele:
 
@@ -407,14 +418,14 @@ having(array('or', 'id=1', 'id=2'))
 ~~~
 
 
-### union
+### union()
 
 ~~~
 [php]
 function union($sql)
 ~~~
 
-Die [union|CDbCommand::union]-Methode gibt den `UNION`-Teil einer Abfrage an.
+Die [union()|CDbCommand::union()]-Methode gibt den `UNION`-Teil einer Abfrage an.
 Sie fügt `$sql` per `UNION` an das bestehende SQL an. Ruft man die Methode
 mehrmals auf, werden auch mehrere SQLs angehängt.
 
@@ -516,19 +527,19 @@ Methoden `inser`, `update` und `delete` an. Anders als bei den oben
 beschriebenen Methoden für SELECT-Abfragen, erzeugt jede dieser Methoden einen
 vollständigen SQL-Ausdruck und führt ihn sofort aus.
 
-* [insert|CDbCommand::insert]: Fügt eine Zeile in ein Tabelle ein
-* [update|CDbCommand::update]: Aktualisiert eine Zeile in einer Tabelle
-* [delete|CDbCommand::delete]: Löscht eine Zeile aus einer Tabelle
+* [insert()|CDbCommand::insert()]: Fügt eine Zeile in ein Tabelle ein
+* [update()|CDbCommand::update()]: Aktualisiert eine Zeile in einer Tabelle
+* [delete()|CDbCommand::delete()]: Löscht eine Zeile aus einer Tabelle
 
 
-### insert
+### insert()
 
 ~~~
 [php]
 function insert($table, $columns)
 ~~~
 
-Die [insert|CDbCommand::insert]-Methode erzeugt einen `INSERT`-Ausdruck und
+Die [insert()|CDbCommand::insert()]-Methode erzeugt einen `INSERT`-Ausdruck und
 führt ihn aus. Der Parameter `$table` gibt den Namen der Tabelle an, in die
 eine Zeile eingefügt werden soll. Die Werte werden in `$columns` als Array mit
 den jeweiligen Spaltennamen als Schlüssel übergeben. Der Tabellenname wird
@@ -548,14 +559,14 @@ $command->insert('tbl_user', array(
 ~~~
 
 
-### update
+### update()
 
 ~~~
 [php]
 function update($table, $columns, $conditions='', $params=array())
 ~~~
 
-Die [update|CDbCommand::update]-Methode erzeugt einen `UPDATE`-Ausdruck und
+Die [update()|CDbCommand::update()]-Methode erzeugt einen `UPDATE`-Ausdruck und
 führt ihn aus. Die Tabelle wird in `$table` angegeben, die Parameter als
 Name-Wert-Paare im Array `$columns`. `$conditions` und `$params` werden wie
 bei [where|CDbCommand::where] verwendet und spezifizieren den  `WHERE`-Teil
@@ -574,16 +585,16 @@ $command->update('tbl_user', array(
 ~~~
 
 
-### delete
+### delete()
 
 ~~~
 [php]
 function delete($table, $conditions='', $params=array())
 ~~~
 
-Die [delete|CDbCommand::delete]-Methode erzeugt einen `DELETE`-Ausdruck und
+Die [delete()|CDbCommand::delete()]-Methode erzeugt einen `DELETE`-Ausdruck und
 führt ihn aus. Die Tabelle wird in `$table` angegeben. `$conditions` und `$params` werden wie
-bei [where|CDbCommand::where] verwendet und spezifizieren den  `WHERE`-Teil
+bei [where()|CDbCommand::where()] verwendet und spezifizieren den  `WHERE`-Teil
 im `DELETE` Ausdruck. Der Tabellenname wird wieder automatisch in korrekte Anführungszeichen 
 gesetzt und die Daten als Parameter an den Ausdruck gebunden.
 
@@ -604,16 +615,16 @@ Neben den Funktionen zum Abfragen und Ändern von Daten, unterstützt der Query
 Builder auch Änderungen an der Datenbank selbst. Im einzelnen stehen zur
 Verfügung:
 
-* [createTable|CDbCommand::createTable]: Erstellt eine Tabelle
-* [renameTable|CDbCommand::renameTable]: Benennt eine Tabelle um
-* [dropTable|CDbCommand::dropTable]: Entfernt eine Tabelle
-* [truncateTable|CDbCommand::truncateTable]: Leert eine Tabelle
-* [addColumn|CDbCommand::addColumn]: Fügt eine Tabellenspalte hinzu
-* [renameColumn|CDbCommand::renameColumn]: Benennt eine Tabellenspalte um
-* [alterColumn|CDbCommand::alterColumn]: Verändert eine Tabellenspalte
-* [dropColumn|CDbCommand::dropColumn]: Entfernt eine Tabellenspalte
-* [createIndex|CDbCommand::createIndex]: Erstellt einen Index
-* [dropIndex|CDbCommand::dropIndex]: Entfernt einen Index
+* [createTable()|CDbCommand::createTable()]: Erstellt eine Tabelle
+* [renameTable()|CDbCommand::renameTable()]: Benennt eine Tabelle um
+* [dropTable()|CDbCommand::dropTable()]: Entfernt eine Tabelle
+* [truncateTable()|CDbCommand::truncateTable()]: Leert eine Tabelle
+* [addColumn()|CDbCommand::addColumn()]: Fügt eine Tabellenspalte hinzu
+* [renameColumn()|CDbCommand::renameColumn()]: Benennt eine Tabellenspalte um
+* [alterColumn()|CDbCommand::alterColumn()]: Verändert eine Tabellenspalte
+* [dropColumn()|CDbCommand::dropColumn()]: Entfernt eine Tabellenspalte
+* [createIndex()|CDbCommand::createIndex()]: Erstellt einen Index
+* [dropIndex()|CDbCommand::dropIndex()]: Entfernt einen Index
 
 > Info|Info: Obwohl Datenbanksysteme ganz unterschiedliche Ausdrücke für
 > diesee Änderungen erwarten, zielt der Query Builder auf eine
@@ -644,14 +655,14 @@ Folgende abstrakten Datentypen werden unterstützt:
 * `boolean`: Bool'scher Wert, wird by MySQL zu `tinyint(1)`
 
 
-###createTable
+###createTable()
 
 ~~~
 [php]
 function createTable($table, $columns, $options=null)
 ~~~
 
-Der Befehl [createTable|CDbCommand::createTable] führt den SQL-Ausdruck zum
+Der Befehl [createTable()|CDbCommand::createTable()] führt den SQL-Ausdruck zum
 Erstellen einer Tabelle aus. Der Parameter `$table` gibt den Namen der neuen
 Tabelle an, `$columns` enthält die anzulegenden Spalten in Array-Form (z.B.
 `'username'=>'string'`). Der Parameter `$options` kann ein weiteres SQL-Fragment
@@ -685,14 +696,14 @@ createTable('tbl_user', array(
 ~~~
 
 
-###renameTable
+###renameTable()
 
 ~~~
 [php]
 function renameTable($table, $newName)
 ~~~
 
-Mit [renameTable|CDbCommand::renameTable] wird die Tabelle mit dem Namen
+Mit [renameTable()|CDbCommand::renameTable()] wird die Tabelle mit dem Namen
 `$table` nach `$newName` umbenannt. Die Namen werden in die korrekten
 Anführungszeichen eingefasst.
 
@@ -705,14 +716,14 @@ renameTable('tbl_users', 'tbl_user')
 ~~~
 
 
-###dropTable
+###dropTable()
 
 ~~~
 [php]
 function dropTable($table)
 ~~~
 
-Der Befehl [dropTable|CDbCommand::dropTable] führt den SQL-Ausdruck zum
+Der Befehl [dropTable()|CDbCommand::dropTable()] führt den SQL-Ausdruck zum
 Löschen einer Tabelle aus. `$table` enthält den Namen der Tabelle, der vom
 Query Builder in die passenden Anführungszeichen gesetzt wird.
 
@@ -724,14 +735,14 @@ Ein Beispiel zum Löschen einer Tabelle:
 dropTable('tbl_user')
 ~~~
 
-###truncateTable
+###truncateTable()
 
 ~~~
 [php]
 function truncateTable($table)
 ~~~
 
-Mit der [truncateTable|CDbCommand::truncateTable]-Methode wird das SQL zum
+Mit der [truncateTable()|CDbCommand::truncateTable()]-Methode wird das SQL zum
 Leeren der Einträge in Tabelle `$table` ausgeführt. Der Tabellenname wird in
 die passenden Anführungszeichen gesetzt.
 
@@ -744,14 +755,14 @@ truncateTable('tbl_user')
 ~~~
 
 
-###addColumn
+###addColumn()
 
 ~~~
 [php]
 function addColumn($table, $column, $type)
 ~~~
 
-Mit [addColumn|CDbCommand::addColumn] wird ein SQL-Ausdruck ausgeführt,
+Mit [addColumn()|CDbCommand::addColumn()] wird ein SQL-Ausdruck ausgeführt,
 der der Tabelle `$table` eine neue Spalte namens `$column`
 hinzufügt. Als Typ `$type` kann ein abstrakter Datentyp angegeben werden.
 Tabellen- und Spaltennamen werden vom Query Builder in die richtigen
@@ -766,14 +777,14 @@ addColumn('tbl_user', 'email', 'string NOT NULL')
 ~~~
 
 
-###dropColumn
+###dropColumn()
 
 ~~~
 [php]
 function dropColumn($table, $column)
 ~~~
 
-[dropColumn|CDbCommand::dropColumn] führt das SQL zum Entfernen einer
+[dropColumn()|CDbCommand::dropColumn()] führt das SQL zum Entfernen einer
 Tabellenspalte aus. `$table` gibt den Namen der Tabelle an, aus der die Spalte
 `$column` entfernt werden soll. Beide Namen werden in die korrekten
 Anführungszeichen eingefasst.
@@ -787,14 +798,14 @@ dropColumn('tbl_user', 'location')
 ~~~
 
 
-###renameColumn
+###renameColumn()
 
 ~~~
 [php]
 function renameColumn($table, $name, $newName)
 ~~~
 
-Mit [renameColumn|CDbCommand::renameColumn] wird die Spalte `$name` in der
+Mit [renameColumn()|CDbCommand::renameColumn()] wird die Spalte `$name` in der
 Tabelle `$table` nach `$newName` umbenannt. Alle Namen werden in die richtigen
 Anführungszeichen gesetzt.
 
@@ -807,14 +818,14 @@ renameColumn('tbl_user', 'name', 'username')
 ~~~
 
 
-###alterColumn
+###alterColumn()
 
 ~~~
 [php]
 function alterColumn($table, $column, $type)
 ~~~
 
-Mit der Methode [alterColumn|CDbCommand::alterColumn] wird eine Tabellenspalte
+Mit der Methode [alterColumn()|CDbCommand::alterColumn()] wird eine Tabellenspalte
 verändert. `$table` gibt den Namen der Tabelle, `$column` den Namen der darin
 enthaltenen zu ändernden Spalte an. `$type` gibt den neuen Datentypen der
 Spalte an und kann auch wieder einen abstrakten Datentypen enthalten.
@@ -831,7 +842,7 @@ alterColumn('tbl_user', 'username', 'string NOT NULL')
 
 
 
-###addForeignKey
+###addForeignKey()
 
 ~~~
 [php]
@@ -839,7 +850,7 @@ function addForeignKey($name, $table, $columns,
 	$refTable, $refColumns, $delete=null, $update=null)
 ~~~
 
-Die Methode [addForeignKey|CDbCommand::addForeignKey] führt einen SQL-Ausdruck
+Die Methode [addForeignKey()|CDbCommand::addForeignKey()] führt einen SQL-Ausdruck
 aus, der eine Fremdschlüsselbeziehung zu einer Tabelle hinzufügt. Der
 `$name`-Parameter legt den Namen der Beziehung fest. `$table` und
 `$columns` definieren Tabellen- und Spaltenname(n) des Fremschlüssels. Mehrere
@@ -863,14 +874,14 @@ addForeignKey('fk_profile_user_id', 'tbl_profile', 'user_id',
 ~~~
 
 
-###dropForeignKey
+###dropForeignKey()
 
 ~~~
 [php]
 function dropForeignKey($name, $table)
 ~~~
 
-Mit [dropForeignKey|CDbCommand::dropForeignKey] wird eine
+Mit [dropForeignKey()|CDbCommand::dropForeignKey()] wird eine
 Fremdschlüsselbeziehung gelöscht. `$name` muss dabei den Namen der zu
 löschenden Beziehung, `$table` die Tabelle für die er definiert wurde
 enthalten. Beide Namen werden in die richtigen Anführungszeichen eingefasst. 
@@ -884,14 +895,14 @@ dropForeignKey('fk_profile_user_id', 'tbl_profile')
 ~~~
 
 
-###createIndex
+###createIndex()
 
 ~~~
 [php]
 function createIndex($name, $table, $column, $unique=false)
 ~~~
 
-[createIndex|CDbCommand::createIndex] erzeugt in der Tabelle `$table` einen
+[createIndex()|CDbCommand::createIndex()] erzeugt in der Tabelle `$table` einen
 Index mit dem Namen `$name` über die Spalte `$column`. Der Parameter `$unique`
 gibt an, ob ein eindeutiger Index erzeugt werden soll. Bei Indizes über
 mehrere Spalten müssen die einzelnen Namen mit Kommas getrennt werden. Alle
@@ -906,14 +917,14 @@ createIndex('idx_username', 'tbl_user')
 ~~~
 
 
-###dropIndex
+###dropIndex()
 
 ~~~
 [php]
 function dropIndex($name, $table)
 ~~~
 
-[dropIndex|CDbCommand::dropIndex] löscht den Index mit dem Namen `$name` aus
+[dropIndex()|CDbCommand::dropIndex()] löscht den Index mit dem Namen `$name` aus
 der Tabelle `$table`. Beide Namen werden in die korrekten Anführungszeichen
 gesetzt. 
 
@@ -925,4 +936,4 @@ Hier ein Beispiel:
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2920 2011-01-28 07:56:42Z mdomba $</div>
+<div class="revision">$Id: database.query-builder.txt 2979 2011-02-20 02:35:48Z alexander.makarow $</div>

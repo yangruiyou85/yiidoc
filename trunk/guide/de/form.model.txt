@@ -145,6 +145,9 @@ Attribut oder einer Konstanten übereinstimmt.
 
    - `email`: Alias für [CEmailValidator]; prüft auf eine gültige E-Mail Adresse.
 
+   - `date` : Alias für [CDateValidator]; stellt sicher, dass das Attribut
+ein gültiges Datum, eine Uhrzeit oder eine Datetime enthält.
+
    - `default`: Alias für [CDefaultValueValidator]; weist dem Attribut einen
 Standardwert zu.
 
@@ -374,4 +377,4 @@ können die Labels angepasst werden. Wie wir in den nächsten Abschnitten sehen
 werden, ermöglicht die Labeldefinition innerhalb des Models, die 
 zugehörigen Formulare schnell und effektiv zu erzeugen.
 
-<div class="revision">$Id: form.model.txt 2890 2011-01-18 15:58:34Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 3052 2011-03-12 14:27:07Z qiang.xue $</div>
