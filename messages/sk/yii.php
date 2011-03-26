@@ -28,7 +28,7 @@ return array (
   '&lt; Previous' => 'Predchádzajúca',
   '&lt;&lt; First' => 'Prvá',
   'Active Record requires a "db" CDbConnection application component.' => 'Active Record vyžaduje komponent aplikácie "db" CDbConnection.',
-  'Active record "{class}" has an invalid configuration for relation "{relation}". It must specify the relation type, the related active record class and the foreign key.' => 'Active record "{class}" má neplatnä konfiguráciu pre reláciu "{relation}". Konfigurácia musí špecifikovať typ relácie, Active record objekt a foreign key.',
+  'Active record "{class}" has an invalid configuration for relation "{relation}". It must specify the relation type, the related active record class and the foreign key.' => 'Active record "{class}" má neplatnú konfiguráciu pre reláciu "{relation}". Konfigurácia musí špecifikovať typ relácie, Active record objekt a foreign key.',
   'Active record "{class}" is trying to select an invalid column "{column}". Note, the column must exist in the table or be an expression with alias.' => 'Active record "{class}" sa pokúsila nájsť neplatný stĺpec "{column}". Pozor - hľadaný stĺpec musí existovať v databáze, alebo musí byť výrazom s aliasom.',
   'Active record class "{class}" does not have a scope named "{scope}".' => 'Active record objekt "{class}" nemá priradený menný priestor.',
   'Adding a foreign key constraint to an existing table is not supported by SQLite.' => 'Pridanie foreign key do existujúcej tabuľky nie je v prípade databázy SQLite možné.',
