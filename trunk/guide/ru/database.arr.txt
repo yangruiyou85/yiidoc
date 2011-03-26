@@ -182,7 +182,7 @@ $posts=Post::model()->findAll(array(
 ~~~
 
 
-Релационный запрос без получения связанных моделей
+Реляционный запрос без получения связанных моделей
 --------------------------------------------------
 
 Иногда требуется выполнить запрос с использованием отношения, но, при этом,
@@ -571,13 +571,13 @@ $users=User::model()->findAll(array(
 
 ~~~
 [php]
-'relationName'=>array('типОтношения', 'ИмяКласса', 'внешний_ключ', 'through'=>'имяОтношения', ...дополнительные параметры)
+'relationName'=>array('relationType', 'ClassName', 'foreign_key', 'through'=>'throughRelationName', ...дополнительные параметры)
 ~~~
 
-Здесь `внешний_ключ` — имя ключа, который:
+Здесь `foreign_key` — имя ключа, который:
 
-  - Определён в таблице, указанной в отношении `имяОтношения`.
-  - Указывает на таблицу, содержащую данные модели `ИмяКласса`.
+  - Определён в таблице, указанной в отношении `throughRelationName`.
+  - Указывает на таблицу, содержащую данные модели `ClassName`.
 
 `through` может использоваться как с `HAS_ONE`, так и с `HAS_MANY`.
 
@@ -697,4 +697,4 @@ $teacher=User::model()->findByPk(1);
 $students=$teacher->students;
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3117 2011-03-25 00:02:26Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3127 2011-03-26 12:21:47Z alexander.makarow $</div>
