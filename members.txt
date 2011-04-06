@@ -14,6 +14,7 @@ Member List of Yiidoc Project
   active  Greek               GoofyX              yii@lourdas.name
   active  Hebrew              Vince               vadimg88                    Yes
   active  Hungarian           Endyl               slemmer.balazs
+  active  Hungarian           imehesz             imehesz
   active  Idonesian           Kabayan             ade999                      Yes
   active  Idonesian           junxiong            garry3peace
   active  Italian             ilzale              francesco.salerno@mac.com
