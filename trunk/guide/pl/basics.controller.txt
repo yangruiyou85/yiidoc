@@ -212,7 +212,7 @@ class PostController extends CController
 {
 	public function actionCreate(array $categories)
 	{
-		// Yii upewni się, że kategoria $categories jest tablicą
+		// Yii upewni się, że zmienna $categories jest tablicą
 	}
 }
 ~~~
@@ -325,4 +325,4 @@ powinien zostać zastosowany dla akcji `edit` oraz `create`, zaś filtr
 `edit` oraz `create`. Jeśli żaden z operatorów plus lub minus nie pojawia się 
 w konfiguracji filtra, filtr będzie zastosowany do wszystkich akcji.
 
-<div class="revision">$Id: basics.controller.txt 3058 2011-03-13 04:20:12Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 3165 2011-04-06 08:27:40Z mdomba $</div>
