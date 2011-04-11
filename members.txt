@@ -23,6 +23,7 @@ Member List of Yiidoc Project
   active  Japanese            iwasaki             iwasaki@cresc.com
   active  Japanese            mocapapa            mocapapa@g.pugpug.org       Yes
   active  Japanese            shuwatto            shuwatto
+  active  Japanese            softark             softark@gmail.com
   active  Lithuanian          Tova                tomas.valacka
   active  Norwegian           eirikhm             eirikhm
   active  Polish              aztech              tomasz.suchanek
