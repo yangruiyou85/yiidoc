@@ -4,6 +4,7 @@ class BlogController extends CController
 {
 	public $defaultAction='view';
 	public $languageNames=array(
+		'ar'=>'Arabic',
 		'de'=>'German',
 		'en'=>'English',
 		'es'=>'Spanish',
