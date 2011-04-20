@@ -17,7 +17,7 @@ Yii はフォームモデルとアクティブレコードの 2 種類のモデ�
 そのようなデータはしばしば集められ、使用後に破棄されます。
 たとえば、ログインページでエンドユーザの入力したユーザ名とパスワード情報を
 表すためにフォームモデルを使えます。
-詳細は、[Working with Form](/doc/guide/form.model) を参照してください。
+詳細は、[Working with Forms](/doc/guide/form.overview) を参照してください。
 
 アクティブレコード (AR) はオブジェクト指向形式でデータベース接続を
 抽象化するために使用するデザインパターンです。
@@ -26,4 +26,4 @@ AR オブジェクトは [CActiveRecord] かその子クラスのインスタン
 行中のフィールドは AR オブジェクトのプロパティとして表されます。
 詳細は、[Active Record](/doc/guide/database.ar) を参照してください。
 
-<div class="revision">$Id: basics.model.txt 162 2008-11-05 12:44:08Z weizhuo $</div>
+<div class="revision">$Id: basics.model.txt 3165 2008-11-05 12:44:08Z weizhuo $</div>
