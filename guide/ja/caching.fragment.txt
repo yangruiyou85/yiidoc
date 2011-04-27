@@ -115,7 +115,6 @@ duration オプションを設定しない場合、この値はデフォルト�
 
    - [varyByExpression|COutputCache::varyByExpression]: このオプションにPHP表現を設定することで、
 キャッシュされた内容をこのPHP表現の結果で変化させることができます。
-このオプションは、バージョン1.0.4から利用できます。
 
 ### Request Typesリクエストタイプ
 
@@ -167,4 +166,5 @@ duration オプションを設定しない場合、この値はデフォルト�
 外側のキャッシュが有効であれば、内側のキャッシュコンテンツの持続期間が
 終了していたとしても、常にキャッシュされたコピーを提供します。
 
-<div class="revision">$Id: caching.fragment.txt 956 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
+
+<div class="revision">$Id: caching.fragment.txt 2890 2009-04-21 15:16:03Z qiang.xue@gmail.com $</div>
