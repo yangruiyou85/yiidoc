@@ -28,4 +28,4 @@ Yiiは最初から厳しいウェブアプリケーション開発に適合す�
 これはあるプロジェクトの副次品ではなく、サードパーティの寄せ集めでもありません。
 これは開発者のウェブアプリケーション開発の豊富な経験と、一般的なウェブプログラミングフレームワークやアプリケーションの研究とその反映の結果です。
 
-<div class="revision">$Id: quickstart.what-is-yii.txt 814 2008-11-21 13:35:04Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.what-is-yii.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
