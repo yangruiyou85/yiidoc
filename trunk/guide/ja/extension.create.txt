@@ -219,4 +219,4 @@ class MyCommand extends CConsoleCommand
 汎用コンポーネントのエクステンションの開発はクラスを書くことに似ています。
 ここでも、コンポーネントは、他の開発者によって容易に使用されるように、自己充足的なものでなければなりません。
 
-<div class="revision">$Id: extension.create.txt 749 2009-02-26 02:11:31Z qiang.xue $</div>
+<div class="revision">$Id: extension.create.txt 1423 2009-09-28 01:54:38Z qiang.xue $</div>

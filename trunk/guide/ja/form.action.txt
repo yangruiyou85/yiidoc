@@ -71,4 +71,4 @@ $model->rememberMe=$_POST['LoginForm']['rememberMe'];
 さあ、残りのタスクは、必要なインプットフィールドとHTMLフォームを含んだ
  `login` ビューの作成です。
 
-<div class="revision">$Id: form.action.txt 626 2009-02-04 20:51:13Z qiang.xue $</div>
+<div class="revision">$Id: form.action.txt 1837 2010-02-24 22:49:51Z qiang.xue $</div>
