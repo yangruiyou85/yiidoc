@@ -63,7 +63,7 @@ array(
 ~~~
 
 Zauważ, że nie musimy definiować klasy komponentu [urlManager|CWebApplication::urlManager]
-ponieważ jest on wstępnie zadeklarowana jako [CUrlManager] w [CWebApplication].
+ponieważ jest ona wstępnie zadeklarowana jako [CUrlManager] w [CWebApplication].
 
 > Wskazówka: URL wygenerowany przy pomocy metody [createUrl|CController::createUrl]
 jest adresem względnym. Aby uzyskać pełny adres wystarczy poprzedzić adres względny
@@ -104,8 +104,8 @@ wzorzec-trasa, każda z takich par odpowiada jednej regule. Wzorzec reguły jest
 używanym w celu dopasowania części informacyjnej adresu URL do wzorca. 
 [Trasa](/doc/guide/basics.controller#route) powinna odnosić się do poprawnej trasy kontrolera.
 
-Poza powyższym formatem wzorzec-trasa, regułą może być również określona poprzez
-dostosowania opcji w następujący sposób:
+Poza powyższym formatem wzorzec-trasa, reguła może być również określona poprzez
+dostosowanie opcji w następujący sposób:
 
 ~~~
 [php]
@@ -140,7 +140,7 @@ Dostępne opcje zostały wyjaśnione poniżej:
    - [matchValue|CUrlRule::matchValue]: określa czy wartości parametru GET powinny pasować do odpowiadających 
    im podwzorców w regule, kiedy tworzony jest URL. Domyślnie przyjmuje wartość null, oznaczającą używanie wartości
    [CUrlManager::matchValue]. Jeśli wartość ta wynosi false, oznacza to, że reguła będzie używana do tworzenia URL 
-   jeśli jej trasa i nazwy parametrów są zgodnie z podanymi. Jeśli właściwość ta przyjmuje wartość tryu, wtedy 
+   jeśli jej trasa i nazwy parametrów są zgodnie z podanymi. Jeśli właściwość ta przyjmuje wartość true, wtedy 
    podane wartości parametru muszą również pasować do odpowiadających parametrowi podwzorców. Zauważ, że 
    ustawienie tej pozycji na true może obniżyć wydajność.
    
@@ -187,7 +187,7 @@ array(
    - Wywołanie `$this->createUrl('post/list')` tworzy `/index.php/posts`.
 Stosowana jest pierwsza reguła.
 
-   - Wywołanie `$this->createUrl('post/read',array('id'=>100))` generates
+   - Wywołanie `$this->createUrl('post/read',array('id'=>100))` tworzy
 `/index.php/post/100`. Zastosowana została druga reguła.
 
    - Wywołanie `$this->createUrl('post/read',array('year'=>2008,'title'=>'a
@@ -217,7 +217,7 @@ reguły `post/<id:\d+>/*`, możemy uzyskać adres URL postaci
 Jak wcześniej wspominaliśmy innym zastosowaniem reguł URL jest przetwarzanie
 wywoływanych adresów URL. Jest to oczywiście proces odwrotny do tworzenia
 adresów. Np. gdy użytkownik zgłasza żądanie adresu `/index.php/post/100`,
-zastosowanie będzie miała druga reguła z przykłady wyżej. Spowoduje to
+zastosowanie będzie miała druga reguła z przykładu wyżej. Spowoduje to
 rozłożenie żądania na trasę `post/read` i parametr GET `array('id'=>100)`
 (dostępny poprzez `$_GET`).
 
@@ -246,8 +246,8 @@ array(
 )
 ~~~
 
-W powyższym kodzie, uzyliśmy dwóch nazwancyh parametrów w cześci reguły odnoszącej się 
-do strasy: `_c` oraz `_a`. Pierwszy parametr odpowiada ID kontrolera posiadającym wartość `post` lub `comment`,
+W powyższym kodzie, użyliśmy dwóch nazwanych parametrów w części reguły odnoszącej się 
+do trasy: `_c` oraz `_a`. Pierwszy parametr odpowiada ID kontrolera posiadającym wartość `post` lub `comment`,
 podczas gdy drugi odpowiada ID akcji, która może mieć wartość `create`, `update` lub `delete`.
 Możesz nazywać parametry dowolnie, dopóki ich nazwy nie konfliktują z parametrami GET 
 znajdującymi się w URLach.
@@ -281,7 +281,7 @@ parametr `user`, zaś pierwszy segment w ścieżce powinien być parametrem `lan
 Reguła odpowiada trasie `user/profile`.
 
 Zauważ, że [CUrlManager::showScriptName] nie będzie działało, jeśli URL zostanie  
-utworzony za pomocę reguły z parametryzowaną nazwą hosta.
+utworzony za pomocą reguły z parametryzowaną nazwą hosta.
 
 Zauważ, że reguła ze sparametryzowaną nazwą hosta NIE POWINNA zawierać podkatalogu
 jeśli aplikacja znajduje się w podkatalogu katalogu głównego www.
