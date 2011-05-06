@@ -345,65 +345,104 @@ $posts=$user->posts(array('condition'=>'status=1'));
 ~~~
 
 
+リレーショナルクエリのパフォーマンス
+----------------------------
+
+上述のように、イーガーローディングアプローチは、主として、多数の関連オブジェクトにアクセスする必要があるシナリオで用いられます。
+これは全ての必要なテーブルを結合して、長大で複雑な SQL 文を生成します。
+長大な SQL 文は、たいていの場合は、望ましいものです。
+なぜなら、関連するテーブルの列をもとにして、フィルタリングを単純化できるからです。しかし、効率的でない場合もいくつかあります。
+
+例として、最近の投稿記事とそれに対するコメントを一緒に取得したい場合を考えてみて下さい。
+各投稿記事が 10 個のコメント持っていると仮定すると、単一の長大な SQL 文を使った場合は、多数の冗長な投稿記事データが返ってくることになります。
+なぜなら、すべてのコメントに対して、それの元になった投稿記事が繰り返されるからです。
+次に、別のアプローチを試してみましょう。最初に最近の投稿記事に対するクエリを行い、次に投稿記事に対するクエリを行います。
+この新しいアプローチでは、二つの SQL 文を実行しなければなりません。利点は、クエリの結果に冗長性が無いことです。
+
+では、どちらのアプローチがより効率的なのでしょうか。絶対的な答えはありません。
+単一の長大な SQL 文を実行する方が効率的なこともあります。何故なら、SQL 文の解釈と実行をするのに、DBMS におけるオーバーヘッドを少なく出来るからです。
+その反対に、単一の SQL 文を使うと、冗長なデータが増えて、その結果、データの読み出しと処理に時間がかかるようになります。
+
+こういう理由から、Yii は必要に応じて二つのアプローチを選択できるように、`togeter` というクエリオプションを提供しています。
+デフォルトでは、Yii は第一のアプローチを採用します。すなわち、単一の SQL 文を生成してイーガーローディングを実行します。
+リレーションの宣言において `togeter` オプションを false に設定すれば、いくつかのテーブルを別の SQL 文の中で結合するように設定することが出来ます。
+例えば、最近の投稿記事とそれに対するコメントを取得するのに、第二のアプローチを採用したい場合は、次のように `Post` クラスの `comments` リレーションを宣言します。
+
+~~~
+[php]
+public function relations()
+{
+	return array(
+		'comments' => array(self::HAS_MANY, 'Comment', 'post_id', 'together'=>false),
+	);
+}
+~~~
+
+イーガーローディングを実行する場合にこのオプションを動的に設定することも可能です。
+
+~~~
+[php]
+$posts = Post::model()->with(array('comments'=>array('together'=>false)))->findAll();
+~~~
+
+
 統計クエリ
 -----------------
 
-> Note|注意: 統計クエリはバージョン1.0.4からサポートされます。
-
 上述のリレーショナルなクエリの他に、Yiiはいわゆる統計クエリ(または集計クエリ)もサポートします。
-関連したオブジェクト（例えば各々のポストのためのコメントの数、各々の製品の平均点数、その他）に関する集計的な情報を検索することに言及します。
-統計クエリは、`HAS_MANY`(例えばポストは多くのコメントを保持します)または`MANY_MANY`(例えばポストは多くのカテゴリーに属していますし、カテゴリーには多くのポストがあります)のリレーションを持つオブジェクトのために実行されるのみです。
+これは、関連するオブジェクトに関する集計的な情報、例えば各々の投稿記事に対するコメントの数や、各々の製品の平均点数などを検索するものです。
+統計クエリを実行出来るのは、`HAS_MANY`(例えば投稿記事は多くのコメントを持つ) または `MANY_MANY`(例えば投稿記事は多くのカテゴリーに属し、カテゴリーは多くの投稿記事を持つ)のリレーションを持つオブジェクトに対してのみです。
 
-以前に解説したように、統計クエリを実行することはリレーショナルクエリを実行することと非常に類似しています。
-リレーショナルのクエリで行うように、最初に統計クエリを[relations()|CActiveRecord::relations]中で宣言する必要があります。
+統計クエリを実行することは、既に解説したリレーショナルクエリを実行することと非常に類似しています。
+リレーショナルクエリで行うように、最初に統計クエリを [relations()|CActiveRecord::relations] 中で宣言する必要があります。
 
 ~~~
 [php]
 class Post extends CActiveRecord
 {
-       public function relations()
-       {
-              return array(
-                     'commentCount'=>array(self::STAT, 'Comment', 'postID'),
-                     'categoryCount'=>array(self::STAT, 'Category', 'PostCategory(postID, categoryID)'),
-              );
-       }
+	public function relations()
+	{
+		return array(
+			'commentCount'=>array(self::STAT, 'Comment', 'post_id'),
+			'categoryCount'=>array(self::STAT, 'Category', 'post_category(post_id, category_id)'),
+		);
+	}
 }
 ~~~
 
-上記において、我々は2つの統計クエリを宣言します。`commentCount`はポストに属しているコメントの数を計算します。
-`categoryCount`はポストが属しているカテゴリーの数を計算します。
-`Post`と`Category`の関係が`MANY_MANY`(ジョインテーブル`PostCategory`を介して)であるのに対し、
-`Post`と`Comment`の関係が`HAS_MANY`である点に注意してください。
+上記において、我々は2つの統計クエリを宣言しています。`commentCount` は投稿記事に属しているコメントの数を計算します。
+`categoryCount` は投稿記事が属しているカテゴリーの数を計算します。
+`Post` と `Category` の関係が `MANY_MANY` (結合テーブル `post_category` を介して)であるのに対し、
+`Post` と `Comment` の関係が `HAS_MANY` である点に注意してください。
 このように、統計クエリの宣言は以前のサブセクションで解説したリレーション宣言と非常に類似しています。
-唯一の違いはリレーションタイプが`STAT`であるということです。
+唯一の違いはリレーションタイプが `STAT` であるということです。
 
-上記の宣言を用いて、`$post->commentCount`という式でポストに対するコメントの数を取り出すことができます。
-初めてこのプロパティにアクセスするとき、対応する結果を取り出すために暗黙のうちSQL文が実行されます。
+上記の宣言を用いて、`$post->commentCount`という式で投稿記事に対するコメントの数を取り出すことができます。
+初めてこのプロパティにアクセスするとき、対応する結果を取り出すために暗黙のうちに SQL 文が実行されます。
 すでに知っているように、これはいわゆる*レイジーローディング*アプローチです。
-複数のポストについてコメント数を決定する必要があるならば、我々は*イーガーローディング*アプローチを使用することもできます。
+複数の投稿記事についてコメント数を決定する必要があるならば、我々は*イーガーローディング*アプローチを使用することもできます。
 
 ~~~
 [php]
 $posts=Post::model()->with('commentCount', 'categoryCount')->findAll();
 ~~~
 
-上記の文は、すべてのポストに対するコメント数とカテゴリー数を取り出すために、3つのSQL文を実行します。
-レイジーローディングアプローチを使う場合、`N`個のポストがあるならば`2*N+1`のSQLクエリを必要とします。
+上記の文は、すべての投稿記事に対するコメント数とカテゴリー数を取り出すために、3つの SQL 文を実行します。
+レイジーローディングアプローチを使う場合、`N` 個のポストがあるならば `2*N+1` の SQL クエリを必要とします。
 
 デフォルトでは、統計クエリは、`COUNT`式(従って上記の例ではコメント数とカテゴリー数)を計算します。
-[relations()|CActiveRecord::relations]で宣言するとき、さらにオプションを指定することでカスタマイズ可能です。
+これは、[relations()|CActiveRecord::relations]で宣言するときに、追加のオプションを指定することでカスタマイズ可能です。
 利用できるオプションは、下の通りまとめられます。
 
    - `select`: 統計表現。デフォルトでは`COUNT(*)`であり、子オブジェクトの数を意味する。
 
    - `defaultValue`: 統計クエリの結果を受けないレコードに割り当てられる値。
-たとえばポストがコメントを持たないならば、その`commentCount`はこの値を取るでしょう。
+たとえば投稿記事がコメントを持たないならば、その`commentCount`はこの値を取るでしょう。
 このオプションのデフォルト値は0です。
 
    - `condition`: `WHERE`句です。デフォルト値は空です。
 
-   - `params`: 生成されたSQL文に結合されたパラメータ値。これは名前-値のペアの配列として与えます。
+   - `params`: 生成されたSQL文にバインドされるパラメータ値。これは名前-値のペアの配列として与えます。
 
    - `order`: `ORDER BY`句です。デフォルト値は空です。
 
@@ -414,8 +453,6 @@ $posts=Post::model()->with('commentCount', 'categoryCount')->findAll();
 
 Named Scope を使用したリレーショナルクエリ
 ----------------------------------
-
-> Note|注意: Named Scope はバージョン 1.0.5 以降で有効です。
 
 リレーショナルクエリは [Named Scope](/doc/guide/database.ar#named-scopes) と組み合わせて実行できます。
 リレーショナルクエリは、2 つの方法で利用できます。
@@ -428,23 +465,37 @@ Named Scope を使用したリレーショナルクエリ
 $posts=Post::model()->published()->recently()->with('comments')->findAll();
 ~~~
 
-これは、リレーショナルしないクエリにとても似ています。
+これは、リレーショナルでないクエリにとても似ています。
 唯一の違いは、Named Scope チェーンの後で `with()` をコールする点です。
-このクエリは、最近公開された投稿とそれらのコメントを返します。
+このクエリは、最近公開された投稿記事とそれらのコメントを返します。
 
 また、下記のコードは、リレーションモデルに Named Scope を適用する方法を示します。
 
 ~~~
 [php]
 $posts=Post::model()->with('comments:recently:approved')->findAll();
+// 1.1.7 以降の場合、または
+$posts=Post::model()->with(array(
+    'comments'=>array(
+        'scopes'=>array('recently','approved')
+    ),
+))->findAll();
+// 1.1.7 以降の場合、または
+$posts=Post::model()->findAll(array(
+    'with'=>array(
+        'comments'=>array(
+            'scopes'=>array('recently','approved')
+        ),
+    ),
+));
 ~~~
 
-上記クエリは、全ての投稿とそれらの承認済みコメントを返します。
+上記クエリは、全ての投稿記事とそれらの承認済みコメントを返します。
 `comments` はリレーション名を、`recently` と `approved` は `Comment` モデルクラスで宣言された 2 つの Named Scope を示している事に注意してください。
-リレーション名と Named Scope はコロン区切りで指定します。
+リレーション名と Named Scope はコロンで区切ります。
 
 また、Named Scope は [CActiveRecord::relations()] で宣言されたリレーションルールの `with` オプション中で指定することもできます。
-以下の例で、`$user->posts` にアクセスすると、その投稿の全ての *approved*（承認）されたコメントを返します。
+以下の例で、`$user->posts` にアクセスすると、その投稿記事の全ての *approved*（承認）されたコメントを返します。
 
 ~~~
 [php]
@@ -453,8 +504,25 @@ class User extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'posts'=>array(self::HAS_MANY, 'Post', 'authorID',
+			'posts'=>array(self::HAS_MANY, 'Post', 'author_id',
 				'with'=>'comments:approved'),
+		);
+	}
+}
+
+// 1.1.7 以降の場合、または
+class User extends CActiveRecord
+{
+	public function relations()
+	{
+		return array(
+		    'posts'=>array(self::HAS_MANY, 'Post', 'author_id',
+				'with'=>array(
+					'comments'=>array(
+						'scopes'=>'approved'
+					),
+				),
+			),
 		);
 	}
 }
@@ -462,5 +530,148 @@ class User extends CActiveRecord
 
 > Note|注意: 関連したモデルに適用される Named Scope は、[CActiveRecord::scopes] で定義しなければなりません。結果的に、それらをパラメータ化することはできません。
 
+バージョン 1.1.7 以降、リレーショナルクエリの Named Scope にパラメータを渡すことが可能になりました。
+例えば、`Post` に `rated` という名前のスコープがあって、レーティングの下限を受け付ける場合、`User` から次のようにして使うことが出来ます。
 
-<div class="revision">$Id: database.arr.txt 1027 2009-05-12 17:59:03Z qiang.xue $</div>
+~~~
+[php]
+$users=User::model()->findAll(array(
+	'with'=>array(
+		'posts'=>array(
+			'scopes'=>array(
+				'rated'=>5,
+			),
+		),
+	),
+));
+~~~
+
+through を使うリレーショナルクエリ
+-----------------------------
+
+`through` を使用する場合、リレーションの定義は次のようにしなければなりません。
+
+~~~
+[php]
+'relationName'=>array('relationType', 'ClassName', 'foreign_key', 'through'=>'throughRelationName', ... 追加のオプション)
+~~~
+
+上記で `foreign_key` の値は次のようなキーの名前です。
+
+  - `throughRelationName` に指定されたテーブルに定義されているキーで、
+  - `ClassName` モデルのためのデータを保持するテーブルを指し示しているキー。
+
+`through` は `HAS_ONE` と `HAS_MANY` の両方のリレーションで使用出来ます。
+
+### HAS_MANY の through
+
+![HAS_MANY through ER](has_many_through.png)
+
+`through` を使う `HAS_MANY` の一例として、ユーザがロールを通じてグループに割り当てられている場合に、特定のグループに属するユーザを取得することを挙げることが出来ます。
+
+もう少し複雑な例としては、特定のグループに属する全てのユーザに対する全てのコメントを取得することがそれに当ります。この場合は、単一のモデルにいくつかの `through` を使うリレーションを使用する必要があります。
+
+~~~
+[php]
+class Group extends CActiveRecord
+{
+   ...
+   public function relations()
+   {
+       return array(
+           'roles'=>array(self::HAS_MANY,'Role','group_id'),
+           'users'=>array(self::HAS_MANY,'User','user_id','through'=>'roles'),
+           'comments'=>array(self::HAS_MANY,'Comment','user_id','through'=>'users'),
+       );
+   }
+}
+~~~
+
+#### 使用例
+
+~~~
+[php]
+// 一致する全ユーザとともに、全グループを取得
+$groups=Group::model()->with('users')->findAll();
+
+// 一致する全てのユーザとロールとともに、全グループを取得
+$groups=Group::model()->with('roles','users')->findAll();
+
+// グループ ID が 1 である全てのユーザとロールを取得
+$group=Group::model()->findByPk(1);
+$users=$group->users;
+$roles=$group->roles;
+
+// グループ ID が 1 である全てのコメントを取得
+$group=Group::model()->findByPk(1);
+$comments=$group->comments;
+~~~
+
+
+### HAS_ONE の through
+
+![HAS_ONE through ER](has_one_through.png)
+
+`through` を使う `HAS_ONE` の使用例としては、ユーザがプロファイルを使って住所と結び付けられている場合に、ユーザの住所を取得することを挙げることが出来ます。
+これらのエンティティ(ユーザ、プロファイル、住所)は全て対応するモデルを持っています。
+
+~~~
+[php]
+class User extends CActiveRecord
+{
+   ...
+   public function relations()
+   {
+       return array(
+           'profile'=>array(self::HAS_ONE,'Profile','user_id'),
+           'address'=>array(self::HAS_ONE,'Address','profile_id','through'=>'profile'),
+       );
+   }
+}
+~~~
+
+#### 使用例
+
+~~~
+[php]
+// ID が 1 であるユーザの住所を取得する
+$user=User::model()->findByPk(1);
+$address=$user->address;
+~~~
+
+
+### 自身への through
+
+`through` は、ブリッジモデルを使って自分自身へと結び付けられるモデルにも使用することが出来ます。以下の例では、他のユーザを指導するユーザがそれです。
+
+
+![through self ER](through_self.png)
+
+
+この例における関係は、次のように定義することが出来ます。
+
+~~~
+[php]
+class User extends CActiveRecord
+{
+   ...
+   public function relations()
+   {
+       return array(
+           'mentorships'=>array(self::HAS_MANY,'Mentorship','teacher_id','joinType'=>'INNER JOIN'),
+           'students'=>array(self::HAS_MANY,'User','student_id','through'=>'mentorships','joinType'=>'INNER JOIN'),
+       );
+   }
+}
+~~~
+
+#### 使用例
+
+~~~
+[php]
+// ID が 1 である先生に教えられている全ての生徒を取得する
+$teacher=User::model()->findByPk(1);
+$students=$teacher->students;
+~~~
+
+<div class="revision">$Id: database.arr.txt 3127 2011-03-26 12:21:47Z alexander.makarow $</div>
