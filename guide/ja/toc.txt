@@ -18,6 +18,7 @@
     - [パスエイリアスと名前空間](basics.namespace)
     - [取り決め](basics.convention)
     - [開発ワークフロー](basics.workflow)
+    - [最良のMVC手法](basics.best-practices)
 
 * フォームを使う
     - [フォームを使う](form.overview)
@@ -30,8 +31,10 @@
 * データベースを使う
     - [データベースを使う](database.overview)
     - [データアクセスオブジェクト](database.dao)
+    - [クエリビルダ](database.query-builder)
     - [アクティブレコード](database.ar)
     - [リレーショナルアクティブレコード](database.arr)
+    - [データベース移行](database.migration)
 
 * キャッシュ
     - [キャッシュ](caching.overview)
@@ -53,6 +56,7 @@
 	- [機能テスト](test.functional)
 
 * その他のトピック
+    - [自動コード生成](topics.gii)
     - [URLの取り扱い](topics.url)
     - [認証](topics.auth)
     - [テーマ](topics.theming)
@@ -64,5 +68,6 @@
     - [コンソールアプリケーション](topics.console)
     - [セキュリティ](topics.security)
     - [性能チューニング](topics.performance)
+    - [コマンドラインツールによるコード生成(非推奨)](quickstart.first-app-yiic)
 
-<div class="revision">$Id: toc.txt 1603 2009-09-13 19:21:34Z qiang.xue $</div>
+<div class="revision">$Id: toc.txt 2700 2009-09-13 19:21:34Z qiang.xue $</div>
