@@ -199,12 +199,6 @@ return array(
 http://hostname/testdrive/index.php?r=user
 ~~~
 
-さて、作業の結果を以下のURLから見て楽しみましょう。
-
-~~~
-http://hostname/testdrive/index.php?r=user
-~~~
-
 このページは `tbl_user` テーブルのユーザのエントリ一覧を表示します。
 
 `Create User` のリンクをクリックしてみてください。もし既にログインしていなければログインページに飛ばされます。
