@@ -230,19 +230,18 @@ array(
 
 上記の規則を使用すると、`/index.php/post/123/create` という URL は、
 GET パラメータ `id=123` を伴った route `post/create` であると解析されます。
-また、逆に、`comment/list` という route と `page=2` という GET パラメータを与えて、`/index.php/comments?page=2` という URL を作成することが出来ます。
+また、逆に、route `comment/list` と GET パラメータ `page=2` を与えて、`/index.php/comments?page=2` という URL を作成することが出来ます。
 
 
-Parameterizing Hostnames
+ホスト名のパラメータ化
 ------------------------
 
-It is also possible to include hostname into the rules
-for parsing and creating URLs. One may extract part of the hostname to be a GET parameter.
-For example, the URL `http://admin.example.com/en/profile` may be parsed into GET parameters
-`user=admin` and `lang=en`. On the other hand, rules with hostname may also be used to
-create URLs with parameterized hostnames.
+さらに、URL の解析・作成の規則にホスト名を含ませることが可能です。
+まず、ホスト名の一部を GET パラメータとして抽出することが出来ます。
+例えば、URL `http://admin.example.com/en/profile` を解析して、GET パラメータとして `user=admin` と `lang=en` を取得するようなことが可能です。
+また一方、ホスト名を持つ規則を使って、パラメータ化されたホスト名を持つ URL を作成することも可能です。
 
-In order to use parameterized hostnames, simply declare URL rules with host info, e.g.:
+パラメータ化されたホスト名を使うために必要なことは、ホスト情報を持つ URL 規則を宣言することだけです。例えば
 
 ~~~
 [php]
@@ -250,62 +249,54 @@ array(
 	'http://<user:\w+>.example.com/<lang:\w+>/profile' => 'user/profile',
 )
 ~~~
+上記の例は、ホスト名の最初のセグメントを `user` パラメータとして扱うべき事、そして、パス情報の最初のセグメントを `lang` パラメータとして扱うべき事を述べています。
+そしてこの規則は `user/pforile` という route に対応しています。
 
-The above example says that the first segment in the hostname should be treated as `user`
-parameter while the first segment in the path info should be `lang` parameter. The rule
-corresponds to the `user/profile` route.
+ただし、パラメータ化されたホスト名を持つ規則を使って URL を作成すると、[CUrlManager::showScriptName] が有効にならないことに注意して下さい。
 
-Note that [CUrlManager::showScriptName] will not take effect when a URL is being created
-using a rule with parameterized hostname.
+さらにまた、アプリケーションが Web root のサブフォルダにある場合でも、パラメータ化されたホスト名を持つ規則はサブフォルダを含んではならない、という事に注意して下さい。
+例えば、アプリケーションが `http://www.example.com/sandbox/blog` の下にある場合、上で述べたのと同じ URL 規則を `sandbox/blog` というサブフォルダを付けずに使わなければなりません。
 
-Also note that the rule with parameterized hostname should NOT contain the sub-folder
-if the application is under a sub-folder of the Web root. For example, if the application
-is under `http://www.example.com/sandbox/blog`, then we should still use the same URL rule
-as described above without the sub-folder `sandbox/blog`.
+`index.php`の隠し方
+-----------------
 
-### `index.php`の隠し方
+URL をもっと綺麗にするために、さらにもう一つの方法があります。すなわち、
+エントリースクリプトの `index.php` を URL から隠すことです。そのためには、
+[urlManager|CWebApplication::urlManager] アプリケーションコンポーネントを構成するのと同時に、Web サーバの設定も必要になります。
 
-URLをもっと綺麗にするために、もう一つの方法があります。例えば、
-エントリースクリプトの`index.php`をURLから隠すことです。この方法は
-[urlManager|CWebApplication::urlManager] アプリケーションコンポーネントの他
-にWebサーバの設定が必要になります。
-
-URL からエントリースクリプトが消えても、エントリースクリプトを扱い続ける
-為には、まずはじめにWebサーバーの設定が必要です。 [Apache HTTPserver]
-(http://httpd.apache.org/)の場合、URLリライティングエンジンを有効化し、
-幾つかのリライティングルールを指定します。どちらも.`.htaccess`ファイルを
-エントリースクリプトと同じディレクトリ上に配置することで実現できます。
-以下が例です:
+最初に Web サーバを構成して、エントリースクリプト無しの URL が、引き続きエントリースクリプトによって取り扱われるようにする必要があります。
+[Apache HTTP server] (http://httpd.apache.org/)の場合、URL リライティングエンジンを有効化し、
+幾つかのリライティングルールを指定することで実現出来ます。
+下記の内容を持つ `/wwwroot/blog/.htaccess` ファイルを作ります。
+同じ内容を Apache の設定ファイルで、`/wwwroot/blog` の `Directory` 要素の中に記述しても構いません。
 
 ~~~
-Options +FollowSymLinks
-IndexIgnore */*
 RewriteEngine on
 
-# ディレクトリ名やファイル名が実在する場合は変換を行いません。
+# ディレクトリまたはファイルが存在する場合は、それを直接に使う
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# それ以外の場合は、index.phpへ進みます。
+# それ以外は index.php に転送する
 RewriteRule . index.php
 ~~~
 
-この場合は、[urlManager|CWebApplication::urlManager]コンポーネントの
-[showScriptName|CUrlManager::showScriptName]プロパティを`false`に設定
+そして、次に、[urlManager|CWebApplication::urlManager] コンポーネントの
+[showScriptName|CUrlManager::showScriptName] プロパティを `false` に設定
 します。
 
-さあ、これでもし`$this->createUrl('post/read',array('id'=>100))`を
-コールした場合、`/post/100` というURLが作成される様になりました。ここで
-重要な点は、このURLがWebアプリケーションにも正しく認識されるものである
-という事です。
+さあ、これで `$this->createUrl('post/read',array('id'=>100))` をコールすると
+`/post/100` というURLが作成される様になりました。
+ここで更に重要な点は、この URL が Web アプリケーションにも正しく認識されるものであるという事です。
 
-### URLにおける擬似的な拡張子
 
-URLに拡張子を付加することができます。例えば、`/post/100` の代わりに 
-`/post/100.html` の形にする事ができます。これによって、URLをより静的なURLの
-様に見せることができます。そうする場合は単純に、
+URL の拡張子を擬装する
+-----------------
+
+URL に何らかの拡張子を付加することもできます。例えば、`/post/100` の代わりに
+`/post/100.html` の形にする事ができます。これによって、より一層、静的なウェブページの URL であるように見せることができます。そうするためには、単純に、
 [urlManager|CWebApplication::urlManager] コンポーネントの
 [urlSuffix|CUrlManager::urlSuffix] プロパティを使用したい拡張子に設定する
 だけです。
 
-<div class="revision">$Id: topics.url.txt 1014 2009-05-10 12:25:55Z qiang.xue $</div>
+<div class="revision">$Id: topics.url.txt 3165 2011-04-06 08:27:40Z mdomba $</div>
