@@ -28,7 +28,7 @@ EOD;
 	public function run($args)
 	{
 	  // Url template
-	  $template='http://code.google.com/p/yii/source/diff?format=side&path=/trunk/docs/guide/{name}&old={old}&r={new}';
+	  $template='http://code.google.com/p/yii/source/diff?format=side&path=/trunk/docs/{type}/{name}&old={old}&r={new}';
 	  
 		if(!isset($args[0]))
 			$this->usageError('the language ID is not specified.');
@@ -60,7 +60,7 @@ EOD;
 			{
 				$results[$name]="outdated (source: r$srcRevision, translation: r{$matches[2]}).";
 				
-				$tr=array('{name}'=>$name,'{old}'=>$matches[2],'{new}'=>$srcRevision);
+				$tr=array('{name}'=>$name,'{old}'=>$matches[2],'{new}'=>$srcRevision,'{type}'=>$this->type);
 				$urls[$name]=strtr($template,$tr);
 			}
 		}
