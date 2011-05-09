@@ -21,7 +21,7 @@
     - [最良のMVC手法](basics.best-practices)
 
 * フォームを使う
-    - [フォームを使う](form.overview)
+    - [フォーム概要](form.overview)
     - [モデルの作成](form.model)
     - [アクションの作成](form.action)
     - [フォームの作成](form.view)
@@ -29,7 +29,7 @@
     - [フォームビルダを使う](form.builder)
 
 * データベースを使う
-    - [データベースを使う](database.overview)
+    - [データベース概要](database.overview)
     - [データアクセスオブジェクト](database.dao)
     - [クエリビルダ](database.query-builder)
     - [アクティブレコード](database.ar)
@@ -37,21 +37,21 @@
     - [データベース移行](database.migration)
 
 * キャッシュ
-    - [キャッシュ](caching.overview)
+    - [キャッシュ概要](caching.overview)
     - [データキャッシュ](caching.data)
     - [フラグメントキャッシュ](caching.fragment)
     - [ページキャッシュ](caching.page)
     - [ダイナミックコンテンツ](caching.dynamic)
 
-* Yiiのエクステンション
-    - [エクステンション](extension.overview)
+* エクステンション
+    - [エクステンション概要](extension.overview)
     - [エクステンションを使う](extension.use)
     - [エクステンションを作成する](extension.create)
     - [サードパーティライブラリを使う](extension.integration)
 
 * テスト
-	- [テスト](test.overview)
-	- [Defining Fixtures](test.fixture)
+	- [テスト概要](test.overview)
+	- [フィクスチャを定義する](test.fixture)
 	- [ユニットテスト](test.unit)
 	- [機能テスト](test.functional)
 
