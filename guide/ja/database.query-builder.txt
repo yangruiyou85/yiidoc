@@ -862,4 +862,4 @@ function dropIndex($name, $table)
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 0 2011-02-20 02:35:48Z alexander.makarow $</div>
+<div class="revision">$Id: database.query-builder.txt 2979 2011-02-20 02:35:48Z alexander.makarow $</div>
