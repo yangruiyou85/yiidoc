@@ -66,10 +66,10 @@ testdrive/
       components/            再利用可能なユーザコンポーネントを含む
          Controller.php      全てのコントローラクラスの基本クラス
          UserIdentity.php    認証のための 'UserIdentity' クラス
-      config/                コンフィギュレーションファイルを含む
-         console.php         コンソールアプリケーションコンフィギュレーションファイル
-         main.php            ウェブアプリケーションコンフィギュレーションファイル
-         test.php            機能テストのためのコンフィギュレーションファイル
+      config/                構成ファイルを含む
+         console.php         コンソールアプリケーション構成ファイル
+         main.php            ウェブアプリケーション構成ファイル
+         test.php            機能テストのための構成ファイル
       controllers/           コントローラクラスファイルを含む
          SiteController.php  デフォルトコントローラクラスファイル
       data/                  サンプルデータベースを含む
@@ -101,7 +101,7 @@ testdrive/
 
 ほとんどのウェブアプリケーションの裏側にはデータベースがあります。この最初のウェブアプリケーションも例外ではありません。
 データベースを利用するには、まずアプリケーションにどのようにデータベースに接続するかを指示しなければなりません。
-これはアプリケーションコンフィギュレーションファイル`WebRoot/testdrive/protected/config/main.php`を以下のように修正することで行います。
+これはアプリケーション構成ファイル`WebRoot/testdrive/protected/config/main.php`を以下のように修正することで行います。
 
 ~~~
 [php]
