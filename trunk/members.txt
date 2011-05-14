@@ -50,6 +50,7 @@ Member List of Yiidoc Project
   active  Tamil               sapauljoseph        aka.srinivasan
   active  Ukrainian           vitaliy.step        vitaliy.step
   active  Vietnamese          Harry Tang          admin@giaduy.info
+  active  Persian			  Bamdadd			  bamdadd@gmail.com			  Yes
 inactive  Bulgarian           penkomitev          pemitev
 inactive  Czech               skippy              sklokocka
 inactive  Danish              DNRN                dnrnmail
