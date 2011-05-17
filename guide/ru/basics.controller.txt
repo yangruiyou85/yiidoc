@@ -327,4 +327,4 @@ class PostController extends CController
 *кроме* `edit` и `create`. Если операторы `'+'` и `'-'` не указаны, фильтр будет
 применен ко всем действиям.
 
-<div class="revision">$Id: basics.controller.txt 3058 2011-03-13 04:20:12Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 3165 2011-04-06 08:27:40Z mdomba $</div>

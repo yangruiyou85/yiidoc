@@ -49,7 +49,7 @@ $user = Yii::app()->db->createCommand()
 > $command->where('id=:id', array(':id'=>$id));
 > ~~~
 >
-> Не стоит использовать для одного запроса и SQL и построитель запросов.
+> Не стоит использовать для одного запроса и SQL, и построитель запросов.
 
 
 Подготовка построителя запросов
@@ -353,7 +353,7 @@ function naturalJoin($table)
 [php]
 // JOIN `tbl_profile` ON user_id=id
 join('tbl_profile', 'user_id=id')
-// LEFT JOIN `pub`.`tbl_profile` `p` ON p.user_id=id AND type=:type
+// LEFT JOIN `pub`.`tbl_profile` `p` ON p.user_id=id AND type=1
 leftJoin('pub.tbl_profile p', 'p.user_id=id AND type=:type', array(':type'=>1))
 ~~~
 
@@ -923,4 +923,4 @@ function dropIndex($name, $table)
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 2979 2011-02-20 02:35:48Z alexander.makarow $</div>
+<div class="revision">$Id: database.query-builder.txt 3224 2011-05-17 23:05:24Z alexander.makarow $</div>
