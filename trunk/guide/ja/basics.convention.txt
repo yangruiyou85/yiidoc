@@ -169,4 +169,4 @@ Yiiはデフォルトのディレクトリのセットが様々な目的で利�
    - テーブル名は共通のプレフィクス、例えば`tbl_`をつけます。これはひとつのデータベースに複数のアプリケーションのテーブルが存在するときに特に便利です。2つのテーブルの組みは異ったテーブル名プレフィクスを付けることにより、容易に分離されます。
 
 
-<div class="revision">$Id: basics.convention.txt 2345 2008-11-06 20:33:35Z qiang.xue $</div>
+<div class="revision">$Id: basics.convention.txt 3225 2008-11-06 20:33:35Z qiang.xue $</div>
