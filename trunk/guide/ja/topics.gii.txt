@@ -38,7 +38,7 @@ Gii は既存のアプリケーションの中で新しいコードファイル�
 
 さて、以上で、URL `http://hostname/path/to/index.php?r=gii` によって Gii にアクセスすることが出来ます。ここで `http://hostname/path/to/index.php` は既存の Yii アプリケーションにアクセスするための URL であると仮定しています。
 
-もし既存の Yii アプリケーションが `path` 形式の URL ([URL management](/doc/guide/topics.url) を参照)を使っているのであれば、URL `http://hostnamepath/to/index.php/gii` によって Gii にアクセス出来ます。
+もし既存の Yii アプリケーションが `path` 形式の URL ([URL management](/doc/guide/topics.url) を参照)を使っているのであれば、URL `http://hostname/path/to/index.php/gii` によって Gii にアクセス出来ます。
 場合によっては、既存の URL 規則の先頭に次の URL 規則を追加する必要があるかもしれません。
 
 ~~~
@@ -288,4 +288,4 @@ class <?php echo $this->className; ?> extends CWidget
 これで新しいコードジェネレータの作成は完了です。
 URL `http://hostname/path/to/index.php?r=gii/widget` によって、ただちにこのコードジェネレータにアクセスすることが出来ます。
 
-<div class="revision">$Id: topics.gii.txt 2055 2010-04-17 22:33:46Z qiang.xue $</div>
+<div class="revision">$Id: topics.gii.txt 3223 2010-04-17 22:33:46Z qiang.xue $</div>
