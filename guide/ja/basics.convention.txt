@@ -115,9 +115,8 @@ Yiiはデフォルトのディレクトリのセットが様々な目的で利�
 書き込み可能でなければなりません。このディレクトリは 
 [CApplication::runtimePath] によってカスタマイズ可能です。
 
-   - `WebRoot/protected/extensions`: このディレクトリは全ての
-サードパーティ製の拡張ファイルを保有します。
-[CApplication::extensionPath]によってカスタマイズ可能です。
+   - `WebRoot/protected/extensions`: このディレクトリは全てのサードパーティ製の拡張ファイルを保有します。
+[CApplication::extensionPath]によってカスタマイズ可能です。Yiiはこのパスに対して`ext`というデフォルトエイリアスを持ちます。
 
    - `WebRoot/protected/modules`: このディレクトリは全てのアプリケーション
 [モジュール](/doc/guide/basics.module)を保有します。それぞれのモジュールはサブディレクトリで表現されます。
