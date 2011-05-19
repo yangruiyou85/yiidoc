@@ -21,21 +21,21 @@ Do czego najlepiej nadaje się Yii?
 
 Yii jest frameworkiem ogólnego zastosowania i dlatego może być użyty
 do utworzenia niemal dowolnego rodzaju aplikacji. Ponieważ jest
-lekki i wyposażony w wymyślne mechanizmy buforujące (ang. sophisticated caching solutions),
+lekki i wyposażony w zmyślne mechanizmy buforujące (ang. sophisticated caching mechanisms),
 szczególnie nadaje się do tworzenia aplikacji o dużym ruchu, takich jak portale,
 fora, systemy zarządzania treścią (CMS), systemy e-commerce, itp.
 
-Jak wygląda Yii na tle innych frameworków?
-------------------------------------------
+Czym Yii wyróżnia się na tle innych frameworków?
+------------------------------------------------
 
 Jak większość frameworków PHP, Yii jest frameworkiem o architekturze MVC.
 
 Yii przewyższa inne frameworki PHP w zakresie wydajności, ogromu funkcji
-i przejrzystości dokumentacji. Od samego początku Yii został starannie
-zaprojektowany aby nadawać się do tworzenia poważnych aplikacji.
+i przejrzystości dokumentacji. Yii został starannie zaprojektowany u samej 
+podstawy aby nadawać się do tworzenia poważnych aplikacji.
 Nie jest produktem ubocznym, powstałym przy okazji innego projektu, ani też
 zlepkiem prac osób trzecich. Jest rezultatem dużego doświadczenia autora 
-w tworzeniu aplikacji oraz jego badań i przemyśleń nad funkcjonowaniem 
-najpopularniejszych frameworków i aplikacji sieciowych.
+w tworzeniu aplikacji sieciowych oraz jego badań nad funkcjonowaniem 
+najpopularniejszych frameworków i aplikacji.
 
-<div class="revision">$Id: quickstart.what-is-yii.txt 1622 2009-12-26 20:56:05Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.what-is-yii.txt 3219 2011-05-13 03:03:35Z qiang.xue $</div>
