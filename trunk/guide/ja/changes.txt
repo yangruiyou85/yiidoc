@@ -3,6 +3,10 @@
 
 このページは、各々のYiiリリースにおいて導入された主な新機能をまとめています。
 
+Version 1.1.8
+-------------
+ * [カスタムURLルールクラスのサポートを追加](/doc/guide/topics.url#using-custom-url-rule-classes)
+
 Version 1.1.7
 -------------
  * [RESTful URL に対するサポートを追加](/doc/guide/topics.url#user-friendly-urls)
@@ -78,4 +82,4 @@ Version 1.1.0
 
  * AR クエリにおける主テーブルのエイリアスを 't' に固定
 
-<div class="revision">$Id: changes.txt 3116 2011-03-24 23:16:05Z alexander.makarow $</div>
+<div class="revision">$Id: changes.txt 3235 2011-03-24 23:16:05Z alexander.makarow $</div>
