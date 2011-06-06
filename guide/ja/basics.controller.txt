@@ -334,4 +334,4 @@ class PostController extends CController
 アクションに適用されます。もし、プラスとマイナスのどちらも使用されていない
 場合、フィルタはすべてのアクションに適用されます。
 
-<div class="revision">$Id: basics.controller.txt 3251 2009-02-04 20:51:13Z qiang.xue $</div>
+<div class="revision">$Id: basics.controller.txt 3251 2011-06-01 00:24:06Z qiang.xue $</div>
