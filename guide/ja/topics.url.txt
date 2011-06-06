@@ -299,4 +299,89 @@ URL に何らかの拡張子を付加することもできます。例えば、`
 [urlSuffix|CUrlManager::urlSuffix] プロパティを使用したい拡張子に設定する
 だけです。
 
-<div class="revision">$Id: topics.url.txt 3165 2011-04-06 08:27:40Z mdomba $</div>
+カスタム URL 規則クラスを使う
+-----------------------------
+
+> Note|注意: カスタム URL 規則クラスの使用はバージョン 1.1.8 以降でサポートされています。
+
+デフォルトでは、[CUrlManager] で宣言される個々の URL 規則はそれぞれ一つの [CUrlRule] オブジェクトを表します。
+このオブジェクトが指定された規則に基づいてリクエストを解析し、URL を生成する仕事を実行します。
+[CUrlRule] は柔軟性が高いのでたいていの URL 形式を取り扱うことが出来ますが、
+それでも、時によっては、特別な機能を追加してこれを機能拡張したいと思う場合もあります。
+
+例えば、自動車ディーラーのウェブサイトにおいて、`/Manufacturer/Model` のような
+URL 形式をサポートしたい、けれども `Manufacturer` と `Model` は両方ともデータベーステーブルにある何らかのデータと合致するものでなければならない、というような場合です。
+[CUrlRule] クラスはここでは役に立ちません。
+なぜなら、[CUrlRule] が主として依存している静的に宣言された正規表現からは、データベースの中身を知ることが出来ないからです。
+
+私たちは [CBaseUrlRule] から拡張した URL 規則クラスを新しく書いて、
+それを一つまたは複数の URL 規則の中で使用することが出来ます。
+上記の自動車ディーラーのウェブサイトを例にすると、以下のような URL 規則を宣言することが出来ます。
+
+~~~
+[php]
+array(
+	// '/' を 'site/index' アクションにマップする標準的な規則
+	'' => 'site/index',
+
+	// '/login' を 'site/login' にマップする等の標準的な規則
+	'<action:(login|logout|about)>' => 'site/<action>',
+
+	// '/Manufacturer/Model' を処理するカスタム規則
+	array(
+	    'class' => 'application.components.CarUrlRule',
+	    'connectionID' => 'db',
+	),
+
+	// 'post/update' 等を扱う標準的な規則
+	'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+),
+~~~
+
+上記では、`/Manufacturer/Model` の URL 形式を扱うために、`CarUrlRule` という
+カスタム URL 規則クラスを使っています。
+このクラスは下記のように書くことが出来ます。
+
+~~~
+[php]
+class CarUrlRule extends CBaseUrlRule
+{
+	public $connectionID = 'db';
+
+	public function createUrl($manager,$route,$params,$ampersand)
+	{
+		if ($route==='car/index')
+		{
+			if (isset($params['manufacturer'], $params['model']))
+				return $params['manufacturer'] . '/' . $params['model'];
+			else if (isset($params['manufacturer']))
+				return $params['manufacturer'];
+		}
+		return false;  // この規則は適用されない
+	}
+
+	public function parseUrl($manager,$request,$pathInfo,$rawPathInfo)
+	{
+		if (preg_match('%^(\w+)(/(\w+))?$%', $pathInfo, $matches))
+		{
+			// $matches[1] と $matches[3] を見て、データベースの中にある
+			// 製造者とモデルに一致するかどうかを調べる。
+			// 一致したら、$_GET['manufacturer'] または $_GET['model']、
+			// あるいはその両方をセットして、'car/index' を返す
+		}
+		return false;  // この規則は適用されない
+	}
+}
+~~~
+
+カスタム URL 規則クラスは、[CBaseUrlRule] で宣言されている二つの抽象メソッドを実装しなければなりません。
+
+* [CBaseUrlRule::createUrl()|createUrl()]
+* [CBaseUrlRule::parseUrl()|parseUrl()]
+
+上記の典型的な使用方法の他にも、カスタム URL 規則クラスを別のさまざまな目的のために実装することが可能です。
+例えば、URL の解析と生成のリクエストをログに記録するための規則クラスを書くことが出来ます。これは開発段階において有益かもしれません。
+また、他の全ての URL 規則が現在のリクエストを解決できなかった場合に、特別な 404 エラーページを表示するための規則クラスを書くことも可能です。
+この場合、この特別なクラスの規則を最後の規則として宣言しなければならないことに注意して下さい。
+
+<div class="revision">$Id: topics.url.txt 3236 2011-05-25 13:11:58Z qiang.xue $</div>
