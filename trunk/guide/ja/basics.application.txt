@@ -175,4 +175,4 @@ Yiiフレームワークで使用される翻訳されたコアメッセージ�
 
    7. イベント[onEndRequest|CApplication::onEndRequest]を発行します;
 
-<div class="revision">$Id: basics.application.txt 3251 2008-12-28 05:28:11Z qiang.xue $</div>
+<div class="revision">$Id: basics.application.txt 3251 2011-06-01 00:24:06Z qiang.xue $</div>
