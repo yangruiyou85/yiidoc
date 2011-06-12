@@ -43,6 +43,7 @@ Member List of Yiidoc Project
   active  Simplified Chinese  HonestQiao          honestqiao
   active  Simplified Chinese  rainyjune           dreamneverfall
   active  Simplified Chinese  燃烧的心            designerhe
+  active  Simplified Chinese  thaiki              xwsoul
   active  Slovak              lubosdz             lubosdz
   active  Spanish             buritica            buritica
   active  Spanish             juan-calvo          adamut
@@ -88,7 +89,6 @@ inactive  Simplified Chinese  kran                isfrog
 inactive  Simplified Chinese  Leric               leric.zhang
 inactive  Simplified Chinese  nowgoo              nowgoo
 inactive  Simplified Chinese  tangniyuqi          tangniyuqi
-inactive  Simplified Chinese  thaiki              thaiki@126.com
 inactive  Spanish             ing.espitaleta      ing.espitaleta
 inactive  Spanish             mercurial           geraldo.medrano
 inactive  Spanish             PoL                 freakpol
