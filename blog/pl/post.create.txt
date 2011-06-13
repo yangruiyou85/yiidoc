@@ -38,7 +38,7 @@ Dostosowywanie operacji tworzenia `create` oraz aktualizacji `update`
 
 Operacje tworzenia `create` i aktualizacji `update` są bardzo podobne. Obie potrzebują wyświetlić formularz HTML w celu zebrania danych wejściowych od użytkownika, sprawdzenia ich poprawności i zapisania ich w bazie danych. Główną różnicą jest to, że operacja aktualizacji `update` wypełni wstępnie formularz danymi z istniejącej wiadomości znalezionymi w bazie danych. Z tego też powodu, `gii` generuje częściowy widok `/wwwroot/blog/protected/views/post/_form.php`, który jest osadzany w obu widokach `create` oraz `update` w celu wygenerowania potrzebnego formularza HTML.
 
-Na początek zmienimy plik `_form.php`, tak że formularz HTML będzie zbierał jedynie dane wejściowe, które chcemy: tytuł, `title`, zawartość `content`, tagi `tags` oraz status `status`. Używamy pól ze zwykłym tekstem aby zebrać dane wejściowe dla pierwszych trzech atrybutów oraz listy rozwijanej do zebrania danych wejściowych dla statusu `status`. Opcje listy rozwijanej stanowią teksty wyświetlające dopuszczalne statusy wiadomości:
+Na początek zmienimy plik `_form.php`, tak że formularz HTML będzie zbierał jedynie dane wejściowe, które chcemy: tytuł `title`, zawartość `content`, tagi `tags` oraz status `status`. Używamy pól ze zwykłym tekstem aby zebrać dane wejściowe dla pierwszych trzech atrybutów oraz listy rozwijanej do zebrania danych wejściowych dla statusu `status`. Opcje listy rozwijanej stanowią teksty wyświetlające dopuszczalne statusy wiadomości:
 
 ~~~
 [php]
