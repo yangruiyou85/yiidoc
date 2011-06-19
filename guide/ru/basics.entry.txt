@@ -9,7 +9,7 @@
 
 ~~~
 [php]
-// для производственного режима эту строку удалите
+// для production режима эту строку удалите
 defined('YII_DEBUG') or define('YII_DEBUG',true);
 // подключаем файл инициализации Yii
 require_once('path/to/yii/framework/yii.php');
