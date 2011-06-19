@@ -628,4 +628,7 @@ $contents=Content::model()->findAll();
 Заметим, что группа условий по умолчанию применяется только к
 `SELECT` запросам. Она игнорируется в `INSERT`, `UPDATE` и `DELETE` запросах.
 
-<div class="revision">$Id: database.ar.txt 3122 2011-03-25 02:45:43Z qiang.xue $</div>
+Стоит отметить, что при объявлении группы условий в классе AR нельзя выполнять запросы, используя
+тот же самый класс.
+
+<div class="revision">$Id: database.ar.txt 3283 2011-06-16 13:18:13Z qiang.xue $</div>
