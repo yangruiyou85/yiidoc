@@ -33,6 +33,7 @@ Member List of Yiidoc Project
   active  Portuguese          goncin              goncin
   active  Portuguese          Wanderson           wanderson.wbc
   active  Portuguese          Ivan Wilhelm        ivan.whm
+  active  Brazilian Portuguese _lins              slinstj
   active  Russian             Caveman             alex.lukjanenko
   active  Russian             samdark             alexander.makarow           Yes
   active  Simplified Chinese  dongbeta            yiidoc@dongbeta.com
