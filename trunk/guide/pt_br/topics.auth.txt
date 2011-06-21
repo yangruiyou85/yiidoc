@@ -219,18 +219,17 @@ class PostController extends CController
 }
 ~~~
 
-The above code specifies three rules, each represented as an array. The
-first element of the array is either `'allow'` or `'deny'` and the other
-name-value pairs specify the pattern parameters of the rule. The rules defined above are interpreted as follows: the `create` and `edit` actions cannot be executed by anonymous
-users; the `delete` action can be executed by users with `admin` role;
-and the `delete` action cannot be executed by anyone.
+O código acima especifica três regras, cada uma representada por um array.
+O primeiro elemento do array é um `'allow'` ou `'deny'` e o segundo 
+é formado por pares do tipo nome-valor que especificam o padrão dos parâmetros da regra. As regras definidas acima são interpretadas como se segue: as ações `create` e `edit` não podem ser executadas por usuários anônimos (não identificados);
+a ação `delete` pode ser executada por usuários com o papel `admin`;
+e a ação `delete` não pode ser executada por ninguém.
 
-The access rules are evaluated one by one in the order they are specified.
-The first rule that matches the current pattern (e.g. username, roles,
-client IP, address) determines the authorization result. If this rule is an `allow`
-rule, the action can be executed; if it is a `deny` rule, the action cannot
-be executed; if none of the rules matches the context, the action can still
-be executed.
+As regras de acesso são avaliadas uma a uma na ordem em que foram especificadas.
+A primeira regra que bater com o padrão atual (isto é, nome de usuário, papéis,
+IP do cliente, endereço) determina o resultado da autorização. Se esta regra for um `allow`
+a ação pode ser executada. Se for um `deny` a ação não pode ser executada;
+E se nenhuma das regras bater, a ação também poderá ser executada.
 
 > Tip: To ensure an action does not get executed under certain contexts,
 > it is beneficial to always specify a matching-all `deny` rule at the end
