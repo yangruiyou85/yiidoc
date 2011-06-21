@@ -19,9 +19,9 @@
  * @version $Id: $
  */
 return array (
-  'Failed to set unsafe attribute "{attribute}" of "{class}".' => 'Nepodarilo sa nastaviť neošetrený atribút "{attribute}" v objekte "{class}".',
-  'Failed to start session.' => 'Nepodarilo sa vytvoriť session.',
-  '{class} and its behaviors do not have a method or closure named "{name}".' => '{class} ani súvisiace objekty nemajú definovanú metódu ani closure s názvom "{name}".',
+  'Failed to set unsafe attribute "{attribute}" of "{class}".' => '',
+  'Failed to start session.' => '',
+  '{class} and its behaviors do not have a method or closure named "{name}".' => '',
   '"{path}" is not a valid directory.' => '"{path}" nie je platný adresár.',
   '&lt; Previous' => 'Predchádzajúca',
   '&lt;&lt; First' => 'Prvá',
@@ -120,7 +120,7 @@ return array (
   'Login Required' => 'Musíte sa prihlásiť.',
   'Map data must be an array or an object implementing Traversable.' => 'Mapa musí obsahovať pole alebo objekt implementujúci Traversable.',
   'Missing the temporary folder to store the uploaded file "{file}".' => 'Nebol nájdený dočasný adresár pre uloženie nahrávaného súboru "{file}".',
-  'Next &gt;' => 'Nasledujúca &gt;',
+  'Next &gt;' => 'Nasledujúci &gt;',
   'No columns are being updated for table "{table}".' => 'V tabuľke "{table}" nebudú aktualizované žiadne polia.',
   'No counter columns are being updated for table "{table}".' => 'V tabuľke "{table}" nebudú aktualizované žiadne polia pre počítadla.',
   'Object configuration must be an array containing a "class" element.' => 'Konfigurácia objektu musí byť pole obsahujúce element "class".',
@@ -198,7 +198,6 @@ return array (
   'Unable to change the item name. The name "{name}" is already used by another item.' => 'Nie je možné zmeniť názov položky. Názov "{name}" už používa iná položka.',
   'Unable to create application state file "{file}". Make sure the directory containing the file exists and is writable by the Web server process.' => 'Nie je možné vytvoriť súbor so statusom aplikácie "{file}". Ubezpečte sa, že adresár obsahujúci tento súbor existuje a má zapisovacie oprávnenia pre webový server.',
   'Unable to find "{column}" in table "{table}".' => 'Nepodarilo sa nájsť "{column}" v tabuľke "{table}".',
-  'Unable to import "{alias}". Please check your server configuration to make sure you are allowed to change PHP include_path.' => 'Nepodarilo sa importovať "{alias}". Ubezpečte sa, že konfigurácia servera vám umožňuje zmeniť PHP nastavenie pre include_path.',
   'Unable to lock file "{file}" for reading.' => 'Nepodarilo sa uzamknúť súbor "{file}" pre čítanie.',
   'Unable to lock file "{file}" for writing.' => 'Nepodarilo sa uzamknúť súbor "{file}" pre zápis.',
   'Unable to read file "{file}".' => 'Nepodarilo sa načítať súbor "{file}".',
