@@ -1,99 +1,100 @@
 Member List of Yiidoc Project
 =============================
 
-  Status  Language            Forum ID            Google Account              Lead
-------------------------------------------------------------------------------------
-  active  Arabic              Muaid               dr.muaid
-  active  Bulgarian           koleto              nstoitsev
-  active  Catalan             jdl                 jdomin123
-  active  Dutch               Blizz               blizzke
-  active  Dutch               marcovtwout         marcovtwout
-  active  French              kiwisoft            pgaultier
-  active  French              locked              etienne.adam
-  active  German              Mike                haertl.mike                 Yes
-  active  Greek               dotoree             anavatis
-  active  Greek               GoofyX              yii@lourdas.name
-  active  Hebrew              Vince               vadimg88                    Yes
-  active  Hungarian           Endyl               slemmer.balazs
-  active  Hungarian           imehesz             imehesz
-  active  Idonesian           Kabayan             ade999                      Yes
-  active  Idonesian           junxiong            garry3peace
-  active  Italian             lorenzomar          marzullo.lorenzo@gmail.com
-  active  Italian             aangelo             antonio.angelo@gmail.com
-  active  Japanese            iwasaki             iwasaki@cresc.com
-  active  Japanese            mocapapa            mocapapa@g.pugpug.org       Yes
-  active  Japanese            shuwatto            shuwatto
-  active  Japanese            softark             softark@gmail.com
-  active  Korean              tlenwon             tlenwon@gmail.com
-  active  Lithuanian          Tova                tomas.valacka
-  active  Norwegian           eirikhm             eirikhm
-  active  Polish              aztech              tomasz.suchanek
-  active  Polish              Filip Górczyński    filip.gorczynski
-  active  Portuguese          davi_alexandre      bastardgoblin
-  active  Portuguese          goncin              goncin
-  active  Portuguese          Wanderson           wanderson.wbc
-  active  Portuguese          Ivan Wilhelm        ivan.whm
-  active  Brazilian Portuguese _lins              slinstj
-  active  Russian             Caveman             alex.lukjanenko
-  active  Russian             samdark             alexander.makarow           Yes
-  active  Simplified Chinese  dongbeta            yiidoc@dongbeta.com
-  active  Simplified Chinese  moho                goldendegree
-  active  Simplified Chinese  sharehua            8080268@qq.com
-  active  Simplified Chinese  Qiang Wu            wgq91here
-  active  Simplified Chinese  riverlet            fanbincn
-  active  Simplified Chinese  HonestQiao          honestqiao
-  active  Simplified Chinese  rainyjune           dreamneverfall
-  active  Simplified Chinese  燃烧的心            designerhe
-  active  Simplified Chinese  thaiki              xwsoul
-  active  Slovak              lubosdz             lubosdz
-  active  Spanish             buritica            buritica
-  active  Spanish             juan-calvo          adamut
-  active  Spanish             sebas               sebathi                     Yes
-  active  Swedish             tri                 triboe
-  active  Tamil               sapauljoseph        aka.srinivasan
-  active  Ukrainian           vitaliy.step        vitaliy.step
-  active  Vietnamese          Harry Tang          admin@giaduy.info
-  active  Persian             Bamdadd             bamdadd@gmail.com	         Yes
-inactive  Bulgarian           penkomitev          pemitev
-inactive  Czech               skippy              sklokocka
-inactive  Danish              DNRN                dnrnmail
-inactive  Dutch               dalip               maartenvanvliet
-inactive  Dutch               letscode            janwiebedehaan
-inactive  Dutch               Maxximus            maxximus007
-inactive  Dutch               Sacha Telgenhof     stelgenhof
-inactive  French              tof                 christophe.boulain
-inactive  German              Ascomae             ckuetbach
-inactive  German              pmatulla            peter.matulla
-inactive  Hungarian           ggyorfi             ggyorfi
-inactive  Idonesian           rx_sa               santosa.eric
-inactive  Japanese            rogue_engineer      hideo.fukumori
-inactive  Japanese            wjx                 s01master@yahoo.co.jp
-inactive  Norwegian           knut                knut.urdalen
-inactive  Polish              e_t_k               e.kniazycki
-inactive  Portuguese          alexweber           alexweber15
-inactive  Portuguese          Flavio              flavioleonelferreira
-inactive  Portuguese          jjmf                joaomarq
-inactive  Portuguese          Luiz                luiz.uo
-inactive  Portuguese          mnobre              marconobre
-inactive  Portuguese          raragao             ricardoaragao
-inactive  Romanian            mishhh              if.mihai
-inactive  Russian             Bethrezen           b37hr3z3n
-inactive  Russian             cr0t                kuznecov.sg
-inactive  Russian             Konstantin Mirin    konstantin.mirin
-inactive  Russian             multif              ru.multif
-inactive  Russian             Scott Tiger         krugloff.sergey
-inactive  Russian             xenon               xzenon
-inactive  Simplified Chinese  cr0909              cr0909
-inactive  Simplified Chinese  dofy                dofyyu
-inactive  Simplified Chinese  dreaminto           dreaminto
-inactive  Simplified Chinese  kran                isfrog
-inactive  Simplified Chinese  Leric               leric.zhang
-inactive  Simplified Chinese  nowgoo              nowgoo
-inactive  Simplified Chinese  tangniyuqi          tangniyuqi
-inactive  Spanish             ing.espitaleta      ing.espitaleta
-inactive  Spanish             mercurial           geraldo.medrano
-inactive  Spanish             PoL                 freakpol
-inactive  Traditional Chinese clementchen         clementchen
-inactive  Ukrainian           yugene              yugenekr
-inactive  Vietnamese          hnhuan              hn.huan
-inactive  Vietnamese          hung5s              hung5s
+  Status  Language              Forum ID            Google Account              Lead
+--------------------------------------------------------------------------------------
+  active  Arabic                Muaid               dr.muaid
+  active  Brazilian Portuguese  _lins               slinstj
+  active  Brazilian Portuguese  mentel              rodrigo.coelho
+  active  Bulgarian             koleto              nstoitsev
+  active  Catalan               jdl                 jdomin123
+  active  Dutch                 Blizz               blizzke
+  active  Dutch                 marcovtwout         marcovtwout
+  active  French                kiwisoft            pgaultier
+  active  French                locked              etienne.adam
+  active  German                Mike                haertl.mike                 Yes
+  active  Greek                 dotoree             anavatis
+  active  Greek                 GoofyX              yii@lourdas.name
+  active  Hebrew                Vince               vadimg88                    Yes
+  active  Hungarian             Endyl               slemmer.balazs
+  active  Hungarian             imehesz             imehesz
+  active  Idonesian             Kabayan             ade999                      Yes
+  active  Idonesian             junxiong            garry3peace
+  active  Italian               lorenzomar          marzullo.lorenzo@gmail.com
+  active  Italian               aangelo             antonio.angelo@gmail.com
+  active  Japanese              iwasaki             iwasaki@cresc.com
+  active  Japanese              mocapapa            mocapapa@g.pugpug.org       Yes
+  active  Japanese              shuwatto            shuwatto
+  active  Japanese              softark             softark@gmail.com
+  active  Korean                tlenwon             tlenwon@gmail.com
+  active  Lithuanian            Tova                tomas.valacka
+  active  Norwegian             eirikhm             eirikhm
+  active  Polish                aztech              tomasz.suchanek
+  active  Polish                Filip Górczyński    filip.gorczynski
+  active  Portuguese            davi_alexandre      bastardgoblin
+  active  Portuguese            goncin              goncin
+  active  Portuguese            Wanderson           wanderson.wbc
+  active  Portuguese            Ivan Wilhelm        ivan.whm
+  active  Russian               Caveman             alex.lukjanenko
+  active  Russian               samdark             alexander.makarow           Yes
+  active  Simplified Chinese    dongbeta            yiidoc@dongbeta.com
+  active  Simplified Chinese    moho                goldendegree
+  active  Simplified Chinese    sharehua            8080268@qq.com
+  active  Simplified Chinese    Qiang Wu            wgq91here
+  active  Simplified Chinese    riverlet            fanbincn
+  active  Simplified Chinese    HonestQiao          honestqiao
+  active  Simplified Chinese    rainyjune           dreamneverfall
+  active  Simplified Chinese    燃烧的心            designerhe
+  active  Simplified Chinese    thaiki              xwsoul
+  active  Slovak                lubosdz             lubosdz
+  active  Spanish               buritica            buritica
+  active  Spanish               juan-calvo          adamut
+  active  Spanish               sebas               sebathi                     Yes
+  active  Swedish               tri                 triboe
+  active  Tamil                 sapauljoseph        aka.srinivasan
+  active  Ukrainian             vitaliy.step        vitaliy.step
+  active  Vietnamese            Harry Tang          admin@giaduy.info
+  active  Persian               Bamdadd             bamdadd@gmail.com           Yes
+inactive  Bulgarian             penkomitev          pemitev
+inactive  Czech                 skippy              sklokocka
+inactive  Danish                DNRN                dnrnmail
+inactive  Dutch                 dalip               maartenvanvliet
+inactive  Dutch                 letscode            janwiebedehaan
+inactive  Dutch                 Maxximus            maxximus007
+inactive  Dutch                 Sacha Telgenhof     stelgenhof
+inactive  French                tof                 christophe.boulain
+inactive  German                Ascomae             ckuetbach
+inactive  German                pmatulla            peter.matulla
+inactive  Hungarian             ggyorfi             ggyorfi
+inactive  Idonesian             rx_sa               santosa.eric
+inactive  Japanese              rogue_engineer      hideo.fukumori
+inactive  Japanese              wjx                 s01master@yahoo.co.jp
+inactive  Norwegian             knut                knut.urdalen
+inactive  Polish                e_t_k               e.kniazycki
+inactive  Portuguese            alexweber           alexweber15
+inactive  Portuguese            Flavio              flavioleonelferreira
+inactive  Portuguese            jjmf                joaomarq
+inactive  Portuguese            Luiz                luiz.uo
+inactive  Portuguese            mnobre              marconobre
+inactive  Portuguese            raragao             ricardoaragao
+inactive  Romanian              mishhh              if.mihai
+inactive  Russian               Bethrezen           b37hr3z3n
+inactive  Russian               cr0t                kuznecov.sg
+inactive  Russian               Konstantin Mirin    konstantin.mirin
+inactive  Russian               multif              ru.multif
+inactive  Russian               Scott Tiger         krugloff.sergey
+inactive  Russian               xenon               xzenon
+inactive  Simplified Chinese    cr0909              cr0909
+inactive  Simplified Chinese    dofy                dofyyu
+inactive  Simplified Chinese    dreaminto           dreaminto
+inactive  Simplified Chinese    kran                isfrog
+inactive  Simplified Chinese    Leric               leric.zhang
+inactive  Simplified Chinese    nowgoo              nowgoo
+inactive  Simplified Chinese    tangniyuqi          tangniyuqi
+inactive  Spanish               ing.espitaleta      ing.espitaleta
+inactive  Spanish               mercurial           geraldo.medrano
+inactive  Spanish               PoL                 freakpol
+inactive  Traditional Chinese   clementchen         clementchen
+inactive  Ukrainian             yugene              yugenekr
+inactive  Vietnamese            hnhuan              hn.huan
+inactive  Vietnamese            hung5s              hung5s
