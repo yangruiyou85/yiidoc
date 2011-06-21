@@ -159,22 +159,20 @@ na base de dados, bem como no estado da identidade com [CBaseUserIdentity::setSt
 Devemos verificar se a chave obtida do estado do cookie é a mesma que 
 a do banco de dados.
 
-Access Control Filter
+Filtro de Controle de Acesso (Access Control Filter)
 ---------------------
 
-Access control filter is a preliminary authorization scheme that checks if
-the current user can perform the requested controller action. The
-authorization is based on user's name, client IP address and request types.
-It is provided as a filter named as
+Filtro de controle de acesso é um esquema de autorização preliminar que verifica se
+o usuário atual pode realizar a ação solicitada. A
+autorização é baseada no nome do usuário, endereço de IP do cliente e tipos de requisição.
+É fornecido como um filtro chamado
 ["accessControl"|CController::filterAccessControl].
 
-> Tip: Access control filter is sufficient for simple scenarios. For more
-complex access control you may use role-based access (RBAC), which we will cover in the next subsection.
+> Tip: Filtros de controle de acesso são suficientes para cenários simples. Para
+controle de acesso mais complexo você pode usar o controle de acesso baseado em papéis de usuários (role-based access (RBAC)).
 
-To control the access to actions in a controller, we install the access
-control filter by overriding [CController::filters] (see
-[Filter](/doc/guide/basics.controller#filter) for more details about
-installing filters).
+Para controlar o acesso a ações em um controller nós instalamos o filtro de controle
+por sobrepor [CController::filters] (veja [Filter](/doc/guide/basics.controller#filter)) para mais detalhes sobre a instalação).
 
 ~~~
 [php]
@@ -190,11 +188,11 @@ class PostController extends CController
 }
 ~~~
 
-In the above, we specify that the [access
-control|CController::filterAccessControl] filter should be applied to every
-action of `PostController`. The detailed authorization rules used by the
-filter are specified by overriding [CController::accessRules] in the
-controller class.
+Acima especificamos que o [filtro de controle de acesso|CController::filterAccessControl]
+deve ser aplicado a todas as
+ações de `PostController`. As regras detalhadas de autorização usadas pelo
+filtro são especificadas por sobrepor [CController::accessRules] na
+classe controller.
 
 ~~~
 [php]
