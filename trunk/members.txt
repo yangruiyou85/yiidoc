@@ -6,6 +6,10 @@ Member List of Yiidoc Project
   active  Arabic                Muaid               dr.muaid
   active  Brazilian Portuguese  _lins               slinstj
   active  Brazilian Portuguese  mentel              rodrigo.coelho
+  active  Brazilian Portuguese  davi_alexandre      bastardgoblin
+  active  Brazilian Portuguese  goncin              goncin
+  active  Brazilian Portuguese  Wanderson           wanderson.wbc
+  active  Brazilian Portuguese  Ivan Wilhelm        ivan.whm
   active  Bulgarian             koleto              nstoitsev
   active  Catalan               jdl                 jdomin123
   active  Dutch                 Blizz               blizzke
@@ -31,10 +35,6 @@ Member List of Yiidoc Project
   active  Norwegian             eirikhm             eirikhm
   active  Polish                aztech              tomasz.suchanek
   active  Polish                Filip Górczyński    filip.gorczynski
-  active  Portuguese            davi_alexandre      bastardgoblin
-  active  Portuguese            goncin              goncin
-  active  Portuguese            Wanderson           wanderson.wbc
-  active  Portuguese            Ivan Wilhelm        ivan.whm
   active  Russian               Caveman             alex.lukjanenko
   active  Russian               samdark             alexander.makarow           Yes
   active  Simplified Chinese    dongbeta            yiidoc@dongbeta.com
