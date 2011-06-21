@@ -72,7 +72,8 @@ Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal
 = Convenções adotadas na tradução =
 
 *Lista de convenções*:
-  * A definir
+  * Use sempre o identificador [pt_br] no início das suas mensagens de commit
+  * Mais convenções a definir
 
 = Observações =
   * Lembre-se sempre de dar o _Update_ no svn antes de editar um arquivo.
@@ -85,7 +86,7 @@ Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal
          *p *build message ../requirements/messages/config.php*
       OBS: Utilitario de merge para Windows http://sourceforge.net/project/downloading.php?groupname=winmerge&filename=WinMerge-2.12.2-Setup.exe&use_mirror=ufpr
 
-  * Lembre-se sempre de salvar as traduções no formato UTF-8 (UTF-8 Plain).
+  * Lembre-se sempre de salvar as traduções no formato UTF-8 (UTF-8 Plain) sem BOM.
   * Quem participar da tradução do Guide deve colocar seus créditos no arquivo /guide/pt_br/index.php.
   * As traduções estarão disponíveis no site do Yii Framework a cada lançamento do mesmo.
   * Para visualizar e testar suas traduções utilize o seguinte modelo de URL:
@@ -94,6 +95,3 @@ Atualmente estamos traduzindo o Guia definitivo para o Yii e esta é a principal
       *> >Note|Nota: ...
       *> >Tip|Dica: ...
   * Consulte o Readme para saber como sincronizar o Guia e as Messages e manter a documentação sempre atualizada.
-
-      
-  
