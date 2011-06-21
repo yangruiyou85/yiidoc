@@ -1,5 +1,5 @@
 #summary Convenções para a tradução do yiidoc em Português do Brasil.
-#labels BrazilianPortuguese,pt_br
+#labels pt_br
 
 = Introdução =
 
