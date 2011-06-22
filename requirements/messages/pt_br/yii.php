@@ -19,11 +19,11 @@
  * @version $Id: $
  */
 return array (
-  'Ctype extension' => '',
-  'GD extension with<br />FreeType support' => '',
-  'GD installed<br />FreeType support not installed' => '',
-  'GD not installed' => '',
-  'To use memcached set <a href="http://www.yiiframework.com/doc/api/CMemCache#useMemcached-detail">CMemCache::useMemcached</a> to <code>true</code>.' => '',
+  'Ctype extension' => 'extensão Ctype',
+  'GD extension with<br />FreeType support' => 'extensão GD com<br />suporte a FreeType',
+  'GD installed<br />FreeType support not installed' => 'GD instalada<br />suporte a FreeType não instalado',
+  'GD not installed' => 'GD não instalada',
+  'To use memcached set <a href="http://www.yiiframework.com/doc/api/CMemCache#useMemcached-detail">CMemCache::useMemcached</a> to <code>true</code>.' => 'Para usar memcached configure <a href="http://www.yiiframework.com/doc/api/CMemCache#useMemcached-detail">CMemCache::useMemcached</a> como <code>true</code>.',
   'GD extension' => '@@extensão GD@@',
   '$_SERVER does not have {vars}.' => '$_SERVER não possui {vars}.',
   '$_SERVER variable' => 'variável $_SERVER',
@@ -44,7 +44,7 @@ return array (
   'Reflection extension' => 'extensão Reflection',
   'SOAP extension' => 'extensão SOAP',
   'SPL extension' => 'extensão SPL',
-  'This is required by encrypt and decrypt methods.' => 'É necessário aos métodos encrypt e decrypt.',
+  'This is required by encrypt and decrypt methods.' => 'Este item é necessário aos métodos encrypt e decrypt.',
   'This is required if you are using MySQL database.' => 'Este item é obrigatório se você estiver utilizando MySQL.',
   'This is required if you are using PostgreSQL database.' => 'Este item é obrigatório se você estiver utilizando PostgreSQL.',
   'This is required if you are using SQLite database.' => 'Este item é obrigatório se você estiver utilizando SQLite.',
