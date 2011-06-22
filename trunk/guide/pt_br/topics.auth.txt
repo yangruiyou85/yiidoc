@@ -263,45 +263,41 @@ Três caracteres especiais podem ser usados aqui:
 	   - `?`: usuários anônimos.
      - `@`: usuários autenticados.
 
-   - [roles|CAccessRule::roles]: specifies which roles that this rule matches.
-This makes use of the [role-based access control](/doc/guide/topics.auth#role-based-access-control)
-feature to be described in the next subsection. In particular, the rule
-is applied if [CWebUser::checkAccess] returns true for one of the roles.
-Note, you should mainly use roles in an `allow` rule because by definition,
-a role represents a permission to do something. Also note, although we use the
-term `roles` here, its value can actually be any auth item, including roles,
-tasks and operations.
+   - [roles|CAccessRule::roles]: especifica com quais papéis esta regra bate.
+Isto faz uso do [controle de acesso baseado em papéis](/doc/guide/topics.auth#role-based-access-control),
+característica que será descrita na próxima sub-seção. Em resumo, a regra é aplicada
+se [CWebUser::checkAccess] retornar true para um dos papéis.
+Note que você deve usar principalmente papéis em uma regra `allow` por que, por definição,
+um papel representa uma permissão de fazer algo. Note também que, embora usemos o termo 'papéis'
+aqui, seu valor pode realmente ser qualquer item de autenticação, incluindo papéis,
+tarefas e operações.
 
-   - [ips|CAccessRule::ips]: specifies which client IP addresses this rule
-matches.
-
-   - [verbs|CAccessRule::verbs]: specifies which request types (e.g.
-`GET`, `POST`) this rule matches. The comparison is case-insensitive.
-
-   - [expression|CAccessRule::expression]: specifies a PHP expression whose value
-indicates whether this rule matches. In the expression, you can use variable `$user`
-which refers to `Yii::app()->user`.
+   - [ips|CAccessRule::ips]: especifica com quais endereços de IP de clientes esta regra bate.
+   - [verbs|CAccessRule::verbs]: especifica com quais tipos de requisição (exemplo: `GET`,
+`POST`) esta regra bate. A comparação não diferencia maiúsculas/minúsculas (case-insensitive).
+   - [expression|CAccessRule::expression]: especifica uma expressão PHP cujo valor indica se
+esta regra bate. Na expressão você pode a variável `$user` que se refere a `Yii::app()->user`.
 
 
-Handling Authorization Result
+Manipulando o Resultado da Autorização
 -----------------------------
 
-When authorization fails, i.e., the user is not allowed to perform the
-specified action, one of the following two scenarios may happen:
+Quando a autorização falha, ou seja, o usuário não tem permissão de realizar a ação
+especificada, um dos dois cenários a seguir pode ocorrer:
 
-   - If the user is not logged in and if the [loginUrl|CWebUser::loginUrl]
-property of the user component is configured to be the URL of the login
-page, the browser will be redirected to that page. Note that by default,
-[loginUrl|CWebUser::loginUrl] points to the `site/login` page.
+   - Se o usuário não estiver logado e se a propriedade [loginUrl|CWebUser::loginUrl]
+do componente User estiver configurada para ser a URL da página de login, o navegador
+vai ser redirecionado para essa página. Note que, por padrão, 
+[loginUrl|CWebUser::loginUrl] aponta para a página `site/login`.
 
-   - Otherwise an HTTP exception will be displayed with error code 403.
+   - Caso contrário, uma exceção HTTP com código de erro 403 vai ser exibida.
 
-When configuring the [loginUrl|CWebUser::loginUrl] property, one can
-provide a relative or absolute URL. One can also provide an array which
-will be used to generate a URL by calling [CWebApplication::createUrl]. The
-first array element should specify the
-[route](/doc/guide/basics.controller#route) to the login controller
-action, and the rest name-value pairs are GET parameters. For example,
+Ao configurar a propriedade [loginUrl|CWebUser::loginUrl], pode-se fornecer uma
+URL relativa ou absoluta. Pode-se também fornecer um array que vai ser usado
+para gerar uma URL por chamar [CWebApplication::createUrl]. O primeiro elemento array
+deve especificar a [rota](/doc/guide/basics.controller#route) para a ação login 
+do controller, e o restante, pares nome-valor de parâmetros GET.
+Por exemplo:
 
 ~~~
 [php]
@@ -309,19 +305,18 @@ array(
 	......
 	'components'=>array(
 		'user'=>array(
-			// this is actually the default value
+			// este é, de fato, o valor padrão
 			'loginUrl'=>array('site/login'),
 		),
 	),
 )
 ~~~
 
-If the browser is redirected to the login page and the login is
-successful, we may want to redirect the browser back to the page that
-caused the authorization failure. How do we know the URL for that page? We
-can get this information from the [returnUrl|CWebUser::returnUrl] property
-of the user component. We can thus do the following to perform the
-redirection:
+Se o navegador for redirecionado para a página de login e o login for bem-sucedido,
+podemos redirecioná-lo novamente para a página que gerou a falha de autorização.
+Como podemos saber a URL dessa página? Podemos conseguir essa informação da propriedade
+[returnUrl|CWebUser::returnUrl] do componente Usuário. Podemos assim fazer o seguinte para
+executar o redirecionamento:
 
 ~~~
 [php]
