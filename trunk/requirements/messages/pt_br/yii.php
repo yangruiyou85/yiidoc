@@ -11,12 +11,20 @@
  * Messages that no longer need translation will have their translations
  * enclosed between a pair of '@@' marks.
  *
+ * Message string can be used with plural forms format. Check i18n section
+ * of the guide for details.
+ *
  * NOTE, this file must be saved in UTF-8 encoding.
  *
  * @version $Id: $
  */
 return array (
-  'This is required by encrypt and decrypt methods.' => 'É necessário aos métodos encrypt e decrypt.',
+  'Ctype extension' => '',
+  'GD extension with<br />FreeType support' => '',
+  'GD installed<br />FreeType support not installed' => '',
+  'GD not installed' => '',
+  'To use memcached set <a href="http://www.yiiframework.com/doc/api/CMemCache#useMemcached-detail">CMemCache::useMemcached</a> to <code>true</code>.' => '',
+  'GD extension' => '@@extensão GD@@',
   '$_SERVER does not have {vars}.' => '$_SERVER não possui {vars}.',
   '$_SERVER variable' => 'variável $_SERVER',
   '$_SERVER["SCRIPT_FILENAME"] must be the same as the entry script file path.' => '$_SERVER["SCRIPT_FILENAME"] precisa ser o mesmo que o arquivo de script de entrada.',
@@ -24,7 +32,6 @@ return array (
   'All <a href="http://www.yiiframework.com/doc/api/#system.db">DB-related classes</a>' => 'Todas as classes relacionadas ao <a href="http://www.yiiframework.com/doc/api/#system.db">banco de dados</a>',
   'DOM extension' => 'extensão DOM',
   'Either $_SERVER["REQUEST_URI"] or $_SERVER["QUERY_STRING"] must exist.' => '$_SERVER["REQUEST_URI"] ou $_SERVER["QUERY_STRING"] é obrigatório.',
-  'GD extension' => 'extensão GD',
   'Mcrypt extension' => 'extensão Mcrypt',
   'Memcache extension' => 'extensão Memcache',
   'PCRE extension' => 'extensão PCRE',
@@ -37,6 +44,7 @@ return array (
   'Reflection extension' => 'extensão Reflection',
   'SOAP extension' => 'extensão SOAP',
   'SPL extension' => 'extensão SPL',
+  'This is required by encrypt and decrypt methods.' => 'É necessário aos métodos encrypt e decrypt.',
   'This is required if you are using MySQL database.' => 'Este item é obrigatório se você estiver utilizando MySQL.',
   'This is required if you are using PostgreSQL database.' => 'Este item é obrigatório se você estiver utilizando PostgreSQL.',
   'This is required if you are using SQLite database.' => 'Este item é obrigatório se você estiver utilizando SQLite.',
