@@ -5,7 +5,7 @@ Autenticação e autorização são necessárias para uma página Web que deve
 ser limitada a determinados usuários. *Autenticação* serve para verificar
 se alguém é quem diz ser. Isto geralmente envolve a utilização de um usuário e  
 senha, mas pode incluir outros métodos de validação da identidade, como
-cartão inteligente (smart card), impressões digitais, etc. *Autorização* serve descobrir se uma
+cartão inteligente (smart card), impressões digitais, etc. *Autorização* serve para descobrir se uma
 pessoa, uma vez identificada (e autenticada), tem permissão para manipular
 recursos específicos. Isto geralmente é utilizado para descobrir se esta
 pessoa está em uma regra específica que possui acesso aos recursos.
@@ -168,7 +168,7 @@ autorização é baseada no nome do usuário, endereço de IP do cliente e tipos
 É fornecido como um filtro chamado
 ["accessControl"|CController::filterAccessControl].
 
-> Tip: Filtros de controle de acesso são suficientes para cenários simples. Para
+> Tip|Dica: Filtros de controle de acesso são suficientes para cenários simples. Para
 controle de acesso mais complexo você pode usar o controle de acesso baseado em papéis de usuários (role-based access (RBAC)).
 
 Para controlar o acesso a ações em um controller nós instalamos o filtro de controle
@@ -231,37 +231,37 @@ IP do cliente, endereço) determina o resultado da autorização. Se esta regra 
 a ação pode ser executada. Se for um `deny` a ação não pode ser executada;
 E se nenhuma das regras bater, a ação também poderá ser executada.
 
-> Tip: To ensure an action does not get executed under certain contexts,
-> it is beneficial to always specify a matching-all `deny` rule at the end
-> of rule set, like the following:
+> Tip|Dica: Para garantir que uma ação não seja executada sob certos contextos,
+> é benéfico sempre especificar uma regra pega-tudo do tipo `deny` no final
+> do conjunto de regras, como no exemplo:
 > ~~~
 > [php]
 > return array(
->     // ... other rules...
->     // the following rule denies 'delete' action for all contexts
+>     // ... outras regras...
+>     // a seguinte regra nega a ação 'delete' em todos os contextos
 >     array('deny',
 >         'actions'=>array('delete'),
 >     ),
 > );
 > ~~~
-> The reason for this rule is because if none of the rules matches a context, then the action will continue to be executed.
+> Sem esta regra, se nenhuma das regras batesse em algum contexto, a ação `delete` ainda seria executada.
 
 
-An access rule can match the following context parameters:
+Um regra de acesso pode bater nos seguintes contextos:
 
-   - [actions|CAccessRule::actions]: specifies which actions this rule
-matches. This should be an array of action IDs. The comparison is case-insensitive.
+   - [actions|CAccessRule::actions]: especifica com quais ações esta regra bate.
+Deve ser um array de IDs de ações. A comparação não diferencia maiúsculas/minúsculas (case-insensitive).
 
-   - [controllers|CAccessRule::controllers]: specifies which controllers this rule
-matches. This should be an array of controller IDs. The comparison is case-insensitive.
+   - [controllers|CAccessRule::controllers]: especifica com quais controllers esta regra bate.
+Deve ser um array de IDs de ações. A comparação não diferencia maiúsculas/minúsculas (case-insensitive).
 
-   - [users|CAccessRule::users]: specifies which users this rule matches.
-The current user's [name|CWebUser::name] is used for matching. The comparison
-is case-insensitive. Three special characters can be used here:
+   - [users|CAccessRule::users]: especifica com quais usuários esta regra bate.
+O [nome de usuário|CWebUser::name] é usado para a comparação. A comparação não diferencia maiúsculas/minúsculas (case-insensitive).
+Três caracteres especiais podem ser usados aqui:
 
-	   - `*`: any user, including both anonymous and authenticated users.
-	   - `?`: anonymous users.
-	   - `@`: authenticated users.
+     - `*`: qualquer usuário, inclusive anônimos e autenticados.
+	   - `?`: usuários anônimos.
+     - `@`: usuários autenticados.
 
    - [roles|CAccessRule::roles]: specifies which roles that this rule matches.
 This makes use of the [role-based access control](/doc/guide/topics.auth#role-based-access-control)
