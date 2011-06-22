@@ -247,7 +247,7 @@ E se nenhuma das regras bater, a ação também poderá ser executada.
 > Sem esta regra, se nenhuma das regras batesse em algum contexto, a ação `delete` ainda seria executada.
 
 
-Um regra de acesso pode bater nos seguintes contextos:
+Uma regra de acesso pode bater nos seguintes contextos:
 
    - [actions|CAccessRule::actions]: especifica com quais ações esta regra bate.
 Deve ser um array de IDs de ações. A comparação não diferencia maiúsculas/minúsculas (case-insensitive).
