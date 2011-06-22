@@ -7,4 +7,6 @@ Os leitores deste tutorial não são necessários terem conhecimentos prévios s
 
 Este tutorial está liberado sob [os termos da Documentação do Yii](http://www.yiiframework.com/doc/terms/).
 
+Tradução para o Português: Rodrigo Coelho (mentel).
+
 <div class="revision">$Id: start.overview.txt 1677 2010-01-07 20:29:26Z qiang.xue $</div>
