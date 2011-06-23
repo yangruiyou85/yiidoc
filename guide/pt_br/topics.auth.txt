@@ -324,19 +324,19 @@ Yii::app()->request->redirect(Yii::app()->user->returnUrl);
 ~~~
 
 Role-Based Access Control
+Controle de Acesso Baseado em Papéis
 -------------------------
 
-Role-Based Access Control (RBAC) provides a simple yet powerful
-centralized access control. Please refer to the [Wiki
-article](http://en.wikipedia.org/wiki/Role-based_access_control) for more
-details about comparing RBAC with other more traditional access control
-schemes.
+Controle de Acesso Baseado em Papéis (Role-Based Access Control - RBAC) provê um simples porém poderoso
+controle de acesso centralizado. Por favor, consulte o [Artigo Wiki]
+(http://en.wikipedia.org/wiki/Role-based_access_control) para mais detalhes
+sobre a comparação do RBAC com outras formas de controle de acesso mais tradicionais.
 
-Yii implements a hierarchical RBAC scheme via its
-[authManager|CWebApplication::authManager] application component. In the
-following ,we first introduce the main concepts used in this scheme; we
-then describe how to define authorization data; at the end we show how to
-make use of the authorization data to perform access checking.
+O Yii implementa o esquema de hierarquia RBAC através de seu
+componente de aplicação [authManager|CWebApplication::authManager].
+A seguir, nós primeiro introduzimos os conceitos principais usados neste esquema;
+Após, descrevemos como definir dados de autorização. Por fim, mostramos como
+fazer uso dos dados de autorização para realizar a verificação de acesso.
 
 ### Overview
 
