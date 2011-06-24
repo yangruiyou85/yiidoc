@@ -56,7 +56,7 @@
 	- [Testes Funcionais](test.functional)
 
 * Tópicos Especiais
-  - [Geração automática de código](topics.gii)
+    - [Geração automática de código](topics.gii)
     - [Gerenciamento de URL](topics.url)
     - [Autenticação e Autorização](topics.auth)
     - [Temas](topics.theming)
@@ -70,4 +70,4 @@
     - [Ajustes no Desempenho](topics.performance)
     - [Geração de código utilizando a ferramenta de linha de comando (deprecated)](quickstart.first-app-yiic)
 
-<div class="revision">$Id: toc.txt 1409 2009-09-13 19:21:34Z qiang.xue $</div>
+<div class="revision">$Id: toc.txt 2700 2010-12-01 13:08:26Z alexander.makarow $</div>
