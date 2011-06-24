@@ -1,4 +1,4 @@
-﻿Trabalhando com Banco de Dados
+Trabalhando com Banco de Dados
 ==============================
 
 O framework Yii fornece um poderoso suporte para programação com Banco de Dados. 
