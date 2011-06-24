@@ -581,6 +581,7 @@ $command->delete('tbl_user', 'id=:id', array(':id'=>1));
 * `date`: 日付。MySQL では `date` に変換される。
 * `binary`: バイナリデータ。MySQL では `blob` に変換される。
 * `boolean`: 真偽値。MySQL では `tinyint(1)` に変換される。
+* `money`: 金銭/貨幣。MySQL では `decimal(19,4)` に返還される。この型はバージョン 1.1.8 以降で使用可能。
 
 
 ### createTable()
@@ -862,4 +863,4 @@ function dropIndex($name, $table)
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 3224 2011-02-20 02:35:48Z alexander.makarow $</div>
+<div class="revision">$Id: database.query-builder.txt 3304 2011-06-23 14:53:50Z qiang.xue $</div>

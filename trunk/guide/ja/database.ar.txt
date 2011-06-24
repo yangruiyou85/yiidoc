@@ -575,4 +575,6 @@ $contents=Content::model()->findAll();
 デフォルトスコープは`SELECT`クエリにのみ適用されることに注意。`INSERT`、`UPDATE`、`DELETE`クエリに対しては
 無視されます。
 
-<div class="revision">$Id: database.ar.txt 3122 2009-05-12 17:59:03Z qiang.xue $</div>
+また、スコープを宣言するときは、対応する AR クラスで DB クエリを作成することが出来ないことにも注意して下さい。
+
+<div class="revision">$Id: database.ar.txt 3283 2011-06-16 13:18:13Z qiang.xue $</div>
