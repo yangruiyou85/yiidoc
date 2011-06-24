@@ -632,7 +632,8 @@ $command->delete('tbl_user', 'id=:id', array(':id'=>1));
 * `time`: время. Для MySQL конвертируется в `time`;
 * `date`: дата. Для MySQL конвертируется в `date`;
 * `binary`: бинарный. Для MySQL конвертируется в `blob`;
-* `boolean`: булевый. Для MySQL конвертируется в `tinyint(1)`.
+* `boolean`: булевый. Для MySQL конвертируется в `tinyint(1)`;
+* `money`: деньги/валюта. Для MySQL конвертируется в `decimal(19,4)`. Доступен с 1.1.8.
 
 
 ###createTable()
@@ -923,4 +924,4 @@ function dropIndex($name, $table)
 dropIndex('idx_username', 'tbl_user')
 ~~~
 
-<div class="revision">$Id: database.query-builder.txt 3224 2011-05-17 23:05:24Z alexander.makarow $</div>
+<div class="revision">$Id: database.query-builder.txt 3304 2011-06-23 14:53:50Z qiang.xue $</div>
