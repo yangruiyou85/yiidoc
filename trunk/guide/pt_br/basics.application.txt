@@ -1,19 +1,19 @@
 Aplicação
 =========
 
-A aplicação representa o contexto de execução do processamento de uma solicitação.
-Sua principal tarefa é a de receber uma solicitação do usuário e eviá-la para um
+O objeto da aplicação encapsula o contexto de execução no qual uma solicitação é processada.
+Sua principal tarefa é a de coletar algumas informações básicas sobre a solicitação e eviá-la para um
 controle adequado para o posterior processamento. Serve também como o lugar central
 para o processamento de configurações a nível da aplicação. Por esta razão, a aplicação
 é também chamada de `controle de frente`.
 
-A aplicação é criada como um singleton pelo [script de entrada](/doc/guide/basics.entry).
+O objeto da aplicação é instanciado criado como um singleton pelo [script de entrada](/doc/guide/basics.entry).
 O singleton da aplicação significa que esta pode ser acessada em qualquer lugar pelo [Yii::app()|YiiBase::app].
 
 Configuração da Aplicação
 -------------------------
 
-Por padrão, a aplicação é uma instancia de [CWebApplication]. Para personalizá-la
+Por padrão, o objeto da aplicação é uma instância de [CWebApplication]. Para personalizá-lo
 normalmente é utilizado um arquivo de configuração (ou um array) para inicializar
 os valores de suas propriedades quando a instância da aplicação é criada. Uma 
 alternativa para a costomização é estender o [CWebApplication].
@@ -43,7 +43,7 @@ return array(...);
 
 Para aplicar a configuração, passamos o nome do arquivo de configuração
 como um parâmetro ao construtor da aplicação, ou para o método [Yii::createWebApplication()],
-como o seguinte exemplo que é feito normalmente no [script de entrada](/doc/guide/basics.entry):
+da seguinte maneira, normalmente no [script de entrada](/doc/guide/basics.entry):
 
 ~~~
 [php]
@@ -52,24 +52,24 @@ $app=Yii::createWebApplication($configFile);
 
 > Tip|Dica: Se a configuração da aplicação é muito complexa, podemos dividí-la
 em vários arquivos, cada um retornando uma porção do array de configuração.
-Em seguida, no arquivo principal de configuração, chamamos a função `include()`
+Em seguida, no arquivo principal de configuração, podemos chamar a função `include()`
 do PHP para incluir o resto dos arquivos de configuração e combinamos em uma
 única array de configuração completa.
 
 Diretório Base da Aplicação
 ---------------------------
 
-O diretório base da aplicação é a pasta principal que contém todos os
-dados e scripts de PHP sensíveis à segurança. Por padrão, é um subdiretório
+O diretório base da aplicação é a pasta principal que sob a qual os
+dados e scripts de PHP sensíveis à segurança residem. Por padrão, é um subdiretório
 chamado `protected` que está localizado sob o diretório que contém o script
 de entrada. Ele pode ser personalizado através da definição 
 [basePath|CWebApplication::basePath], uma propriedade da 
-[configuração da aplicação](#application-configuration).
+[configuração da aplicação](/doc/guide/basics.application#application-configuration).
 
-O Conteúdo dentro do diretório base da aplicação deve ter o acesso protegido
-de usuários da Web. Com o servidor [Apache HTTP Server](http://httpd.apache.org/),
+O conteúdo dentro do diretório base da aplicação deve ter o acesso protegido
+contra o acesso de usuários da Web. Com o servidor [Apache HTTP Server](http://httpd.apache.org/),
 isto pode ser feito facilmente criando um arquivo `.htaccess` dentro do diretório
-base. O conteúdo do arquivo `.htaccess` deverá ser o seguinte:
+base. O conteúdo do arquivo `.htaccess` seria o seguinte:
 
 ~~~
 deny from all
@@ -78,16 +78,16 @@ deny from all
 Componentes da Aplicação
 ------------------------
 
-As funcionalidades da aplicação podem ser facilmente customizadas
-e enriquecidas graças à arquitetura flexível de componentes.
-A aplicação gerencia um conjunto de componentes, que implementam
-recursos específicos. Por exemplo, a aplicação realiza um pedido de
-um usuário com a ajuda dos componentes [CUrlManager] e [CHttpRequest].
+A funcionalidade do objeto da aplicação pode ser facilmente customizada
+e enriquecida usando a arquitetura flexível de componentes.
+O objeto gerencia um conjunto de componentes, que implementam
+recursos específicos. Por exemplo, ele realiza algum processamento inicial da
+solicitação do usuário com a ajuda dos componentes [CUrlManager] e [CHttpRequest].
 
-Ao configurar as propriedades dos [componentes|CApplication::components] da
+Ao configurar as propriedades dos [componentes|CApplication::components] da instância da
 aplicação, podemos personalizar a classe e os valores das propriedades de qualquer
 componente usado na aplicação. Por exemplo, podemos configurar o componente [CMemCache] 
-para que ele possa utilizar múltiplos servidores de memchache para fazer o caching:
+para que ele possa utilizar múltiplos servidores de memchache para fazer o caching, como abaixo:
 
 ~~~
 [php]
@@ -130,9 +130,8 @@ Principais Componentes da Aplicação
 
 O Yii predefine um conjunto de componentes principais da aplicação para fornecer
 funcionalidades comuns em aplicações Web. Por exemplo, o componente [request|CWebApplication::request] 
-é usado para processar pedidos do usuário e prover informações como URL, cookies. Ao configurar
-as propriedades desses componentes principais, podemos mudar o padrão de comportamento do Yii
-em quase todos os aspectos.
+é usado para coletar informações sobre uma solicitação do usuário e prover informações como a URL solicitada e cookies. Ao configurar
+as propriedades desses componentes principais, podemos mudar o padrão de comportamento de praticamente todos os aspectos do Yii.
 
 Abaixo, listamos os principais componentes que são pré-declarados pelo [CWebApplication].
 
@@ -148,7 +147,7 @@ do caching de dados. Note que você deve especificar a classe atual (ex.:
 o componente.
 
    - [clientScript|CWebApplication::clientScript]: [CClientScript] -
-gerencia os scripts (javascripts e CSS) do cliente.
+gerencia os scripts (javascript e CSS) do cliente.
 
    - [coreMessages|CApplication::coreMessages]: [CPhpMessageSource] -
 fornece as principais mensagens traduzidas usadas pelo framework Yii.
@@ -160,6 +159,8 @@ utilizar esse componente.
 
    - [errorHandler|CApplication::errorHandler]: [CErrorHandler] - processa 
 erros e exceções do PHP.
+
+   - [format|CApplication::format]: [CFormatter] - formata valores de dados com o propósito de exibí-los.
 
    - [messages|CApplication::messages]: [CPhpMessageSource] - fornece mensagens
 traduzidas utilizadas pela aplicação Yii.
@@ -174,13 +175,13 @@ fornece serviços relacionados à segurança, como hashing e encriptação.
 relacionadas à sessão.
 
    - [statePersister|CApplication::statePersister]: [CStatePersister] -
-fornece o estado global do método de persistência.
+fornece o mecanismo para a persistência do estado global.
 
    - [urlManager|CWebApplication::urlManager]: [CUrlManager] - fornece
 funcionalidades de análise e criação de URLs.
 
-   - [user|CWebApplication::user]: [CWebUser] - representa a identidade e
-informações do usuário atual.
+   - [user|CWebApplication::user]: [CWebUser] - guarda informações relacionadas à identidade
+sobre o usuário atual.
 
    - [themeManager|CWebApplication::themeManager]: [CThemeManager] - gerencia temas.
 
@@ -191,25 +192,25 @@ Ciclo de Vida de uma Aplicação
 Quando processa uma solicitação de um usuário, a aplicação segue o ciclo 
 de vida descrito a seguir:
 
-   0. Pré-inicia a aplicação com o método  [CApplication::preinit()];
+   0. Pré-inicia a aplicação com o método [CApplication::preinit()];
 
-   1. Configura as o auto-carregamento de classes (autoloader) e o tratamento de erros;
+   1. Configura o auto-carregamento de classes (autoloader) e o tratamento de erros;
 
    2. Registra os principais componentes da aplicação;
 
    3. Carrega as configurações da aplicação;
 
-   4. Inicia a aplicação com o [CApplication::init()]:
+   4. Inicia a aplicação com [CApplication::init()]:
        - Registra os comportamentos (behaviors) da aplicação;
 	   - Carrega os componentes estáticos da aplicação;
 
-   5. Dispara o evento [onBeginRequest|CApplication::onBeginRequest] (no início da requisição);
+   5. Dispara um evento [onBeginRequest|CApplication::onBeginRequest] (no início da requisição);
 
-   6. Processa a requisição do usuário:
-	   - Resolve a requisição do usuário;
+   6. Processa a solicitação do usuário:
+	   - Coleta informações sobre a solicitação do usuário;
 	   - Cria um controle;
 	   - Executa o controle;
 
-   7. Dispara o evento [onEndRequest|CApplication::onEndRequest] (ao fim da requisição);
+   7. Dispara um evento [onEndRequest|CApplication::onEndRequest] (ao fim da requisição);
 
-<div class="revision">$Id: basics.application.txt 857 2009-03-20 17:31:09Z qiang.xue $</div>
+<div class="revision">$Id: basics.application.txt 3251 2011-06-01 00:24:06Z qiang.xue $</div>
