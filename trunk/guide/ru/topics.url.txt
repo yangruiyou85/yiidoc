@@ -369,7 +369,7 @@ class CarUrlRule extends CBaseUrlRule
 			else if (isset($params['manufacturer']))
 				return $params['manufacturer'];
 		}
-		return false;  // не примеяем данное правило
+		return false;  // не применяем данное правило
 	}
 
 	public function parseUrl($manager,$request,$pathInfo,$rawPathInfo)
@@ -378,10 +378,10 @@ class CarUrlRule extends CBaseUrlRule
 		{
 			// Проверяем $matches[1] и $matches[3] на предмет
 			// соответствия производителю и модели в БД.
-			// Если соотвестствуют, выставляем $_GET['manufacturer'] и/или $_GET['model']
+			// Если соответствуют, выставляем $_GET['manufacturer'] и/или $_GET['model']
 			// и возвращаем строку с маршрутом 'car/index'.
 		}
-		return false;  // не примеяем данное правило
+		return false;  // не применяем данное правило
 	}
 }
 ~~~
