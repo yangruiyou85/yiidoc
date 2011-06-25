@@ -572,9 +572,8 @@ class Content extends CActiveRecord
 $contents=Content::model()->findAll();
 ~~~
 
-デフォルトスコープは`SELECT`クエリにのみ適用されることに注意。`INSERT`、`UPDATE`、`DELETE`クエリに対しては
-無視されます。
+> Note|注意: デフォルトスコープと名前付きスコープは `SELECT` クエリにのみ適用されます。`INSERT`、`UPDATE`、`DELETE` クエリに対しては無視されます。
 
-また、スコープを宣言するときは、対応する AR クラスで DB クエリを作成することが出来ないことにも注意して下さい。
+> さらに、デフォルトスコープまたは名前付きスコープを宣言するとき、そのスコープを宣言するメソッドの中では AR クラスを使って DB クエリを作成することが出来ません。
 
-<div class="revision">$Id: database.ar.txt 3283 2011-06-16 13:18:13Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 3318 2011-06-24 21:40:34Z qiang.xue $</div>
