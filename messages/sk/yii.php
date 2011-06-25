@@ -19,9 +19,9 @@
  * @version $Id: $
  */
 return array (
-  'Failed to set unsafe attribute "{attribute}" of "{class}".' => '',
-  'Failed to start session.' => '',
-  '{class} and its behaviors do not have a method or closure named "{name}".' => '',
+  'Failed to set unsafe attribute "{attribute}" of "{class}".' => 'Nepodarilo sa nastaviť neošetrený atribút "{attribute}" v objekte "{class}".',
+  'Failed to start session.' => 'Nepodarilo sa vytvoriť session.',
+  '{class} and its behaviors do not have a method or closure named "{name}".' => '{class} ani súvisiace objekty nemajú definovanú metódu ani closure s názvom "{name}".',
   '"{path}" is not a valid directory.' => '"{path}" nie je platný adresár.',
   '&lt; Previous' => 'Predchádzajúca',
   '&lt;&lt; First' => 'Prvá',
