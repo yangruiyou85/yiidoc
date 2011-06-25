@@ -677,10 +677,8 @@ Abfragekriterium.
 $contents=Content::model()->findAll();
 ~~~
 
-Beachten Sie, dass der Standardscope nur für `SELECT`-Abfragen verwendet wird.
-Bei `INSERT`-, `UPDATE`- und `DELETE`-Statements wird er ignoriert.
+> Note|Hinweis: Der Standardscope wird nur für `SELECT`-Abfragen verwendet. Bei `INSERT`-, `UPDATE`- und `DELETE`-Statements wird er ignoriert.
+> Innerhalb einer Scopedeklaration können außerdem keine DB-Abfragen auf die
+gleiche AR-Klasse durchgeführt werden.
 
-Innerhalb einer Scopedeklaration können außerdem keine DB-Abfragen auf die
-entsprechende AR-Klasse durchgeführt werden.
-
-<div class="revision">$Id: database.ar.txt 3283 2011-06-16 13:18:13Z qiang.xue $</div>
+<div class="revision">$Id: database.ar.txt 3318 2011-06-24 21:40:34Z qiang.xue $</div>
