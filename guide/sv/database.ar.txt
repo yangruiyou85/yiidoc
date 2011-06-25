@@ -670,4 +670,7 @@ $contents=Content::model()->findAll();
 Märk att ett förbestämt omfång endast gäller för `SELECT`-frågor. 
 Det ignoreras för `INSERT`-, `UPDATE`- och `DELETE`-frågor.
 
-<div class="revision">$Id: database.ar.txt 3122 2011-03-25 02:45:43Z qiang.xue $</div>
+Märk även att när ett förbestämt omfång deklarerats kan inga 
+DB-frågor utföras med motsvarande AR-klass.
+
+<div class="revision">$Id: database.ar.txt 3283 2011-06-16 13:18:13Z qiang.xue $</div>
