@@ -4,8 +4,12 @@ Czym jest Yii
 Yii jest bardzo wydajnym, opartym na komponentach frameworkiem PHP przeznaczonym
 do szybkiego tworzenia aplikacji webowych wielkiej skali. Pozwala na częstsze
 używania tego samego kodu (ang. maximum reusability) a także w znaczącym stopniu przyspiesza proces
-tworzenia aplikacji. Nazwa Yii (wymawiana jako `Yee` lub `[ji:]`) pochodzi od słów *łatwy*
-(ang. easy), *wydajny* (ang. efficient) i *rozszerzalny* (ang. extensible).
+tworzenia aplikacji. Nazwa Yii (wymawiana jako `Yee` lub `[ji:]`) jest akronimem "**Yes It Is!**" 
+(tłum. Tak, jest!). Jest to często dokładna i najbardziej zwięzła odpowiedź na pytania otrzymywane
+od nowych użytkowników Yii:
+
+Czy (Yii) jest szybkie? ... Czy jest bezpieczne? ... Czy jest profesjonalne? ... Czy jest odpowiednie 
+dla mojego następnego projektu? ... **Tak, jest!** (ang. **Yes, it is!**).
 
 Wymagania
 ---------
@@ -38,4 +42,4 @@ zlepkiem prac osób trzecich. Jest rezultatem dużego doświadczenia autora
 w tworzeniu aplikacji sieciowych oraz jego badań nad funkcjonowaniem 
 najpopularniejszych frameworków i aplikacji.
 
-<div class="revision">$Id: quickstart.what-is-yii.txt 3219 2011-05-13 03:03:35Z qiang.xue $</div>
+<div class="revision">$Id: quickstart.what-is-yii.txt 3244 2011-05-28 22:42:03Z alexander.makarow $</div>
