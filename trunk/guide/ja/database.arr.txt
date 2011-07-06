@@ -263,6 +263,10 @@ $users=User::model()->with(array(
 このオプションを設定しない場合は、関連するオブジェクトの配列は 0 から始まる整数のインデックスを持ちます。
 このオプションは、`HAS_MANY` および `MANY_MANY` のリレーションに対してのみ設定出来ます。
 
+   - `scopes`: 適用するスコープです。単一のスコープの場合は `'scopes'=>'scopeName'` のように、
+複数のスコープの場合は `'scopes'=>array('scopeName1','scopeName2')` のように指定する事が出来ます。
+このオプションは、バージョン 1.1.9 以降で利用可能です。
+
 さらに、以下のオプションは、レイジーローディングの間、特定のリレーションのために利用できます：
 
    - `limit`: 選択される行数の制限。このオプションは `BELONGS_TO` リレーションには適用されません。
@@ -674,4 +678,4 @@ $teacher=User::model()->findByPk(1);
 $students=$teacher->students;
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3127 2011-03-26 12:21:47Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3344 2011-07-06 22:04:50Z alexander.makarow $</div>

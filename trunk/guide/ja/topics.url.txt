@@ -376,12 +376,12 @@ class CarUrlRule extends CBaseUrlRule
 
 カスタム URL 規則クラスは、[CBaseUrlRule] で宣言されている二つの抽象メソッドを実装しなければなりません。
 
-* [CBaseUrlRule::createUrl()|createUrl()]
-* [CBaseUrlRule::parseUrl()|parseUrl()]
+* [createUrl()|CBaseUrlRule::createUrl()]
+* [parseUrl()|CBaseUrlRule::parseUrl()]
 
 上記の典型的な使用方法の他にも、カスタム URL 規則クラスを別のさまざまな目的のために実装することが可能です。
 例えば、URL の解析と生成のリクエストをログに記録するための規則クラスを書くことが出来ます。これは開発段階において有益かもしれません。
 また、他の全ての URL 規則が現在のリクエストを解決できなかった場合に、特別な 404 エラーページを表示するための規則クラスを書くことも可能です。
 この場合、この特別なクラスの規則を最後の規則として宣言しなければならないことに注意して下さい。
 
-<div class="revision">$Id: topics.url.txt 3236 2011-05-25 13:11:58Z qiang.xue $</div>
+<div class="revision">$Id: topics.url.txt 3329 2011-06-28 08:31:35Z mdomba $</div>
