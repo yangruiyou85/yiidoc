@@ -10,6 +10,7 @@ Member List of Yiidoc Project
   active  Brazilian Portuguese  goncin              goncin
   active  Brazilian Portuguese  Wanderson           wanderson.wbc
   active  Brazilian Portuguese  Ivan Wilhelm        ivan.whm
+  active  Brazilian Portuguese  Gustavo             gustavonips
   active  Bulgarian             koleto              nstoitsev
   active  Catalan               jdl                 jdomin123
   active  Dutch                 Blizz               blizzke
