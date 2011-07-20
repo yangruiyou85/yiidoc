@@ -289,8 +289,10 @@ do których się odwołujemy w tej opcji powinny zostać ujednoznacznione.
 	do których się odwołujemy w tej opcji powinny zostać ujednoznacznione.
    
    - `index`: nazwa kolumny, której wartość powinna zostać użyta jako klucz tablicy, która zawiera powiązane obiekty. 
-   Bez ustawienia tej opcji, tablica obiektów powiązanych będzie używała indeksu całkowitoliczbowego rozpoczynającego się od liczby zero.
-   Opcja ta może zotać ustawiona tylko dla relacji `HAS_MANY` oraz `MANY_MANY`.
+   Bez ustawienia tej opcji, tablica obiektów powiązanych będzie używała indeksu całkowitoliczbowego rozpoczynającego się od liczby zero. Opcja ta może zotać ustawiona tylko dla relacji `HAS_MANY` oraz `MANY_MANY`.
+   
+   - `scopes`: możliwe do zastosowania zakresy. W przypadky pojedynczego zakresu, należy używać
+   tej opcji następująco `'scopes'=>'nazwaZakresu'`, zaś w przypadku wielu zakresów  `'scopes'=>array('nazwaZakresu1','nazwaZakresu2')`. Opcja ta jest dostępna od wersji 1.1.9. 
    
 Dodatkowo, następujące opcje są dostępne dla wybranych relacji podczas opóźnionego 
 ładowania:   
@@ -725,4 +727,4 @@ $teacher=User::model()->findByPk(1);
 $students=$teacher->students;
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3127 2011-03-26 12:21:47Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3344 2011-07-06 22:04:50Z alexander.makarow $</div>
