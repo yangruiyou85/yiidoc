@@ -1,12 +1,12 @@
 自动代码生成
 =========================
 
-自版本 1.1.2 起, Yii 装备了基于 Web 界面的代码生成工具 *Gii*. 它取代了之前的命令行端的代码生成工具 `yiic shell` . 在这部分, 我们将讲解如何使用 Gii 以及如何扩展 Gii 以增加我们的开发成果.
+自版本 1.1.2 起， Yii 装备了基于 Web 界面的代码生成工具 *Gii*。 它取代了之前的命令行端的代码生成工具 `yiic shell` 。 在这部分，我们将讲解如何使用 Gii 以及如何扩展 Gii 以增加我们的开发成果。
 
-Using Gii
+使用 Gii
 ---------
 
-Gii is implemented in terms of a module and must be used within an existing Yii application. To use Gii, we first modify the application configuration as follows:
+Gii 是以模块的方式实现的，它必须在一个已存在的 Yii 应用程序中使用。要使用 Gii，我们首先更改应用程序的配置如下：
 
 ~~~
 [php]
@@ -15,8 +15,8 @@ return array(
 	'modules'=>array(
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'pick up a password here',
-			// 'ipFilters'=>array(...a list of IPs...),
+			'password'=>'在这里填写密码',
+			// 'ipFilters'=>array(...IP 列表...),
 			// 'newFileMode'=>0666,
 			// 'newDirMode'=>0777,
 		),
@@ -24,17 +24,17 @@ return array(
 );
 ~~~
 
-In the above, we declare a module named `gii` whose class is [GiiModule]. We also specify a password for the module which we will be prompted for when accessing Gii.
+在上面，我们声明了一个名为 `gii` 的模块，它的类是 [GiiModule]。我们也为这个模块设置了一个密码，我们访问 Gii 时会有一个输入框要求填写这个密码。
 
-By default for security reasons, Gii is configured to be accessible only on localhost. If we want to make it accessible on other trustable computers, we can configure the [GiiModule::ipFilters] property as shown in the above code.
+出于安全考虑，默认情况下只允许本机访问 Gii。若允许其他可信赖的机器访问它，我们需要如上所示配置 [GiiModule::ipFilters] 属性。
 
-Because Gii may generate and save new code files in the existing application, we need to make sure that the Web server process has the proper permission to do so. The above [GiiModule::newFileMode] and [GiiModule::newDirMode] properties control how the new files and directories should be generated.
+因为 Gii 会生成并保存新文件到应用程序中，我们需要确保 Web 服务器进程有权限这样做。上面的 [GiiModule::newFileMode] 和 [GiiModule::newDirMode] 属性控制如何生成新文件和新目录。
 
-> Note: Gii is mainly provided as a development tool. Therefore, it should only be installed on a development machine. Because it can generate new PHP script files in the application, we should pay sufficient attention to its security measures (e.g. password, IP filters).
+> Note|注意: Gii 主要用作一个开发工具。因此，应当只在开发机器上安装它。因为它可以在应用程序中生成新的 PHP 文件，我们应当对安全问题足够重视(例如设置密码，IP 过滤)。
 
-We can now access Gii via the URL `http://hostname/path/to/index.php?r=gii`. Here we assume `http://hostname/path/to/index.php` is the URL for accessing the existing Yii application.
+现在可以通过 URL `http://hostname/path/to/index.php?r=gii` 访问 Gii 了。这里我们假设 `http://hostname/path/to/index.php` 是访问 Yii 应用程序的 URL。
 
-If the existing Yii application uses `path`-format URLs (see [URL management](/doc/guide/topics.url)), we can access Gii via the URL `http://hostname/path/to/index.php/gii`. We may need to add the following URL rules to the front of the existing URL rules:
+若 Yii 应用程序使用 `path` 格式的 URL (查看 [URL management](/doc/guide/topics.url))，我们可以通过 URL `http://hostname/path/to/index.php/gii` 访问 Gii。 我们可能需要增加如下 URL 规则到已有的 URL 规则的前面:
 
 ~~~
 [php]
@@ -46,21 +46,21 @@ If the existing Yii application uses `path`-format URLs (see [URL management](/d
 			'gii'=>'gii',
 			'gii/<controller:\w+>'=>'gii/<controller>',
 			'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
-			...existing rules...
+			...已有的规则...
 		),
 	),
 )
 ~~~
 
-Gii comes with a few default code generators. Each code generator is responsible for generating a specific type of code. For example, the controller generator generates a controller class together with a few action view scripts; the model generator generates an ActiveRecord class for the specified database table.
+Gii 有一些默认的代码生成器。每个代码生成器负责生成特定类型的代码。例如 controller 生成器生成一个 controller 类以及一些 action view 脚本； model 生成器为指定的数据表生成一个 ActiveRecord 类。
 
-The basic workflow of using a generator is as follows:
+使用一个生成器的基本流程如下：
 
-1. Enter the generator page;
-2. Fill in the fields that specify the code generation parameters. For example, to use the module generator to create a new module, you need to specify the module ID;
-3. Press the `Preview` button to preview the code to be generated. You will see a table showing a list of code files to be generated. You can click on any of them to preview the code;
-4. Press the `Generate` button to generate the code files;
-5. Review the code generation log.
+1. 进入生成器页面；
+2. 填写指定代码生成参数的输入框。例如，使用 Module Generator 创建一个新模块，你需要指定 module ID；
+3. 点击 `Preview` 按钮预览即将生成的代码。你将看到一个表格中列出了将要生成的文件列表。你可以点击其中任何一个文件来预览代码；
+4. 点击 `Generate` 按钮生成这些代码文件；
+5. 查看代码生成日志。
 
 
 Extending Gii
