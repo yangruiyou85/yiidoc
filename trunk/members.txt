@@ -50,6 +50,7 @@ Member List of Yiidoc Project
   active  Slovak                lubosdz             lubosdz
   active  Spanish               buritica            buritica
   active  Spanish               juan-calvo          adamut
+  active  Spanish               marcanuy            mcanina
   active  Spanish               sebas               sebathi                     Yes
   active  Swedish               tri                 triboe
   active  Tamil                 sapauljoseph        aka.srinivasan
