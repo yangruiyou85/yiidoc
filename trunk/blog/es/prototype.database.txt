@@ -1,7 +1,7 @@
 Configurando la Base de Datos
 =============================
 
-Habiendo creado un esqueleto para la aplicación y terminado el diseño de la base de datos, en esta sección vamos a crear la base de datos del blog y establecer una conexión en el esqueleto de la aplicaicón
+Habiendo creado un esqueleto para la aplicación y terminado el diseño de la base de datos, en esta sección vamos a crear la base de datos del blog y establecer una conexión en el esqueleto de la aplicación
 
 
 Creando la Base de Datos
