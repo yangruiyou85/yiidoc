@@ -412,11 +412,12 @@ Z drugiej strony używajać pojedynczego zapytania SQL, mamy w końcu więcej re
 dancyh i w ten sposób potrzebujemy więcej czasu by je odczytać i przetworzyć.
 
 Z tego powodu Yii dostarcza opcję zapytania `together`, tak by można było wybierać pomiędzy 
-oboma podejściami w zależności od potrzeb. Domyślnie przyjmuje pierwsze podejście, czyli 
-tworzy jedno zapytanie SQL aby wykonać zachłanne ładowanie. Możemy ustawić opcję `together` 
-jako false w deklaracji zapytania, tak że część tabel będzie połączona w oddzielnym zapytaniu SQL.
-Na przykład odpytując o ostanie posty wraz z ich komentarzami, w celu użycia drugiego podejścia,   
-możemy zadeklarować relację `comments` w klasie `Post` następująco:
+oboma podejściami w zależności od potrzeb. Domyślnie Yii używa ładowania zachłannego, np. 
+tworzy jedno zapytanie SQL, z wyłączeniem przypadków, kiedy stosujemy dla głównego modelu `LIMIT`.
+Możemy ustawić opcję `together` na true w deklaracji relacji by wymusić pojedyncze wyrażenie SQL
+nawet gdy używamy konstrukcji z `LIMIT`. Ustawienie tej opcji na false spowoduje dla niektórych tabel
+łączenie ich w oddzielnych wyrażeniach SQL. Na przykład, w celu używania osobnego wyrażenia SQL
+odpytującego o ostatni post wraz z komentarzem, możemy zadeklarować relację `comments` w klasie `Post` następująco:
 
 ~~~
 [php]
@@ -727,4 +728,4 @@ $teacher=User::model()->findByPk(1);
 $students=$teacher->students;
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3344 2011-07-06 22:04:50Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3377 2011-08-05 23:50:05Z alexander.makarow $</div>
