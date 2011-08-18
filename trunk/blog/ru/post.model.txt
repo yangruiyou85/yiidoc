@@ -60,8 +60,21 @@ public function normalizeTags($attribute,$params)
 }
 ~~~
 
-где `array2string` и `string2array` — новые методы, определённые в классе
-модели `Tag` в файле `/wwwroot/yii/demos/blog/protected/models/Tag.php`.
+где `array2string` и `string2array` - новые методы, которые мы должны
+определить в классе модели `Tag`:
+
+~~~
+[php]
+public static function string2array($tags)
+{
+	return preg_split('/\s*,\s*/',trim($tags),-1,PREG_SPLIT_NO_EMPTY);
+}
+
+public static function array2string($tags)
+{
+	return implode(', ',$tags);
+}
+~~~
 
 Правила, описанные в методе `rules()`, вызываются по очереди при вызове методов модели
 [validate()|CModel::validate] или [save()|CActiveRecord::save].
