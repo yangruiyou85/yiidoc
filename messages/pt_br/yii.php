@@ -66,7 +66,7 @@ return array (
   'Authorization item "{item}" has already been assigned to user "{user}".' => 'Item de autorização "{item}" já está assinado para o usuário "{user}".',
   'Base path "{path}" is not a valid directory.' => 'O caminho-base "{path}" não é um diretório válido.',
   'CApcCache requires PHP apc extension to be loaded.' => 'CApcCache requer a extensão PHP APC para ser carregado.',
-  'CAssetManager.basePath "{path}" is invalid. Please make sure the directory exists and is writable by the Web server process.' => 'CAssetManager.basePath "{path}" é inválido. Por favor, tanha certeza que o diretório existe e que o servidor Web possa escrever nele.',
+  'CAssetManager.basePath "{path}" is invalid. Please make sure the directory exists and is writable by the Web server process.' => 'CAssetManager.basePath "{path}" é inválido. Por favor, tenha certeza que o diretório existe e que o servidor Web possa escrever nele.',
   'CCacheHttpSession.cacheID is invalid. Please make sure "{id}" refers to a valid cache application component.' => 'CCacheHttpSession.cacheID é inválido. Por favor, tenha certeza de que "{id}" refere-se a um componente de cache da aplicação.',
   'CCaptchaValidator.action "{id}" is invalid. Unable to find such an action in the current controller.' => 'CCaptchaValidator.action "{id}" é inválido. Não foi possível achar a ação (action) específicada pelo controle atual.',
   'CDbAuthManager.connectionID "{id}" is invalid. Please make sure it refers to the ID of a CDbConnection application component.' => 'CDbAuthManager.connectionID "{id}" é inválido. Por favor, tenha certeza que o valor refere-se ao ID de um componente CDbConnection da aplicação.',
