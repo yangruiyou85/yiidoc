@@ -303,6 +303,10 @@ array yang menyimpan obyek terkait. Tanpa menyetel opsi ini,
 array obyek terkait akan menggunakan indeks integer berbasis-nol.
 Opsi ini hanya bisa disetel untuk relasi `HAS_MANY` dan `MANY_MANY`.
 
+   - `scopes`: nama scope yang ingin diaplikasikan. Jika ingin satu scope dapat
+digunakan seperti `'scopes'=>'scopeName'`. Dan jika lebih dari satu scope maka dapat
+digunakan seperti `'scopes'=>array('scopeName1','scopeName2')`. Opsi ini sudah ada
+mulai dari versi 1.1.9.
 
 Sebagai tambahan, opsi berikut tersedia untuk relasi tertentu
 selama lazy loading:
@@ -422,10 +426,11 @@ mungkin lebih efisien karena mengurangi overhead pada DBMS untuk parsing dan exe
 menggunakan statement SQL tunggal, kemungkinan akan menghasilkan data redundansi sehingga perlu waktu lebih lama untuk baca dan memprosesnya.
 
 Oleh karena itu, Yii menyediakan opsi query `together` sehingga kita dapat memilih di antara dua pendekatan ini jika diperlukan.
-Secara default, Yii akan mengadopsi pendekatan pertama, yakni menghasilkan statement SQL tunggal untuk melakukan eager loading.
-Kita dapat mengeset opsi `together` menjadi false di dalam deklarasi relasi sehingga beberapa tabel
-di-join pada statement SQL yang terpisah. Sebagai contoh, supaya dapat menggunakan pendekatan kedua untuk melakukan
-query pada post terbaru beserta komentar-komentarnya, kita dapat mendeklarasi hubungan `comments` dalam kelas `Post` sebagai berikut :
+Secara default, Yii menggunakan eager loading, seperti men-generate sebuah statement SQL tunggal, kecuali terdapat `LIMIT` di dalam model utama.
+Kita dapat mengeset opsi `together` di dalam deklarasi relasi menjadi true untuk memaksakan statement SQL walaupun `LIMIT` digunakan.
+Mengeset menjadi false, akan menyebabkan beberapa tabel akan di-join di statement SQL terpisah. Misalnya, untuk menggunakan statement SQL terpisah
+untuk mengquery post terbaru dengan komentar-komentarnya, kita dapat mendeklarasikan relasi `comments` 
+di dalam kelas `Post` sebagai berikut
 
 ~~~
 [php]
@@ -567,7 +572,7 @@ class User extends CActiveRecord
 }
 ~~~
 
-> Note|Catatan: Named scope diaplikasikan ke model yang berelasi harus ditentukan di CActiveRecord::scopes.
+> Note|Catatan: Sebelum versi 1.1.7, named scope diaplikasikan ke model yang berelasi harus ditentukan di CActiveRecord::scopes.
 > Oleh karenanya, tidak dapat diberi parameter.
 
 Mulai dari versi 1.1.7, Yii memungkinkan passing parameter untuk relational named scopes.
@@ -718,4 +723,4 @@ $teacher=User::model()->findByPk(1);
 $students=$teacher->students;
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3127 2011-03-26 12:21:47Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3395 2011-09-14 21:44:14Z alexander.makarow $</div>
