@@ -575,7 +575,7 @@ class User extends CActiveRecord
 }
 ~~~
 
-> Note|Uwaga: Nazwane podzbiory zastosowane do powiązanych modeli muszą być określone w CActiveRecord::scopes.
+> Note|Uwaga: W wersjach poniżej 1.1.7 nazwane podzbiory zastosowane do powiązanych modeli muszą być określone w CActiveRecord::scopes.
 > W wyniku tego, nie mogą one zostać sparametryozwane.
 
 Poczynając od wersji 1.1.7 pożliwe jest przekazywanie parametrów do ralacyjnych nazwanych podzbiorów.
@@ -728,4 +728,4 @@ $teacher=User::model()->findByPk(1);
 $students=$teacher->students;
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3377 2011-08-05 23:50:05Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3395 2011-09-14 21:44:14Z alexander.makarow $</div>
