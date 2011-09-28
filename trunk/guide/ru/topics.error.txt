@@ -31,7 +31,7 @@ throw new ExceptionClass('ExceptionMessage');
 ~~~
 
 Yii определяет три класса для исключений: [CException], [CDbException] и
-[CHttpException]. [CException] - типовой класс исключения. [CDbException]
+[CHttpException]. [CException] — типовой класс исключения. [CDbException]
 представляет исключения, вызываемые некоторыми операциями базы данных.
 [CHttpException] отвечает за исключения, которые отображаются конечному
 пользователю, и содержит свойство [statusCode|CHttpException::statusCode],
