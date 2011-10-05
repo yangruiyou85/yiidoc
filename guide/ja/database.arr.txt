@@ -186,7 +186,7 @@ $posts=Post::model()->findAll(array(
 		'author.posts',
 		'categories',
 	)
-);
+));
 ~~~
 
 関連するモデルを取得しないリレーショナルクエリを実行する
@@ -533,7 +533,7 @@ class User extends CActiveRecord
 }
 ~~~
 
-> Note|注意: 関連したモデルに適用される Named Scope は、[CActiveRecord::scopes] で定義しなければなりません。結果的に、それらをパラメータ化することはできません。
+> Note|注意: 1.1.7 より前では、関連したモデルに適用される Named Scope は、[CActiveRecord::scopes] で定義しなければなりません。結果的に、それらをパラメータ化することはできません。
 
 バージョン 1.1.7 以降、リレーショナルクエリの Named Scope にパラメータを渡すことが可能になりました。
 例えば、`Post` に `rated` という名前のスコープがあって、レーティングの下限を受け付ける場合、`User` から次のようにして使うことが出来ます。
@@ -679,4 +679,4 @@ $teacher=User::model()->findByPk(1);
 $students=$teacher->students;
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3377 2011-08-05 23:50:05Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3409 2011-09-28 21:43:54Z alexander.makarow $</div>
