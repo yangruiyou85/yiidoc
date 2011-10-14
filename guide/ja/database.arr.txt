@@ -87,7 +87,9 @@ class User extends CActiveRecord
 ~~~
 
 > Info|情報: 外部キーは2個以上の列で構成される複合キーでもかまいません。
-この場合は、外部キーの列の名前をカンマで区切って結合したものを名前として使わなければなりません。
+この場合は、外部キーの列の名前をカンマで区切って結合した文字列か、または array('key1','key2') のような配列を使わなければなりません。
+標準的でない PK->FK 結合を指定する必要があるときは、array('fk'=>'pk') として定義することが出来ます。
+複合キーの場合は、array('fk_c1'=>'pk_c1','fk_c2'=>'pk_c2') となります。
 `MANY_MANY`のリレーションにおいては、外部キーとして、関連付けテーブル名も指定されなければなりません。
 例えば、`Post`における`categories`リレーションは、`tbl_post_category(post_id, category_id)` という外部キーにより指定されます。
 
@@ -558,13 +560,13 @@ through を使うリレーショナルクエリ
 
 ~~~
 [php]
-'relationName'=>array('relationType', 'ClassName', 'foreign_key', 'through'=>'throughRelationName', ... 追加のオプション)
+'comments'=>array(self::HAS_MANY,'Comment',array('key1'=>'key2'),'through'=>'posts'),
 ~~~
 
-上記で `foreign_key` の値は次のようなキーの名前です。
+上記の `array('key1'=>'key2')` において、
 
-  - `throughRelationName` に指定されたテーブルに定義されているキーで、
-  - `ClassName` モデルのためのデータを保持するテーブルを指し示しているキー。
+  - `key1` は `throughRelationName` で定義されているキーであり、
+  - `key2` は `ClassName` で定義されているキーです。
 
 `through` は `HAS_ONE` と `HAS_MANY` の両方のリレーションで使用出来ます。
 
@@ -585,8 +587,8 @@ class Group extends CActiveRecord
    {
        return array(
            'roles'=>array(self::HAS_MANY,'Role','group_id'),
-           'users'=>array(self::HAS_MANY,'User','user_id','through'=>'roles'),
-           'comments'=>array(self::HAS_MANY,'Comment','user_id','through'=>'users'),
+           'users'=>array(self::HAS_MANY,'User',array('user_id'=>'id'),'through'=>'roles'),
+           'comments'=>array(self::HAS_MANY,'Comment',array('id'=>'user_id'),'through'=>'users'),
        );
    }
 }
@@ -629,7 +631,7 @@ class User extends CActiveRecord
    {
        return array(
            'profile'=>array(self::HAS_ONE,'Profile','user_id'),
-           'address'=>array(self::HAS_ONE,'Address','profile_id','through'=>'profile'),
+           'address'=>array(self::HAS_ONE,'Address',array('id'=>'profile_id'),'through'=>'profile'),
        );
    }
 }
@@ -664,7 +666,7 @@ class User extends CActiveRecord
    {
        return array(
            'mentorships'=>array(self::HAS_MANY,'Mentorship','teacher_id','joinType'=>'INNER JOIN'),
-           'students'=>array(self::HAS_MANY,'User','student_id','through'=>'mentorships','joinType'=>'INNER JOIN'),
+           'students'=>array(self::HAS_MANY,'User',array('student_id'=>'id'),'through'=>'mentorships','joinType'=>'INNER JOIN'),
        );
    }
 }
@@ -679,4 +681,4 @@ $teacher=User::model()->findByPk(1);
 $students=$teacher->students;
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3409 2011-09-28 21:43:54Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3416 2011-10-13 18:18:13Z alexander.makarow $</div>
