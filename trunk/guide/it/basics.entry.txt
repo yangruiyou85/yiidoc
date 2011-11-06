@@ -1,12 +1,12 @@
 Entry Script
 ============
 
-The entry script is the bootstrap PHP script that handles user requests
-initially. It is the only PHP script that end users can directly request to
-execute.
+L'entry script è lo script PHP di avvio che gestisce inizialmente le richieste 
+utente. È l'unico script PHP che un utente può chiedere di eseguire direttamente.
 
-In most cases, the entry script of a Yii application contains code that
-is as simple as this:
+Nella maggior parte dei casi, l'entry script di un'applicazione Yii contiene del 
+codice semplice come questo:
+
 
 ~~~
 [php]
@@ -19,19 +19,20 @@ $configFile='path/to/config/file.php';
 Yii::createWebApplication($configFile)->run();
 ~~~
 
-The script first includes the Yii framework bootstrap file `yii.php`. It
-then creates a Web application instance with the specified configuration
-and runs it.
+Lo script prima include il file `yii.php` di avvio del framework Yii. Quindi 
+crea una istanza della web application con una specifica configurazione e la 
+esegue.
 
-Debug Mode
+Modalità di Debug 
 ----------
 
-A Yii application can run in either debug or production mode, as determined by 
-the value of the constant `YII_DEBUG`. By default, this constant value is defined
-as `false`, meaning production mode. To run in debug mode, define this
-constant as `true` before including the `yii.php` file. Running the application
-in debug mode is less efficient because it keeps many internal logs. On the
-other hand, debug mode is also more helpful during the development stage
-because it provides richer debugging information when an error occurs.
+Un'applicazione Yii può funzionare sia in modalità debug che in modalità 
+produzione, in base al valore della costante `YII_DEBUG`. Per default, il valore 
+di questa costante è `false`, cioè è in modalità produzione. Per funzionare in 
+modalità debug, impostare la costante a `true` prima di includere il file 
+`yii.php`. L'applicazione eseguita in modalità debug è meno efficiente perché 
+mantiene parecchi log interni. D'altro canto, la modalità debug è molto più 
+utile durante la fase di sviluppo perché fornisce molte più informazioni di 
+debug quando si verifica un errore.
 
-<div class="revision">$Id: basics.entry.txt 3251 2011-06-01 00:24:06Z qiang.xue $</div>
+<div class="revision">$Id: basics.entry.txt 3251 2011-11-06 17:52:54Z fabio.ingala $</div>
