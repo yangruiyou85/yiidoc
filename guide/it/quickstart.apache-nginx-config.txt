@@ -27,7 +27,7 @@ Nginx
 Puoi utilizzare Yii con [Nginx](http://wiki.nginx.org/) e PHP con [FPM SAPI](http://php.net/install.fpm).
 Ecco un esempio di configurazione dell'host. Qui viene definito il file di avvio 
 e permette a Yii di catturare tutte le richieste di file inesistenti che consente 
-di ottenere URLs leggibili.
+di ottenere URL leggibili.
 
 ~~~
 server {
@@ -45,7 +45,7 @@ server {
         try_files $uri $uri/ $yii_bootstrap?$args;
     }
 
-    location ~ ^/(protected|framework|nbproject|themes/\w+/views) {
+    location ~ ^/(protected|framework|themes/\w+/views) {
         deny  all;
     }
 
@@ -81,4 +81,4 @@ server {
 ~~~
 Usando questa configurazione, per evitare molte chiamate di sistema stat(), puoi settare cgi.fix_pathinfo=0 nel file php.ini. 
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: index.txt 3410 2011-11-06 18:13:42Z fabio.ingala $</div>

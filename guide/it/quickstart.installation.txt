@@ -7,16 +7,16 @@ L'installazione di Yii principalmente si sviluppa nei seguenti due passi:
    2. Scompatta i file di Yii in una cartella accessibile dal web.
 
 > Suggerimento: Yii non ha bisogno di essere installato in una cartella  
-accessibile dal web. Una applicazione Yii ha un solo file di entrata che 
-solitamente Ë l'unico file che deve essere esposto agli utenti web. Gli altri 
+accessibile dal web. Una applicazione Yii ha un solo entry file che 
+solitamente √® l'unico file che deve essere esposto agli utenti web. Gli altri 
 script PHP, compresi quelli di Yii, dovrebbero essere protetti dall'accesso 
 dal web, altrimenti potrebbero essere sfruttati dagli hackers.
 
 Requisiti
 ------------
 
-Dopo l'installazione di Yii, si consiglia di verificare che il tuo server 
-soddisfi i requisiti di Yii. Puoi farlo accedendo allo script di controllo dei 
+Dopo l'installazione di Yii, si consiglia di verificare che il server 
+soddisfi i requisiti di Yii. Si pu√≤ fare accedendo allo script di controllo dei 
 requisiti raggiungibile al seguente URL tramite un browser web:
 
 ~~~
@@ -24,8 +24,8 @@ http://hostname/path/to/yii/requirements/index.php
 ~~~
 
 Yii richiede PHP 5.1, per cui il server deve avere PHP 5.1 o superiore 
-installato e disponibile per il web server. Yii Ë stato testato con 
-[Apache HTTP server](http://httpd.apache.org/) su Windows and Linux. 
-Yii puÚ funzionare anche con altri web server e piattaforme dotate di PHP 5.1.
+installato e disponibile per il web server. Yii √® stato testato con 
+[Apache HTTP server](http://httpd.apache.org/) su Windows e Linux. 
+Yii pu√≤ funzionare anche con altri web server e piattaforme dotate di PHP 5.1.
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: quickstart.installation.txt 3219 2011-09-08 10:07:35Z fabio.ingala $</div>
