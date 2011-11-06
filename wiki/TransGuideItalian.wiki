@@ -8,84 +8,84 @@ Questo documento descrive:
   * le regole di traduzione 
   * gli strumenti suggeriti
 
-Attualmente l'attivit√† principale in corso √® la traduzione della 'Guida definitiva a Yii'.
-Finora √® stato tradotto:
-  * Guida definitiva a Yii (2%)
-  * Messaggi del framework Yii (6%)
-  * Pagina di convalida dei requisiti (50%)
-  * Tutorial 'sviluppo di un blog con Yii' (0%)
+Attualmente l'attivit‡ principale in corso Ë la traduzione della 'Guida definitiva a Yii'.
+Lo stato delle traduzioni Ë il seguente:
+  * Guida definitiva a Yii (*16%*)
+  * Messaggi del framework Yii (*13%*)
+  * Pagina di convalida dei requisiti (*50%*)
+  * Tutorial 'sviluppo di un blog con Yii' (*0%*)
 
 (Ogni sezione si trova in costante revisione ed aggiornamento)
 
 
 = Dettagli =
-La procedura da seguire per la traduzione √® la seguente:
+La procedura da seguire per la traduzione Ë la seguente:
   # scegliere l'argomento da tradurre
   # eseguire la traduzione prestando attenzione alle convenzioni
   # aggiungere/aggiornare il file tradotto nel repository
   # sincronizzare la versione tradotta, quando viene aggiornato l'originale
 
-*Per iniziare occorre scaricare il contenuto del repository.* I documenti originali della guida sono disponibili nella cartella {{{../yiidoc/guide/source}}},
+*Per iniziare occorre scaricare il contenuto del repository.* I documenti 
+originali della guida sono disponibili nella cartella {{{../yiidoc/guide/source}}},
 mentre i documenti tradotti dovranno essere collocati nella cartella {{{../yiidoc/guide/it}}}.
-L'intera guida pu√≤ essere disponibile in locale all'indirizzo http://localhost/yiidoc/index.php .
+L'intera guida puÚ essere disponibile in locale all'indirizzo http://localhost/yiidoc/index.php .
 
-Successivamente, si sceglie l'argomento che non √® stato ancora tradotto verificando che nella cartella {{{it}}} del repository non esista alcun file corrispondente.
-Se una sezione del file non √® stata ancora tradotta, ma il file √® gi√† stato aggiunto al repository, vuol dire che qualcuno √® gi√† al lavoro per la traduzione di quel file.
-Quando si sceglie un argomento, si dovrebbe anche aggiungere il file originale al ramo italiano del repository per indicare che il file √® in fase di traduzione.
+Successivamente, si sceglie l'argomento che non Ë stato ancora tradotto 
+verificando che nella cartella {{{it}}} del repository non esista alcun file 
+corrispondente.
+Se una sezione del file non Ë stata ancora tradotta, ma il file Ë gi‡ stato 
+aggiunto al repository, vuol dire che qualcuno Ë gi‡ al lavoro per la traduzione 
+di quel file.
+Quando si sceglie un argomento, si dovrebbe anche aggiungere il file originale 
+al ramo italiano del repository per indicare che il file Ë in fase di traduzione.
 
-I file di traduzione dovrebbero essere convertiti in formato UTF-8 per una corretta visualizzazione.
+I file di traduzione dovrebbero essere convertiti in formato UTF-8 per una 
+corretta visualizzazione.
 
 
 == File in traduzione: ==
 *Guida definitiva a Yii*:
+  * /guide/it/basics.entry.txt (Fabio Ingala)
+  * /guide/it/basics.controller.txt (Fabio Ingala)
+
+*Messaggi del framework Yii*:
+  `Nessun file in corso di traduzione`
+
+*Pagina di convalida dei requisiti*:
+  `Nessun file in corso di traduzione`
+
+*Tutorial sviluppo blog con Yii*:
+  `Nessun file in corso di traduzione`
+
+
+== File gi‡ tradotti: ==
+*Guida definitiva a Yii*:
+  * /guide/it/basics.application.txt (Fabio Ingala)
+  * /guide/it/basics.best-practices.txt (Fabio Ingala)
+  * /guide/it/basics.mvc.txt (Fabio Ingala)
+  * /guide/it/index.txt (Fabio Ingala)
   * /guide/it/quickstart.apache-nginx-config.txt (Fabio Ingala)
   * /guide/it/quickstart.first-app.txt (Fabio Ingala)
   * /guide/it/quickstart.first-app-yiic.txt (Fabio Ingala)
   * /guide/it/quickstart.installation.txt (Fabio Ingala)
   * /guide/it/quickstart.what-is-yii.txt (Fabio Ingala)
-  * /guide/it/basics.application.txt (Fabio Ingala)
 
-
-== File gi√† tradotti: ==
 *Messaggi del framework Yii*:
   * /messages/it/yii.php (Francesco)
+
+*Pagina di convalida dei requisiti*:
   * /requirements/messages/it/yii.php (Fabio Ingala)
 
-*Guida definitiva a Yii*:
-  * /guide/it/index.txt (Fabio Ingala)
-
 *Tutorial sviluppo blog con Yii*:
-Traduzione non ancora iniziata
+  `Traduzione non ancora iniziata`
 
 
 == File da tradurre: ==
-*Messaggi del framework Yii*:
-  * /views/it/error.php
-  * /views/it/error400.php
-  * /views/it/error401.php
-  * /views/it/error403.php
-  * /views/it/error404.php
-  * /views/it/error500.php
-  * /views/it/error503.php
-  * /views/it/exception.php
-  * /views/it/log-firebug.php
-  * /views/it/log.php
-  * /views/it/profile-callstack-firebug.php
-  * /views/it/profile-callstack.php
-  * /views/it/profile-summary-firebug.php
-  * /views/it/profile-summary.php
-  * /requirements/views/it/index.php
-
 *Guida definitiva a Yii*:
-  * /guide/it/basics.application.txt
-  * /guide/it/basics.best-practices.txt
   * /guide/it/basics.component.txt
-  * /guide/it/basics.controller.txt
   * /guide/it/basics.convention.txt
-  * /guide/it/basics.entry.txt
   * /guide/it/basics.model.txt
   * /guide/it/basics.module.txt
-  * /guide/it/basics.mvc.txt
   * /guide/it/basics.namespace.txt
   * /guide/it/basics.view.txt
   * /guide/it/basics.workflow.txt
@@ -135,6 +135,25 @@ Traduzione non ancora iniziata
   * /guide/it/topics.webservice.txt
   * /guide/it/upgrade.txt
 
+*Messaggi del framework Yii*:
+  * /views/it/error.php
+  * /views/it/error400.php
+  * /views/it/error401.php
+  * /views/it/error403.php
+  * /views/it/error404.php
+  * /views/it/error500.php
+  * /views/it/error503.php
+  * /views/it/exception.php
+  * /views/it/log-firebug.php
+  * /views/it/log.php
+  * /views/it/profile-callstack-firebug.php
+  * /views/it/profile-callstack.php
+  * /views/it/profile-summary-firebug.php
+  * /views/it/profile-summary.php
+
+*Pagina di convalida dei requisiti*:
+  * /requirements/views/it/index.php
+
 *Tutorial 'sviluppo di un blog con Yii'*:
   * /blog/it/comment.admin.txt
   * /blog/it/comment.create.txt
@@ -164,20 +183,40 @@ Traduzione non ancora iniziata
 == Convenzioni adottate nella traduzione: ==
 
 === Norme generali ===
-Quelle che seguono sono le regole generali che si dovrebbero seguire durante il lavoro di traduzione:
-  # esposizione in conformit√† con l'originale in prima persona plurale (noi);
-  # molti termini non hanno traduzione definita e/o diffusa in italiano, quindi se il testo include un termine tra parentesi quadre, accanto ad esso, la prima volta che viene menzionato, si dovrebbe specificare la versione inglese, (v. Elenco dei termini e loro traduzione, vedi sotto);
-  # se durante la traduzione sembra che una parte del testo non abbia senso o non si √® sicuri su come interpretarlo correttamente, racchiudere questo blocco di testo tra le virgolette `*` (in questo modo il font diventa corsivo). Ci√≤ consentir√† di eseguire prove di lettura mettendo a fuoco l'intero argomento;
+Quelle che seguono sono le regole generali che si dovrebbero seguire durante il 
+lavoro di traduzione:
+  # esposizione in conformit‡ con l'originale in prima persona plurale (noi);
+  # molti termini non hanno traduzione definita e/o diffusa in italiano, quindi 
+se il testo include un termine tra parentesi quadre, accanto ad esso, la prima 
+volta che viene menzionato, si dovrebbe specificare la versione inglese, (v. 
+Elenco dei termini e loro traduzione, vedi sotto);
+  # se durante la traduzione sembra che una parte del testo non abbia senso o 
+non si Ë sicuri su come interpretarlo correttamente, racchiudere questo blocco 
+di testo tra le virgolette `*` (in questo modo il font diventa corsivo). CiÚ 
+consentir‡ di eseguire prove di lettura mettendo a fuoco l'intero argomento;
   # quando si traduce si dovrebbero evitare errori di sintassi e/o grammatica!
-  # nel testo ci potrebbero essere dei riferimenti a fonti esterne, se il link √® quello di una pagina di definizione, utilizzare se disponibile la versione italiana della stessa risorsa, o qualsiasi altra risorsa autorevole, che fornisca un link alla versione italiana. Per esempio http://en.wikipedia.org/wiki/Captcha => http://it.wikipedia.org/wiki/Captcha
-  # i commenti nel codice andrebbero tradotti, se ci√≤ non distorce il significato originale;
-  # dopo l'operazione di upload del file tradotto, se necessario, modificare il titolo contenuto all'interno della TOC (Table Of Content - Tavola dei contenuti);
-  # aggiungi i tuoi commenti, possibili integrazioni, ma non sentirti incoraggiato altrimenti √® il caos. L'originale dovrebbe essere uno. In caso di necessit√† metti il commento alla fine aggiungendo "(nota)"
-  # dopo una modifica generale del documento chi vuole collaborare √® invitato ad eseguire in modo autonomo solo le correzioni degli errori grammaticali e di sintassi che non sono stati corretti in precedenza. In altri casi √® necessario presentare una proposta di correzione e migliorare la discussione e, se necessario, apportare modifiche a livello generale di tutte le sezioni del documento.
+  # nel testo ci potrebbero essere dei riferimenti a fonti esterne, se il link 
+Ë quello di una pagina di definizione, utilizzare se disponibile la versione 
+italiana della stessa risorsa, o qualsiasi altra risorsa autorevole, che 
+fornisca un link alla versione italiana. Per esempio http://en.wikipedia.org/wiki/Captcha => http://it.wikipedia.org/wiki/Captcha
+  # i commenti nel codice andrebbero tradotti, se ciÚ non distorce il 
+significato originale;
+  # dopo l'operazione di upload del file tradotto, se necessario, modificare il 
+titolo contenuto all'interno della TOC (Table Of Content - Tavola dei contenuti);
+  # aggiungi i tuoi commenti, possibili integrazioni, ma non sentirti incoraggiato 
+altrimenti Ë il caos. L'originale dovrebbe essere uno. In caso di necessit‡ 
+metti il commento alla fine aggiungendo "(nota)"
+  # dopo una modifica generale del documento chi vuole collaborare Ë invitato 
+ad eseguire in modo autonomo solo le correzioni degli errori grammaticali e di 
+sintassi che non sono stati corretti in precedenza. In altri casi Ë necessario 
+presentare una proposta di correzione e migliorare la discussione e, se 
+necessario, apportare modifiche a livello generale di tutte le sezioni del 
+documento.
 
 
 === Struttura del documento ===
-Per la traduzione corretta delle unit√† strutturali del documento, si adotta la seguente struttura
+Per la traduzione corretta delle unit‡ strutturali del documento, si adotta la 
+seguente struttura
   *     *Capitolo 1*
     * Sezione 1
     * Sezione 2
@@ -188,10 +227,10 @@ Per la traduzione corretta delle unit√† strutturali del documento, si adotta la 
   * ...
   *     *Capitolo N*
 
-Per quanto riguarda il manuale completo, la struttura sar√† la seguente:
+Per quanto riguarda il manuale completo, la struttura sar‡ la seguente:
   *     *Panoramica* 
-    * Nuove funzionalit√†
-    * Che cosa √® Yii
+    * Nuove funzionalit‡
+    * Che cosa Ë Yii
     * Installazione
     * Creazione della prima applicazione con Yii
       * _Connessione al database_
@@ -206,9 +245,11 @@ Per quanto riguarda il manuale completo, la struttura sar√† la seguente:
 
 
 === Traduzione dei marcatori ===
-La traduzione dei marcatori come "> Nota:" e simili, viene eseguita in questo modo : {{{> Note|'Nota:' traduzione della nota: .... }}}
+La traduzione dei marcatori come "> Nota:" e simili, viene eseguita in questo 
+modo : {{{> Note|'Nota:' traduzione della nota: .... }}}
 
-Cos√¨, la nota, per la lingua italiana, diventa simile a questa: {{{> Note|Nota: Gli esempi in questa sezione utilizzano i moduli standard di ...}}}
+CosÏ, la nota, per la lingua italiana, diventa simile a questa: {{{> Note|Nota: 
+Gli esempi in questa sezione utilizzano i moduli standard di ...}}}
 
 I marcatori sono:
   * Tip => Suggerimento
@@ -217,17 +258,22 @@ I marcatori sono:
 
 
 === Traduzione delle immagini ===
-Le immagini per la documentazione sono contenute nella cartella {{{images}}}, se disponibili, possono essere tradotte e salvate in formato {{{png}}}. Le didascalie devono essere come le seguenti: {{{![pagina di Login] (login1.png)}}}
+Le immagini per la documentazione sono contenute nella cartella {{{images}}}, se 
+disponibili, possono essere tradotte e salvate in formato {{{png}}}. Le 
+didascalie devono essere come le seguenti: {{{![pagina di Login] (login1.png)}}}
 
 
 === Grammatica ===
-  * Prestare attenzione allo stile generale, all'ortografia ed alla punteggiatura prima di eseguire l'upload della versione finale della traduzione. Pu√≤ risultare utile utilizzare un programma di editing con correttore grammaticale/ortografico incorporato;
+  * Prestare attenzione allo stile generale, all'ortografia ed alla 
+punteggiatura prima di eseguire l'upload della versione finale della traduzione. 
+PuÚ risultare utile utilizzare un programma di editing con correttore 
+grammaticale/ortografico incorporato;
   * (Aggiungere altre regole).
 
 
 === Elenco dei termini e loro traduzione ===
 apply migration - applicare la migrazione
-bootstrap script - script di bootstrap/di avvio
+bootstrap script - script di bootstrap/avvio
 choice format - formato di scelta
 controller - controller
 customize - personalizzare/adattare
@@ -237,12 +283,12 @@ entry script - script di ingresso
 fetching (data) - recupero (dati)
 info - informazione
 internationalization - internazionalizzazione
-layout - aspetto/layout
+layout - aspetto/layout/struttura
 locale - locale
 message - messaggio
 message source - sorgente del messaggio
 model - model
-named scope - ambito di validit√†/visibilit√† del nome
+named scope - ambito di validit‡/visibilit‡ del nome
 note - nota
 parameter binding - parametro vincolante
 placeholder - segnaposto
@@ -263,18 +309,31 @@ web application - applicazione web
 
 
 == Lavorare con il repository ==
-Per lavorare con il repository √® possibile utilizzare qualsiasi [http://subversion.tigris.org/links.html#all-clients client-SVN], uno facile da usare con Windows √® [http://tortoisesvn.net/ Tortoise SVN]. Una guida dettagliata di funzionamento in lingua italiana non sembra ancora disponibile.
-Prima di aggiungere il file modificato al server, √® necessario aggiornare la copia locale. Nel caso in cui il file non sia stato modificato dagli altri partecipanti, √® possibile caricarlo sul server. In caso contrario, √® necessario confrontare e fondere la versione sul server con la versione locale.
-Ogni aggiornamento tramite SVN deve essere accompagnata da una breve nota che descriva le modifiche essenziali eseguite.
+Per lavorare con il repository Ë possibile utilizzare qualsiasi 
+[http://subversion.tigris.org/links.html#all-clients client-SVN], uno facile da 
+usare con Windows Ë [http://tortoisesvn.net/ Tortoise SVN]. Una guida 
+dettagliata di funzionamento in lingua italiana non sembra ancora disponibile.
+Prima di aggiungere il file modificato al server, Ë necessario aggiornare la 
+copia locale. Nel caso in cui il file non sia stato modificato dagli altri 
+partecipanti, Ë possibile caricarlo sul server. In caso contrario, Ë necessario 
+confrontare e fondere la versione sul server con la versione locale.
+Ogni aggiornamento tramite SVN deve essere accompagnata da una breve nota che 
+descriva le modifiche essenziali eseguite.
 
 
 == L'importanza del supporto della traduzione ==
-Dato che periodicamente vengono apportare modifiche all'originale, √® necessario seguire gli aggiornamenti del file originale e rilevarle in tempo per apportare le modifiche al file tradotto.
-Per fare questo, alla fine di ogni file √® inserito un marcatore con una versione del documento.
+Dato che periodicamente vengono apportare modifiche all'originale, Ë necessario 
+seguire gli aggiornamenti del file originale e rilevarle in tempo per apportare 
+le modifiche al file tradotto.
+Per fare questo, alla fine di ogni file Ë inserito un marcatore con una versione 
+del documento.
 Ad esempio: {{{<div class="revision">$Id: form.view.txt 772 2009-02-28 18:23:17Z qiang.xue $</div>}}}
-Questo marcatore √® il 772.
-Se la versione di origine e di destinazione sono diversi, cio√® il marcatore dell'originale e della traduzione sono diversi, √® necessario apportare modifiche nella traduzione e sostituire il marcatore sulla data.
+Questo marcatore Ë il 772.
+Se la versione di origine e di destinazione sono diversi, cioË il marcatore 
+dell'originale e della traduzione sono diversi, Ë necessario apportare modifiche 
+nella traduzione e sostituire il marcatore sulla data.
 
-Per eseguire il confronto, √® possibile utilizzare l'utility syncguide : {{{../yiidoc/protected/yiic syncguide it}}}
+Per eseguire il confronto, Ë possibile utilizzare l'utility syncguide : {{{../yiidoc/protected/yiic syncguide it}}}
 
-Se il contenuto originale √® cambiato, √® necessario correggere la traduzioni in conformit√† con le modifiche. Per tenere traccia delle modifiche si pu√≤ utilizzare SVN.
+Se il contenuto originale Ë cambiato, Ë necessario correggere la traduzioni in 
+conformit‡ con le modifiche. Per tenere traccia delle modifiche si puÚ utilizzare SVN.
