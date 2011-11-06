@@ -9,4 +9,4 @@ Tutti i diritti riservati.
 
 Traduzione italiana a cura di Fabio Ingala ([Yii Framework Italia](http://www.yiiframework.it/))
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: index.txt 1679 2010-09-14 07:15:36Z fabio.ingala $</div>

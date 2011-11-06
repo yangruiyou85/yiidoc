@@ -199,4 +199,4 @@ Quando viene gestita una richiesta, una applicazione seguirà il seguente ciclo 
 
    7. Generazione dell'evento [onEndRequest|CApplication::onEndRequest];
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: basics.application.txt 3251 2011-11-06 18:04:06Z fabio.ingala $</div>

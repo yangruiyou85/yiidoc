@@ -1,10 +1,9 @@
 Generazione di Codice usando gli Strumenti di riga di comando (sconsigliato)
 =========================================
 
-> Nota: I generatori di codice della `shell yiic` sono sconsigliati sin dalla versione 1.1.2. 
-Si consiglia invece di utilizzare i generatori di codice "Web-based" più potenti e flessibili che sono disponibili qui: [Gii](/doc/guide/topics.gii).
+> Nota: Il generatore di codice da shell `yiic` è sconsigliato già dalla versione 1.1.2. Si consiglia invece di utilizzare il generatore di codice "Web-based" più potente e flessibile che è disponibile qui: [Gii](/doc/guide/topics.gii).
 
-Apri una finestra di comando, ed esegui i comandi elencati di seguito,
+Aprire una finestra a riga di comando ed eseguire i comandi elencati di seguito,
 
 ~~~
 % cd WebRoot/testdrive
@@ -39,61 +38,64 @@ Crud 'user' has been successfully created. You may access it via:
 http://hostname/path/to/index.php?r=user
 ~~~
 
-Qui sopra è usato il comando `yiic shell` per interagire con la nostra applicazione.
-Al prompt eseguiamo due sotto-comandi: `model User tbl_user` 
-e `crud User`. Il primo genera a classe di modello chiamata `User` per la tabella `tbl_user`,
-mentre il secondo analizza il modello `User` e genera il codice implementando
-le corrispondenti operazioni CRUD. 
+Qui sopra è stato usato il comando da shell `yiic` per interagire con lo schema 
+dell'applicazione.
+Al prompt sono stati lanciati due comandi: `model User tbl_user` 
+e `crud User`. Il primo genera una classe model chiamata `User` per la tabella 
+`tbl_user`, mentre il secondo analizza il model `User` e genera il codice 
+implementando le corrispondenti operazioni CRUD. 
 
 > Nota: Potresti riscontrare errori tipo "...could not find driver", sebbene
 > il controllo requisiti riporti che hai abilitato il PDO
-> e il driver PDO  corrispondente. Se ciò accade, puoi provare
-> a lanciare lo strumento `yiic`come segue,
+> e il driver PDO corrispondente. Se ciò accade, puoi provare
+> a lanciare lo strumento `yiic` come segue,
 >
 > ~~~
 > % php -c path/to/php.ini protected/yiic.php shell
 > ~~~
 >
-> where `path/to/php.ini` represents the correct PHP ini file.
+> dove `path/to/php.ini` rappresenta il file ini di PHP corrente.
 
-Puoi vedere il nostro lavoro visitando il seguente:
+Si può vedere il risultato del nostro lavoro visitando l'URL:
 
 ~~~
 http://hostname/testdrive/index.php?r=user
 ~~~
 
-Ti verr� mostrato una lista di registrazione utenti della tabella`tbl_user`.
+Verrà mostrata una lista di utenti della tabella`tbl_user`.
 
-Clicca sul pulsante `Create User` nella pagina. Se non ti sei gi� loggato in precedenza 
-sarai indirizzato alla pagina di login. Dopo il log in, potrai
-vedere un form che ti permetter� di aggiungere un nuovo utente. Completa il form
-e clicca sul pulsante `Create`. Se c'� un errore di input, ti sar� mostrato 
-un messaggio di errore che serve a prevenire il salvataggio. Tornando all'elenco utenti registrati,
-dovresti vedere l'utente appena aggiunto nella lista.
+Clicca sul pulsante `Create User` nella pagina. Se non ti sei già loggato in 
+precedenza sarai indirizzato alla pagina di login. Dopo il login, potrai vedere 
+un form che ti permetterà di aggiungere un nuovo utente. Compila il form e 
+clicca sul pulsante `Create`. Se c'è un errore di input, ti sarà mostrato un 
+messaggio di errore che serve a prevenire il salvataggio. Tornando all'elenco 
+utenti registrati, dovresti vedere l'utente appena aggiunto alla lista.
 
-Ripeti i passi sopra esposti per aggiungere pi� utenti. Nota che la pagina della lista utenti
-verr� automaticamente impaginata se ci sono troppi utenti da essere visualizzati
-in una pagina sola.
+Ripeti i passi sopra esposti per aggiungere più utenti. Nota che la pagina della 
+lista utenti verrà automaticamente suddivisa in più pagine se ci sono troppi 
+utenti da visualizzare in una pagina sola.
 
-Se fai il login come amministratore usando `admin/admin`, puoi vedere la pagina utente
-admin con il seguente URL:
+Se ci autentichiamo come amministratori utilizzando le credenziali 
+`admin/admin`, possiamo vedere la pagina dell'utente admin con il seguente 
+URL: 
 
 ~~~
 http://hostname/testdrive/index.php?r=user/admin
 ~~~
 
-Questo ti mostrer� le registrazioni utente in un bel formato tabella. Puoi cliccare
-sull'intestazione delle celle per ordinare le corrrispondenti colonne. Puoi cliccare sui bottoni
-di ciascuna riga di dati per vedere, aggiornare o cancellare la riga di dati corrispondente.
-Puoi navigare tra pagine differenti. Puoi anche filtrare e cercare i dati a cui sei interessato.
+In questo modo verrà visualizzato l'elenco degli utenti in formato tabulare 
+elegante. Si può cliccare sull'intestazione della cella per ordinare la 
+corrispondente colonna. Si può cliccare sui bottoni di ciascuna riga dati per 
+visualizzare, aggiornare o cancellare la riga dati corrispondente.
+Si possono sfogliare pagine diverse. Si può anche filtrare e cercare i dati a 
+cui si è interessati.
 
-Tutte queste ottime caratteristiche sono disponibili senza che sia necessario
-scrivere una sola riga di codice!
+Tutte queste caratteristiche simpatiche sono disponibili senza che sia 
+necessario scrivere una sola riga di codice!
 
 ![User admin page](first-app6.png)
 
 ![Create new user page](first-app7.png)
 
 
-
-<div class="revision">$Id$</div>
+<div class="revision">$Id: quickstart.first-app-yiic.txt 2098 2011-09-08 19:14:51Z fabio.ingala $</div>
