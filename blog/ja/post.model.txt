@@ -157,12 +157,13 @@ URLのGETパラメータとして、postのIDのほかにタイトルも追加�
 
 `Post`の最も祖先のクラスは[CComponent]なので、`getUrl()`というgetterメソッドを追加することで、`$post->url`という書き方ができるようになります。`$post->url`にアクセスすると、getterメソッドが実行され、その結果が式の値として返されます。このようなコンポーネントの機能の詳細については[ガイド](/doc/guide/basics.component)を参照のこと。
 
-Representing Status in Text
----------------------------
+ステータスをテキストで表現する
+------------------------------
 
-Because the status of a post is stored as an integer in the database, we need to provide a textual representation so that it is more intuitive when being displayed to end users. In a large system, the similar requirement is very common.
+postのステータスはinteger型でデータベースに保存されるので、エンドユーザーに分かりやすく表示するために、テキスト形式での表現を提供する必要があります。大きなシステムでは、このような要求はよくあることです。
 
-As a generic solution, we use the `tbl_lookup` table to store the mapping between integer values and textual representations that are needed by other data objects. We modify the `Lookup` model class as follows to more easily access the textual data in the table,
+一般的な解決策として、ここでは`tbl_lookup`テーブルを使います。このテーブルにinteger値とテキスト表現の対応表を持たせ、このテキスト表現を他のデータオブジェクトから利用します。`Lookup`モデルクラスを以下のように修正し、テーブル内のテキストデータに容易にアクセスできるようにします。
+
 
 ~~~
 [php]
@@ -198,11 +199,11 @@ class Lookup extends CActiveRecord
 }
 ~~~
 
-Our new code mainly provides two static methods: `Lookup::items()` and `Lookup::item()`. The former returns a list of strings belonging to the specified data type, while the latter returns a particular string for the given data type and data value.
+新しいコードは主に2つの静的メソッド、`Lookup::items()`と`Lookup::item()`を提供します。前者は、指定したデータタイプに属する文字列のリストを返します。後者は、データのタイプと値を指定することで、特定の文字列を返します。
 
-Our blog database is pre-populated with two lookup types: `PostStatus` and `CommentStatus`. The former refers to the possible post statuses, while the latter the comment statuses.
+ブログのデータベースに、Lookup用のタイプとして`PostStatus`と`CommentStatus`を事前に追加しておきます。前者は可能な投稿ステータスを示し、後者はコメントステータスを示します。
 
-In order to make our code easier to read, we also declare a set of constants to represent the status integer values. We should use these constants through our code when referring to the corresponding status values.
+コードを読みやすくするために、一連のステータスを表すinteger値の定数を宣言します。コード中で各ステータス値を参照するときはこの定数を使うようにします。
 
 ~~~
 [php]
@@ -215,7 +216,6 @@ class Post extends CActiveRecord
 }
 ~~~
 
-Therefore, we can call `Lookup::items('PostStatus')` to get the list of possible post statuses (text strings indexed by the corresponding integer values), and call `Lookup::item('PostStatus', Post::STATUS_PUBLISHED)` to get the string representation of the published status.
-
+これによって、`Lookup::items('PostStatus')`を呼ぶと、投稿のステータスとして取りうる値のリスト（integer値をインデックスとした、各値に対応するテキスト表現の一覧）を取得できます。また、`Lookup::item('PostStatus', Post::STATUS_PUBLISHED)`を呼ぶと、公開済みというステータスのテキスト表現を取得できます。
 
 <div class="revision">$Id: post.model.txt 3366 2011-08-03 21:24:26Z alexander.makarow $</div>
