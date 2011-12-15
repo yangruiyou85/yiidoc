@@ -1,0 +1,11 @@
+Yii 완벽 가이드
+===========================
+
+이 튜토리얼은 [Yii 문서 사용 조건](http://www.yiiframework.com/doc/terms/)에 따라 배포됩니다.
+
+All Rights Reserved.
+
+2008-2010 &copy; Yii Software LLC.
+
+
+<div class="revision">$Id: index.txt 1679 2010-01-07 21:03:36Z qiang.xue $</div>
