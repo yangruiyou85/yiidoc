@@ -1,0 +1,17 @@
+Yii로 블로그 만들기
+================================
+
+이 튜토리얼은 [블로그 데모](http://www.yiiframework.com/demos/blog/)와 같이
+Yii로 어떻게 블로그 어플리케이션을 개발하는지 설명한다.
+이 블로그는 Yii 배포 파일에도 들어있다. 개발 기간 동안 각 단계별로 자세히 설명하고
+이는 다른 웹 어플리케이션 개발에도 적용할 수 있다. [완벽 가이드](http://www.yiiframework.com/doc/guide/),
+Yii [클래스 레퍼런스](http://www.yiiframework.com/doc/api/)에 보충자료인
+이 튜토리얼은 완전한 가이드는 아니고 어떻게 Yii를 실용적으로 쓸 수 있는지 설명한다.
+
+이 튜토리얼을 읽기 전에 Yii를 몰라도 된다. 그러나 객체지향 프로그래밍과 데이터베이스 프로그래밍에 대한 기초 지식이 있으면 이 튜토리얼을 쉽게 이해할 수 있다.
+
+> Note: 이 튜토리얼은 친절한 가이드가 아니다. 에러가 발생하면 완벽 가이드를 읽으면서 직접 고치고 API를 확인해야 한다.
+
+이 튜토리얼은 [Yii 문서 사용조건](http://www.yiiframework.com/doc/terms/)에 따라 배포된다.
+
+<div class="revision">$Id: start.overview.txt 3463 2011-11-25 19:22:38Z alexander.makarow $</div>

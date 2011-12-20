@@ -1,0 +1,35 @@
+* 시작하기
+	- [개요](start.overview)
+    - [Yii 무작정 따라하기](start.testdrive)
+    - [요구사항 분석](start.requirements)
+    - [전반적인 설계](start.design)
+
+* 첫 프로토타입 만들기
+    - [데이터베이스 설정하기](prototype.database)
+    - [스캐폴딩](prototype.scaffold)
+    - [사용자 인증](prototype.auth)
+    - [요약](prototype.summary)
+
+* 글(Post) 관리
+    - [Post 모델 수정](post.model)
+    - [글 쓰기와 수정](post.create)
+    - [글 보기](post.display)
+    - [글 관리](post.admin)
+
+* 댓글(Comment) 관리
+	- [Comment 모델 수정](comment.model)
+    - [댓글 달기와 보기](comment.create)
+    - [댓글 관리](comment.admin)
+
+* 포틀릿
+	- [사용자 메뉴 포틀릿 만들기](portlet.menu)
+	- [태그 구름 포틀릿 만들기](portlet.tags)
+	- [최근 코멘트 포틀릿 만들기](portlet.comments)
+
+* 마무리 작업
+	- [URL을 보기 좋게 만들기](final.url)
+	- [에러 로깅](final.logging)
+    - [마무리 설정 및 배포](final.deployment)
+    - [향후 개선 과제](final.future)
+
+<div class="revision">$Id: toc.txt 1734 2010-01-21 18:41:17Z qiang.xue $</div>
