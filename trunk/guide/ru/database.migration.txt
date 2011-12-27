@@ -28,7 +28,8 @@
 
 > Note|Примечание: При работе с командой `migrate` рекомендуется использовать
 > yiic приложения (то есть после `cd path/to/protected`), а не yiic из
-> директории `framework`.
+> директории `framework`. Убедитесь, что директория `protected\migrations` существует и
+> доступна для записи. Также проверьте настройки соединения с базой данных в `protected/config/console.php`.
 
 
 Создание миграций
@@ -387,4 +388,4 @@ return array(
 без ввода каких-либо дополнительных параметров.
 
 
-<div class="revision">$Id: database.migration.txt 3060 2011-03-13 11:44:14Z alexander.makarow $</div>
+<div class="revision">$Id: database.migration.txt 3450 2011-11-20 22:52:07Z alexander.makarow $</div>
