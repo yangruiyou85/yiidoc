@@ -38,12 +38,13 @@ I file di traduzione dovrebbero essere convertiti in formato UTF-8 per una corre
 == File in traduzione: ==
 *Guida definitiva a Yii*:
   * /guide/it/basics.controller.txt (Fabio Ingala)
+  * /guide/it/database.overview.txt (Giancarlo Albanese)
 
 *Messaggi del framework Yii*:
   `Nessun file in corso di traduzione`
 
 *Pagina di convalida dei requisiti*:
-  `Nessun file in corso di traduzione`
+  `Tutti i file sono stati tradotti`
 
 *Tutorial sviluppo blog con Yii*:
   `Nessun file in corso di traduzione`
@@ -92,7 +93,6 @@ I file di traduzione dovrebbero essere convertiti in formato UTF-8 per una corre
   * /guide/it/database.arr.txt
   * /guide/it/database.dao.txt
   * /guide/it/database.migration.txt
-  * /guide/it/database.overview.txt
   * /guide/it/database.query-builder.txt
   * /guide/it/extension.create.txt
   * /guide/it/extension.integration.txt
@@ -260,7 +260,7 @@ note - nota
 parameter binding - parametro vincolante
 placeholder - segnaposto
 redoing migration - riesecuzione della migrazione
-render view - visualizzare una view
+render a view - visualizzare una view
 request processing - elaborazione della richiesta
 required parameter - parametro necessario
 resolve request - risoluzione della richiesta
