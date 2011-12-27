@@ -346,7 +346,7 @@ num blog, gerenciar usuários, etc). De acordo com sua granulidade e audiência,
 itens de autorização podem ser classificados como *operações*, *tarefas* e 
 *papéis*. Um papel consiste de tarefas, uma tarefa consiste de operações e
 uma operação é uma permissão que é atômica.
-Por exemplo, nós podemos ter um sistema com um papel `administrador` que consista
+Por exemplo, podemos ter um sistema com um papel `administrador` que consista
 das tarefas `gerenciar postagens` e `gerenciar usuários`. A tarefa `gerenciar usuários`
 pode consistir das operações `criar usuário`, `atualizar usuário` e `excluir usuário`.
 Para maior flexibilidade o Yii também permite que um papel seja constituído de
