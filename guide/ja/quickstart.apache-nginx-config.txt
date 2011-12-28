@@ -5,7 +5,7 @@ Apache
 ------
 
 Yii は、既定の構成の Apache ウェブサーバーで動作させることが出来ます。
-Yii の フレームワークのフォルダとアプリケーションのフォルダにある .htaccess ファイルによって、アクセスを制限されるべきリソースが保護されます。
+Yii の フレームワークのフォルダとアプリケーションのフォルダにある .htaccess ファイルが、保護されるべきリソースへのアクセスを制限します。
 URL からブートストラップファイル（通常は index.php）を隠すために、ドキュメントルートの .htaccess ファイルか、バーチャルホスト構成ファイルに、mod_rewrite の指示を追加することが出来ます。
 
 ~~~
@@ -75,6 +75,6 @@ server {
     }
 }
 ~~~
-この構成を使うと、php.ini で cgi.fix_pathinfo=0 を設定して、数多くの不要なシステム関数 stat() の呼出しを避けることが出来ます。
+この構成を使うと、php.ini で cgi.fix_pathinfo=0 を設定して、不要なシステム関数 stat() の呼出しの多くを回避することが出来ます。
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: quickstart.apache-nginx-config.txt 3512 2011-12-27 16:50:03Z haertl.mike $</div>
