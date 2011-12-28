@@ -104,8 +104,8 @@ array('AttributeList', 'Validator', 'on'=>'ScenarioList', …додаткові 
 ~~~
 [php]
 /**
- * @param string ім'я поля, яке будемо валідувати
- * @param array додаткові параметри для правила валідації
+ * @param string $attribute ім'я поля, яке будемо валідувати
+ * @param array $params додаткові параметри для правила валідації
  */
 public function ValidatorName($attribute,$params) { … }
 ~~~
@@ -341,4 +341,4 @@ public function rules()
 
 Далі ми побачимо, що можливість вказівки міток у моделі даних дозволяє швидко створювати складні форми.
 
-<div class="revision">$Id: form.model.txt 3160 2011-04-03 01:08:23Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 3482 2011-12-13 09:41:36Z mdomba $</div>
