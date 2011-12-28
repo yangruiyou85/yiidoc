@@ -102,13 +102,15 @@ class User extends CActiveRecord
 }
 ~~~
 
-> Info: Foreign key bisa berupa composite, terdiri dari dua atau lebih kolom.
-Dalam hal ini, kita harus menggabungkan nama-nama kolom kunci dan
-memisahkannya dengan koma. Untuk jenis hubungan `MANY_MANY`,
+> Info: Foreign key bisa saja berupa composite, yang artinya terdiri dari dua atau lebih kolom.
+Untuk hal ini, kita harus menggabungkan nama-nama kolom kunci dan
+memisahkannya dengan koma, atau dengan bentuk array seperti array('key1','key2').
+Apabila Anda perlu menspesifikasikan asosiasi PK->FK sendiri, Anda bisa menulis 
+array('fk'=>'pk').Untuk composite maka bentuknya akan berupa array('fk_c1'=>'pk_c1','fk_c2'=>'pk_c2').
+Untuk jenis hubungan `MANY_MANY`,
 nama tabel asosiatif juga harus ditetapkan dalam foreign key. Contohnya,
 hubungan `categories` dalam `Post` ditetapkan dengan foreign key
 `tbl_post_category(post_id, category_id)`.
-
 Deklarasi hubungan dalam kelas AR secara implisit menambahkan properti
 ke kelas untuk setiap hubungan. Setelah query relasional dilakukan,
 properti terkait akan diisi dengan instance dari AR yang dihubungkan.
@@ -205,7 +207,7 @@ $criteria->with=array(
 $posts=Post::model()->findAll($criteria);
 ~~~
 
-or
+atau
 
 ~~~
 [php]
@@ -450,7 +452,6 @@ $posts = Post::model()->with(array('comments'=>array('together'=>false)))->findA
 ~~~
 
 
-
 Query Statistik
 ---------------
 
@@ -599,14 +600,16 @@ Ketika menggunakan `through`, definisi relasi harus dilihat seperti berikut:
 
 ~~~
 [php]
-'relationName'=>array('relationType', 'ClassName', 'foreign_key', 'through'=>'throughRelationName', ...additional options)
+'comments'=>array(self::HAS_MANY,'Comment',array('key1'=>'key2'),'through'=>'posts'),
 ~~~
 
 Di atas, nilai `foreign_key` adalah nama sebuah key yang:
-  - Didefinisikan di tabel yang ditetapkan di dalam `throughRelationName`.
-  - Menunjuk ke sebuah tabel yang menyimpan data untuk model `ClassName`.
+
+  - `key1` merupakan key yang didefinisikan di `throughRelationName`.
+  - `key2` merupakan key yang didefinisikan di `ClassName`.
 
 `through` dapat digunakan oleh relasi `HAS_ONE` dan `HAS_MANY`.
+
 
 ### HAS_MANY through
 
@@ -627,8 +630,8 @@ class Group extends CActiveRecord
    {
        return array(
            'roles'=>array(self::HAS_MANY,'Role','group_id'),
-           'users'=>array(self::HAS_MANY,'User','user_id','through'=>'roles'),
-           'comments'=>array(self::HAS_MANY,'Comment','user_id','through'=>'users'),
+           'users'=>array(self::HAS_MANY,'User',array('user_id'=>'id'),'through'=>'roles'),
+           'comments'=>array(self::HAS_MANY,'Comment',array('id'=>'user_id'),'through'=>'users'),
        );
    }
 }
@@ -672,7 +675,7 @@ class User extends CActiveRecord
    {
        return array(
            'profile'=>array(self::HAS_ONE,'Profile','user_id'),
-           'address'=>array(self::HAS_ONE,'Address','profile_id','through'=>'profile'),
+           'address'=>array(self::HAS_ONE,'Address',array('id'=>'profile_id'),'through'=>'profile'),
        );
    }
 }
@@ -708,7 +711,7 @@ class User extends CActiveRecord
    {
        return array(
            'mentorships'=>array(self::HAS_MANY,'Mentorship','teacher_id','joinType'=>'INNER JOIN'),
-           'students'=>array(self::HAS_MANY,'User','student_id','through'=>'mentorships','joinType'=>'INNER JOIN'),
+           'students'=>array(self::HAS_MANY,'User',array('student_id'=>'id'),'through'=>'mentorships','joinType'=>'INNER JOIN'),
        );
    }
 }
@@ -723,4 +726,4 @@ $teacher=User::model()->findByPk(1);
 $students=$teacher->students;
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3409 2011-09-28 21:43:54Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3416 2011-10-13 18:18:13Z alexander.makarow $</div>

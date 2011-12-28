@@ -1,18 +1,18 @@
-Apache and Nginx configurations
+Konfigurasi Apache dan Nginx
 ===================================
 
 Apache
 ------
 
-Yii is ready to work with a default Apache web server configuration. The `.htaccess` files in Yii framework and application folders restrict access to the restricted resources. To hide the bootstrap file (usually `index.php`) in your URLs you can add `mod_rewrite` instructons to the `.htaccess` file in your document root or to the virtual host configuration:
+Yii siap berjalan dengan konfigurasi default web server Apache. File `.htaccess` di dalam framework Yii dan folder aplikasi melarang pengaksesan file-file. Untuk menyembunyikan file bootstrap (biasanya `index.php`) di dalam URL Anda bisa menambahkan `mod_rewrite` ke dalam file `.htaccess` di document root atau ke konfigurasi virtual host:
 
 ~~~
 RewriteEngine on
 
-# if a directory or a file exists, use it directly
+# jika sebuah direktori atau file ada, maka langsung gunakan ini
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-# otherwise forward it to index.php
+# jika tidak ada, maka arahkan ke index.php
 RewriteRule . index.php
 ~~~
 
@@ -20,8 +20,8 @@ RewriteRule . index.php
 Nginx
 -----
 
-You can use Yii with [Nginx](http://wiki.nginx.org/) and PHP with [FPM SAPI](http://php.net/install.fpm).
-Here is a sample host configuration. It defines the bootstrap file and makes yii catch all requests to unexisting files, which allows us to have nice-looking URLs.
+Anda dapat menggunakan Yii dengan [Nginx](http://wiki.nginx.org/) dan PHP dengan [FPM SAPI](http://php.net/install.fpm).
+Berikut ini merupakan contoh konfigurasi host. File ini mendefinisikan file bootstrap dan membuat Yii menangkap semua request ke file yang tidak ada, sehingga memungkinkan kita untuk memiliki URL yang cantik.
 
 ~~~
 server {
@@ -73,6 +73,6 @@ server {
     }
 }
 ~~~
-Using this configuration you can set cgi.fix_pathinfo=0 in php.ini to avoid many unnesessary system stat() calls.
+Anda bisa set cgi.fix_pathinfo=0 di dalam php.ini jika menggunakan konfigurasi di atas guna menghindari pemanggilan stat() sistem yang tidak diperlukan.
 
-<div class="revision">$Id$</div>
+<div class="revision">$Id: quickstart.apache-nginx-config.txt 3512 2011-12-27 16:50:03Z haertl.mike $</div>
