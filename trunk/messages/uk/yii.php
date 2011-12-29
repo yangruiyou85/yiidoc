@@ -19,9 +19,7 @@
  * @version $Id: $
  */
 return array (
-  'Failed to set unsafe attribute "{attribute}" of "{class}".' => 'Не вдалося привласнити небезпечний атрибут "{attribute}" класу "{class}".',
-  'Failed to start session.' => 'Не вдалося запустити сесію.',
-  '{class} and its behaviors do not have a method or closure named "{name}".' => 'У класі {class} та його поведінках не знайдено метод або замикання із іменем "{name}".',
+  'Powered by {yii}.' => 'Створено на {yii}.',
   '"{path}" is not a valid directory.' => 'Шлях "{path}" не є правильною директорією.',
   '&lt; Previous' => '&lt; Попередня',
   '&lt;&lt; First' => '&lt;&lt; Перша',
@@ -104,6 +102,8 @@ return array (
   'Event "{class}.{event}" is not defined.' => 'Подія "{class}.{event}" не визначена.',
   'Extension path "{path}" does not exist.' => 'Шлях розширення "{path}" не існує.',
   'Failed to initialize the mcrypt module.' => 'Не вдалося ініціалізувати модуль mcrypt.',
+  'Failed to set unsafe attribute "{attribute}" of "{class}".' => 'Не вдалося привласнити небезпечний атрибут "{attribute}" класу "{class}".',
+  'Failed to start session.' => 'Не вдалося запустити сесію.',
   'Failed to write the uploaded file "{file}" to disk.' => 'Не вдалося записати завантажений файл "{file}" на диск.',
   'File upload was stopped by extension.' => 'Завантаження файлу перервано розширенням.',
   'Filter "{filter}" is invalid. Controller "{class}" does not have the filter method "filter{filter}".' => 'Фільтр "{filter}" невірний. Контролер "{class}" не містить методу "filter{filter}".',
@@ -243,6 +243,7 @@ return array (
   '{className} does not support flushValues() functionality.' => '{className} не підтримує flushValues().',
   '{className} does not support get() functionality.' => 'Клас {className} не підтримує функціонал get().',
   '{className} does not support set() functionality.' => 'Клас {className} не підтримує функціонал set().',
+  '{class} and its behaviors do not have a method or closure named "{name}".' => 'У класі {class} та його поведінках не знайдено метод або замикання із іменем "{name}".',
   '{class} does not have relation "{name}".' => '{class} не містить відношення "{name}".',
   '{class} does not support fetching all table names.' => '{class} не підтримує вибірку імен всіх таблиць.',
   '{class} has an invalid validation rule. The rule must specify attributes to be validated and the validator name.' => '{class} містить невірне правило перевірки. Правило повинно мати ім\'я та включати елементи для перевірки.',
