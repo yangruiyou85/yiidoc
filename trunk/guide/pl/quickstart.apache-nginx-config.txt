@@ -74,3 +74,5 @@ server {
 }
 ~~~
 U¿ywaj¹c tej konfiguracji mo¿esz ustawiæ cgi.fix_pathinfo=0 w pliku php.ini w celu unikniêcia wielu niepotrzebnych wywo³añ systemowych stat().
+
+<div class="revision">$Id: quickstart.apache-nginx-config.txt 3512 2011-12-27 16:50:03Z haertl.mike $</div>

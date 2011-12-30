@@ -19,6 +19,8 @@ W dalszej części opiszemy w jaki sposób używać to narzędzie.
 
 > Note|Uwaga: Zaleca się używanie narzędzia yiic właściwego dla danej aplikacji (np. `cd ścieżka/do/protected`)
 > podczas pracy z komendą `migrate` zamiast tego, który znajduje się w katalogu `framework`.
+> Upewnij się, że posiadasz folder `protected\migrations` z prawami zapisu. Sprawdź również, czy
+> skonfigurowałeś połączenie z bazą danych w pliku `protected/config/console.php`.
 
 Tworzenie migracji
 -------------------
@@ -308,4 +310,4 @@ return array(
 Jeśli teraz uruchomimy polecenie `migrate` powyższa konfiguracja będzie obowiązywać bez konieczności wprowadzania za każdym razem opcji poprzez linię poleceń.
 
 
-<div class="revision">$Id: database.migration.txt 3060 2011-03-13 11:44:14Z alexander.makarow $</div>
+<div class="revision">$Id: database.migration.txt 3450 2011-11-20 22:52:07Z alexander.makarow $</div>
