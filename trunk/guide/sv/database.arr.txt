@@ -650,8 +650,8 @@ Vid användning av `through` skall sambandsdefinitionen se ut som följer:
 
 I ovanstående `array('key1'=>'key2')`:
 
-  - `key1` är en nyckel definierad i `throughRelationName`.
-  - `key2` är en nyckel definierad i `ClassName`.
+  - `key1` är en nyckel definierad i sambandet som specificeras i `through` (i detta fall `posts`).
+  - `key2` är en nyckel definierad i modellen detta samband (comments) refererar till (i detta fall `Comment`).
 
 `through` kan användas med `HAS_ONE`- och `HAS_MANY`-samband.
 
@@ -772,4 +772,4 @@ $teacher=User::model()->findByPk(1);
 $students=$teacher->students;
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3416 2011-10-13 18:18:13Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3523 2011-12-30 20:32:29Z alexander.makarow $</div>
