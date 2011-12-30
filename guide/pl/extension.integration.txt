@@ -40,12 +40,12 @@ $lucene=new Zend_Search_Lucene($pathOfIndex);
 $hits=$lucene->find(strtolower($keyword));
 ~~~
 
-Używanie zewnętrzych bibliotek z przestrzenia nazw (ang. namespace)
+Używanie zewnętrzych bibliotek z przestrzenią nazw (ang. namespace)
 ------------------------------------
 
 W celu używania biblioteki z przestrzenią nazw, która jest zgodna z 
 [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md)
-(np. such as Framework 2 czy też Symfony2) musisz zarejetrować jej główny alias jako alias ścieżki.
+(np. Zend Framework 2 czy też Symfony2) musisz zarejetrować jej główny alias jako alias ścieżki.
 
 Za przykład posłuży nam [Imagine](https://github.com/avalanche123/Imagine).
 Jeżeli umieściliśmy bibliotekę `Imagine` w katalogu `protected/vendors` będziemy ją używali

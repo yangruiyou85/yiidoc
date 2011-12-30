@@ -4,15 +4,15 @@ Konfiguracja Apache-a oraz Nginx-a
 Apache
 ------
 
-Yii jest gotowe do pracy z domyœln¹ konfiguracj¹ serwera Apache. Pliki .htaccess w folderach frameworku oraz aplikacji ograniczaj¹ dostêp do odpowiednich zasobów. W celu ukrycia pliku rozruchowego (zazwyczaj index.php) w adresie URL, mo¿esz dodaæ nastêpuj¹ce instrukcje mod_rewrite do pliku .htaccess w g³ównym katalogu lub konfiguracji wirtualnego hosta:
+Yii jest gotowe do pracy z domyÅ›lnÄ… konfiguracjÄ… serwera Apache. Pliki .htaccess w folderach frameworku oraz aplikacji ograniczajÄ… dostÄ™p do odpowiednich zasobÃ³w. W celu ukrycia pliku rozruchowego (zazwyczaj index.php) w adresie URL, moÅ¼esz dodaÄ‡ nastÄ™pujÄ…ce instrukcje mod_rewrite do pliku .htaccess w gÅ‚Ã³wnym katalogu lub konfiguracji wirtualnego hosta:
 
 ~~~
 RewriteEngine on
 
-# jeœli katalog lub plik istniej¹, u¿yj ich 
+# jeÅ›li katalog lub plik istniejÄ…, uÅ¼yj ich 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-# w przecwinym przypadku przeka¿ do index.php
+# w przecwinym przypadku przekaÅ¼ do index.php
 RewriteRule . index.php
 ~~~
 
@@ -20,8 +20,8 @@ RewriteRule . index.php
 Nginx
 -----
 
-Mo¿esz u¿ywaæ Yii z [Nginx-em](http://wiki.nginx.org/) i PHP z [FPM SAPI](http://php.net/install.fpm).
-Poni¿ej znajduje siê przyk³adowa konfiguracja hosta. Definiuje ona plik rozruchowy i pozwala yii przechwytywaæ ¿¹dania prowadz¹ce do nieistniej¹cych plików, co pozwala nam posiadaæ ³adnie wygl¹daj¹ce URLe.
+MoÅ¼esz uÅ¼ywaÄ‡ Yii z [Nginx-em](http://wiki.nginx.org/) i PHP z [FPM SAPI](http://php.net/install.fpm).
+PoniÅ¼ej znajduje siÄ™ przykÅ‚adowa konfiguracja hosta. Definiuje ona plik rozruchowy i pozwala yii przechwytywaÄ‡ Å¼Ä…dania prowadzÄ…ce do nieistniejÄ…cych plikÃ³w, co pozwala nam posiadaÄ‡ Å‚adnie wyglÄ…dajÄ…ce URLe.
 
 ~~~
 server {
@@ -43,12 +43,12 @@ server {
         deny  all;
     }
 
-    #unikaj przetwarzania przez Yii wywo³añ do nieistniej¹cych statycznych plików 
+    #unikaj przetwarzania przez Yii wywoÅ‚aÅ„ do nieistniejÄ…cych statycznych plikÃ³w 
     location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {
         try_files $uri =404;
     }
 
-    # przeka¿ skrypty PHP do serwera FastCGI nas³uchuj¹cego 127.0.0.1:9000
+    # przekaÅ¼ skrypty PHP do serwera FastCGI nasÅ‚uchujÄ…cego 127.0.0.1:9000
     #
     location ~ \.php {
         fastcgi_split_path_info  ^(.+\.php)(.*)$;
@@ -73,6 +73,6 @@ server {
     }
 }
 ~~~
-U¿ywaj¹c tej konfiguracji mo¿esz ustawiæ cgi.fix_pathinfo=0 w pliku php.ini w celu unikniêcia wielu niepotrzebnych wywo³añ systemowych stat().
+UÅ¼ywajÄ…c tej konfiguracji moÅ¼esz ustawiÄ‡ cgi.fix_pathinfo=0 w pliku php.ini w celu unikniÄ™cia wielu niepotrzebnych wywoÅ‚aÅ„ systemowych stat().
 
 <div class="revision">$Id: quickstart.apache-nginx-config.txt 3512 2011-12-27 16:50:03Z haertl.mike $</div>

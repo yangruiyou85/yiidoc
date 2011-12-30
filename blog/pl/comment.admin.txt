@@ -60,7 +60,7 @@ class Comment extends CActiveRecord
 }
 ~~~
 
-a następnie wywołujemy metodę `update()` aby zapisać tę nowo ustawioną włąściwość do bazy danych.
+a następnie wywołujemy metodę `update()` aby zapisać tę nowo ustawioną właściwość do bazy danych.
 
 Modyfikujemy również metodę `actionIndex()` kontrolera `CommentController` aby wyświetlała listę wszystkich komentarzy. Na samym początku chcielibyśmy wyświetlić komentarze wymagające zatwierdzenia. 
 

@@ -86,7 +86,7 @@ public function addComment($comment)
 }
 ~~~
 
-W powyższym kodzie, wołamy metodę `newComment()` zanim wygenerujemy widok `view`. W metodzie `newComment()` generujemy instancję komentarza `Comment` i sprawdzamy czy formularz komentarza został przesłany. Jeśli tak, spróbujemy dodać komentarz do wiadomości poprzez wywołanie `$post->addComment($comment)`. Jeżeli się to uda, odświeżymy stronę ze szczegółami wiadomości, która będzie wyświetlać nam nowo utowrzony komentarz chyba, że będzie wymagane jego potwierdzenie. W przypadku kiedy komentarz wymaga najpierw zatwierdzenia zanim zostanie wyświetlony, wyświetlimy wiadomość flash w celu zakomunikowania użytkownikowi, że komentarz zostanie wyświetlony po jego zatwierdzeniu. Wiadomość typu flash jest zazwyczaj wiadomością potwierdzającą coś, wyświetlaną użytkownikowi końcowemu. Jeśli użytkownik kliknie na przycisku odświeżenia w swojej przeglądarce wiadomość ta zniknie.
+W powyższym kodzie, wołamy metodę `newComment()` zanim wygenerujemy widok `view`. W metodzie `newComment()` generujemy instancję komentarza `Comment` i sprawdzamy czy formularz komentarza został przesłany. Jeśli tak, spróbujemy dodać komentarz do wiadomości poprzez wywołanie `$post->addComment($comment)`. Jeżeli się to uda, odświeżymy stronę ze szczegółami wiadomości, która będzie wyświetlać nam nowo utworzony komentarz chyba, że będzie wymagane jego potwierdzenie. W przypadku kiedy komentarz wymaga najpierw zatwierdzenia zanim zostanie wyświetlony, wyświetlimy wiadomość flash w celu zakomunikowania użytkownikowi, że komentarz zostanie wyświetlony po jego zatwierdzeniu. Wiadomość typu flash jest zazwyczaj wiadomością potwierdzającą coś, wyświetlaną użytkownikowi końcowemu. Jeśli użytkownik kliknie na przycisku odświeżenia w swojej przeglądarce wiadomość ta zniknie.
 
 Musimy ponadto zmodyfikować również `/wwwroot/blog/protected/views/post/view.php`:
 
@@ -116,7 +116,7 @@ W powyższym kodzie wyświetlamy wiadomość typu flash jeśli jest dostępna. W
 Sprawdzanie poprawności danych oparte na AJAX
 ----------------------
 
-W celu poprawy wygody użytkownika, możemy użyć sprawdzania poprawności danych w polach formularza opertego na AJAX-ie, zapewniającego użytkownikowi informację zwrotną o poprawności pól w trakcie wypełniania formularza, przez przekazaniem całego formularza do serwera. Aby wspierać sprawdzanie poprawności oparte na AJAX-ie w formularzu komentarza, potrzebujemy dokonać niewielkich zmian zarówno w widoku formularza `/wwwroot/blog/protected/views/comment/_form.php` jak i w metodzie `newComment()`.
+W celu poprawy wygody użytkownika, możemy użyć sprawdzania poprawności danych w polach formularza opartego na AJAX-ie, zapewniającego użytkownikowi informację zwrotną o poprawności pól w trakcie wypełniania formularza, przed przekazaniem całego formularza do serwera. Aby wspierać sprawdzanie poprawności oparte na AJAX-ie w formularzu komentarza, potrzebujemy dokonać niewielkich zmian zarówno w widoku formularza `/wwwroot/blog/protected/views/comment/_form.php` jak i w metodzie `newComment()`.
 
 W pliku `_form.php` musimy przede wszystkim ustawić [CActiveForm::enableAjaxValidation] jako wartość true, kiedy tworzymy widżet [CActiveForm]:
 
