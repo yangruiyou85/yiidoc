@@ -99,8 +99,12 @@ class User extends CActiveRecord
 ~~~
 
 > Info|Info: Klucz obcy może być kluczem złożonym, zawierającym dwie lub więcej kolumn.
-W takim przypadku, powinniśmy złączyć nazwy kolumn dla kluczy obcych rozdzielając przecinkiem. 
-Dla typu relacji `MANY_MANY`, nazwa tablicy asocjacyjnej musi 
+W takim przypadku, powinniśmy złączyć nazwy kolumn dla kluczy obcych rozdzielając przecinkiem
+lub przekazać je pod postacią tablicy, np. array('klucz1','klucz2').
+W przypadku gdy potrzebujesz zdefiniować niestandardowe przypisanie PK->FK, możesz
+zdefiniować ją jako tablicę array('fk'=>'pk'). 
+Dla kluczy złożonych będzie to tablica array('fk_c1'=>'pk_с1','fk_c2'=>'pk_c2').
+Dla relacji typu `MANY_MANY`, nazwa tablicy asocjacyjnej musi 
 również być określona w kluczu obcym. Na przykład, relacja kategorii `categories` w `tbl_post`
 jest określona przez klucz obcy `tbl_post_category(post_id, category_id)`.
 
@@ -602,15 +606,16 @@ W przypadky korzystania z `through`, definicja relacji powinna wyglądać w nast
 
 ~~~
 [php]
-'relationName'=>array('relationType', 'ClassName', 'foreign_key', 'through'=>'throughRelationName', ...dodatkowe opcje)
+'comments'=>array(self::HAS_MANY,'Comment',array('key1'=>'key2'),'through'=>'posts'),
 ~~~
 
-W powyższym przykładzie wartość `foreign_key` jest nazwą klucza, który:
+W powyższym przykładzie tablica array('key1'=>'key2')`:
 
-  - jest zdefiniowany w tabeli określonej poprzez `throughRelationName`.
-  - wskazuje na tabelę przechowującą dane dla modelu `ClassName`.
+  - `key1` jest kluczem zdefiniowanym w `throughRelationName`.
+  - `key2` jest kluczem zdefiniowanym w `ClassName`.
 
 Pomost `through` można używać z relacjami typu `HAS_ONE` oraz `HAS_MANY`.
+
 
 ### Pomosty w HAS_MANY
 
@@ -632,8 +637,8 @@ class Group extends CActiveRecord
    {
        return array(
            'roles'=>array(self::HAS_MANY,'Role','group_id'),
-           'users'=>array(self::HAS_MANY,'User','user_id','through'=>'roles'),
-           'comments'=>array(self::HAS_MANY,'Comment','user_id','through'=>'users'),
+		   users'=>array(self::HAS_MANY,'User',array('user_id'=>'id'),'through'=>'roles'),
+           'comments'=>array(self::HAS_MANY,'Comment',array('id'=>'user_id'),'through'=>'users'),
        );
    }
 }
@@ -678,7 +683,7 @@ class User extends CActiveRecord
    {
        return array(
            'profile'=>array(self::HAS_ONE,'Profile','user_id'),
-           'address'=>array(self::HAS_ONE,'Address','profile_id','through'=>'profile'),
+           'address'=>array(self::HAS_ONE,'Address',array('id'=>'profile_id'),'through'=>'profile'),
        );
    }
 }
@@ -713,7 +718,7 @@ class User extends CActiveRecord
    {
        return array(
            'mentorships'=>array(self::HAS_MANY,'Mentorship','teacher_id','joinType'=>'INNER JOIN'),
-           'students'=>array(self::HAS_MANY,'User','student_id','through'=>'mentorships','joinType'=>'INNER JOIN'),
+           'students'=>array(self::HAS_MANY,'User',array('student_id'=>'id'),'through'=>'mentorships','joinType'=>'INNER JOIN'),
        );
    }
 }
@@ -728,4 +733,4 @@ $teacher=User::model()->findByPk(1);
 $students=$teacher->students;
 ~~~
 
-<div class="revision">$Id: database.arr.txt 3409 2011-09-28 21:43:54Z alexander.makarow $</div>
+<div class="revision">$Id: database.arr.txt 3416 2011-10-13 18:18:13Z alexander.makarow $</div>

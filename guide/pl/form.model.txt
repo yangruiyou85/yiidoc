@@ -110,8 +110,8 @@ w przykładzie powyżej. Metoda walidatora musi posiadać następującą składn
 ~~~
 [php]
 /**
- * @param string nazwa atrybutu sprawdzanego
- * @param array opcje określone w regule walidacji
+ * @param string $attribute nazwa atrybutu sprawdzanego
+ * @param array $params opcje określone w regule walidacji
  */
 public function ValidatorName($attribute,$params) { ... }
 ~~~
@@ -371,4 +371,4 @@ potrzeb poprzez nadpisanie metody [attributeLabels()|CModel::attributeLabels].
 Jak zobaczymy w następnych punktach, zdefiniowanie etykiet w modelu umożliwia nam tworzenie 
 formularzy szybciej i lepiej.
 
-<div class="revision">$Id: form.model.txt 3160 2011-04-03 01:08:23Z qiang.xue $</div>
+<div class="revision">$Id: form.model.txt 3482 2011-12-13 09:41:36Z mdomba $</div>
