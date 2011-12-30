@@ -17,7 +17,7 @@ URL
 http://hostname/index.php?r=ControllerId/ActionId
 ~~~
 
-Get-змінна `r` представляє [маршрут](/doc/guide/basics.controller#route), 
+GET-змінна `r` представляє [маршрут](/doc/guide/basics.controller#route), 
 з якого Yii отримує інформацію про контролер і дію.
 Якщо `ActionId` не зазначений, контролер буде використовувати дію за замовчуванням 
 (визначену в  [CController::defaultAction]).
