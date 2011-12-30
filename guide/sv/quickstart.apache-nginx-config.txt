@@ -4,16 +4,16 @@ Apache- och Nginx-konfigurationer
 Apache
 ------
 
-Yii ‰r klar att arbeta med en standardkonfiguration fˆr Apache webbserver. 
-Filerna `.htaccess` i kataloger som innehÂller Yii Framework och applikationer 
-fˆrhindrar tillgÂng till de skyddade resurserna. Startskriptet (vanligen `index.php`) 
-kan gˆmmas i URL:er genom till‰gg av `mod_rewrite`-instruktioner i `.htaccess`-filen 
-placerad i dokumentrotkatalogen, alternativt l‰ggas till i konfiguration fˆr virtuell host:
+Yii √§r klar att arbeta med en standardkonfiguration f√∂r Apache webbserver. 
+Filerna `.htaccess` i kataloger som inneh√•ller Yii Framework och applikationer 
+f√∂rhindrar tillg√•ng till de skyddade resurserna. Startskriptet (vanligen `index.php`) 
+kan g√∂mmas i URL:er genom till√§gg av `mod_rewrite`-instruktioner i `.htaccess`-filen 
+placerad i dokumentrotkatalogen, alternativt l√§ggas till i konfiguration f√∂r virtuell host:
 
 ~~~
 RewriteEngine on
 
-# om en katalog eller fil existerar, anv‰nd den
+# om en katalog eller fil existerar, anv√§nd den
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 # i annat fall omdirigera till index.php
@@ -24,9 +24,9 @@ RewriteRule . index.php
 Nginx
 -----
 
-Yii kan anv‰ndas med [Nginx](http://wiki.nginx.org/) samt PHP med [FPM SAPI](http://php.net/install.fpm).
-H‰r fˆljer ett exempel pÂ host-konfiguration. Det definierar startskript och ser till att Yii fÂngar upp alla 
-request till ej existerande filer, vilket tillÂter anv‰ndning av estetiskt tilltalande URL:er.
+Yii kan anv√§ndas med [Nginx](http://wiki.nginx.org/) samt PHP med [FPM SAPI](http://php.net/install.fpm).
+H√§r f√∂ljer ett exempel p√• host-konfiguration. Det definierar startskript och ser till att Yii f√•ngar upp alla 
+request till ej existerande filer, vilket till√•ter anv√§ndning av estetiskt tilltalande URL:er.
 
 ~~~
 server {
@@ -53,7 +53,7 @@ server {
         try_files $uri =404;
     }
 
-    # dirigera PHP-skript till FastCGI-servern pÂ 127.0.0.1:9000
+    # dirigera PHP-skript till FastCGI-servern p√• 127.0.0.1:9000
     #
     location ~ \.php {
         fastcgi_split_path_info  ^(.+\.php)(.*)$;
@@ -78,7 +78,7 @@ server {
     }
 }
 ~~~
-Med denna konfiguration kan man s‰tta cgi.fix_pathinfo=0 i php.ini och d‰rmed undvika mÂnga onˆdiga 
+Med denna konfiguration kan man s√§tta cgi.fix_pathinfo=0 i php.ini och d√§rmed undvika m√•nga on√∂diga 
 stat() systemanrop.
 
 <div class="revision">$Id: quickstart.apache-nginx-config.txt 3512 2011-12-27 16:50:03Z haertl.mike $</div>
