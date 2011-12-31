@@ -35,4 +35,4 @@ mantiene parecchi log interni. D'altro canto, la modalità debug è molto più
 utile durante la fase di sviluppo perché fornisce molte più informazioni di 
 debug quando si verifica un errore.
 
-<div class="revision">$Id: basics.entry.txt 3251 2011-11-06 17:52:54Z fabio.ingala $</div>
+<div class="revision">$Id: basics.entry.txt 3251 2011-06-01 00:24:06Z qiang.xue $</div>

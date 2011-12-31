@@ -1,19 +1,19 @@
 Controller
 ==========
 
-A `controller` is an instance of [CController] or of a class that extends [CController]. 
-It is created by the application object when the user requests it. When a controller
-runs, it performs the requested action, which usually brings in the needed
-models and renders an appropriate view. An `action`, in its simplest form, is
-just a controller class method whose name starts with `action`.
+Il `controller` è un'istanza di [CController] o di una classe che estende [CController].
+È creata dall'oggetto applicazione quando l'utente lo richiede. Quando un controller 
+è in esecuzione, esegue l'azione richiesta, che usualmente porta al model necessario 
+e visualizza la view appropriata. Un'`action`, nella sua forma più elementare, è 
+semplicemente un metodo di una classe controller che ha il nome che inizia con `action`.
 
-A controller has a default action. When the user request does not specify
-which action to execute, the default action will be executed. By default,
-the default action is named as `index`. It can be changed by setting the 
-public instance variable, [CController::defaultAction].
+Un controller ha un'action di default. Quando la richiesta dell'utente non specifica 
+quale action eseguire, verrà eseguita l'action di default. Per default, l'action di 
+default è chiamata `index`. Può essere modificata impostando la variabile pubblica 
+[CController::defaultAction] dell'istanza.
 
-The following code defines a `site` controller, an `index` action (the default
-action), and a `contact` action:
+Il codice che segue definisce il controller `site`, l'action `index` (l'action di 
+default) e l'action `contact`:
 
 ~~~
 [php]
@@ -35,72 +35,72 @@ class SiteController extends CController
 Route
 -----
 
-Controllers and actions are identified by IDs. A Controller ID is in the
-format `path/to/xyz`, which corresponds to the controller class file
-`protected/controllers/path/to/XyzController.php`, where the token `xyz`
-should be replaced by actual names; e.g. `post` corresponds to
-`protected/controllers/PostController.php`. Action ID is the action method
-name without the `action` prefix. For example, if a controller class
-contains a method named `actionEdit`, the ID of the corresponding action
-would be `edit`.
+Controller ed action sono identificate da un ID. 
+L'ID del controller è nel formato `percorso/per/xyz`, che corrisponde al file 
+della classe controller `protected/controllers/percorso/per/XyzController.php`, 
+dove il segnaposto `xyz` dovrebbe essere sostituito con un nome reale; 
+es. `post` corrisponde a `protected/controllers/PostController.php`.
+L'ID dell'action è il nome del metodo action senza il prefisso `action`. Per 
+esempio, se una classe controller contiene un metodo che si chiama `actionEdit`, 
+l'ID corrispondente a questa action sarebbe `edit`.
 
-Users request a particular controller and action in terms of route. A
-route is formed by concatenating a controller ID and an action ID, separated
-by a slash. For example, the route `post/edit` refers to `PostController`
-and its `edit` action. By default, the URL `http://hostname/index.php?r=post/edit` 
-would request the post controller and the edit action.
+Gli utenti accedono ad un particolare controller ed action tramite route (percorso).
+Una route è formata concatenando l'ID del controller con l'ID dell'action 
+separandoli con uno slash. Per esempio, la route `post/edit` si riferisce al 
+controller `PostController` ed all'action `edit`. Di default, l'URL 
+`http://hostname/index.php?r=post/edit` richiederà il controller `post` e l'action 
+`edit`.
 
->Note: By default, routes are case-sensitive. It is
->possible to make routes case-insensitive by setting [CUrlManager::caseSensitive]
->to false in the application configuration. When in case-insensitive mode,
->make sure you follow the convention that directories containing controller
->class files are in lowercase, and both [controller map|CWebApplication::controllerMap]
->and [action map|CController::actions] have lowercase keys.
+>Note:|Nota: Di default, le route differenziano tra maiuscolo e minuscolo (case-sensitive). È
+>possibile rendere le route indifferenti al maiuscolo/minuscolo impostando [CUrlManager::caseSensitive]
+>a false nel file di configurazione dell'applicazione. Quando si è in modalità indifferente al maiuscolo/minuscolo,
+>assicurarsi di seguire la convenzione che le carelle che contengono i file delle classi 
+>controller siano in minuscolo, e che sia la [mappa dei controller|CWebApplication::controllerMap]
+>che la [mappa delle action|CController::actions] abbiano le chiavi in minuscolo.
 
-An application can contain [modules](/doc/guide/basics.module). The route for
-a controller action inside a module is in the format `moduleID/controllerID/actionID`.
-For more details, see the [section about modules](/doc/guide/basics.module).
+Un'applicazione può contenere [moduli](/doc/guide/basics.module). La route per
+l'action di un controller all'interno di un modulo è nel formato `moduleID/controllerID/actionID`.
+Per ulteriori dettagli, vedere la [sezione sui moduli](/doc/guide/basics.module).
 
 
-Controller Instantiation
+Instaziazione del Controller
 ------------------------
 
-A controller instance is created when [CWebApplication] handles an
-incoming request. Given the ID of the controller, the application will use
-the following rules to determine what the controller class is and where the
-class file is located.
+Un'istanza del controller è creata quando [CWebApplication] gestisce una 
+richiesta in arrivo. Dato l'ID del controller l'applicazione utilizzerà 
+le seguenti regole per stabilire quale sia la classe controller e dove si trovi 
+il file della classe.
 
-   - If [CWebApplication::catchAllRequest] is specified, a controller
-will be created based on this property, and the user-specified controller ID
-will be ignored. This is mainly used to put the application in
-maintenance mode and display a static notice page.
+   - Se [CWebApplication::catchAllRequest] è specificato, sarà creato un controller
+basato su questa proprietà, ed l'ID del controller specificato dall'utente sarà 
+ignorato. Ciò è utilizzato principalmente per mettere l'applicazione in modalità
+manutenzione e visualizzare una pagina statica con un avviso.
 
-   - If the ID is found in [CWebApplication::controllerMap], the
-corresponding controller configuration will be used to create the
-controller instance.
+   - Se l'ID è trovato in [CWebApplication::controllerMap], la configurazione 
+del corrispondente controller verrà utilizzata per creare l'istanza di quel controller.
 
-   - If the ID is in the format `'path/to/xyz'`, the controller class
-name is assumed to be `XyzController` and the corresponding class file is
-`protected/controllers/path/to/XyzController.php`. For example, a controller
-ID `admin/user` would be mapped to the controller class `UserController`
-and the class file `protected/controllers/admin/UserController.php`.
-If the class file does not exist, a 404 [CHttpException] will be raised.
+   - Se l'ID è nel formato `'percorso/per/xyz'`, il nome della classe del controller 
+si assume essere `XyzController` e il corrispondete file della classe sarà 
+`protected/controllers/percors/per/XyzController.php`. Per esempio, il controller ID
+`admin/user` sarà mappato con la classe controller `UserController` ed il file 
+della classe sarà `protected/controllers/admin/UserController.php`.
+Se il file della classe non esiste, sarà generato un errore 404 [CHttpException].
 
-When [modules](/doc/guide/basics.module) are used, the above process is
-slightly different. In particular, the application will check whether or not 
-the ID refers to a controller inside a module, and if so, the module instance 
-will be created first, followed by the controller instance.
+Quando sono usati i [moduli](/doc/guide/basics.module), la procedura descritta sopra
+è leggermente diversa. In particolare, l'applicazione controllerà se l'ID si riferisce o meno 
+ad un controller contenuto in un modulo, ed in tal caso, sarà prima creata una 
+istanza del modulo, seguita dall'istanza del controller.
 
 
 Action
 ------
 
-As previously noted, an action can be defined as a method whose name starts
-with the word `action`. A more advanced technique is to define an action class
-and ask the controller to instantiate it when requested. This allows
-actions to be reused and thus introduces more reusability.
+Come notato in precedenza, un'action può essere definita come un metodo il cui 
+nome inizia con la parola `action`. Una tecnica più avanzata è quella di definire 
+una classe action e chiedere al controller di istanziarla quando richiesto. Ciò 
+consente alle action di poter essere riutilizzate e quindi si ha maggiore riusabilità.
 
-To define a new action class, do the following:
+Per definire una nuova classe action, procedere come segue:
 
 ~~~
 [php]
@@ -108,13 +108,13 @@ class UpdateAction extends CAction
 {
 	public function run()
 	{
-		// place the action logic here
+		// inserire qui la logica dell'action
 	}
 }
 ~~~
 
-To make the controller aware of this action, we override the
-[actions()|CController::actions] method of our controller class:
+Per far prendere coscienza al controller dell'esistenza di questa action, occorre sovraccaricare 
+il metodo [actions()|CController::actions] della nostra classe controller:
 
 ~~~
 [php]
@@ -129,13 +129,13 @@ class PostController extends CController
 }
 ~~~
 
-In the above, we use the path alias
-`application.controllers.post.UpdateAction` to specify that the action
-class file is `protected/controllers/post/UpdateAction.php`.
+Nel codice sopra, è stato utilizzato un path alias  
+`application.controllers.post.UpdateAction` per specificare che il file della 
+classe action è `protected/controllers/post/UpdateAction.php`.
 
-By writing class-based actions, we can organize an application in a modular
-fashion. For example, the following directory structure may be used to
-organize the code for controllers:
+Scrivendo action basate su classi, si può organizzare un'applicazione come un 
+sistema modulare. Per esempio, la seguente struttura di cartelle può essere 
+utilizzata per organizzare il codice dei controller:
 
 ~~~
 protected/
@@ -153,21 +153,20 @@ protected/
             UpdateAction.php
 ~~~
 
-### Action Parameter Binding
+### Associazione dei parametri all'Action
 
-Since version 1.1.4, Yii has added support for automatic action parameter binding.
-That is, a controller action method can define named parameters whose value will
-be automatically populated from `$_GET` by Yii.
+Sin dalla versione 1.1.4, Yii ha aggiunto il supporto per l'associazione 
+automatica dei parametri all'action. Vale a dire, il metodo action del controller 
+può definire parametri nominali il cui valore sarà automaticamente impostato da Yii 
+prelevandolo da `$_GET`
 
-To illustrate how this works, let's assume we need to write a `create` action for 
-`PostController`.  The action requires two parameters:
+Per far vedere come questo funzioni, supponiamo di dover scrivere l'action `create` 
+per il `PostController`. L'action necessita di due parametri:
 
-* `category`: an integer indicating the category ID under which the new post will
-   be created;
-* `language`: a string indicating the language code that the new post will be in.
+* `category`: un intero che indica l'ID della categoria all'interno della quale il nuovo post sarà creato;
+* `language`: una stringa che indica il codice della lingua in cui il nuovo post si troverà.
 
-We may end up with the following boring code for the purpose of retrieving the needed
-parameter values from `$_GET`:
+Potremmo concludere con il seguente codice noioso allo scopo di recuperare i valori dei parametri necessari da `$_GET`:
 
 ~~~
 [php]
@@ -185,12 +184,13 @@ class PostController extends CController
 		else
 			$language='en';
 
-		// ... fun code starts here ...
+		// ... il codice divertente inizia qui ...
 	}
 }
 ~~~
 
-Now using the action parameter feature, we can achieve our task more pleasantly:
+Adesso, utilizzando la funzionalità di associazione dei parametri all'action, si può completare 
+il compito più piacevolmente:
 
 ~~~
 [php]
@@ -200,20 +200,20 @@ class PostController extends CController
 	{
 		$category=(int)$category;
 
-		// ... fun code starts here ...
+		// ... il codice divertente inizia qui ...
 	}
 }
 ~~~
 
-Notice that we add two parameters to the action method `actionCreate`.
-The name of these parameters must be exactly the same as the ones we expect
-from `$_GET`. The `$language` parameter takes a default value `en` in case
-the request does not include such a parameter.  Because `$category`
-does not have a default value, if the request does not include a `category` 
-parameter, a [CHttpException] (error code 400) will be thrown automatically.
+Notare che si aggiungono due parametri al metodo action `actionCreate`.
+I nomi di questi parametri devono essere esattamente gli stessi di quelli che ci 
+si aspetta da `$_GET`. Il parametro `$language` prende di default il valore `en` 
+nel caso in cui la richiesta non includa tale parametro. Poiché `$category` non 
+ha un valore di default, se la richiesta non include il parametro `category`, 
+sarà generata automaticamente un'eccezione [CHttpException] (error code 400).
 
-Starting from version 1.1.5, Yii also supports array type detection for action parameters.
-This is done by PHP type hinting using syntax like the following:
+A partire dalla versione 1.1.5, Yii supporta anche il tipo di dato array quale parametro dell'action.
+Ciò è ottenuto tramite il suggerimento di tipo del PHP utilizzano la sintassi seguente:
 
 ~~~
 [php]
@@ -221,23 +221,23 @@ class PostController extends CController
 {
 	public function actionCreate(array $categories)
 	{
-		// Yii will make sure that $categories is an array
+		// Yii si assicurerà che $categories sia un array
 	}
 }
 ~~~
 
-That is, we add the keyword `array` in front of `$categories` in the method parameter
-declaration. By doing so, if `$_GET['categories']` is a simple string, it will be
-converted into an array consisting of that string.
+Cioè, si aggiunge la keyword `array` prima di `$categories` nella dichiarazione 
+del parametro del metodo. Così facendo, se `$_GET['categories']` è una semplice stringa, 
+sarà convertita in un array composto solamente da quella stringa.
 
-> Note: If a parameter is declared without the `array` type hint, it means the parameter
-> must be a scalar (i.e., not an array). In this case, passing in an array parameter via
-> `$_GET` would cause an HTTP exception.
+> Nota: Se un parametro è dichiarato senza il suggerimento di tipo, significa che il parametro
+> deve essere uno scalare (p.e., non è un array). In questo caso, passando come parametro un array tramite 
+> `$_GET` causerà un'eccezione HTTP.
 
-Starting from version 1.1.7, automatic parameter binding also works for
-class-based actions. When the `run()` method of an action class is defined
-with some parameters, they will be populated with the corresponding named
-request parameter values. For example,
+A partire dalla versione 1.1.7, l'associazione automatica dei parametri funziona 
+anche per le action basate su classi. Quando è stato definito il metodo `run()` con parametri 
+di una classe action, questi saranno impostati con i corrispondenti valori dei 
+parametri richiesti. Per esempio,
 
 ~~~
 [php]
@@ -245,7 +245,7 @@ class UpdateAction extends CAction
 {
 	public function run($id)
 	{
-		// $id will be populated with $_GET['id']
+		// $id sarà impostato con il valore di $_GET['id']
 	}
 }
 ~~~
@@ -254,35 +254,34 @@ class UpdateAction extends CAction
 Filter
 ------
 
-Filter is a piece of code that is configured to be executed before and/or
-after a controller action executes. For example, an access control filter
-may be executed to ensure that the user is authenticated before executing
-the requested action; a performance filter may be used to measure the time
-spent executing the action.
+Il Filter è un pezzo di codice che è configurato per essere eseguito prima e/o dopo 
+l'esecuzione dell'action di un controller. Per esempio, il filter del controllo degli accessi
+potrebbe essere eseguito per assicurarsi che l'utente sia autenticato prima che 
+venga eseguita l'action richiesta; un filter per prestazioni potrebbe essere utilizzato
+per misurare il tempo utilizzato per eseguire l'action.
 
-An action can have multiple filters. The filters are executed in the order
-that they appear in the filter list. A filter can prevent the execution of
-the action and the rest of the unexecuted filters.
+Un'action potrebbe avere molti filter. I filter sono eseguiti nell'ordine con 
+cui appaiono nella lista dei filter. Un filter può impedire l'esecuzione di un'action 
+nonché il resto dei filter non eseguiti.
 
-A filter can be defined as a controller class method. The method name must
-begin with `filter`. For example, a method named `filterAccessControl` 
-defines a filter named `accessControl`. The filter method must have the 
-right signature:
+Un filter può essere definito come un metodo della classe controller. Il nome del metodo deve
+iniziare con `filter`. Ad esempio, un metodo chiamato `filterAccessControl` definisce 
+un filter chiamato `accessControl`. Il metodo filter deve avere la corretta firma:
 
 ~~~
 [php]
 public function filterAccessControl($filterChain)
 {
-	// call $filterChain->run() to continue filter and action execution
+	// chiamare $filterChain->run() per continuare l'esecuzione del filter e dell'action
 }
 ~~~
 
-where `$filterChain` is an instance of [CFilterChain] which represents the
-filter list associated with the requested action. Inside a filter method,
-we can call `$filterChain->run()` to continue filter and action execution.
+dove `$filterChain` è un'istanza di [CFilterChain] che rappresenta la lista dei 
+filter associata con l'action richiesta. All'interno di un metodo filter, si può 
+chiamare `$filterChain->run()` per continuare l'esecuzione del filter e dell'action.
 
-A filter can also be an instance of [CFilter] or its child class. The
-following code defines a new filter class:
+Un filter può essere anche un'istanza di [CFilter] o una sua classe figlio. Il codice 
+che segue definisce una nuova classe filter:
 
 ~~~
 [php]
@@ -290,20 +289,20 @@ class PerformanceFilter extends CFilter
 {
 	protected function preFilter($filterChain)
 	{
-		// logic being applied before the action is executed
-		return true; // false if the action should not be executed
+		// logica applicata prima che l'action venga eseguita
+		return true; // false se l'action non deve essere eseguita
 	}
 
 	protected function postFilter($filterChain)
 	{
-		// logic being applied after the action is executed
+		// logica applicata dopo che l'action è stata eseguita
 	}
 }
 ~~~
 
-To apply filters to actions, we need to override the
-`CController::filters()` method. The method should return an array of
-filter configurations. For example,
+Per applicare i filter alle action, è necessario sovraccaricare il metodo 
+`CController::filters()`. Il metodo dovrebbe restituire un array delle configurazioni 
+dei filter. Per esempio, 
 
 ~~~
 [php]
@@ -323,21 +322,19 @@ class PostController extends CController
 }
 ~~~
 
-The above code specifies two filters: `postOnly` and `PerformanceFilter`.
-The `postOnly` filter is method-based (the corresponding filter method is
-defined in [CController] already); while the `PerformanceFilter` filter is
-object-based. The path alias `application.filters.PerformanceFilter`
-specifies that the filter class file is
-`protected/filters/PerformanceFilter`. We use an array to configure
-`PerformanceFilter` so that it may be used to initialize the property
-values of the filter object. Here the `unit` property of
-`PerformanceFilter` will be initialized as `'second'`.
+Il codice precedente specifica due filter: `postOnly` e `PerformanceFilter`.
+Il filter `postOnly` è basato sul metodo (il metodo filter corrispondente è già 
+definito in [CController]); mentre il filter `PerformanceFilter` è basato sugli 
+oggetti. Il path alias `application.filters.PerformanceFilter` 
+specifica che il file della classe filter è `protected/filters/PerformanceFilter`. 
+Si utilizza un array per configurare `PerformanceFilter` cosicché può essere 
+utilizzato per inizializzare i valori delle proprietà dell'oggetto filter. 
+Qui la proprietà `unit` di `PerformanceFilter` sarà inizializzata come `'second'`.
 
-Using the plus and the minus operators, we can specify which actions the
-filter should and should not be applied to. In the above, the `postOnly`
-filter will be applied to the `edit` and `create` actions, while
-`PerformanceFilter` filter will be applied to all actions EXCEPT `edit` and
-`create`. If neither plus nor minus appears in the filter configuration,
-the filter will be applied to all actions.
+Utilizzando gli operatori più e meno, si può specificare a quale action il filter 
+dovrebbe o non dovrebbe essere applicato. Nel codice precedente, il filter `postOnly` 
+verrà applicato alle action `edit` e `create`, mentre il filter `PerformanceFilter` 
+verrà applicato a tutte le action AD ECCEZIONE DI `edit` e `create`. Se non appare alcun 
+più o meno nella configurazione del filter, il filter sarà applicato a tutte le action.
 
 <div class="revision">$Id: basics.controller.txt 3251 2011-06-01 00:24:06Z qiang.xue $</div>

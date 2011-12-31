@@ -28,4 +28,4 @@ installato e disponibile per il web server. Yii è stato testato con
 [Apache HTTP server](http://httpd.apache.org/) su Windows e Linux. 
 Yii può funzionare anche con altri web server e piattaforme dotate di PHP 5.1.
 
-<div class="revision">$Id: quickstart.installation.txt 3219 2011-09-08 10:07:35Z fabio.ingala $</div>
+<div class="revision">$Id: quickstart.installation.txt 3219 2011-05-13 03:03:35Z qiang.xue $</div>
