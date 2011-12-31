@@ -50,7 +50,7 @@ nel modo seguente, di solito nell'[entry script](/doc/guide/basics.entry):
 $app=Yii::createWebApplication($configFile);
 ~~~
 
-> Consiglio: se la configurazione dell'applicazione è molto complessa, possiamo dividerla
+> Suggerimento: se la configurazione dell'applicazione è molto complessa, possiamo dividerla
 in più file, ognuno riportante una porzione dell'array di configurazione.
 Quindi, nel file di configurazione principale, possiamo, tramite la funzione PHP `include()`,
 includere gli altri file di configurazione ed unirli in un array di configurazione completo.
@@ -116,7 +116,7 @@ Un componente può essere disabilitato impostando nella configurazione il
 parametro `enabled` come `false`. Quando si accede ad un componente disabilitato
 si ottiene come risultato `null`.
 
-> Consiglio: di default i componenti sono creati quando necessari. Ciò significa
+> Suggerimento: di default i componenti sono creati quando necessari. Ciò significa
 che un componente non può essere creato se non è stato acceduto durante
 una richiesta. Come risultato, le perfomance totali non sono degradate
 persino quando un'applicazione è configurata per utilizzare molti componenti. Per Alcuni
@@ -199,4 +199,4 @@ Quando viene gestita una richiesta, una applicazione seguirà il seguente ciclo 
 
    7. Generazione dell'evento [onEndRequest|CApplication::onEndRequest];
 
-<div class="revision">$Id: basics.application.txt 3251 2011-11-06 18:04:06Z fabio.ingala $</div>
+<div class="revision">$Id: basics.application.txt 3251 2011-06-01 00:24:06Z qiang.xue $</div>

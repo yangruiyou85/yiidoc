@@ -81,4 +81,4 @@ server {
 ~~~
 Usando questa configurazione, per evitare molte chiamate di sistema stat(), puoi settare cgi.fix_pathinfo=0 nel file php.ini. 
 
-<div class="revision">$Id: index.txt 3410 2011-11-06 18:13:42Z fabio.ingala $</div>
+<div class="revision">$Id: quickstart.apache-nginx-config.txt 3512 2011-12-27 16:50:03Z haertl.mike $</div>

@@ -164,12 +164,14 @@ tabella `tbl_user` appena creata. Questa è una necessità tipica delle
 applicazioni. Invece di sobbarcarci l'onere di scrivere il codice necessario, 
 utilizzeremo `Gii` -- un potente generatore di codice ad interfaccia web.
 
-> Info: Gii è stato reso disponibile a partire dalla versione 1.1.2. Prima di allora, per ottenere lo stesso risultato, è possibile utilizzare il citato strumento `yiic`. Per maggiori dettagli, si prega di fare riferimento a [Implementare operazioni CRUD con la shell yiic](/doc/guide/quickstart.first-app-yiic).
+> Informazione: Gii è stato reso disponibile a partire dalla versione 1.1.2. Prima di allora, per ottenere lo stesso risultato, è possibile utilizzare il citato strumento `yiic`. Per maggiori dettagli, si prega di fare riferimento a [Implementare operazioni CRUD con la shell yiic](/doc/guide/quickstart.first-app-yiic).
 
 
 ### Configurare Gii
 
-Per poter utilizzare Gii, è necessario prima modificare il file `WebRoot/testdrive/protected/config/main.php`, noto come il file di [configurazione dell'applicazione](/doc/guide/basics.application#application-configuration):
+Per poter utilizzare Gii, è necessario prima modificare il file 
+`WebRoot/testdrive/protected/config/main.php`, noto come il file di 
+[configurazione dell'applicazione](/doc/guide/basics.application#application-configuration):
 
 ~~~
 [php]
@@ -251,5 +253,4 @@ necessità di scrivere una sola riga di codice PHP!
 
 ![Create new user page](first-app7.png)
 
-
-<div class="revision">$Id: quickstart.first-app.txt 3219 2011-09-08 11:53:35Z fabio.ingala $</div>
+<div class="revision">$Id: quickstart.first-app.txt 3219 2011-05-13 03:03:35Z qiang.xue $</div>

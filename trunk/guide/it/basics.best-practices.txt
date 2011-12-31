@@ -127,15 +127,15 @@ un migliore approccio è quello di mettere tutti questi frammenti di codice in
 una classe helper della view. Così è sufficiente utilizzare la classe helper 
 nei file delle view. Yii fornisce un esempio per questo tipo di approccio. Yii 
 dispone di una classe helper [CHtml] potente, che può produrre codice HTML di 
-uso comune. Le classi Helper possono essere messe una [cartella di caricamento 
-automatico](/doc/guide/basics.namespace) in modo che possano essere utilizzate 
-senza l'esplicita inclusione della classe.
+uso comune. Le classi Helper possono essere messe una 
+[cartella di caricamento automatico](/doc/guide/basics.namespace) 
+in modo che possano essere utilizzate senza l'esplicita inclusione della classe.
 
 
 Controller
 ----------
 
-I [Controllers](/doc/guide/basics.controller) sono il collante che lega tra 
+I [Controller](/doc/guide/basics.controller) sono il collante che lega tra 
 loro i model, le view ed altri componenti. I Controller hanno l'incarico di 
 avere a che fare direttamente con le richieste dell'utente. Pertanto i 
 controller:
@@ -169,4 +169,4 @@ le logiche di controllo, tra le varie applicazioni, spesso seguono percorsi
 similari e quindi possono essere ben semplificate dal framework sottostante 
 o dalle classi di base.
 
-<div class="revision">$Id: basics.best-practices.txt 2795 2010-12-31 00:22:33Z fabio.ingala $</div>
+<div class="revision">$Id: basics.best-practices.txt 2795 2010-12-31 00:22:33Z alexander.makarow $</div>

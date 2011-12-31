@@ -31,10 +31,10 @@ un'applicazione Yii quando essa gestisce una richiesta utente:
 
    1. Un utente esegue una richiesta all'URL `http://www.example.com/index.php?r=post/show&id=1` 
 ed il web server gestisce la richiesta eseguendo lo script di avvio `index.php`.
-   2. Lo script di avvio crea un'istanza dell'[Application](/doc/guide/basics.application) 
+   2. Lo script di avvio crea un'istanza dell'[Applicazione](/doc/guide/basics.application) 
 e la esegue.
    3. L'Application riceve le informazioni dettagliate della richiesta 
-dell'utente da un [Application component](/doc/guide/basics.application#application-component) 
+dell'utente da un [component dell'applicazione](/doc/guide/basics.application#application-component) 
 che si chiama `request`.
    4. L'Application determina sia il [controller](/doc/guide/basics.controller) 
 che l'[action](/doc/guide/basics.controller#action) richiesti grazie all'aiuto 
@@ -51,9 +51,8 @@ il `Post` il cui ID è `1`.
    7. L'action produce una [view](/doc/guide/basics.view) chiamata `show` con i 
 prodotti dal model `Post`.
    8. La view legge e visualizza gli attributi del model `Post`.
-   9. La view esegue alcuni [widgets](/doc/guide/basics.view#widget).
+   9. La view esegue alcuni [widget](/doc/guide/basics.view#widget).
    10. La produzione della view viene incorporata in un [layout](/doc/guide/basics.view#layout).
    11. L'action completa la produzione della view e ne visualizza il risultato all'utente.
 
-
-<div class="revision">$Id: basics.mvc.txt 3321 2011-11-06 12:48:22Z fabio.ingala $</div>
+<div class="revision">$Id: basics.mvc.txt 3321 2011-06-26 12:54:22Z mdomba $</div>
