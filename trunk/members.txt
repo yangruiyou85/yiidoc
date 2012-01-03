@@ -53,6 +53,7 @@ Member List of Yiidoc Project
   active  Simplified Chinese    燃烧的心            designerhe
   active  Simplified Chinese    thaiki              xwsoul
   active  Slovak                lubosdz             lubosdz
+  active  Slovak                funner              vladimir.kriska
   active  Spanish               buritica            buritica
   active  Spanish               juan-calvo          adamut
   active  Spanish               marcanuy            mcanina
