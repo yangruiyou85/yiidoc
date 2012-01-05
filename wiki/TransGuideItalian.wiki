@@ -10,7 +10,7 @@ Questo documento descrive:
 
 Attualmente l'attività principale in corso è la traduzione della 'Guida definitiva a Yii'.
 Lo stato delle traduzioni è il seguente (*% tradotto* + `% in traduzione`):
-  * Guida definitiva a Yii (*36%* + 24%)
+  * Guida definitiva a Yii (*36%* + 26%)
   * Messaggi del framework Yii (*100%* + 0%)
   * Pagina di convalida dei requisiti (*100%* + 0%)
   * Tutorial 'sviluppo di un blog con Yii' (*0%* + 0%)
@@ -40,6 +40,7 @@ I file di traduzione dovrebbero essere convertiti in formato UTF-8 per una corre
 *Guida definitiva a Yii*:
   * /guide/it/extension.integration.txt (Simone (Demo) Gentili)
   * /guide/it/extension.use.txt (Simone (Demo) Gentili)
+  * /guide/it/form.overview.txt (Giancarlo Albanese)
   * /guide/it/topics.auth.txt (Fabio Ingala)
   * /guide/it/topics.console.txt (Fabio Ingala)
   * /guide/it/topics.error.txt (Fabio Ingala)
@@ -129,7 +130,6 @@ I file di traduzione dovrebbero essere convertiti in formato UTF-8 per una corre
   * /guide/it/form.action.txt
   * /guide/it/form.builder.txt
   * /guide/it/form.model.txt
-  * /guide/it/form.overview.txt
   * /guide/it/form.table.txt
   * /guide/it/form.view.txt
   * /guide/it/test.fixture.txt
