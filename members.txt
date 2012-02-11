@@ -36,11 +36,12 @@ Member List of Yiidoc Project
   active  Kazakh                sotrud_nik          baurthefirst@gmail.com      Yes
   active  Kazakh                resurtm             resurtm@gmail.com
   active  Korean                tlenwon             tlenwon@gmail.com
-  active  Korean                jonghwa		    nasiajai@gmail.com
+  active  Korean                jonghwa             nasiajai@gmail.com
   active  Lithuanian            Tova                tomas.valacka
   active  Norwegian             eirikhm             eirikhm
   active  Polish                aztech              tomasz.suchanek
   active  Polish                Filip Górczyński    filip.gorczynski
+  active  Russian               andy_s              andy.s.kos
   active  Russian               Caveman             alex.lukjanenko
   active  Russian               samdark             alexander.makarow           Yes
   active  Simplified Chinese    dongbeta            yiidoc@dongbeta.com
