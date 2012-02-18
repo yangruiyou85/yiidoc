@@ -61,7 +61,8 @@ Member List of Yiidoc Project
   active  Spanish               sebas               sebathi                     Yes
   active  Swedish               tri                 triboe
   active  Tamil                 sapauljoseph        aka.srinivasan
-  active  Ukrainian             Borales             bordun.alexandr
+  active  Ukrainian             Borales             bordun.alexandr             Yes
+  active  Ukrainian             m_demchun           miroslav.chandler
   active  Ukrainian             vitaliy.step        vitaliy.step
   active  Vietnamese            Harry Tang          admin@giaduy.info
   active  Persian               Bamdadd             bamdadd@gmail.com           Yes
