@@ -33,4 +33,4 @@ Yii 以其优异的性能，丰富的功能和清晰的文档胜出其他框架�
 它是作者丰富的 Web 应用开发经验和对大多数流行的 Web 编程框架与应用的研究与思考的成
 果。
 
-<div class="revision">$Id</div>
+<div class="revision">$Id$</div>
