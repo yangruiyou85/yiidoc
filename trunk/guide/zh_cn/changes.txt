@@ -153,4 +153,4 @@
  * 增强了 [CUrlManager] ，支持URL规则中的 route 部分。查看：
      - [Parameterizing Routes in URL Rules](/doc/guide/topics.url#parameterizing-routes)
 
-<div class="revision">$Id</div>
+<div class="revision">$Id$</div>
