@@ -17,6 +17,7 @@ Member List of Yiidoc Project
   active  Dutch                 marcovtwout         marcovtwout
   active  French                kiwisoft            pgaultier
   active  French                locked              etienne.adam
+  active  French                blaramba            blaramba
   active  German                Mike                haertl.mike                 Yes
   active  Greek                 dotoree             anavatis
   active  Greek                 GoofyX              yiifrmwrk@lourdas.name
