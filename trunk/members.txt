@@ -34,6 +34,7 @@ Member List of Yiidoc Project
   active  Japanese              shuwatto            shuwatto
   active  Japanese              softark             softark@gmail.com
   active  Japanese              morita              morita21@gmail.com
+  active  Japanese              miata               desktopcorps@gmail.com
   active  Kazakh                sotrud_nik          baurthefirst@gmail.com      Yes
   active  Kazakh                resurtm             resurtm@gmail.com
   active  Korean                tlenwon             tlenwon@gmail.com
